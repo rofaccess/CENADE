@@ -1,5 +1,6 @@
 ![Alt Text](https://github.com/rofaccess/CENADE/raw/master/files/cenade.jpg)
 # SISTEMA DE GESTIÓN DE FICHAS Y PACIENTES
+
 ## Ingeniería del Software II - 2016
 
 ### Instrucciones para comenzar
@@ -23,8 +24,10 @@ rails server
 ### Políticas de los commit
 
 1. Existen dos branches permanentes:
--**master:** es el branch de producción que contiene el último release. No se agregarán cambios a él sino hasta el final del sprint.
--**development:** es el branch en donde todos los cambios serán agregados durante el sprint.
+ 
+ **master:** es el branch de producción que contiene el último release. No se agregarán cambios a él sino hasta el final del sprint.
+ 
+ **development:** es el branch en donde todos los cambios serán agregados durante el sprint.
 
 2. Por cada tarea se deberá crear un branch, cuyo nombre tendrá el siguiente formato: issue-numero-funcionalidad. Esto permitirá que cada desarrollador pueda trabajar en forma independiente sin afectar el trabajo de los demás, además se reducirá el riesgo de integrar bugs y errores a development.
 
@@ -50,6 +53,12 @@ rails server
 ###Con respecto a los commits
 1. Los mensajes de los commits deben ser lo más específicos posibles, de forma a que los demás miembros del equipo (incluidos los product owners, el project leader y la tester) puedan saber qué cambios ha incluido el desarrollador.
 
-2. Es recomendable realizar de 3 a 5 commits diarios. Esto permite dividir una tarea en funcionalidades más pequeñas a fin de facilitar el proceso de revisión y conservar el historial limpio y útil para análisis posteriores. También permite identificar más rápidamente en cuales commits se introdujeron bugs. Ver: Keeping Git Commits Small (https://crealytics.com/blog/2010/07/09/5-reasons-keeping-git-commits-small/) y Separate Changes (https://www.kernel.org/pub/software/scm/git/docs/gitworkflows.html)
+2. Es recomendable realizar de 3 a 5 commits diarios. Esto permite dividir una tarea en funcionalidades más pequeñas a fin de facilitar el proceso de revisión y conservar el historial limpio y útil para análisis posteriores. También permite identificar más rápidamente en cuales commits se introdujeron bugs. 
+
+**Ver:** 
+
+	* Keeping Git Commits Small: https://crealytics.com/blog/2010/07/09/5-reasons-keeping-git-commits-small/
+
+	* Separate Changes: https://www.kernel.org/pub/software/scm/git/docs/gitworkflows.html
 
 3. Cada commit debe hacer referencia a la tarea asignada, es decir que debe figurar el número de issue, Ejemplo: issue#2.
