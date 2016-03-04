@@ -55,10 +55,8 @@ rails server
 
 2. Es recomendable realizar de 3 a 5 commits diarios. Esto permite dividir una tarea en funcionalidades más pequeñas a fin de facilitar el proceso de revisión y conservar el historial limpio y útil para análisis posteriores. También permite identificar más rápidamente en cuales commits se introdujeron bugs. 
 
-**Ver:** 
-
-	* Keeping Git Commits Small: https://crealytics.com/blog/2010/07/09/5-reasons-keeping-git-commits-small/
-
-	* Separate Changes: https://www.kernel.org/pub/software/scm/git/docs/gitworkflows.html
+ **Ver:** 
+ * Keeping Git Commits Small: https://crealytics.com/blog/2010/07/09/5-reasons-keeping-git-commits-small/
+ * Separate Changes: https://www.kernel.org/pub/software/scm/git/docs/gitworkflows.html
 
 3. Cada commit debe hacer referencia a la tarea asignada, es decir que debe figurar el número de issue, Ejemplo: issue#2.
