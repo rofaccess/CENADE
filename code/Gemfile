@@ -32,6 +32,7 @@ gem 'devise'
 
 # An enterprise security extension for devise, trying to meet industrial standard security demands for web applications.
 gem 'devise_security_extension'
+gem 'rails_email_validator'
 
 # Translations for the devise gem
 gem 'devise-i18n'
