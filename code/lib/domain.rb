@@ -1,0 +1,31 @@
+module Domain
+	NOMBRE    	= 30
+	EMAIL     	= 20
+	CONTRASEÑA	= 50
+	DESCRIPCION5 = 500
+	DESCRIPCION2 = 200
+	DESCRIPCION4 = 400
+	SINTOMAS     = 500
+	PESO         = 10
+	TRATAMIENTO  = 300
+	MEDIDAS      = 10
+	RUC          = 20
+	DIRECCION    = 256
+	TELEFONO     = 50
+	ESTADO_CIVIL = 10
+	CI           = 15
+
+	EXPLORACION_FACIAL = 100
+	OBSERVACIONES      = 300
+	DIAGNOSTICO        = 150
+
+	MONEDA 	  = 3	
+	FECHA     = 10
+	CODIGO    = 15	
+	EDAD      = 3
+	SEXO      = 9	
+	MONTO     = 13
+	CANTIDAD  = 5	
+	
+	TIPO_PERSONA   = 9
+end
