@@ -1,0 +1,14 @@
+<% if user_signed_in? %>
+  <h1> Bienvenido Usuario Logueado</h1>
+  <li>
+  <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>        
+  </li>
+<% else %>
+  <h1> No Estas logueado</h1>
+
+  <li>
+  <%= link_to('Login', new_user_session_path)  %>  
+  </li>
+<% end %>
+
+
