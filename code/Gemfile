@@ -27,6 +27,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Template language
 gem 'slim'
 
+# Flexible authentication solution for Rails with Warden. Read more: http://blog.plataformatec.com.br/tag/devise/
+gem 'devise'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
