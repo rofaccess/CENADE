@@ -1,6 +1,6 @@
 module Domain
 	NOMBRE    	= 30
-	EMAIL     	= 20
+	EMAIL     	= 50
 	CONTRASEÑA	= 20
 	DESCRIPCION5 = 500
 	DESCRIPCION2 = 200
