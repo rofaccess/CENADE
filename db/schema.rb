@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 20160306083703) do
   enable_extension "plpgsql"
 
   create_table "admins", force: :cascade do |t|
-    t.string   "email",                  limit: 20, default: "", null: false
+    t.string   "email",                  limit: 50, default: "", null: false
     t.string   "username",               limit: 30, default: "", null: false
     t.string   "encrypted_password",                default: "", null: false
     t.string   "reset_password_token"
@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 20160306083703) do
   add_index "admins", ["unlock_token"], name: "index_admins_on_unlock_token", unique: true, using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  limit: 20, default: "", null: false
+    t.string   "email",                  limit: 50, default: "", null: false
     t.string   "username",               limit: 30, default: "", null: false
     t.string   "encrypted_password",                default: "", null: false
     t.string   "reset_password_token"
