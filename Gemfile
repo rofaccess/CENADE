@@ -5,8 +5,11 @@ source 'https://rubygems.org'
 gem 'rails', '4.2.0'
 # Use Postgresql as the database for Active Record
 gem 'pg'
-#Official Sass port of Bootstrap 2 and 3
+# Official Sass port of Bootstrap 2 and 3
 gem 'bootstrap-sass', '~> 3.3.6'
+# Official Font Awesome SASS Ruby Gem 
+gem 'font-awesome-sass'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '>= 3.2'
 # Use Uglifier as compressor for JavaScript assets
