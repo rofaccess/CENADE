@@ -9,10 +9,7 @@
           <span class="icon-bar"></span>
         </button>
         
-        <a class="navbar-brand" href="#">
-          <!-- <img alt="Brand" src="..."> -->
-          <span class="fa fa-wheelchair logo-color" aria-hidden="true"></span>
-        </a>
+        <%= link_to '<span class="fa fa-wheelchair logo-color" aria-hidden="true"></span>'.html_safe, welcome_index_path, class: "navbar-brand"  %> 
 
       </div>
 
@@ -20,24 +17,24 @@
       <div class="collapse navbar-collapse">
         <ul class="nav navbar-nav">        
 
-          <li>
-            <%= link_to '<span class="glyphicon glyphicon-list" aria-hidden="true"></span>  Historial Clínico'.html_safe, welcome_index_historial_clinico_path  %> 
+          <li class="<%= current_menu([welcome_index_historial_clinico_path])%>">
+            <%= link_to '<span class="fa fa-list" aria-hidden="true"></span>  Historial Clínico'.html_safe, welcome_index_historial_clinico_path  %> 
             
           </li> 
          
-          <li>
+          <li class="<%= current_menu([welcome_index_turnos_path])%>">
             <%= link_to '<span class="fa fa-calendar" aria-hidden="true"></span>  Turnos'.html_safe, welcome_index_turnos_path  %>
           </li>
           
-          <li>
+          <li class="<%= current_menu([welcome_index_pagos_path])%>">
             <%= link_to '<span class="fa fa-dollar" aria-hidden="true"></span>  Pagos'.html_safe, welcome_index_pagos_path  %>
           </li>
           
-          <li>
+          <li class="<%= current_menu([welcome_index_personal_path])%>">
             <%= link_to '<span class="fa fa-users" aria-hidden="true"></span>  Personal'.html_safe, welcome_index_personal_path  %>            
           </li>
           
-          <li>
+          <li class="<%= current_menu([welcome_index_configuracion_path])%>">
             <%= link_to '<span class="fa fa-gear" aria-hidden="true"></span>  Configuración'.html_safe, welcome_index_configuracion_path  %> 
             
           </li>  

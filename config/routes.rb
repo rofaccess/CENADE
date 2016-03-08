@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get "welcome/index_personal"
   get "welcome/index_pagos"
   get "welcome/index_turnos"
+  get "welcome/index"
 
   root 'welcome#index'
 

@@ -7,7 +7,7 @@ $navbar-default-link-disabled-color: gray;
 $navbar-default-link-hover-color: #23C0C0;;
 $navbar-default-link-color: white;
 
-$navbar-icon-size: 15pt;
+$navbar-icon-size: 12pt;
 $navbar-font-size: 15pt;
 
 // Custom navbar
@@ -46,6 +46,11 @@ $navbar-font-size: 15pt;
         color: $navbar-default-link-hover-color;
         background-color: $navbar-default-link-hover-bg;
       }
+
+      span{
+        font-size: $navbar-icon-size;
+      }
+
     }
     > .active > a {
       &,
