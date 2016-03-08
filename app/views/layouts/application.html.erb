@@ -8,16 +8,18 @@
 
   <%= favicon_link_tag 'favicon.png' %>
 </head>
-<body>
+<body>	
 
-<% if user_signed_in? %> 
-	<%= render "layouts/menu" %>
+	<% if user_signed_in? %> 
+		<%= render "layouts/menu" %>
 
-	<% unless @submenu_layout == nil %>    
-		<%= render @submenu_layout %>
+		<% unless @submenu_layout == nil %>    
+			<%= render @submenu_layout %>
+		<% end %>
+
+		<%= render 'layouts/messages' %>
 	<% end %>
-<% end %>
-<%= yield %>
+	<%= yield %>
 
 </body>
 </html>
