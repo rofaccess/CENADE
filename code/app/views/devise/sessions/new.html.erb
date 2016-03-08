@@ -1,6 +1,7 @@
 <div class="container">
 
 <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {class: 'form-signin'}) do |f| %>
+  <h2 class= "form-signin-heading"><span class="fa fa-wheelchair"></span></h2>
   <h2 class= "form-signin-heading"><%= t('.sign_in', :default => "Sign in") %></h2>
   <div class="input-group">
 	
@@ -22,3 +23,7 @@
 <% end %>
 
 </div>
+
+<script type='text/javascript'>
+			$('#new_user').last().validate();
+		</script>
