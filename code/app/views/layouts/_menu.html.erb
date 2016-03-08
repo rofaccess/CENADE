@@ -20,30 +20,27 @@
       <div class="collapse navbar-collapse">
         <ul class="nav navbar-nav">        
 
-          <li class="active"> <a href="#">
-            <span class="glyphicon glyphicon-list" aria-hidden="true"></span> 
-            Historial Clínico</a>
-          </li>
+          <li>
+            <%= link_to '<span class="glyphicon glyphicon-list" aria-hidden="true"></span>  Historial Clínico'.html_safe, welcome_index_historial_clinico_path  %> 
+            
+          </li> 
          
-          <li><a href="#">
-            <span class="fa fa-calendar" aria-hidden="true"></span>
-            Turnos</a>
+          <li>
+            <%= link_to '<span class="fa fa-calendar" aria-hidden="true"></span>  Turnos'.html_safe, welcome_index_turnos_path  %>
           </li>
           
-          <li><a href="#">
-            <span class="fa fa-dollar" aria-hidden="true"></span>
-            Pagos</a>
+          <li>
+            <%= link_to '<span class="fa fa-dollar" aria-hidden="true"></span>  Pagos'.html_safe, welcome_index_pagos_path  %>
           </li>
           
-          <li><a href="#">
-            <span class="fa fa-users" aria-hidden="true"></span>
-            Personal</a>
+          <li>
+            <%= link_to '<span class="fa fa-users" aria-hidden="true"></span>  Personal'.html_safe, welcome_index_personal_path  %>            
           </li>
           
-          <li><a href="#">
-            <span class="fa fa-gear" aria-hidden="true"></span>
-            Configuración</a>
-          </li>       
+          <li>
+            <%= link_to '<span class="fa fa-gear" aria-hidden="true"></span>  Configuración'.html_safe, welcome_index_configuracion_path  %> 
+            
+          </li>  
 
         </ul>
 

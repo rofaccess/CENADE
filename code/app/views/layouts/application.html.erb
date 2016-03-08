@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+<% unless @sidebar == false %>
+    <div class="sidebar">some stuff</div>
+<% end %><!DOCTYPE html>
 <html>
 <head>
   <title>CENADE</title>
@@ -9,8 +11,10 @@
 <body>
 
 <%= render "layouts/menu" %>
-<%= render @submenu_layout %>
 
+<% unless @submenu_layout == nil %>    
+	<%= render @submenu_layout %>
+<% end %>
 <%= yield %>
 
 </body>
