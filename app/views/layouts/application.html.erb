@@ -10,10 +10,12 @@
 </head>
 <body>
 
-<%= render "layouts/menu" %>
+<% if user_signed_in? %> 
+	<%= render "layouts/menu" %>
 
-<% unless @submenu_layout == nil %>    
-	<%= render @submenu_layout %>
+	<% unless @submenu_layout == nil %>    
+		<%= render @submenu_layout %>
+	<% end %>
 <% end %>
 <%= yield %>
 

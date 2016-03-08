@@ -1,0 +1,27 @@
+  <div class="container">
+
+  <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {class: 'form-signin'}) do |f| %>
+    <h2 class= "form-signin-heading"><span class="fa fa-wheelchair"></span></h2>
+    <h2 class= "form-signin-heading"><%= t('.sign_in', :default => "Sign in") %></h2>
+    <div class="input-group">
+        <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
+        	<%= f.text_field :username, placeholder: 'Nombre de usuario', class: 'form-control input-lg required clear', autofocus: true, maxLength: Domain::NOMBRE %>      
+      </div>	
+
+      <div class="input-group">
+          <span class="input-group-addon"><i class="fa fa-key fa-fw"></i></span>
+        	<%= f.password_field :password, placeholder: 'Contraseña', class: 'form-control input-lg required clear passwordLength passwordCheck', maxLength: Domain::CONTRASEÑA %>      
+      </div>
+   
+    <% if devise_mapping.rememberable? -%>
+      <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
+    <% end -%>
+
+    <div><%= f.submit t('.sign_in', :default => "Sign in"), :class => 'btn btn-lg btn-block' %></div>
+  <% end %>
+
+  </div>
+
+  <script type='text/javascript'>
+  			$('#new_user').last().validate();
+  		</script>
