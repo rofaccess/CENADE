@@ -1,18 +1,24 @@
 $navbar-logo-color: #F7F702;
 $navbar-default-bg: #474747;
+
 $navbar-default-link-active-bg: #23C0C0;
 $navbar-default-link-active-color: white;
-$navbar-default-link-disabled-color: white;
-$navbar-default-link-hover-color: #23C0C0;
+$navbar-default-link-disabled-color: gray;
+$navbar-default-link-hover-color: #23C0C0;;
 $navbar-default-link-color: white;
-$navbar-icon-size: 12pt;
-$navbar-font-weigth: 12pt;
 
-// Default navbar
-.navbar-default {
+$navbar-icon-size: 15pt;
+$navbar-font-size: 15pt;
+
+// Custom navbar
+.navbar-custom {
   background-color: $navbar-default-bg;
   border-color: $navbar-default-border;
-
+  margin-bottom: 0px;
+  font-size: $navbar-font-size;
+  font-weight: bold;
+  border: none;
+  border-radius: 0px;
   .navbar-brand {
     color: $navbar-default-brand-color;
     &:hover,
@@ -22,6 +28,8 @@ $navbar-font-weigth: 12pt;
     }
     span{
       color: $navbar-logo-color;
+      font-size: $navbar-font-size;
+      font-weight: bold;
     }
   }
 
@@ -37,11 +45,6 @@ $navbar-font-weigth: 12pt;
       &:focus {
         color: $navbar-default-link-hover-color;
         background-color: $navbar-default-link-hover-bg;
-      }
-      span{
-        font-size: $navbar-icon-size; 
-        padding-bottom: 0px;
-        margin-bottom: 0px;
       }
     }
     > .active > a {
