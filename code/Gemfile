@@ -30,6 +30,22 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Template language
 gem 'slim'
 
+# Flexible authentication solution for Rails with Warden. Read more: http://blog.plataformatec.com.br/tag/devise/
+gem 'devise'
+
+# An enterprise security extension for devise, trying to meet industrial standard security demands for web applications.
+gem 'devise_security_extension'
+gem 'rails_email_validator'
+
+# Translations for the devise gem
+gem 'devise-i18n'
+
+# I18n support for devise views
+gem 'devise-i18n-views'
+
+# TZInfo::Data - Timezone Data for TZInfo
+gem 'tzinfo-data'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
