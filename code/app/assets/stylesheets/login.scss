@@ -1,86 +1,85 @@
-
-@import "bootstrap/variables";
-@import "bootstrap/mixins";
-  .has-warning {
-  @include form-control-validation($state-warning-text, $state-warning-text, $state-warning-bg);
-}
-  body  {
-    .form-signin{
-      margin-top: 100px;
-      //background-color: #eee;
-    }
-    
-  }
-
-  .form-signin {
-    max-width: 400px;
-    padding: 30px;
-    margin: 0 auto;
-    border: solid;
-    border-radius: 20px;
-    border-color: gray;
-    border-width: 1px;
-    background-color: white;
-    color: gray;
-    font-family: arial;
-    font-size: 12pt;
-    font-weight: bold;
-
-    .input-group {
-      padding-bottom: 30px;
-    }
-
-    .form-signin-heading {
-      text-align: center;
-      margin-top:0px;
-      margin-bottom: 20px;
-      font-weight: bold;
-    }
-
-    .btn {    
+    body  {
+      .form-signin{
+        margin-top: 100px;
+        //background-color: #eee;
+      }
       
-      background-color: #5BC0DE;
+    }
 
-      &:hover,
-      &:focus {
-        text-decoration: none;
-        color: white;
-        background-color: #24C1C1;
+    .form-signin {
+      max-width: 400px;
+      padding: 30px;
+      margin: 0 auto;
+      border: solid;
+      border-radius: 20px;
+      border-color: gray;
+      border-width: 1px;
+      background-color: white;
+      color: gray;
+      font-family: arial;
+      font-size: 12pt;
+      font-weight: bold;
+
+      .input-group {
+        padding-bottom: 30px;
       }
 
-      &:active,
-      &.active {
-        outline: 0;
-        background-image: none;
-        @include box-shadow(inset 0 3px 5px rgba(0,0,0,.125));
+      .form-signin-heading {
+        text-align: center;
+        margin-top:0px;
+        margin-bottom: 20px;
+        font-weight: bold;
       }
-    } 
-    > h2 > span {
-     font-size: 60px;
-    } 
+
+      .btn {    
+        
+        background-color: #5BC0DE;
+
+        &:hover,
+        &:focus {
+          text-decoration: none;
+          color: white;
+          background-color: #24C1C1;
+        }
+
+        &:active,
+        &.active {
+          outline: 0;
+          background-image: none;
+          @include box-shadow(inset 0 3px 5px rgba(0,0,0,.125));
+        }
+      } 
+      > h2 > span {
+       font-size: 60px;
+      } 
+    }
+
+    p {
+    	text-align: right;
+    	padding-right: 30px;
+    }
+
+    p#remember_me_holder{
+    	margin-top: 20px;
+    }
+
+    .btn {
+    	//background-color: #6ACCCB;
+    	color: white;
+    	border-color: gray;
+    }
+
+    .login_message {
+    	color: #F0AD4E;
+    	padding-bottom: 20px;
+    }
+
+  //errorClass de jquery-validate-setup evita que lo siguiente surta efecto
+  .error {
+    color: #DC2A2A;
   }
 
-  p {
-  	text-align: right;
-  	padding-right: 30px;
+  .input-warning{
+    border-color:#8A6D3D; 
+    border-width: 2px;
   }
-
-  p#remember_me_holder{
-  	margin-top: 20px;
-  }
-
-  .btn {
-  	//background-color: #6ACCCB;
-  	color: white;
-  	border-color: gray;
-  }
-
-  .login_message {
-  	color: #F0AD4E;
-  	padding-bottom: 20px;
-  }
-
-//errorClass de jquery-validate-setup evita que lo siguiente surta efecto
-.error {
-  color: #DC2A2A;
-}
