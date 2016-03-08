@@ -12,7 +12,7 @@
 
     <div class="input-group">
       <span class="input-group-addon fa fa-key"></span>
-      	<%= f.password_field :password, placeholder: 'Contraseña', class: 'form-control input-lg required clear', maxLength: Domain::CONTRASEÑA %>      
+      	<%= f.password_field :password, placeholder: 'Contraseña', class: 'form-control input-lg required clear passwordLength passwordCheck', maxLength: Domain::CONTRASEÑA %>      
     </div>
  
   <% if devise_mapping.rememberable? -%>

@@ -73,11 +73,7 @@
   	padding-bottom: 20px;
   }
 
+//errorClass de jquery-validate-setup evita que lo siguiente surta efecto
 .error {
-    color: #DC2A2A;
-    //display: inline-block;
-    //*display: inline;
-    //padding-left: 5px;
-    //vertical-align: middle;
-    //*zoom: 1;
+  color: #DC2A2A;
 }
