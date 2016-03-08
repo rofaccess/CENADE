@@ -4,10 +4,10 @@ jQuery.validator.setDefaults({
 	errorClass:		'text-warning',
 	onfocusout: function(element) { $(element).valid(); },
 	highlight: function(element){
-		$(element).closest('.form-control').addClass('has-warning');
+		$(element).closest('.form-control').addClass('input-warning');
 	},
 	success: function(element){
-		$(element).closest('.form-group').removeClass('has-warning');
+		$(element).closest('.form-group').removeClass('input-warning');
 	}
 });
 
