@@ -3,6 +3,10 @@
   <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {class: 'form-signin'}) do |f| %>
     <h2 class= "form-signin-heading"><span class="fa fa-wheelchair"></span></h2>
     <h2 class= "form-signin-heading"><%= t('.sign_in', :default => "Sign in") %></h2>
+
+    <%= devise_error_messages! %>
+    <%= render 'layouts/messages' %>
+    
     <div class="input-group">
         <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
         	<%= f.text_field :username, placeholder: 'Nombre de usuario', class: 'form-control input-lg required clear', autofocus: true, maxLength: Domain::NOMBRE %>      
