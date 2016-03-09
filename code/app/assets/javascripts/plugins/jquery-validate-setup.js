@@ -8,7 +8,13 @@ jQuery.validator.setDefaults({
 	},
 	success: function(element){
 		$(element).closest('.form-group').removeClass('input-warning');
-	}
+	},
+	errorPlacement: function(error, element) {
+        if (element.attr("id") == "user_username" )  
+            error.appendTo('#username-error');
+        if (element.attr("id") == "user_password" )  
+            error.appendTo('#password-error');
+    }
 });
 
 
