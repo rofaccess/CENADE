@@ -20,8 +20,9 @@
       font-size: 12pt;
       font-weight: bold;
 
-      .input-group {
+      #username-error, #password-error {
         padding-bottom: 30px;
+        margin-left: 43px;
       }
 
       .form-signin-heading {
