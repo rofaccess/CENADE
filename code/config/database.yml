@@ -83,8 +83,11 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  <<: *default
-  host:     <%= Rails.application.secrets.db_host %>
-  database: <%= Rails.application.secrets.db_name %>
-  username: <%= Rails.application.secrets.db_username %>
-  password: <%= Rails.application.secrets.db_password %>
+  url: <%= ENV['DATABASE_URL'] %>
+
+# production:
+#   <<: *default
+#   host:     <%= Rails.application.secrets.db_host %>
+#   database: <%= Rails.application.secrets.db_name %>
+#   username: <%= Rails.application.secrets.db_username %>
+#   password: <%= Rails.application.secrets.db_password %>
