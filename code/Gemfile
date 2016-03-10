@@ -1,5 +1,12 @@
 source 'https://rubygems.org'
 
+ruby '2.2.4'
+
+# Usado por heroku para cargar los assets
+gem 'rails_12factor', group: :production
+
+# A ruby web server built for concurrency http://puma.io
+gem 'puma'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
