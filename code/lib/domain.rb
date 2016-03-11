@@ -1,10 +1,12 @@
 module Domain
 	NOMBRE    	= 30
+	USERNAME   	= 30
 	EMAIL     	= 50
 	CONTRASEÑA	= 20
 	DESCRIPCION5 = 500
 	DESCRIPCION2 = 200
 	DESCRIPCION4 = 400
+	CARGO = 100
 	SINTOMAS     = 500
 	PESO         = 10
 	TRATAMIENTO  = 300
@@ -12,7 +14,7 @@ module Domain
 	RUC          = 20
 	DIRECCION    = 256
 	TELEFONO     = 50
-	ESTADO_CIVIL = 10
+	ESTADO_CIVIL = 15
 	CI           = 15
 
 	EXPLORACION_FACIAL = 100
@@ -27,5 +29,7 @@ module Domain
 	MONTO     = 13
 	CANTIDAD  = 5	
 	
-	TIPO_PERSONA   = 9
+	TIPO_EMPLEADO   = 9
+	ESPECIALIDAD   = 50
+	ROL = 15
 end
