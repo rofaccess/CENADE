@@ -1,3 +1,3 @@
 class EstadoCivil < ActiveRecord::Base
-	has_many :empleados 
+	has_many :personas 
 end
