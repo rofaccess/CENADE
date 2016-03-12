@@ -16,16 +16,15 @@
       <div class="collapse navbar-collapse">
         <ul class="nav navbar-nav">        
 
-          <li class="active"> <a href="#">
+          <li> <a href="#">
             
             Datos de la Empresa</a>
           </li>
-         
-          <li><a href="#">
-            
-            Usuarios</a>
+
+          <li class="<%= current_submenu(usuarios_path)%>">
+            <%=link_to 'Usuarios', usuarios_path %>
           </li>
-          
+
           <li><a href="#">
             
             Roles</a>

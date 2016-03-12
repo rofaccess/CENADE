@@ -1,0 +1,40 @@
+
+<table class= "table table-condensed">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Apellido</th> 
+      <th>C.I</th>
+      <th>RUC</th>
+      <th class="col-md-1">Fec. de Nac.</th>
+      <th>Edad</th>
+      <th>Direccion</th>
+      <th class="col-md-1">Telefono</th>
+      <th>Sexo</th>
+      <th>Estado Civil</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @empleados.each do |empleado| %>
+    <tr>
+      <td><%=empleado.persona.nombre %></td>
+      <td><%=empleado.persona.apellido %></td>
+      <td><%=empleado.persona.ci %></td>
+      <td><%=empleado.persona.ruc %></td>
+      <td><%=Formatter.format_date(empleado.persona.fecha_nacimiento) %></td>
+      <td><%=empleado.persona.edad %></td>
+      <td><%=empleado.persona.direccion %></td>
+      <td><%=empleado.persona.telefono %></td>
+      <td><%=empleado.persona.sexo %></td>
+      <td><%=empleado.persona.estado_civil.descripcion %></td>
+      <td class = "action">
+
+        <%= link_to '<i class="glyphicon glyphicon-edit icon-large"></i> '.html_safe, empleados_path(p), remote: true%>
+        <%= link_to '<i class="glyphicon glyphicon-trash icon-large"></i>'.html_safe, empleados_path(p), method: 'delete', data: {confirm: "¿Desea eliminar al empleado #{empleado.persona.nombre}?"}, remote: true%>
+
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

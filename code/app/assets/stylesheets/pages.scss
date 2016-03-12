@@ -1,0 +1,36 @@
+// Place all the styles related to the Usuarios controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.content{
+	margin: 20px;
+
+	a.btn {    
+
+		background-color: #24C1C1;
+		border: none;
+		margin-bottom: 20px;
+		color: white;
+
+		&:hover,
+		&:focus {
+			text-decoration: none;
+		}
+
+		&:active,
+		&.active {
+			outline: 0;
+			background-image: none;
+			@include box-shadow(inset 0 3px 5px rgba(0,0,0,.125));
+		}
+	}
+}
+
+td.action > a > i {
+	color: #24C1C1;
+
+	&:hover,
+	&:focus {
+		color: green;
+	}
+}
