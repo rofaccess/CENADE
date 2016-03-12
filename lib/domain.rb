@@ -29,7 +29,7 @@ module Domain
 	MONTO     = 13
 	CANTIDAD  = 5	
 	
-	TIPO_EMPLEADO   = 9
+	TIPO_EMPLEADO   = 15
 	ESPECIALIDAD   = 50
 	ROL = 15
 end
