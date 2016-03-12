@@ -14,3 +14,15 @@
 # ActiveSupport::Inflector.inflections(:en) do |inflect|
 #   inflect.acronym 'RESTful'
 # end
+
+ActiveSupport::Inflector.inflections(:en) do |inflect|
+
+	inflect.irregular 'estado_civil', 'estados_civiles'
+	inflect.irregular 'persona', 'personas'
+	inflect.irregular 'especialidad', 'especialidades'
+	inflect.irregular 'cargo', 'cargos'
+	inflect.irregular 'horario', 'horarios'
+	inflect.irregular 'empleado', 'empleados'
+	inflect.irregular 'doctor', 'doctores'
+
+end
