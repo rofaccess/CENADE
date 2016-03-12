@@ -27,8 +27,4 @@ horario2 = Horario.create
 funcionario1 = Funcionario.create(persona_id: persona1.id, horario_id: horario1.id, cargo_id: cargo1.id)
 doctor1 = Doctor.create(persona_id: persona2.id, horario_id: horario2.id, cargo_id: cargo2.id, especialidad_id: psicologia.id)
 
-u = User.where(username: 'admin')
-
-if u.blank?
-	User.create(username: 'admin', password: 'MyAdmin123', password_confirmation: 'MyAdmin123', empleado_id: funcionario1.id)
-end
+admin = User.create(username: 'admin', password: 'MyAdmin123', password_confirmation: 'MyAdmin123', empleado_id: funcionario1.id, email: "juanjose@gmail.com")
