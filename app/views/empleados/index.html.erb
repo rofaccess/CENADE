@@ -1,6 +1,7 @@
 <div class= "content">
 
- <%= link_to 'Agregar Empleado',empleados_path, class: 'btn pull-right' %>
+ <%= link_to 'Agregar Empleado',new_empleado_path, class: 'btn btn-custom pull-right', remote: true %>
 
  <%= render 'list' %>
+
 </div>
