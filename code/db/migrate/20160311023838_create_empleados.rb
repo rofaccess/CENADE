@@ -12,7 +12,7 @@ class CreateEmpleados < ActiveRecord::Migration
     t.timestamps
 
     end
-
+    
     add_foreign_key(:empleados, :personas, column: 'persona_id', options: 'ON DELETE RESTRICT')
     add_foreign_key(:empleados, :horarios, column: 'horario_id', options: 'ON DELETE RESTRICT')
     add_foreign_key(:empleados, :cargos, column: 'cargo_id', options: 'ON DELETE RESTRICT')

@@ -49,11 +49,11 @@ ActiveRecord::Schema.define(version: 20160311023838) do
   add_index "cargos", ["descripcion"], name: "index_cargos_on_descripcion", unique: true, using: :btree
 
   create_table "empleados", force: :cascade do |t|
-    t.integer  "persona_id",                             null: false
-    t.integer  "horario_id",                             null: false
-    t.integer  "cargo_id",                               null: false
+    t.integer  "persona_id",                              null: false
+    t.integer  "horario_id",                              null: false
+    t.integer  "cargo_id",                                null: false
     t.integer  "especialidad_id"
-    t.string   "type",            limit: 9, default: "", null: false
+    t.string   "type",            limit: 15, default: "", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -98,6 +98,7 @@ ActiveRecord::Schema.define(version: 20160311023838) do
   add_index "personas", ["email"], name: "index_personas_on_email", unique: true, using: :btree
 
   create_table "users", force: :cascade do |t|
+    t.string   "email",                  limit: 50, default: "", null: false
     t.string   "username",               limit: 30, default: "", null: false
     t.string   "encrypted_password",                default: "", null: false
     t.integer  "empleado_id",                                    null: false
@@ -122,9 +123,9 @@ ActiveRecord::Schema.define(version: 20160311023838) do
   add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
   add_foreign_key "empleados", "cargos"
-  add_foreign_key "empleados", "especialidades", column: "especialidad_id"
+  add_foreign_key "empleados", "especialidades"
   add_foreign_key "empleados", "horarios"
   add_foreign_key "empleados", "personas"
-  add_foreign_key "personas", "estados_civiles", column: "estado_civil_id"
+  add_foreign_key "personas", "estados_civiles"
   add_foreign_key "users", "empleados"
 end
