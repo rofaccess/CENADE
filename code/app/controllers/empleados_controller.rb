@@ -9,4 +9,8 @@ class EmpleadosController < ApplicationController
 	def index
 		@empleados= Empleado.all
 	end
+
+	def new
+    	@empleado = Empleado.new
+  	end
 end
