@@ -55,7 +55,7 @@ module FormBuilder
   # col-class : Establece clases para el div que contiene al label y al input
   #             Normalmente lo usamos para establecer el largo del elemento div con col-md-xx
   # Nota: btn_menos no admisible
-  # La diferencia con text_field_h es que el input esta contenido en un div aqui
+  # La diferencia con text_field_h es que el input no esta contenido en un div aqui
   def self.text_field_v(f, field, option)
     html = ""
       html << "<div class='form-group #{option.key?(:col_class) ? option[:col_class] : ''}'>"
@@ -124,7 +124,7 @@ module FormBuilder
   end
 
   # Permite sleccionar los datos de un modelo especificado
-  # La diferencia con collection_select_h es que el select esta contenido en un div aqui
+  # La diferencia con collection_select_h es que el select y label estan en un mismo div
   def self.collection_select_v(f, field, collection, value, text,option)
     html = ""
     html << "<div class='form-group #{option.key?(:col_class) ? option[:col_class] : ''}'>"
@@ -160,7 +160,7 @@ module FormBuilder
   end
   
   # Permite establecer tus propios valores en el select Ej.: Pendiente, Pagado, etc.
-  def self.select(f, field, collection, option)
+  def self.select_h(f, field, collection, option)
     html = ""
     html << "<div class='form-group #{option.key?(:col_class) ? option[:col_class] : ''}'>"
       if f.nil?

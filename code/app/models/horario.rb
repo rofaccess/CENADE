@@ -1,3 +1,3 @@
 class Horario < ActiveRecord::Base
- 	has_one :empleado
+ 	belongs_to :empleado
 end

@@ -17,7 +17,7 @@
 		<%= empleado.fields_for(:persona) do |persona| %>
 	 	<div class="row">	
 			<%= FormBuilder::text_field_v(persona, :nombre, 
-							                        input_class: 'required clear', 
+							                        input_class: 'required', 
 							                        max_length: Domain::NOMBRE, 
 							                        autofocus: true,
 							                        col_class: 'col-md-4',
@@ -111,7 +111,7 @@
 
 		<div class="modal-footer">
 			<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-			<!-- <%= empleado.submit 'Guardar', class: 'btn btn-custom'%> -->
+			<%= empleado.submit 'Guardar', class: 'btn btn-custom'%>
 		</div>  
 
 	<% end %>

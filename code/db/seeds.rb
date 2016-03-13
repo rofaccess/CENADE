@@ -41,16 +41,14 @@ fisioterapeuta = Especialidad.create(descripcion: 'Fisioterapeuta')
 cargo1 = Cargo.create(descripcion: 'Gerente General')
 cargo2 = Cargo.create(descripcion: 'Jefe de Pediatria')
 
-horario1 = Horario.create
-horario2 = Horario.create
-
-funcionario1 = Funcionario.create(persona_id: persona1.id, 
-							      horario_id: horario1.id, 
+funcionario1 = Funcionario.create(persona_id: persona1.id,
 							      cargo_id: cargo1.id)
-doctor1 = Doctor.create(persona_id: persona2.id, 
-	                    horario_id: horario2.id, 
+doctor1 = Doctor.create(persona_id: persona2.id,  
 	                    cargo_id: cargo2.id, 
 	                    especialidad_id: psicologia.id)
+
+horario1 = Horario.create(empleado_id: funcionario1.id)
+horario2 = Horario.create(empleado_id: doctor1.id)
 
 admin = User.create(username: 'admin', 
 					password: 'MyAdmin123', 
