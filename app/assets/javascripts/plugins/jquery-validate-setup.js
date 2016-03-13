@@ -6,14 +6,18 @@ jQuery.validator.setDefaults({
 	highlight: function(element){
 		$(element).closest('.form-control').addClass('input-warning');
 	},
-	success: function(element){
+	unhighlight: function(element){
 		$(element).closest('.form-control').removeClass('input-warning');
 	},	
 	errorPlacement: function(error, element) {
         if (element.attr("id") == "user_username" )  
             error.appendTo('#username-error');
-        if (element.attr("id") == "user_password" )  
+        else if (element.attr("id") == "user_password" )  
             error.appendTo('#password-error');
+        else{
+        	error.insertAfter(element);  
+        	element.focus();  
+        }	    
     }
 });
 

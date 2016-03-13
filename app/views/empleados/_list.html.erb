@@ -27,7 +27,12 @@
       <td><%=empleado.persona.direccion %></td>
       <td><%=empleado.persona.telefono %></td>
       <td><%=empleado.persona.sexo %></td>
-      <td><%=empleado.persona.estado_civil.descripcion %></td>
+      <td>
+          <% if empleado.persona.estado_civil.blank? %>
+          <% else %>
+            <%=empleado.persona.estado_civil.descripcion %>
+          <% end %>  
+      </td>     
       <td class = "action">
 
         <%= link_to '<i class="glyphicon glyphicon-edit icon-large"></i> '.html_safe, empleados_path(p), remote: true%>
