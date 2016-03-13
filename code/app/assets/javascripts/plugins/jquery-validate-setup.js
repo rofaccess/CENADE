@@ -7,8 +7,8 @@ jQuery.validator.setDefaults({
 		$(element).closest('.form-control').addClass('input-warning');
 	},
 	success: function(element){
-		$(element).closest('.form-group').removeClass('input-warning');
-	},
+		$(element).closest('.form-control').removeClass('input-warning');
+	},	
 	errorPlacement: function(error, element) {
         if (element.attr("id") == "user_username" )  
             error.appendTo('#username-error');
