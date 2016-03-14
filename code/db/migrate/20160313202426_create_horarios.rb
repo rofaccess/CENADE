@@ -6,6 +6,6 @@ class CreateHorarios < ActiveRecord::Migration
     end
     
     # ON DELETE CASCADE: Si se borra el empleado, se borra el horario
-    add_foreign_key(:horarios, :empleados, column: 'empleado_id', options: 'ON DELETE CASCADE')
+    add_foreign_key(:horarios, :empleados, column: 'empleado_id', on_delete: :cascade)
   end
 end

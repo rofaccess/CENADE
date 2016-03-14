@@ -51,6 +51,9 @@ gem 'tzinfo-data'
 # A code metric tool for rails projects http://rails-bestpractices.com
 gem "rails_best_practices"
 
+# acts_as_paranoid for Rails 3 & 4 (Borrado oscioso)
+gem "paranoia", "~> 2.0"
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
