@@ -56,12 +56,14 @@ module FormBuilder
   #             Normalmente lo usamos para establecer el largo del elemento div con col-md-xx
   # Nota: btn_menos no admisible
   # La diferencia con text_field_h es que el input no esta contenido en un div aqui
+  # Se pone un if para el input_value, porque de algún modo los formularios de edicion no muestran
+  # nada si no se hace así cuando se usa fields_for 
   def self.text_field_v(f, field, option)
     html = ""
       html << "<div class='form-group #{option.key?(:col_class) ? option[:col_class] : ''}'>"
         html << f.label(field,"#{option.key?(:label_text) ? option[:label_text] : ''}", 
                               class: "control-label #{option.key?(:label_class) ? option[:label_class] : ''}")
-        #if option.key?(:input_value)
+        if option.key?(:input_value)
           html << f.text_field(field, class: "form-control #{option.key?(:input_class) ? option[:input_class] : ''}",
                                       value: "#{option.key?(:input_value) ? option[:input_value] : ''}", 
                                       placeholder: "#{option.key?(:placeholder) ? option[:placeholder] : ''}", 
@@ -69,14 +71,14 @@ module FormBuilder
                                       readonly: option.key?(:readonly) ? option[:readonly] : false, 
                                       maxLength: "#{option.key?(:max_length) ? option[:max_length] : '150'}", 
                                       autofocus: option.key?(:autofocus) ? option[:autofocus] : false)
-        #else
-          #html << f.text_field(field, class: "form-control #{option.key?(:input_class) ? option[:input_class] : ''}",
-                                      #placeholder: "#{option.key?(:placeholder) ? option[:placeholder] : ''}", 
-                                      #disabled: option.key?(:disabled) ? option[:disabled] : false, 
-                                      #readonly: option.key?(:readonly) ? option[:readonly] : false, 
-                                      #maxLength: "#{option.key?(:max_length) ? option[:max_length] : '150'}", 
-                                      #autofocus: option.key?(:autofocus) ? option[:autofocus] : false)
-        #end
+        else
+          html << f.text_field(field, class: "form-control #{option.key?(:input_class) ? option[:input_class] : ''}",
+                                      placeholder: "#{option.key?(:placeholder) ? option[:placeholder] : ''}", 
+                                      disabled: option.key?(:disabled) ? option[:disabled] : false, 
+                                      readonly: option.key?(:readonly) ? option[:readonly] : false, 
+                                      maxLength: "#{option.key?(:max_length) ? option[:max_length] : '150'}", 
+                                      autofocus: option.key?(:autofocus) ? option[:autofocus] : false)
+        end
         if option.key?(:btn_mas)
           html << "<div class='col-md-2'><a href='#{option[:btn_mas]}' data-remote='true' data-url='' class='btn btn-default btn-block'><i class='glyphicon glyphicon-plus'></i></a></div>"
         end

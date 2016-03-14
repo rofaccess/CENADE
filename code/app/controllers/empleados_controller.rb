@@ -25,10 +25,10 @@ class EmpleadosController < ApplicationController
 	    end			
 		if @empleado.save
 		    flash.notice= "Se ha guardado el empleado #{@empleado.persona.nombre}
-		    #{@empleado.persona.apellido} con Cédula Nº #{@empleado.persona.ci}."		    
+		    #{@empleado.persona.apellido}."		    
 		else
 		    flash.alert = "No se ha podido guardar el empleado #{@empleado.persona.nombre} 
-		    #{@empleado.persona.apellido} con Cédula Nº #{@empleado.persona.ci}.."
+		    #{@empleado.persona.apellido}."
 		end 
 		update_list  
   	end
@@ -36,7 +36,23 @@ class EmpleadosController < ApplicationController
   	def edit
  	end
 
- 	def update	 
+ 	def update	
+ 		es_doctor = empleado_params[:es_doctor]
+        
+
+ 		if es_doctor.blank?    
+	    	@empleado.type = 'Funcionario'
+	    else
+	    	@empleado.type = 'Doctor'
+	    end			
+		if @empleado.update(empleado_params)
+		    flash.notice= "Se ha actualizado el empleado #{@empleado.persona.nombre}
+		    #{@empleado.persona.apellido}."		    
+		else
+		    flash.alert = "No se ha podido actualizar el empleado #{@empleado.persona.nombre} 
+		    #{@empleado.persona.apellido}."
+		end 
+		update_list   
   	end
 
   	def update_list
@@ -47,10 +63,10 @@ class EmpleadosController < ApplicationController
   	def destroy  
 	    if @empleado.destroy
 		  flash.notice = "Se ha eliminado el empleado #{@empleado.persona.nombre} 
-		  #{@empleado.persona.apellido} con Cédula Nº #{@empleado.persona.ci}.."	        
+		  #{@empleado.persona.apellido}."	        
 	    else
 	      flash.alert = "No se ha podido eliminar el empleado #{@empleado.persona.nombre} 
-	      #{@empleado.persona.apellido} con Cédula Nº #{@empleado.persona.ci}.."
+	      #{@empleado.persona.apellido}."
 	    end
 	    index
   	end
@@ -61,8 +77,8 @@ class EmpleadosController < ApplicationController
 
   	def empleado_params
       params.require(:empleado).permit(:cargo_id,:especialidad_id,
-      persona_attributes: [:nombre,:apellido,:ci,:ruc,:fecha_nacimiento,:edad,
-      	                   :sexo,:estad_civil,:direccion,:telefono,:email])
+      persona_attributes: [:id,:nombre,:apellido,:ci,:ruc,:fecha_nacimiento,:edad,
+      	                   :sexo,:estado_civil_id,:direccion,:telefono,:email])
     end
 
 end
