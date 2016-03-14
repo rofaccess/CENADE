@@ -12,6 +12,8 @@
       <th class="col-md-1">Telefono</th>
       <th>Sexo</th>
       <th>Estado Civil</th>
+      <th>Cargo</th>
+      <th>Especialidad</th>
       <th></th>
     </tr>
   </thead>
@@ -32,11 +34,19 @@
           <% else %>
             <%=empleado.persona.estado_civil.descripcion %>
           <% end %>  
-      </td>     
+      </td> 
+      <td><%=empleado.cargo.descripcion %></td>
+      <td>
+          <% if empleado.type == 'Funcionario' %>
+          <% else %>
+            <%=empleado.especialidad.descripcion %>
+          <% end %>  
+      </td> 
+
       <td class = "action">
 
-        <%= link_to '<i class="glyphicon glyphicon-edit icon-large"></i> '.html_safe, empleados_path(p), remote: true%>
-        <%= link_to '<i class="glyphicon glyphicon-trash icon-large"></i>'.html_safe, empleados_path(p), method: 'delete', data: {confirm: "¿Desea eliminar al empleado #{empleado.persona.nombre}?"}, remote: true%>
+        <%= link_to '<i class="glyphicon glyphicon-edit icon-large"></i> '.html_safe, edit_empleado_path(empleado), remote: true%>
+        <%= link_to '<i class="glyphicon glyphicon-trash icon-large"></i>'.html_safe, empleado_path(empleado), method: 'delete', data: {confirm: "¿Desea eliminar al empleado #{empleado.persona.nombre}?"}, remote: true%>
 
       </td>
     </tr>
