@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   
-  resources :users
+  resources :usuarios
   get "welcome/index_configuracion"
   get "welcome/index_historial_clinico"
   get "welcome/index_personal"
