@@ -47,6 +47,10 @@ $.validator.addClassRules({
 
 	passwordCheck: {
 		passwordCheck: true
+	},
+
+	emailCheck: {
+		emailCheck: true
 	}
 });
 
@@ -54,3 +58,8 @@ $.validator.addClassRules({
 $.validator.addMethod("passwordCheck",function(value,element){
                 return this.optional(element) || /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])/.test(value);
             },"La contraseña debe contener una combinación de números y letras (minúsculas y mayúsculas).");
+
+$.validator.addMethod("emailCheck",function(value,element){
+                return this.optional(element) || /^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i.test(value);
+            },"El correo debe tener un formato correo@servidor.com");
+

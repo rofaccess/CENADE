@@ -36,23 +36,7 @@ class EmpleadosController < ApplicationController
   	def edit
  	end
 
- 	def update	
- 		es_doctor = empleado_params[:es_doctor]
-        
-
- 		if es_doctor.blank?    
-	    	@empleado.type = 'Funcionario'
-	    else
-	    	@empleado.type = 'Doctor'
-	    end			
-		if @empleado.update(empleado_params)
-		    flash.notice= "Se ha actualizado el empleado #{@empleado.persona.nombre}
-		    #{@empleado.persona.apellido}."		    
-		else
-		    flash.alert = "No se ha podido actualizar el empleado #{@empleado.persona.nombre} 
-		    #{@empleado.persona.apellido}."
-		end 
-		update_list   
+ 	def update	 		
   	end
 
   	def update_list
@@ -76,7 +60,7 @@ class EmpleadosController < ApplicationController
     end
 
   	def empleado_params
-      params.require(:empleado).permit(:cargo_id,:especialidad_id,
+      params.require(:empleado).permit(:cargo_id,:especialidad_id,:type,
       persona_attributes: [:id,:nombre,:apellido,:ci,:ruc,:fecha_nacimiento,:edad,
       	                   :sexo,:estado_civil_id,:direccion,:telefono,:email])
     end

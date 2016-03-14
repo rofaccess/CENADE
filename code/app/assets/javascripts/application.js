@@ -15,9 +15,13 @@
 //= require bootstrap-sprockets
 //= require jquery_ujs
 //= require turbolinks
+
 //= require plugins/jquery-validate-min.js
 //= require plugins/jquery-additional-methods-min.js
 //= require plugins/jquery-validate-setup.js
+//= require plugins/jquery-inputmask.js
+//= require plugins/jquery-inputmask-regex-extensions.js
+
 
 //= require languages/jquery-validate-messages-es.js
 //= require languages/jquery-ui-datepicker-es.js
