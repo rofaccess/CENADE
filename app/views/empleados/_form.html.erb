@@ -28,25 +28,25 @@
 							                        col_class: 'col-md-4',
 							                        label_text: '* Apellido') %>
 			<%= FormBuilder::text_field_v(persona, :ci, 
-						                            input_class: 'required clear', 
+						                            input_class: 'required ci', 
 						                            max_length: Domain::CI,
 						                            col_class: 'col-md-2',
 						                            label_text: '* Cédula Nº') %>  
 			<%= FormBuilder::text_field_v(persona, :ruc, 
-						                            input_class: 'clear', 
+						                            input_class: 'ruc', 
 						                            max_length: Domain::RUC,
 						                            col_class: 'col-md-2') %>                           
 		</div>					                        
 		<div class="row">   
 		    
 			<%= FormBuilder::text_field_v(persona, :fecha_nacimiento, 
-							                        input_class: 'required clear datepicker', 
+							                        input_class: 'required date', 
 							                        max_length: Domain::FECHA,
 							                        label_text: '* Fecha de Nac.',
 							                        col_class: 'col-md-2', 
 							                        input_value: Formatter.format_date(@empleado.persona.fecha_nacimiento))%> 	
 			<%= FormBuilder::text_field_v(persona, :edad, 
-							                        input_class: 'clear', 
+							                        input_class: 'edad', 
 							                        max_length: Domain::EDAD,
 							                        col_class: 'col-md-2') %>                  		                            
 			<%= FormBuilder::select_v(persona, :sexo,
@@ -76,11 +76,11 @@
 		<div class="row">   
 		    
 			<%= FormBuilder::text_field_v(persona, :telefono, 
-							                        input_class: 'clear', 
+							                        input_class: 'telefono', 
 							                        max_length: Domain::TELEFONO,
 							                        col_class: 'col-md-4') %> 	
 			<%= FormBuilder::text_field_v(persona, :email, 
-							                        input_class: 'clear', 
+							                        input_class: 'emailCheck', 
 							                        max_length: Domain::EMAIL,
 							                        col_class: 'col-md-7') %> 
 		</div>  		
@@ -99,10 +99,11 @@
 			
 			<div class="checkbox col-md-3">
 			    <label>
-			    	<%= check_box_tag 'es_doctor', true, 
-			    								   @empleado.type == 'Doctor' ? true : false, 
-			    								   class: 'checkbox-doctor' %> 
+					<%= check_box_tag 'es_doctor', true, @empleado.type == 'Doctor' ? true : false, class: 'checkbox-doctor'  %>
+			    	
 			        ¿Es Doctor?
+			        <%= empleado.hidden_field :type, class: 'tipo-empleado'%>
+			        <%= empleado.hidden_field :especialidad_id,value: nil, class: 'epecialidad-id'%>
 			    </label>
 			</div>
 
@@ -111,7 +112,7 @@
 														  prompt:'* Seleccione Especialidad',
 														  label_class: 'hide', 
 														  col_class: 'col-md-4 to-hide',
-														  select_class: 'empleado-select')%>
+														  select_class: 'empleado-select')%>			
 		</div> 
 
 		<div class="modal-footer">
