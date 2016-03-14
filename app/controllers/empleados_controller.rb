@@ -1,6 +1,7 @@
 class EmpleadosController < ApplicationController
 	
 	before_action :set_submenu, only: [:index]
+	before_action :set_empleado, only: [:show, :edit, :update, :destroy]
 	respond_to :html, :js
 
 	def set_submenu
@@ -23,17 +24,40 @@ class EmpleadosController < ApplicationController
 	    	@empleado = Doctor.new(empleado_params)
 	    end			
 		if @empleado.save
-		    flash.notice= "Se ha guardado el empleado #{@empleado.persona.nombre}."
-		    update_list
+		    flash.notice= "Se ha guardado el empleado #{@empleado.persona.nombre}
+		    #{@empleado.persona.apellido} con Cédula Nº #{@empleado.persona.ci}."		    
 		else
-		    flash.alert = "No se ha podido guardar el empleado #{@empleado.persona.nombre}."
-		end   
+		    flash.alert = "No se ha podido guardar el empleado #{@empleado.persona.nombre} 
+		    #{@empleado.persona.apellido} con Cédula Nº #{@empleado.persona.ci}.."
+		end 
+		update_list  
+  	end
+
+  	def edit
+ 	end
+
+ 	def update	 
   	end
 
   	def update_list
     	index
     	render partial: 'update_list', format: 'js'
   	end
+
+  	def destroy  
+	    if @empleado.destroy
+		  flash.notice = "Se ha eliminado el empleado #{@empleado.persona.nombre} 
+		  #{@empleado.persona.apellido} con Cédula Nº #{@empleado.persona.ci}.."	        
+	    else
+	      flash.alert = "No se ha podido eliminar el empleado #{@empleado.persona.nombre} 
+	      #{@empleado.persona.apellido} con Cédula Nº #{@empleado.persona.ci}.."
+	    end
+	    index
+  	end
+
+  	def set_empleado
+      @empleado = Empleado.find(params[:id])
+    end
 
   	def empleado_params
       params.require(:empleado).permit(:cargo_id,:especialidad_id,
