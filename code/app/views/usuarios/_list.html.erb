@@ -1,0 +1,28 @@
+
+<table class= "table table-condensed">
+  <thead>
+    <tr>
+      <th>Usuario</th>
+      <th>Roles</th>         
+      <th>Nombre</th>
+      <th>C.I</th>
+      <th>Direccion</th>
+      <th>Telefono</th>
+      <th>Email</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @usuarios.each do |usuario| %>
+    <tr>
+      <td><%=usuario.username%></td>
+      <td><%=usuario.password%></td>
+      <td><%=  %></td>
+      <td><%=  %></td>
+      <td><%=  %></td>
+      <td><%=  %></td>
+      <td><%=  %></td>
+      <td><%=  %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
