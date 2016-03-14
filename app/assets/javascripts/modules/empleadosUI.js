@@ -11,16 +11,23 @@ var empleadosUI = (function(){
 
 		//Esconde la especialidad si es doctor
 		mostrarEspecialidad: function(){
-			//Esconde especialidad
-		    $('.to-hide').hide();
+			
+			if ($(".checkbox-doctor").is(":checked")){
+				$('.to-hide').show();
+				$('.empleado-select').addClass('required');
+			}else{
+				$('.to-hide').hide();
+				$('.empleado-select').removeClass('required');
+			} 
+		    	
 		    
-		    $(".check-doctor").change(function() {
+		    $(".checkbox-doctor").change(function() {
 			    if(this.checked) {
 			        $('.to-hide').show();
-			        $('#empleado_especialidad_id').addClass('required');
+			        $('.empleado-select').addClass('required');
 			    }else{
 			    	$('.to-hide').hide();
-			    	$('#empleado_especialidad_id').removeClass('required');
+			    	$('.empleado-select').removeClass('required');
 			    }
 			});
 		},
@@ -37,7 +44,7 @@ var empleadosUI = (function(){
 		  	});
 			
 		   	//Valida el formulario antes de enviarlo
-		  	$('#new_empleado').last().validate();
+		  	$('.nuevo-empleado').last().validate();
 		}
 	};
 }());

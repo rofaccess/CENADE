@@ -10,7 +10,7 @@
 
 <div class="modal-body">
 
-	<%= form_for @empleado, html: {class: 'form-horizontal'}, remote: true do |empleado|%>		
+	<%= form_for @empleado, html: {class: 'form-horizontal nuevo-empleado'}, remote: true do |empleado|%>		
 		
 		<h5>Datos Personales</h5>
 
@@ -43,7 +43,8 @@
 							                        input_class: 'required clear datepicker', 
 							                        max_length: Domain::FECHA,
 							                        label_text: '* Fecha de Nac.',
-							                        col_class: 'col-md-2') %> 	
+							                        col_class: 'col-md-2', 
+							                        input_value: Formatter.format_date(@empleado.persona.fecha_nacimiento))%> 	
 			<%= FormBuilder::text_field_v(persona, :edad, 
 							                        input_class: 'clear', 
 							                        max_length: Domain::EDAD,
@@ -98,7 +99,10 @@
 			
 			<div class="checkbox col-md-3">
 			    <label>
-			    	<input class="check-doctor" type="checkbox"> ¿Es Doctor?
+			    	<%= check_box_tag 'es_doctor', true, 
+			    								   @empleado.type == 'Doctor' ? true : false, 
+			    								   class: 'checkbox-doctor' %> 
+			        ¿Es Doctor?
 			    </label>
 			</div>
 
@@ -106,7 +110,8 @@
 														  Especialidad.all, :id, :descripcion,
 														  prompt:'* Seleccione Especialidad',
 														  label_class: 'hide', 
-														  col_class: 'col-md-4 to-hide')%>
+														  col_class: 'col-md-4 to-hide',
+														  select_class: 'empleado-select')%>
 		</div> 
 
 		<div class="modal-footer">
