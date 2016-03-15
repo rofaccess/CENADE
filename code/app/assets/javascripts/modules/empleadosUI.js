@@ -3,7 +3,7 @@ var empleadosUI = (function(){
 
 		init: function(){	
 			$('body').on('click', '.show-empleado', function(e){
-				$.get($(this).data('url'), {}, function(){}, 'script');
+				$.get($(this).parents('tr').data('url'), {}, function(){}, 'script');
 			});
 		},		
 
