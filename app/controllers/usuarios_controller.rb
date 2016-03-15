@@ -14,4 +14,12 @@ class UsuariosController < ApplicationController
 		@usuario = User.new
 
     end
+
+    def user_params
+  	  params.require(:user).permit(:username,:password)
+	end
+
+	def create
+		@user = User.new(params[:user])
+	end
 end
