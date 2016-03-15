@@ -2,6 +2,18 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.form-horizontal{
+	.row{
+		.checkbox{
+			padding-top: 33px;
+		}
+	}
+}
+
+.show-empleado{
+  cursor: pointer;
+}
+
 .content{
 	margin: 20px;
 }
