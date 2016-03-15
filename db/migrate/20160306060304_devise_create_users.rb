@@ -5,6 +5,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string :email,              null: false, default: "", limit: Domain::EMAIL    
       t.string :username,           null: false, default: "", limit: Domain::USERNAME
       t.string :encrypted_password, null: false, default: ""
+      t.string :rol               , null: false, default: "", limit: Domain::ROL
 
       t.integer  :empleado_id,      null: false
 

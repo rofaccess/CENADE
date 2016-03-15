@@ -16,8 +16,17 @@
 @import "bootstrap";
 @import "font-awesome-sprockets";
 @import "font-awesome";
-@import "navbar_custom";
-@import "navbar_submenu";
-@import "welcome";
-@import "login";
-@import "devise-flash-messages";
+
+@import "themes/jquery.ui.cupertino";
+@import "jquery.ui.core"; 
+@import "jquery.ui.theme"; 
+@import "jquery.ui.datepicker"; 
+
+@import "ui/navbar_custom";
+@import "ui/navbar_submenu";
+@import "ui/welcome";
+@import "ui/login";
+@import "ui/devise-flash-messages";
+@import "ui/pages";
+
+

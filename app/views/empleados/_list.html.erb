@@ -1,0 +1,55 @@
+
+<table class= "table table-condensed">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Apellido</th> 
+      <th>C.I</th>
+      <th>RUC</th>
+      <th class="col-md-1">Fec. de Nac.</th>
+      <th>Edad</th>
+      <th>Direccion</th>
+      <th class="col-md-1">Telefono</th>
+      <th>Sexo</th>
+      <th>Estado Civil</th>
+      <th>Cargo</th>
+      <th>Especialidad</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @empleados.each do |empleado| %>
+    <tr data-url=<%= empleado_path(empleado)%> class="show-empleado">
+      <td><%=empleado.persona.nombre %></td>
+      <td><%=empleado.persona.apellido %></td>
+      <td><%=empleado.persona.ci %></td>
+      <td><%=empleado.persona.ruc %></td>
+      <td><%=Formatter.format_date(empleado.persona.fecha_nacimiento) %></td>
+      <td><%=empleado.persona.edad %></td>
+      <td><%=empleado.persona.direccion %></td>
+      <td><%=empleado.persona.telefono %></td>
+      <td><%=empleado.persona.sexo %></td>
+      <td>
+          <% if empleado.persona.estado_civil.blank? %>
+          <% else %>
+            <%=empleado.persona.estado_civil.descripcion %>
+          <% end %>  
+      </td> 
+      <td><%=empleado.cargo.descripcion %></td>
+      <td>
+          <% if empleado.type == 'Funcionario' %>
+          <% else %>
+            <%=empleado.especialidad.descripcion %>
+          <% end %>  
+      </td> 
+
+      <td class = "action">
+
+        <%= link_to '<i class="glyphicon glyphicon-edit icon-large"></i> '.html_safe, edit_empleado_path(empleado), remote: true%>        
+        <%= link_to '<i class="glyphicon glyphicon-trash icon-large"></i>'.html_safe, empleado_path(empleado), method: 'delete', data: {confirm: "¿Desea eliminar al empleado #{empleado.persona.nombre}?"}, remote: true%>
+
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

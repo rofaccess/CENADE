@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160311023838) do
+ActiveRecord::Schema.define(version: 20160313202426) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,13 +50,15 @@ ActiveRecord::Schema.define(version: 20160311023838) do
 
   create_table "empleados", force: :cascade do |t|
     t.integer  "persona_id",                              null: false
-    t.integer  "horario_id",                              null: false
     t.integer  "cargo_id",                                null: false
     t.integer  "especialidad_id"
     t.string   "type",            limit: 15, default: "", null: false
+    t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "empleados", ["deleted_at"], name: "index_empleados_on_deleted_at", unique: true, using: :btree
 
   create_table "especialidades", force: :cascade do |t|
     t.string   "descripcion", limit: 50, default: "", null: false
@@ -75,6 +77,7 @@ ActiveRecord::Schema.define(version: 20160311023838) do
   add_index "estados_civiles", ["descripcion"], name: "index_estados_civiles_on_descripcion", unique: true, using: :btree
 
   create_table "horarios", force: :cascade do |t|
+    t.integer  "empleado_id", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -91,16 +94,18 @@ ActiveRecord::Schema.define(version: 20160311023838) do
     t.string   "sexo",             limit: 9,   default: ""
     t.string   "edad",             limit: 3,   default: ""
     t.integer  "estado_civil_id"
+    t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "personas", ["email"], name: "index_personas_on_email", unique: true, using: :btree
+  add_index "personas", ["deleted_at"], name: "index_personas_on_deleted_at", unique: true, using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 50, default: "", null: false
     t.string   "username",               limit: 30, default: "", null: false
     t.string   "encrypted_password",                default: "", null: false
+    t.string   "rol",                    limit: 15, default: "", null: false
     t.integer  "empleado_id",                                    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -115,17 +120,17 @@ ActiveRecord::Schema.define(version: 20160311023838) do
     t.datetime "locked_at"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "rol",                    limit: 15
   end
 
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
   add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
-  add_foreign_key "empleados", "cargos"
-  add_foreign_key "empleados", "especialidades"
-  add_foreign_key "empleados", "horarios"
-  add_foreign_key "empleados", "personas"
-  add_foreign_key "personas", "estados_civiles"
-  add_foreign_key "users", "empleados"
+  add_foreign_key "empleados", "cargos", on_delete: :restrict
+  add_foreign_key "empleados", "especialidades", on_delete: :restrict
+  add_foreign_key "empleados", "personas", on_delete: :restrict
+  add_foreign_key "horarios", "empleados", on_delete: :cascade
+  add_foreign_key "personas", "estados_civiles", on_delete: :restrict
+  add_foreign_key "users", "empleados", on_delete: :restrict
 end

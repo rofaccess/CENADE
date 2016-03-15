@@ -31,25 +31,7 @@
         margin-bottom: 20px;
         font-weight: bold;
       }
-
-      .btn {    
-        
-        background-color: #5BC0DE;
-
-        &:hover,
-        &:focus {
-          text-decoration: none;
-          color: white;
-          background-color: #24C1C1;
-        }
-
-        &:active,
-        &.active {
-          outline: 0;
-          background-image: none;
-          @include box-shadow(inset 0 3px 5px rgba(0,0,0,.125));
-        }
-      } 
+      
       > h2 > span {
        font-size: 60px;
       } 
@@ -62,12 +44,6 @@
 
     p#remember_me_holder{
     	margin-top: 20px;
-    }
-
-    .btn {
-    	//background-color: #6ACCCB;
-    	color: white;
-    	border-color: gray;
     }
 
     .login_message {
