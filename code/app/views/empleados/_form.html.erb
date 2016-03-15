@@ -51,14 +51,14 @@
 							                        col_class: 'col-md-2') %>                  		                            
 			<%= FormBuilder::select_v(persona, :sexo,
 												[['Masculino', 'Masculino'], ['Femenino', 'Femenino']], 
-												prompt:'Seleccione una opción', 
+												prompt:'Seleccione Sexo', 
 												select_class: 'required', 
 												col_class: 'col-md-4',
 												label_text: '* Sexo')%>
 
 			<%= FormBuilder::collection_select_v(persona, :estado_civil_id, 
 														  EstadoCivil.all, :id, :descripcion,
-														  prompt:'Seleccione una opción',
+														  prompt:'Seleccione Estado Civil',
 														  label_text: 'Estado Civil', 
 														  col_class: 'col-md-4')%>
 		</div> 
@@ -92,9 +92,9 @@
 		    
 			<%= FormBuilder::collection_select_v(empleado, :cargo_id, 
 														  Cargo.all, :id, :descripcion,
-														  prompt:'* Seleccione Cargo',
+														  prompt:'Seleccione Cargo',
 														  select_class: 'required',
-														  label_class: 'hide', 
+														  label_text: '* Cargo', 
 														  col_class: 'col-md-4')%>
 			
 			<div class="checkbox col-md-3">
@@ -109,8 +109,8 @@
 
 			<%= FormBuilder::collection_select_v(empleado, :especialidad_id, 
 														  Especialidad.all, :id, :descripcion,
-														  prompt:'* Seleccione Especialidad',
-														  label_class: 'hide', 
+														  prompt:'Seleccione Especialidad',
+														  label_text: '* Especialidad', 
 														  col_class: 'col-md-4 to-hide',
 														  select_class: 'empleado-select')%>			
 		</div> 

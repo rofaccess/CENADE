@@ -39,6 +39,12 @@ class EmpleadosController < ApplicationController
  	def update	 		
   	end
 
+  	def show
+	    respond_to do |format|
+	      format.js { render 'show' }	      
+	    end
+  	end
+
   	def update_list
     	index
     	render partial: 'update_list', format: 'js'
