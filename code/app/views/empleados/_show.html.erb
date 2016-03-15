@@ -110,7 +110,8 @@
 
 		<div class="modal-footer">
 			<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-			<%= link_to 'Editar',edit_empleado_path(@empleado.id), class: 'btn btn-custom', remote: true %>
+			<%= link_to 'Eliminar Empleado', empleado_path(@empleado.id),class: 'btn btn-danger', method: 'delete', data: {confirm: "¿Desea eliminar al empleado #{@empleado.persona.nombre}?"}, remote: true%>
+			<%= link_to 'Editar Empleado',edit_empleado_path(@empleado.id), class: 'btn btn-custom', remote: true %>
 		</div>  
 
 	<% end %>
