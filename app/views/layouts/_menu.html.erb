@@ -30,11 +30,11 @@
             <%= link_to '<span class="fa fa-dollar" aria-hidden="true"></span>  Pagos'.html_safe, welcome_index_pagos_path  %>
           </li>
           
-          <li class="<%= current_menu([welcome_index_personal_path])%>">
-            <%= link_to '<span class="fa fa-users" aria-hidden="true"></span>  Personal'.html_safe, welcome_index_personal_path  %>            
+          <li class="<%= current_menu([welcome_index_personal_path, empleados_path])%>">
+            <%= link_to '<span class="fa fa-users" aria-hidden="true"></span>  Personal'.html_safe, empleados_path  %>            
           </li>
           
-          <li class="<%= current_menu([welcome_index_configuracion_path])%>">
+          <li class="<%= current_menu([welcome_index_configuracion_path, usuarios_path])%>">
             <%= link_to '<span class="fa fa-gear" aria-hidden="true"></span>  Configuración'.html_safe, welcome_index_configuracion_path  %> 
             
           </li>  

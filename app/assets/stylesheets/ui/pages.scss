@@ -1,0 +1,92 @@
+// Place all the styles related to the Usuarios controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.form-horizontal{
+	.row{
+		.checkbox{
+			padding-top: 33px;
+		}
+	}
+}
+
+.show-empleado{
+  cursor: pointer;
+}
+
+.content{
+	margin: 20px;
+}
+
+td.action > a > i {
+	color: #24C1C1;
+
+	&:hover,
+	&:focus {
+		color: green;
+	}
+}
+
+.btn-custom {    
+
+	background-color: #24C1C1;
+	border: none;
+	margin-bottom: 20px;
+	color: white;
+
+	&:hover,
+	&:focus {
+		color: white;
+		text-decoration: none;
+		background-color: #24C199;
+	}
+
+	&:active,
+	&.active {
+		outline: 0;
+		background-image: none;
+		@include box-shadow(inset 0 3px 5px rgba(0,0,0,.125));
+	}
+}
+
+.btn-danger {    
+
+	background-color: #E41F25;
+	border: none;
+	margin-bottom: 20px;
+	color: white;
+
+	&:hover,
+	&:focus {
+		color: white;
+		text-decoration: none;
+		background-color: #D01715;
+	}
+
+	&:active,
+	&.active {
+		outline: 0;
+		background-image: none;
+		@include box-shadow(inset 0 3px 5px rgba(0,0,0,.125));
+	}
+}
+
+.row {
+	.form-group{
+		margin-left: 10px;
+	}
+}
+
+.modal-body {
+	h5 {
+		font-weight: bold;
+		font-size: 15px;
+		color: gray;
+	}
+}
+
+.modal-title{
+	color: gray;
+	font-weight: bold;
+}
+

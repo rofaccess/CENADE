@@ -1,0 +1,131 @@
+<div class="modal-header">
+
+	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+	<h4 class="modal-title">
+		<%=@empleado.id.nil? ? 'Agregar Empleado' : 'Editar Empleado'%>	
+	</h4>
+
+</div>
+
+<div class="modal-body">
+
+	<%= form_for @empleado, html: {class: 'form-horizontal nuevo-empleado'}, remote: true do |empleado|%>		
+		
+		<h5>Datos Personales</h5>
+
+		<%= empleado.fields_for(:persona) do |persona| %>
+	 	<div class="row">	
+			<%= FormBuilder::text_field_v(persona, :nombre, 
+							                        input_class: 'required', 
+							                        max_length: Domain::NOMBRE, 
+							                        autofocus: true,
+							                        col_class: 'col-md-4',
+							                        label_text: '* Nombre') %>
+		    <%= FormBuilder::text_field_v(persona, :apellido, 
+							                        input_class: 'required clear', 
+							                        max_length: Domain::NOMBRE,
+							                        col_class: 'col-md-4',
+							                        label_text: '* Apellido') %>
+			<%= FormBuilder::text_field_v(persona, :ci, 
+						                            input_class: 'required ci', 
+						                            max_length: Domain::CI,
+						                            col_class: 'col-md-2',
+						                            label_text: '* Cédula Nº') %>  
+			<%= FormBuilder::text_field_v(persona, :ruc, 
+						                            input_class: 'ruc', 
+						                            max_length: Domain::RUC,
+						                            col_class: 'col-md-2') %>                           
+		</div>					                        
+		<div class="row">   
+		    
+			<%= FormBuilder::text_field_v(persona, :fecha_nacimiento, 
+							                        input_class: 'required date', 
+							                        max_length: Domain::FECHA,
+							                        label_text: '* Fecha de Nac.',
+							                        col_class: 'col-md-2', 
+							                        input_value: Formatter.format_date(@empleado.persona.fecha_nacimiento))%> 	
+			<%= FormBuilder::text_field_v(persona, :edad, 
+							                        input_class: 'edad', 
+							                        max_length: Domain::EDAD,
+							                        col_class: 'col-md-2') %>                  		                            
+			<%= FormBuilder::select_v(persona, :sexo,
+												[['Masculino', 'Masculino'], ['Femenino', 'Femenino']], 
+												prompt:'Seleccione Sexo', 
+												select_class: 'required', 
+												col_class: 'col-md-4',
+												label_text: '* Sexo')%>
+
+			<%= FormBuilder::collection_select_v(persona, :estado_civil_id, 
+														  EstadoCivil.all, :id, :descripcion,
+														  prompt:'Seleccione Estado Civil',
+														  label_text: 'Estado Civil', 
+														  col_class: 'col-md-4')%>
+		</div> 
+
+		<h5>Datos de Contacto</h5> 
+		
+		<div class="row">   
+		    
+			<%= FormBuilder::text_field_v(persona, :direccion, 
+							                        input_class: 'clear', 
+							                        max_length: Domain::DIRECCION,
+							                        col_class: 'col-md-11',
+							                        label_text: 'Dirección')%> 
+		</div>    
+		<div class="row">   
+		    
+			<%= FormBuilder::text_field_v(persona, :telefono, 
+							                        input_class: 'telefono', 
+							                        max_length: Domain::TELEFONO,
+							                        col_class: 'col-md-4') %> 	
+			<%= FormBuilder::text_field_v(persona, :email, 
+							                        input_class: 'emailCheck', 
+							                        max_length: Domain::EMAIL,
+							                        col_class: 'col-md-7') %> 
+		</div>  		
+	 	<% end %>
+
+	 	<h5>Datos Laborales</h5>
+
+		<div class="row">   
+		    
+			<%= FormBuilder::collection_select_v(empleado, :cargo_id, 
+														  Cargo.all, :id, :descripcion,
+														  prompt:'Seleccione Cargo',
+														  select_class: 'required',
+														  label_text: '* Cargo', 
+														  col_class: 'col-md-4')%>
+			
+			<div class="row">
+				<div class="checkbox col-md-3">
+				    <label>
+						<%= check_box_tag 'es_doctor', true, @empleado.type == 'Doctor' ? true : false, class: 'checkbox-doctor'  %>
+				    	
+				        ¿Es Doctor?
+				        <%= empleado.hidden_field :type, class: 'tipo-empleado'%>
+				        <%= empleado.hidden_field :especialidad_id,value: nil, class: 'epecialidad-id'%>
+				    </label>
+				</div>
+			</div>
+
+			<%= FormBuilder::collection_select_v(empleado, :especialidad_id, 
+														  Especialidad.all, :id, :descripcion,
+														  prompt:'Seleccione Especialidad',
+														  label_text: '* Especialidad', 
+														  col_class: 'col-md-4 to-hide',
+														  select_class: 'empleado-select')%>			
+		</div> 
+
+		<div class="modal-footer">
+			<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+			<%= empleado.submit 'Guardar', class: 'btn btn-custom'%>
+		</div>  
+
+	<% end %>
+
+</div>
+
+<script type="text/javascript">
+	empleadosUI.initScript();
+</script>

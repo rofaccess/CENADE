@@ -9,6 +9,7 @@
       <th>Direccion</th>
       <th>Telefono</th>
       <th>Email</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -22,7 +23,13 @@
       <td><%=  %></td>
       <td><%=  %></td>
       <td><%=  %></td>
+      
+      <td classs="action">
+        <%= link_to '<i class="glyphicon glyphicon-edit icon-large"></i> '.html_safe%>        
+        <%= link_to '<i class="glyphicon glyphicon-trash icon-large"></i>'.html_safe%>
+      </td>
     </tr>
+
     <% end %>
   </tbody>
 </table>
