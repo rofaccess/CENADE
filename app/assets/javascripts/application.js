@@ -27,6 +27,8 @@
 //= require languages/jquery-ui-datepicker-es.js
 
 //= require modules/empleadosUI
+//= require modules/usuariosUI
+
 
 //= require_tree .
 
