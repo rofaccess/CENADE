@@ -3,7 +3,7 @@ class DeviseCreateAdmins < ActiveRecord::Migration
     create_table(:admins) do |t|
       ## Database authenticatable
       t.string :email,              null: false, default: "", limit: Domain::EMAIL
-      t.string :username,           null: false, default: "", limit: Domain::NOMBRE
+      t.string :username,           null: false, default: "", limit: Domain::USERNAME
       t.string :encrypted_password, null: false, default: ""
 
       ## Recoverable

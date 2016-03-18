@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160310013504) do
+ActiveRecord::Schema.define(version: 20160313202426) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,17 +39,74 @@ ActiveRecord::Schema.define(version: 20160310013504) do
   add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true, using: :btree
   add_index "admins", ["unlock_token"], name: "index_admins_on_unlock_token", unique: true, using: :btree
 
-  create_table "empleados", force: :cascade do |t|
-    t.string   "nombre"
-    t.string   "ci"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table "cargos", force: :cascade do |t|
+    t.string   "descripcion", limit: 100, default: "",  null: false
+    t.decimal  "sueldo",                  default: 0.0
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
+
+  add_index "cargos", ["descripcion"], name: "index_cargos_on_descripcion", unique: true, using: :btree
+
+  create_table "empleados", force: :cascade do |t|
+    t.integer  "persona_id",                              null: false
+    t.integer  "cargo_id",                                null: false
+    t.integer  "especialidad_id"
+    t.string   "type",            limit: 15, default: "", null: false
+    t.datetime "deleted_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "empleados", ["deleted_at"], name: "index_empleados_on_deleted_at", unique: true, using: :btree
+
+  create_table "especialidades", force: :cascade do |t|
+    t.string   "descripcion", limit: 50, default: "", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "especialidades", ["descripcion"], name: "index_especialidades_on_descripcion", unique: true, using: :btree
+
+  create_table "estados_civiles", force: :cascade do |t|
+    t.string   "descripcion", limit: 15, default: "", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "estados_civiles", ["descripcion"], name: "index_estados_civiles_on_descripcion", unique: true, using: :btree
+
+  create_table "horarios", force: :cascade do |t|
+    t.integer  "empleado_id", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "personas", force: :cascade do |t|
+    t.string   "ci",               limit: 15,  default: "", null: false
+    t.string   "nombre",           limit: 30,  default: "", null: false
+    t.string   "apellido",         limit: 30,  default: "", null: false
+    t.string   "direccion",        limit: 256, default: ""
+    t.string   "telefono",         limit: 50,  default: ""
+    t.string   "email",            limit: 50,  default: ""
+    t.string   "ruc",              limit: 20,  default: ""
+    t.datetime "fecha_nacimiento"
+    t.string   "sexo",             limit: 9,   default: ""
+    t.string   "edad",             limit: 3,   default: ""
+    t.integer  "estado_civil_id"
+    t.datetime "deleted_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "personas", ["deleted_at"], name: "index_personas_on_deleted_at", unique: true, using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 50, default: "", null: false
     t.string   "username",               limit: 30, default: "", null: false
     t.string   "encrypted_password",                default: "", null: false
+    t.string   "rol",                    limit: 15, default: "", null: false
+    t.integer  "empleado_id",                                    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -70,4 +127,10 @@ ActiveRecord::Schema.define(version: 20160310013504) do
   add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
   add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
+  add_foreign_key "empleados", "cargos", on_delete: :restrict
+  add_foreign_key "empleados", "especialidades", on_delete: :restrict
+  add_foreign_key "empleados", "personas", on_delete: :restrict
+  add_foreign_key "horarios", "empleados", on_delete: :cascade
+  add_foreign_key "personas", "estados_civiles", on_delete: :restrict
+  add_foreign_key "users", "empleados", on_delete: :restrict
 end

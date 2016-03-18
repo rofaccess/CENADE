@@ -16,8 +16,13 @@
 		<% unless @submenu_layout == nil %>    
 			<%= render @submenu_layout %>
 		<% end %>
+		
+		<div id="flash_messages">
+			<!-- <%= render 'layouts/messages'%> -->
+		</div>
 
-		<%= render 'layouts/messages' %>
+		<%= render 'layouts/modal' %>
+
 	<% end %>
 	<%= yield %>
 

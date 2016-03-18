@@ -1,0 +1,55 @@
+
+<table class= "table table-condensed">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Apellido</th> 
+      <th>C.I</th>
+      <th>RUC</th>
+      <th class="col-md-1">Fec. de Nac.</th>
+      <th>Edad</th>
+      <th>Direccion</th>
+      <th class="col-md-1">Telefono</th>
+      <th>Sexo</th>
+      <th>Estado Civil</th>
+      <th>Cargo</th>
+      <th>Especialidad</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @empleados.each do |empleado| %>
+    <tr data-url=<%= empleado_path(empleado)%>>
+      <td class="show-empleado"><%=empleado.persona.nombre %></td>
+      <td class="show-empleado"><%=empleado.persona.apellido %></td>
+      <td class="show-empleado"><%=empleado.persona.ci %></td>
+      <td class="show-empleado"><%=empleado.persona.ruc %></td>
+      <td class="show-empleado"><%=Formatter.format_date(empleado.persona.fecha_nacimiento) %></td>
+      <td class="show-empleado"><%=empleado.persona.edad %></td>
+      <td class="show-empleado"><%=empleado.persona.direccion %></td>
+      <td class="show-empleado"><%=empleado.persona.telefono %></td>
+      <td class="show-empleado"><%=empleado.persona.sexo %></td>
+      <td class="show-empleado">
+          <% if empleado.persona.estado_civil.blank? %>
+          <% else %>
+            <%=empleado.persona.estado_civil.descripcion %>
+          <% end %>  
+      </td> 
+      <td class="show-empleado"><%=empleado.cargo.descripcion %></td>
+      <td class="show-empleado">
+          <% if empleado.type == 'Funcionario' %>
+          <% else %>
+            <%=empleado.especialidad.descripcion %>
+          <% end %>  
+      </td> 
+
+      <td class = "action">
+
+        <%= link_to '<i class="glyphicon glyphicon-edit icon-large"></i> '.html_safe, edit_empleado_path(empleado), remote: true%>        
+        <%= link_to '<i class="glyphicon glyphicon-trash icon-large"></i>'.html_safe, empleado_path(empleado), method: 'delete', data: {confirm: "¿Desea eliminar al empleado #{empleado.persona.nombre}?"}, remote: true%>
+
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

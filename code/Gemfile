@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -21,30 +21,38 @@ gem 'coffee-rails', '~> 4.1.0'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
+# jQuery UI stylesheets packed as Sass files for the Rails 3.1+ asset pipeline
+gem 'jquery-ui-sass-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
+
 # Template language
 gem 'slim'
+# Slim templates generator for Rails 3 and 4
+gem 'slim-rails'
 
 # Flexible authentication solution for Rails with Warden. Read more: http://blog.plataformatec.com.br/tag/devise/
 gem 'devise'
-
 # An enterprise security extension for devise, trying to meet industrial standard security demands for web applications.
 gem 'devise_security_extension'
 gem 'rails_email_validator'
-
 # Translations for the devise gem
 gem 'devise-i18n'
-
 # I18n support for devise views
 gem 'devise-i18n-views'
 
 # TZInfo::Data - Timezone Data for TZInfo
 gem 'tzinfo-data'
+
+# A code metric tool for rails projects http://rails-bestpractices.com
+gem "rails_best_practices"
+
+# acts_as_paranoid for Rails 3 & 4 (Borrado oscioso)
+gem "paranoia", "~> 2.0"
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
