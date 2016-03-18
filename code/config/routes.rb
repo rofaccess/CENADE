@@ -4,7 +4,12 @@ Rails.application.routes.draw do
   resources :funcionarios
   resources :empleados
 
-  resources :usuarios
+  resources :usuarios do
+    collection do
+      post 'get_empleado'
+    end
+  end
+
   get "welcome/index_configuracion"
   get "welcome/index_historial_clinico"
   get "welcome/index_personal"

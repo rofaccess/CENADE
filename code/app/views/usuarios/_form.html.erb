@@ -1,85 +1,26 @@
-<div cla,ss="modal-header">
+<div class="modal-header">
 
 	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-
-	<h4 class="modal-title">
-		<%=@usuario.id.nil? ? 'Agregar Usuario' : 'Editar Usuario'%>
-	</h4>
+    <div class="row">
+    	<h4 class="modal-title col-md-4">
+		 <%=@usuario.id.nil? ? 'Agregar Usuario' : 'Editar Usuario'%>
+	    </h4>
+	<div class="col-md-6">
+		<select class ="form-control" id="empleado_id" name="empleado_id">
+	       <option value="">Seleccione un empleado </option>
+	       <%@empleados.each do |empleado|%>
+		        <option value="<%= empleado.id%>">
+		       	    ci: <%= empleado.id%>, nombre:<%=empleado.persona.nombre%>
+		        </option>
+	       <%end%>
+		</select>
+	</div>	
+</div>
+	
 </div>
 
 <div class= "modal-body">
+	<div class ="empleado">
 
-	<%= form_for @usuario,url: usuarios_path, html: {class:'form-horizontal'}, :remote => true do |usuario| %>
-
-
-		<h5>Datos del Personal</h5>
-
-		<%= usuario.fields_for(:empleado) do |empleado| %>
-
-		<div class="row">
-			<%= FormBuilder::text_field_v(empleado, :nombre, 
-							                        input_class: 'required', 
-							                        max_length: Domain::NOMBRE, 
-							                        autofocus: true,
-							                        col_class: 'col-md-6',
-							                        label_text: 'Nombre') %>
-		    <%= FormBuilder::text_field_v(empleado, :apellido, 
-							                        input_class: 'required clear', 
-							                        max_length: Domain::NOMBRE,
-							                        col_class: 'col-md-6',
-							                        label_text: 'Apellido') %>
-
-            <%= FormBuilder::text_field_v(empleado, :apellido, 
-							                        input_class: 'required clear', 
-							                        max_length: Domain::CARGO,
-							                        col_class: 'col-md-5',
-							                        label_text: 'Cargo') %>		    
-            <%= FormBuilder::text_field_v(empleado, :apellido, 
-							                        input_class: 'required clear', 
-							                        max_length: Domain::EMAIL,
-							                        col_class: 'col-md-6',
-							                        label_text: 'Correo') %>
-        </div>
-
-		<h5>Datos del Usuario</h5>
-
-		<div class="row">
-			<%= FormBuilder::text_field_v(empleado, :username, 
-							                        input_class: 'required', 
-							                        max_length: Domain::USERNAME, 
-							                        col_class: 'col-md-4',
-							                        label_text: '* Nombre') %>
-		    <%= FormBuilder::text_field_v(empleado, :password, 
-								                     input_class: 'required', 
-								                     max_length: Domain::NOMBRE,
-								                     col_class: 'col-md-4',
-								                     label_text: '* Contraseña') %>
-		</div>
-		<%end%>
-
-		<h5>Roles</h5>
-
-		<div class="row">
-			<div class="row">
-				    <label>
-						<%= check_box_tag 'Doctor'%>
-						Doctor
-					</label>
-					<label>
-						<%= check_box_tag 'Secretaria' %>
-						Secretaria
-					</label>
-					<label>
-						<%= check_box_tag 'Administador' %>
-						Administrador
-				    </label>
-			</div>
-		</div>
-
-		<div class="modal-footer">
-			<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-			<button type="button" class="btn btn-custom">Guardar</button>
-		</div>
-
-	<%end%>
+	</div>
 </div>

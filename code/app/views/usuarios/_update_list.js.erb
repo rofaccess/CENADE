@@ -1,0 +1,6 @@
+$("#list").html('<%= j render partial: 'list', format: 'html'%>');
+$('#modal-sm').modal('hide');
+
+<% if !flash.empty? %>
+	$("#flash_messages").html('<%= j render partial: 'layouts/messages', format: 'html'%>');
+<% end %>
