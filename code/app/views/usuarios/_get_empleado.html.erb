@@ -49,8 +49,8 @@
 							                        col_class: 'col-md-4',
 							                        label_text: '* Nombre') %>
 		    <%= FormBuilder::text_field_v(usuario, :password, 
-								                    input_class: 'required', 
-								                    max_length: Domain::NOMBRE,
+								                    input_class: 'required passwordLength passwordCheck', 
+								                    max_length: Domain::CONTRASEÑA,
 								                    col_class: 'col-md-4',
 								                    label_text: '* Contraseña') %>
 
