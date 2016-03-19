@@ -24,6 +24,7 @@ var usuariosUI = (function(){
 
 		// Inicia el script en el formulario
 		initScript: function(){
+			$("#new_user").last().validate();
 
 		}
 	};

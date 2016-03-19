@@ -21,6 +21,24 @@ class UsuariosController < ApplicationController
 	   	@usuarios= User.all
 	end
 
+	def create
+		@usuario = User.new(usuario_params)
+	    @usuario.password_confirmation = @usuario.password
+	    @usuario.email = "a@gmail.com"
+  
+		if @usuario.save
+		    flash.notice= "Se ha guardado el usuario #{@usuario.username}"		    
+		else
+		    flash.alert = "No se ha podido guardar el usuario #{@usuario.username}"
+		end 
+		update_list  
+	end
+
+	  	def update_list
+    	index
+    	render partial: 'update_list', format: 'js'
+  	end
+
 	def show
 			respond_to do |format|
 	       	format.js { render 'show' }	      
@@ -33,12 +51,8 @@ class UsuariosController < ApplicationController
       render partial:'get_empleado', formats:'html'
     end
 
-	def create
-		@usuario = User.new(usuario_params)
-	end
-
 	def usuario_params
-      params.require(:user).permit(:username, :password,:empleado_id)
+      params.require(:user).permit(:username, :password,:empleado_id, :rol)
       
     end
 
