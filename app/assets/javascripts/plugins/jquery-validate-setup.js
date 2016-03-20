@@ -29,7 +29,7 @@ $.validator.addClassRules({
 	required: {
 		required: true
 	},
-	date: {
+	dateITA: {
 		dateITA: true
 	},
 	shortString: {
