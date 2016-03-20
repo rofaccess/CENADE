@@ -24,7 +24,7 @@ class UsuariosController < ApplicationController
 	def create
 		@usuario = User.new(usuario_params)
 	    @usuario.password_confirmation = @usuario.password
-	    @usuario.email = "a@gmail.com"
+	
   
 		if @usuario.save
 		    flash.notice= "Se ha guardado el usuario #{@usuario.username}"		    
