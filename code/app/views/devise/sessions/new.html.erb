@@ -9,13 +9,13 @@
     
     <div class="input-group">
         <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
-        	<%= f.text_field :username, placeholder: 'Nombre de usuario', class: 'form-control input-lg required clear', autofocus: true, maxLength: Domain::NOMBRE %>      
+        	<%= f.text_field :username, placeholder: 'Nombre de usuario', class: 'form-control input-lg', autofocus: true, maxLength: Domain::NOMBRE %>      
       </div>	
       <div id="username-error"></div>
       
       <div class="input-group">
           <span class="input-group-addon"><i class="fa fa-key fa-fw"></i></span>
-        	<%= f.password_field :password, placeholder: 'Contraseña', class: 'form-control input-lg required clear passwordLength passwordCheck', maxLength: Domain::CONTRASEÑA %>      
+        	<%= f.password_field :password, placeholder: 'Contraseña', class: 'form-control input-lg passwordLength passwordCheck', maxLength: Domain::CONTRASEÑA %>      
       </div>
       <div id="password-error"></div>
    
@@ -27,7 +27,3 @@
   <% end %>
 
   </div>
-
-  <script type='text/javascript'>
-  			$('#new_user').last().validate();
-  		</script>
