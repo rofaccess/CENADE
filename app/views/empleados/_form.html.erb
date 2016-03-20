@@ -17,18 +17,19 @@
 		<%= empleado.fields_for(:persona) do |persona| %>
 	 	<div class="row">	
 			<%= FormBuilder::text_field_v(persona, :nombre, 
-							                        input_class: 'required', 
+							                        input_class: 'required nameLength', 
 							                        max_length: Domain::NOMBRE, 
 							                        autofocus: true,
 							                        col_class: 'col-md-4',
-							                        label_text: '* Nombre') %>
+							                        label_text: '* Nombre',
+							                        label_class: 'error') %>
 		    <%= FormBuilder::text_field_v(persona, :apellido, 
-							                        input_class: 'required clear', 
+							                        input_class: 'required nameLength', 
 							                        max_length: Domain::NOMBRE,
 							                        col_class: 'col-md-4',
 							                        label_text: '* Apellido') %>
 			<%= FormBuilder::text_field_v(persona, :ci, 
-						                            input_class: 'required ci', 
+						                            input_class: 'required ci ciLength', 
 						                            max_length: Domain::CI,
 						                            col_class: 'col-md-2',
 						                            label_text: '* Cédula Nº') %>  

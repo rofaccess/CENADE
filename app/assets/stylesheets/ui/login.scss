@@ -18,7 +18,6 @@
       color: gray;
       font-family: arial;
       font-size: 12pt;
-      font-weight: bold;
 
       #username-error, #password-error {
         padding-bottom: 30px;
@@ -51,12 +50,12 @@
     	padding-bottom: 20px;
     }
 
-  //errorClass de jquery-validate-setup evita que lo siguiente surta efecto
-  .error {
-    color: #DC2A2A;
+  /* Los siguientes dos son para error de validación*/
+  .text-error {
+    color: #DD4B39;
   }
 
-  .input-warning{
-    border-color:#8A6D3D; 
-    border-width: 2px;
+  .input-error{
+    border-color:#DD4B39; 
+    border-width: 1px;
   }

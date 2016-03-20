@@ -1,13 +1,15 @@
 // Configuraciones generales para las validaciones
 jQuery.validator.setDefaults({
 	errorElement:	'span',
-	errorClass:		'text-warning',
+	errorClass:		'text-error',
 	onfocusout: function(element) { $(element).valid(); },
 	highlight: function(element){
-		$(element).closest('.form-control').addClass('input-warning');
+		$(element).closest('.form-control').addClass('input-error');
+		$(element).closest('div').addClass('text-error');
 	},
 	unhighlight: function(element){
-		$(element).closest('.form-control').removeClass('input-warning');
+		$(element).closest('.form-control').removeClass('input-error');
+		$(element).closest('div').removeClass('text-error');
 	},	
 	errorPlacement: function(error, element) {
         if (element.attr("id") == "user_username" )  
@@ -43,6 +45,14 @@ $.validator.addClassRules({
 	passwordLength: {
 		maxlength: 20,
 		minlength: 8
+	},
+
+	ciLength: {
+		minlength: 4
+	},
+
+	nameLength: {
+		minlength: 3
 	},
 
 	passwordCheck: {
