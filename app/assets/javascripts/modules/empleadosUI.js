@@ -52,12 +52,7 @@ var empleadosUI = (function(){
 		// Inicia el script en el formulario
 		initScript: function(){
 
-		  	empleadosUI.mostrarEspecialidad();
-
-		  	// Facilita seleccionar una fecha
-		    $('.date').datepicker();		  	
-			
-			$('.date').inputmask('Regex', { regex: "[0-3][0-9]\/[0-1][0-9]\/[0-9]{4}" });
+			empleadosUI.mostrarEspecialidad();
 
 			$('.ruc').inputmask('Regex', { regex: "[0-9\-a-z]+" });
 

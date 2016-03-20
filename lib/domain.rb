@@ -12,7 +12,7 @@ module Domain
 	TRATAMIENTO  = 300
 	MEDIDAS      = 10
 	RUC          = 20
-	DIRECCION    = 256
+	DIRECCION    = 125
 	TELEFONO     = 50
 	ESTADO_CIVIL = 15
 	CI           = 15
