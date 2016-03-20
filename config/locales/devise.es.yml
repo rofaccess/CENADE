@@ -19,10 +19,10 @@ es:
     failure:
       already_authenticated: Ya has iniciado sesión.
       inactive: Tu cuenta aún no ha sido activada.
-      invalid: Nombre de Usuario o contraseña no válidos.
+      invalid: Nombre de usuario o contraseña no válidos.
       last_attempt: Tienes un intento más antes de que tu cuenta sea bloqueada.
       locked: Tu cuenta está bloqueada.
-      not_found_in_database: Nombre de Usuario o contraseña no válidos.
+      not_found_in_database: Nombre de usuario o contraseña no válidos.
       timeout: Tu sesión expiró. Por favor, inicia sesión nuevamente para continuar.
       unauthenticated: Tienes que iniciar sesión para poder continuar.
       unconfirmed: Tienes que confirmar tu cuenta para poder continuar.
