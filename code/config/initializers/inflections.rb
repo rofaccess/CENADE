@@ -25,5 +25,6 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
 	inflect.irregular 'empleado', 'empleados'
 	inflect.irregular 'doctor', 'doctores'
 	inflect.irregular 'funcionario', 'funcionarios'
+	inflect.irregular 'configuracion', 'configuraciones'
 
 end

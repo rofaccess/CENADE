@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160313202426) do
+ActiveRecord::Schema.define(version: 20160321053206) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,22 @@ ActiveRecord::Schema.define(version: 20160313202426) do
   end
 
   add_index "cargos", ["descripcion"], name: "index_cargos_on_descripcion", unique: true, using: :btree
+
+  create_table "configuraciones", force: :cascade do |t|
+    t.string   "empresa_nombre"
+    t.string   "empresa_direccion"
+    t.string   "empresa_tel"
+    t.string   "empresa_email"
+    t.string   "empresa_horario_atencion"
+    t.string   "empresa_web"
+    t.string   "empresa_logo"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.string   "imagen_file_name"
+    t.string   "imagen_content_type"
+    t.integer  "imagen_file_size"
+    t.datetime "imagen_updated_at"
+  end
 
   create_table "empleados", force: :cascade do |t|
     t.integer  "persona_id",                              null: false
