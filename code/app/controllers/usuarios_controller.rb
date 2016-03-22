@@ -39,6 +39,15 @@ class UsuariosController < ApplicationController
     	render partial: 'update_list', format: 'js'
   	end
 
+  	def destroy  
+	    if @usuario.destroy
+		  flash.notice = "Se ha eliminado el usuario #{@usuario.username}."	        
+	    else
+	      flash.alert = "No se ha podido eliminar el usuario #{@usuario.username}."
+	    end
+	    index
+  	end
+
 	def show
 			respond_to do |format|
 	       	format.js { render 'show' }	      

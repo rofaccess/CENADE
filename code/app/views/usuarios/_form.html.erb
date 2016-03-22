@@ -10,7 +10,7 @@
 	       <option value="">Seleccione un empleado </option>
 	       <%@empleados.each do |empleado|%>
 		        <option value="<%= empleado.id%>">
-		       	    ci: <%= empleado.id%>, nombre:<%=empleado.persona.nombre%>
+		       	  <%=empleado.persona.nombre%>
 		        </option>
 	       <%end%>
 		</select>
@@ -65,20 +65,17 @@
 												prompt:'Seleccione Rol', 
 												select_class: 'required', 
 												col_class: 'col-md-4',
-												label_text: '* Rol',
-												disabled: true)%>
+												label_text: '* Rol')%>
 			<%= FormBuilder::text_field_v(usuario, :username, 
 							                        input_class: 'required', 
 							                        max_length: Domain::USERNAME, 
 							                        col_class: 'col-md-4',
-							                        label_text: '* Nombre',
-							                        disabled: true) %>
+							                        label_text: '* Nombre') %>
 		    <%= FormBuilder::text_field_v(usuario, :password, 
 								                    input_class: 'required passwordLength passwordCheck', 
 								                    max_length: Domain::CONTRASEÑA,
 								                    col_class: 'col-md-4',
-								                    label_text: '* Contraseña',
-								                    disabled: true) %>
+								                    label_text: '* Contraseña') %>
 
 		</div>
 
