@@ -62,11 +62,8 @@ var empleadosUI = (function(){
 			
 			$('.edad').inputmask('Regex', { regex: "[0-9]+" });
 
-			 $( ".date" ).datepicker({
-		      changeMonth: true,
-		      changeYear: true
-		    });
-
+			$('.date').inputmask('Regex', { regex: "[0-9]{2}\/[0-9]{2}\/[0-9]{4}" });
+			
 		   	//Valida el formulario antes de enviarlo
 		  	$('.nuevo-empleado').last().validate();
 		}
