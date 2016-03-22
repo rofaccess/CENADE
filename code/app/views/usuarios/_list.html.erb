@@ -13,12 +13,12 @@
   <tbody>
     <% @usuarios.each do |usuario| %>
     <tr>
-      <td class="show-empleado"><%=usuario.username%></td>
-      <td class="show-empleado"><%=usuario.empleado.persona.nombre%></td>
-      <td class="show-empleado"><%=usuario.empleado.persona.apellido%></td>
-      <td class="show-empleado"><%=usuario.empleado.cargo.descripcion %></td>
-      <td class="show-empleado"><%=usuario.empleado.persona.email%></td>
-      <td class="show-empleado"><%=usuario.rol%></td>
+      <td class="show-usuario"><%=usuario.username%></td>
+      <td class="show-usuario"><%=usuario.empleado.persona.nombre%></td>
+      <td class="show-usuario"><%=usuario.empleado.persona.apellido%></td>
+      <td class="show-usuario"><%=usuario.empleado.cargo.descripcion %></td>
+      <td class="show-usuario"><%=usuario.empleado.persona.email%></td>
+      <td class="show-usuario"><%=usuario.rol%></td>
       <td classs="action">
       <%= link_to '<i class="glyphicon glyphicon-edit icon-large"></i> '.html_safe, edit_usuario_path(usuario), remote: true%>        
       <%= link_to '<i class="glyphicon glyphicon-trash icon-large"></i>'.html_safe, usuario_path(usuario), method: 'delete', data: {confirm: "¿Desea eliminar al usuario #{usuario.username}?"}, remote: true%>

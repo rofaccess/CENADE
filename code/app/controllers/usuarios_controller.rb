@@ -21,6 +21,14 @@ class UsuariosController < ApplicationController
 	   	@usuarios= User.all
 	end
 
+	def edit
+		
+	end
+
+	def update
+		
+	end
+
 	def create
 		@usuario = User.new(usuario_params)
 	    @usuario.password_confirmation = @usuario.password
