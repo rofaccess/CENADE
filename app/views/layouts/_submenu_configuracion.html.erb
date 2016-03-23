@@ -16,12 +16,13 @@
       <div class="collapse navbar-collapse">
         <ul class="nav navbar-nav">        
 
-          <li> <a href="#">
-            
-            Datos de la Empresa</a>
+          
+            <li class="<%= current_submenu([edit_configuracion_path(Configuracion.first), configuracion_path(Configuracion.first)])%>">
+            <%=link_to 'Datos de la Empresa', edit_configuracion_path(Configuracion.first) %>
+          
           </li>
 
-          <li class="<%= current_submenu(usuarios_path)%>">
+          <li class="<%= current_submenu([usuarios_path])%>">
             <%=link_to 'Usuarios', usuarios_path %>
           </li>
 

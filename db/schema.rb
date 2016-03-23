@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160313202426) do
+ActiveRecord::Schema.define(version: 20160320212208) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,18 @@ ActiveRecord::Schema.define(version: 20160313202426) do
   end
 
   add_index "cargos", ["descripcion"], name: "index_cargos_on_descripcion", unique: true, using: :btree
+
+  create_table "configuraciones", force: :cascade do |t|
+    t.string   "empresa_nombre",           limit: 50,  default: ""
+    t.string   "empresa_direccion",        limit: 125, default: ""
+    t.string   "empresa_tel",              limit: 50,  default: ""
+    t.string   "empresa_email",            limit: 50,  default: ""
+    t.string   "empresa_horario_atencion", limit: 100, default: ""
+    t.string   "empresa_web",              limit: 40,  default: ""
+    t.string   "empresa_logo"
+    t.datetime "created_at",                                        null: false
+    t.datetime "updated_at",                                        null: false
+  end
 
   create_table "empleados", force: :cascade do |t|
     t.integer  "persona_id",                              null: false
@@ -86,7 +98,7 @@ ActiveRecord::Schema.define(version: 20160313202426) do
     t.string   "ci",               limit: 15,  default: "", null: false
     t.string   "nombre",           limit: 30,  default: "", null: false
     t.string   "apellido",         limit: 30,  default: "", null: false
-    t.string   "direccion",        limit: 256, default: ""
+    t.string   "direccion",        limit: 125, default: ""
     t.string   "telefono",         limit: 50,  default: ""
     t.string   "email",            limit: 50,  default: ""
     t.string   "ruc",              limit: 20,  default: ""

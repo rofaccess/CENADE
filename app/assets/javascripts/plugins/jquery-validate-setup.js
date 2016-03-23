@@ -55,13 +55,25 @@ $.validator.addClassRules({
 		minlength: 3
 	},
 
+	minLength2: {
+		minlength: 2
+	},
+
+	minLength4: {
+		minlength: 4
+	},
+
 	passwordCheck: {
 		passwordCheck: true
 	},
 
 	emailCheck: {
 		emailCheck: true
+	},
+	telCheck: {
+		telCheck: true
 	}
+
 });
 
 
@@ -73,3 +85,6 @@ $.validator.addMethod("emailCheck",function(value,element){
                 return this.optional(element) || /^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i.test(value);
             },"El correo debe tener un formato correo@servidor.com");
 
+$.validator.addMethod("telCheck",function(value,element){
+                return this.optional(element) || /^[\d\s()+-]+$/.test(value);
+            },"El Numero de telefono solo debe contener una combinación de números y parentesis.");

@@ -9,7 +9,9 @@
           <span class="icon-bar"></span>
         </button>
         
-        <%= link_to '<span class="fa fa-wheelchair logo-color" aria-hidden="true"></span>'.html_safe, welcome_index_path, class: "navbar-brand"  %> 
+        
+       <%= image_tag(Configuracion.first.empresa_logo, size: "60x90", class:'img-polaroid img-', class: "navbar-brand") %>
+
 
       </div>
 
@@ -34,8 +36,8 @@
             <%= link_to '<span class="fa fa-users" aria-hidden="true"></span>  Personal'.html_safe, empleados_path  %>            
           </li>
           
-          <li class="<%= current_menu([welcome_index_configuracion_path, usuarios_path])%>">
-            <%= link_to '<span class="fa fa-gear" aria-hidden="true"></span>  Configuración'.html_safe, welcome_index_configuracion_path  %> 
+          <li class="<%= current_menu([welcome_index_configuracion_path, usuarios_path, edit_configuracion_path(Configuracion.first),configuracion_path(Configuracion.first)])%>">
+            <%= link_to '<span class="fa fa-gear" aria-hidden="true"></span>  Configuración'.html_safe, edit_configuracion_path(Configuracion.first)  %> 
             
           </li>  
 

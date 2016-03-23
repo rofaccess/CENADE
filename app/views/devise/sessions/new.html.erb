@@ -1,7 +1,9 @@
   <div class="container">
 
   <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {class: 'form-signin'}) do |f| %>
-    <h2 class= "form-signin-heading"><span class="fa fa-wheelchair"></span></h2>
+    <div class="form-signin-heading">
+    <%= image_tag(Configuracion.first.empresa_logo, size: "80x80", class:'img-polaroid img-') %>
+  </div>
     <h2 class= "form-signin-heading"><%= t('.sign_in', :default => "Sign in") %></h2>
 
     <!-- <%= devise_error_messages! %> -->
