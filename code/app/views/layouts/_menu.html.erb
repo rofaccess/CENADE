@@ -9,7 +9,9 @@
           <span class="icon-bar"></span>
         </button>
         
-        <%= link_to '<span class="fa fa-wheelchair logo-color" aria-hidden="true"></span>'.html_safe, welcome_index_path, class: "navbar-brand"  %> 
+        
+       <%= image_tag(Configuracion.first.empresa_logo, size: "60x90", class:'img-polaroid img-', class: "navbar-brand") %>
+
 
       </div>
 
