@@ -20,7 +20,7 @@
 								                        col_class: 'col-md-6',
 								                        disabled: true,
 								                        label_text: 'Apellido',
-								                        input_value: @empleado.persona.nombre) %>
+								                        input_value: @empleado.persona.apellido) %>
 
 	            <%= FormBuilder::text_field_v(usuario, :cargo, 
 								                        input_class: 'required clear', 
@@ -41,7 +41,7 @@
 
 		<div class="row">
 			<%= FormBuilder::select_v(usuario, :rol,
-												[['Secretaria', 'Secretaria'], ['Doctor', 'Doctor'],['Administrador', 'Admnistrador']], 
+												[['Secretario', 'Secretario'], ['Doctor', 'Doctor'],['Administrador', 'Admnistrador']], 
 												prompt:'Seleccione Rol', 
 												select_class: 'required', 
 												col_class: 'col-md-4',

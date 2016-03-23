@@ -36,3 +36,8 @@ var usuariosUI = (function(){
 $(function(){
 	usuariosUI.init();
 });
+
+
+$(document).on("page:change", function(){
+	usuariosUI.init();
+})

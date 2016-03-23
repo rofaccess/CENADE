@@ -26,7 +26,14 @@ class UsuariosController < ApplicationController
 	end
 
 	def update
-		
+		if @usuario.update(usuario_params)
+        flash.notice= "Se ha actualizado el usuario #{@usuario.empleado.persona.nombre}
+        #{@usuario.empleado.persona.apellido}."       
+    else
+        flash.alert = "No se ha podido actualizar el usuario #{@usuario.empleado.persona.nombre} 
+        #{@usuario.empleado.persona.apellido}."
+    end 
+    update_list
 	end
 
 	def create
