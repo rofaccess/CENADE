@@ -98,14 +98,16 @@
 														  label_text: '* Cargo', 
 														  col_class: 'col-md-4')%>
 			
-			<div class="checkbox col-md-3">
-			    <label>
-					<%= check_box_tag 'es_doctor', true, @empleado.type == 'Doctor' ? true : false, class: 'checkbox-doctor'  %>
-			    	
-			        ¿Es Doctor?
-			        <%= empleado.hidden_field :type, class: 'tipo-empleado'%>
-			        <%= empleado.hidden_field :especialidad_id,value: nil, class: 'epecialidad-id'%>
-			    </label>
+			<div class="row">
+				<div class="checkbox col-md-3">
+				    <label>
+						<%= check_box_tag 'es_doctor', true, @empleado.type == 'Doctor' ? true : false, class: 'checkbox-doctor'  %>
+				    	
+				        ¿Es Doctor?
+				        <%= empleado.hidden_field :type, class: 'tipo-empleado'%>
+				        <%= empleado.hidden_field :especialidad_id,value: nil, class: 'epecialidad-id'%>
+				    </label>
+				</div>
 			</div>
 
 			<%= FormBuilder::collection_select_v(empleado, :especialidad_id, 

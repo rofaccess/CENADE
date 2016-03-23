@@ -3,8 +3,13 @@ Rails.application.routes.draw do
   resources :doctores
   resources :funcionarios
   resources :empleados
-  resources :usuarios
   resources :configuraciones
+
+  resources :usuarios do
+    collection do
+      post 'get_empleado'
+    end
+  end
   get "welcome/index_configuracion"
   get "welcome/index_historial_clinico"
   get "welcome/index_personal"

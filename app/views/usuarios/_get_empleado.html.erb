@@ -1,0 +1,70 @@
+
+	<%= form_for @usuario,url: usuarios_path, html: {class:''}, :remote => true do |usuario| %>
+	<h5>Datos del Personal</h5>
+	<div class="row">
+	
+		
+	
+				<%= usuario.hidden_field :empleado_id, value: @empleado.id %>
+				<%= FormBuilder::text_field_v(usuario, :nombre, 
+								                        input_class: 'required', 
+								                        max_length: Domain::NOMBRE, 
+								                        autofocus: true,
+								                        col_class: 'col-md-6',
+								                        disabled: true,
+								                        label_text: 'Nombre',
+								                        input_value: @empleado.persona.nombre) %>
+			    <%= FormBuilder::text_field_v(usuario, :apellido, 
+								                        input_class: 'required clear', 
+								                        max_length: Domain::NOMBRE,
+								                        col_class: 'col-md-6',
+								                        disabled: true,
+								                        label_text: 'Apellido',
+								                        input_value: @empleado.persona.apellido) %>
+
+	            <%= FormBuilder::text_field_v(usuario, :cargo, 
+								                        input_class: 'required clear', 
+								                        max_length: Domain::CARGO,
+								                        col_class: 'col-md-6',
+								                        disabled: true,
+								                        label_text: 'Cargo',
+								                        input_value: @empleado.cargo.descripcion) %>		    
+	            <%= FormBuilder::text_field_v(usuario, :email, 
+								                        input_class: 'required clear', 
+								                        max_length: Domain::EMAIL,
+								                        col_class: 'col-md-6',
+								                        disabled: true,
+								                        label_text: 'Email',
+								                        input_value: @empleado.persona.email) %>
+	</div>
+		<h5>Datos del Usuario</h5>
+
+		<div class="row">
+			<%= FormBuilder::select_v(usuario, :rol,
+												[['Secretario', 'Secretario'], ['Doctor', 'Doctor'],['Administrador', 'Admnistrador']], 
+												prompt:'Seleccione Rol', 
+												select_class: 'required', 
+												col_class: 'col-md-4',
+												label_text: '* Rol')%>
+			<%= FormBuilder::text_field_v(usuario, :username, 
+							                        input_class: 'required', 
+							                        max_length: Domain::USERNAME, 
+							                        col_class: 'col-md-4',
+							                        label_text: '* Nombre') %>
+		    <%= FormBuilder::text_field_v(usuario, :password, 
+								                    input_class: 'required passwordLength passwordCheck', 
+								                    max_length: Domain::CONTRASEÑA,
+								                    col_class: 'col-md-4',
+								                    label_text: '* Contraseña') %>
+
+		</div>
+
+		<div class="modal-footer">
+			<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+			<%= usuario.submit 'Guardar', class: 'btn btn-custom'%>
+		</div>
+	<%end%>
+
+	<script type="text/javascript">
+	$("#new_user").last().validate();
+</script>

@@ -28,6 +28,7 @@
 
 //= require modules/empleadosUI
 //= require modules/configuracionesUI
+//= require modules/usuariosUI
 
 //= require_tree .
 

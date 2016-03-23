@@ -50,6 +50,17 @@ module FormBuilder
 
   end
 
+  def self.password_field(f, field, option)
+    html = ""
+    html << "<div class='form-group'>"
+      html << f.label(field, "#{option.key?(:label_text) ? option[:label_text] : ''}", class: "control-label #{option.key?(:label_class) ? option[:label_class] : 'col-md-2'}")
+      html << "<div class='#{option.key?(:field_class) ? option[:field_class] : 'col-md-4'}'>"
+        html << f.password_field(field, class: "form-control #{option.key?(:input_class) ? option[:input_class] : ''}", placeholder: "#{option.key?(:placeholder) ? option[:placeholder] : ''}", disabled: option.key?(:disabled) ? option[:disabled] : false, readonly: option.key?(:readonly) ? option[:readonly] : false, maxLength: "#{option.key?(:max_length) ? option[:max_length] : '150'}", minLength: "#{option.key?(:min_length) ? option[:min_length] : '3'}")
+      html << "</div>"
+    html << "</div>"
+
+    html.html_safe
+  end
 
   # Opciones extra a los anteriores
   # col-class : Establece clases para el div que contiene al label y al input

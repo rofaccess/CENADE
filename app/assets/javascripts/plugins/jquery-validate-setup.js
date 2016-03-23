@@ -12,6 +12,7 @@ jQuery.validator.setDefaults({
 		$(element).closest('div').removeClass('text-error');
 	},	
 	errorPlacement: function(error, element) {
+       /*
         if (element.attr("id") == "user_username" )  
             error.appendTo('#username-error');
         else if (element.attr("id") == "user_password" )  
@@ -19,7 +20,9 @@ jQuery.validator.setDefaults({
         else{
         	error.insertAfter(element);  
         	element.focus();  
-        }	    
+        }	 */  
+            error.insertAfter(element);  
+        	element.focus();  
     }
 });
 
