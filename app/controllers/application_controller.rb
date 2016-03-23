@@ -4,4 +4,9 @@ class ApplicationController < ActionController::Base
   
   before_filter :authenticate_user! #Tal vez se quite mas adelante
   protect_from_forgery with: :exception
+   def configuracion_general
+      @configuracion_general ||= Configuracion.first
+    end
+  
+
 end
