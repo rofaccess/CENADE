@@ -1,55 +1,54 @@
+<%= render 'layouts/messages'%>
+
 </br><div class= "col-md-10 col-md-offset-1 well" >
 
 	   <legend align="left"><h2>Configurar Datos de la Empresa </h2></legend></br>
 
 	   <%= form_for @configuracion, html: {class: 'nueva-conf'},:multipart => true do |configuracion|%>
-	    	<div class "row">
+	    	<div class="row">
 		      	<%= FormBuilder::text_field_v(configuracion, :empresa_nombre, 
-									                    input_class: 'required', 
-									                    max_length: 50, 
-									                    min_length: 2,
+									                    input_class: 'required minLength2', 
+									              		max_length: Domain::EMPRESA_NOMBRE,
 									                    autofocus: true,
 									                    col_class: 'col-md-4',
 									                    label_text: '* Nombre') %>
 		        <%= FormBuilder::text_field_v(configuracion, :empresa_direccion, 
-									                    input_class: 'required', 
-									                    max_length: 100, 
-									                    min_length: 4,
+									                    input_class: 'required minLength4', 
+									                    max_length: Domain::DIRECCION,
 									                    autofocus: false,
 									                    col_class: 'col-md-8',
 								                        label_text: '* Direccion') %>
 			</div>
-	   		<div class "row">
+	   		<div class="row">
 		   
 			    
 			    <%= FormBuilder::text_field_v(configuracion, :empresa_email, 
 									                    input_class: 'emailCheck', 
-									                    max_length: 30, 
+									                    max_length: Domain::EMAIL, 
 									                    autofocus: false,
 									                    col_class: 'col-md-5',
 									                    label_text: 'Email') %>
 
 			    <%= FormBuilder::text_field_v(configuracion, :empresa_tel, 
 									                    input_class: 'telCheck', 
-									                    max_length: 20, 
+									                    max_length: Domain::TELEFONO, 
 									                    autofocus: false,
 									                    col_class: 'col-md-4',
 									                    label_text: 'Telefono') %>
 		        	
 				<%= FormBuilder::text_field_v(configuracion, :empresa_web, 
 									                   
-									                    max_length: 40, 
+									                    max_length: Domain::EMPRESA_WEB, 
 									                    autofocus: false,
 									                    col_class: 'col-md-3',
 									                    label_text: 'Sitio web') %>
 		    </div>
-			<%= FormBuilder::text_field_v(configuracion, :empresa_horario_atencion, 
-								                    
-								                    max_length: 100, 
-								                  
+		    <div class="row">
+			<%= FormBuilder::text_field_v(configuracion, :empresa_horario_atencion,	
+													max_length: Domain::EMPRESA_HORARIO,
 								                    col_class: 'col-md-11',
 								                    label_text: 'Horario de Atencion') %>
-
+			</div>
 			
 					                    
 	    <div class= 'col-md-8'>
@@ -57,6 +56,9 @@
 		    <%= configuracion.label :logo_de_la_institucion %>
 		    <%= configuracion.file_field :empresa_logo %>
 	    </div></br>
+		
+
+
 	    <div class="row">
 		  <div class="col-md-3 col-md-offset-10">
 		    

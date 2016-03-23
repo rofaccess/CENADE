@@ -55,6 +55,14 @@ $.validator.addClassRules({
 		minlength: 3
 	},
 
+	minLength2: {
+		minlength: 2
+	},
+
+	minLength4: {
+		minlength: 4
+	},
+
 	passwordCheck: {
 		passwordCheck: true
 	},

@@ -9,6 +9,8 @@ gem 'pg'
 gem 'bootstrap-sass', '~> 3.3.6'
 # Official Font Awesome SASS Ruby Gem 
 gem 'font-awesome-sass'
+
+# Classier solution for file uploads for Rails, Sinatra and other Ruby web frameworks https://github.com/carrierwaveuploader/carrierwave
 gem 'carrierwave'
 
 # Use SCSS for stylesheets
