@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :funcionarios
   resources :empleados
   resources :usuarios
-  resources :configuraciones, only: [:edit, :update, :show]
+  resources :configuraciones
   get "welcome/index_configuracion"
   get "welcome/index_historial_clinico"
   get "welcome/index_personal"

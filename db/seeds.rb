@@ -59,7 +59,7 @@ admin = User.create(username: 'admin',
 configuracion1 = Configuracion.create(empresa_nombre: 'CENADE', 
 	                      empresa_direccion: 'Samu´u c/ Ruta 1 km 3,5 - Barrio: Ka´aguy Rory Encarnación', 
 	                      empresa_tel: '(71) 207881',
-	                      empresa_email: 'lkjhh',
+	                      empresa_email: 'cenade@gmail.com',
 	                      empresa_horario_atencion: 'De lunes a viernes 7:00-11:00, 13:00-17:00',
 	                      empresa_web: 'http://www.cenade.org/',
 	                      
