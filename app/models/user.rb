@@ -5,6 +5,11 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :secure_validatable
 
-  belongs_to :empleado    
+  belongs_to :empleado
+  
+	def email_required?
+	  	false
+	     	
+	end   
      
 end
