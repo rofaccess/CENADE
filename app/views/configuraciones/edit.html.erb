@@ -52,7 +52,7 @@
 			
 					                    
 	    <div class= 'col-md-8'>
-		    <%= image_tag (@configuracion.empresa_logo_url.to_s)  if @configuracion.empresa_logo? %>
+		    <%= image_tag(@configuracion.empresa_logo_url.to_s, :width => 110, :height => 120) %>
 		    <%= configuracion.label :logo_de_la_institucion %>
 		    <%= configuracion.file_field :empresa_logo %>
 	    </div></br>
