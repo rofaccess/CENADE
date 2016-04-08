@@ -73,7 +73,7 @@ module FormBuilder
     html = ""
       html << "<div class='form-group #{option.key?(:col_class) ? option[:col_class] : ''}'>"
         html << f.label(field,"#{option.key?(:label_text) ? option[:label_text] : ''}", 
-                              class: "control-label #{option.key?(:label_class) ? option[:label_class] : ''}")
+                              class: "control-label #{option.key?(:label_class) ? option[:label_class] : 'titulos-campos'}")
         if option.key?(:input_value)
           html << f.text_field(field, class: "form-control #{option.key?(:input_class) ? option[:input_class] : ''}",
                                       value: "#{option.key?(:input_value) ? option[:input_value] : ''}", 
