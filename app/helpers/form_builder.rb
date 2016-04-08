@@ -227,7 +227,7 @@ module FormBuilder
       html << "</div>"
     else
       html << f.label(field, "#{option.key?(:label_text) ? option[:label_text] : ''}",
-                               class: "control-label #{option.key?(:label_class) ? option[:label_class] : ''}")
+                               class: "control-label #{option.key?(:label_class) ? option[:label_class] : 'titulos-campos'}")
       html << "<div class='#{option.key?(:field_class) ? option[:field_class] : ''}'>"
         html << f.select(field, collection,
                                     {prompt: option.key?(:prompt) ? option[:prompt] : ''},
