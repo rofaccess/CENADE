@@ -63,7 +63,7 @@ gem "paranoia", "~> 2.0"
 # Use Unicorn as the app server
 # gem 'unicorn'
 
-gem 'cancan'
+gem 'cancancan'
 
 gem 'rolify'
 
