@@ -1,0 +1,123 @@
+
+/*
+ * Sidebar
+ */
+
+/* Hide for mobile, show later */
+.sidebar {
+  display: none;
+}
+@media (min-width: 768px) {
+  .sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    display: block;
+    overflow-x: hidden;
+    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+    background-color: #484A4F;
+    border-right: 1px solid #eee;
+    font-weight: bold;
+    padding-left: 0;
+  }
+}
+
+/* Sidebar navigation */
+.nav-sidebar {
+  margin-right: -21px; /* 20px padding + 1px border */
+  margin-bottom: 20px;
+  margin-left: -20px;
+  margin-top: 200px;
+}
+.nav-sidebar > li > a {
+  padding-right: 20px;
+  padding-left: 40px;
+}
+.nav-sidebar > .active > a,
+.nav-sidebar > .active > a:hover,
+.nav-sidebar > .active > a:focus {
+  color: #fff;
+  background-color: #69CAC9;
+}
+
+.sidebar > ul > li  {
+  border-color: #2B2B2B;
+  border-top: solid;
+}
+
+.sidebar > ul > li > a  {
+  color:white;
+}
+
+/*Pone el color de fondo del item del sidebar en verde cuando se pasa el cursor encima*/
+.nav-sidebar> li > a:hover {
+  background-color: #6CBD1A;
+}
+
+/*Pone el color de fondo del item del sidebar en celeste cuando se lo selecciona*/
+.nav-sidebar> li > a:focus {
+  background-color: #69CAC9;
+}
+
+
+/*
+ * Main content
+ */
+.main {
+  padding: 0;
+}
+
+.main > #contenido {
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
+  padding-top: 0;
+}
+@media (min-width: 768px) {
+  .main > #contenido , .main > footer{
+    padding-right: 40px;
+    padding-left: 40;
+  }
+}
+
+footer {
+	padding-left: 20px;
+ 	padding-right: 20px;
+}
+
+.main > #contenido {
+   height: 570px;
+}
+  
+.main .page-header {
+  margin-top: 0px;
+}
+
+/*
+ *  Logo
+ */
+
+.logo {
+  height: 170px;
+  background-color: white;
+  margin-bottom: 30px;
+  border-radius: 20px;
+  margin-left: 12px;
+  padding: 15%;
+  position: absolute;
+  z-index: 2;
+}
+
+.rectangulito{
+  background-color: white;
+  width:100%;
+  height: 50px;
+  position: absolute;  
+  z-index: 1;
+  margin-bottom: 100px;
+}
+
+
+
