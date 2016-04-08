@@ -1,0 +1,74 @@
+<div class="espacio">
+    <div class="row">
+    <div class="col-md-3">
+    	<h3 class ="titulos" style="margin-top:0px">Empleado</h3>
+    </div>
+		<div class="col-md-9">
+			<select class ="form-control required" id="empleado_id" name="empleado_id">
+		       <option value="">Seleccione un empleado </option>
+		       <%@empleados.each do |empleado|%>
+			        <option value="<%= empleado.id%>">
+			       	  <%=empleado.persona.nombre%>
+			        </option>
+		       <%end%>
+			</select>
+		</div>	
+    </div>
+	
+	<div class ="empleado">
+		<%= form_for @usuario,url: usuarios_path, html: {class:''}, :remote => true do |usuario| %>
+	<div class="row">
+	
+				<%= usuario.hidden_field :empleado_id, disabled: true %>
+				<%= FormBuilder::text_field_v(usuario, :username, 
+								                        input_class: 'required', 
+								                        max_length: Domain::NOMBRE, 
+								                        autofocus: true,
+								                        col_class: 'col-md-6',
+								                        disabled: true,
+								                        label_text: 'Nombres') %>
+			    <%= FormBuilder::text_field_v(usuario, :username, 
+								                        input_class: 'required clear', 
+								                        max_length: Domain::NOMBRE,
+								                        col_class: 'col-md-6',
+								                        disabled: true,
+								                        label_text: 'Apellidos') %>
+
+	            <%= FormBuilder::text_field_v(usuario, :username, 
+								                        input_class: 'required clear', 
+								                        max_length: Domain::CARGO,
+								                        col_class: 'col-md-6',
+								                        disabled: true,
+								                        label_text: 'Cargo') %>		    
+	            <%= FormBuilder::text_field_v(usuario, :username, 
+								                        input_class: 'required clear', 
+								                        max_length: Domain::EMAIL,
+								                        col_class: 'col-md-6',
+								                        disabled: true,
+								                        label_text: 'Email') %>
+	</div>
+		<h3 class ="titulos">Datos de Usuario</h3>
+
+		<div class="row">
+			<%= FormBuilder::text_field_v(usuario, :username, 
+							                        input_class: 'required', 
+							                        max_length: Domain::USERNAME, 
+							                        col_class: 'col-md-4',
+							                        label_text: '* Nombre Usuario') %>
+			<%= FormBuilder::select_v(usuario, :rol,
+												[['Secretario', 'Secretario'], ['Doctor', 'Doctor'],['Administrador', 'Admnistrador']], 
+												prompt:'Seleccione Rol', 
+												select_class: 'required', 
+												col_class: 'col-md-4',
+												label_text: '* Rol')%>
+		</div>
+
+		<div class="modal-footer">
+			<%= usuario.submit 'Guardar', class: 'btn btn-custom', disabled: true%>
+		</div>
+	<%end%>
+	</div>
+</div>
+
+
+
