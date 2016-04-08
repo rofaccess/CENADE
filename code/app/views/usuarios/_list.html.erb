@@ -1,3 +1,5 @@
+</br><div class= "col-md-10 col-md-offset-1 well" >
+<legend align="left"><h2>Listar Usuarios </h2></legend></br>
 <table class= "table table-condensed">
   <thead>
     <tr>
@@ -20,6 +22,7 @@
       <td class="show-usuario"><%=usuario.empleado.persona.email%></td>
       <td class="show-usuario"><%=usuario.rol%></td>
       <td classs="action">
+      <%= link_to '<i class="glyphicon glyphicon-eye-open"></i>'.html_safe,remote:true%> 
       <%= link_to '<i class="glyphicon glyphicon-edit icon-large"></i> '.html_safe, edit_usuario_path(usuario), remote: true%>        
       <%= link_to '<i class="glyphicon glyphicon-trash icon-large"></i>'.html_safe, usuario_path(usuario), method: 'delete', data: {confirm: "¿Desea eliminar al usuario #{usuario.username}?"}, remote: true%>
       </td>
