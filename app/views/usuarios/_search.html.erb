@@ -1,0 +1,6 @@
+<%= search_form_for @search, url: :usuarios, html: {class: 'search-field'} do |f| %>
+  <%= FormBuilder::text_field_search(f, :username, 
+  										placeholder: "Nombre Usuario")%>
+
+
+<% end %>  

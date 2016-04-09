@@ -1,16 +1,26 @@
 <div class= "content">
 
-	<i id="nuevo-usuario" class="fa fa-plus-square fa-2x"></i>
+	<div class="page-title">
+		Usuarios 
+		<div class="row pull-right">
+			<div class="col-md-8">
+				<%= render 'search' %>
+			</div>
+			<div class="col-md-4"> 	
+				<%= link_to '<i class="fa fa-plus-square"></i> '.html_safe, 'javascript:void(0)', id: 'nuevo-usuario' %>
+			</div>	
+		</div>					
+	</div>
 
 	<div id="list">
-		 <%= render 'list' %>
+		<%= render 'list' %>
 	</div>
 
 </div>
 <script type="text/javascript">
 	$("#nuevo-usuario").click(function(){
-	    $.get('usuarios/new', function(data){
-	    	$("div.content").html(data);
+		$.get('usuarios/new', function(data){
+			$("div.content").html(data);
 		},    'html');
 	});
 </script>
