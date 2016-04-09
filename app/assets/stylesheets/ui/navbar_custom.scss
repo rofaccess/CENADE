@@ -11,7 +11,8 @@
   $navbar-font-size: 12pt;
 
   // Custom navbar
-  .navbar-custom {
+  .navbar-custom {    
+
     background-color: $navbar-default-bg;
     border-color: $navbar-default-border;
     margin-bottom: 0px;
@@ -22,6 +23,11 @@
     min-height: 30px;
     height: 30px;
     .navbar-brand {
+      //Logo del menú
+      padding: 0;
+      padding-left: 20px;
+      height: 30px;
+
       color: $navbar-default-brand-color;
       &:hover,
       &:focus {
@@ -33,11 +39,6 @@
         font-size: $navbar-font-size;
         font-weight: bold;
       }
-    }
-    
-    .navbar-brand {
-      padding-top: 5px;
-      padding-bottom: 25px;
     }
 
     .navbar-nav > li > a {
