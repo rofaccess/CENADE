@@ -25,26 +25,24 @@
 
 	<% end %>
 	
-		<div id="wrapper">
+	<% unless @sidebar_layout == nil %>    	
+	
+		<div id="wrapper">         
+			
+			<%= render @sidebar_layout %>        
+	        
+	        <div id="page-content-wrapper">
+	            <%= yield %>                  
+	        </div>
+	    </div>
 
-        <!-- Sidebar -->
-       
-            <% unless @sidebar_layout == nil %>    
-				<%= render @sidebar_layout %>
-			<% end %>
-       
-        <!-- /#sidebar-wrapper -->
+   	<% else %>
 
-        <!-- Page Content -->
-        <div id="page-content-wrapper">
-            
-                        <%= yield %>
-                  
-        </div>
-        <!-- /#page-content-wrapper -->
-
-    </div>
-    <!-- /#wrapper -->
+	    <div id="principal-content">
+			<%= yield %>
+		</div>	
+	
+	<% end %>
 
 </body>
 </html>

@@ -6,7 +6,6 @@ class EmpleadosController < ApplicationController
 
 	def set_submenu
 		@submenu_layout = 'layouts/submenu_personal'
-		@sidebar_layout = 'layouts/sidebar_empleado'
 	end
 
 	def index
