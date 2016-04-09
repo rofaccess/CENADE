@@ -1,9 +1,22 @@
 <div class= "content">
 
- <%= link_to 'Agregar Empleado',new_empleado_path, class: 'btn btn-custom pull-right', remote: true %>
+	<div class="page-title">
+		Empleados 
+		<div class="row pull-right">
+			<div class="col-md-8">
+				<%= render 'search' %>
+			</div>	
+			<div class="col-md-4">
+				<%= link_to '<i class="fa fa-plus-square"></i> '.html_safe, new_empleado_path, remote: true %> 
+				
+				<%= link_to '<i class="fa fa-print"></i> '.html_safe%> 	
 
-<div id="list">
-	<%= render 'list' %>
-</div>	
+			</div>						
+					
+		</div>
+	</div>
 
+	<div id="list">
+		<%= render 'list' %>
+	</div>	
 </div>

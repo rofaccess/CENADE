@@ -13,4 +13,6 @@ class Empleado < ActiveRecord::Base
       persona.destroy
     end
 
+    ransack_alias :persona, :persona_nombre_or_persona_apellido_or_persona_ci
+
 end
