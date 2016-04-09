@@ -19,20 +19,23 @@ class ApplicationController < ActionController::Base
       self.name.gsub('Controller','').singularize.split('::').last.constantize.name rescue nil
     end
 
-    def current_ability
-      @current_ability ||= Ability.new(current_user)
+    
+
+    def self.permission
+    return name = controller_name.classify.constantize
+  end
+
+   def get_all_views
+    if not current_user.blank?
+      @role = Permission.get_permissios(current_user)
     end
+  end
 
     def load_permissions
       @current_permissions = current_user.roles.each do |role|
         role.permissions.collect{|i| [i.subject_class, i.action]}
       end
     end
-
-    def set_user
-      @user = User.find_by(id: ActionController::Parameters.new(id: params[:id]).permit(:id)[:id])
-    end
-
   
 
 end

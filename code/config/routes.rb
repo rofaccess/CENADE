@@ -1,13 +1,7 @@
 Rails.application.routes.draw do
 
-  get 'role/index'
-
-  get 'role/show'
-
-  get 'role/new'
-
-  get 'role/edit'
-
+  resources :role
+  resources :roles
   resources :doctores
   resources :funcionarios
   resources :empleados

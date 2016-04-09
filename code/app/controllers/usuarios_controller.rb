@@ -3,7 +3,7 @@ class UsuariosController < ApplicationController
 	before_action :set_submenu, only: [:index]
 	before_action :set_usuario, only: [:show, :edit, :update, :destroy]
 	respond_to :html, :js
-
+    load_and_authorize_resource
 	def set_submenu
 		@submenu_layout = 'layouts/submenu_configuracion'
 	end
@@ -32,8 +32,9 @@ class UsuariosController < ApplicationController
 
 	def update
 		if @usuario.update(usuario_params)
-        flash.notice= "Se ha actualizado el usuario #{@usuario.empleado.persona.nombre}
-        #{@usuario.empleado.persona.apellido}."       
+			@usuario.role_ids = params[:user][:role_ids]
+	        flash.notice= "Se ha actualizado el usuario #{@usuario.empleado.persona.nombre}
+	        #{@usuario.empleado.persona.apellido}."       
     else
         flash.alert = "No se ha podido actualizar el usuario #{@usuario.empleado.persona.nombre} 
         #{@usuario.empleado.persona.apellido}."
@@ -47,6 +48,7 @@ class UsuariosController < ApplicationController
 	
   
 		if @usuario.save
+			@usuario.role_ids = params[:user][:role_ids]
 		    flash.notice= "Se ha guardado el usuario #{@usuario.username}"		    
 		else
 		    flash.alert = "No se ha podido guardar el usuario #{@usuario.username}"
