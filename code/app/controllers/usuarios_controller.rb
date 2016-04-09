@@ -3,7 +3,7 @@ class UsuariosController < ApplicationController
 	before_action :set_submenu, only: [:index]
 	before_action :set_usuario, only: [:show, :edit, :update, :destroy]
 	respond_to :html, :js
-	layout false, only: [:new]
+	layout false, only:[:new]
 
 	def set_submenu
 		@submenu_layout = 'layouts/submenu_configuracion'
@@ -18,6 +18,8 @@ class UsuariosController < ApplicationController
     	@empleados = Empleado.find_by_sql("SELECT * FROM users FULL OUTER JOIN empleados ON users.empleado_id = empleados.id WHERE users.empleado_id IS null OR empleados.id IS null")
     	respond_to do |format|
 	   		format.html { }	
+
+	   	
 	   	end
   	end
 
@@ -27,10 +29,12 @@ class UsuariosController < ApplicationController
 
 	def index
 	   	@usuarios= User.all
+	    @search = User.ransack(params[:q])
+ 		@usuarios= @search.result
 	end
 
 	def edit
-		
+		@usuario = User.find(params[:id])
 	end
 
 	def update

@@ -10,6 +10,8 @@ class User < ActiveRecord::Base
 	def email_required?
 	  	false
 	     	
-	end   
+	end  
+
+  ransack_alias :usuario, :usuario_username 
      
 end
