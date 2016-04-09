@@ -1,5 +1,5 @@
 class ConfiguracionesController < ApplicationController
-  
+  load_and_authorize_resource
   before_action :set_submenu, only: [:edit, :update, :show]
 
   def set_submenu

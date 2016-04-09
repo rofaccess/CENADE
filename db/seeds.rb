@@ -62,7 +62,14 @@ configuracion1 = Configuracion.create(empresa_nombre: 'CENADE',
 	                      empresa_email: 'cenade@gmail.com',
 	                      empresa_horario_atencion: 'De lunes a viernes 7:00-11:00, 13:00-17:00',
 	                      empresa_web: 'http://www.cenade.org/',
-	                      
-
 
 	                      )
+administrador = Role.create!(name: 'Administrador')
+
+Permission.create([{nombre: 'Usuarios', model: 'User', grupo:'Configuracion'},
+                     {nombre: 'Datos de la empresa', model: 'Configuracion', grupo:'Configuracion'},
+                     {nombre: 'Empleados', model: 'Empleado', grupo:'Personal'}])
+
+ Permission.all.each do |p|
+        PermissionsRole.create(role_id: 1, permission_id: p.id)
+ end

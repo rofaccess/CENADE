@@ -2,6 +2,7 @@ class EmpleadosController < ApplicationController
 	
 	before_action :set_submenu, only: [:index]
 	before_action :set_empleado, only: [:show, :edit, :update, :destroy]
+	load_and_authorize_resource
 	respond_to :html, :js
 
 	def set_submenu
