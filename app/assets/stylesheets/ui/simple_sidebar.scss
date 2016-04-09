@@ -25,8 +25,8 @@
     width: 0;
     height: 100%;
     margin-left: -250px;
-    overflow-y: auto;
-    background: #000;
+    overflow-y: auto; 
+    background: #F7F7F7;
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
@@ -34,13 +34,13 @@
 }
 
 #wrapper.toggled #sidebar-wrapper {
-    width: 250px;
+    width: 200px;   
 }
 
 #page-content-wrapper {
     width: 100%;
     position: absolute;
-    padding: 15px;
+    padding: 15px; 
 }
 
 #wrapper.toggled #page-content-wrapper {
@@ -53,7 +53,7 @@
 .sidebar-nav {
     position: absolute;
     top: 0;
-    width: 250px;
+    width: 200px;
     margin: 0;
     padding: 0;
     list-style: none;
@@ -61,32 +61,39 @@
 
 .sidebar-nav li {
     text-indent: 20px;
-    line-height: 40px;
-    border: solid;
-    border-color: red;
+    line-height: 40px;  
+    border-bottom: solid;
+    border-bottom-color: #CCCCCC; 
 }
 
 .sidebar-nav li a {
     display: block;
     text-decoration: none;
-    color: #999999;
+    color: #98A4AE;   
 }
 
 .sidebar-nav li a:hover {
     text-decoration: none;
-    color: #fff;
+    color: #24C1C1;
     background: rgba(255,255,255,0.2);
 }
 
 .sidebar-nav li a:active,
 .sidebar-nav li a:focus {
     text-decoration: none;
+    background-color: white;
+    color: #24C1C1;
+    border-left: solid;
+    border-width: 6px;
+    border-color: #24C1C1;
 }
 
 .sidebar-nav > .sidebar-brand {
-    height: 65px;
-    font-size: 18px;
-    line-height: 60px;
+    height: 40px;
+    font-size: 16px;
+    line-height: 45px;
+    color: #98A4AE;
+    padding-left: 50px;
 }
 
 .sidebar-nav > .sidebar-brand a {
@@ -108,7 +115,7 @@
     }
 
     #sidebar-wrapper {
-        width: 250px;
+        width: 200px;
     }
 
     #wrapper.toggled #sidebar-wrapper {
@@ -117,7 +124,7 @@
 
     #page-content-wrapper {
         padding: 20px;
-        position: relative;
+        position: relative;        
     }
 
     #wrapper.toggled #page-content-wrapper {

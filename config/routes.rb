@@ -11,9 +11,11 @@ Rails.application.routes.draw do
     end
   end
   get "welcome/index_configuracion"
-  get "welcome/index_historial_clinico"
+  get "welcome/index_fichas"
+  get "welcome/index_atencion_profesional"
   get "welcome/index_personal"
-  get "welcome/index_pagos"
+  get "welcome/index_pacientes"
+  get "welcome/index_reportes"
   get "welcome/index_turnos"
   get "welcome/index"
 
