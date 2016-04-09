@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160408031307) do
+ActiveRecord::Schema.define(version: 20160409032929) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -95,19 +95,19 @@ ActiveRecord::Schema.define(version: 20160408031307) do
   end
 
   create_table "permissions", force: :cascade do |t|
-    t.string   "subject_class"
-    t.string   "action"
-    t.string   "name"
+    t.string   "grupo"
+    t.string   "model"
+    t.string   "nombre"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "permissions_roles", force: :cascade do |t|
+    t.integer  "role_id"
+    t.integer  "permission_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
-
-  create_table "permissions_roles", id: false, force: :cascade do |t|
-    t.integer "role_id"
-    t.integer "permission_id"
-  end
-
-  add_index "permissions_roles", ["permission_id", "role_id"], name: "index_permissions_roles_on_permission_id_and_role_id", using: :btree
 
   create_table "personas", force: :cascade do |t|
     t.string   "ci",               limit: 15,  default: "", null: false
@@ -160,7 +160,6 @@ ActiveRecord::Schema.define(version: 20160408031307) do
     t.datetime "updated_at"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
   add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
@@ -176,6 +175,8 @@ ActiveRecord::Schema.define(version: 20160408031307) do
   add_foreign_key "empleados", "especialidades", on_delete: :restrict
   add_foreign_key "empleados", "personas", on_delete: :restrict
   add_foreign_key "horarios", "empleados", on_delete: :cascade
+  add_foreign_key "permissions_roles", "permissions"
+  add_foreign_key "permissions_roles", "roles"
   add_foreign_key "personas", "estados_civiles", on_delete: :restrict
   add_foreign_key "users", "empleados", on_delete: :restrict
 end

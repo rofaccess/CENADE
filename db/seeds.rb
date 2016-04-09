@@ -50,11 +50,8 @@ doctor1 = Doctor.create(persona_id: persona2.id,
 horario1 = Horario.create(empleado_id: funcionario1.id)
 horario2 = Horario.create(empleado_id: doctor1.id)
 
-admin = User.create(username: 'admin', 
-					password: 'MyAdmin123', 
-					password_confirmation: 'MyAdmin123', 
-					empleado_id: funcionario1.id, 
-					email: "juanjose@gmail.com")
+admin = User.create(username: 'admin', password: 'MyAdmin123', password_confirmation: 'MyAdmin123', empleado_id: 1, email: "juanjose@gmail.com")
+
 
 configuracion1 = Configuracion.create(empresa_nombre: 'CENADE', 
 	                      empresa_direccion: 'Samu´u c/ Ruta 1 km 3,5 - Barrio: Ka´aguy Rory Encarnación', 
@@ -65,11 +62,14 @@ configuracion1 = Configuracion.create(empresa_nombre: 'CENADE',
 
 	                      )
 administrador = Role.create!(name: 'Administrador')
-
+admin.add_role :Administrador
 Permission.create([{nombre: 'Usuarios', model: 'User', grupo:'Configuracion'},
                      {nombre: 'Datos de la empresa', model: 'Configuracion', grupo:'Configuracion'},
-                     {nombre: 'Empleados', model: 'Empleado', grupo:'Personal'}])
+                     {nombre: 'Empleados', model: 'Empleado', grupo:'Personal'},
+                     {nombre: 'Roles', model: 'Role', grupo:'Configuracion'}])
 
  Permission.all.each do |p|
         PermissionsRole.create(role_id: 1, permission_id: p.id)
  end
+
+
