@@ -22,13 +22,28 @@
 	}
 }
 
+.espacio{
+	padding-top:4%;
+	padding-left:4%;
+	padding-right:4%;
+	margin-top: 15px;
+	margin-left:25%;
+	margin-right:25%;
+
+}
+.titulos-campos{
+	font-weight: normal;
+	font-size:medium;
+}
+.titulos{
+	font-size: 24px;
+	font-weight: bold;
+}
+
 .show-empleado{
   cursor: pointer;
 }
 
-.content{
-	margin: 20px;
-}
 
 td.action > a > i {
 	color: #24C1C1;
