@@ -12,8 +12,8 @@ $navbar-font-size: 9pt;
   //Posición fija
   position: fixed;
   right: 0;
-  left: 0;
-  z-index: 1040;
+  left: 0; 
+  //z-index: 1030;
   
   background-color: $navbar-default-bg;
   border-color: $navbar-default-border;  
@@ -21,9 +21,12 @@ $navbar-font-size: 9pt;
   font-size: $navbar-font-size;
   border: none;
   border-radius: 0px;
-  min-height: 20px;
-  height: 20px;
+  min-height: 25px;
+  height: 25px;
   margin-bottom: 0px;
+
+  border-bottom:solid;
+  border-bottom-color: #CCCCCC;
   .navbar-brand {
     color: $navbar-default-brand-color;
     &:hover,
