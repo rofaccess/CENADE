@@ -246,8 +246,20 @@ module FormBuilder
     html.html_safe
   end
 
-  
+  def self.text_field_search(f, field, option)
+    html = ""
+    html << "<div class='form-group'>"
+      html << "<div class='input-group'>"
+        html << f.search_field(field, class: 'form-control',autofocus: true, placeholder: "#{option.key?(:placeholder) ? option[:placeholder] : ''}")
+      
+        #html << "<div class='input-group-addon'>"          
+            html << "<span class='fa fa-search'>"
+            html << "</span>"
+        #html << "</div>"
+      html << "</div>"
+    html << "</div>"
 
-
+    html.html_safe   
+  end
 end
 

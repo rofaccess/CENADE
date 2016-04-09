@@ -9,6 +9,12 @@ $navbar-font-size: 9pt;
 
 // Custom navbar
 .navbar-submenu {
+  //Posición fija
+  position: fixed;
+  right: 0;
+  left: 0;
+  z-index: 1040;
+  
   background-color: $navbar-default-bg;
   border-color: $navbar-default-border;  
   font-weight: bold;

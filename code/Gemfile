@@ -14,7 +14,7 @@ gem 'font-awesome-sass'
 gem 'carrierwave'
 
 # Object-based searching. The successor to MetaSearch.
-gem "ransack", github: "activerecord-hackery/ransack", branch: "rails-4"
+gem 'ransack', github: 'activerecord-hackery/ransack'
 
 # A Scope & Engine based, clean, powerful, customizable and sophisticated paginator for Rails
 gem 'kaminari', '0.14.1'
