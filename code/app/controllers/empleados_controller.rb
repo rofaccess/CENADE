@@ -10,16 +10,8 @@ class EmpleadosController < ApplicationController
 
 	def index
 		@search = Empleado.ransack(params[:q])
-		@empleados= @search.result
+		@empleados= @search.result.page(params[:page])
 		
-		#@q = Person.ransack(params[:q])
-  		#@people = @q.result(distinct: true)
-		#if @search.sorts.empty?
-	    #  @empleados = @search.result.order('nombre')
-	    #else
-	    #  @empleados = @search.result
-	    #end
-	    #@empleados = @empleados.page(params[:page]) if paginate
 	end
 
 	def new    	

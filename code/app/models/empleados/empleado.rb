@@ -1,4 +1,5 @@
 class Empleado < ActiveRecord::Base
+ 	paginates_per 2
  	acts_as_paranoid
  	after_destroy :destroy_persona
     

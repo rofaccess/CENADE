@@ -1,3 +1,4 @@
+$common-color: #24C1C1;
 
 /* Si la palabra es muy larga, esta clase lo corta */
 .crop {
@@ -171,8 +172,20 @@ body{
 		background: white;
 		width: 90%;
 		margin-top: 70px; 
-		padding: 50px;
-		margin-bottom: 0px;
+		padding-left: 50px;
+		padding-right: 50px;
+		padding-top: 50px;
+		padding-bottom: 1px;
+	}
+
+	#list-paginate{
+		text-align: right;
+		margin-left: auto;
+		margin-right: auto;
+		background: white;
+		width: 90%;
+		padding-left: 50px;
+		padding-right: 50px; 
 	}
 } 
 
@@ -212,4 +225,38 @@ body{
   	background: #24C1C1;
   	border-bottom:solid;
   	border-bottom-color: #CCCCCC;
+}
+
+.pagination{
+	.active{
+		a {
+			background-color: #24C1C1;
+			border-color: #24C1C1;
+			&,
+		    &:hover,
+		    &:focus {
+		      z-index: 2;
+		      color: white;
+		      background-color: #24C1C1;
+		      border-color: #24C1C1;
+		      cursor: default;
+		    }
+		}		
+	}
+
+	li {
+		a {
+			color: #999999;
+			&:hover,
+		    &:focus {
+		      background-color: $pagination-hover-bg;
+		      color: #24C1C1;
+		    }
+		}		
+	}
+}
+
+.form-control:focus{
+	border-color: $common-color;
+	//box-shadow: 0 1px 1px $common-color; //Da un efecto de recuadro
 }
