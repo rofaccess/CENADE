@@ -73,7 +73,7 @@ module FormBuilder
     html = ""
       html << "<div class='form-group #{option.key?(:col_class) ? option[:col_class] : ''}'>"
         html << f.label(field,"#{option.key?(:label_text) ? option[:label_text] : ''}", 
-                              class: "control-label #{option.key?(:label_class) ? option[:label_class] : ''}")
+                              class: "control-label #{option.key?(:label_class) ? option[:label_class] : 'titulos-campos'}")
         if option.key?(:input_value)
           html << f.text_field(field, class: "form-control #{option.key?(:input_class) ? option[:input_class] : ''}",
                                       value: "#{option.key?(:input_value) ? option[:input_value] : ''}", 
@@ -227,7 +227,7 @@ module FormBuilder
       html << "</div>"
     else
       html << f.label(field, "#{option.key?(:label_text) ? option[:label_text] : ''}",
-                               class: "control-label #{option.key?(:label_class) ? option[:label_class] : ''}")
+                               class: "control-label #{option.key?(:label_class) ? option[:label_class] : 'titulos-campos'}")
       html << "<div class='#{option.key?(:field_class) ? option[:field_class] : ''}'>"
         html << f.select(field, collection,
                                     {prompt: option.key?(:prompt) ? option[:prompt] : ''},
@@ -246,8 +246,20 @@ module FormBuilder
     html.html_safe
   end
 
-  
+  def self.text_field_search(f, field, option)
+    html = ""
+    html << "<div class='form-group'>"
+      html << "<div class='input-group'>"
+        html << f.search_field(field, class: 'form-control',autofocus: true, placeholder: "#{option.key?(:placeholder) ? option[:placeholder] : ''}")
+      
+        #html << "<div class='input-group-addon'>"          
+            html << "<span class='fa fa-search'>"
+            html << "</span>"
+        #html << "</div>"
+      html << "</div>"
+    html << "</div>"
 
-
+    html.html_safe   
+  end
 end
 

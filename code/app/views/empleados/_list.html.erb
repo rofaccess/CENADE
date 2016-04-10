@@ -29,9 +29,10 @@
       </td> 
 
       <td class = "action">
-
-        <%= link_to '<i class="glyphicon glyphicon-edit icon-large"></i> '.html_safe, edit_empleado_path(empleado), remote: true%>        
-        <%= link_to '<i class="glyphicon glyphicon-trash icon-large"></i>'.html_safe, empleado_path(empleado), method: 'delete', data: {confirm: "¿Desea eliminar al empleado #{empleado.persona.nombre}?"}, remote: true%>
+        
+        <%= link_to '<i class="fa fa-eye fa-lg"></i> '.html_safe, empleado_path(empleado), remote: true%>     
+        <%= link_to '<i class="fa fa-edit fa-lg"></i> '.html_safe, edit_empleado_path(empleado), remote: true%>        
+        <%= link_to '<i class="fa fa-trash-o fa-lg"></i>'.html_safe, empleado_path(empleado), method: 'delete', data: {confirm: "¿Desea eliminar al empleado #{empleado.persona.nombre}?"}, remote: true%>
 
       </td>
     </tr>

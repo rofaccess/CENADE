@@ -1,14 +1,8 @@
-  <nav class="navbar navbar-custom">
+  <nav class="navbar navbar-custom navbar-fixed-top">
     <div class="container-fluid">
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-
+        
        <% img= Configuracion.first.empresa_logo %> 
        <% if !img.url.nil? %> 
           <%= image_tag(img, size: "50x70", class:'img-polaroid img-', class: "navbar-brand") %>
@@ -20,24 +14,28 @@
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="collapse navbar-collapse">
+      <div>
         <ul class="nav navbar-nav">        
 
-          <li class="<%= current_menu([welcome_index_historial_clinico_path])%>">
-            <%= link_to '<span class="fa fa-list" aria-hidden="true"></span>  Historial Clínico'.html_safe, welcome_index_historial_clinico_path  %> 
+          <li class="<%= current_menu([welcome_index_turnos_path])%>">
+            <%= link_to '<span class="fa fa-calendar" aria-hidden="true"></span>  Turnos'.html_safe, welcome_index_turnos_path  %> 
             
           </li> 
          
-          <li class="<%= current_menu([welcome_index_turnos_path])%>">
-            <%= link_to '<span class="fa fa-calendar" aria-hidden="true"></span>  Turnos'.html_safe, welcome_index_turnos_path  %>
+          <li class="<%= current_menu([welcome_index_pacientes_path])%>">
+            <%= link_to '<span class="fa fa-user" aria-hidden="true"></span>  Pacientes'.html_safe, welcome_index_pacientes_path %>
           </li>
           
-          <li class="<%= current_menu([welcome_index_pagos_path])%>">
-            <%= link_to '<span class="fa fa-dollar" aria-hidden="true"></span>  Pagos'.html_safe, welcome_index_pagos_path  %>
+          <li class="<%= current_menu([welcome_index_fichas_path, welcome_index_atencion_profesional_path])%>">
+            <%= link_to '<span class="fa fa-list-alt" aria-hidden="true"></span>  Fichas y Consultas'.html_safe, welcome_index_fichas_path %>
           </li>
           
           <li class="<%= current_menu([welcome_index_personal_path, empleados_path])%>">
             <%= link_to '<span class="fa fa-users" aria-hidden="true"></span>  Personal'.html_safe, empleados_path  %>            
+          </li>
+
+          <li class="<%= current_menu([welcome_index_reportes_path])%>">
+            <%= link_to '<span class="fa fa-bar-chart" aria-hidden="true"></span>  Reportes'.html_safe, welcome_index_reportes_path  %>            
           </li>
           
           <li class="<%= current_menu([welcome_index_configuracion_path, usuarios_path, edit_configuracion_path(Configuracion.first),configuracion_path(Configuracion.first)])%>">
