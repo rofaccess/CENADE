@@ -21,7 +21,9 @@
 //= require plugins/jquery-validate-setup.js
 //= require plugins/jquery-inputmask.js
 //= require plugins/jquery-inputmask-regex-extensions.js
-
+//= require plugins/select2/select2.full.min.js
+//= require plugins/select2/i18n/es.js
+//= require plugins/select2/i18n/en.js
 
 //= require languages/jquery-validate-messages-es.js
 //= require languages/jquery-ui-datepicker-es.js
