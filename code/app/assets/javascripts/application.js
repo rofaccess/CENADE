@@ -14,7 +14,6 @@
 //= require jquery.ui.datepicker
 //= require bootstrap-sprockets
 //= require jquery_ujs
-//= require turbolinks
 
 //= require plugins/jquery-validate-min.js
 //= require plugins/jquery-additional-methods-min.js
@@ -32,3 +31,34 @@
 
 //= require_tree .
 
+APP = {  
+
+    /* Para que el listado se actualice a medida que se tipea */
+    initBuscador: function(){
+    	$('.buscador').on('keyup change', 'input', function () {
+			delay(function(){
+				$("#list").append('<div class="overlay"><i class="fa fa-refresh fa-spin"></i></div>');
+					
+				delay(function(){}, 500);
+				
+				$('.buscador').submit();
+			}, 500);
+		});
+    },
+
+    init: function() {        
+		APP.initBuscador();
+
+    }
+};
+
+var delay = (function(){
+    var timer = 0;
+    return function(callback, ms){
+        clearTimeout (timer);
+        timer = setTimeout(callback, ms);
+    };
+})();
+
+
+$( document ).on('ready', APP.init );
