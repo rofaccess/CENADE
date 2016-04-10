@@ -39,7 +39,7 @@
 
           <td class="action">
 
-            <%= link_to '<i class="fa fa-eye fa-lg"></i> '.html_safe, usuario_path(usuario), remote: true%>     
+            <%= link_to '<i class="fa fa-eye fa-lg"></i> '.html_safe,'javascript:void(0)', onclick: "mostrar_usuario(#{usuario.id})"%>     
             <%= link_to '<i class="fa fa-edit fa-lg"></i> '.html_safe, 'javascript:void(0)', onclick: "editar_usuario(#{usuario.id})"%>        
             <%= link_to '<i class="fa fa-trash-o fa-lg"></i>'.html_safe, usuario_path(usuario), method: 'delete', data: {confirm: "¿Desea eliminar al usuario #{usuario.username}?"}, remote: true%>
           </td>
@@ -48,11 +48,18 @@
     </tbody>
   </table>
     <script type="text/javascript">  
+
       function editar_usuario(id){
         $.get('usuarios/'+id +'/edit', function(data){
             $("div.content").html(data);
           },    'html');
       }
+      function mostrar_usuario(id){
+        $.get('usuarios/'+id, function(data){
+            $("div.content").html(data);
+          },    'html');
+      }
+
     </script>
   </div>
 </div>

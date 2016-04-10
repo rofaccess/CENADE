@@ -1,0 +1,64 @@
+<div class= "content">	
+	<div class="page-title">
+		Usuario 
+		<div class="row pull-right">
+			<div class="input-group">
+				<%= link_to '<i class="fa fa-list"></i> '.html_safe, remote: true %> 
+				<%= link_to '<i class="fa fa-edit"></i> '.html_safe, remote: true %> 
+				<%= link_to '<i class="fa fa-trash"></i> '.html_safe, remote: true %> 	
+			</div>	
+		</div>					
+	</div>
+ 	<div class="espacio">
+	    <div class="row">
+		    <div class="col-md-3">
+		    	<h3 class ="titulos" style="margin-top:0px">Empleado</h3>
+		    </div>
+	    </div>
+		<div class ="empleado">
+			<%= form_for @usuario,url: usuarios_path, html: {class:''}, :remote => true do |usuario| %>
+			<div class="row">
+
+
+			<div class="form-group col-md-6">
+				<label class="control-label titulos-campos" for="user_username">Nombres</label>
+				<input class="form-control required usuario-nombre" placeholder="" disabled="disabled" maxlength="30" autofocus="autofocus" type="text" value="<%=@empleado.persona.nombre%>" >
+			</div>
+
+			<div class="form-group col-md-6">
+				<label class="control-label titulos-campos" for="user_username">Apellidos</label>
+				<input class="form-control required clear usuario-apellido" placeholder="" disabled="disabled" maxlength="30" type="text" value="<%=@empleado.persona.apellido%>">
+			</div>
+
+
+			<div class="form-group col-md-6">
+				<label class="control-label titulos-campos" for="user_username">Cargo</label>
+				<input class="form-control required clear usuario-cargo" placeholder="" disabled="disabled" maxlength="100" type="text" value="<%=@empleado.cargo.descripcion%>" >
+			</div>
+
+			<div class="form-group col-md-6">
+				<label class="control-label titulos-campos" for="user_username">Email</label>
+				<input class="form-control required clear usuario-email" placeholder="" disabled="disabled" maxlength="50" type="text" value="<%=@empleado.persona.email%>" >
+			</div>
+		</div>
+			<h3 class ="titulos">Datos de Usuario</h3>
+			<div class="row">
+				<%= FormBuilder::text_field_v(usuario, :username, 
+								                        input_class: 'required', 
+								                        max_length: Domain::USERNAME, 
+								                        col_class: 'col-md-6',
+								                        disabled: true,
+								                        label_text: '* Nombre Usuario',
+								                        label_class: 'error') %>
+				<%= FormBuilder::text_field_v(usuario, :rol,
+													input_class:'required',
+													prompt:'Seleccionar Rol', 
+													select_class: 'required', 
+													col_class: 'col-md-6',
+													disabled: true,
+													label_text: '* Rol')%>
+			</div>
+		<%end%>
+		</div>
+	</div>
+</div>

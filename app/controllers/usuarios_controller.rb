@@ -3,7 +3,7 @@ class UsuariosController < ApplicationController
 	before_action :set_submenu, only: [:index]
 	before_action :set_usuario, only: [:show, :edit, :update, :destroy]
 	respond_to :html, :js
-	layout false, only:[:new]
+	#layout false, only:[:new]
 
 	def set_submenu
 		@submenu_layout = 'layouts/submenu_configuracion'
@@ -11,11 +11,10 @@ class UsuariosController < ApplicationController
 
 	def new 
 	    @usuario = User.new   	
-    	#@empleados = Empleado.all
-
+    	@empleados = Empleado.includes(:persona, :cargo).joins("LEFT JOIN users ON empleados.id = users.empleado_id").where(users: {empleado_id: nil})
     	# Fuente:  http://blog.codinghorror.com/a-visual-explanation-of-sql-joins/
     	# Obtiene los empleados que no tengan ningún usuario
-    	@empleados = Empleado.find_by_sql("SELECT * FROM users FULL OUTER JOIN empleados ON users.empleado_id = empleados.id WHERE users.empleado_id IS null OR empleados.id IS null")
+    	#@empleados = Empleado.find_by_sql("SELECT * FROM users FULL OUTER JOIN empleados ON users.empleado_id = empleados.id WHERE users.empleado_id IS null OR empleados.id IS null")
     	respond_to do |format|
 	   		format.html { }	
 
@@ -76,9 +75,8 @@ class UsuariosController < ApplicationController
   	end
 
 	def show
-			respond_to do |format|
-	       	format.js { render 'show' }	      
-	    end
+		@usuario = User.find(params[:id])
+		@empleado= Empleado.where("id=?",@usuario.empleado_id).first
 	end
 
   	def get_empleado
