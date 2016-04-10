@@ -14,6 +14,7 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "select2";
 @import "font-awesome-sprockets";
 @import "font-awesome";
 
@@ -28,5 +29,8 @@
 @import "ui/login";
 @import "ui/devise-flash-messages";
 @import "ui/pages";
+
+
+
 
 
