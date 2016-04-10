@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-  resources :role
   resources :roles
   resources :doctores
   resources :funcionarios
