@@ -24,4 +24,8 @@
 	<div id="list">
 		<%= render 'list' %>
 	</div>	
+
+	<div id="list-paginate">
+		<%= paginate @empleados, remote: true %>
+	</div>	
 </div>

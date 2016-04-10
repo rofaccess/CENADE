@@ -17,7 +17,7 @@ gem 'carrierwave'
 gem 'ransack', github: 'activerecord-hackery/ransack'
 
 # A Scope & Engine based, clean, powerful, customizable and sophisticated paginator for Rails
-gem 'kaminari', '0.14.1'
+gem 'kaminari'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '>= 3.2'
