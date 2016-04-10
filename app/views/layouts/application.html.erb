@@ -25,9 +25,25 @@
 		<%= render 'layouts/modal' %>
 
 	<% end %>
-	<div id="principal-content">
-		<%= yield %>
-	</div>	
+	
+	<% unless @sidebar_layout == nil %>    	
+	
+		<div id="wrapper">         
+			
+			<%= render @sidebar_layout %>        
+	        
+	        <div id="page-content-wrapper">
+	            <%= yield %>                  
+	        </div>
+	    </div>
+
+   	<% else %>
+
+	    <div id="principal-content">
+			<%= yield %>
+		</div>	
+	
+	<% end %>
 
 </body>
 </html>

@@ -13,6 +13,12 @@ gem 'font-awesome-sass'
 # Classier solution for file uploads for Rails, Sinatra and other Ruby web frameworks https://github.com/carrierwaveuploader/carrierwave
 gem 'carrierwave'
 
+# Object-based searching. The successor to MetaSearch.
+gem 'ransack', github: 'activerecord-hackery/ransack'
+
+# A Scope & Engine based, clean, powerful, customizable and sophisticated paginator for Rails
+gem 'kaminari', '0.14.1'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '>= 3.2'
 # Use Uglifier as compressor for JavaScript assets

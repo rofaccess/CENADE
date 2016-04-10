@@ -7,8 +7,8 @@
   $navbar-default-link-hover-color: #23C0C0;;
   $navbar-default-link-color: white;
 
-  $navbar-icon-size: 12pt;
-  $navbar-font-size: 15pt;
+  $navbar-icon-size: 11pt;
+  $navbar-font-size: 12pt;
 
   // Custom navbar
   .navbar-custom {
@@ -19,6 +19,8 @@
     font-weight: bold;
     border: none;
     border-radius: 0px;
+    min-height: 30px;
+    height: 30px;
     .navbar-brand {
       color: $navbar-default-brand-color;
       &:hover,
@@ -31,6 +33,17 @@
         font-size: $navbar-font-size;
         font-weight: bold;
       }
+    }
+    
+    .navbar-brand {
+      padding-top: 5px;
+      padding-bottom: 25px;
+    }
+
+    .navbar-nav > li > a {
+      padding-top: 6px;
+      min-height: 30px;
+      height: 30px;
     }
 
     .navbar-text {

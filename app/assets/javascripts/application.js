@@ -30,6 +30,7 @@
 //= require modules/empleadosUI
 //= require modules/configuracionesUI
 //= require modules/usuariosUI
+//= require modules/rolesUI
 
 //= require_tree .
 
