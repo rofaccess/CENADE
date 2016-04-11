@@ -3,7 +3,7 @@
 		Nuevo Usuario 
 		<div class="row pull-right">
 			<div class="col-md-4">
-				<%= link_to '<i class="fa fa-list"></i> '.html_safe, remote: true %> 	
+				<%= link_to '<i class="fa fa-list"></i> '.html_safe,'javascript:void(0)', onclick: "listar_usuario()",remote: true %> 	
 			</div>	
 		</div>					
 	</div>
@@ -66,7 +66,7 @@
 							                        disabled: true,
 							                        label_text: 'Email') %>
 		</div>
-			<h3 class ="titulos">Datos de Usuario</h3>
+			<h3 class ="titulos">Datos de Usuario</h3><hr>
 			<div class="row">
 				<%= FormBuilder::text_field_v(usuario, :username, 
 								                        input_class: 'required', 
@@ -101,6 +101,12 @@
 			$(".usuario-email").val($("#option-email-"+id).val());
 		});
 	});
+
+	function listar_usuario(){
+	    $.get('usuarios/?l=1', function(data){
+	        $("#principal-content").html(data);
+	      },    'html');
+	}
 	
 	usuariosUI.initScript();
 </script>

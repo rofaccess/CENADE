@@ -3,10 +3,12 @@ class UsuariosController < ApplicationController
 	before_action :set_submenu, only: [:index]
 	before_action :set_usuario, only: [:show, :edit, :update, :destroy]
 	respond_to :html, :js
-	#layout false, only:[:new]
+	layout false, only:[:new,:edit]
 
 	def set_submenu
-		@submenu_layout = 'layouts/submenu_configuracion'
+		if(!params[:l])
+			@submenu_layout = 'layouts/submenu_configuracion'
+		end
 	end
 
 	def new 
