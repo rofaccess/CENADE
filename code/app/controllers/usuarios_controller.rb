@@ -3,12 +3,10 @@ class UsuariosController < ApplicationController
 	before_action :set_submenu, only: [:index]
 	before_action :set_usuario, only: [:show, :edit, :update, :destroy]
 	respond_to :html, :js
-<<<<<<< HEAD
-    load_and_authorize_resource
-=======
 	layout false, only: [:new]
+	
+	load_and_authorize_resource
 
->>>>>>> 9e6e011acb11e82e7ab8b8fdb4bb590c7fcf2865
 	def set_submenu
 		@submenu_layout = 'layouts/submenu_configuracion'
 	end

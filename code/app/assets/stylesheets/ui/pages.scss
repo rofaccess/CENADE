@@ -1,3 +1,4 @@
+$common-color: #24C1C1;
 
 /* Si la palabra es muy larga, esta clase lo corta */
 .crop {
@@ -128,29 +129,41 @@ body{
 	padding-top: 30px;	
 }
 
+.alert {
+	    
+		padding: 8px 35px 8px 14px;
+		-webkit-border-radius: 4px;
+		-moz-border-radius: 4px;
+		border-radius: 4px;
+		font-size: 12px;
+
+		
+	}
+
 .content {
+
 	.page-title {
 		//Posición fija
 		position: fixed;
 		right: 0;
 		left: 0;
-		top: 50px;		
+		top: 55px;		
 
-		background-color: #FEFEFE;
-		border-top: solid; 
+		background-color: #FEFEFE;		
 		border-bottom: solid;
 		border-color: #CCCCCC;
 		font-size: 24px;
-		line-height: 45px;
+		//line-height: 45px;
 		height: 50px;
 		font-weight: bold;
+		padding-top: 7px;
 		padding-left: 50px;
-		padding-right: 0px;
+		padding-right: 20px;
 		
 		
 
 		a {							
-			padding-left: 10px;
+			margin-left: 13px;
 			color: #999999;
 			font-size: 26px;
 			text-decoration: none;
@@ -164,7 +177,7 @@ body{
 
 
 	}
-
+    
 	#list {
 		margin-left: auto;
 		margin-right: auto;
@@ -173,6 +186,22 @@ body{
 		margin-top: 105px; 
 		padding: 50px;
 		margin-bottom: 0px;
+		width: 90%;
+		padding-left: 50px;
+		padding-right: 50px;
+		padding-top: 50px;
+		padding-bottom: 1px;
+	}
+
+	#list-paginate{
+		text-align: right;
+		margin-left: auto;
+		margin-right: auto;
+		background: white;
+		width: 90%;
+		padding-left: 50px;
+		padding-right: 50px; 
+
 	}
 
 	#panel_form {
@@ -188,29 +217,77 @@ body{
 		margin-top: 18px; 
 		
 	}
+
 } 
 
-.search-field {	
-	margin-top: 11px;				
-	.form-group {
-		.input-group {
-			width: 250px;
-			.form-control{
-				height: 22px;
-				border-radius: 5px;
-				font-size: 10px;							
+.tool {
+	float: right;
+	width: 40%;
+	font-size: 14px;
+	
+	form {	
+	.input-group {
+		.form-control{
+				border-radius: 5px;						
 				color: #999999;											
 			}
 
 			.fa-search {
 				float: right;
 				margin-right: 6px;
-				margin-top: -18px;
+				margin-top: -27px;
 				position: relative;
 				z-index: 1000;
 				color: #D9D9D9;
-				font-size: 11pt;
+				font-size: 15pt;
 			}
+
+			
 		}
 	}
+} 
+
+.line{
+	top: 30px;
+	height: 10px;
+	position: fixed;
+  	right: 0;
+  	left: 0; 
+  	background: #24C1C1;
+  	border-bottom:solid;
+  	border-bottom-color: #CCCCCC;
+}
+
+.pagination{
+	.active{
+		a {
+			background-color: #24C1C1;
+			border-color: #24C1C1;
+			&,
+		    &:hover,
+		    &:focus {
+		      z-index: 2;
+		      color: white;
+		      background-color: #24C1C1;
+		      border-color: #24C1C1;
+		      cursor: default;
+		    }
+		}		
+	}
+
+	li {
+		a {
+			color: #999999;
+			&:hover,
+		    &:focus {
+		      background-color: $pagination-hover-bg;
+		      color: #24C1C1;
+		    }
+		}		
+	}
+}
+
+.form-control:focus{
+	border-color: $common-color;
+	//box-shadow: 0 1px 1px $common-color; //Da un efecto de recuadro
 }
