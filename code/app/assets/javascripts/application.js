@@ -35,7 +35,7 @@
 //= require modules/configuracionesUI
 //= require modules/usuariosUI
 
-//= require_tree .0
+//= require_tree .
 
 APP = {  
 

@@ -35,8 +35,7 @@
 			<%= form_for @usuario,url: usuarios_path, html: {class:''}, :remote => true do |usuario| %>
 		<div class="row">
 
-			<%= usuario.hidden_field :empleado_id, disabled: true %>
-			<%= usuario.hidden_field :password, disabled: true %>
+			<%= usuario.hidden_field :empleado_id %>
 
 			<%= FormBuilder::text_field_v(usuario, :username, 
 							                        input_class: 'required usuario-nombre', 
@@ -95,6 +94,7 @@
 	$(document).ready(function(){
 		$("#empleado_id").select2().on("select2:select",function(){
 			id = $(this).val();
+			$("#user_empleado_id").val(id);
 			$(".usuario-nombre").val($("#option-nombre-"+id).val());
 			$(".usuario-apellido").val($("#option-apellido-"+id).val());
 			$(".usuario-cargo").val($("#option-cargo-"+id).val());

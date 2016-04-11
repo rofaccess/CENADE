@@ -27,9 +27,8 @@ class UsuariosController < ApplicationController
     end
 
 	def index
-	   	@usuarios= User.all
 	    @search = User.ransack(params[:q])
- 		@usuarios= @search.result
+ 		@usuarios= @search.result.page(params[:page])
 	end
 
 	def edit
@@ -49,9 +48,8 @@ class UsuariosController < ApplicationController
 
 	def create
 		@usuario = User.new(usuario_params)
-	    @usuario.password_confirmation = @usuario.password
-	
-  
+	    @usuario.password_confirmation =  @usuario.username+"ABC123"
+	    @usuario.password = @usuario.username+"ABC123"
 		if @usuario.save
 		    flash.notice= "Se ha guardado el usuario #{@usuario.username}"		    
 		else
@@ -79,14 +77,14 @@ class UsuariosController < ApplicationController
 		@empleado= Empleado.where("id=?",@usuario.empleado_id).first
 	end
 
-  	def get_empleado
-      @empleado = Empleado.find(params[:id])
-      @usuario = User.new
-      render partial:'get_empleado', formats:'html'
-    end
+  	# def get_empleado
+   #    @empleado = Empleado.find(params[:id])
+   #    @usuario = User.new
+   #    render partial:'get_empleado', formats:'html'
+   #  end
 
 	def usuario_params
-      params.require(:user).permit(:username, :password,:empleado_id, :rol)
+      params.require(:user).permit(:username,:empleado_id, :rol)
       
     end
 
