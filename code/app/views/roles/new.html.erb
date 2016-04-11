@@ -1,0 +1,27 @@
+
+<div class= "content">
+
+	<div class="page-title">
+		<div class= "row">
+      		<div class="col-md-3">
+          		Nuevo Rol
+      		</div>
+      
+        	<%= render 'layouts/messages'%>
+      
+     		 <div class="tool">
+   			   <div class="col-lg-offset-8">
+	          	<div class="input-group-btn"> 
+	        		<%= link_to '<i class="fa fa-list-ul"></i> '.html_safe, roles_path%>
+	        	  </div> 
+	     		</div> 
+			</div>
+		 </div>
+	</div>
+ 
+   <div class= "col-md-5 col-md-offset-3" >
+		<div id= "panel_form">
+			<%= render 'form' %>
+		</div>	
+	</div>
+</div>
