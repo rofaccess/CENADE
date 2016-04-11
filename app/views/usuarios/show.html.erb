@@ -3,9 +3,9 @@
 		Usuario 
 		<div class="row pull-right">
 			<div class="input-group">
-				<%= link_to '<i class="fa fa-list"></i> '.html_safe, remote: true %> 
-				<%= link_to '<i class="fa fa-edit"></i> '.html_safe, remote: true %> 
-				<%= link_to '<i class="fa fa-trash"></i> '.html_safe, remote: true %> 	
+				<%= link_to '<i class="fa fa-list"></i> '.html_safe,'javascript:void(0)', onclick: "listar_usuario(#{usuario.id})",remote: true %> 
+				<%= link_to '<i class="fa fa-edit"></i> '.html_safe,'javascript:void(0)', onclick: "editar_usuario(#{usuario.id})", remote: true %> 
+				<%= link_to '<i class="fa fa-trash"></i> '.html_safe, usuario_path(usuario), method: 'delete', data: {confirm: "¿Desea eliminar al usuario #{usuario.username}?"}, remote: true%> 	
 			</div>	
 		</div>					
 	</div>
@@ -61,4 +61,17 @@
 		<%end%>
 		</div>
 	</div>
+	<script type="text/javascript">  
+	  function editar_usuario(id){
+	    $.get('usuarios/'+id +'/edit', function(data){
+	        $("div.content").html(data);
+	      },    'html');
+	  }
+	  function listar_usuario(id){
+	    $.get('usuarios/', function(data){
+	        $("div.content").html(data);
+	      },    'html');
+	  }
+	</script>
 </div>
+

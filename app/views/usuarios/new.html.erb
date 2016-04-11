@@ -34,35 +34,38 @@
 		<div class ="empleado">
 			<%= form_for @usuario,url: usuarios_path, html: {class:''}, :remote => true do |usuario| %>
 		<div class="row">
-		
-					<%= usuario.hidden_field :empleado_id, disabled: true %>
-					<%= FormBuilder::text_field_v(usuario, :username, 
-									                        input_class: 'required usuario-nombre', 
-									                        max_length: Domain::NOMBRE, 
-									                        autofocus: true,
-									                        col_class: 'col-md-6',
-									                        disabled: true,
-									                        label_text: 'Nombres') %>
-				    <%= FormBuilder::text_field_v(usuario, :username, 
-									                        input_class: 'required clear usuario-apellido', 
-									                        max_length: Domain::NOMBRE,
-									                        col_class: 'col-md-6',
-									                        disabled: true,
-									                        label_text: 'Apellidos',
-									                        ) %>
 
-		            <%= FormBuilder::text_field_v(usuario, :username, 
-									                        input_class: 'required clear usuario-cargo', 
-									                        max_length: Domain::CARGO,
-									                        col_class: 'col-md-6',
-									                        disabled: true,
-									                        label_text: 'Cargo') %>		    
-		            <%= FormBuilder::text_field_v(usuario, :username, 
-									                        input_class: 'required clear usuario-email', 
-									                        max_length: Domain::EMAIL,
-									                        col_class: 'col-md-6',
-									                        disabled: true,
-									                        label_text: 'Email') %>
+			<%= usuario.hidden_field :empleado_id, disabled: true %>
+			<%= usuario.hidden_field :password, disabled: true %>
+
+			<%= FormBuilder::text_field_v(usuario, :username, 
+							                        input_class: 'required usuario-nombre', 
+							                        max_length: Domain::NOMBRE, 
+							                        autofocus: true,
+							                        col_class: 'col-md-6',
+							                        disabled: true,
+							             			
+							                        label_text: 'Nombres') %>
+		    <%= FormBuilder::text_field_v(usuario, :username, 
+							                        input_class: 'required clear usuario-apellido', 
+							                        max_length: Domain::NOMBRE,
+							                        col_class: 'col-md-6',
+							                        disabled: true,
+							                        label_text: 'Apellidos',
+							                        ) %>
+
+            <%= FormBuilder::text_field_v(usuario, :username, 
+							                        input_class: 'required clear usuario-cargo', 
+							                        max_length: Domain::CARGO,
+							                        col_class: 'col-md-6',
+							                        disabled: true,
+							                        label_text: 'Cargo') %>		    
+            <%= FormBuilder::text_field_v(usuario, :username, 
+							                        input_class: 'required clear usuario-email', 
+							                        max_length: Domain::EMAIL,
+							                        col_class: 'col-md-6',
+							                        disabled: true,
+							                        label_text: 'Email') %>
 		</div>
 			<h3 class ="titulos">Datos de Usuario</h3>
 			<div class="row">
@@ -98,7 +101,8 @@
 			$(".usuario-email").val($("#option-email-"+id).val());
 		});
 	});
-	empleadosUI.initScript();
+	
+	usuariosUI.initScript();
 </script>
 
 

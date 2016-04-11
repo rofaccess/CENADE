@@ -12,7 +12,14 @@
       <th></th>
     </tr>
   </thead>
-  <tbody>
+  <% if @empleados.blank? %>
+    <tfoot>
+      <tr>
+        <th colspan="8" scope="col">No se encontraron coincidencias </th>
+      </tr>
+    </tfoot>
+   <% end %>
+  <tbody>    
     <% @empleados.each do |empleado| %>
     <tr data-url=<%= empleado_path(empleado)%>>
       <td class="show-empleado"><%=empleado.persona.nombre %></td>
@@ -36,6 +43,6 @@
 
       </td>
     </tr>
-    <% end %>
+    <% end %>   
   </tbody>
 </table>

@@ -1,6 +1,6 @@
 class EmpleadosController < ApplicationController
 	
-	before_action :set_submenu, only: [:index]
+	before_action :set_submenu, only: [:index,:new]
 	before_action :set_empleado, only: [:show, :edit, :update, :destroy]
 	respond_to :html, :js
 
@@ -9,17 +9,7 @@ class EmpleadosController < ApplicationController
 	end
 
 	def index
-		@search = Empleado.ransack(params[:q])
-		@empleados= @search.result
-		
-		#@q = Person.ransack(params[:q])
-  		#@people = @q.result(distinct: true)
-		#if @search.sorts.empty?
-	    #  @empleados = @search.result.order('nombre')
-	    #else
-	    #  @empleados = @search.result
-	    #end
-	    #@empleados = @empleados.page(params[:page]) if paginate
+		get_empleados		
 	end
 
 	def new    	
@@ -40,7 +30,8 @@ class EmpleadosController < ApplicationController
 		    flash.alert = "No se ha podido guardar el empleado #{@empleado.persona.nombre} 
 		    #{@empleado.persona.apellido}."
 		end 
-		update_list  
+
+		show		  
   	end
 
   	def edit
@@ -68,11 +59,25 @@ class EmpleadosController < ApplicationController
 	      flash.alert = "No se ha podido eliminar el empleado #{@empleado.persona.nombre} 
 	      #{@empleado.persona.apellido}."
 	    end
-	    index
+
+	    if request.xhr?
+  			# Do the ajax stuff
+  			update_list
+		else
+  			# Do normal stuff
+  			get_empleados
+  			render 'index'
+		end
+
   	end
 
   	def set_empleado
       @empleado = Empleado.find(params[:id])
+    end
+
+    def get_empleados
+    	@search = Empleado.ransack(params[:q])
+		@empleados= @search.result.page(params[:page])
     end
 
   	def empleado_params

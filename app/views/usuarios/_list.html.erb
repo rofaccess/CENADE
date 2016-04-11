@@ -15,38 +15,38 @@
     </div>
   </div>
   <div id="list">
-  <table class= "table table-condensed">
-    <thead>
-      <tr>
-        <th>Usuario</th>
-        <th>Nombre</th>         
-        <th>Apellido</th>
-        <th>Cargo</th>
-        <th>Email</th>
-        <th>Rol</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @usuarios.each do |usuario| %>
+    <table class= "table table-condensed">
+      <thead>
         <tr>
-          <td class="show-usuario"><%=usuario.username%></td>
-          <td class="show-usuario"><%=usuario.empleado.persona.nombre%></td>
-          <td class="show-usuario"><%=usuario.empleado.persona.apellido%></td>
-          <td class="show-usuario"><%=usuario.empleado.cargo.descripcion %></td>
-          <td class="show-usuario"><%=usuario.empleado.persona.email%></td>
-          <td class="show-usuario"><%=usuario.rol%></td>
-
-          <td class="action">
-
-            <%= link_to '<i class="fa fa-eye fa-lg"></i> '.html_safe,'javascript:void(0)', onclick: "mostrar_usuario(#{usuario.id})"%>     
-            <%= link_to '<i class="fa fa-edit fa-lg"></i> '.html_safe, 'javascript:void(0)', onclick: "editar_usuario(#{usuario.id})"%>        
-            <%= link_to '<i class="fa fa-trash-o fa-lg"></i>'.html_safe, usuario_path(usuario), method: 'delete', data: {confirm: "¿Desea eliminar al usuario #{usuario.username}?"}, remote: true%>
-          </td>
+          <th>Usuario</th>
+          <th>Nombre</th>         
+          <th>Apellido</th>
+          <th>Cargo</th>
+          <th>Email</th>
+          <th>Rol</th>
+          <th></th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        <% @usuarios.each do |usuario| %>
+          <tr>
+            <td class="show-usuario"><%=usuario.username%></td>
+            <td class="show-usuario"><%=usuario.empleado.persona.nombre%></td>
+            <td class="show-usuario"><%=usuario.empleado.persona.apellido%></td>
+            <td class="show-usuario"><%=usuario.empleado.cargo.descripcion %></td>
+            <td class="show-usuario"><%=usuario.empleado.persona.email%></td>
+            <td class="show-usuario"><%=usuario.rol%></td>
+
+            <td class="action">
+
+              <%= link_to '<i class="fa fa-eye fa-lg"></i> '.html_safe,'javascript:void(0)', onclick: "mostrar_usuario(#{usuario.id})"%>     
+              <%= link_to '<i class="fa fa-edit fa-lg"></i> '.html_safe, 'javascript:void(0)', onclick: "editar_usuario(#{usuario.id})"%>        
+              <%= link_to '<i class="fa fa-trash-o fa-lg"></i>'.html_safe, usuario_path(usuario), method: 'delete', data: {confirm: "¿Desea eliminar al usuario #{usuario.username}?"}, remote: true%>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
     <script type="text/javascript">  
 
       function editar_usuario(id){
@@ -59,7 +59,6 @@
             $("div.content").html(data);
           },    'html');
       }
-
     </script>
   </div>
 </div>
