@@ -13,13 +13,14 @@ class UsuariosController < ApplicationController
 
 	def new 
 	    @usuario = User.new   	
-    	#@empleados = Empleado.all
-
+    	@empleados = Empleado.includes(:persona, :cargo).joins("LEFT JOIN users ON empleados.id = users.empleado_id").where(users: {empleado_id: nil})
     	# Fuente:  http://blog.codinghorror.com/a-visual-explanation-of-sql-joins/
     	# Obtiene los empleados que no tengan ningún usuario
-    	@empleados = Empleado.find_by_sql("SELECT * FROM users FULL OUTER JOIN empleados ON users.empleado_id = empleados.id WHERE users.empleado_id IS null OR empleados.id IS null")
+    	#@empleados = Empleado.find_by_sql("SELECT * FROM users FULL OUTER JOIN empleados ON users.empleado_id = empleados.id WHERE users.empleado_id IS null OR empleados.id IS null")
     	respond_to do |format|
 	   		format.html { }	
+
+	   	
 	   	end
   	end
 
@@ -28,11 +29,12 @@ class UsuariosController < ApplicationController
     end
 
 	def index
-	   	@usuarios= User.all
+	    @search = User.ransack(params[:q])
+ 		@usuarios= @search.result.page(params[:page])
 	end
 
 	def edit
-		
+		@usuario = User.find(params[:id])
 	end
 
 	def update
@@ -49,9 +51,8 @@ class UsuariosController < ApplicationController
 
 	def create
 		@usuario = User.new(usuario_params)
-	    @usuario.password_confirmation = @usuario.password
-	
-  
+	    @usuario.password_confirmation =  @usuario.username+"ABC123"
+	    @usuario.password = @usuario.username+"ABC123"
 		if @usuario.save
 			@usuario.role_ids = params[:user][:role_ids]
 		    flash.notice= "Se ha guardado el usuario #{@usuario.username}"		    
@@ -76,19 +77,18 @@ class UsuariosController < ApplicationController
   	end
 
 	def show
-			respond_to do |format|
-	       	format.js { render 'show' }	      
-	    end
+		@usuario = User.find(params[:id])
+		@empleado= Empleado.where("id=?",@usuario.empleado_id).first
 	end
 
-  	def get_empleado
-      @empleado = Empleado.find(params[:id])
-      @usuario = User.new
-      render partial:'get_empleado', formats:'html'
-    end
+  	# def get_empleado
+   #    @empleado = Empleado.find(params[:id])
+   #    @usuario = User.new
+   #    render partial:'get_empleado', formats:'html'
+   #  end
 
 	def usuario_params
-      params.require(:user).permit(:username, :password,:empleado_id, :rol)
+      params.require(:user).permit(:username,:empleado_id, :rol)
       
     end
 

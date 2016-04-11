@@ -1,34 +1,66 @@
-<div class="espacio">
-<legend align="left"><h2>Listar Usuarios </h2></legend></br>
-<table class= "table table-condensed">
-  <thead>
-    <tr>
-      <th>Usuario</th>
-      <th>Nombre</th>         
-      <th>Apellido</th>
-      <th>Cargo</th>
-      <th>Email</th>
-      <th>Rol</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @usuarios.each do |usuario| %>
-    <tr>
-      <td class="show-usuario"><%=usuario.username%></td>
-      <td class="show-usuario"><%=usuario.empleado.persona.nombre%></td>
-      <td class="show-usuario"><%=usuario.empleado.persona.apellido%></td>
-      <td class="show-usuario"><%=usuario.empleado.cargo.descripcion %></td>
-      <td class="show-usuario"><%=usuario.empleado.persona.email%></td>
-      <td class="show-usuario"><%=usuario.rol%></td>
-      <td classs="action">
-      <%= link_to '<i class="glyphicon glyphicon-eye-open"></i>'.html_safe,remote:true%> 
-      <%= link_to '<i class="glyphicon glyphicon-edit icon-large"></i> '.html_safe, edit_usuario_path(usuario), remote: true%>        
-      <%= link_to '<i class="glyphicon glyphicon-trash icon-large"></i>'.html_safe, usuario_path(usuario), method: 'delete', data: {confirm: "¿Desea eliminar al usuario #{usuario.username}?"}, remote: true%>
-      </td>
-    </tr>
+<div class= "content">
 
-    <% end %>
-  </tbody>
-</table>
+  <div class="page-title">
+    Usuarios 
+    <div class="tool">
+      <%= search_form_for @search, url: :usuarios do |f| %>
+        <div class="input-group"> 
+          <%= f.search_field :username, placeholder: " Buscar por Nombres, Apellidos o CI", class: "form-control", autofocus: true%>
+          <span class="fa fa-search"></span>
+          <div class="input-group-btn"> 
+            <%= link_to '<i class="fa fa-plus-square"></i> '.html_safe, 'javascript:void(0)', id: 'nuevo-usuario' %>         
+          </div> 
+        </div>
+      <% end %>         
+    </div>
+  </div>
+  <div id="list">
+    <table class= "table table-condensed">
+      <thead>
+        <tr>
+          <th>Usuario</th>
+          <th>Nombre</th>         
+          <th>Apellido</th>
+          <th>Cargo</th>
+          <th>Email</th>
+          <th>Rol</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @usuarios.each do |usuario| %>
+          <tr>
+            <td class="show-usuario"><%=usuario.username%></td>
+            <td class="show-usuario"><%=usuario.empleado.persona.nombre%></td>
+            <td class="show-usuario"><%=usuario.empleado.persona.apellido%></td>
+            <td class="show-usuario"><%=usuario.empleado.cargo.descripcion %></td>
+            <td class="show-usuario"><%=usuario.empleado.persona.email%></td>
+            <td class="show-usuario"><%=usuario.rol%></td>
+
+            <td class="action">
+
+              <%= link_to '<i class="fa fa-eye fa-lg"></i> '.html_safe,'javascript:void(0)', onclick: "mostrar_usuario(#{usuario.id})"%>     
+              <%= link_to '<i class="fa fa-edit fa-lg"></i> '.html_safe, 'javascript:void(0)', onclick: "editar_usuario(#{usuario.id})"%>        
+              <%= link_to '<i class="fa fa-trash-o fa-lg"></i>'.html_safe, usuario_path(usuario), method: 'delete', data: {confirm: "¿Desea eliminar al usuario #{usuario.username}?"}, remote: true%>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <script type="text/javascript">  
+
+      function editar_usuario(id){
+        $.get('usuarios/'+id +'/edit', function(data){
+            $("div.content").html(data);
+          },    'html');
+      }
+      function mostrar_usuario(id){
+        $.get('usuarios/'+id, function(data){
+            $("div.content").html(data);
+          },    'html');
+      }
+    </script>
+  </div>
+  <div id="list-paginate">
+    <%= paginate @usuarios, remote: true %>
 </div>
