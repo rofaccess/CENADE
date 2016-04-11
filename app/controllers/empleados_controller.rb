@@ -79,6 +79,12 @@ class EmpleadosController < ApplicationController
     	@search = Empleado.ransack(params[:q])
 		@empleados= @search.result.page(params[:page])
     end
+     
+    def check_ci
+    	persona = Persona.find_by_ci(params[:ci])
+
+	    render json: (persona.nil? || persona.id == params[:id].to_i) ? true : "El número de CI especificado ya existe en el Sistema".to_json   		
+    end	
 
   	def empleado_params
       params.require(:empleado).permit(:cargo_id,:especialidad_id,:type,
