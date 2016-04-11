@@ -11,7 +11,7 @@ var rolesUI = (function(){
                                 return $( ".name" ).val();
                             },
                             id: function() {
-                                return $('.role-id').val();
+                                return $('#role_id').val();
                             }
                         }
                     }

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  persona_id: 1
+  fecha_ingreso: 2016-04-11
+  es_menor: false
+
+two:
+  persona_id: 1
+  fecha_ingreso: 2016-04-11
+  es_menor: false
