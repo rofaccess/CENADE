@@ -1,0 +1,37 @@
+
+  <div class= "row" >
+
+     <%= form_for @role,html: {class: 'nuevo-rol'},:multipart => true do |role|%>
+        <div class="row">
+            <%= FormBuilder::text_field_v(role, :name, 
+                                      input_class: 'required', 
+                                      max_length: Domain::ROL,
+                                      autofocus: true,
+                                      disabled: true,
+                                      col_class: 'col-md-12',
+                                      label_text: '* Descripcion') %>
+           
+      </div>
+    </br></br>
+        <div class="row">
+           <div class="col-md-12">
+
+           <%= role.label :nombre, '* Permisos' %> 
+           <%= role.select(:permission_ids, Permission.all.collect { |permission| [permission.nombre, permission.id] },{},{class: "js-example-basic-multiple form-control", multiple: true, required: true, disabled: true})%>
+
+        </div>
+        </div>
+      </div>
+     <% end %>        
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+  $(".js-example-basic-multiple").select2({
+      placeholder: "Interfaces disponibles...",
+      multiple: true
+  });
+});
+  rolesUI.initScript();
+</script>    
+      

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160320212208) do
+ActiveRecord::Schema.define(version: 20160411205038) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,13 @@ ActiveRecord::Schema.define(version: 20160320212208) do
   add_index "admins", ["email"], name: "index_admins_on_email", unique: true, using: :btree
   add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true, using: :btree
   add_index "admins", ["unlock_token"], name: "index_admins_on_unlock_token", unique: true, using: :btree
+
+  create_table "areas", force: :cascade do |t|
+    t.string   "nombre"
+    t.integer  "costo"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "cargos", force: :cascade do |t|
     t.string   "descripcion", limit: 100, default: "",  null: false
@@ -88,10 +95,44 @@ ActiveRecord::Schema.define(version: 20160320212208) do
 
   add_index "estados_civiles", ["descripcion"], name: "index_estados_civiles_on_descripcion", unique: true, using: :btree
 
+  create_table "fechas", force: :cascade do |t|
+    t.integer  "horario_id"
+    t.date     "fecha"
+    t.time     "turno_manana_hora_inicio"
+    t.time     "turno_manana_hora_fin"
+    t.time     "turno_tarde_hora_inicio"
+    t.time     "turno_tarde_hora_fin"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
   create_table "horarios", force: :cascade do |t|
     t.integer  "empleado_id", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "pacientes", force: :cascade do |t|
+    t.integer  "persona_id"
+    t.date     "fecha_ingreso"
+    t.boolean  "es_menor"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  create_table "permissions", force: :cascade do |t|
+    t.string   "grupo"
+    t.string   "model"
+    t.string   "nombre"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "permissions_roles", force: :cascade do |t|
+    t.integer  "role_id"
+    t.integer  "permission_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   create_table "personas", force: :cascade do |t|
@@ -112,6 +153,31 @@ ActiveRecord::Schema.define(version: 20160320212208) do
   end
 
   add_index "personas", ["deleted_at"], name: "index_personas_on_deleted_at", unique: true, using: :btree
+
+  create_table "roles", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "resource_id"
+    t.string   "resource_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id", using: :btree
+  add_index "roles", ["name"], name: "index_roles_on_name", using: :btree
+
+  create_table "turnos", force: :cascade do |t|
+    t.integer  "paciente_id"
+    t.datetime "fecha_expedicion"
+    t.date     "fecha_consulta"
+    t.integer  "area_id"
+    t.integer  "doctor_id"
+    t.string   "estado"
+    t.integer  "monto"
+    t.boolean  "paga"
+    t.string   "nro_factura"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 50, default: "", null: false
@@ -138,10 +204,19 @@ ActiveRecord::Schema.define(version: 20160320212208) do
   add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
   add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
+  create_table "users_roles", id: false, force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "role_id"
+  end
+
+  add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
+
   add_foreign_key "empleados", "cargos", on_delete: :restrict
   add_foreign_key "empleados", "especialidades", on_delete: :restrict
   add_foreign_key "empleados", "personas", on_delete: :restrict
   add_foreign_key "horarios", "empleados", on_delete: :cascade
+  add_foreign_key "permissions_roles", "permissions"
+  add_foreign_key "permissions_roles", "roles"
   add_foreign_key "personas", "estados_civiles", on_delete: :restrict
   add_foreign_key "users", "empleados", on_delete: :restrict
 end
