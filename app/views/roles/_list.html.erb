@@ -1,0 +1,30 @@
+
+<table class= "table table-condensed">
+  <thead>
+    <tr>
+      <th>Descripción</th>
+      <th>Interfaces permitidas</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    <% @roles.each do |role| %>
+    <tr data-url=<%= role_path(role)%>>
+      <td ><%=role.name %></td>
+      <td><% role.permissions.each do |p| %>
+      <span class="label label-success"><%= p.nombre %></span>
+
+        <%end%>
+      </td>
+      
+      <td class = "action">
+        
+        <%= link_to '<i class="fa fa-eye fa-lg"></i> '.html_safe, role_path(role)%>     
+        <%= link_to '<i class="fa fa-edit fa-lg"></i> '.html_safe, edit_role_path(role)%>        
+        <%= link_to '<i class="fa fa-trash-o fa-lg"></i>'.html_safe, role_path(role), method: 'delete', data: {confirm: "¿Desea eliminar el rol #{role.name}?"}%>
+
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
