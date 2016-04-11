@@ -6,9 +6,7 @@
 			<%= search_form_for @search, class: 'buscador', remote: true do |f| %>
 			<div class="input-group"> 
 				<%= f.search_field :persona_cont, placeholder: " Buscar por Nombre, Apellido o CI", class: "form-control", autofocus: true%>
-				<span class="fa fa-search">	
-
-				</span>
+				<span class="fa fa-search"></span>
 				<div class="input-group-btn"> 
 					<%= link_to '<i class="fa fa-plus-square"></i> '.html_safe, new_empleado_path, :target => '_blank', remote: true %> 
 					<%= link_to '<i class="fa fa-print"></i> '.html_safe, new_empleado_path, remote: true %> 					
