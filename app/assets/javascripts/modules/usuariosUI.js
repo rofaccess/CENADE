@@ -18,12 +18,11 @@ var usuariosUI = (function(){
 				$.get($(this).parents('tr').data('url'), {}, function(){}, 'script');
 			});
 
-			$('body').on('change', '#empleado_id', function(e){
-				usuariosUI.cargarEmpleado('usuarios/get_empleado', $(this).val(), '#modal-sm .empleado');
-			});		
+			// $('body').on('change', '#empleado_id', function(e){
+			// 	usuariosUI.cargarEmpleado('usuarios/get_empleado', $(this).val(), '#modal-sm .empleado');
+			// });		
 
 		},		
-
 
 		// Inicia el script en el formulario
 		initScript: function(){

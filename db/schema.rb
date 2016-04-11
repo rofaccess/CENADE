@@ -114,7 +114,7 @@ ActiveRecord::Schema.define(version: 20160320212208) do
   add_index "personas", ["deleted_at"], name: "index_personas_on_deleted_at", unique: true, using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  limit: 50, default: "", null: false
+    t.string   "email",                  limit: 50, default: ""
     t.string   "username",               limit: 30, default: "", null: false
     t.string   "encrypted_password",                default: "", null: false
     t.string   "rol",                    limit: 15, default: "", null: false
