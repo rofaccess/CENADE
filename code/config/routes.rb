@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
 
+  get 'roles/check_name' => 'roles#check_name'
   resources :roles
   resources :doctores
   resources :funcionarios
+  
+  get 'empleados/check_ci' => 'empleados#check_ci'
   resources :empleados
   resources :configuraciones
 

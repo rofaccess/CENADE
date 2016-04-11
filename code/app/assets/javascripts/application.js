@@ -21,6 +21,7 @@
 //= require plugins/jquery-inputmask.js
 //= require plugins/jquery-inputmask-regex-extensions.js
 //= require ./plugins/select2.js
+//= require ./plugins/i18n/es.js
 //= require plugins/loading-overlay-min.js
 
 //= require languages/jquery-validate-messages-es.js
