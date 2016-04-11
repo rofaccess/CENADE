@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
   resources :doctores
   resources :funcionarios
+  
+  get 'empleados/check_ci' => 'empleados#check_ci'
   resources :empleados
   resources :configuraciones
 

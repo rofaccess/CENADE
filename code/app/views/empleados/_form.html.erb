@@ -13,6 +13,7 @@
 		<hr>
 
 		<%= empleado.fields_for(:persona) do |persona| %>
+		<%= persona.hidden_field :id, class: 'empleado-id'%>
 		<div class="row">	
 			<%= FormBuilder::text_field_v(persona, :nombre, 
 													input_class: 'required nameLength', 
@@ -27,7 +28,7 @@
 													col_class: 'col-md-4',
 													label_text: '* Apellido') %>
 			<%= FormBuilder::text_field_v(persona, :ci, 
-													input_class: 'required ci ciLength', 
+													input_class: 'required ci ciLength uniqueEmpleadoCI', 
 													max_length: Domain::CI,
 													col_class: 'col-md-2',
 													label_text: '* Cédula Nº') %>  
@@ -105,7 +106,7 @@
 
 							¿Es Doctor?
 							<%= empleado.hidden_field :type, class: 'tipo-empleado'%>
-							<%= empleado.hidden_field :especialidad_id,value: nil, class: 'epecialidad-id'%>
+							<%= empleado.hidden_field :especialidad_id,value: nil, class: 'epecialidad-id'%>							
 					</label>
 				</div>
 			</div>
@@ -127,6 +128,6 @@
 
 </div>
 
-<script type="text/javascript">
-	empleadosUI.initScript();
+<script type="text/javascript">	
+	empleadosUI.initScript("<%= empleados_check_ci_path %>");
 </script>
