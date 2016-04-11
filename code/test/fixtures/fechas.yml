@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  horario_id: 1
+  fecha: 2016-04-11
+  turno_manana_hora_inicio: 2016-04-11 16:50:38
+  turno_manana_hora_fin: 2016-04-11 16:50:38
+  turno_tarde_hora_inicio: 2016-04-11 16:50:38
+  turno_tarde_hora_fin: 2016-04-11 16:50:38
+
+two:
+  horario_id: 1
+  fecha: 2016-04-11
+  turno_manana_hora_inicio: 2016-04-11 16:50:38
+  turno_manana_hora_fin: 2016-04-11 16:50:38
+  turno_tarde_hora_inicio: 2016-04-11 16:50:38
+  turno_tarde_hora_fin: 2016-04-11 16:50:38

@@ -1,7 +1,7 @@
 class RolesController < ApplicationController
   before_action :set_submenu, only: [:edit, :new, :show, :index]
   before_action :set_role, only: [:show, :edit, :update, :destroy]
-  load_and_authorize_resource
+  #load_and_authorize_resource #Conflicto con check_name
 
   def set_submenu
    @submenu_layout = 'layouts/submenu_configuracion'
@@ -63,13 +63,12 @@ class RolesController < ApplicationController
   def check_name
       role = Role.find_by_name(params[:name])
       
-      render json: (role.nil? || role.id == params[:id].to_i) ? true : "Ya existe el Rol especificado".to_json       
-    end 
-  private
+      render json: (role.nil? || role.id == params[:id].to_i) ? true : "Ya existe el Rol especificado".to_json     
+  end 
   
-   def set_role
-      @role = Role.find(params[:id])
-    end
+  def set_role
+     @role = Role.find(params[:id])
+  end
 
   def role_params
       params.require(:role).permit(:name, permission_ids: [])
