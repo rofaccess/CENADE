@@ -1,0 +1,47 @@
+
+  <div class= "row" >
+
+     <%= form_for @role,html: {class: 'nuevo-rol'},:multipart => true do |role|%>
+     <%= role.hidden_field :id, class: 'role-id'%>
+        <div class="row">
+            <%= FormBuilder::text_field_v(role, :name, 
+                                      input_class: 'required name uniqueRoleName', 
+                                      max_length: Domain::ROL,
+                                      autofocus: true,
+                                      col_class: 'col-md-12',
+                                      label_text: '* Descripcion') %>
+           
+      </div>
+    </br></br>
+        <div class="row">
+           <div class="col-md-12">
+
+           <%= role.label :nombre, '* Permisos' %> 
+           <%= role.select(:permission_ids, Permission.all.collect { |permission| [permission.nombre, permission.id] },{},{class: "js-example-basic-multiple form-control", multiple: true, required: true})%>
+
+        </div>
+            </div> </br>
+      <div class="row pull-right">
+  
+        
+        <%= link_to "CANCELAR", roles_path, {:class=>"btn btn-default"} %>
+        <%= role.submit 'GUARDAR', class: 'btn btn-custom sub_but'%>
+       
+          
+        </div>
+      </div>
+     <% end %>        
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+  $(".js-example-basic-multiple").select2({
+      placeholder: "Interfaces disponibles...",
+      multiple: true,
+      language: "es"
+
+  });
+});
+  rolesUI.initScript("<%= roles_check_name_path %>");
+</script>    
+      
