@@ -3,17 +3,15 @@
 		Usuario 
 		<div class="row pull-right">
 			<div class="input-group">
-				<%= link_to '<i class="fa fa-list"></i> '.html_safe,'javascript:void(0)', onclick: "listar_usuario(#{usuario.id})",remote: true %> 
-				<%= link_to '<i class="fa fa-edit"></i> '.html_safe,'javascript:void(0)', onclick: "editar_usuario(#{usuario.id})", remote: true %> 
-				<%= link_to '<i class="fa fa-trash"></i> '.html_safe, usuario_path(usuario), method: 'delete', data: {confirm: "¿Desea eliminar al usuario #{usuario.username}?"}, remote: true%> 	
+				<%= link_to '<i class="fa fa-list"></i> '.html_safe,'javascript:void(0)', onclick: "listar_usuario()",remote: true %> 
+				<%= link_to '<i class="fa fa-edit"></i> '.html_safe,'javascript:void(0)', onclick: "editar_usuario(#{@usuario.id})", remote: true %> 
+				<%= link_to '<i class="fa fa-trash"></i> '.html_safe, usuario_path(@usuario), method: 'delete', data: {confirm: "¿Desea eliminar al usuario #{@usuario.username}?"}, remote: true%> 	
 			</div>	
 		</div>					
 	</div>
  	<div class="espacio">
 	    <div class="row">
-		    <div class="col-md-3">
-		    	<h3 class ="titulos" style="margin-top:0px">Empleado</h3>
-		    </div>
+		    	<h3 class ="titulos">Empleado</h3><hr>
 	    </div>
 		<div class ="empleado">
 			<%= form_for @usuario,url: usuarios_path, html: {class:''}, :remote => true do |usuario| %>
@@ -41,7 +39,7 @@
 				<input class="form-control required clear usuario-email" placeholder="" disabled="disabled" maxlength="50" type="text" value="<%=@empleado.persona.email%>" >
 			</div>
 		</div>
-			<h3 class ="titulos">Datos de Usuario</h3>
+			<h3 class ="titulos">Datos de Usuario</h3><hr>
 			<div class="row">
 				<%= FormBuilder::text_field_v(usuario, :username, 
 								                        input_class: 'required', 
@@ -67,8 +65,8 @@
 	        $("div.content").html(data);
 	      },    'html');
 	  }
-	  function listar_usuario(id){
-	    $.get('usuarios/', function(data){
+	  function listar_usuario(){
+	    $.get('usuarios/?l=1', function(data){
 	        $("div.content").html(data);
 	      },    'html');
 	  }
