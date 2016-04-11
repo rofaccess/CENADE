@@ -1,16 +1,11 @@
-<div class= "content">
+<%= render 'list' %>
+<%= link_to "Change your password", edit_user_registration_path %>
 
-	<i id="nuevo-usuario" class="fa fa-plus-square fa-2x"></i>
-
-	<div id="list">
-		 <%= render 'list' %>
-	</div>
-
-</div>
 <script type="text/javascript">
 	$("#nuevo-usuario").click(function(){
-	    $.get('usuarios/new', function(data){
-	    	$("div.content").html(data);
+		$.get('usuarios/new', function(data){
+			$("div.content").html(data);
 		},    'html');
 	});
+ 	$("#list-paginate").html('<%= j paginate(@usuarios, remote: true)%>');
 </script>
