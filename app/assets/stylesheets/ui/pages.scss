@@ -1,5 +1,15 @@
 $common-color: #24C1C1;
 
+body{
+	background: #EAF0F3;
+	padding-top: 30px;		
+}
+
+.container{
+	max-width: none !important;
+	width: 970px;
+}
+
 /* Si la palabra es muy larga, esta clase lo corta */
 .crop {
 	word-break: break-all;
@@ -124,69 +134,111 @@ td.action {
 	font-weight: bold;
 }
 
-body{
-	background: #EAF0F3;
-	padding-top: 30px;	
-}
+#principal-content {
+	.content, .form-content{
+		.page-title {
+			//Posición fija
+			position: fixed;
+			right: 0;
+			left: 0;
+			top: 55px;		
+			z-index: 1030;
 
-.content {
-	.page-title {
-		//Posición fija
-		position: fixed;
-		right: 0;
-		left: 0;
-		top: 55px;		
+			background-color: #FEFEFE;		
+			border-bottom: solid;
+			border-color: #CCCCCC;
+			font-size: 24px;
+			//line-height: 45px;
+			height: 50px;
+			font-weight: bold;
+			padding-top: 7px;
+			padding-left: 50px;
+			padding-right: 20px;
+			
+			
 
-		background-color: #FEFEFE;		
-		border-bottom: solid;
-		border-color: #CCCCCC;
-		font-size: 24px;
-		//line-height: 45px;
-		height: 50px;
-		font-weight: bold;
-		padding-top: 7px;
-		padding-left: 50px;
-		padding-right: 20px;
-		
-		
+			a {							
+				margin-left: 13px;
+				color: #999999;
+				font-size: 26px;
+				text-decoration: none;
+				i.fa-plus-square, i.fa-print, i.fa-list, i.fa-trash-o, i.fa-edit {
+					&:hover,
+					&:focus {
+						color: #24C1C1;
+					}	
+				}				
+			}
 
-		a {							
-			margin-left: 13px;
-			color: #999999;
-			font-size: 26px;
-			text-decoration: none;
-			i.fa-plus-square, i.fa-print {
-				&:hover,
-				&:focus {
-					color: #24C1C1;
-				}	
-			}				
+
+		}
+	}
+
+	.content{
+		#list {
+			margin-left: auto;
+			margin-right: auto;
+			background: white;
+			width: 90%;
+			margin-top: 70px; 
+			padding-left: 50px;
+			padding-right: 50px;
+			padding-top: 50px;
+			padding-bottom: 1px;
 		}
 
-
+		#list-paginate{
+			text-align: right;
+			margin-left: auto;
+			margin-right: auto;
+			background: white;
+			width: 90%;
+			padding-left: 50px;
+			padding-right: 50px; 
+		}
 	}
+	
+	.form-content{
 
-	#list {
-		margin-left: auto;
-		margin-right: auto;
-		background: white;
-		width: 90%;
-		margin-top: 70px; 
-		padding-left: 50px;
-		padding-right: 50px;
-		padding-top: 50px;
-		padding-bottom: 1px;
-	}
+		.page-title > .tool {
+			text-align: right;
+		}
 
-	#list-paginate{
-		text-align: right;
-		margin-left: auto;
-		margin-right: auto;
-		background: white;
-		width: 90%;
-		padding-left: 50px;
-		padding-right: 50px; 
-	}
+		form{			
+			width: 70%;
+			background: white;
+			margin-left: auto;
+			margin-right: auto;
+			padding: 50px;
+			padding-top: 30px;
+			padding-bottom: 10px;
+			margin-top: 70px;
+
+			h4 {
+				font-weight: bold;
+				color: #999999;
+			}
+
+			hr {
+				margin-top: 5px;
+				color: #999999;
+			}
+
+			.row{
+				.form-group{
+					label{
+						font-size: 14px;
+						font-weight: bold;
+					}
+				}
+			}
+
+			.form-button{
+				text-align: right;
+			}
+			
+		}
+	}	
 } 
 
 .tool {
@@ -195,8 +247,8 @@ body{
 	font-size: 14px;
 	
 	form {	
-	.input-group {
-		.form-control{
+		.input-group {
+			.form-control{
 				border-radius: 5px;						
 				color: #999999;											
 			}
@@ -259,4 +311,8 @@ body{
 .form-control:focus{
 	border-color: $common-color;
 	//box-shadow: 0 1px 1px $common-color; //Da un efecto de recuadro
+}
+
+tfoot{
+	color: #999999;
 }
