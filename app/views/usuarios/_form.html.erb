@@ -1,14 +1,16 @@
 <div class= "form-content">  
   	<div class="page-title">
     	<%=@usuario.id.nil? ? 'Nuevo Usuario' : 'Editar Usuario'%> 
+    	<% form_url = @usuario.id.nil? ? usuarios_path : usuarios_path+"/#{@usuario.id}" %>
 
     	<div class="tool">
       	<%= link_to '<i class="fa fa-list"></i> '.html_safe, usuarios_path %> 
     	</div>
   	</div>  	
 	
-	<%= form_for @usuario,url: usuarios_path, html: {class:'small-form'} do |usuario| %>
+	<%= form_for @usuario, url: form_url, html: {class:'small-form form-user'} do |usuario| %>
 		
+		<% if @usuario.id.nil? %> 
 		<div class="row">
 			<div class="col-md-3">
 			    <label class="label-title">Empleado</label>
@@ -33,6 +35,10 @@
 				<%end%>
 			</div>
 		</div>
+		<% else %>
+			<h4>Empleado</h4>
+		<% end %>
+
 		<hr>
 		
 		<div class="row">
@@ -41,22 +47,22 @@
 
 			<div class="form-group col-md-6">
 				<label class="control-label">Nombre</label>
-				<input class="form-control usuario-nombre" disabled="disabled" >
+				<input class="form-control usuario-nombre" disabled="disabled" value="<%= @usuario.id.nil? ? '' : @usuario.empleado.persona.nombre %>">
 			</div>
 
 			<div class="form-group col-md-6">
 				<label class="control-label">Apellido</label>
-				<input class="form-control usuario-apellido" disabled="disabled" >
+				<input class="form-control usuario-apellido" disabled="disabled" value="<%= @usuario.id.nil? ? '' : @usuario.empleado.persona.apellido %>">
 			</div>
 
 			<div class="form-group col-md-6">
 				<label class="control-label">Cargo</label>
-				<input class="form-control usuario-cargo" disabled="disabled" >
+				<input class="form-control usuario-cargo" disabled="disabled" value="<%= @usuario.id.nil? ? '' : @usuario.empleado.cargo.descripcion %>">
 			</div>
 
 			<div class="form-group col-md-6">
 				<label class="control-label">Email</label>
-				<input class="form-control usuario-email" disabled="disabled" >
+				<input class="form-control usuario-email" disabled="disabled" value="<%= @usuario.id.nil? ? '' : @usuario.empleado.persona.email %>">
 			</div>
 		</div>
 		

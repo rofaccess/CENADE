@@ -46,7 +46,7 @@ var usuariosUI = (function(){
 		// Inicia el script en el formulario
 		initScript: function(checkUsuarioUsernameUrl){
 			usuariosUI.checkUsername(checkUsuarioUsernameUrl);
-			$("#new_user").last().validate();
+			$(".form-user").last().validate();
 
 		}
 	};
