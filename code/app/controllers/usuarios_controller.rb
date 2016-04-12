@@ -1,6 +1,6 @@
 class UsuariosController < ApplicationController
 	
-	before_action :set_submenu, only: [:index,:new, :edit]
+	before_action :set_submenu, only: [:index,:new, :edit, :show]
 	before_action :set_usuario, only: [:show, :edit, :update, :destroy]
 	
 	#load_and_authorize_resource	
@@ -80,8 +80,6 @@ class UsuariosController < ApplicationController
   	end
 
 	def show
-		@usuario = User.find(params[:id])
-		@empleado= Empleado.where("id=?",@usuario.empleado_id).first
 	end
 
   	 def get_usuarios
