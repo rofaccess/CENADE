@@ -34,6 +34,17 @@ persona2 = Persona.create(ci: '8987456',
 	                      edad: '35', 
 						  estado_civil_id: soltero.id, 
 						  email: "josmith@gmail.com")
+persona3 = Persona.create(ci: '89855656', 
+						  nombre: 'Jonas',
+						  apellido: 'Stuart',
+						  direccion: 'Av. Carlos Antonio Lopez c/ Mscal. Francisco Solano Lopez',
+	                      telefono: '071 203 454',
+	                      ruc: '14-3544d',
+	                      fecha_nacimiento: DateTime.now,
+	                      sexo: 'Masculino',
+	                      edad: '35', 
+						  estado_civil_id: soltero.id, 
+						  email: "josddddd@gmail.com")
 
 psicologia = Especialidad.create(descripcion: 'Psicologia')
 fisioterapeuta = Especialidad.create(descripcion: 'Fisioterapeuta')
@@ -71,5 +82,6 @@ Permission.create([{nombre: 'Usuarios', model: 'User', grupo:'Configuracion'},
  Permission.all.each do |p|
         PermissionsRole.create(role_id: 1, permission_id: p.id)
  end
-
+paciente= Paciente.create(persona_id: 3, fecha_ingreso: '07/05/1995')
+area= Area.create(nombre: 'Odontologia', costo: 5000)
 
