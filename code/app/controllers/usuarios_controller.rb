@@ -1,6 +1,6 @@
 class UsuariosController < ApplicationController
 	
-	before_action :set_submenu, only: [:index,:new]
+	before_action :set_submenu, only: [:index,:new, :edit]
 	before_action :set_usuario, only: [:show, :edit, :update, :destroy]
 	
 	#load_and_authorize_resource	
@@ -26,19 +26,20 @@ class UsuariosController < ApplicationController
 	end
 
 	def edit
-		@usuario = User.find(params[:id])
 	end
 
 	def update
-		if @usuario.update(usuario_params)
-			@usuario.role_ids = params[:user][:role_ids]
-	        flash.notice= "Se ha actualizado el usuario #{@usuario.empleado.persona.nombre}
-	        #{@usuario.empleado.persona.apellido}."       
-    else
-        flash.alert = "No se ha podido actualizar el usuario #{@usuario.empleado.persona.nombre} 
-        #{@usuario.empleado.persona.apellido}."
-    end 
-    update_list
+		respond_to do |format|
+			if @usuario.update(usuario_params)
+				@usuario.role_ids = params[:user][:role_ids]		       
+		        format.html { redirect_to usuarios_path, flash: {notice: "Se ha actualizado el usuario #{@usuario.empleado.persona.nombre}
+		        #{@usuario.empleado.persona.apellido}."}}     
+	    	else
+		        flash.alert = "No se ha podido actualizar el usuario #{@usuario.empleado.persona.nombre} 
+		        #{@usuario.empleado.persona.apellido}."
+		        format.html { render action: "edit"}
+	    	end 
+	    end	   
 	end
 
 	def create
@@ -56,7 +57,7 @@ class UsuariosController < ApplicationController
 		end								
 	end
 
-	  	def update_list
+	def update_list
     	index
     	render partial: 'update_list', format: 'js'
   	end
@@ -67,7 +68,15 @@ class UsuariosController < ApplicationController
 	    else
 	      flash.alert = "No se ha podido eliminar el usuario #{@usuario.username}."
 	    end
-	    index
+	    
+	    if request.xhr?
+  			# Do the ajax stuff
+  			update_list
+		else
+  			# Do normal stuff
+  			get_usuarios
+  			render 'index'
+		end
   	end
 
 	def show
