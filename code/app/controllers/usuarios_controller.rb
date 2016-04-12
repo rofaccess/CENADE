@@ -30,6 +30,11 @@ class UsuariosController < ApplicationController
 
 	def update
 		respond_to do |format|
+			if params[:user][:pass_reset] == "true"
+				@usuario.password = usuario_params[:username]+"ABC123"
+				@usuario.password_confirmation =  usuario_params[:username]+"ABC123"	    		
+	    	end		
+
 			if @usuario.update(usuario_params)
 				@usuario.role_ids = params[:user][:role_ids]		       
 		        format.html { redirect_to usuarios_path, flash: {notice: "Se ha actualizado el usuario #{@usuario.empleado.persona.nombre}
