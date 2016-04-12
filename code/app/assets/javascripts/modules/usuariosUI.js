@@ -10,6 +10,25 @@ var usuariosUI = (function(){
 					$(replace).html(response);
 				}
 			});
+		},
+
+		checkUsername: function(checkUsuarioUsernameUrl){
+			$.validator.addClassRules({
+                uniqueUsuarioUsername: {
+                    remote: {
+                        url: checkUsuarioUsernameUrl,
+                        type: "get",
+                        data: {
+                            username: function() {
+                                return $( ".username" ).val();
+                            },
+                            id: function() {
+                                return $('#usuario_id').val();
+                            }
+                        }
+                    }
+                }
+            });
 		},	
 
 		init: function(){
@@ -25,7 +44,8 @@ var usuariosUI = (function(){
 		},		
 
 		// Inicia el script en el formulario
-		initScript: function(){
+		initScript: function(checkUsuarioUsernameUrl){
+			usuariosUI.checkUsername(checkUsuarioUsernameUrl);
 			$("#new_user").last().validate();
 
 		}
@@ -36,7 +56,8 @@ $(function(){
 	usuariosUI.init();
 });
 
-
+/*
 $(document).on("page:change", function(){
 	usuariosUI.init();
 })
+*/
