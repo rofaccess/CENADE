@@ -1,0 +1,52 @@
+<div class= "form-content">  
+  <div class="page-title">
+    <%=@role.id.nil? ? 'Nuevo Rol' : 'Editar Rol'%> 
+
+    	<div class="tool">
+      	<%= link_to '<i class="fa fa-list"></i> '.html_safe, roles_path %> 
+    	</div>
+  	</div>  
+
+
+   <%= form_for @role,html: {class: 'nuevo-rol small-form'},:multipart => true do |role|%>
+   
+     <%= hidden_field_tag :role_id, @role.id %>
+        <div class="row">
+            <%= FormBuilder::text_field_v(role, :name, 
+                                      input_class: 'required name uniqueRoleName', 
+                                      max_length: Domain::ROL,
+                                      autofocus: true,
+                                      col_class: 'col-md-12',
+                                      label_text: '* Descripcion') %>
+           
+      	</div>
+    		</br></br>
+        	
+        	<div class="row">
+           	<div class="col-md-12">
+
+           	<%= role.label :nombre, '* Permisos' %> 
+           	<%= role.select(:permission_ids, Permission.all.collect { |permission| [permission.nombre, permission.id] },{},{class: "js-example-basic-multiple form-control", multiple: true, required: true})%>
+
+        		</div>
+         </div> 
+         </br>
+      <div class="form-button">     
+        <%= role.submit 'Guardar', class: 'btn btn-custom'%>
+      </div>
+    
+   <% end %>        
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+  $(".js-example-basic-multiple").select2({
+      placeholder: "Interfaces disponibles...",
+      multiple: true,
+      language: "es"
+
+  });
+});
+  rolesUI.initScript("<%= roles_check_name_path %>");
+</script>    
+      

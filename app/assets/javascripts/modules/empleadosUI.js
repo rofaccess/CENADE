@@ -48,9 +48,29 @@ var empleadosUI = (function(){
 
 			$('.especialidad-id').attr("disabled",false);
 		},
-
+		
+		checkCI: function(checkEmpleadoCIUrl){
+			$.validator.addClassRules({
+                uniqueEmpleadoCI: {
+                    remote: {
+                        url: checkEmpleadoCIUrl,
+                        type: "get",
+                        data: {
+                            ci: function() {
+                                return $( ".ci" ).val();
+                            },
+                            id: function() {
+                                return $('.empleado-id').val();
+                            }
+                        }
+                    }
+                }
+            });
+		},
+		
 		// Inicia el script en el formulario
-		initScript: function(){
+		initScript: function(checkEmpleadoCIUrl){
+			empleadosUI.checkCI(checkEmpleadoCIUrl);
 
 			empleadosUI.mostrarEspecialidad();
 

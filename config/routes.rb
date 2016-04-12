@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
 
+  get 'roles/check_name' => 'roles#check_name'
+  resources :roles
   resources :doctores
   resources :funcionarios
+  
+  get 'empleados/check_ci' => 'empleados#check_ci'
   resources :empleados
   resources :configuraciones
 
@@ -11,9 +15,11 @@ Rails.application.routes.draw do
     end
   end
   get "welcome/index_configuracion"
-  get "welcome/index_historial_clinico"
+  get "welcome/index_fichas"
+  get "welcome/index_atencion_profesional"
   get "welcome/index_personal"
-  get "welcome/index_pagos"
+  get "welcome/index_pacientes"
+  get "welcome/index_reportes"
   get "welcome/index_turnos"
   get "welcome/index"
 

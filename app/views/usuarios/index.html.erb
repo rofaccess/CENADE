@@ -1,9 +1,16 @@
 <div class= "content">
 
-	<%= link_to 'Agregar Usuario',new_usuario_path, class: 'btn btn-custom btn pull-right', remote:true %>
+	<i id="nuevo-usuario" class="fa fa-plus-square fa-2x"></i>
 
 	<div id="list">
 		 <%= render 'list' %>
 	</div>
-</div>
 
+</div>
+<script type="text/javascript">
+	$("#nuevo-usuario").click(function(){
+	    $.get('usuarios/new', function(data){
+	    	$("div.content").html(data);
+		},    'html');
+	});
+</script>

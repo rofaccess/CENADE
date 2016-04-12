@@ -11,9 +11,9 @@
  * file per style scope.
  *
  */
-
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "select2";
 @import "font-awesome-sprockets";
 @import "font-awesome";
 
@@ -24,9 +24,13 @@
 
 @import "ui/navbar_custom";
 @import "ui/navbar_submenu";
+@import "ui/simple_sidebar";
 @import "ui/welcome";
 @import "ui/login";
 @import "ui/devise-flash-messages";
 @import "ui/pages";
+
+
+
 
 

@@ -4,6 +4,7 @@
   <title>CENADE</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  
   <%= csrf_meta_tags %>
 
   <%= favicon_link_tag 'favicon.png' %>
@@ -24,9 +25,29 @@
 		<%= render 'layouts/modal' %>
 
 	<% end %>
-	<div id="principal-content">
-		<%= yield %>
-	</div>	
+	
+	<% unless @sidebar_layout == nil %>    	
+	
+		<div id="wrapper">         
+			
+			<%= render @sidebar_layout %>        
+	        
+	        <div id="page-content-wrapper">
+	            
+	            <div id="principal-content">
+	            	<%= yield %>  
+	            </div>  
+	                          
+	        </div>
+	    </div>
+
+   	<% else %>
+
+	    <div id="principal-content">
+			<%= yield %>
+		</div>	
+	
+	<% end %>
 
 </body>
 </html>

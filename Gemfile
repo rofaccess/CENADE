@@ -20,6 +20,12 @@ gem 'font-awesome-sass'
 # Classier solution for file uploads for Rails, Sinatra and other Ruby web frameworks https://github.com/carrierwaveuploader/carrierwave
 gem 'carrierwave'
 
+# Object-based searching. The successor to MetaSearch.
+gem 'ransack', github: 'activerecord-hackery/ransack'
+
+# A Scope & Engine based, clean, powerful, customizable and sophisticated paginator for Rails
+gem 'kaminari'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '>= 3.2'
 # Use Uglifier as compressor for JavaScript assets
@@ -34,7 +40,7 @@ gem 'jquery-rails'
 # jQuery UI stylesheets packed as Sass files for the Rails 3.1+ asset pipeline
 gem 'jquery-ui-sass-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
+# gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
@@ -69,6 +75,10 @@ gem "paranoia", "~> 2.0"
 
 # Use Unicorn as the app server
 # gem 'unicorn'
+
+gem 'cancancan'
+
+gem 'rolify'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

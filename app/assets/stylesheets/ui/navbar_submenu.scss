@@ -4,19 +4,29 @@ $navbar-default-link-active-color: #474747;
 $navbar-default-link-disabled-color: gray;
 $navbar-default-link-hover-color: #474747;
 $navbar-default-link-color: white;
-$navbar-icon-size: 15pt;
-$navbar-font-size: 13pt;
+$navbar-icon-size: 7pt;
+$navbar-font-size: 9pt;
 
 // Custom navbar
 .navbar-submenu {
+  //Posición fija
+  position: fixed;
+  right: 0;
+  left: 0; 
+  z-index: 1030;
+  
   background-color: $navbar-default-bg;
   border-color: $navbar-default-border;  
   font-weight: bold;
+  font-size: $navbar-font-size;
   border: none;
   border-radius: 0px;
-  min-height: 30px;
-  height: 30px;
+  min-height: 25px;
+  height: 25px;
   margin-bottom: 0px;
+
+  border-bottom:solid;
+  border-bottom-color: #CCCCCC;
   .navbar-brand {
     color: $navbar-default-brand-color;
     &:hover,
@@ -34,8 +44,8 @@ $navbar-font-size: 13pt;
   }
 
   .navbar-nav > li > a {
-  	padding-top: 2px;
-  	padding-bottom: 2px;
+  	padding-top: 0px;
+  	padding-bottom: 0px;
   }
 
   .navbar-nav {
