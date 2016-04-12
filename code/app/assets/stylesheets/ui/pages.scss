@@ -20,12 +20,13 @@ $common-color: #24C1C1;
 }
 
 .espacio{
-	padding-top:3%;
+	padding-top:1%;
 	padding-left:4%;
 	padding-right:4%;
 	margin-top: 6%;
 	margin-left:25%;
 	margin-right:25%;
+	margin-botton:6%;
 	background-color:#ffffff;
 
 }
@@ -238,6 +239,12 @@ body{
 						font-weight: bold;
 					}
 				}
+			}
+
+			.row > div > label {
+				font-weight: bold;
+				color: #999999;
+				font-size: 20px;
 			}
 
 			.form-button{

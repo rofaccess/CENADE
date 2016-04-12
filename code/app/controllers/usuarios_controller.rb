@@ -1,14 +1,12 @@
 class UsuariosController < ApplicationController
 	
-	before_action :set_submenu, only: [:index]
+	before_action :set_submenu, only: [:index,:new]
 	before_action :set_usuario, only: [:show, :edit, :update, :destroy]
-	respond_to :html, :js
-	layout false, only: [:new]
 	
-	load_and_authorize_resource
+	#load_and_authorize_resource	
 
 	def set_submenu
-		@submenu_layout = 'layouts/submenu_configuracion'
+		@submenu_layout = 'layouts/submenu_configuracion'	
 	end
 
 	def new 
@@ -16,12 +14,7 @@ class UsuariosController < ApplicationController
     	@empleados = Empleado.includes(:persona, :cargo).joins("LEFT JOIN users ON empleados.id = users.empleado_id").where(users: {empleado_id: nil})
     	# Fuente:  http://blog.codinghorror.com/a-visual-explanation-of-sql-joins/
     	# Obtiene los empleados que no tengan ningún usuario
-    	#@empleados = Empleado.find_by_sql("SELECT * FROM users FULL OUTER JOIN empleados ON users.empleado_id = empleados.id WHERE users.empleado_id IS null OR empleados.id IS null")
-    	respond_to do |format|
-	   		format.html { }	
-
-	   	
-	   	end
+    	#@empleados = Empleado.find_by_sql("SELECT * FROM users FULL OUTER JOIN empleados ON users.empleado_id = empleados.id WHERE users.empleado_id IS null OR empleados.id IS null")    	
   	end
 
     def set_usuario
@@ -29,8 +22,7 @@ class UsuariosController < ApplicationController
     end
 
 	def index
-	    @search = User.ransack(params[:q])
- 		@usuarios= @search.result.page(params[:page])
+	    get_usuarios
 	end
 
 	def edit
@@ -53,13 +45,15 @@ class UsuariosController < ApplicationController
 		@usuario = User.new(usuario_params)
 	    @usuario.password_confirmation =  @usuario.username+"ABC123"
 	    @usuario.password = @usuario.username+"ABC123"
-		if @usuario.save
-			@usuario.role_ids = params[:user][:role_ids]
-		    flash.notice= "Se ha guardado el usuario #{@usuario.username}"		    
-		else
-		    flash.alert = "No se ha podido guardar el usuario #{@usuario.username}"
-		end 
-		update_list  
+		respond_to do |format|
+			if @usuario.save
+				@usuario.role_ids = params[:user][:role_ids]	
+				format.html { redirect_to usuarios_path, flash: {notice: "Se ha guardado el usuario #{@usuario.username}"}}       
+			else
+			    flash.alert = "No se ha podido guardar el usuario #{@usuario.username}"
+			    format.html { render action: "new"}
+			end 
+		end								
 	end
 
 	  	def update_list
@@ -81,11 +75,10 @@ class UsuariosController < ApplicationController
 		@empleado= Empleado.where("id=?",@usuario.empleado_id).first
 	end
 
-  	# def get_empleado
-   #    @empleado = Empleado.find(params[:id])
-   #    @usuario = User.new
-   #    render partial:'get_empleado', formats:'html'
-   #  end
+  	 def get_usuarios
+    	@search = User.ransack(params[:q])
+		@usuarios= @search.result.page(params[:page])
+    end
 
 	def usuario_params
       params.require(:user).permit(:username,:empleado_id, :rol)
