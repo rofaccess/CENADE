@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160411205038) do
+ActiveRecord::Schema.define(version: 20160412055951) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 20160411205038) do
   add_index "admins", ["unlock_token"], name: "index_admins_on_unlock_token", unique: true, using: :btree
 
   create_table "areas", force: :cascade do |t|
-    t.string   "nombre"
+    t.string   "nombre",     null: false
     t.integer  "costo"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -96,8 +96,8 @@ ActiveRecord::Schema.define(version: 20160411205038) do
   add_index "estados_civiles", ["descripcion"], name: "index_estados_civiles_on_descripcion", unique: true, using: :btree
 
   create_table "fechas", force: :cascade do |t|
-    t.integer  "horario_id"
-    t.date     "fecha"
+    t.integer  "horario_id",               null: false
+    t.date     "fecha",                    null: false
     t.time     "turno_manana_hora_inicio"
     t.time     "turno_manana_hora_fin"
     t.time     "turno_tarde_hora_inicio"
@@ -113,8 +113,8 @@ ActiveRecord::Schema.define(version: 20160411205038) do
   end
 
   create_table "pacientes", force: :cascade do |t|
-    t.integer  "persona_id"
-    t.date     "fecha_ingreso"
+    t.integer  "persona_id",    null: false
+    t.date     "fecha_ingreso", null: false
     t.boolean  "es_menor"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
@@ -166,14 +166,14 @@ ActiveRecord::Schema.define(version: 20160411205038) do
   add_index "roles", ["name"], name: "index_roles_on_name", using: :btree
 
   create_table "turnos", force: :cascade do |t|
-    t.integer  "paciente_id"
-    t.datetime "fecha_expedicion"
-    t.date     "fecha_consulta"
-    t.integer  "area_id"
-    t.integer  "doctor_id"
-    t.string   "estado"
+    t.integer  "paciente_id",      null: false
+    t.datetime "fecha_expedicion", null: false
+    t.date     "fecha_consulta",   null: false
+    t.integer  "area_id",          null: false
+    t.integer  "doctor_id",        null: false
+    t.string   "estado",           null: false
     t.integer  "monto"
-    t.boolean  "paga"
+    t.boolean  "paga",             null: false
     t.string   "nro_factura"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
@@ -214,9 +214,14 @@ ActiveRecord::Schema.define(version: 20160411205038) do
   add_foreign_key "empleados", "cargos", on_delete: :restrict
   add_foreign_key "empleados", "especialidades", on_delete: :restrict
   add_foreign_key "empleados", "personas", on_delete: :restrict
+  add_foreign_key "fechas", "horarios", on_delete: :restrict
   add_foreign_key "horarios", "empleados", on_delete: :cascade
+  add_foreign_key "pacientes", "personas", on_delete: :restrict
   add_foreign_key "permissions_roles", "permissions"
   add_foreign_key "permissions_roles", "roles"
   add_foreign_key "personas", "estados_civiles", on_delete: :restrict
+  add_foreign_key "turnos", "areas", on_delete: :restrict
+  add_foreign_key "turnos", "empleados", column: "doctor_id", on_delete: :restrict
+  add_foreign_key "turnos", "pacientes", on_delete: :restrict
   add_foreign_key "users", "empleados", on_delete: :restrict
 end

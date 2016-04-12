@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :roles
   resources :doctores
   resources :funcionarios
-  resources :turnos
+  resources :turnos 
 
   get 'empleados/check_ci' => 'empleados#check_ci'
   resources :empleados
