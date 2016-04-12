@@ -83,6 +83,19 @@
 													label_text: '* Rol')%>
 			<%= usuario.hidden_field :empleado_id%>																	
 		</div>
+		
+		<% if not @usuario.id.nil? %>
+		<div class="row">
+			<div class="checkbox col-md-6">
+				<label>
+					<%= check_box_tag 'reset', true, false, class: 'checkbox-password'  %>
+
+							Resetear Contraseña
+							<%= usuario.hidden_field :pass_reset, value: false, class: 'password-reset'%>						
+				</label>
+			</div>
+		</div>
+		<% end %>
 
 		<div class="form-button">
 			<%= usuario.submit 'Guardar', class: 'btn btn-custom', disabled: false%>
@@ -104,6 +117,11 @@
 	});	
 	
 	usuariosUI.initScript("<%= usuarios_check_username_path %>");
+
+	<% if not @usuario.id.nil? %>
+		usuariosUI.resetPassword();
+	<% end %>
+
 </script>
 
 

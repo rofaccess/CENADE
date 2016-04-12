@@ -12,6 +12,24 @@ var usuariosUI = (function(){
 			});
 		},
 
+		resetPassword: function(){
+			/*
+			if ($(".checkbox-password").is(":checked")){
+				$("#user_password_reset").attr("value","true");
+			}else{
+				$("#user_password_reset").attr("value","false");
+			} 
+		    */	
+		    
+		    $(".checkbox-password").change(function() {
+			    if(this.checked) {
+			    	$("#user_pass_reset").attr("value","true");
+			    }else{
+			    	$("#user_pass_reset").attr("value","false");
+			    }
+			});
+		},
+
 		checkUsername: function(checkUsuarioUsernameUrl){
 			$.validator.addClassRules({
                 uniqueUsuarioUsername: {
