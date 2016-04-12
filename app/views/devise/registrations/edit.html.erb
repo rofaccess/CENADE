@@ -1,51 +1,63 @@
-
-<div class= "content">  
-  <div class="page-title">
-    Usuario      
-  </div>
-  <div class="espacio">
-    <div class="row">
-      <div class="col-md-3">
-        <h3 class ="titulos" style="margin-top:0px">Empleado</h3>
-      </div>
+<% @submenu_layout = 'layouts/submenu_configuracion' %>
+<% @sidebar_layout = 'layouts/sidebar_perfil_usuario' %>
+  <div class= "content">  
+    <div class="page-title" style = "left:200px;">
+      Perfil de Usuario      
     </div>
-    <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
-    <div>
-      <div><%= f.label :email %><br />
-      <%= f.email_field :email %></div>
-      <div>
-        <%= f.label :password %> 
-        <%= f.password_field :password, :autocomplete => "off" %>
+    <div class="espacio">
+      <div class="row">
+          <h4>Datos de Usuario</h4><hr>
+      </div>
+      <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:multipart => true, :method => :put }) do |f| %>
+        <div class="row">
+      
+          <%= FormBuilder::text_field_v(f, :username, 
+                                          input_class: 'required', 
+                                          max_length: Domain::NOMBRE, 
+                                          autofocus: true,
+                                          col_class: 'col-md-6',
+                                          label_text: '* Usuario') %>
+          <div class= 'col-md-6'>
+            <%= image_tag(current_user.profile_foto_url.to_s, :width => 100, :height => 100) %>
+            <%= f.file_field :profile_foto %>
+          </div></br>
         </div>
-      <div>
-        <%= f.label :password_confirmation %>
-        <%= f.password_field :password_confirmation %>
-      </div>
-      <div><%= f.label :current_password %> 
+        <div class="row">
+          <%= FormBuilder::text_field_v(f, :password, 
+                                        input_class: 'required clear', 
+                                        max_length: Domain::NOMBRE,
+                                        col_class: 'col-md-6',
+                                        label_text: '* Contraseña') %>
 
-      <%= f.password_field :current_password %></div>
+          <%= FormBuilder::text_field_v(f, :password_confirmation, 
+                                    input_class: 'required clear', 
+                                    max_length: Domain::CARGO,
+                                    col_class: 'col-md-6',
+                                    label_text: '* Confirmar Contraseña') %>        
+        </div>
+       <div class= "empleado">
+          <h4>Datos de Contacto</h4><hr>
+          <div class="form-group col-md-12">
+            <label class="control-label titulos-campos" for="user_username">* Direccion</label>
+            <input class="form-control required clear usuario-apellido" placeholder=""  maxlength="30" type="text" >
+          </div>
+
+          <div class="form-group col-md-5">
+            <label class="control-label titulos-campos" for="user_username">* Telefono</label>
+            <input class="form-control required clear usuario-cargo" placeholder=""  maxlength="100" type="text"  >
+          </div>
+
+          <div class="form-group col-md-7">
+            <label class="control-label titulos-campos" for="user_username">* Email</label>
+            <input class="form-control required clear usuario-email" placeholder=""  maxlength="50" type="text"  >
+          </div>
+        </div>
+        <div class="row">
+          <div class="row" align="rigth">
+            <%= f.submit 'Guardar cambios', class: 'btn btn-custom'%>
+          </div>
+      <% end %>
     </div>
-      <h3 class ="titulos">Datos de Contacto</h3>
-      <div class="form-group col-md-6">
-        <label class="control-label titulos-campos" for="user_username">Direccion</label>
-        <input class="form-control required clear usuario-apellido" placeholder="" disabled="disabled" maxlength="30" type="text" value="<%=@empleado.persona.direccion%>">
-      </div>
-
-
-      <div class="form-group col-md-6">
-        <label class="control-label titulos-campos" for="user_username">Telefono</label>
-        <input class="form-control required clear usuario-cargo" placeholder="" disabled="disabled" maxlength="100" type="text" value="<%=@empleado.persona.telefono%>" >
-      </div>
-
-      <div class="form-group col-md-6">
-        <label class="control-label titulos-campos" for="user_username">Email</label>
-        <input class="form-control required clear usuario-email" placeholder="" disabled="disabled" maxlength="50" type="text" value="<%=@empleado.persona.email%>" >
-
-
-      <div><%= f.submit t('.update', :default => "Update") %></div>
-    <% end %>
-
-  </div>
 </div>
 
 
