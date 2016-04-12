@@ -80,6 +80,12 @@ class UsuariosController < ApplicationController
 		@usuarios= @search.result.page(params[:page])
     end
 
+    def check_username
+      user = User.find_by_username(params[:username])
+      
+      render json: (user.nil? || user.id == params[:id].to_i) ? true : "Ya existe el Nombre de Usuario especificado".to_json     
+  	end 
+
 	def usuario_params
       params.require(:user).permit(:username,:empleado_id, :rol)
       

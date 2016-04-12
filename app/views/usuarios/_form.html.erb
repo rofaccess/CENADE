@@ -11,7 +11,7 @@
 		
 		<div class="row">
 			<div class="col-md-3">
-			    <label>Empleado</label>
+			    <label class="label-title">Empleado</label>
 			</div>
 			
 			<div class="col-md-9">
@@ -37,43 +37,34 @@
 		
 		<div class="row">
 
-		<%= usuario.hidden_field :empleado_id %>
+		 	<%= hidden_field_tag :usuario_id, @usuario.id %>
 
-			<%= FormBuilder::text_field_v(usuario, :username, 
-							                        input_class: 'required usuario-nombre', 
-							                        max_length: Domain::NOMBRE, 
-							                        autofocus: true,
-							                        col_class: 'col-md-6',
-							                        disabled: true,
-							             			
-							                        label_text: 'Nombres') %>
-			<%= FormBuilder::text_field_v(usuario, :username, 
-							                        input_class: 'required clear usuario-apellido', 
-							                        max_length: Domain::NOMBRE,
-							                        col_class: 'col-md-6',
-							                        disabled: true,
-							                        label_text: 'Apellidos',
-							                        ) %>
+			<div class="form-group col-md-6">
+				<label class="control-label">Nombre</label>
+				<input class="form-control usuario-nombre" disabled="disabled" >
+			</div>
 
-        	<%= FormBuilder::text_field_v(usuario, :username, 
-							                        input_class: 'required clear usuario-cargo', 
-							                        max_length: Domain::CARGO,
-							                        col_class: 'col-md-6',
-							                        disabled: true,
-							                        label_text: 'Cargo') %>		    
-        	<%= FormBuilder::text_field_v(usuario, :username, 
-							                        input_class: 'required clear usuario-email', 
-							                        max_length: Domain::EMAIL,
-							                        col_class: 'col-md-6',
-							                        disabled: true,
-							                        label_text: 'Email') %>
+			<div class="form-group col-md-6">
+				<label class="control-label">Apellido</label>
+				<input class="form-control usuario-apellido" disabled="disabled" >
+			</div>
+
+			<div class="form-group col-md-6">
+				<label class="control-label">Cargo</label>
+				<input class="form-control usuario-cargo" disabled="disabled" >
+			</div>
+
+			<div class="form-group col-md-6">
+				<label class="control-label">Email</label>
+				<input class="form-control usuario-email" disabled="disabled" >
+			</div>
 		</div>
 		
 		<h4>Datos de Usuario</h4><hr>
 		
 		<div class="row">
 			<%= FormBuilder::text_field_v(usuario, :username, 
-								                        input_class: 'required', 
+								                        input_class: 'required uniqueUsuarioUsername username', 
 								                        max_length: Domain::USERNAME, 
 								                        col_class: 'col-md-6',
 								                        label_text: '* Nombre Usuario',
@@ -84,6 +75,7 @@
 													select_class: 'required', 
 													col_class: 'col-md-6',
 													label_text: '* Rol')%>
+			<%= usuario.hidden_field :empleado_id%>																	
 		</div>
 
 		<div class="form-button">
@@ -105,7 +97,7 @@
 		});
 	});	
 	
-	usuariosUI.initScript();
+	usuariosUI.initScript("<%= usuarios_check_username_path %>");
 </script>
 
 
