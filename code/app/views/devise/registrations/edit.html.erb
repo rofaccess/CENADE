@@ -13,7 +13,7 @@
       
           <%= FormBuilder::text_field_v(f, :username, 
                                           input_class: 'required', 
-                                          max_length: Domain::NOMBRE, 
+                                          max_length: Domain::USERNAME, 
                                           autofocus: true,
                                           col_class: 'col-md-6',
                                           label_text: '* Usuario') %>
@@ -25,13 +25,13 @@
         <div class="row">
           <%= FormBuilder::text_field_v(f, :password, 
                                         input_class: 'required clear', 
-                                        max_length: Domain::NOMBRE,
+                                        max_length: Domain::CONTRASEÑA,
                                         col_class: 'col-md-6',
                                         label_text: '* Contraseña') %>
 
           <%= FormBuilder::text_field_v(f, :password_confirmation, 
                                     input_class: 'required clear', 
-                                    max_length: Domain::CARGO,
+                                    max_length: Domain::CONTRASEÑA,
                                     col_class: 'col-md-6',
                                     label_text: '* Confirmar Contraseña') %>        
         </div>
