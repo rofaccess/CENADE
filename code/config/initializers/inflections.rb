@@ -27,5 +27,8 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
 	inflect.irregular 'funcionario', 'funcionarios'
 	inflect.irregular 'configuracion', 'configuraciones'
 	inflect.irregular 'permissions_rol', 'permissions_roles'
+	inflect.irregular 'fecha', 'fechas'
+	inflect.irregular 'turno', 'turnos'
+	inflect.irregular 'paciente', 'pacientes'
 
 end

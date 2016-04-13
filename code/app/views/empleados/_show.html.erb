@@ -82,10 +82,10 @@
 		<hr>
 
 		<div class="row">   
-			<%= FormBuilder::text_field_v(empleado, :cargo_id,
+			<%= FormBuilder::text_field_v(empleado, :cargo,
 													disabled: true,
 													label_text: '* Cargo',
-													input_value: @empleado.cargo.descripcion, 
+													input_value: @empleado.cargo, 
 							                        col_class: 'col-md-4') %>
 			
 			<div class="checkbox col-md-3">

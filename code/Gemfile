@@ -73,6 +73,11 @@ gem 'cancancan'
 
 gem 'rolify'
 
+# Fabrication generates objects in Ruby https://github.com/paulelliott/fabrication-site
+gem 'fabrication'
+# A library for generating fake data such as names, addresses, and phone numbers.
+gem 'faker'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
