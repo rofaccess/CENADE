@@ -34,6 +34,17 @@ persona2 = Persona.create(ci: '8987456',
 	                      edad: '35', 
 						  estado_civil_id: soltero.id, 
 						  email: "josmith@gmail.com")
+persona3 = Persona.create(ci: '89855656', 
+						  nombre: 'Jonas',
+						  apellido: 'Stuart',
+						  direccion: 'Av. Carlos Antonio Lopez c/ Mscal. Francisco Solano Lopez',
+	                      telefono: '071 203 454',
+	                      ruc: '14-3544d',
+	                      fecha_nacimiento: DateTime.now,
+	                      sexo: 'Masculino',
+	                      edad: '35', 
+						  estado_civil_id: soltero.id, 
+						  email: "josddddd@gmail.com")
 
 persona3 = Persona.create(ci: '3425464', 
 						  nombre: 'Maria Diana',
@@ -74,20 +85,16 @@ persona5 = Persona.create(ci: '6787894',
 psicologia = Especialidad.create(descripcion: 'Psicologia')
 fisioterapeuta = Especialidad.create(descripcion: 'Fisioterapeuta')
 
-cargo1 = Cargo.create(descripcion: 'Gerente General')
-cargo2 = Cargo.create(descripcion: 'Jefe de Pediatria')
 
 funcionario1 = Funcionario.create(persona_id: persona1.id,
-							      cargo_id: cargo1.id)
+							      cargo: 'Gerente General')
 funcionario3 = Funcionario.create(persona_id: persona3.id,
-							      cargo_id: cargo1.id)
+							      cargo: 'Secretaria')
 funcionario4 = Funcionario.create(persona_id: persona4.id,
-							      cargo_id: cargo1.id)
-funcionario5 = Funcionario.create(persona_id: persona5.id,
-							      cargo_id: cargo1.id)
+							      cargo: 'Contador')
 
 doctor1 = Doctor.create(persona_id: persona2.id,  
-	                    cargo_id: cargo2.id, 
+	                    cargo: 'Jefe del Area de Pediatria', 
 	                    especialidad_id: psicologia.id)
 
 horario1 = Horario.create(empleado_id: funcionario1.id)
@@ -118,5 +125,6 @@ Permission.create([{nombre: 'Usuarios', model: 'User', grupo:'Configuracion'},
  Permission.all.each do |p|
         PermissionsRole.create(role_id: 1, permission_id: p.id)
  end
-
+paciente= Paciente.create(persona_id: persona5.id, fecha_ingreso: '07/05/1995')
+area= Area.create(nombre: 'Odontologia', costo: 5000)
 

@@ -91,13 +91,9 @@
 		<hr>
 
 		<div class="row">   
-
-			<%= FormBuilder::collection_select_v(empleado, :cargo_id, 
-															Cargo.all, :id, :descripcion,
-															prompt:'Seleccione Cargo',
-															select_class: 'required',
-															label_text: '* Cargo', 
-															col_class: 'col-md-4')%>
+			<%= FormBuilder::text_field_v(empleado, :cargo, 
+													max_length: Domain::CARGO_EMPLEADO,
+													col_class: 'col-md-4') %> 			
 
 			<div class="row">
 				<div class="checkbox col-md-3">
