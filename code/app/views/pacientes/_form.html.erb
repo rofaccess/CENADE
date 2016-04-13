@@ -52,22 +52,32 @@
 												[['Masculino', 'Masculino'], ['Femenino', 'Femenino']], 
 												prompt:'Seleccione Sexo', 
 												select_class: 'required', 
-												col_class: 'col-md-4',
+												col_class: 'col-md-3',
 												label_text: '* Sexo')%>
 
 			<%= FormBuilder::collection_select_v(persona, :estado_civil_id, 
 															EstadoCivil.all, :id, :descripcion,
-															prompt:'Seleccione Estado Civil',
+															prompt:'Seleccione Est. Civil',
 															label_text: 'Estado Civil', 
-															col_class: 'col-md-4')%>
+															col_class: 'col-md-3')%>
+
+			<%= FormBuilder::text_field_v(persona, :nacionalidad, 
+													max_length: Domain::NACIONALIDAD,
+													col_class: 'col-md-3') %> 
+
 		</div> 
 		
 		<div class="row">   
+			<%= FormBuilder::text_field_v(paciente, :lugar_nacimiento, 
+													max_length: Domain::LUGAR_NACIMIENTO,
+													col_class: 'col-md-10',
+													label_text: '* Lugar de Nacimiento')%> 
 
 			<%= FormBuilder::text_field_v(paciente, :fecha_ingreso, 
+													input_class: 'required date',
 													max_length: Domain::FECHA,
-													col_class: 'col-md-11',
-													label_text: '* Fecha de Ingreso')%> 
+													col_class: 'col-md-2',
+													label_text: '* Fecha de Ingr.')%> 
 		</div>    
 
 		<h4>Datos de Contacto</h4>
@@ -77,7 +87,7 @@
 
 			<%= FormBuilder::text_field_v(persona, :direccion, 
 													max_length: Domain::DIRECCION,
-													col_class: 'col-md-11',
+													col_class: 'col-md-12',
 													label_text: 'Dirección')%> 
 		</div>    
 		<div class="row">   
@@ -89,7 +99,7 @@
 			<%= FormBuilder::text_field_v(persona, :email, 
 													input_class: 'emailCheck', 
 													max_length: Domain::EMAIL,
-													col_class: 'col-md-7') %> 
+													col_class: 'col-md-8') %> 
 		</div>  		
 		<% end %>
 
@@ -99,14 +109,17 @@
 		<div class="row">   
 			<%= FormBuilder::text_field_v(paciente, :profesion, 
 													max_length: Domain::PROFESION,
-													col_class: 'col-md-4') %> 	
+													col_class: 'col-md-5') %> 	
 
-			<div class="row">   
+			 
 			<%= FormBuilder::text_field_v(paciente, :lugar_trabajo, 
 													max_length: Domain::LUGAR_TRABAJO,
-													col_class: 'col-md-4') %> 												
+													col_class: 'col-md-7') %> 												
 				
 		</div> 
+
+		<h4>Datos de los Padres o Encargados </h4>
+		<hr>
 		
 		<div class="form-button">					
 			<%= paciente.submit 'Guardar', class: 'btn btn-custom'%>
