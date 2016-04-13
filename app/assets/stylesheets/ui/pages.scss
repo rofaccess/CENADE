@@ -41,6 +41,12 @@ $common-color: #24C1C1;
 	font-weight: bold;
 }
 
+label.label-title {
+	font-weight: bold;
+	color: #999999;
+	font-size: 20px;					 
+}
+
 .show-empleado{
 	cursor: pointer;
 }
@@ -240,7 +246,7 @@ body{
 						font-weight: bold;
 					}
 				}
-			}
+			}					
 
 			.form-button{
 				text-align: right;

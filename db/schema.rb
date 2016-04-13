@@ -1,4 +1,3 @@
-
 # encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
@@ -141,7 +140,7 @@ ActiveRecord::Schema.define(version: 20160409032929) do
   add_index "roles", ["name"], name: "index_roles_on_name", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  limit: 50, default: "", null: false
+    t.string   "email"
     t.string   "username",               limit: 30, default: "", null: false
     t.string   "encrypted_password",                default: "", null: false
     t.string   "rol",                    limit: 15, default: "", null: false

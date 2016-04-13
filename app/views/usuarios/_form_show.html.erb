@@ -1,0 +1,66 @@
+<div class= "form-content">  
+  	<div class="page-title">
+    	Usuario
+    	<% form_url = @usuario.id.nil? ? usuarios_path : usuarios_path+"/#{@usuario.id}" %>
+
+    	<div class="tool">
+      	<%= link_to '<i class="fa fa-list"></i> '.html_safe, usuarios_path %> 
+        <%= link_to '<i class="fa fa-plus-square"></i> '.html_safe, new_usuario_path%>
+			<% unless current_user.id == @usuario.id %>
+		        <%= link_to '<i class="fa fa-edit"></i> '.html_safe, edit_usuario_path(@usuario.id)%> 
+		        <%= link_to '<i class="fa fa-trash-o"></i> '.html_safe, usuario_path(@usuario), method: 'delete', data: {confirm: "¿Desea eliminar el usuario #{@usuario.username}?"}%> 
+		    <%end%>    
+    	</div>
+  	</div>  	
+	
+	<%= form_for @usuario, url: form_url, html: {class:'small-form'} do |usuario| %>
+		<h4>Empleado</h4>
+		<hr>
+		
+		<div class="row">
+
+		 	<%= hidden_field_tag :usuario_id, @usuario.id %>
+
+			<div class="form-group col-md-6">
+				<label class="control-label">Nombre</label>
+				<input class="form-control usuario-nombre" disabled="disabled" value="<%= @usuario.id.nil? ? '' : @usuario.empleado.persona.nombre %>">
+			</div>
+
+			<div class="form-group col-md-6">
+				<label class="control-label">Apellido</label>
+				<input class="form-control usuario-apellido" disabled="disabled" value="<%= @usuario.id.nil? ? '' : @usuario.empleado.persona.apellido %>">
+			</div>
+
+			<div class="form-group col-md-6">
+				<label class="control-label">Cargo</label>
+				<input class="form-control usuario-cargo" disabled="disabled" value="<%= @usuario.id.nil? ? '' : @usuario.empleado.cargo.descripcion %>">
+			</div>
+
+			<div class="form-group col-md-6">
+				<label class="control-label">Email</label>
+				<input class="form-control usuario-email" disabled="disabled" value="<%= @usuario.id.nil? ? '' : @usuario.empleado.persona.email %>">
+			</div>
+		</div>
+		
+		<h4>Datos de Usuario</h4><hr>
+		
+		<div class="row">
+			<%= FormBuilder::text_field_v(usuario, :username, 
+														disabled: true,                      
+								                        col_class: 'col-md-6',
+								                        label_text: '* Nombre Usuario') %>
+			
+			<%= FormBuilder::text_field_v(usuario, :rol, 
+														disabled: true,                      
+								                        col_class: 'col-md-6',
+								                        label_text: '* Rol') %>							                        
+			
+			<%= usuario.hidden_field :empleado_id%>																	
+		</div>
+
+	<%end%>
+</div>
+	
+
+
+
