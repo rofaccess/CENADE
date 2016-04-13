@@ -59,7 +59,7 @@
             </a>
             
             <ul class="dropdown-menu" role="menu">                
-              <li><a href="#">Editar Perfil</a></li>
+              <li><%= link_to "Editar Perfil", edit_user_registration_path %></li>
               <li><%= link_to "Cerrar Sesión", destroy_user_session_path, method: :delete%></li>
             </ul>
           </li>
