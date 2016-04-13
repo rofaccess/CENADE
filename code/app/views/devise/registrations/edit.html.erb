@@ -1,14 +1,15 @@
 <% @submenu_layout = 'layouts/submenu_configuracion' %>
 <% @sidebar_layout = 'layouts/sidebar_perfil_usuario' %>
-  <div class= "content">  
+  <div class= "form-content">  
     <div class="page-title" style = "left:200px;">
       Perfil de Usuario      
     </div>
-    <div class="espacio">
-      <div class="row">
-          <h4>Datos de Usuario</h4><hr>
-      </div>
-      <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:multipart => true, :method => :put }) do |f| %>
+    
+      
+          
+  
+      <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:multipart => true, :method => :put,class: 'medium-form' }) do |f| %>
+        <h4>Datos de Usuario</h4><hr>
         <div class="row">
       
           <%= FormBuilder::text_field_v(f, :username, 
@@ -35,12 +36,15 @@
                                     col_class: 'col-md-6',
                                     label_text: '* Confirmar Contraseña') %>        
         </div>
-       <div class= "empleado">
           <h4>Datos de Contacto</h4><hr>
+          <div class="row">
           <div class="form-group col-md-12">
             <label class="control-label titulos-campos" for="user_username">* Direccion</label>
             <input class="form-control required clear usuario-apellido" placeholder=""  maxlength="30" type="text" >
           </div>
+           </div>
+           <div class="row">
+
 
           <div class="form-group col-md-5">
             <label class="control-label titulos-campos" for="user_username">* Telefono</label>
@@ -51,13 +55,14 @@
             <label class="control-label titulos-campos" for="user_username">* Email</label>
             <input class="form-control required clear usuario-email" placeholder=""  maxlength="50" type="text"  >
           </div>
-        </div>
-        <div class="row">
-          <div class="row" align="rigth">
+          </div>
+        
+        
+           <div class="form-button">   
             <%= f.submit 'Guardar cambios', class: 'btn btn-custom'%>
           </div>
       <% end %>
-    </div>
+   
 </div>
 
 
