@@ -5,7 +5,7 @@ class UsuariosController < ApplicationController
 
 	respond_to :html, :js
 
-	layout false, only: [:new]
+	#layout false, only: [:new]
 	
 	#load_and_authorize_resource	
 
