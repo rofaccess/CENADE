@@ -48,19 +48,24 @@
 			<%= FormBuilder::text_field_v(persona, :edad, 
 													input_class: 'edad', 
 													max_length: Domain::EDAD,
-													col_class: 'col-md-2') %>                  		                            
+													col_class: 'col-md-1') %>                  		                            
 			<%= FormBuilder::select_v(persona, :sexo,
 												[['Masculino', 'Masculino'], ['Femenino', 'Femenino']], 
 												prompt:'Seleccione Sexo', 
 												select_class: 'required', 
-												col_class: 'col-md-4',
+												col_class: 'col-md-3',
 												label_text: '* Sexo')%>
 
 			<%= FormBuilder::collection_select_v(persona, :estado_civil_id, 
 															EstadoCivil.all, :id, :descripcion,
-															prompt:'Seleccione Estado Civil',
+															prompt:'Seleccione Est. Civil',
 															label_text: 'Estado Civil', 
-															col_class: 'col-md-4')%>
+															col_class: 'col-md-3')%>
+			
+			<%= FormBuilder::text_field_v(persona, :nacionalidad, 
+													max_length: Domain::NACIONALIDAD,
+													col_class: 'col-md-3') %> 
+
 		</div> 
 
 		<h4>Datos de Contacto</h4>
@@ -71,7 +76,7 @@
 			<%= FormBuilder::text_field_v(persona, :direccion, 
 													input_class: 'clear', 
 													max_length: Domain::DIRECCION,
-													col_class: 'col-md-11',
+													col_class: 'col-md-12',
 													label_text: 'Dirección')%> 
 		</div>    
 		<div class="row">   
@@ -83,7 +88,7 @@
 			<%= FormBuilder::text_field_v(persona, :email, 
 													input_class: 'emailCheck', 
 													max_length: Domain::EMAIL,
-													col_class: 'col-md-7') %> 
+													col_class: 'col-md-8') %> 
 		</div>  		
 		<% end %>
 
