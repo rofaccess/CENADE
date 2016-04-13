@@ -30,7 +30,7 @@
 						<input type="hidden" id="option-nombre-<%= empleado.id %>" value="<%= empleado.persona.nombre %>"/>
 						<input type="hidden" id="option-apellido-<%= empleado.id %>" value="<%= empleado.persona.apellido %>"/>
 						<input type="hidden" id="option-email-<%= empleado.id %>" value= "<%= empleado.persona.email %>"/>
-						<input type="hidden" id="option-cargo-<%= empleado.id %>" value="<%= empleado.cargo.descripcion %>"/>
+						<input type="hidden" id="option-cargo-<%= empleado.id %>" value="<%= empleado.cargo %>"/>
 						</div>
 				<%end%>
 			</div>
@@ -57,7 +57,7 @@
 
 			<div class="form-group col-md-6">
 				<label class="control-label">Cargo</label>
-				<input class="form-control usuario-cargo" disabled="disabled" value="<%= @usuario.id.nil? ? '' : @usuario.empleado.cargo.descripcion %>">
+				<input class="form-control usuario-cargo" disabled="disabled" value="<%= @usuario.id.nil? ? '' : @usuario.empleado.cargo %>">
 			</div>
 
 			<div class="form-group col-md-6">

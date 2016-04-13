@@ -11,7 +11,7 @@ class UsuariosController < ApplicationController
 
 	def new 
 	    @usuario = User.new   	
-    	@empleados = Empleado.includes(:persona, :cargo).joins("LEFT JOIN users ON empleados.id = users.empleado_id").where(users: {empleado_id: nil})
+    	@empleados = Empleado.includes(:persona).joins("LEFT JOIN users ON empleados.id = users.empleado_id").where(users: {empleado_id: nil})
     	# Fuente:  http://blog.codinghorror.com/a-visual-explanation-of-sql-joins/
     	# Obtiene los empleados que no tengan ningún usuario
     	#@empleados = Empleado.find_by_sql("SELECT * FROM users FULL OUTER JOIN empleados ON users.empleado_id = empleados.id WHERE users.empleado_id IS null OR empleados.id IS null")    	

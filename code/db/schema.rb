@@ -125,6 +125,7 @@ ActiveRecord::Schema.define(version: 20160413145411) do
     t.string   "lugar_nacimiento", limit: 100, default: ""
     t.string   "profesion",        limit: 50,  default: ""
     t.string   "lugar_trabajo",    limit: 100, default: ""
+    t.datetime "deleted_at"
     t.datetime "created_at",                                null: false
     t.datetime "updated_at",                                null: false
   end
