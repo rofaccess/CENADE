@@ -1,15 +1,5 @@
 $common-color: #24C1C1;
 
-body{
-	background: #EAF0F3;
-	padding-top: 30px;		
-}
-
-.container{
-	max-width: none !important;
-	width: 970px;
-}
-
 /* Si la palabra es muy larga, esta clase lo corta */
 .crop {
 	word-break: break-all;
@@ -136,6 +126,23 @@ td.action {
 	font-weight: bold;
 }
 
+body{
+	background: #EAF0F3;
+	padding-top: 30px;	
+}
+
+/*
+.alert {
+	    
+		padding: 8px 35px 8px 14px;
+		-webkit-border-radius: 4px;
+		-moz-border-radius: 4px;
+		border-radius: 4px;
+		font-size: 12px;
+
+		
+	}
+*/
 #principal-content {
 	.content, .form-content{
 		.page-title {
@@ -150,7 +157,6 @@ td.action {
 			border-bottom: solid;
 			border-color: #CCCCCC;
 			font-size: 24px;
-			//line-height: 45px;
 			height: 50px;
 			font-weight: bold;
 			padding-top: 7px;
@@ -164,7 +170,7 @@ td.action {
 				color: #999999;
 				font-size: 26px;
 				text-decoration: none;
-				i.fa-plus-square, i.fa-print, i.fa-list, i.fa-trash-o, i.fa-edit {
+				i.fa-plus-square, i.fa-print, i.fa-list,i.fa-list-ul, i.fa-trash-o, i.fa-edit {
 					&:hover,
 					&:focus {
 						color: #24C1C1;
@@ -183,7 +189,7 @@ td.action {
 			margin-right: auto;
 			background: white;
 			width: 90%;
-			margin-top: 70px; 
+			margin-top: 105px; 
 			padding-left: 50px;
 			padding-right: 50px;
 			padding-top: 50px;
@@ -206,7 +212,7 @@ td.action {
 
 		.page-title > .tool {
 			text-align: right;
-		}
+		}		
 
 		form{			
 			width: 70%;
@@ -215,8 +221,7 @@ td.action {
 			margin-right: auto;
 			padding: 50px;
 			padding-top: 30px;
-			padding-bottom: 10px;
-			margin-top: 70px;
+			margin-top: 105px;
 
 			h4 {
 				font-weight: bold;
@@ -242,8 +247,12 @@ td.action {
 			}
 			
 		}
+
+		form.small-form {
+			width: 40%;
+		}
 	}	
-} 
+}
 
 .tool {
 	float: right;
@@ -251,8 +260,8 @@ td.action {
 	font-size: 14px;
 	
 	form {	
-		.input-group {
-			.form-control{
+	.input-group {
+		.form-control{
 				border-radius: 5px;						
 				color: #999999;											
 			}
@@ -315,8 +324,4 @@ td.action {
 .form-control:focus{
 	border-color: $common-color;
 	//box-shadow: 0 1px 1px $common-color; //Da un efecto de recuadro
-}
-
-tfoot{
-	color: #999999;
 }

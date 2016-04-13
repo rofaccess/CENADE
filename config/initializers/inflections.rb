@@ -26,5 +26,6 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
 	inflect.irregular 'doctor', 'doctores'
 	inflect.irregular 'funcionario', 'funcionarios'
 	inflect.irregular 'configuracion', 'configuraciones'
+	inflect.irregular 'permissions_rol', 'permissions_roles'
 
 end

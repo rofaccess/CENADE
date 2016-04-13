@@ -14,9 +14,8 @@
             <%=link_to 'Usuarios', usuarios_path %>
           </li>
 
-          <li><a href="#">
-            
-            Roles</a>
+          <li class="<%= current_submenu([roles_path])%>">
+            <%=link_to 'Roles', roles_path %>
           </li>
           
           <li><%= link_to "Mi Perfil", edit_user_registration_path %></li>               
