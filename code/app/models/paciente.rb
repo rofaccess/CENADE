@@ -4,6 +4,7 @@ class Paciente < ActiveRecord::Base
 
 	has_many :turnos
 	belongs_to :persona
+	belongs_to :encargado
 
 	accepts_nested_attributes_for :persona
 
