@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :empleados
   resources :configuraciones
 
+  get 'usuarios/check_username' => 'usuarios#check_username'
   resources :usuarios do
     collection do
       post 'get_empleado'
