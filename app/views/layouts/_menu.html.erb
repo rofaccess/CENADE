@@ -17,13 +17,13 @@
       <div>
         <ul class="nav navbar-nav">        
 
-          <li class="<%= current_menu([welcome_index_turnos_path])%>">
-            <%= link_to '<span class="fa fa-calendar" aria-hidden="true"></span>  Turnos'.html_safe, welcome_index_turnos_path  %> 
+          <li class="<%= current_menu([welcome_index_turnos_path, new_turno_path])%>">
+            <%= link_to '<span class="fa fa-calendar" aria-hidden="true"></span>  Turnos'.html_safe, new_turno_path  %> 
             
           </li> 
          
-          <li class="<%= current_menu([welcome_index_pacientes_path])%>">
-            <%= link_to '<span class="fa fa-user" aria-hidden="true"></span>  Pacientes'.html_safe, welcome_index_pacientes_path %>
+          <li class="<%= current_menu([pacientes_path])%>">
+            <%= link_to '<span class="fa fa-user" aria-hidden="true"></span>  Pacientes'.html_safe, pacientes_path %>
           </li>
           
           <li class="<%= current_menu([welcome_index_fichas_path, welcome_index_atencion_profesional_path])%>">

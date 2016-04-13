@@ -1,6 +1,6 @@
 <div class= "col-md-10 col-md-offset-1">
   <div class="form-content">
-    <div class="page-title">
+    <div class="page-title page-title-sin-submenu">
       <%=@turno.id.nil? ? 'Nuevo Turno' : 'Editar Turno'%> 
 
       <div class="tool">
@@ -8,7 +8,7 @@
       </div>
     </div>
 
-    <%= form_for @turno, html: {class: 'nuevo-turno'}, remote: true do |turno|%>   
+    <%= form_for @turno, html: {class: 'nuevo-turno form-sin-submenu'}, remote: true do |turno|%>   
 
       <h4>Datos Personales</h4>
       <hr>

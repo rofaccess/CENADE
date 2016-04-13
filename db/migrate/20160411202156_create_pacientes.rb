@@ -13,7 +13,9 @@ class CreatePacientes < ActiveRecord::Migration
 	    t.string   :profesion		 ,default: '' ,limit: Domain::PROFESION, 			null: true
 	    t.string   :lugar_trabajo    ,default: '' ,limit: Domain::LUGAR_TRABAJO, 		null: true
 
-      	t.timestamps null: false
+      t.datetime :deleted_at 
+      
+     	t.timestamps null: false
     end
     add_foreign_key(:pacientes, :personas, column: 'persona_id', on_delete: :restrict)
     add_foreign_key(:pacientes, :personas, column: 'encargado_id', on_delete: :restrict)
