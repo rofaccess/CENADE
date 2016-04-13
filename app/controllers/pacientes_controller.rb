@@ -11,23 +11,30 @@ class PacientesController < ApplicationController
 	def new    	
     	@paciente = Paciente.new
     	@paciente.build_persona
+    	@encargado = Encargado.new
   	end
 
   	def create	
-  		if paciente_params[:especialidad_id].blank?    
-	    	@paciente = Funcionario.new(paciente_params)
-	    else
-	    	@paciente = Doctor.new(paciente_params)
-	    end			
-		if @paciente.save
-		    flash.notice= "Se ha guardado el paciente #{@paciente.persona.nombre}
-		    #{@paciente.persona.apellido}."		    
-		else
-		    flash.alert = "No se ha podido guardar el paciente #{@paciente.persona.nombre} 
-		    #{@paciente.persona.apellido}."
-		end 
+  		respond_to do |format|
+	  		if paciente_params[:es_menor] == "true"
+				if not @encargado.save
+					flash.notice= "No se ha podido guardar el/los encargados, ni el paciente #{@paciente.persona.nombre}
+			    	#{@paciente.persona.apellido}."	
+			    	format.html { redirect_to pacientes_path} #Lo ideal es mostrar el mensaje en el mismo formulario			    	
+				end	    		
+		    end		
 
-		show		  
+			if @paciente.save
+			    flash.notice= "Se ha guardado el paciente #{@paciente.persona.nombre}
+			    #{@paciente.persona.apellido}."	
+			    format.html { redirect_to pacientes_path}
+			    #format.js {render action: "show"} #Es mejor: Mostrar o Listar?
+			else
+			    flash.alert = "No se ha podido guardar el paciente #{@paciente.persona.nombre} 
+			    #{@paciente.persona.apellido}."
+			    format.html { redirect_to pacientes_path} #Lo ideal es mostrar el mensaje en el mismo formulario	
+			end 
+		end					  
   	end
 
   	def edit
@@ -37,9 +44,6 @@ class PacientesController < ApplicationController
   	end
 
   	def show
-	    respond_to do |format|
-	      format.js { render 'show' }	      
-	    end
   	end
 
   	def update_list
