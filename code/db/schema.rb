@@ -1,3 +1,4 @@
+
 # encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
@@ -11,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160320212208) do
+ActiveRecord::Schema.define(version: 20160409032929) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -94,6 +95,21 @@ ActiveRecord::Schema.define(version: 20160320212208) do
     t.datetime "updated_at"
   end
 
+  create_table "permissions", force: :cascade do |t|
+    t.string   "grupo"
+    t.string   "model"
+    t.string   "nombre"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "permissions_roles", force: :cascade do |t|
+    t.integer  "role_id"
+    t.integer  "permission_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
   create_table "personas", force: :cascade do |t|
     t.string   "ci",               limit: 15,  default: "", null: false
     t.string   "nombre",           limit: 30,  default: "", null: false
@@ -113,12 +129,22 @@ ActiveRecord::Schema.define(version: 20160320212208) do
 
   add_index "personas", ["deleted_at"], name: "index_personas_on_deleted_at", unique: true, using: :btree
 
+  create_table "roles", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "resource_id"
+    t.string   "resource_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id", using: :btree
+  add_index "roles", ["name"], name: "index_roles_on_name", using: :btree
+
   create_table "users", force: :cascade do |t|
-    t.string   "email"
+    t.string   "email",                  limit: 50, default: "", null: false
     t.string   "username",               limit: 30, default: "", null: false
     t.string   "encrypted_password",                default: "", null: false
     t.string   "rol",                    limit: 15, default: "", null: false
-    t.string   "profile_foto"
     t.integer  "empleado_id",                                    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -139,10 +165,19 @@ ActiveRecord::Schema.define(version: 20160320212208) do
   add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
   add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
+  create_table "users_roles", id: false, force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "role_id"
+  end
+
+  add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
+
   add_foreign_key "empleados", "cargos", on_delete: :restrict
   add_foreign_key "empleados", "especialidades", on_delete: :restrict
   add_foreign_key "empleados", "personas", on_delete: :restrict
   add_foreign_key "horarios", "empleados", on_delete: :cascade
+  add_foreign_key "permissions_roles", "permissions"
+  add_foreign_key "permissions_roles", "roles"
   add_foreign_key "personas", "estados_civiles", on_delete: :restrict
   add_foreign_key "users", "empleados", on_delete: :restrict
 end

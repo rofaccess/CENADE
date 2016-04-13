@@ -6,6 +6,7 @@ module Domain
 	DESCRIPCION5 = 500
 	DESCRIPCION2 = 200
 	DESCRIPCION4 = 400
+
 	CARGO = 100
 	SINTOMAS     = 500
 	PESO         = 10
@@ -36,5 +37,6 @@ module Domain
 	EMPRESA_NOMBRE = 50
 	EMPRESA_WEB	   = 40
 	EMPRESA_HORARIO= 100
+
 
 end
