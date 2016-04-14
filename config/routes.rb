@@ -19,6 +19,9 @@ Rails.application.routes.draw do
       post 'get_empleado'
     end
   end
+
+  get "perfil_usuarios/edit"
+  put "perfil_usuarios/update"
   get "welcome/index_configuracion"
   get "welcome/index_fichas"
   get "welcome/index_atencion_profesional"
