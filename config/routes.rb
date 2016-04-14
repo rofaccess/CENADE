@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'pacientes/check_ci' => 'pacientes#check_ci'
+  resources :pacientes
   
   get 'roles/check_name' => 'roles#check_name'
   resources :roles
@@ -15,6 +17,7 @@ Rails.application.routes.draw do
   resources :empleados
   resources :configuraciones
 
+  get 'usuarios/check_username' => 'usuarios#check_username'
   resources :usuarios do
     collection do
       post 'get_empleado'

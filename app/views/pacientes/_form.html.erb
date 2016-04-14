@@ -1,19 +1,18 @@
-<div class="form-content">
-	<div class="page-title">
-		<%=@empleado.id.nil? ? 'Nuevo Empleado' : 'Editar Empleado'%>	
+ <div class="form-content">
+    <div class="page-title page-title-sin-submenu">
+      <%=@paciente.id.nil? ? 'Nuevo Paciente' : 'Editar Paciente'%> 
 
-		<div class="tool">
-			<%= link_to '<i class="fa fa-list"></i> '.html_safe, empleados_path %> 
-		</div>
-	</div>
+      <div class="tool">
+        <%= link_to '<i class="fa fa-list"></i> '.html_safe, pacientes_path %> 
+      </div>
+    </div>
 
-	<%= form_for @empleado, html: {class: 'nuevo-empleado'}, remote: true do |empleado|%>		
-
-		<h4>Datos Personales</h4>
+    <%= form_for @paciente, html: {class: 'form-paciente form-sin-submenu'}, remote: true do |paciente|%>   
+    <h4>Datos Personales</h4>
 		<hr>
 
-		<%= empleado.fields_for(:persona) do |persona| %>
-		<%= persona.hidden_field :id, class: 'empleado-id'%>
+		<%= paciente.fields_for(:persona) do |persona| %>
+		<%= persona.hidden_field :id, class: 'paciente-id'%>
 		<div class="row">	
 			<%= FormBuilder::text_field_v(persona, :nombre, 
 													input_class: 'required nameLength', 
@@ -28,7 +27,7 @@
 													col_class: 'col-md-4',
 													label_text: '* Apellido') %>
 			<%= FormBuilder::text_field_v(persona, :ci, 
-													input_class: 'required ci ciLength uniqueEmpleadoCI', 
+													input_class: 'required ci ciLength uniquePacienteCI', 
 													max_length: Domain::CI,
 													col_class: 'col-md-2',
 													label_text: '* Cédula Nº') %>  
@@ -44,24 +43,42 @@
 													max_length: Domain::FECHA,
 													label_text: '* Fecha de Nac.',
 													col_class: 'col-md-2', 
-													input_value: Formatter.format_date(@empleado.persona.fecha_nacimiento))%> 	
+													input_value: Formatter.format_date(@paciente.persona.fecha_nacimiento))%> 	
 			<%= FormBuilder::text_field_v(persona, :edad, 
 													input_class: 'edad', 
 													max_length: Domain::EDAD,
-													col_class: 'col-md-2') %>                  		                            
+													col_class: 'col-md-1') %>                  		                            
 			<%= FormBuilder::select_v(persona, :sexo,
 												[['Masculino', 'Masculino'], ['Femenino', 'Femenino']], 
 												prompt:'Seleccione Sexo', 
 												select_class: 'required', 
-												col_class: 'col-md-4',
+												col_class: 'col-md-3',
 												label_text: '* Sexo')%>
 
 			<%= FormBuilder::collection_select_v(persona, :estado_civil_id, 
 															EstadoCivil.all, :id, :descripcion,
-															prompt:'Seleccione Estado Civil',
+															prompt:'Seleccione Est. Civil',
 															label_text: 'Estado Civil', 
-															col_class: 'col-md-4')%>
+															col_class: 'col-md-3')%>
+
+			<%= FormBuilder::text_field_v(persona, :nacionalidad, 
+													max_length: Domain::NACIONALIDAD,
+													col_class: 'col-md-3') %> 
+
 		</div> 
+		
+		<div class="row">   
+			<%= FormBuilder::text_field_v(paciente, :lugar_nacimiento, 
+													max_length: Domain::LUGAR_NACIMIENTO,
+													col_class: 'col-md-10',
+													label_text: '* Lugar de Nacimiento')%> 
+
+			<%= FormBuilder::text_field_v(paciente, :fecha_ingreso, 
+													input_class: 'required date',
+													max_length: Domain::FECHA,
+													col_class: 'col-md-2',
+													label_text: '* Fecha de Ingr.')%> 
+		</div>    
 
 		<h4>Datos de Contacto</h4>
 		<hr> 
@@ -69,9 +86,8 @@
 		<div class="row">   
 
 			<%= FormBuilder::text_field_v(persona, :direccion, 
-													input_class: 'clear', 
 													max_length: Domain::DIRECCION,
-													col_class: 'col-md-11',
+													col_class: 'col-md-12',
 													label_text: 'Dirección')%> 
 		</div>    
 		<div class="row">   
@@ -83,7 +99,7 @@
 			<%= FormBuilder::text_field_v(persona, :email, 
 													input_class: 'emailCheck', 
 													max_length: Domain::EMAIL,
-													col_class: 'col-md-7') %> 
+													col_class: 'col-md-8') %> 
 		</div>  		
 		<% end %>
 
@@ -91,32 +107,22 @@
 		<hr>
 
 		<div class="row">   
-			<%= FormBuilder::text_field_v(empleado, :cargo, 
-													max_length: Domain::CARGO_EMPLEADO,
-													col_class: 'col-md-4') %> 			
+			<%= FormBuilder::text_field_v(paciente, :profesion, 
+													max_length: Domain::PROFESION,
+													col_class: 'col-md-5') %> 	
 
-			<div class="row">
-				<div class="checkbox col-md-3">
-					<label>
-						<%= check_box_tag 'es_doctor', true, @empleado.type == 'Doctor' ? true : false, class: 'checkbox-doctor'  %>
-
-							¿Es Doctor?
-							<%= empleado.hidden_field :type, class: 'tipo-empleado'%>
-							<%= empleado.hidden_field :especialidad_id,value: nil, class: 'epecialidad-id'%>							
-					</label>
-				</div>
-			</div>
-
-			<%= FormBuilder::collection_select_v(empleado, :especialidad_id, 
-															Especialidad.all, :id, :descripcion,
-															prompt:'Seleccione Especialidad',
-															label_text: '* Especialidad', 
-															col_class: 'col-md-4 to-hide',
-															select_class: 'empleado-select')%>			
+			 
+			<%= FormBuilder::text_field_v(paciente, :lugar_trabajo, 
+													max_length: Domain::LUGAR_TRABAJO,
+													col_class: 'col-md-7') %> 												
+				
 		</div> 
+
+		<h4>Datos de los Padres o Encargados </h4>
+		<hr>
 		
 		<div class="form-button">					
-			<%= empleado.submit 'Guardar', class: 'btn btn-custom'%>
+			<%= paciente.submit 'Guardar', class: 'btn btn-custom'%>
 		</div>
 
 	<% end %>
@@ -125,5 +131,5 @@
 </div>
 
 <script type="text/javascript">	
-	empleadosUI.initScript("<%= empleados_check_ci_path %>");
+	//pacientesUI.initScript("<%= pacientes_check_ci_path %>");
 </script>

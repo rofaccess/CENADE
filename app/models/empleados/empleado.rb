@@ -8,7 +8,6 @@ class Empleado < ActiveRecord::Base
  	accepts_nested_attributes_for :persona
 
  	has_one :horario
- 	belongs_to :cargo
 
  	def destroy_persona
       persona.destroy
