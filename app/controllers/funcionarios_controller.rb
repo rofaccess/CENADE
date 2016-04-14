@@ -3,14 +3,13 @@ class FuncionariosController < EmpleadosController
  	def update
     respond_to do |format|
       if @empleado.update(empleado_params)
-          flash.notice= "Se ha actualizado el empleado #{@empleado.persona.nombre}
-          #{@empleado.persona.apellido}." 
-          format.js {render action: "show"}    
+        set_submenu
+        flash.now[:notice] = "Se ha actualizado el empleado #{@empleado.persona.nombre} #{@empleado.persona.apellido}."
+        format.html {render 'show'}   
       else
-          flash.alert = "No se ha podido actualizar el empleado #{@empleado.persona.nombre} 
-          #{@empleado.persona.apellido}."
-          format.html { redirect_to empleados_path}  
-          # Lo ideal es mostrar el mensaje en el mismo formulario 
+        set_submenu
+        flash.now[:alert] = "No se ha podido actualizar los datos del empleado #{@empleado.persona.nombre} #{@empleado.persona.apellido}."
+        format.html { render action: "new"} 
       end 
     end  
   end

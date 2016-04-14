@@ -78,7 +78,7 @@ var empleadosUI = (function(){
 
 			$('.ruc').inputmask('Regex', { regex: "[0-9\-a-z]+" });
 
-			$('.ci').inputmask('Regex', { regex: "[0-9\.]+" });
+			$('.ci').inputmask('Regex', { regex: "[0-9]+" });
 
 			$('.costo').inputmask('Regex', { regex: "[0-9]+" });
 
