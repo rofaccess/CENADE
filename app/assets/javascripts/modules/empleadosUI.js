@@ -7,8 +7,8 @@ var empleadosUI = (function(){
 			});
 		},		
 
-		//Muestra la especialidad si es doctor
-		mostrarEspecialidad: function(){
+		//Muestra la area si es doctor
+		mostrarArea: function(){
 			
 			if ($(".checkbox-doctor").is(":checked")){
 				empleadosUI.esDoctor();
@@ -31,10 +31,11 @@ var empleadosUI = (function(){
 			
 			$('.empleado-select').addClass('required');
 			$('.empleado-select').attr("disabled",false);
+			$('.costo').attr("disabled",false);
 			
 			$('.tipo-empleado').attr("value","Doctor");
 			
-			$('.especialidad-id').attr("disabled",true);
+			$('.area-id').attr("disabled",true);
 
 		},
 
@@ -43,10 +44,11 @@ var empleadosUI = (function(){
 			
 			$('.empleado-select').removeClass('required');
 			$('.empleado-select').attr("disabled",true);
+			$('.costo').attr("disabled",true);
 
 			$('.tipo-empleado').attr("value","Funcionario");	
 
-			$('.especialidad-id').attr("disabled",false);
+			$('.area-id').attr("disabled",false);
 		},
 		
 		checkCI: function(checkEmpleadoCIUrl){
@@ -72,11 +74,13 @@ var empleadosUI = (function(){
 		initScript: function(checkEmpleadoCIUrl){
 			empleadosUI.checkCI(checkEmpleadoCIUrl);
 
-			empleadosUI.mostrarEspecialidad();
+			empleadosUI.mostrarArea();
 
 			$('.ruc').inputmask('Regex', { regex: "[0-9\-a-z]+" });
 
 			$('.ci').inputmask('Regex', { regex: "[0-9\.]+" });
+
+			$('.costo').inputmask('Regex', { regex: "[0-9]+" });
 
 			$('.telefono').inputmask('Regex', { regex: "[0-9\-\(\),]+" });
 			
@@ -85,7 +89,7 @@ var empleadosUI = (function(){
 			$('.date').inputmask('Regex', { regex: "[0-9]{2}\/[0-9]{2}\/[0-9]{4}" });
 			
 		   	//Valida el formulario antes de enviarlo
-		  	$('.nuevo-empleado').last().validate();
+		  	$('.form-empleado').last().validate();
 		}
 	};
 }());
