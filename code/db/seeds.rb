@@ -126,5 +126,6 @@ Permission.create([{nombre: 'Usuarios', model: 'User', grupo:'Configuracion'},
         PermissionsRole.create(role_id: 1, permission_id: p.id)
  end
 paciente= Paciente.create(persona_id: persona5.id, fecha_ingreso: '07/05/1995')
+paciente2= Paciente.create(persona_id: persona4.id, fecha_ingreso: '07/05/1995')
 area= Area.create(nombre: 'Odontologia', costo: 5000)
 

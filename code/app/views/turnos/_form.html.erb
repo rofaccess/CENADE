@@ -17,7 +17,7 @@
 
               <%= turno.label :paciente_id, '* Paciente' %> 
 
-              <%= turno.select(:paciente_id, Paciente.all.collect { |p| [p.persona.nombre, p.id] },{},{class: "form-control", required: true, id: 'paciente_select'})%>
+              <%= turno.select(:paciente_id, Paciente.all.collect { |p| [p.persona.nombre, p.id] },{},{class: "form-control", required: true, id: 'paciente_id'})%>
 
               </div>
             
@@ -30,7 +30,9 @@
        </div>
 
         <%= turno.hidden_field :paciente_id %>
-        <%= render "add_paciente"%>
+          <div id ="paciente_data">
+          <%= render "paciente_form", turno: turno, paciente: @paciente%>
+      </div>
      <h4>Datos Turno</h4>
     <hr>
        
@@ -47,12 +49,12 @@
 
 <script type="text/javascript"> 
     $(document).ready(function(){
-      $("#paciente_select").select2(
+      $("#paciente_id").select2(
         placeholder: "Seleccione un paciente",
         language: "es"
 
       });
-      $('#paciente_select').change(function() {
+      $('#paciente_id').change(function() {
         $.ajax({
           url: "turnos/get_paciente",
           data: {
