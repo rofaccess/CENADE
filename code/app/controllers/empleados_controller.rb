@@ -20,7 +20,7 @@ class EmpleadosController < ApplicationController
 
   	def create	
   		respond_to do |format|
-	  		if empleado_params[:especialidad_id].blank?    
+	  		if empleado_params[:area_id].blank?    
 		    	@empleado = Funcionario.new(empleado_params)
 		    else
 		    	@empleado = Doctor.new(empleado_params)
@@ -88,9 +88,9 @@ class EmpleadosController < ApplicationController
     end	
 
   	def empleado_params
-      params.require(:empleado).permit(:cargo,:especialidad_id,:type,
+      params.require(:empleado).permit(:cargo,:area_id, :costo,:type,:abr_profesion,
       persona_attributes: [:id,:nombre,:apellido,:ci,:ruc,:fecha_nacimiento,:edad,
-      	                   :sexo,:estado_civil_id,:direccion,:telefono,:email])
+      	                   :sexo,:estado_civil_id,:direccion,:telefono,:email,:nacionalidad])
     end
 
 end

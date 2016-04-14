@@ -38,7 +38,9 @@ module Domain
 	SEXO      = 9	
 	MONTO     = 13
 	CANTIDAD  = 5	
+	COSTO	  = 7
 	
+
 	TIPO_EMPLEADO   = 15
 	ESPECIALIDAD   = 50
 	AREA		   = 50

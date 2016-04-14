@@ -13,6 +13,10 @@ class Empleado < ActiveRecord::Base
       persona.destroy
     end
 
+   # def info_completa
+    #{}"#{persona.nombre} - #{persona.apellido} "
+	#end
+
     ransack_alias :persona, :persona_nombre_or_persona_apellido_or_persona_ci
 
 end
