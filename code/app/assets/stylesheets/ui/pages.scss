@@ -268,7 +268,33 @@ body{
 						font-weight: bold;
 					}
 				}
+			}
+
+			.border-img{
+				position: relative;
+				left:30%;
+				border:dotted;
+				width:80px;
+				height:80px;
 			}	
+
+			.uploader_button{
+				position: relative;
+			    overflow: hidden;
+			    margin: 10px;
+    			.file_uploader {
+					position: absolute;
+				    top: 0;
+				    right: 0;
+				    margin: 0;
+				    padding: 0;
+				    font-size: 20px;
+				    cursor: pointer;
+				    opacity: 0;
+				    filter: alpha(opacity=0);
+				}
+			}
+			
 
 			.form-button{
 				text-align: right;
