@@ -56,7 +56,7 @@ class TurnosController < ApplicationController
 
    def get_paciente
       @paciente = Paciente.find(params[:id])
-      
+      render 'get_paciente', format: :js
     end
 
   def turno_params
