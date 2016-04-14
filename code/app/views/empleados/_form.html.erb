@@ -7,7 +7,7 @@
 		</div>
 	</div>
 
-	<%= form_for @empleado, html: {class: 'form-empleado'}, remote: true do |empleado|%>		
+	<%= form_for @empleado, html: {class: 'form-empleado'} do |empleado|%>		
 
 		<h4>Datos Personales</h4>
 		<hr>
@@ -144,4 +144,12 @@
 
 <script type="text/javascript">	
 	empleadosUI.initScript("<%= empleados_check_ci_path %>");
+	
+	<% if !flash.notice.blank? %>	
+		var n = noty({text: '<%=notice%>', type: 'success'});		
+	<% end %>
+	<% if !flash.alert.blank?%>	
+		var n = noty({text: '<%=alert%>', type: 'error'});
+	<% end %>
+
 </script>

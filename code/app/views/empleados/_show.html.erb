@@ -4,10 +4,13 @@
 
 		<div class="tool">
 			<%= link_to '<i class="fa fa-list"></i> '.html_safe, empleados_path %> 
-			<%= link_to '<i class="fa fa-plus-square"></i> '.html_safe, new_empleado_path, remote: true, :target => '_blank' %> 
+			<%= link_to '<i class="fa fa-plus-square"></i> '.html_safe, new_empleado_path, remote: true%> 
 			
-				<%= link_to '<i class="fa fa-edit"></i> '.html_safe, edit_empleado_path(@empleado.id), remote: true, :target => '_blank' %> 
+			<%= link_to '<i class="fa fa-edit"></i> '.html_safe, edit_empleado_path(@empleado.id), remote: true %> 
+			
+			<% unless current_user.empleado_id == @empleado.id %> 
 				<%= link_to '<i class="fa fa-trash-o"></i>'.html_safe, empleado_path(@empleado.id), method: 'delete', data: {confirm: "¿Desea eliminar al empleado #{@empleado.persona.nombre}?"}%>
+			<% end %>
 
 			<%= link_to '<i class="fa fa-print"></i> '.html_safe, empleados_path %> 
 		</div>
@@ -66,7 +69,7 @@
 
 			<%= FormBuilder::text_field_v(persona, :direccion,
 													disabled: true,
-													col_class: 'col-md-11',
+													col_class: 'col-md-12',
 													label_text: 'Dirección')%> 
 		</div>    
 		<div class="row">   
@@ -76,7 +79,7 @@
 													col_class: 'col-md-4') %> 	
 			<%= FormBuilder::text_field_v(persona, :email, 
 													disabled: true,
-													col_class: 'col-md-7') %> 
+													col_class: 'col-md-8') %> 
 		</div>  		
 		<% end %>
 
@@ -109,7 +112,7 @@
 		</div> 	
 
 		<div class="row">
-			<% if @empleado.area_id != nil %>
+			<% if @empleado.type == 'Doctor' && @empleado.area_id !=nil %>
 				<%= FormBuilder::text_field_v(empleado, :area_id,
 														disabled: true,
 														label_text: '* Area',
@@ -126,4 +129,13 @@
 	
 
 </div>
+
+<script type="text/javascript">
+	<% if !flash.notice.blank? %>	
+		var n = noty({text: '<%=notice%>', type: 'success'});		
+	<% end %>
+	<% if !flash.alert.blank?%>	
+		var n = noty({text: '<%=alert%>', type: 'error'});
+	<% end %>
+</script>
 
