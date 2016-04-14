@@ -46,23 +46,66 @@ persona3 = Persona.create(ci: '89855656',
 						  estado_civil_id: soltero.id, 
 						  email: "josddddd@gmail.com")
 
+persona3 = Persona.create(ci: '3425464', 
+						  nombre: 'Maria Diana',
+						  apellido: 'Martinez White',
+						  direccion: 'Av Mscal. Francisco Solano Lopez',
+	                      telefono: '071 203 346',
+	                      ruc: '14-3244d',
+	                      fecha_nacimiento: DateTime.now,
+	                      sexo: 'Femenino',
+	                      edad: '45', 
+						  estado_civil_id: casado.id, 
+						  email: "maria.diana@gmail.com")
+persona4 = Persona.create(ci: '578674', 
+						  nombre: 'Litani',
+						  apellido: 'Miranda Vazquez',
+						  direccion: 'Av. Carlos Antonio Lopez',
+	                      telefono: '0985 343 456',
+	                      ruc: '23-3544d',
+	                      fecha_nacimiento: DateTime.now,
+	                      sexo: 'Femenino',
+	                      edad: '25', 
+						  estado_civil_id: soltero.id, 
+						  email: "litami@gmail.com")
+
+persona5 = Persona.create(ci: '6787894', 
+						  nombre: 'Homero J.',
+						  apellido: 'Simpson',
+						  direccion: 'Av. Siempre Vive',
+	                      telefono: '071 345 453',
+	                      ruc: '14-3223d',
+	                      fecha_nacimiento: DateTime.now,
+	                      sexo: 'Masculino',
+	                      edad: '43', 
+						  estado_civil_id: casado.id, 
+						  email: "homerojey@gmail.com")
+
+
 psicologia = Especialidad.create(descripcion: 'Psicologia')
 fisioterapeuta = Especialidad.create(descripcion: 'Fisioterapeuta')
 
-cargo1 = Cargo.create(descripcion: 'Gerente General')
-cargo2 = Cargo.create(descripcion: 'Jefe de Pediatria')
 
 funcionario1 = Funcionario.create(persona_id: persona1.id,
-							      cargo_id: cargo1.id)
+							      cargo: 'Gerente General')
+funcionario3 = Funcionario.create(persona_id: persona3.id,
+							      cargo: 'Secretaria')
+funcionario4 = Funcionario.create(persona_id: persona4.id,
+							      cargo: 'Contador')
+
 doctor1 = Doctor.create(persona_id: persona2.id,  
-	                    cargo_id: cargo2.id, 
+	                    cargo: 'Jefe del Area de Pediatria', 
 	                    especialidad_id: psicologia.id)
 
 horario1 = Horario.create(empleado_id: funcionario1.id)
 horario2 = Horario.create(empleado_id: doctor1.id)
 
-admin = User.create(username: 'admin', password: 'MyAdmin123', password_confirmation: 'MyAdmin123', empleado_id: 1, email: "juanjose@gmail.com")
 
+admin = User.create(username: 'admin', 
+					password: 'MyAdmin123', 
+					password_confirmation: 'MyAdmin123', 
+					empleado_id: funcionario1.id,
+					email: "juanjose@gmail.com")
 
 configuracion1 = Configuracion.create(empresa_nombre: 'CENADE', 
 	                      empresa_direccion: 'Samu´u c/ Ruta 1 km 3,5 - Barrio: Ka´aguy Rory Encarnación', 
@@ -82,6 +125,6 @@ Permission.create([{nombre: 'Usuarios', model: 'User', grupo:'Configuracion'},
  Permission.all.each do |p|
         PermissionsRole.create(role_id: 1, permission_id: p.id)
  end
-paciente= Paciente.create(persona_id: 3, fecha_ingreso: '07/05/1995')
+paciente= Paciente.create(persona_id: persona5.id, fecha_ingreso: '07/05/1995')
 area= Area.create(nombre: 'Odontologia', costo: 5000)
 

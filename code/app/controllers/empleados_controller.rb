@@ -1,9 +1,9 @@
 class EmpleadosController < ApplicationController
 	
-	before_action :set_submenu, only: [:index,:new]
+	before_action :set_submenu, only: [:index,:new, :show]
 	before_action :set_empleado, only: [:show, :edit, :update, :destroy]
 	#load_and_authorize_resource #Conflicto con check_ci
-	respond_to :html, :js
+	#respond_to :html, :js
 
 	def set_submenu
 		@submenu_layout = 'layouts/submenu_personal'
@@ -19,20 +19,23 @@ class EmpleadosController < ApplicationController
   	end
 
   	def create	
-  		if empleado_params[:especialidad_id].blank?    
-	    	@empleado = Funcionario.new(empleado_params)
-	    else
-	    	@empleado = Doctor.new(empleado_params)
-	    end			
-		if @empleado.save
-		    flash.notice= "Se ha guardado el empleado #{@empleado.persona.nombre}
-		    #{@empleado.persona.apellido}."		    
-		else
-		    flash.alert = "No se ha podido guardar el empleado #{@empleado.persona.nombre} 
-		    #{@empleado.persona.apellido}."
-		end 
-
-		show		  
+  		respond_to do |format|
+	  		if empleado_params[:especialidad_id].blank?    
+		    	@empleado = Funcionario.new(empleado_params)
+		    else
+		    	@empleado = Doctor.new(empleado_params)
+		    end			
+			if @empleado.save
+			    flash.notice= "Se ha guardado el empleado #{@empleado.persona.nombre}
+			    #{@empleado.persona.apellido}."	
+			    format.js {render action: "show"}	    
+			else
+			    flash.alert = "No se ha podido guardar el empleado #{@empleado.persona.nombre} 
+			    #{@empleado.persona.apellido}."
+			    format.html { redirect_to empleados_path}  
+			    # Lo ideal es mostrar el mensaje en el mismo formulario	 
+			end 
+		end				  
   	end
 
   	def edit
@@ -41,10 +44,7 @@ class EmpleadosController < ApplicationController
  	def update	 		
   	end
 
-  	def show
-	    respond_to do |format|
-	      format.js { render 'show' }	      
-	    end
+  	def show	    
   	end
 
   	def update_list
@@ -88,7 +88,7 @@ class EmpleadosController < ApplicationController
     end	
 
   	def empleado_params
-      params.require(:empleado).permit(:cargo_id,:especialidad_id,:type,
+      params.require(:empleado).permit(:cargo,:especialidad_id,:type,
       persona_attributes: [:id,:nombre,:apellido,:ci,:ruc,:fecha_nacimiento,:edad,
       	                   :sexo,:estado_civil_id,:direccion,:telefono,:email])
     end

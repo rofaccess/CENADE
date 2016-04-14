@@ -22,7 +22,7 @@ class RolesController < ApplicationController
 
   def create
   	@role = Role.new(role_params)
-  	 respond_to do |format|
+  	respond_to do |format|
       if @role.save
       	@role.permission_ids = params[:role][:permission_ids]
         

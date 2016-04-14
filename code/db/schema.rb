@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160412055951) do
+ActiveRecord::Schema.define(version: 20160413145411) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,15 +46,6 @@ ActiveRecord::Schema.define(version: 20160412055951) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "cargos", force: :cascade do |t|
-    t.string   "descripcion", limit: 100, default: "",  null: false
-    t.decimal  "sueldo",                  default: 0.0
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "cargos", ["descripcion"], name: "index_cargos_on_descripcion", unique: true, using: :btree
-
   create_table "configuraciones", force: :cascade do |t|
     t.string   "empresa_nombre",           limit: 50,  default: ""
     t.string   "empresa_direccion",        limit: 125, default: ""
@@ -68,16 +59,30 @@ ActiveRecord::Schema.define(version: 20160412055951) do
   end
 
   create_table "empleados", force: :cascade do |t|
-    t.integer  "persona_id",                              null: false
-    t.integer  "cargo_id",                                null: false
+    t.integer  "persona_id",                               null: false
     t.integer  "especialidad_id"
-    t.string   "type",            limit: 15, default: "", null: false
+    t.string   "type",            limit: 15,  default: "", null: false
+    t.string   "cargo",           limit: 100, default: "", null: false
     t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "empleados", ["deleted_at"], name: "index_empleados_on_deleted_at", unique: true, using: :btree
+
+  create_table "encargados", force: :cascade do |t|
+    t.string   "padre_nombre",           limit: 60,  default: ""
+    t.string   "padre_edad",             limit: 3,   default: ""
+    t.string   "padre_prof_act_ant",     limit: 100, default: ""
+    t.string   "madre_nombre",           limit: 60,  default: ""
+    t.string   "madre_edad",             limit: 3,   default: ""
+    t.string   "madre_prof_act_ant",     limit: 100, default: ""
+    t.string   "encargado_nombre",       limit: 60,  default: ""
+    t.string   "encargado_edad",         limit: 3,   default: ""
+    t.string   "encargado_prof_act_ant", limit: 100, default: ""
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
+  end
 
   create_table "especialidades", force: :cascade do |t|
     t.string   "descripcion", limit: 50, default: "", null: false
@@ -113,11 +118,16 @@ ActiveRecord::Schema.define(version: 20160412055951) do
   end
 
   create_table "pacientes", force: :cascade do |t|
-    t.integer  "persona_id",    null: false
-    t.date     "fecha_ingreso", null: false
+    t.integer  "persona_id",                                null: false
+    t.integer  "encargado_id"
+    t.date     "fecha_ingreso",                             null: false
     t.boolean  "es_menor"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.string   "lugar_nacimiento", limit: 100, default: ""
+    t.string   "profesion",        limit: 50,  default: ""
+    t.string   "lugar_trabajo",    limit: 100, default: ""
+    t.datetime "deleted_at"
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
   end
 
   create_table "permissions", force: :cascade do |t|
@@ -146,6 +156,7 @@ ActiveRecord::Schema.define(version: 20160412055951) do
     t.datetime "fecha_nacimiento"
     t.string   "sexo",             limit: 9,   default: ""
     t.string   "edad",             limit: 3,   default: ""
+    t.string   "nacionalidad",     limit: 20,  default: "", null: false
     t.integer  "estado_civil_id"
     t.datetime "deleted_at"
     t.datetime "created_at"
@@ -180,7 +191,7 @@ ActiveRecord::Schema.define(version: 20160412055951) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  limit: 50, default: "", null: false
+    t.string   "email"
     t.string   "username",               limit: 30, default: "", null: false
     t.string   "encrypted_password",                default: "", null: false
     t.string   "rol",                    limit: 15, default: "", null: false
@@ -211,11 +222,11 @@ ActiveRecord::Schema.define(version: 20160412055951) do
 
   add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
 
-  add_foreign_key "empleados", "cargos", on_delete: :restrict
   add_foreign_key "empleados", "especialidades", on_delete: :restrict
   add_foreign_key "empleados", "personas", on_delete: :restrict
   add_foreign_key "fechas", "horarios", on_delete: :restrict
   add_foreign_key "horarios", "empleados", on_delete: :cascade
+  add_foreign_key "pacientes", "personas", column: "encargado_id", on_delete: :restrict
   add_foreign_key "pacientes", "personas", on_delete: :restrict
   add_foreign_key "permissions_roles", "permissions"
   add_foreign_key "permissions_roles", "roles"

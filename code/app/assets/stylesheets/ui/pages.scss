@@ -20,12 +20,14 @@ $common-color: #24C1C1;
 }
 
 .espacio{
-	padding-top:4%;
+	padding-top:1%;
 	padding-left:4%;
 	padding-right:4%;
-	margin-top: 15px;
+	margin-top: 6%;
 	margin-left:25%;
 	margin-right:25%;
+	margin-botton:6%;
+	background-color:#ffffff;
 
 }
 
@@ -37,6 +39,12 @@ $common-color: #24C1C1;
 .titulos{
 	font-size: 24px;
 	font-weight: bold;
+}
+
+label.label-title {
+	font-weight: bold;
+	color: #999999;
+	font-size: 20px;					 
 }
 
 .show-empleado{
@@ -71,7 +79,6 @@ td.action {
 
 	background-color: #24C1C1;
 	border: none;
-	margin-bottom: 20px;
 	color: white;
 
 	&:hover,
@@ -129,6 +136,7 @@ body{
 	padding-top: 30px;	
 }
 
+/*
 .alert {
 	    
 		padding: 8px 35px 8px 14px;
@@ -138,9 +146,27 @@ body{
 		font-size: 12px;
 		
 	}
+*/
+.align-left {
+	text-align: center;
+}
+
+.line{
+	top: 30px;
+	height: 10px;
+	position: fixed;
+  	right: 0;
+  	left: 0; 
+  	background: #24C1C1;
+  	border-bottom:solid;
+  	border-bottom-color: #CCCCCC;
+  	z-index: 1030;
+}
 
 #principal-content {
-	.content, .form-content{
+
+	.content, .form-content{		
+
 		.page-title {
 			//Posición fija
 			position: fixed;
@@ -172,11 +198,14 @@ body{
 						color: #24C1C1;
 					}	
 				}				
-			}
-
+			}			
 
 		}
+		div.page-title-sin-submenu{
+			top: 40px;
+		}
 	}
+
 
 	.content{
 		#list {
@@ -189,6 +218,10 @@ body{
 			padding-right: 50px;
 			padding-top: 50px;
 			padding-bottom: 1px;
+		}
+
+		div.list-sin-submenu{
+			margin-top: 90px !important;
 		}
 
 		#list-paginate{
@@ -215,6 +248,7 @@ body{
 			margin-right: auto;
 			padding: 50px;
 			padding-top: 30px;
+			padding-bottom: 30px;
 			margin-top: 105px;
 
 			h4 {
@@ -234,12 +268,16 @@ body{
 						font-weight: bold;
 					}
 				}
-			}
+			}	
 
 			.form-button{
 				text-align: right;
 			}
 			
+		}
+
+		form.form-sin-submenu{
+			margin-top: 90px;
 		}
 
 		form.small-form {
@@ -274,17 +312,6 @@ body{
 		}
 	}
 } 
-
-.line{
-	top: 30px;
-	height: 10px;
-	position: fixed;
-  	right: 0;
-  	left: 0; 
-  	background: #24C1C1;
-  	border-bottom:solid;
-  	border-bottom-color: #CCCCCC;
-}
 
 .pagination{
 	.active{
