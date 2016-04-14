@@ -5,7 +5,7 @@ class UsuariosController < ApplicationController
 	respond_to :html, :js
 	layout false, only: [:new]
 	
-	load_and_authorize_resource
+	
 
 	def set_submenu
 		@submenu_layout = 'layouts/submenu_configuracion'

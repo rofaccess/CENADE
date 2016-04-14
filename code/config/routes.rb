@@ -5,8 +5,12 @@ Rails.application.routes.draw do
   resources :roles
   resources :doctores
   resources :funcionarios
-  resources :turnos 
 
+  resources :turnos do
+    collection do
+      post 'get_paciente'
+    end
+  end
   get 'empleados/check_ci' => 'empleados#check_ci'
   resources :empleados
   resources :configuraciones
