@@ -11,13 +11,11 @@
 			<% unless current_user.empleado_id == @empleado.id %> 
 				<%= link_to '<i class="fa fa-trash-o"></i>'.html_safe, empleado_path(@empleado.id), method: 'delete', data: {confirm: "¿Desea eliminar al empleado #{@empleado.persona.nombre}?"}%>
 			<% end %>
-
-			<%= link_to '<i class="fa fa-print"></i> '.html_safe, empleados_path %> 
+			<%= link_to '<i class="fa fa-print"></i> '.html_safe, empleados_print_empleado_path(empleado_id: @empleado.id, :format => :pdf), class: "print-empleado" %>
 		</div>
 	</div>
-
-	<%= form_for @empleado do |empleado|%>		
-
+	
+	<%= form_for @empleado do |empleado|%>	
 		<h4>Datos Personales</h4>
 		<hr>
 
@@ -26,15 +24,15 @@
 			<%= FormBuilder::text_field_v(persona, :nombre, 
 													disabled: true,
 													col_class: 'col-md-4',
-													label_text: '* Nombre') %>
+													label_text: 'Nombre') %>
 			<%= FormBuilder::text_field_v(persona, :apellido, 
 													disabled: true,
 													col_class: 'col-md-4',
-													label_text: '* Apellido') %>
+													label_text: 'Apellido') %>
 			<%= FormBuilder::text_field_v(persona, :ci, 
 													disabled: true,
 													col_class: 'col-md-2',
-													label_text: '* Cédula Nº') %>  
+													label_text: 'Cédula Nº') %>  
 			<%= FormBuilder::text_field_v(persona, :ruc, 
 													disabled: true,
 													col_class: 'col-md-2') %>                           
@@ -43,23 +41,28 @@
 
 			<%= FormBuilder::text_field_v(persona, :fecha_nacimiento, 
 													disabled: true,
-													label_text: '* Fecha de Nac.',
+													label_text: 'Fecha de Nac.',
 													col_class: 'col-md-2', 
 													input_value: Formatter.format_date(@empleado.persona.fecha_nacimiento))%> 	
 			<%= FormBuilder::text_field_v(persona, :edad, 
 													disabled: true,
-													col_class: 'col-md-2') %>  
+													col_class: 'col-md-1') %>  
 			
 			<%= FormBuilder::text_field_v(persona, :sexo, 
 													disabled: true,
-													label_text: '* Sexo',
-							                        col_class: 'col-md-4') %>
+													label_text: 'Sexo',
+							                        col_class: 'col-md-3') %>
 			
 			<%= FormBuilder::text_field_v(persona, :estado_civil_id,
 													disabled: true,
 													label_text: 'Estado Civil',
 													input_value: @empleado.persona.estado_civil_id != nil ? @empleado.persona.estado_civil.descripcion : '' , 
-							                        col_class: 'col-md-4') %>    
+							                        col_class: 'col-md-3') %>  
+			<%= FormBuilder::text_field_v(persona, :nacionalidad, 
+													disabled: true,
+													label_text: 'Nacionalidad',
+							                        col_class: 'col-md-3') %>
+
 		</div> 
 
 		<h4>Datos de Contacto</h4>
@@ -115,7 +118,7 @@
 			<% if @empleado.type == 'Doctor' && @empleado.area_id !=nil %>
 				<%= FormBuilder::text_field_v(empleado, :area_id,
 														disabled: true,
-														label_text: '* Area',
+														label_text: 'Area',
 														input_value: @empleado.area.nombre, 
 								                        col_class: 'col-md-4') %>
 				<%= FormBuilder::text_field_v(empleado, :costo, 

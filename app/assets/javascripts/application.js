@@ -28,6 +28,7 @@
 //= require plugins/loading-overlay-min.js
 
 //= require plugins/noty/jquery.noty
+//= require plugins/noty/packaged/jquery.noty.packaged
 //= require plugins/noty/layouts/topCenter
 //= require plugins/noty/themes/default
 

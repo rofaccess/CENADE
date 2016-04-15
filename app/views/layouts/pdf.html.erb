@@ -1,0 +1,18 @@
+<!doctype html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <%= wicked_pdf_stylesheet_link_tag "ui/pdf" %>
+    <title> Imprimir Empleado </title>
+  </head>
+  <body>
+    <div id="header">
+       <h1> CENADE </h1>
+       <hr>
+    </div>
+    <div id="content">
+      <%= yield %>
+    </div>
+  </body>
+</html>
