@@ -1,0 +1,132 @@
+<div class="form-content">
+	<div class="page-title page-title-sin-submenu">
+		Paciente
+
+		<div class="tool">
+			<%= link_to '<i class="fa fa-list"></i> '.html_safe, pacientes_path %> 
+			<%= link_to '<i class="fa fa-plus-square"></i> '.html_safe, new_paciente_path, remote: true%> 
+			
+			<%= link_to '<i class="fa fa-edit"></i> '.html_safe, edit_paciente_path(@paciente.id), remote: true %> 
+			
+			<%= link_to '<i class="fa fa-trash-o"></i>'.html_safe, paciente_path(@paciente), method: 'delete', data: {confirm: "¿Desea eliminar al paciente #{@paciente.persona.nombre}?"}%>
+			
+			<%= link_to '<i class="fa fa-print"></i> '.html_safe, new_paciente_path, target: '_blank'%>
+		</div>
+	</div>
+	
+	<%= form_for @paciente, html: {class: 'form-sin-submenu'} do |paciente|%>	
+		<h4>Datos Personales</h4>
+		<hr>
+
+		<%= paciente.fields_for(:persona) do |persona| %>
+		<div class="row">	
+			<%= FormBuilder::text_field_v(persona, :nombre, 
+													disabled: true,
+													col_class: 'col-md-4',
+													label_text: 'Nombre') %>
+			<%= FormBuilder::text_field_v(persona, :apellido, 
+													disabled: true,
+													col_class: 'col-md-4',
+													label_text: 'Apellido') %>
+			<%= FormBuilder::text_field_v(persona, :ci, 
+													disabled: true,
+													col_class: 'col-md-2',
+													label_text: 'Cédula Nº') %>  
+			<%= FormBuilder::text_field_v(persona, :ruc, 
+													disabled: true,
+													col_class: 'col-md-2') %>                           
+		</div>					                        
+		<div class="row">   
+
+			<%= FormBuilder::text_field_v(persona, :fecha_nacimiento, 
+													disabled: true,
+													label_text: 'Fecha de Nac.',
+													col_class: 'col-md-2', 
+													input_value: Formatter.format_date(@paciente.persona.fecha_nacimiento))%> 	
+			<%= FormBuilder::text_field_v(persona, :edad, 
+													disabled: true,
+													col_class: 'col-md-1') %>  
+			
+			<%= FormBuilder::text_field_v(persona, :sexo, 
+													disabled: true,
+													label_text: 'Sexo',
+							                        col_class: 'col-md-3') %>
+			
+			<%= FormBuilder::text_field_v(persona, :estado_civil_id,
+													disabled: true,
+													label_text: 'Estado Civil',
+													input_value: @paciente.persona.estado_civil_id != nil ? @paciente.persona.estado_civil.descripcion : '' , 
+							                        col_class: 'col-md-3') %>  
+			<%= FormBuilder::text_field_v(persona, :nacionalidad, 
+													disabled: true,
+													label_text: 'Nacionalidad',
+							                        col_class: 'col-md-3') %>
+
+		</div> 
+
+		<div class="row">   
+			<%= FormBuilder::text_field_v(paciente, :lugar_nacimiento, 
+													disabled: true,
+													col_class: 'col-md-10',
+													label_text: 'Lugar de Nacimiento')%> 
+
+			<%= FormBuilder::text_field_v(paciente, :fecha_ingreso, 
+													disabled: true,
+													col_class: 'col-md-2',
+													input_value: Formatter.format_date(@paciente.fecha_ingreso),
+													label_text: 'Fecha de Ingr.')%> 
+		</div>    
+
+		<h4>Datos de Contacto</h4>
+		<hr> 
+			
+		<div class="row">   
+
+			<%= FormBuilder::text_field_v(persona, :direccion,
+													disabled: true,
+													col_class: 'col-md-12',
+													label_text: 'Dirección')%> 
+		</div>    
+		<div class="row">   
+
+			<%= FormBuilder::text_field_v(persona, :telefono, 
+													disabled: true,
+													col_class: 'col-md-4') %> 	
+			<%= FormBuilder::text_field_v(persona, :email, 
+													disabled: true,
+													col_class: 'col-md-8') %> 
+		</div>  		
+		<% end %>
+
+		<h4>Datos Laborales</h4>
+		<hr>
+
+		<div class="row">   
+			<%= FormBuilder::text_field_v(paciente, :profesion, 
+													disabled: true,
+													col_class: 'col-md-5') %> 	
+
+			 
+			<%= FormBuilder::text_field_v(paciente, :lugar_trabajo, 
+													disabled: true,
+													col_class: 'col-md-7') %> 												
+				
+		</div> 
+
+		<h4>Datos de los Padres o Encargados </h4>
+		<hr>
+
+	<% end %>
+	
+
+</div>
+
+<script type="text/javascript">
+	<% if !flash.notice.blank? %>	
+		var n = noty({text: '<%=notice%>', type: 'success'});		
+	<% end %>
+	<% if !flash.alert.blank?%>	
+		var n = noty({text: '<%=alert%>', type: 'error'});
+	<% end %>
+</script>
+

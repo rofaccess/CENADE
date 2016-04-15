@@ -29,7 +29,16 @@ class PacientesController < ApplicationController
     def edit
     end
 
-    def update	 		
+    def update	
+    	respond_to do |format|
+	      if @paciente.update(paciente_params)
+	        flash.now[:notice] = "Se ha actualizado el paciente #{@paciente.persona.nombre} #{@paciente.persona.apellido}."
+	        format.html {render 'show'}   
+	      else
+	        flash.now[:alert] = "No se ha podido actualizar los datos del paciente #{@paciente.persona.nombre} #{@paciente.persona.apellido}."
+	        format.html { render action: "new"}        
+	      end 
+    	end   		
     end
 
     def show
