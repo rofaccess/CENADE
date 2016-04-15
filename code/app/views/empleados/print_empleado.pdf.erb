@@ -1,0 +1,75 @@
+<h5>EMPLEADO</h5>
+
+<div class = "form-content">
+	
+	<h6>Datos Personales</h6>
+	<hr>
+
+	<label class="control-label">Nombre</label>
+	<input class="form-control" value="<%= @empleado.persona.nombre %>">
+	
+
+	
+	<label class="control-label">Apellido</label>
+	<input class="form-control" value="<%= @empleado.persona.apellido %>">
+	
+	
+	<label class="control-label">CI</label>
+	<input class="form-control" value="<%=@empleado.persona.ci %>">
+	
+	<label class="control-label">RUC</label>
+	<input class="form-control" value="<%=@empleado.persona.ruc %>">
+	
+
+	
+	<label class="control-label">Fecha de Nac.</label>
+	<input class="form-control" value="<%=Formatter.format_date(@empleado.persona.fecha_nacimiento)%>">
+	
+
+	
+	<label class="control-label">Edad</label>
+	<input class="form-control" value="<%=@empleado.persona.ruc %>">
+	
+
+	
+	<label class="control-label">Estado Civil</label>
+	<input class="form-control" value="<%= @empleado.persona.estado_civil_id != nil ? @empleado.persona.estado_civil.descripcion : '' %>">
+
+	<label class="control-label">Nacionalidad</label>
+	<input class="form-control" value="<%=@empleado.persona.nacionalidad %>">
+
+
+	
+	<h6>Datos de Contacto</h6>
+	<hr>
+
+	<label class="control-label">Direccion</label>
+	<input class="form-control" value="<%=@empleado.persona.direccion %>">
+
+	<label class="control-label">Email</label>
+	<input class="form-control" value="<%=@empleado.persona.email %>">
+
+	<label class="control-label">Telefono</label>
+	<input class="form-control" value="<%=@empleado.persona.telefono %>">
+
+
+	<br>
+	<h6>Datos Laborales</h6>
+
+	<label class="control-label">Cargo</label>
+	<input class="form-control" value="<%=@empleado.cargo %>">
+
+	<label class="control-label">Abreviatura de Profesión</label>
+	<input class="form-control" value="<%=@empleado.abr_profesion %>">
+
+	<% if @empleado.type == 'Doctor' && @empleado.area_id !=nil %>
+	
+	<label class="control-label">Area</label>
+	<input class="form-control" value="<%=@empleado.area.nombre %>">
+	
+
+	<label class="control-label">Costo por su Servicio</label>
+	<input class="form-control" value="<%=@empleado.costo%>">				                        
+	<% end %>
+	
+</div>

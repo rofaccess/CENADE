@@ -5,9 +5,9 @@ var empleadosUI = (function(){
 			$('body').on('click', '.show-empleado', function(e){
 				$.get($(this).parents('tr').data('url'), {}, function(){}, 'script');
 			});
-		},		
-
-		//Muestra la area si es doctor
+		},			
+			
+		//Muestra el area si es doctor
 		mostrarArea: function(){
 			
 			if ($(".checkbox-doctor").is(":checked")){

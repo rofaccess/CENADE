@@ -67,6 +67,18 @@ class EmpleadosController < ApplicationController
   		end
   	end	
 
+  	def print_empleado
+  		@empleado = Empleado.find params[:empleado_id]  		
+	    respond_to do |format|
+	      format.pdf do
+	        render :pdf => "Empleado",
+	               :template => "empleados/print_empleado.pdf.erb",
+	               :layout => "pdf.html"
+      		end
+      	end
+    end
+ 
+
   	def set_empleado
       @empleado = Empleado.find(params[:id])
     end
