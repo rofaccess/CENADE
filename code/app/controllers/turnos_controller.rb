@@ -2,8 +2,8 @@ class TurnosController < ApplicationController
  
   before_action :set_turno, only: [:show, :edit, :update, :destroy]
   def index
-  	@search = Turno.ransack(params[:q])
-    @turnos= @search.result.page(params[:page])
+  	@turnos = Turno.all
+ 
   end
 
   def new
@@ -56,7 +56,11 @@ class TurnosController < ApplicationController
 
    def get_paciente
       @paciente = Paciente.find(params[:id])
-      render 'get_paciente', format: :js
+
+      @turno= Turno.new
+      respond_to do |format|
+        format.js { render :partial => 'get_paciente' }
+      end
     end
 
   def turno_params

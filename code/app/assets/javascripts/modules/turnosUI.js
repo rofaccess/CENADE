@@ -3,7 +3,7 @@ var turnosUI = (function(){
 		
 
 		// Inicia el script en el formulario
-		initScript: function(addpacienteUrl){
+		initScript: function(){
 			//turnosUI.getPaciente(addpacienteUrl)
 			$("#nuevo-turno").last().validate();
 
