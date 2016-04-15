@@ -11,7 +11,7 @@
 			<% unless current_user.empleado_id == @empleado.id %> 
 				<%= link_to '<i class="fa fa-trash-o"></i>'.html_safe, empleado_path(@empleado.id), method: 'delete', data: {confirm: "¿Desea eliminar al empleado #{@empleado.persona.nombre}?"}%>
 			<% end %>
-			<%= link_to '<i class="fa fa-print"></i> '.html_safe, empleados_print_empleado_path(empleado_id: @empleado.id, :format => :pdf), class: "print-empleado" %>
+			<%= link_to '<i class="fa fa-print"></i> '.html_safe, empleados_print_empleado_path(empleado_id: @empleado.id, :format => :pdf), target: '_blank'%>
 		</div>
 	</div>
 	

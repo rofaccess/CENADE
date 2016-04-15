@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :funcionarios
   resources :turnos 
 
+  get 'empleados/print_empleados' => 'empleados#print_empleados'
   get 'empleados/print_empleado' => 'empleados#print_empleado'
   get 'empleados/check_ci' => 'empleados#check_ci'
   resources :empleados
