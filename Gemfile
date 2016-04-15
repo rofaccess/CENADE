@@ -87,7 +87,8 @@ gem 'faker'
 
 # PDF generator (from HTML) plugin for Ruby on Rails http://mileszs.com/blog/2009/06/17/wicked-pdf-plugin.html
 gem 'wicked_pdf'
-gem 'wkhtmltopdf-binary'
+#gem 'wkhtmltopdf-binary'
+gem "wkhtmltopdf-heroku"
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
