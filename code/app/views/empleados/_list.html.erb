@@ -46,3 +46,7 @@
     <% end %>   
   </tbody>
 </table>
+
+<script type="text/javascript">
+  configImprimir("<%= params[:q].nil? ? '' : '?'+params[:q].to_query('q')%>");
+</script>

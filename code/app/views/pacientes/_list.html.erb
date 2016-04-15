@@ -32,7 +32,7 @@
         
         <%= link_to '<i class="fa fa-eye fa-lg"></i> '.html_safe, paciente_path(paciente), remote: true%>     
         <%= link_to '<i class="fa fa-edit fa-lg"></i> '.html_safe, edit_paciente_path(paciente), remote: true%>        
-        <%= link_to '<i class="fa fa-trash-o fa-lg"></i>'.html_safe, paciente_path(paciente), method: 'delete', data: {confirm: "¿Desea eliminar al paciente #{paciente.persona.nombre}?"}, remote: true%>
+        <%= link_to '<i class="fa fa-trash-o fa-lg"></i>'.html_safe, paciente_path(paciente), method: 'delete', data: {confirm: "¿Desea eliminar al paciente #{paciente.persona.nombre}?"}%>
 
       </td>
     </tr>
