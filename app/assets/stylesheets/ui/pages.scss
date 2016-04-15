@@ -65,6 +65,13 @@ td.action {
 				
 			}
 		}
+		i.fa-times {
+			&:hover,
+			&:focus {
+				color: #FF1414;
+				
+			}
+		}
 
 		i.fa-edit, i.fa-eye {
 			&:hover,

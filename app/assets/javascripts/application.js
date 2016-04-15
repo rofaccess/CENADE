@@ -23,8 +23,7 @@
 
 //= require plugins/select2/select2.full.min.js
 //= require plugins/select2/i18n/es.js
-//= require plugins/select2/i18n/en.js
-
+//= require plugins/jquery.dataTables.js
 //= require plugins/loading-overlay-min.js
 
 

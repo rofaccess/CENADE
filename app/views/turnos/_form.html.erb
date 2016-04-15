@@ -13,29 +13,76 @@
       <h4>Datos Personales</h4>
       <hr>
       <div class="row">
-              <div class="col-md-7">
+        <div class="col-md-7">
 
-              <%= turno.label :paciente_id, '* Paciente' %> 
+          <%= turno.label :paciente_id, '* Paciente' %> 
 
-              <%= turno.select(:paciente_id, Paciente.all.collect { |p| [p.persona.nombre, p.id] },{},{class: "form-control", required: true, id: 'paciente_id'})%>
+          <%= turno.select(:paciente_id, Paciente.all.collect { |p| [p.persona.nombre, p.id] },{},{class: "paciente_select form-control", required: true,  id: 'paciente_id'})%>
 
-              </div>
+        </div>
             
-               <%= FormBuilder::text_field_v(turno, :fecha_expedicion, 
-                            input_class: 'required date', 
-                            max_length: Domain::FECHA,
-                            label_text: '* Fecha Actual',
-                            col_class: 'col-md-5')%>
+        <%= FormBuilder::text_field_v(turno, :fecha_expedicion, 
+                                      input_class: 'required date', 
+                                      max_length: Domain::FECHA,
+                                      label_text: '* Fecha Actual',
+                                      col_class: 'col-md-5')%>
             
        </div>
 
-        <%= turno.hidden_field :paciente_id %>
-          <div id ="paciente_data">
+          <div class ="paciente_data">
           <%= render "paciente_form", turno: turno, paciente: @paciente%>
       </div>
+    </br>
      <h4>Datos Turno</h4>
     <hr>
-       
+
+    <div class="row">
+      <div class="col-md-6">
+
+        <%= turno.label :area_id, '* Área a consultar' %> 
+
+        <%= turno.select(:area_id, Area.all.collect { |a| [a.nombre, a.id] },{},{class: "area_select form-control", required: true,  id: 'area_id'})%>
+
+      </div>
+
+      <div class="col-md-6">
+
+        <%= turno.label :doctor_id, '* Profesional de la Salud' %> 
+
+        <%= turno.select(:doctor_id, Empleado.where(type: 'Doctor').collect { |a| [a.persona.nombre, a.id] },{},{class: "profesional_select form-control", required: true,  id: 'doctor_id'})%>
+
+       </div>
+    </div>
+  </br>
+      <div class="row">
+          <%= FormBuilder::text_field_v(turno, :monto, 
+                                      input_class: 'required', 
+                                      max_length: Domain::TELEFONO,
+                                      label_text: '* Costo del servicio',
+                                      col_class: 'col-md-6')%>
+
+           <div class="col-md-5">
+
+            <%= turno.label :paga, '* Abonará el monto estipulado?' %>
+
+            <div class="row">
+              <%= label :paga, "Si", class: "col-md-1"%>
+              <%= turno.radio_button :paga, true , :value => true, class: "col-md-2 paga si_paga"%>
+              <%= label :paga, "No", class: "col-md-2"%>
+              <%= turno.radio_button :paga, false , :checked => true, :value => false, class: "col-md-1 paga no_paga" %>
+
+            </div>
+        </div>
+      </div>
+      <div class="row" id="factura" style="display:none">
+        <%= FormBuilder::text_field_v(turno, :nro_factura, 
+                                      input_class: '', 
+                                      max_length: 15,
+                                      label_text: '* N° de Factura',
+                                      col_class: 'col-md-6')%>
+
+       </div>
+      
       <div class="form-button">         
         <%= turno.submit 'Guardar', class: 'btn btn-custom'%>
       </div>
@@ -49,19 +96,30 @@
 
 <script type="text/javascript"> 
     $(document).ready(function(){
-      $("#paciente_id").select2(
+       $(".paciente_select").select2({
         placeholder: "Seleccione un paciente",
         language: "es"
 
-      });
-      $('#paciente_id').change(function() {
+        }).on("select2:select",function(){
+        id = $(this).val();
+
         $.ajax({
-          url: "turnos/get_paciente",
+         
+          url: "/turnos/get_paciente",
+          type: 'post',
           data: {
-           id : $('#paciente_id').val()
+           id : $(this).val()
           },
-          dataType: "script"
+          success: function(resp){
+              //alert("Data");
+           }
+          
+         });
+      });
+        $(".paga").on("change", function(){
+          $("#factura").toggle($(this).hasClass("si_paga"));
         });
+
     });
 
   turnosUI.initScript();
