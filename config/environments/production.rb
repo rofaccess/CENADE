@@ -76,4 +76,7 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  # Para indicarle el css que debe usar en Heroku 
+  config.assets.precompile += ['pages.css.scss']
 end
