@@ -9,7 +9,9 @@
 				<span class="fa fa-search"></span>
 				<div class="input-group-btn"> 
 					<%= link_to '<i class="fa fa-plus-square"></i> '.html_safe, new_empleado_path, remote: true %> 
-					<%= link_to '<i class="fa fa-print"></i> '.html_safe, empleados_print_empleados_path(:format => :pdf), target: '_blank' %>					
+					<%= link_to '<i class="fa fa-print"></i> '.html_safe, empleados_print_empleados_path(:format => :pdf), target: '_blank' %>		
+
+					<%=link_to '<i class="fa fa-print"></i>'.html_safe, empleados_print_empleados_path(format: 'pdf'), class: 'hide', id: 'imprimir-link', target: '_blank', data: {url: empleados_print_empleados_path(format: 'pdf')}	%>		
 				</div> 
 			</div>
 			<% end %>

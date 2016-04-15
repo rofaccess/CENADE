@@ -11,7 +11,7 @@ var usuariosUI = (function(){
 				}
 			});
 		},
-
+ 
 		resetPassword: function(){
 			/*
 			if ($(".checkbox-password").is(":checked")){

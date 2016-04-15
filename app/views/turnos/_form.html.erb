@@ -13,71 +13,80 @@
       <h4>Datos Personales</h4>
       <hr>
       <div class="row">
-              <div class="col-md-7">
+        <div class="col-md-7">
 
-              <%= turno.label :paciente_id, '* Paciente' %> 
-
-              <%= turno.select(:paciente_id, Paciente.all.collect { |p| [p.persona.nombre, p.id] },{},{class: "form-control", required: true, id: 'paciente_id'})%>
-
-              </div>
-              <% @pacientes.each do |paciente|%>
-              <div class="hidden">
-                <input type="hidden" id="option-nombre-<%= paciente.id %>" value="<%= paciente.persona.nombre %>"/>
-                  <input type="hidden" id="option-apellido-<%= paciente.id %>" value="<%= paciente.persona.apellido %>"/>
-                  <input type="hidden" id="option-ci-<%= paciente.id %>" value= "<%= paciente.persona.ci %>"/>
-                  <input type="hidden" id="option-direccion-<%= paciente.id %>" value="<%= paciente.persona.direccion%>"/>
-                  <input type="hidden" id="option-telefono-<%= paciente.id %>" value="<%= paciente.persona.telefono %>"/>
-                </div>
-            <%end%>
+          <%= turno.label :paciente_id, '* Paciente' %> 
+          <div class="row">
+            <div class="col-md-10">
+            <%= turno.select(:paciente_id, Paciente.all.collect { |p| [p.persona.nombre, p.id] },{},{class: "paciente_select form-control", required: true,  id: 'paciente_id'})%></div>
+     
+            <%= link_to '<i class="fa fa-plus"></i> '.html_safe, pacientes_new_paciente_modal_path, class: 'btn btn-custom col-md-1', style: 'height: 30px; width: 40px', remote: true%> 
             
-               <%= FormBuilder::text_field_v(turno, :fecha_expedicion, 
-                            input_class: 'required date', 
-                            max_length: Domain::FECHA,
-                            label_text: '* Fecha Actual',
-                            col_class: 'col-md-5')%>
+        </div>
+        </div>
+
+        <%= FormBuilder::text_field_v(turno, :fecha_expedicion, 
+                                      input_class: 'required date', 
+                                      max_length: Domain::FECHA,
+                                      label_text: '* Fecha Actual',
+                                      col_class: 'col-md-5')%>
             
        </div>
 
-        <%= turno.hidden_field :paciente_id %>
-        <div class ="turno">
-          <div class="row">
-            <%= FormBuilder::text_field_v(turno, :paciente_id, 
-                                          input_class: 'paciente-nombre', 
-                                          col_class: 'col-md-4',
-                                          disabled: true,
-                                          label_text: 'Nombres') %>
-
-            <%= FormBuilder::text_field_v(turno, :paciente_id, 
-                                          input_class: 'paciente-apellido', 
-                                          col_class: 'col-md-5',
-                                          disabled: true,
-                                          label_text: 'Apellidos') %>
-
-            <%= FormBuilder::text_field_v(turno, :paciente_id, 
-                                          input_class: 'clear paciente-ci', 
-                                          max_length: Domain::CI,
-                                          col_class: 'col-md-3',
-                                          disabled: true,
-                                          label_text: 'CI') %> 
-            </div>      
-            <div class="row">
-              <%= FormBuilder::text_field_v(turno, :paciente_id, 
-                                        input_class: 'clear paciente-direccion', 
-                                        max_length: Domain::DIRECCION,
-                                        col_class: 'col-md-8',
-                                        disabled: true,
-                                        label_text: 'Direccion') %>
-               <%= FormBuilder::text_field_v(turno, :paciente_id, 
-                                        input_class: 'clear paciente-telefono', 
-                                        max_length: Domain::TELEFONO,
-                                        col_class: 'col-md-4',
-                                        disabled: true,
-                                        label_text: 'Telefono') %>
-          </div>
-     </div>
+          <div class ="paciente_data">
+          <%= render "paciente_form", turno: turno, paciente: @paciente%>
+      </div>
+    </br>
      <h4>Datos Turno</h4>
     <hr>
-       
+
+    <div class="row">
+      <div class="col-md-6">
+
+        <%= turno.label :area_id, '* Área a consultar' %> 
+
+        <%= turno.select(:area_id, Area.all.collect { |a| [a.nombre, a.id] },{},{class: "area_select form-control", required: true,  id: 'area_id'})%>
+
+      </div>
+
+      <div class="col-md-6">
+
+        <%= turno.label :doctor_id, '* Profesional de la Salud' %> 
+
+        <%= turno.select(:doctor_id, Empleado.where(type: 'Doctor').collect { |a| [a.persona.nombre, a.id] },{},{class: "profesional_select form-control", required: true,  id: 'doctor_id'})%>
+
+       </div>
+    </div>
+  </br>
+      <div class="row">
+          <%= FormBuilder::text_field_v(turno, :monto, 
+                                      input_class: 'required', 
+                                      max_length: Domain::TELEFONO,
+                                      label_text: '* Costo del servicio',
+                                      col_class: 'col-md-6')%>
+
+           <div class="col-md-5">
+
+            <%= turno.label :paga, '* Abonará el monto estipulado?' %>
+
+            <div class="row">
+              <%= label :paga, "Si", class: "col-md-1"%>
+              <%= turno.radio_button :paga, true , :value => true, class: "col-md-2 paga si_paga"%>
+              <%= label :paga, "No", class: "col-md-2"%>
+              <%= turno.radio_button :paga, false , :checked => true, :value => false, class: "col-md-1 paga no_paga" %>
+
+            </div>
+        </div>
+      </div>
+      <div class="row" id="factura" style="display:none">
+        <%= FormBuilder::text_field_v(turno, :nro_factura, 
+                                      input_class: '', 
+                                      max_length: 15,
+                                      label_text: '* N° de Factura',
+                                      col_class: 'col-md-6')%>
+
+       </div>
+      
       <div class="form-button">         
         <%= turno.submit 'Guardar', class: 'btn btn-custom'%>
       </div>
@@ -91,15 +100,9 @@
 
 <script type="text/javascript"> 
     $(document).ready(function(){
-        $("#paciente_id").select2().on("select2:select",function(){
-          id = $(this).val();
-          $("#turno_paciente_id").val(id);
-          $(".paciente-nombre").val($("#option-nombre-"+id).val());
-          $(".paciente-apellido").val($("#option-apellido-"+id).val());
-          $(".paciente-ci").val($("#option-ci-"+id).val());
-          $(".paciente-direccion").val($("#option-direccion-"+id).val());
-          $(".paciente-telefono").val($("#option-telefono-"+id).val());
-        });
-      });
+       
+
+    });
+
   turnosUI.initScript();
 </script>
