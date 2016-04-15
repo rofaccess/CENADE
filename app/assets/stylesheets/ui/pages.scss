@@ -5,8 +5,6 @@ $common-color: #24C1C1;
 	word-break: break-all;
 }​
 
-
-
 .checkbox {
 
 }
@@ -79,7 +77,6 @@ td.action {
 
 	background-color: #24C1C1;
 	border: none;
-	margin-bottom: 20px;
 	color: white;
 
 	&:hover,
@@ -145,12 +142,29 @@ body{
 		-moz-border-radius: 4px;
 		border-radius: 4px;
 		font-size: 12px;
-
 		
 	}
 */
+.align-left {
+	text-align: center;
+}
+
+.line{
+	top: 30px;
+	height: 10px;
+	position: fixed;
+  	right: 0;
+  	left: 0; 
+  	background: #24C1C1;
+  	border-bottom:solid;
+  	border-bottom-color: #CCCCCC;
+  	z-index: 1030;
+}
+
 #principal-content {
-	.content, .form-content{
+
+	.content, .form-content{		
+
 		.page-title {
 			//Posición fija
 			position: fixed;
@@ -182,9 +196,11 @@ body{
 						color: #24C1C1;
 					}	
 				}				
-			}
+			}			
 
-
+		}
+		div.page-title-sin-submenu{
+			top: 40px;
 		}
 	}
 
@@ -202,6 +218,10 @@ body{
 			padding-bottom: 1px;
 		}
 
+		div.list-sin-submenu{
+			margin-top: 90px !important;
+		}
+
 		#list-paginate{
 			text-align: right;
 			margin-left: auto;
@@ -211,7 +231,6 @@ body{
 			padding-left: 50px;
 			padding-right: 50px; 
 		}
-
 	}
 	
 	.form-content{
@@ -227,6 +246,7 @@ body{
 			margin-right: auto;
 			padding: 50px;
 			padding-top: 30px;
+			padding-bottom: 30px;
 			margin-top: 105px;
 
 			h4 {
@@ -246,12 +266,16 @@ body{
 						font-weight: bold;
 					}
 				}
-			}					
+			}	
 
 			.form-button{
 				text-align: right;
 			}
 			
+		}
+
+		form.form-sin-submenu{
+			margin-top: 90px;
 		}
 
 		form.small-form {
@@ -286,17 +310,6 @@ body{
 		}
 	}
 } 
-
-.line{
-	top: 30px;
-	height: 10px;
-	position: fixed;
-  	right: 0;
-  	left: 0; 
-  	background: #24C1C1;
-  	border-bottom:solid;
-  	border-bottom-color: #CCCCCC;
-}
 
 .pagination{
 	.active{

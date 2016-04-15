@@ -7,7 +7,7 @@
 		</div>
 	</div>
 
-	<%= form_for @empleado, html: {class: 'nuevo-empleado'}, remote: true do |empleado|%>		
+	<%= form_for @empleado, html: {class: 'form-empleado'} do |empleado|%>		
 
 		<h4>Datos Personales</h4>
 		<hr>
@@ -48,19 +48,24 @@
 			<%= FormBuilder::text_field_v(persona, :edad, 
 													input_class: 'edad', 
 													max_length: Domain::EDAD,
-													col_class: 'col-md-2') %>                  		                            
+													col_class: 'col-md-1') %>                  		                            
 			<%= FormBuilder::select_v(persona, :sexo,
 												[['Masculino', 'Masculino'], ['Femenino', 'Femenino']], 
 												prompt:'Seleccione Sexo', 
 												select_class: 'required', 
-												col_class: 'col-md-4',
+												col_class: 'col-md-3',
 												label_text: '* Sexo')%>
 
 			<%= FormBuilder::collection_select_v(persona, :estado_civil_id, 
 															EstadoCivil.all, :id, :descripcion,
-															prompt:'Seleccione Estado Civil',
+															prompt:'Seleccione Est. Civil',
 															label_text: 'Estado Civil', 
-															col_class: 'col-md-4')%>
+															col_class: 'col-md-3')%>
+
+			<%= FormBuilder::text_field_v(persona, :nacionalidad, 
+													max_length: Domain::NACIONALIDAD,
+													col_class: 'col-md-3') %> 
+
 		</div> 
 
 		<h4>Datos de Contacto</h4>
@@ -69,9 +74,8 @@
 		<div class="row">   
 
 			<%= FormBuilder::text_field_v(persona, :direccion, 
-													input_class: 'clear', 
 													max_length: Domain::DIRECCION,
-													col_class: 'col-md-11',
+													col_class: 'col-md-12',
 													label_text: 'Dirección')%> 
 		</div>    
 		<div class="row">   
@@ -83,7 +87,7 @@
 			<%= FormBuilder::text_field_v(persona, :email, 
 													input_class: 'emailCheck', 
 													max_length: Domain::EMAIL,
-													col_class: 'col-md-7') %> 
+													col_class: 'col-md-8') %> 
 		</div>  		
 		<% end %>
 
@@ -91,33 +95,43 @@
 		<hr>
 
 		<div class="row">   
+			<%= FormBuilder::text_field_v(empleado, :cargo, 
+													max_length: Domain::CARGO_EMPLEADO,
+													col_class: 'col-md-4') %> 
 
-			<%= FormBuilder::collection_select_v(empleado, :cargo_id, 
-															Cargo.all, :id, :descripcion,
-															prompt:'Seleccione Cargo',
-															select_class: 'required',
-															label_text: '* Cargo', 
-															col_class: 'col-md-4')%>
+			<%= FormBuilder::text_field_v(empleado, :abr_profesion, 
+													label_text: 'Abr. Pofesión',
+													max_length: Domain::ABREVIATURA_PROFESION,
+													col_class: 'col-md-2') %> 													
 
 			<div class="row">
-				<div class="checkbox col-md-3">
+				<div class="checkbox col-md-6">
 					<label>
 						<%= check_box_tag 'es_doctor', true, @empleado.type == 'Doctor' ? true : false, class: 'checkbox-doctor'  %>
 
-							¿Es Doctor?
+							¿Es Profesional de Salud?
 							<%= empleado.hidden_field :type, class: 'tipo-empleado'%>
-							<%= empleado.hidden_field :especialidad_id,value: nil, class: 'epecialidad-id'%>							
+							<%= empleado.hidden_field :area_id,value: nil, class: 'area-id'%>							
 					</label>
 				</div>
 			</div>
-
-			<%= FormBuilder::collection_select_v(empleado, :especialidad_id, 
-															Especialidad.all, :id, :descripcion,
-															prompt:'Seleccione Especialidad',
-															label_text: '* Especialidad', 
-															col_class: 'col-md-4 to-hide',
-															select_class: 'empleado-select')%>			
+																		
 		</div> 
+
+		<div class="row">
+			<%= FormBuilder::collection_select_v(empleado, :area_id, 
+															Area.all, :id, :nombre,
+															prompt:'Seleccione Area',
+															label_text: '* Area', 
+															col_class: 'col-md-4 to-hide',
+															select_class: 'empleado-select')%>	
+
+			<%= FormBuilder::text_field_v(empleado, :costo, 
+													max_length: Domain::COSTO,									
+													input_class: 'costo', 
+													value: '2342',
+													col_class: 'col-md-2 to-hide') %> 	
+		</div>											
 		
 		<div class="form-button">					
 			<%= empleado.submit 'Guardar', class: 'btn btn-custom'%>
@@ -130,4 +144,12 @@
 
 <script type="text/javascript">	
 	empleadosUI.initScript("<%= empleados_check_ci_path %>");
+	
+	<% if !flash.notice.blank? %>	
+		var n = noty({text: '<%=notice%>', type: 'success'});		
+	<% end %>
+	<% if !flash.alert.blank?%>	
+		var n = noty({text: '<%=alert%>', type: 'error'});
+	<% end %>
+
 </script>

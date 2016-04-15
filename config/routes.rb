@@ -1,10 +1,16 @@
 Rails.application.routes.draw do
 
+  get 'pacientes/check_ci' => 'pacientes#check_ci'
+  resources :pacientes
+  
   get 'roles/check_name' => 'roles#check_name'
   resources :roles
   resources :doctores
   resources :funcionarios
-  
+  resources :turnos 
+
+  get 'empleados/print_empleados' => 'empleados#print_empleados'
+  get 'empleados/print_empleado' => 'empleados#print_empleado'
   get 'empleados/check_ci' => 'empleados#check_ci'
   resources :empleados
   resources :configuraciones

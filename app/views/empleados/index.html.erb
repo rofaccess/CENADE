@@ -8,8 +8,8 @@
 				<%= f.search_field :persona_cont, placeholder: " Buscar por Nombre, Apellido o CI", class: "form-control", autofocus: true%>
 				<span class="fa fa-search"></span>
 				<div class="input-group-btn"> 
-					<%= link_to '<i class="fa fa-plus-square"></i> '.html_safe, new_empleado_path, :target => '_blank', remote: true %> 
-					<%= link_to '<i class="fa fa-print"></i> '.html_safe, new_empleado_path, remote: true %> 					
+					<%= link_to '<i class="fa fa-plus-square"></i> '.html_safe, new_empleado_path, remote: true %> 
+					<%= link_to '<i class="fa fa-print"></i> '.html_safe, empleados_print_empleados_path(:format => :pdf), target: '_blank' %>					
 				</div> 
 			</div>
 			<% end %>
@@ -24,3 +24,13 @@
 		<%= paginate @empleados, remote: true %>
 	</div>
 </div>	
+
+<script type="text/javascript">
+	<% if !flash.notice.blank? %>	
+		var n = noty({text: '<%=notice%>', type: 'success'});		
+	<% end %>
+	<% if !flash.alert.blank?%>	
+		var n = noty({text: '<%=alert%>', type: 'error'});
+	<% end %>
+
+</script>

@@ -16,6 +16,8 @@
 
 		<% unless @submenu_layout == nil %>    
 			<%= render @submenu_layout %>
+		<% else %>
+			<div class="line"></div>	
 		<% end %>
 		
 		<div id="flash_messages">

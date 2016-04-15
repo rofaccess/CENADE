@@ -80,6 +80,15 @@ gem 'cancancan'
 
 gem 'rolify'
 
+# Fabrication generates objects in Ruby https://github.com/paulelliott/fabrication-site
+gem 'fabrication'
+# A library for generating fake data such as names, addresses, and phone numbers.
+gem 'faker'
+
+# PDF generator (from HTML) plugin for Ruby on Rails http://mileszs.com/blog/2009/06/17/wicked-pdf-plugin.html
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
