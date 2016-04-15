@@ -25,6 +25,9 @@
 //= require plugins/select2/i18n/es.js
 //= require plugins/jquery.dataTables.js
 //= require plugins/loading-overlay-min.js
+//= require plugins/bootstrap-datepicker/bootstrap-datepicker.js
+//= require plugins/bootstrap-datepicker/bootstrap-datepicker.min.js
+//= require plugins/bootstrap-datepicker/bootstrap-datepicker.es.min.js
 
 
 //= require languages/jquery-validate-messages-es.js
