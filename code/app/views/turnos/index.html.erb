@@ -1,2 +1,32 @@
-h1 Turnos#index
-p Find me in app/views/turnos/index.html.slim
+<div class= "content">
+  	<div class="page-title page-title-sin-submenu">    
+   Turnos
+      
+   <div class="tool">
+      <%= search_form_for @search, class: 'buscador', remote: true do |f| %>
+         <div class="input-group"> 
+            <%= f.search_field :turno_cont, placeholder: "Buscar por Área, fecha", class: "form-control", autofocus: true%>
+            <span class="fa fa-search"></span>
+          	<div class="input-group-btn"> 
+            <%= link_to '<i class="fa fa-plus-square"></i> '.html_safe, new_turno_path%>          
+          </div> 
+        </div>
+      <% end %>
+    </div>
+  </div>
+  
+  <div id="list">
+    <%= render 'list' %>
+  </div> 
+
+  <div id="list-paginate">
+    <%= paginate @turnos, remote: true %>
+  </div>  
+</div>
+<script type="text/javascript"> 
+    $(document).ready(function(){
+       
+    	turnosUI.initScript();
+    	});
+
+</script>

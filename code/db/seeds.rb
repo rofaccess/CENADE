@@ -128,4 +128,14 @@ Permission.create([{nombre: 'Usuarios', model: 'User', grupo:'Configuracion'},
 paciente= Paciente.create(persona_id: persona5.id, fecha_ingreso: '07/05/1995')
 paciente2= Paciente.create(persona_id: persona4.id, fecha_ingreso: '07/05/1995')
 area= Area.create(nombre: 'Odontologia', costo: 5000)
+turno= Turno.create(paciente_id: paciente.id, fecha_expedicion: '07/05/2015',
+					   fecha_consulta: '07/05/2015', area_id: area.id, doctor_id: doctor1.id, 
+					   estado: 'pendiente', monto: '5000', paga: true, nro_factura: '33-445-gh',
+					   turno: 1)
+
+turno2= Turno.create(paciente_id: paciente2.id, fecha_expedicion: '07/05/2015',
+					   fecha_consulta: '07/05/2015', area_id: area.id, doctor_id: doctor1.id, 
+					   estado: 'pendiente', monto: '5000', paga: true, nro_factura: '5677-445-gh',
+					   turno: 2)
+
 
