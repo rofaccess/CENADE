@@ -24,9 +24,9 @@
             
         </div>
         </div>
-
+        
         <%= FormBuilder::text_field_v(turno, :fecha_expedicion, 
-                                      input_class: 'required date', 
+                                      input_class: 'required date datepicker', 
                                       max_length: Domain::FECHA,
                                       label_text: '* Fecha Actual',
                                       col_class: 'col-md-5')%>
@@ -100,7 +100,10 @@
 
 <script type="text/javascript"> 
     $(document).ready(function(){
-       
+      $('.datepicker').datepicker({
+        format: "dd/mm/yyyy",
+        language: "es"
+      });
 
     });
 
