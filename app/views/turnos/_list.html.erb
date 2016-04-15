@@ -1,7 +1,7 @@
 
 <table id="table-turnos" class= "table table-condensed">
   <thead>
-    <tr>
+    <tr class="active">
       <th>Turno</th>
       <th>Paciente</th>
       <th>C.I.</th>
@@ -9,18 +9,19 @@
       <th>Estado</th>
       <th>Fecha</th>
       <th>Área</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
     <% @turnos.each do |turno| %>
     <tr>
-      <td ><%=turno.nro_turno %></td>
-      <td ><%=turno.paciente.persona.nombre %><%=turno.paciente.persona.apellido%></td>
+      <td ><%=turno.turno %></td>
+      <td ><%=turno.paciente.persona.nombre %> <%=turno.paciente.persona.apellido%></td>
       <td ><%=turno.paciente.persona.ci %></td>
-      <td ><%=turno.empleado.persona.nombre %><%=turno.empleado.persona.apellido %></td>
-      <td ><%=turno.estado %></td>
-      <td ><%=turno.fecha_expedicion%></td>
-      <td ><%=turno.area.nombre%></td>
+      <td ><%=turno.doctor_id %></td>
+      <td ><span class="label label-success"><%=turno.estado %></span></td>
+      <td ><%=turno.fecha_expedicion.to_date%></td>
+      <td><%=turno.area.nombre%></td>
 
       
       <td class = "action">
@@ -34,3 +35,4 @@
     <% end %>
   </tbody>
 </table>
+

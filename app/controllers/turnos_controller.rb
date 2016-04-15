@@ -2,8 +2,8 @@ class TurnosController < ApplicationController
  
   before_action :set_turno, only: [:show, :edit, :update, :destroy]
   def index
-  	@turnos = Turno.all
- 
+  	@search = Turno.ransack(params[:q])
+    @turnos= @search.result.page(params[:page])
   end
 
   def new

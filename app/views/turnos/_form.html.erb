@@ -96,29 +96,7 @@
 
 <script type="text/javascript"> 
     $(document).ready(function(){
-       $(".paciente_select").select2({
-        placeholder: "Seleccione un paciente",
-        language: "es"
-
-        }).on("select2:select",function(){
-        id = $(this).val();
-
-        $.ajax({
-         
-          url: "/turnos/get_paciente",
-          type: 'post',
-          data: {
-           id : $(this).val()
-          },
-          success: function(resp){
-              //alert("Data");
-           }
-          
-         });
-      });
-        $(".paga").on("change", function(){
-          $("#factura").toggle($(this).hasClass("si_paga"));
-        });
+       
 
     });
 
