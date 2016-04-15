@@ -18,7 +18,8 @@
       <td ><%=turno.turno %></td>
       <td ><%=turno.paciente.persona.nombre %> <%=turno.paciente.persona.apellido%></td>
       <td ><%=turno.paciente.persona.ci %></td>
-      <td ><%=turno.doctor_id %></td>
+        <%doctor= Empleado.find(turno.doctor_id)%>
+      <td ><%=doctor.persona.nombre %> <%=doctor.persona.apellido %></td>
       <td ><span class="label label-success"><%=turno.estado %></span></td>
       <td ><%=turno.fecha_expedicion.to_date%></td>
       <td><%=turno.area.nombre%></td>
