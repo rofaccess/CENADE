@@ -71,13 +71,14 @@
 			<%= FormBuilder::text_field_v(paciente, :lugar_nacimiento, 
 													max_length: Domain::LUGAR_NACIMIENTO,
 													col_class: 'col-md-10',
-													label_text: '* Lugar de Nacimiento')%> 
+													label_text: 'Lugar de Nacimiento')%> 
 
 			<%= FormBuilder::text_field_v(paciente, :fecha_ingreso, 
 													input_class: 'required date',
 													max_length: Domain::FECHA,
 													col_class: 'col-md-2',
-													label_text: '* Fecha de Ingr.')%> 
+													label_text: '* Fecha de Ingr.',
+													input_value: Formatter.format_date(@paciente.fecha_ingreso))%>
 		</div>    
 
 		<h4>Datos de Contacto</h4>
@@ -131,5 +132,14 @@
 </div>
 
 <script type="text/javascript">	
-	pacientesUI.initScript("<%= pacientes_check_ci_path %>");
+	pacientesUI.initScript("<%= pacientes_check_ci_path %>");	
+	
+	
+	<% if !flash.notice.blank? %>	
+		var n = noty({text: '<%=notice%>', type: 'success'});		
+	<% end %>
+	<% if !flash.alert.blank?%>	
+		var n = noty({text: '<%=alert%>', type: 'error'});
+	<% end %>
+
 </script>
