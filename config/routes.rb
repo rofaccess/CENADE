@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
 
   get 'pacientes/check_ci' => 'pacientes#check_ci'
+  get 'pacientes/new_paciente_modal' => 'pacientes#new_paciente_modal'
   resources :pacientes
-  
   get 'roles/check_name' => 'roles#check_name'
   resources :roles
   resources :doctores

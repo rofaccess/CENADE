@@ -16,11 +16,15 @@
         <div class="col-md-7">
 
           <%= turno.label :paciente_id, '* Paciente' %> 
-
-          <%= turno.select(:paciente_id, Paciente.all.collect { |p| [p.persona.nombre, p.id] },{},{class: "paciente_select form-control", required: true,  id: 'paciente_id'})%>
-
-        </div>
+          <div class="row">
+            <div class="col-md-10">
+            <%= turno.select(:paciente_id, Paciente.all.collect { |p| [p.persona.nombre, p.id] },{},{class: "paciente_select form-control", required: true,  id: 'paciente_id'})%></div>
+     
+            <%= link_to '<i class="fa fa-plus"></i> '.html_safe, pacientes_new_paciente_modal_path, class: 'btn btn-custom col-md-1', style: 'height: 30px; width: 40px', remote: true%> 
             
+        </div>
+        </div>
+
         <%= FormBuilder::text_field_v(turno, :fecha_expedicion, 
                                       input_class: 'required date', 
                                       max_length: Domain::FECHA,

@@ -70,7 +70,10 @@ class PacientesController < ApplicationController
 		end
 
   	end
-
+    def new_paciente_modal
+    	new
+    	render partial: 'new_paciente_modal', format: 'js'
+    end 
   	def set_paciente
       @paciente = Paciente.find(params[:id])
     end
