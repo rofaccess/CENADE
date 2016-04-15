@@ -77,6 +77,20 @@ class EmpleadosController < ApplicationController
       		end
       	end
     end
+
+    def print_empleados
+  		#@search = Empleado.ransack(params[:q]) 	
+  		#@empleados= @search.result
+  		@empleados = Empleado.all
+
+	    respond_to do |format|
+	      format.pdf do
+	        render :pdf => "Lista de Empleados",
+	               :template => "empleados/print_empleados.pdf.erb",
+	               :layout => "pdf.html"
+      		end
+      	end
+    end
  
 
   	def set_empleado

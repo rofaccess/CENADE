@@ -9,6 +9,5 @@ module ApplicationHelper
 		path.each do |p|
 			return "active" if request.url.include?(p)
 		end
-	end
-	
+	end	
 end

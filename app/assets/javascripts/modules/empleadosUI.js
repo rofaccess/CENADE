@@ -5,6 +5,16 @@ var empleadosUI = (function(){
 			$('body').on('click', '.show-empleado', function(e){
 				$.get($(this).parents('tr').data('url'), {}, function(){}, 'script');
 			});
+
+			/* Envia el parametro q, pero no renderiza el pdf, y en nueva pestaña no envía q */
+			$('body').on('click', '.print-empleados', function(e){
+				$.ajax({
+					url: $(this).attr('href'),
+					data: $('#q_persona_cont').serialize(),
+					dataType: 'script'
+				});
+				e.preventDefault();
+			});
 		},			
 			
 		//Muestra el area si es doctor

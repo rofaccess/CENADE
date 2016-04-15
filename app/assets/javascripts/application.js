@@ -103,5 +103,8 @@ $.noty.defaults = {
     buttons: false
 };
 
+function configImprimir (params) {
+  $('#imprimir-link').attr('href', $('#imprimir-link').data('url') + params.replace('amp;',''));
+}
 
 $( document ).on('ready', APP.init );
