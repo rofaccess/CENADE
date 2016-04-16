@@ -11,11 +11,13 @@ class PacientesController < ApplicationController
 	def new    	
 		@paciente = Paciente.new
 		@paciente.build_persona
-    	#@paciente.build_encargado
+    #@paciente.build_encargado
     end
 
     def create	
     	respond_to do |format|
+
+        @paciente = Paciente.new(paciente_params)       
     		if @paciente.save		    
     			flash.now[:notice] = "Se ha guardado el paciente #{@paciente.persona.nombre} #{@paciente.persona.apellido}."
     			format.html {render 'show'}
@@ -54,10 +56,10 @@ class PacientesController < ApplicationController
 		end	
 	end
 
-  	def new_paciente_modal
-  		new
-  		render partial: 'new_paciente_modal', format: 'js'
-  	end 
+  	#def new_paciente_modal
+  	#	new
+  #		render partial: 'new_paciente_modal', format: 'js'
+  #	end 
 
   	def set_paciente
   		@paciente = Paciente.find(params[:id])

@@ -8,7 +8,8 @@
     </div>
 
     <%= form_for @paciente, html: {class: 'form-paciente form-sin-submenu'} do |paciente|%>   
-    <h4>Datos Personales</h4>
+    	
+    	<h4>Datos Personales</h4>
 		<hr>
 
 		<%= paciente.fields_for(:persona) do |persona| %>
