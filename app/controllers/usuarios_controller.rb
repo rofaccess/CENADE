@@ -2,6 +2,10 @@ class UsuariosController < ApplicationController
 	
 	before_action :set_submenu, only: [:index,:new, :edit, :show]
 	before_action :set_usuario, only: [:show, :edit, :update, :destroy]
+
+	respond_to :html, :js
+
+	#layout false, only: [:new]
 	
 	#load_and_authorize_resource	
 
