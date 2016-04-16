@@ -44,6 +44,7 @@ module Domain
 	EMPRESA_NOMBRE = 50
 	EMPRESA_WEB	   = 40
 	EMPRESA_HORARIO= 100
-
+	COSTO = 10
+	NRO_FACTURA = 15
 
 end
