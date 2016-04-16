@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   resources :turnos do
     collection do
-      post 'get_paciente'
+      get 'get_paciente'
     end
   end
   get 'empleados/check_ci' => 'empleados#check_ci'

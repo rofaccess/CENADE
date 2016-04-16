@@ -17,7 +17,7 @@ var turnosUI = (function(){
 		        $.ajax({
 		         
 		          url: "/turnos/get_paciente",
-		          type: 'post',
+		          type: 'get',
 		          data: {
 		           id : $(this).val()
 		          },
