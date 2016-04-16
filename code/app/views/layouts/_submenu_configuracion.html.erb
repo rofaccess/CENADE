@@ -18,9 +18,8 @@
             <%=link_to 'Roles', roles_path %>
           </li>
           
-          <li><a href="#">
-            
-            Mi Perfil</a>
+          <li class="<%= current_submenu([perfil_usuarios_edit_path])%>">
+            <%= link_to "Mi Perfil", perfil_usuarios_edit_path %>
           </li>               
 
         </ul>
