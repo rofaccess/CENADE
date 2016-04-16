@@ -1,69 +1,75 @@
-<%= render 'layouts/messages'%>
 
-</br><div class= "col-md-10 col-md-offset-1 well" >
+<% @submenu_layout = 'layouts/submenu_configuracion' %>
+<% @sidebar_layout = 'layouts/sidebar_configuracion' %>
+<div class= "form-content">  
+  <div class="page-title" style = "left:200px;">
+    Configuración del Sistema      
+  </div>
+	<%= form_for @configuracion, html: {class: 'nueva-conf'},:multipart => true do |configuracion|%>
 
-	   <legend align="left"><h2>Configurar Datos de la Empresa </h2></legend></br>
+	    <h4>Datos de la Empresa</h4><hr>
+	    <div class="row">
+	      	<%= FormBuilder::text_field_v(configuracion, :empresa_nombre, 
+								                    input_class: 'required minLength2', 
+								              		max_length: Domain::EMPRESA_NOMBRE,
+								                    autofocus: true,
+								                    col_class: 'col-md-5',
+								                    label_text: '* Nombre') %>
 
-	   <%= form_for @configuracion, html: {class: 'nueva-conf'},:multipart => true do |configuracion|%>
-	    	<div class="row">
-		      	<%= FormBuilder::text_field_v(configuracion, :empresa_nombre, 
-									                    input_class: 'required minLength2', 
-									              		max_length: Domain::EMPRESA_NOMBRE,
-									                    autofocus: true,
-									                    col_class: 'col-md-4',
-									                    label_text: '* Nombre') %>
-		        <%= FormBuilder::text_field_v(configuracion, :empresa_direccion, 
-									                    input_class: 'required minLength4', 
-									                    max_length: Domain::DIRECCION,
-									                    autofocus: false,
-									                    col_class: 'col-md-8',
-								                        label_text: '* Direccion') %>
-			</div>
-	   		<div class="row">
-		   
-			    
-			    <%= FormBuilder::text_field_v(configuracion, :empresa_email, 
-									                    input_class: 'emailCheck', 
-									                    max_length: Domain::EMAIL, 
-									                    autofocus: false,
-									                    col_class: 'col-md-5',
-									                    label_text: 'Email') %>
+			<%= FormBuilder::text_field_v(configuracion, :empresa_web,    
+								                    max_length: Domain::EMPRESA_WEB, 
+								                    autofocus: false,
+								                    col_class: 'col-md-5',
+								                    label_text: 'Sitio web') %>
 
-			    <%= FormBuilder::text_field_v(configuracion, :empresa_tel, 
-									                    input_class: 'telCheck', 
-									                    max_length: Domain::TELEFONO, 
-									                    autofocus: false,
-									                    col_class: 'col-md-4',
-									                    label_text: 'Telefono') %>
-		        	
-				<%= FormBuilder::text_field_v(configuracion, :empresa_web, 
-									                   
-									                    max_length: Domain::EMPRESA_WEB, 
-									                    autofocus: false,
-									                    col_class: 'col-md-3',
-									                    label_text: 'Sitio web') %>
-		    </div>
-		    <div class="row">
+			<div class= 'col-md-6' style="padding-left: 85%; padding-top:-100%; ">
+			    <%= image_tag(@configuracion.empresa_logo_url.to_s, class: "border-img") %>
+			    <div class="uploader_botton">
+			    	<%= configuracion.file_field :empresa_logo, class:"file_uploader" %>
+			    	<label class="font-img">+Agregar Imagen</label>
+		    	</div>
+			</div></br>
+		</div>
+		<div class="row" style="padding-top: -100%">
+			<%= FormBuilder::text_field_v(configuracion, :empresa_direccion, 
+								                    input_class: 'required minLength4', 
+								                    max_length: Domain::DIRECCION,
+								                    autofocus: false,
+								                    col_class: 'col-md-8',
+							                        label_text: '* Direccion') %>
+		    
+		    <%= FormBuilder::text_field_v(configuracion, :empresa_email, 
+								                    input_class: 'emailCheck', 
+								                    max_length: Domain::EMAIL, 
+								                    autofocus: false,
+								                    col_class: 'col-md-6',
+								                    label_text: 'Email') %>
+
+		    <%= FormBuilder::text_field_v(configuracion, :empresa_tel, 
+								                    input_class: 'telCheck', 
+								                    max_length: Domain::TELEFONO, 
+								                    autofocus: false,
+								                    col_class: 'col-md-4',
+								                    label_text: 'Telefono') %>
+	        	
+
+	    </div>
+	    <div class="row">
 			<%= FormBuilder::text_field_v(configuracion, :empresa_horario_atencion,	
-													max_length: Domain::EMPRESA_HORARIO,
-								                    col_class: 'col-md-11',
-								                    label_text: 'Horario de Atencion') %>
-			</div>
+												max_length: Domain::EMPRESA_HORARIO,
+							                    col_class: 'col-md-11',
+							                    label_text: 'Horario de Atencion') %>
+		</div>	
+		<h4>Administración</h4><hr>
+		<div class="row">
 			
-					                    
-	    <div class= 'col-md-8'>
-		    <%= image_tag(@configuracion.empresa_logo_url.to_s, :width => 110, :height => 120) %>
-		    <%= configuracion.label :logo_de_la_institucion %>
-		    <%= configuracion.file_field :empresa_logo %>
-	    </div></br>
-		
 
-
-	    <div class="row"align="rigth">
-	    	  <%= configuracion.submit 'Guardar cambios', class: 'btn btn-custom'%>
-	    	</div>
-	  <%end%>
-	</div>
+		</div>	                    
+		<div class="form-button">   
+	      <%= configuracion.submit 'Guardar cambios', class: 'btn btn-custom'%>
+	    </div>
+	<%end%>
+</div>
 <script type="text/javascript">
 	configuracionesUI.initScript();
 </script>
