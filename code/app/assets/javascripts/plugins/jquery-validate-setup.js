@@ -75,6 +75,10 @@ $.validator.addClassRules({
 	},
 	telCheck: {
 		telCheck: true
+	},
+	passwordEqual:{
+
+		equalTo: "#user_password"
 	}
 
 });
