@@ -17,17 +17,20 @@ $common-color: #24C1C1;
 	}
 }
 
-.espacio{
-	padding-top:1%;
-	padding-left:4%;
-	padding-right:4%;
-	margin-top: 6%;
-	margin-left:25%;
-	margin-right:25%;
-	margin-botton:6%;
-	background-color:#ffffff;
-
+.label-profile{
+	text-align:center;
 }
+.profile-photo{
+	text-align:center;
+	background-color: #f3f3f3;
+	padding-top:30%;
+	margin-top: -20%;
+	
+	img{
+		border-radius:50%;
+	}
+}
+
 
 .titulos-campos{
 	font-weight: normal;
@@ -266,7 +269,40 @@ body{
 						font-weight: bold;
 					}
 				}
+			}
+
+			.border-img{
+				position: relative;
+				left:30%;
+				border:dotted;
+				border-color:#d9d9d9;
+				width:80px;
+				height:80px;
 			}	
+			.font-img{
+				color:#24C1C1;
+				font-weight: normal;
+				position: relative;
+				left:25%;
+			}
+
+			.uploader_button{
+				position: relative;
+			    overflow: hidden;
+			    margin: 10px;
+    			.file_uploader {
+					position: absolute;
+				    top: 0;
+				    right: 0;
+				    margin: 0;
+				    padding: 0;
+				    font-size: 20px;
+				    cursor: pointer;
+				    opacity: 0;
+				    filter: alpha(opacity=0);
+				}
+			}
+			
 
 			.form-button{
 				text-align: right;
@@ -280,6 +316,11 @@ body{
 
 		form.small-form {
 			width: 40%;
+		}
+
+		form.medium-form {
+			width: 60%;
+			margin-top:80px;
 		}
 	}	
 }

@@ -201,6 +201,7 @@ ActiveRecord::Schema.define(version: 20160413145411) do
     t.string   "username",               limit: 30, default: "", null: false
     t.string   "encrypted_password",                default: "", null: false
     t.string   "rol",                    limit: 15, default: "", null: false
+    t.string   "profile_foto"
     t.integer  "empleado_id",                                    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"

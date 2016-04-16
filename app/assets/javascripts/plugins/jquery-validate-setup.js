@@ -75,6 +75,10 @@ $.validator.addClassRules({
 	},
 	telCheck: {
 		telCheck: true
+	},
+	passwordEqual:{
+
+		equalTo: "#user_password"
 	}
 
 });
@@ -90,4 +94,4 @@ $.validator.addMethod("emailCheck",function(value,element){
 
 $.validator.addMethod("telCheck",function(value,element){
                 return this.optional(element) || /^[\d\s()+-]+$/.test(value);
-            },"El Numero de telefono solo debe contener una combinación de números y parentesis.");
+            },"Debe tener el formato ej:(0982)256 974");
