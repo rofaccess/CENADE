@@ -24,7 +24,7 @@
             
         </div>
         </div>
-        
+
         <%= FormBuilder::text_field_v(turno, :fecha_expedicion, 
                                       input_class: 'required date datepicker', 
                                       max_length: Domain::FECHA,
@@ -34,14 +34,48 @@
        </div>
 
           <div class ="paciente_data">
-          <%= render "paciente_form", turno: turno, paciente: @paciente%>
+          <div class="row">
+            <%= FormBuilder::text_field_v(turno, :paciente_id, 
+                                          input_class: 'paciente-nombre', 
+                                          col_class: 'col-md-4',
+                                          disabled: true,
+                                          label_text: 'Nombres') %>
+
+            <%= FormBuilder::text_field_v(turno, :paciente_id, 
+                                          input_class: 'paciente-apellido', 
+                                          col_class: 'col-md-5',
+                                          disabled: true,
+                                          label_text: 'Apellidos') %>
+
+            <%= FormBuilder::text_field_v(turno, :paciente_id, 
+                                          input_class: 'clear paciente-ci', 
+                                          max_length: Domain::CI,
+                                          col_class: 'col-md-3',
+                                          disabled: true,
+                                          label_text: 'CI') %> 
+            </div>      
+            <div class="row">
+              <%= FormBuilder::text_field_v(turno, :paciente_id, 
+                                        input_class: 'clear paciente-direccion', 
+                                        max_length: Domain::DIRECCION,
+                                        col_class: 'col-md-8',
+                                        disabled: true,
+                                        label_text: 'Direccion') %>
+               <%= FormBuilder::text_field_v(turno, :paciente_id, 
+                                        input_class: 'clear paciente-telefono', 
+                                        max_length: Domain::TELEFONO,
+                                        col_class: 'col-md-4',
+                                        disabled: true,
+                                        label_text: 'Telefono') %>
+          </div>
+   
       </div>
     </br>
      <h4>Datos Turno</h4>
     <hr>
 
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-4">
 
         <%= turno.label :area_id, '* Área a consultar' %> 
 
@@ -49,13 +83,19 @@
 
       </div>
 
-      <div class="col-md-6">
+      <div class="col-md-5">
 
         <%= turno.label :doctor_id, '* Profesional de la Salud' %> 
 
         <%= turno.select(:doctor_id, Empleado.where(type: 'Doctor').collect { |a| [a.persona.nombre, a.id] },{},{class: "profesional_select form-control", required: true,  id: 'doctor_id'})%>
 
        </div>
+
+       <%= FormBuilder::text_field_v(turno, :fecha_consulta, 
+                                      input_class: 'required date datepicker2', 
+                                      max_length: Domain::FECHA,
+                                      label_text: '* Fecha de Consulta',
+                                      col_class: 'col-md-3')%>
     </div>
   </br>
       <div class="row">
@@ -63,7 +103,7 @@
                                       input_class: 'required', 
                                       max_length: Domain::TELEFONO,
                                       label_text: '* Costo del servicio',
-                                      col_class: 'col-md-6')%>
+                                      col_class: 'col-md-7')%>
 
            <div class="col-md-5">
 
@@ -101,6 +141,10 @@
 <script type="text/javascript"> 
     $(document).ready(function(){
       $('.datepicker').datepicker({
+        format: "dd/mm/yyyy",
+        language: "es"
+      });
+      $('.datepicker2').datepicker({
         format: "dd/mm/yyyy",
         language: "es"
       });

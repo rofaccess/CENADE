@@ -8,7 +8,6 @@ class TurnosController < ApplicationController
 
   def new
   	@turno= Turno.new
-    @paciente = Paciente.first
     
   end
   def create
@@ -55,12 +54,9 @@ class TurnosController < ApplicationController
   end
 
    def get_paciente
-      @paciente = Paciente.find(params[:id])
-
-      @turno= Turno.new
-      respond_to do |format|
-        format.js { render :partial => 'get_paciente' }
-      end
+      new
+      @paciente= Paciente.find(params[:id])
+      render partial: 'get_paciente', format: 'js'
     end
 
   def turno_params
