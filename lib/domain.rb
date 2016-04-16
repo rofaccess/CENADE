@@ -23,6 +23,8 @@ module Domain
 	PROFESION	= 50
 	LUGAR_TRABAJO = 100
 
+	ABREVIATURA_PROFESION = 5
+
 	PROF_ACT_ANT  = 100;
 
 	EXPLORACION_FACIAL = 100
@@ -36,9 +38,12 @@ module Domain
 	SEXO      = 9	
 	MONTO     = 13
 	CANTIDAD  = 5	
+	COSTO	  = 7
 	
+
 	TIPO_EMPLEADO   = 15
 	ESPECIALIDAD   = 50
+	AREA		   = 50
 	ROL = 15
 
 	EMPRESA_NOMBRE = 50

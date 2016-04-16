@@ -40,11 +40,15 @@ ActiveRecord::Schema.define(version: 20160413145411) do
   add_index "admins", ["unlock_token"], name: "index_admins_on_unlock_token", unique: true, using: :btree
 
   create_table "areas", force: :cascade do |t|
-    t.string   "nombre",     null: false
-    t.integer  "costo"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "nombre",       limit: 50, default: "",  null: false
+    t.decimal  "costo_usual",             default: 0.0
+    t.decimal  "costo_casual",            default: 0.0
+    t.string   "costo",        limit: 7,  default: ""
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
   end
+
+  add_index "areas", ["nombre"], name: "index_areas_on_nombre", unique: true, using: :btree
 
   create_table "configuraciones", force: :cascade do |t|
     t.string   "empresa_nombre",           limit: 50,  default: ""
@@ -59,10 +63,12 @@ ActiveRecord::Schema.define(version: 20160413145411) do
   end
 
   create_table "empleados", force: :cascade do |t|
-    t.integer  "persona_id",                               null: false
-    t.integer  "especialidad_id"
-    t.string   "type",            limit: 15,  default: "", null: false
-    t.string   "cargo",           limit: 100, default: "", null: false
+    t.integer  "persona_id",                             null: false
+    t.integer  "area_id"
+    t.string   "type",          limit: 15,  default: "", null: false
+    t.string   "cargo",         limit: 100, default: "", null: false
+    t.string   "abr_profesion", limit: 5,   default: ""
+    t.string   "costo",         limit: 7,   default: ""
     t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -223,7 +229,7 @@ ActiveRecord::Schema.define(version: 20160413145411) do
 
   add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
 
-  add_foreign_key "empleados", "especialidades", on_delete: :restrict
+  add_foreign_key "empleados", "areas", on_delete: :restrict
   add_foreign_key "empleados", "personas", on_delete: :restrict
   add_foreign_key "fechas", "horarios", on_delete: :restrict
   add_foreign_key "horarios", "empleados", on_delete: :cascade

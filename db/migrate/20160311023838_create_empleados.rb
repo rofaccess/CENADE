@@ -4,10 +4,15 @@ class CreateEmpleados < ActiveRecord::Migration
     
     t.integer  :persona_id, null: false    
    
-    t.integer  :especialidad_id
+    t.integer  :area_id
 
 	t.string   :type ,default: '' ,limit: Domain::TIPO_EMPLEADO, null: false
     t.string   :cargo ,default: '' ,limit: Domain::CARGO_EMPLEADO, null: false
+
+    t.string   :abr_profesion ,default: '' ,limit: Domain::ABREVIATURA_PROFESION, null: true  
+
+
+   t.string   :costo ,default: '' ,limit: Domain::COSTO, null: true  
 
     t.datetime :deleted_at
     t.timestamps
@@ -16,8 +21,7 @@ class CreateEmpleados < ActiveRecord::Migration
     
     add_index :empleados, :deleted_at,unique: true 
         
-    add_foreign_key(:empleados, :personas, column: 'persona_id', on_delete: :restrict)   
-    add_foreign_key(:empleados, :especialidades, column: 'especialidad_id', on_delete: :restrict)
+    add_foreign_key(:empleados, :personas, column: 'persona_id', on_delete: :restrict)  
 
     # Se hacen algunas modificaciones a la tabla users
     add_foreign_key(:users, :empleados, column: 'empleado_id',on_delete: :restrict)

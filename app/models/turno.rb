@@ -12,7 +12,7 @@ class Turno < ActiveRecord::Base
         self.turno = 1
       else
         nro_turno = turno.last
-        self.turno = nro_turno+1
+        #self.turno = nro_turno+1
       end
     end
 	

@@ -1,14 +1,17 @@
 class FuncionariosController < EmpleadosController		
  	
  	def update
-    if @empleado.update(empleado_params)
-        flash.notice= "Se ha actualizado el empleado #{@empleado.persona.nombre}
-        #{@empleado.persona.apellido}."       
-    else
-        flash.alert = "No se ha podido actualizar el empleado #{@empleado.persona.nombre} 
-        #{@empleado.persona.apellido}."
-    end 
-    update_list 
+    respond_to do |format|
+      if @empleado.update(empleado_params)
+        set_submenu
+        flash.now[:notice] = "Se ha actualizado el empleado #{@empleado.persona.nombre} #{@empleado.persona.apellido}."
+        format.html {render 'show'}   
+      else
+        set_submenu
+        flash.now[:alert] = "No se ha podido actualizar los datos del empleado #{@empleado.persona.nombre} #{@empleado.persona.apellido}."
+        format.html { render action: "new"} 
+      end 
+    end  
   end
   	
   def set_empleado
@@ -16,8 +19,8 @@ class FuncionariosController < EmpleadosController
    end
 
   def empleado_params
-      params.require(:funcionario).permit(:cargo,:especialidad_id,:type,
+      params.require(:funcionario).permit(:cargo,:area_id, :costo,:type,:abr_profesion,
       persona_attributes: [:id,:nombre,:apellido,:ci,:ruc,:fecha_nacimiento,:edad,
-       	                   :sexo,:estado_civil_id,:direccion,:telefono,:email])
+                           :sexo,:estado_civil_id,:direccion,:telefono,:email,:nacionalidad])
    end   
 end
