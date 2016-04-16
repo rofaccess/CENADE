@@ -1,0 +1,40 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+#header {
+
+	h1 {
+		font-weight: bold;
+		color: #999999;
+		text-align: center;
+		margin-bottom: 0px;
+		padding-bottom: 0px;
+	}
+
+	hr {
+		color: #999999;
+	}
+}
+
+#content {
+	h5 {
+		font-weight: bold;
+		color: #999999;
+		text-align: center;
+	}
+
+	h6 {
+				font-weight: bold;
+				color: #999999;
+				font-size: 15px;
+			}
+
+			hr {
+				margin-top: 5px;
+				color: #999999;
+			}	
+}
+
+.form-control{
+	margin-bottom: 10px;
+}

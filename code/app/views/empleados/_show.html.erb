@@ -4,15 +4,18 @@
 
 		<div class="tool">
 			<%= link_to '<i class="fa fa-list"></i> '.html_safe, empleados_path %> 
-			<%= link_to '<i class="fa fa-plus-square"></i> '.html_safe, new_empleado_path, remote: true, :target => '_blank' %> 
-			<%= link_to '<i class="fa fa-edit"></i> '.html_safe, edit_empleado_path(@empleado.id), remote: true, :target => '_blank' %> 
-			<%= link_to '<i class="fa fa-trash-o"></i>'.html_safe, empleado_path(@empleado.id), method: 'delete', data: {confirm: "¿Desea eliminar al empleado #{@empleado.persona.nombre}?"}%>
-			<%= link_to '<i class="fa fa-print"></i> '.html_safe, empleados_path %> 
+			<%= link_to '<i class="fa fa-plus-square"></i> '.html_safe, new_empleado_path, remote: true%> 
+			
+			<%= link_to '<i class="fa fa-edit"></i> '.html_safe, edit_empleado_path(@empleado.id), remote: true %> 
+			
+			<% unless current_user.empleado_id == @empleado.id %> 
+				<%= link_to '<i class="fa fa-trash-o"></i>'.html_safe, empleado_path(@empleado.id), method: 'delete', data: {confirm: "¿Desea eliminar al empleado #{@empleado.persona.nombre}?"}%>
+			<% end %>
+			<%= link_to '<i class="fa fa-print"></i> '.html_safe, empleados_print_empleado_path(empleado_id: @empleado.id, :format => :pdf), target: '_blank'%>
 		</div>
 	</div>
-
-	<%= form_for @empleado do |empleado|%>		
-
+	
+	<%= form_for @empleado do |empleado|%>	
 		<h4>Datos Personales</h4>
 		<hr>
 
@@ -21,15 +24,15 @@
 			<%= FormBuilder::text_field_v(persona, :nombre, 
 													disabled: true,
 													col_class: 'col-md-4',
-													label_text: '* Nombre') %>
+													label_text: 'Nombre') %>
 			<%= FormBuilder::text_field_v(persona, :apellido, 
 													disabled: true,
 													col_class: 'col-md-4',
-													label_text: '* Apellido') %>
+													label_text: 'Apellido') %>
 			<%= FormBuilder::text_field_v(persona, :ci, 
 													disabled: true,
 													col_class: 'col-md-2',
-													label_text: '* Cédula Nº') %>  
+													label_text: 'Cédula Nº') %>  
 			<%= FormBuilder::text_field_v(persona, :ruc, 
 													disabled: true,
 													col_class: 'col-md-2') %>                           
@@ -38,23 +41,28 @@
 
 			<%= FormBuilder::text_field_v(persona, :fecha_nacimiento, 
 													disabled: true,
-													label_text: '* Fecha de Nac.',
+													label_text: 'Fecha de Nac.',
 													col_class: 'col-md-2', 
 													input_value: Formatter.format_date(@empleado.persona.fecha_nacimiento))%> 	
 			<%= FormBuilder::text_field_v(persona, :edad, 
 													disabled: true,
-													col_class: 'col-md-2') %>  
+													col_class: 'col-md-1') %>  
 			
 			<%= FormBuilder::text_field_v(persona, :sexo, 
 													disabled: true,
-													label_text: '* Sexo',
-							                        col_class: 'col-md-4') %>
+													label_text: 'Sexo',
+							                        col_class: 'col-md-3') %>
 			
 			<%= FormBuilder::text_field_v(persona, :estado_civil_id,
 													disabled: true,
 													label_text: 'Estado Civil',
 													input_value: @empleado.persona.estado_civil_id != nil ? @empleado.persona.estado_civil.descripcion : '' , 
-							                        col_class: 'col-md-4') %>    
+							                        col_class: 'col-md-3') %>  
+			<%= FormBuilder::text_field_v(persona, :nacionalidad, 
+													disabled: true,
+													label_text: 'Nacionalidad',
+							                        col_class: 'col-md-3') %>
+
 		</div> 
 
 		<h4>Datos de Contacto</h4>
@@ -64,7 +72,7 @@
 
 			<%= FormBuilder::text_field_v(persona, :direccion,
 													disabled: true,
-													col_class: 'col-md-11',
+													col_class: 'col-md-12',
 													label_text: 'Dirección')%> 
 		</div>    
 		<div class="row">   
@@ -74,7 +82,7 @@
 													col_class: 'col-md-4') %> 	
 			<%= FormBuilder::text_field_v(persona, :email, 
 													disabled: true,
-													col_class: 'col-md-7') %> 
+													col_class: 'col-md-8') %> 
 		</div>  		
 		<% end %>
 
@@ -84,32 +92,53 @@
 		<div class="row">   
 			<%= FormBuilder::text_field_v(empleado, :cargo,
 													disabled: true,
-													label_text: '* Cargo',
+													label_text: 'Cargo',
 													input_value: @empleado.cargo, 
 							                        col_class: 'col-md-4') %>
+
+			<%= FormBuilder::text_field_v(empleado, :abr_profesion, 
+													disabled: true,
+													label_text: 'Abr. Pofesión',
+													input_value: @empleado.abr_profesion, 
+													col_class: 'col-md-2') %> 	
 			
-			<div class="checkbox col-md-3">
+			<div class="checkbox col-md-6">
 			    <label>
 					<%= check_box_tag 'es_doctor', true, @empleado.type == 'Doctor' ? true : false, class: 'checkbox-doctor', disabled: true  %>
 			    	
-			        ¿Es Doctor?
+			        ¿Es Profesional de Salud?
 			        <%= empleado.hidden_field :type, class: 'tipo-empleado'%>
-			        <%= empleado.hidden_field :especialidad_id,value: nil, class: 'epecialidad-id'%>
+			        <%= empleado.hidden_field :area_id,value: nil, class: 'area-id'%>
 			    </label>
-			</div>
-			
-			<% if @empleado.especialidad_id != nil %>
-				<%= FormBuilder::text_field_v(empleado, :especialidad_id,
-													disabled: true,
-													label_text: '* Especialidad',
-													input_value: @empleado.especialidad.descripcion, 
-							                        col_class: 'col-md-4') %>
-			<% end %>
+			</div>			
 					
-		</div> 		
+		</div> 	
+
+		<div class="row">
+			<% if @empleado.type == 'Doctor' && @empleado.area_id !=nil %>
+				<%= FormBuilder::text_field_v(empleado, :area_id,
+														disabled: true,
+														label_text: 'Area',
+														input_value: @empleado.area.nombre, 
+								                        col_class: 'col-md-4') %>
+				<%= FormBuilder::text_field_v(empleado, :costo, 
+														disabled: true,	 
+														input_value: @empleado.costo, 
+														col_class: 'col-md-2') %>				                        
+			<% end %>
+			</div>	
 
 	<% end %>
 	
 
 </div>
+
+<script type="text/javascript">
+	<% if !flash.notice.blank? %>	
+		var n = noty({text: '<%=notice%>', type: 'success'});		
+	<% end %>
+	<% if !flash.alert.blank?%>	
+		var n = noty({text: '<%=alert%>', type: 'error'});
+	<% end %>
+</script>
 

@@ -82,8 +82,8 @@ persona5 = Persona.create(ci: '6787894',
 						  email: "homerojey@gmail.com")
 
 
-psicologia = Especialidad.create(descripcion: 'Psicologia')
-fisioterapeuta = Especialidad.create(descripcion: 'Fisioterapeuta')
+psicologia = Area.create(nombre: 'Psicologia')
+fisioterapeuta = Area.create(nombre: 'Fisioterapia')
 
 
 funcionario1 = Funcionario.create(persona_id: persona1.id,
@@ -95,7 +95,7 @@ funcionario4 = Funcionario.create(persona_id: persona4.id,
 
 doctor1 = Doctor.create(persona_id: persona2.id,  
 	                    cargo: 'Jefe del Area de Pediatria', 
-	                    especialidad_id: psicologia.id)
+	                    area_id: psicologia.id)
 
 horario1 = Horario.create(empleado_id: funcionario1.id)
 horario2 = Horario.create(empleado_id: doctor1.id)
@@ -126,6 +126,7 @@ Permission.create([{nombre: 'Usuarios', model: 'User', grupo:'Configuracion'},
         PermissionsRole.create(role_id: 1, permission_id: p.id)
  end
 paciente= Paciente.create(persona_id: persona5.id, fecha_ingreso: '07/05/1995')
+
 paciente2= Paciente.create(persona_id: persona4.id, fecha_ingreso: '07/05/1995')
 area= Area.create(nombre: 'Odontologia', costo: 5000)
 turno= Turno.create(paciente_id: paciente.id, fecha_expedicion: '07/05/2015',
