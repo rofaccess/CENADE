@@ -26,15 +26,15 @@ class ConfiguracionesController < ApplicationController
   end 
   def create
   end 
-  def show
-    @configuracion = Configuracion.find(params[:id])
+  # def show
+  #   @configuracion = Configuracion.find(params[:id])
 
-    respond_to do |format|
-      #format.html # show.html.erb
-      format.html { render action: "edit"}
-      format.json { render json: @configuracion }
-    end
-  end
+  #   respond_to do |format|
+  #     #format.html # show.html.erb
+  #     format.html { render action: "edit"}
+  #     format.json { render json: @configuracion }
+  #   end
+  # end
  
   private
 
