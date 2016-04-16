@@ -26,7 +26,7 @@
         </div>
 
         <%= FormBuilder::text_field_v(turno, :fecha_expedicion, 
-                                      input_class: 'required date datepicker', 
+                                      input_class: 'date datepicker', 
                                       max_length: Domain::FECHA,
                                       label_text: '* Fecha Actual',
                                       col_class: 'col-md-5')%>
@@ -92,7 +92,7 @@
        </div>
 
        <%= FormBuilder::text_field_v(turno, :fecha_consulta, 
-                                      input_class: 'required date datepicker2', 
+                                      input_class: 'date datepicker2', 
                                       max_length: Domain::FECHA,
                                       label_text: '* Fecha de Consulta',
                                       col_class: 'col-md-4')%>
@@ -100,8 +100,8 @@
   </br>
       <div class="row">
           <%= FormBuilder::text_field_v(turno, :monto, 
-                                      input_class: 'required', 
-                                      max_length: Domain::TELEFONO,
+                                      input_class: 'required costo', 
+                                      max_length: Domain::COSTO,
                                       label_text: '* Costo del servicio',
                                       col_class: 'col-md-7')%>
 
@@ -121,7 +121,7 @@
       <div class="row" id="factura" style="display:none">
         <%= FormBuilder::text_field_v(turno, :nro_factura, 
                                       input_class: '', 
-                                      max_length: 15,
+                                      max_length: Domain::NRO_FACTURA,
                                       label_text: '* N° de Factura',
                                       col_class: 'col-md-6')%>
 

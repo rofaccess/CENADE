@@ -5,7 +5,9 @@ var turnosUI = (function(){
 		// Inicia el script en el formulario
 		initScript: function(){
 			//turnosUI.getPaciente(addpacienteUrl)
-			$("#nuevo-turno").last().validate();
+			$(".nuevo-turno").validate();
+
+			$('.costo').inputmask('Regex', { regex: "[0-9\.]+" });
 
 			$(".paciente_select").select2({
 		        placeholder: "Seleccione un paciente",
