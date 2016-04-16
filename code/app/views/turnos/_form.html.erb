@@ -7,7 +7,7 @@
         <%= link_to '<i class="fa fa-list"></i> '.html_safe, turnos_path %> 
       </div>
     </div>
-
+<body>
     <%= form_for @turno, html: {class: 'nuevo-turno form-sin-submenu'}, remote: true do |turno|%>   
 
       <h4>Datos Personales</h4>
@@ -83,7 +83,7 @@
 
       </div>
 
-      <div class="col-md-5">
+      <div class="col-md-4">
 
         <%= turno.label :doctor_id, '* Profesional de la Salud' %> 
 
@@ -95,7 +95,7 @@
                                       input_class: 'required date datepicker2', 
                                       max_length: Domain::FECHA,
                                       label_text: '* Fecha de Consulta',
-                                      col_class: 'col-md-3')%>
+                                      col_class: 'col-md-4')%>
     </div>
   </br>
       <div class="row">
@@ -111,7 +111,7 @@
 
             <div class="row">
               <%= label :paga, "Si", class: "col-md-1"%>
-              <%= turno.radio_button :paga, true , :value => true, class: "col-md-2 paga si_paga"%>
+              <%= turno.radio_button :paga, true , :value => true, class: "col-md-3 paga si_paga"%>
               <%= label :paga, "No", class: "col-md-2"%>
               <%= turno.radio_button :paga, false , :checked => true, :value => false, class: "col-md-1 paga no_paga" %>
 
@@ -142,11 +142,14 @@
     $(document).ready(function(){
       $('.datepicker').datepicker({
         format: "dd/mm/yyyy",
-        language: "es"
+        language: "es",
+        autoclose: true,
+        orientation: "bottom"
       });
       $('.datepicker2').datepicker({
         format: "dd/mm/yyyy",
-        language: "es"
+        language: "es",
+        autoclose: true
       });
 
     });

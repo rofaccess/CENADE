@@ -54,7 +54,6 @@ class TurnosController < ApplicationController
   end
 
    def get_paciente
-      new
       @paciente= Paciente.find(params[:id])
       render partial: 'get_paciente', format: 'js'
     end
