@@ -4,13 +4,14 @@
   <div class="page-title" style = "left:200px;">
     Perfil de Usuario      
   </div>
+  <%= hidden_field_tag :usuario_id, current_user.id %>
 
-  <%= form_for current_user, url: {action: "update"},  html: {method: "put",class:'medium-form'} do |f| %>
+  <%= form_for current_user, url: {action: "update"},  html: {method: "put",class:' form-perfil medium-form'} do |f| %>
   
     <h4>Datos de Usuario</h4><hr>
     <div class="row">
       <%= FormBuilder::text_field_v(f, :username, 
-                                        input_class: 'required', 
+                                        input_class: 'required uniqueUsuarioUsername username', 
                                         max_length: Domain::USERNAME, 
                                         autofocus: true,
                                         col_class: 'col-md-6',
@@ -20,20 +21,18 @@
           <%= image_tag(current_user.profile_foto_url.to_s, class: "border-img") %>
           <div class="uploader_button">
           <%= f.file_field :profile_foto, class:"file_uploader" %>
-          <label style="color:#24C1C1;font-weight: normal;">+Agregar Imagen</label>
+          <label class="font-img">+Agregar Imagen</label>
           </div>
       </div></br>
     </div>
 
     <div class="row">
-      <%= FormBuilder::password_field(f, :password, 
-                                        input_class: 'required clear', 
+      <%= FormBuilder::password_field(f, :password,  
                                         max_length: Domain::CONTRASEÑA,
                                         col_class: 'col-md-6',
                                         label_text: '* Contraseña') %>
 
-      <%= FormBuilder::password_field(f, :password_confirmation, 
-                                        input_class: 'required clear', 
+      <%= FormBuilder::password_field(f, :password_confirmation,  
                                         max_length: Domain::CONTRASEÑA,
                                         col_class: 'col-md-6',
                                         label_text: '* Confirmar Contraseña') %>        
@@ -41,19 +40,19 @@
     <h4>Datos de Contacto</h4><hr>
     <div class="row">
       <div class="form-group col-md-12">
-          <label class="control-label titulos-campos" for="user_username">* Direccion</label>
-          <input class="form-control required clear usuario-apellido" placeholder="" value="<%= @persona.direccion %>" maxlength="30" type="text" name="user[direccion]" id="user_direccion">
+          <label class="control-label " for="user_username">* Direccion</label>
+          <input class="form-control required clear " placeholder="" value="<%= @persona.direccion %>" maxlength="30" type="text" name="user[direccion]" id="user_direccion">
       </div>
     </div>
     <div class="row">
       <div class="form-group col-md-5">
-          <label class="control-label titulos-campos" for="user_username">* Telefono</label>
-          <input class="form-control required clear usuario-cargo" placeholder="" value="<%= @persona.telefono %>" maxlength="100" type="text" name="user[telefono]" id="user_telefono">
+          <label class="control-label " for="user_username">* Telefono</label>
+          <input class="form-control required clear " placeholder="" value="<%= @persona.telefono %>" maxlength="100" type="text" name="user[telefono]" id="user_telefono">
       </div>
 
       <div class="form-group col-md-7">
-          <label class="control-label titulos-campos" for="user_username">* Email</label>
-          <input class="form-control required clear usuario-email" placeholder=""  maxlength="50" type="text" value="<%= @persona.email %>" name="user[email]" id="user_email">
+          <label class="control-label " for="user_username">* Email</label>
+          <input class="form-control required clear " placeholder=""  maxlength="50" type="text" value="<%= @persona.email %>" name="user[email]" id="user_email">
       </div>
     </div>
     
@@ -62,6 +61,10 @@
     </div>
   <% end %>
 </div>
+<script type="text/javascript">
+  perfilUI.initScript("<%= usuarios_check_username_path %>");
+</script>
+
 
 
 
