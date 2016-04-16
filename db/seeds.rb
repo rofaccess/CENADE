@@ -104,8 +104,7 @@ horario2 = Horario.create(empleado_id: doctor1.id)
 admin = User.create(username: 'admin', 
 					password: 'MyAdmin123', 
 					password_confirmation: 'MyAdmin123', 
-					empleado_id: funcionario1.id,
-					email: "juanjose@gmail.com")
+					empleado_id: funcionario1.id)
 
 configuracion1 = Configuracion.create(empresa_nombre: 'CENADE', 
 	                      empresa_direccion: 'Samu´u c/ Ruta 1 km 3,5 - Barrio: Ka´aguy Rory Encarnación', 
