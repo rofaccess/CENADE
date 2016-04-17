@@ -19,7 +19,11 @@ var turnosUI = (function(){
             });
 		},
 		
-
+		function recargarPacientes() {
+ +        $('.paciente_select').select2({
+ +            escapeMarkup: function(e) { return e; }
+ +        });
+ +    	},
 		// Inicia el script en el formulario
 		initScript: function(checkTurnoPacienteUrl){
 			//turnosUI.getPaciente(addpacienteUrl)

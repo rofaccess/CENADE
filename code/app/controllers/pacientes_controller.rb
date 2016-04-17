@@ -55,6 +55,21 @@ class PacientesController < ApplicationController
 			end			
 		end	
 	end
+    def recarga_paciente
+      respond_to do |format|
+
+        @paciente = Paciente.new(paciente_params)       
+        if @paciente.save       
+          flash.now[:notice] = "Se ha guardado el paciente #{@paciente.persona.nombre} #{@paciente.persona.apellido}."
+          
+        else
+          flash.now[:alert] = "No se ha podido guardar el paciente #{@paciente.persona.nombre} #{@paciente.persona.apellido}."
+          
+        end
+        render 'recarga_paciente', format: :js 
+      end
+      
+    end
 
   	def new_paciente_modal
   	  new
