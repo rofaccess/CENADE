@@ -54,7 +54,24 @@ class TurnosController < ApplicationController
   def set_turno
      @turno = Turno.find(params[:id])
   end
+  def print_turnos
+      
+      @turnos = Turno.all
 
+      respond_to do |format|
+        format.pdf do
+          render :pdf => "Lista de Turnos",
+                 :template => "turnos/print_turnos.pdf.erb",
+                 :layout => "pdf.html"
+          end
+        end
+    end
+ 
+   def check_paciente
+     turno= Turno.find_by(paciente_id: self.paciente_id, fecha_consulta: self.fecha_consulta, area_id: self.area_id)
+
+      render json: (turno.nil? || turno.id == params[:id].to_i) ? true : "El paciente ya tiene un turno para el área y fecha".to_json       
+    end 
    def get_paciente
       @paciente= Paciente.find(params[:id])
       
