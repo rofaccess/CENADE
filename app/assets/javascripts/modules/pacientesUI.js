@@ -7,48 +7,35 @@ var pacientesUI = (function(){
 			});			
 		},			
 			
-		//Muestra los encargados si es menor
+		//Muestra los inputs para encargados dependiendo del checkbox
 		mostrarEncargados: function(){
 			
-			if ($(".checkbox-menor").is(":checked")){
-				pacientesUI.esDoctor();
+			if ($(".checkbox-encargado").is(":checked")){
+				pacientesUI.tieneEncargados();
 			}else{
-				pacientesUI.esFuncionario();
+				pacientesUI.sinEncargados();
 			} 
 		    	
 		    
-		    $(".checkbox-doctor").change(function() {
+		    $(".checkbox-encargado").change(function() {
 			    if(this.checked) {
-			    	pacientesUI.esDoctor();
+			    	pacientesUI.tieneEncargados();
 			    }else{
-			    	pacientesUI.esFuncionario();
+			    	pacientesUI.sinEncargados();
 			    }
 			});
 		},
 
-		esDoctor: function(){
-			$('.to-hide').show();
-			
-			$('.empleado-select').addClass('required');
-			$('.empleado-select').attr("disabled",false);
-			$('.costo').attr("disabled",false);
-			
-			$('.tipo-empleado').attr("value","Doctor");
-			
-			$('.area-id').attr("disabled",true);
+		//
 
+		tieneEncargados: function(){
+			$('.to-hide').show();			
+			$('.dato-encargado').attr("disabled",false);	
 		},
 
-		esFuncionario: function(){
-			$('.to-hide').hide();
-			
-			$('.empleado-select').removeClass('required');
-			$('.empleado-select').attr("disabled",true);
-			$('.costo').attr("disabled",true);
-
-			$('.tipo-empleado').attr("value","Funcionario");	
-
-			$('.area-id').attr("disabled",false);
+		sinEncargados: function(){
+			$('.to-hide').hide();			
+			$('.dato-encargado').attr("disabled",true);	
 		},
 		
 		checkCI: function(checkPacienteCIUrl){
@@ -74,11 +61,13 @@ var pacientesUI = (function(){
 		initScript: function(checkPacienteCIUrl){
 			pacientesUI.checkCI(checkPacienteCIUrl);
 
-			//pacientesUI.mostrarEncargados();
+			pacientesUI.mostrarEncargados();
 
 			$('.ruc').inputmask('Regex', { regex: "[0-9\-a-z]+" });
 
 			$('.ci').inputmask('Regex', { regex: "[0-9]+" });
+
+			$('.num').inputmask('Regex', { regex: "[0-9]+" });
 
 			$('.costo').inputmask('Regex', { regex: "[0-9]+" });
 

@@ -11,7 +11,7 @@ class PacientesController < ApplicationController
 	def new    	
 		@paciente = Paciente.new
 		@paciente.build_persona
-    #@paciente.build_encargado
+    @paciente.build_encargado
     end
 
     def create	
@@ -56,10 +56,10 @@ class PacientesController < ApplicationController
 		end	
 	end
 
-  	#def new_paciente_modal
-  	#	new
-  #		render partial: 'new_paciente_modal', format: 'js'
-  #	end 
+  	def new_paciente_modal
+  		new
+  		render partial: 'new_paciente_modal', format: 'js'
+  	end 
 
   	def set_paciente
   		@paciente = Paciente.find(params[:id])
@@ -76,9 +76,11 @@ class PacientesController < ApplicationController
   	end	
 
   	def paciente_params
-  		params.require(:paciente).permit(:lugar_nacimiento,:fecha_ingreso,:profesion, :lugar_trabajo,
+  		params.require(:paciente).permit(:lugar_nacimiento,:fecha_ingreso,:profesion, :lugar_trabajo, :encargado_id,
   			persona_attributes: [:id,:nombre,:apellido,:ci,:ruc,:fecha_nacimiento,:edad,
-  				:sexo,:estado_civil_id,:direccion,:telefono,:email,:nacionalidad])
+  				:sexo,:estado_civil_id,:direccion,:telefono,:email,:nacionalidad],
+        encargado_attributes: [:padre_nombre, :padre_edad, :padre_prof_act_ant, :madre_nombre, :madre_edad, :madre_num_hijos,
+          :madre_prof_act_ant, :encargado_nombre, :encargado_edad, :encargado_prof_act_ant])
   	end
 
   end

@@ -120,9 +120,90 @@
 				
 		</div> 
 
-		<h4>Datos de los Padres o Encargados </h4>
-		<hr>
+		<div class="row">
+			<div class="checkbox col-md-6">
+				<label>
+						<%= check_box_tag 'tiene_encargado', true, false, class: 'checkbox-encargado'  %>
+
+							Padres o Encargados
+							<%= paciente.hidden_field :encargado_id, class: 'encargado-id'%>							
+				</label>
+			</div>
+		</div>
+		<div class="to-hide">
+			<h4>Datos de los Padres o Encargados </h4>
+			<hr>
+			<%= paciente.fields_for(:encargado) do |encargado| %>
+				<div class="row">   
+					<%= FormBuilder::text_field_v(encargado, :padre_nombre, 
+														max_length: Domain::NOM_APE,
+														col_class: 'col-md-5',
+														label_text: 'Nombre del Padre',
+														input_class: "dato-encargado") %> 	
+
+				 
+					<%= FormBuilder::text_field_v(encargado, :padre_edad, 
+														max_length: Domain::EDAD,
+														col_class: 'col-md-1',
+														label_text: "Edad",
+														input_class: "dato-encargado edad") %> 	
+
+					<%= FormBuilder::text_field_v(encargado, :padre_prof_act_ant, 
+														max_length: Domain::PROF_ACT_ANT,
+														col_class: 'col-md-6',
+														label_text: "Profesión Actual y Anterior",
+														input_class: "dato-encargado") %> 		
+				</div> 
+				<div class="row">   
+					<%= FormBuilder::text_field_v(encargado, :madre_nombre, 
+														max_length: Domain::NOM_APE,
+														col_class: 'col-md-5',
+														label_text: 'Nombre de la Madre',
+														input_class: "dato-encargado") %> 	
+
+				 
+					<%= FormBuilder::text_field_v(encargado, :madre_edad, 
+														max_length: Domain::EDAD,
+														col_class: 'col-md-1',
+														label_text: "Edad",
+														input_class: "dato-encargado edad") %>
+
+					<%= FormBuilder::text_field_v(encargado, :madre_num_hijos, 
+														max_length: Domain::NUM_HIJOS,
+														col_class: 'col-md-1',
+														label_text: "Hijos",
+														input_class: "dato-encargado num") %> 						
+
+					<%= FormBuilder::text_field_v(encargado, :madre_prof_act_ant, 
+														max_length: Domain::PROF_ACT_ANT,
+														col_class: 'col-md-5',
+														label_text: "Profesión Actual y Anterior",
+														input_class: "dato-encargado") %> 			
+				</div> 
+				<div class="row">   
+					<%= FormBuilder::text_field_v(encargado, :encargado_nombre, 
+														max_length: Domain::NOM_APE,
+														col_class: 'col-md-5',
+														label_text: 'Nombre del Encargado',
+														input_class: "dato-encargado") %> 	
+
+				 
+					<%= FormBuilder::text_field_v(encargado, :encargado_edad, 
+														max_length: Domain::EDAD,
+														col_class: 'col-md-1',
+														label_text: "Edad",
+														input_class: "dato-encargado edad") %> 	
+
+					<%= FormBuilder::text_field_v(encargado, :encargado_prof_act_ant, 
+														max_length: Domain::PROF_ACT_ANT,
+														col_class: 'col-md-6',
+														label_text: "Profesión Actual y Anterior",
+														input_class: "dato-encargado") %> 					
+				</div> 
+			<% end %>
+		</div>		
 		
+
 		<div class="form-button">					
 			<%= paciente.submit 'Guardar', class: 'btn btn-custom'%>
 		</div>
