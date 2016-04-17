@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   resources :roles
   resources :doctores
   resources :funcionarios
+
+  get 'turnos/check_paciente' => 'empleados#check_paciente'
   get'turnos/get_paciente' => 'turnos#get_paciente'
   resources :turnos 
 
