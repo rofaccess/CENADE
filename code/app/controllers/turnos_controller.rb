@@ -1,20 +1,21 @@
 class TurnosController < ApplicationController
  
   before_action :set_turno, only: [:show, :edit, :update, :destroy]
+  respond_to :html, :js 
+
   def index
-  	@search = Turno.ransack(params[:q])
+  	@search = Turno.order(:fecha_expedicion).ransack(params[:q])
     @turnos= @search.result.page(params[:page])
   end
 
   def new
   	@turno= Turno.new
-    
   end
   def create
   	@turno = Turno.new(turno_params)
   	 respond_to do |format|
       if @turno.save
-        format.html { redirect_to turnos_path, flash: {notice: "El turno fue registrado"}}
+        format.html { redirect_to turno_path(@turno.id), notice: 'Turno actualizado correctamente'}
       else
        
         flash.now[:alert] = "Ha ocurrido un error al registrar turno"
@@ -41,6 +42,7 @@ class TurnosController < ApplicationController
   end
 
   def show
+
   end
   def destroy
     @turno.destroy
@@ -55,7 +57,7 @@ class TurnosController < ApplicationController
 
    def get_paciente
       @paciente= Paciente.find(params[:id])
-      render partial: 'get_paciente', format: 'js'
+      
     end
 
   def turno_params

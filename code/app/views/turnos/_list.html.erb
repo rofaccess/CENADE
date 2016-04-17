@@ -27,9 +27,9 @@
       
       <td class = "action">
         
-        <%= link_to '<i class="fa fa-eye fa-lg"></i> '.html_safe, turno_path(turno)%>     
-        <%= link_to '<i class="fa fa-edit fa-lg"></i> '.html_safe, edit_turno_path(turno)%>        
-        <%= link_to '<i class="fa fa-times fa-lg"></i>'.html_safe, turno_path(turno), method: 'delete', data: {confirm: "¿Desea cancelar el turno?"}%>
+        <%= link_to '<i class="fa fa-eye fa-lg"></i> '.html_safe, turno_path(turno), remote: true%>     
+        <%= link_to '<i class="fa fa-edit fa-lg"></i> '.html_safe, edit_turno_path(turno), remote: true%>        
+        <%= link_to '<i class="fa fa-times fa-lg"></i>'.html_safe, turno_path(turno), method: 'delete', remote: true, data: {confirm: "¿Desea cancelar el turno?"}%>
 
       </td>
     </tr>
@@ -37,3 +37,10 @@
   </tbody>
 </table>
 
+<script type="text/javascript"> 
+    $(document).ready(function(){
+       
+      turnosUI.initScript();
+      });
+
+</script>

@@ -8,14 +8,14 @@
             <%= f.search_field :turno_cont, placeholder: "Buscar por Área, fecha", class: "form-control", autofocus: true%>
             <span class="fa fa-search"></span>
           	<div class="input-group-btn"> 
-            <%= link_to '<i class="fa fa-plus-square"></i> '.html_safe, new_turno_path%>          
+            <%= link_to '<i class="fa fa-plus-square"></i> '.html_safe, new_turno_path, remote: true %>          
           </div> 
         </div>
       <% end %>
     </div>
   </div>
   
-  <div id="list">
+  <div id="list" class="list-sin-submenu">
     <%= render 'list' %>
   </div> 
 
@@ -23,10 +23,3 @@
     <%= paginate @turnos, remote: true %>
   </div>  
 </div>
-<script type="text/javascript"> 
-    $(document).ready(function(){
-       
-    	turnosUI.initScript();
-    	});
-
-</script>
