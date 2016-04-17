@@ -7,12 +7,8 @@ Rails.application.routes.draw do
   resources :roles
   resources :doctores
   resources :funcionarios
-
-  resources :turnos do
-    collection do
-      get 'get_paciente'
-    end
-  end
+  get'turnos/get_paciente' => 'turnos#get_paciente'
+  resources :turnos 
 
   get 'empleados/print_empleados' => 'empleados#print_empleados'
   get 'empleados/print_empleado' => 'empleados#print_empleado'
