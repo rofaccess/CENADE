@@ -4,7 +4,8 @@ class TurnosController < ApplicationController
   respond_to :html, :js 
 
   def index
-  	@search = Turno.order(:fecha_expedicion).ransack(params[:q])
+  	@search = Turno.ransack(params[:q])
+    @search.sorts = ['fecha_expedicion desc']
     @turnos= @search.result.page(params[:page])
   end
 
