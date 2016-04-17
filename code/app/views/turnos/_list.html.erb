@@ -2,12 +2,12 @@
 <table id="table-turnos" class= "table table-condensed">
   <thead>
     <tr class="active">
+      <th>Fecha</th>
       <th>Turno</th>
       <th>Paciente</th>
       <th>C.I.</th>
       <th>Profesional</th>
       <th>Estado</th>
-      <th>Fecha</th>
       <th>Área</th>
       <th></th>
     </tr>
@@ -15,13 +15,13 @@
   <tbody>
     <% @turnos.each do |turno| %>
     <tr>
+      <td ><%=turno.fecha_expedicion.to_date%></td>
       <td ><%=turno.turno %></td>
       <td ><%=turno.paciente.persona.nombre %> <%=turno.paciente.persona.apellido%></td>
       <td ><%=turno.paciente.persona.ci %></td>
         <%doctor= Empleado.find(turno.doctor_id)%>
       <td ><%=doctor.persona.nombre %> <%=doctor.persona.apellido %></td>
       <td ><span class="label label-success"><%=turno.estado %></span></td>
-      <td ><%=turno.fecha_expedicion.to_date%></td>
       <td><%=turno.area.nombre%></td>
 
       

@@ -1,4 +1,0 @@
-var pacienteSelect = $('#paciente_id');
-pacienteSelect.html("<%= escape_javascript(options_for_select(Paciente.agrupado.map{ |p| [p.persona.nombre, p.id] }, selected: @paciente.id).insert(0, 'Seleccione un paciente')) %>");
-pacienteSelect.select2('destroy');
-turnosUI.recargarPacientes();

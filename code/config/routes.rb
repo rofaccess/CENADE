@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
   get 'turnos/check_paciente' => 'empleados#check_paciente'
   get'turnos/get_paciente' => 'turnos#get_paciente'
+  get 'turnos/print_turnos' => 'turnos#print_turnos'
   resources :turnos 
 
   get 'empleados/print_empleados' => 'empleados#print_empleados'

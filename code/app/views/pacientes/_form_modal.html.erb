@@ -10,7 +10,7 @@
 
 <div class="modal-body">
 
-	<%= form_for @paciente, url: pacientes_recarga_paciente_path, html: {class: 'form-paciente form-sin-submenu'} do |paciente|%>   
+	<%= form_for @paciente, url: pacientes_recarga_paciente_path, html: {class: 'form-paciente form-sin-submenu'},  remote: true do |paciente|%>   
     	
     	<h4>Datos Personales</h4>
 		<hr>

@@ -26,7 +26,7 @@
         </div>
 
         <%= FormBuilder::text_field_v(turno, :fecha_expedicion, 
-                                      input_class: 'date datepicker', 
+                                      input_class: 'date datepicker required', 
                                       max_length: Domain::FECHA,
                                       label_text: '* Fecha Actual',
                                       col_class: 'col-md-5')%>
@@ -92,7 +92,7 @@
        </div>
 
        <%= FormBuilder::text_field_v(turno, :fecha_consulta, 
-                                      input_class: 'date datepicker2', 
+                                      input_class: 'required date datepicker2', 
                                       max_length: Domain::FECHA,
                                       label_text: '* Fecha de Consulta',
                                       col_class: 'col-md-4')%>
@@ -139,20 +139,6 @@
 </div>
 
 <script type="text/javascript"> 
-    $(document).ready(function(){
-      $('.datepicker').datepicker({
-        format: "dd/mm/yyyy",
-        language: "es",
-        autoclose: true,
-        orientation: "bottom"
-      });
-      $('.datepicker2').datepicker({
-        format: "dd/mm/yyyy",
-        language: "es",
-        autoclose: true
-      });
-
-    });
-
-  turnosUI.initScript("<%= %>");
+    
+  turnosUI.initScript();
 </script>

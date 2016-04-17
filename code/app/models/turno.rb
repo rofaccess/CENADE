@@ -1,5 +1,5 @@
 class Turno < ActiveRecord::Base
-	paginates_per 3
+	paginates_per 10
 	belongs_to :paciente
 	belongs_to :area
 	ransack_alias :turno, :area_nombre_or_fecha_expedicion

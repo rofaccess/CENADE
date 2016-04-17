@@ -56,7 +56,7 @@ class PacientesController < ApplicationController
 		end	
 	end
     def recarga_paciente
-      respond_to do |format|
+      
 
         @paciente = Paciente.new(paciente_params)       
         if @paciente.save       
@@ -67,13 +67,14 @@ class PacientesController < ApplicationController
           
         end
         render 'recarga_paciente', format: :js 
-      end
+      
       
     end
 
   	def new_paciente_modal
-  	  new
-      render partial: 'new_paciente_modal', format: 'js'
+  	  @paciente = Paciente.new
+       @paciente.build_persona
+      render 'new_paciente_modal', format: :js
     end 
 
   	def set_paciente

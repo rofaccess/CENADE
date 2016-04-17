@@ -1,4 +1,5 @@
 var turnosUI = (function(){
+
 	return {	
 		checkPACIENTE: function(checkTurnoPacienteUrl){
 			$.validator.addClassRules({
@@ -19,11 +20,6 @@ var turnosUI = (function(){
             });
 		},
 		
-		function recargarPacientes() {
- +        $('.paciente_select').select2({
- +            escapeMarkup: function(e) { return e; }
- +        });
- +    	},
 		// Inicia el script en el formulario
 		initScript: function(checkTurnoPacienteUrl){
 			//turnosUI.getPaciente(addpacienteUrl)
@@ -38,6 +34,7 @@ var turnosUI = (function(){
 		        language: "es"
 
 		        }).on("select2:select",function(){
+
 		        id = $(this).val();
 
 		        $.ajax({
@@ -58,20 +55,37 @@ var turnosUI = (function(){
 	          $("#factura").toggle($(this).hasClass("si_paga"));
 	        });
 
+	        $('.datepicker').datepicker({
+		        format: "dd/mm/yyyy",
+		        language: "es",
+		        autoclose: true,
+		        orientation: "bottom"
+		        }).on('change', function() {
+        			$(this).valid();
+		      	});
+		      $('.datepicker2').datepicker({
+		        format: "dd/mm/yyyy",
+		        language: "es",
+		        autoclose: true
+		        }).on('change', function() {
+        			$(this).valid();
+		      	});
+		     
+
 			$('#table-turnos').DataTable( {
 		        "paging":   false,
 		        "info":     false,
 		        "searching": false,
 		        "columnDefs": [
-		            { "visible": false, "targets": 5 },
+		            { "visible": false, "targets": 0 },
 		            { "visible": false, "targets": 6 }
 	        	],
 		        "drawCallback": function ( settings ) {
 	            var api = this.api();
 	            var rows = api.rows( {page:'current'} ).nodes();
 	            var last=null;
-	 
-	            api.column(5, {page:'current'} ).data().each( function ( group, i ) {
+	 			
+	            api.column(0, {page:'current'} ).data().each( function ( group, i ) {
 	                if ( last !== group ) {
 	                    $(rows).eq( i ).before(
 	                        '<tr class="group" bgcolor="#CCCCCC"><td align="center" colspan="6">'+group+'</td></tr>'
