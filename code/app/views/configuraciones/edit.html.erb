@@ -9,34 +9,41 @@
 
 	    <h4>Datos de la Empresa</h4><hr>
 	    <div class="row">
-	      	<%= FormBuilder::text_field_v(configuracion, :empresa_nombre, 
-								                    input_class: 'required minLength2', 
-								              		max_length: Domain::EMPRESA_NOMBRE,
-								                    autofocus: true,
-								                    col_class: 'col-md-5',
-								                    label_text: '* Nombre') %>
+	    <div class="col-md-8">
+	    	<div>
+	    		<%= FormBuilder::text_field_v(configuracion, :empresa_nombre, 
+									                    input_class: 'required minLength2', 
+									              		max_length: Domain::EMPRESA_NOMBRE,
+									                    autofocus: true,
+									                    col_class: 'col-md-5',
+									                    label_text: '* Nombre') %>
 
-			<%= FormBuilder::text_field_v(configuracion, :empresa_web,    
-								                    max_length: Domain::EMPRESA_WEB, 
+				<%= FormBuilder::text_field_v(configuracion, :empresa_web,    
+									                    max_length: Domain::EMPRESA_WEB, 
 								                    autofocus: false,
-								                    col_class: 'col-md-5',
+								                    col_class: 'col-md-7',
 								                    label_text: 'Sitio web') %>
+	    	</div>
+	    	<div>
+	    		<%= FormBuilder::text_field_v(configuracion, :empresa_direccion, 
+								                    input_class: 'required minLength4', 
+								                    max_length: Domain::DIRECCION,
+								                    autofocus: false,
+								                    col_class: 'col-md-15',
+							                        label_text: '* Direccion') %>
 
-			<div class= 'col-md-6' style="padding-left: 85%; padding-top:-100%; ">
+	    	</div>
+	    </div>
+			<div class= 'col-md-3'>
 			    <%= image_tag(@configuracion.empresa_logo_url.to_s, class: "border-img") %>
-			    <div class="uploader_botton">
+			    <div class="uploader_button">
 			    	<%= configuracion.file_field :empresa_logo, class:"file_uploader" %>
 			    	<label class="font-img">+Agregar Imagen</label>
 		    	</div>
 			</div></br>
 		</div>
-		<div class="row" style="padding-top: -100%">
-			<%= FormBuilder::text_field_v(configuracion, :empresa_direccion, 
-								                    input_class: 'required minLength4', 
-								                    max_length: Domain::DIRECCION,
-								                    autofocus: false,
-								                    col_class: 'col-md-8',
-							                        label_text: '* Direccion') %>
+		<div class="row">
+
 		    
 		    <%= FormBuilder::text_field_v(configuracion, :empresa_email, 
 								                    input_class: 'emailCheck', 

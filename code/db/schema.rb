@@ -58,6 +58,12 @@ ActiveRecord::Schema.define(version: 20160413145411) do
     t.string   "empresa_horario_atencion", limit: 100, default: ""
     t.string   "empresa_web",              limit: 40,  default: ""
     t.string   "empresa_logo"
+    t.string   "hora_inicio_mañana"
+    t.string   "hora_fin_mañana"
+    t.string   "hora_inicio_tarde"
+    t.string   "hora_fin_tarde"
+    t.string   "dias_atencion"
+    t.string   "usuario_admin"
     t.datetime "created_at",                                        null: false
     t.datetime "updated_at",                                        null: false
   end
