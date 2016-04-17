@@ -17,7 +17,6 @@ class CreatePacientes < ActiveRecord::Migration
       
      	t.timestamps null: false
     end
-    add_foreign_key(:pacientes, :personas, column: 'persona_id', on_delete: :restrict)
-    add_foreign_key(:pacientes, :personas, column: 'encargado_id', on_delete: :restrict)
+    add_foreign_key(:pacientes, :personas, column: 'persona_id', on_delete: :restrict)    
   end
 end
