@@ -3,7 +3,7 @@ class Paciente < ActiveRecord::Base
 	acts_as_paranoid
 
 	# Despues de borrar el registro de paciente, se ejecutan estos métodos
-	after_destroy :destroy_persona, :destroy_encargado
+	after_destroy :destroy_persona, :destroy_encargado	
 
 	has_many :turnos
 	belongs_to :persona
@@ -21,6 +21,8 @@ class Paciente < ActiveRecord::Base
     # Se elimina el registro de encargado al eliminar el paciente
 	def destroy_encargado
       if !encargado.blank?
+      	# Se setea el campo paciente_id de encargado, para que se sepa a que paciente perteneció
+      	encargado.update(paciente_id: id)
       	encargado.destroy
       end	
     end

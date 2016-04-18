@@ -1,4 +1,4 @@
- <div class="form-content">
+<div class="form-content">
     <div class="page-title page-title-sin-submenu">
       <%=@paciente.id.nil? ? 'Nuevo Paciente' : 'Editar Paciente'%> 
 
@@ -123,18 +123,19 @@
 		<div class="row">
 			<div class="checkbox col-md-6">
 				<label>
-						<%= check_box_tag 'tiene_encargado', true, false, class: 'checkbox-encargado'  %>
+						<%= check_box_tag 'encargado', true, @paciente.encargado_id.nil? ? false : true, class: 'checkbox-encargado'  %>
 
-							Padres o Encargados
-							<%= paciente.hidden_field :encargado_id, class: 'encargado-id'%>							
+							Padres o Encargados	
+							<%= paciente.hidden_field :borrar_encargado, value: false, class: 'borrar-encargado'%>							
 				</label>
 			</div>
 		</div>
-		<div class="to-hide">
+		<div class="to-hide">	
 			<h4>Datos de los Padres o Encargados </h4>
 			<hr>
 			<%= paciente.fields_for(:encargado) do |encargado| %>
 				<div class="row">   
+
 					<%= FormBuilder::text_field_v(encargado, :padre_nombre, 
 														max_length: Domain::NOM_APE,
 														col_class: 'col-md-5',
@@ -201,8 +202,8 @@
 														input_class: "dato-encargado") %> 					
 				</div> 
 			<% end %>
-		</div>		
-		
+				
+		</div>
 
 		<div class="form-button">					
 			<%= paciente.submit 'Guardar', class: 'btn btn-custom'%>

@@ -31,11 +31,16 @@ var pacientesUI = (function(){
 		tieneEncargados: function(){
 			$('.to-hide').show();			
 			$('.dato-encargado').attr("disabled",false);	
+
+			//Setea el atributo borrar_encargado definido en el formulario	
+			$('.borrar-encargado').attr("value","false"); 		
 		},
 
 		sinEncargados: function(){
 			$('.to-hide').hide();			
 			$('.dato-encargado').attr("disabled",true);	
+
+			$('.borrar-encargado').attr("value","true");	
 		},
 		
 		checkCI: function(checkPacienteCIUrl){
