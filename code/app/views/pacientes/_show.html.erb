@@ -10,7 +10,7 @@
 			
 			<%= link_to '<i class="fa fa-trash-o"></i>'.html_safe, paciente_path(@paciente), method: 'delete', data: {confirm: "¿Desea eliminar al paciente #{@paciente.persona.nombre}?"}%>
 			
-			<%= link_to '<i class="fa fa-print"></i> '.html_safe, new_paciente_path, target: '_blank'%>
+			<%= link_to '<i class="fa fa-print"></i> '.html_safe, pacientes_print_paciente_path(paciente_id: @paciente.id, :format => :pdf), target: '_blank'%>
 		</div>
 	</div>
 	
