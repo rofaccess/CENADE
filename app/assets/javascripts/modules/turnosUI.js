@@ -34,7 +34,7 @@ var turnosUI = (function(){
 		        language: "es"
 
 		        }).on("select2:select",function(){
-
+ 
 		        id = $(this).val();
 
 		        $.ajax({

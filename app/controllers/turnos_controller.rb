@@ -15,7 +15,7 @@ class TurnosController < ApplicationController
   	@turno = Turno.new(turno_params)
   	 respond_to do |format|
       if @turno.save
-        format.html { redirect_to turno_path(@turno.id), notice: 'Turno actualizado correctamente'}
+        format.html { redirect_to turno_path(@turno.id), notice: 'Turno registrado correctamente'}
       else
        
         flash.now[:alert] = "Ha ocurrido un error al registrar turno"
@@ -80,8 +80,24 @@ class TurnosController < ApplicationController
       @paciente= Paciente.find(params[:id])
       
     end
+    def cambiar_estado
+
+      @turno= Turno.find(params[:id])
+      if (@turno.estado== 'pendiente')
+
+        @turno.update_attribute(:estado, "cancelado")
+        flash.now[:notice] = "Turno N° #{@turno.turno} cancelado"
+
+      else
+        flash.now[:alert] = "Turno N° #{@turno.turno} no se puede cancelar"
+      end
+      index
+      render 'index'
+
+    end 
     def get_turnos
       @search = Turno.ransack(params[:q])
+      @search.sorts = 'turno asc'
       @turnos= @search.result.page(params[:page])
     end
 
