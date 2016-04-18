@@ -4,9 +4,8 @@ class TurnosController < ApplicationController
   respond_to :html, :js 
 
   def index
-  	@search = Turno.ransack(params[:q])
-    @search.sorts = ['fecha_expedicion desc']
-    @turnos= @search.result.page(params[:page])
+  	 @search = Turno.ransack(params[:q])
+      @turnos= @search.result.page(params[:page])
   end
 
   def new
@@ -41,7 +40,11 @@ class TurnosController < ApplicationController
       
     end
   end
-
+  def buscar
+    @search = Turno.search(params[:q])
+    @turnos = @search.result.page(params[:page])
+    render 'index'
+  end
   def show
 
   end
@@ -76,6 +79,10 @@ class TurnosController < ApplicationController
    def get_paciente
       @paciente= Paciente.find(params[:id])
       
+    end
+    def get_turnos
+      @search = Turno.ransack(params[:q])
+      @turnos= @search.result.page(params[:page])
     end
 
   def turno_params

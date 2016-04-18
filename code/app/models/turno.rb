@@ -2,7 +2,7 @@ class Turno < ActiveRecord::Base
 	paginates_per 10
 	belongs_to :paciente
 	belongs_to :area
-	ransack_alias :turno, :area_nombre_or_fecha_expedicion
+	
   validate :paciente_unico_area_fecha_consulta
 	before_create :actualizar_turno
   before_create :actualizar_estado
