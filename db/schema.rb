@@ -87,6 +87,7 @@ ActiveRecord::Schema.define(version: 20160413145411) do
     t.string   "encargado_nombre",       limit: 60,  default: ""
     t.string   "encargado_edad",         limit: 3,   default: ""
     t.string   "encargado_prof_act_ant", limit: 100, default: ""
+    t.integer  "paciente_id"
     t.datetime "created_at",                                      null: false
     t.datetime "updated_at",                                      null: false
     t.datetime "deleted_at"

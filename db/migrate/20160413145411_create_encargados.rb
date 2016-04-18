@@ -15,6 +15,11 @@ class CreateEncargados < ActiveRecord::Migration
 		t.string   :encargado_edad   		,default: '' ,limit: Domain::EDAD, 			null: true
 		t.string   :encargado_prof_act_ant  ,default: '' ,limit: Domain::PROF_ACT_ANT, 	null: true
 
+        # Al deseleccionar el checkbox de encargados en el form de edicion de pacientes, se elimina su encargado
+        # en ese momento se seteará este campo, ya que es borrado oscioso, es importante saber a que paciente perteneció
+        # No es necesario una relación de clave foránea, porque es a modo informativo
+        t.integer   :paciente_id, null: true
+
 		t.timestamps null: false
 
         t.datetime :deleted_at 

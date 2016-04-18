@@ -29,11 +29,19 @@ class PacientesController < ApplicationController
     end
 
     def edit
+      # Cuando el paciente a editar no tiene encargado, el field_for para encargado, no muestra los campos
+      # es necesario hacer un build cuando el paciente no tiene encargado, para poder mostrar los campos
+      if @paciente.encargado_id.blank?
+       @paciente.build_encargado
+      end
     end
 
     def update	
-    	respond_to do |format|
+    	respond_to do |format|       
 	      if @paciente.update(paciente_params)
+        
+          destroy_encargado(params[:paciente][:borrar_encargado], @paciente)
+
 	        flash.now[:notice] = "Se ha actualizado el paciente #{@paciente.persona.nombre} #{@paciente.persona.apellido}."
 	        format.html {render 'show'}   
 	      else
@@ -42,6 +50,20 @@ class PacientesController < ApplicationController
 	      end 
     	end   		
     end
+
+    # Si en el form de edición de paciente se desactiva el checkbox, se ejecutará esta función para eliminar
+    # los datos del encargado, se usa un borrado osioso.
+    def destroy_encargado(condicion, paciente)
+      if condicion == "true"
+       
+        if paciente.destroy_encargado
+           paciente.update(encargado_id: nil)
+        else 
+          flash.now[:alert] = "No se ha podido eliminar los encargados del paciente #{paciente.persona.nombre} #{paciente.persona.apellido}."
+          format.html { render action: "new"} 
+        end 
+      end
+    end  
 
     def show
     end
@@ -79,7 +101,7 @@ class PacientesController < ApplicationController
   		params.require(:paciente).permit(:lugar_nacimiento,:fecha_ingreso,:profesion, :lugar_trabajo, :encargado_id,
   			persona_attributes: [:id,:nombre,:apellido,:ci,:ruc,:fecha_nacimiento,:edad,
   				:sexo,:estado_civil_id,:direccion,:telefono,:email,:nacionalidad],
-        encargado_attributes: [:padre_nombre, :padre_edad, :padre_prof_act_ant, :madre_nombre, :madre_edad, :madre_num_hijos,
+        encargado_attributes: [:id,:padre_nombre, :padre_edad, :padre_prof_act_ant, :madre_nombre, :madre_edad, :madre_num_hijos,
           :madre_prof_act_ant, :encargado_nombre, :encargado_edad, :encargado_prof_act_ant])
   	end
 
