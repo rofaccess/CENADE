@@ -12,7 +12,11 @@ Rails.application.routes.draw do
   get 'turnos/check_paciente' => 'empleados#check_paciente'
   get'turnos/get_paciente' => 'turnos#get_paciente'
   get 'turnos/print_turnos' => 'turnos#print_turnos'
-  resources :turnos 
+  resources :turnos do
+    collection do
+      match 'buscar' => 'turnos#buscar', via: [:get, :post], as: :search
+    end
+  end
 
   get 'empleados/print_empleados' => 'empleados#print_empleados'
   get 'empleados/print_empleado' => 'empleados#print_empleado'

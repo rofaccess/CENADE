@@ -1,4 +1,20 @@
-
+<div class="row well" >
+      <%= search_form_for @search, url: search_turnos_path, method: :post, remote: true, class: 'form-filtros' do |f| %>
+         <div class="row">
+          <%= FormBuilder::text_field_v(f, :paciente_persona_nombre_or_paciente_persona_apellido_cont, {col_class: 'col-md-3', label_text: 'Paciente', input_class: '',max_length: Domain::NOMBRE})%>
+          
+          <%= FormBuilder::text_field_v(f, :estado_cont, {col_class: 'col-md-2', label_text: 'Estado Turno', input_class: '',max_length: Domain::NOMBRE})%>
+          <%= FormBuilder::text_field_v(f, :area_nombre_cont, {col_class: 'col-md-3', label_text: 'Área', input_class: '',max_length: Domain::AREA})%>
+          <%= FormBuilder::text_field_v(f, :fecha_consulta_eq, {col_class: 'col-md-2', label_text: 'Fecha consulta', input_class: '',max_length: Domain::FECHA})%>
+        
+         <div class= "input-group pull-right" style = 'margin-top: 25px;'>
+          <%= f.submit 'Filtrar', class: 'btn btn-custom '%>
+          <%= f.submit 'Limpiar Filtros', type: 'reset', class: 'btn btn-link'%>
+         </div>
+         </div>
+      <% end %>
+  </div>
+</br>
 <table id="table-turnos" class= "table table-condensed">
   <thead>
     <tr class="active">
@@ -12,6 +28,13 @@
       <th></th>
     </tr>
   </thead>
+  <% if @turnos.blank? %>
+    <tfoot>
+      <tr>
+        <th colspan="8" scope="col">No se encontraron coincidencias </th>
+      </tr>
+    </tfoot>
+   <% end %>
   <tbody>
     <% @turnos.each do |turno| %>
     <tr>
@@ -38,9 +61,7 @@
 </table>
 
 <script type="text/javascript"> 
-    $(document).ready(function(){
        
       turnosUI.initScript();
-      });
 
 </script>
