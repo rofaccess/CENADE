@@ -7,10 +7,13 @@ class ConfiguracionesController < ApplicationController
   end 
   def edit
    @configuracion = Configuracion.find(params[:id])
+   @usuarios = User.all 
+  
   end
 
   def update
     @configuracion = Configuracion.find(params[:id])
+    @usuarios = User.all
     respond_to do |format|
       if @configuracion.update_attributes(configuracion_params)
         flash.now[:notice] = "Configuraciones actualizadas correctamente"
@@ -22,8 +25,11 @@ class ConfiguracionesController < ApplicationController
       format.html { render action: "edit"}
     end
   end
-  def new
+
+  def new  
+
   end 
+
   def create
   end 
   # def show
@@ -39,6 +45,7 @@ class ConfiguracionesController < ApplicationController
   private
 
   def configuracion_params
-      params.require(:configuracion).permit(:empresa_nombre, :empresa_direccion, :empresa_tel, :empresa_email, :empresa_horario_atencion,:empresa_web, :empresa_logo)
+      params.require(:configuracion).permit(:empresa_nombre, :empresa_direccion, :empresa_tel, :empresa_email,:empresa_web,:hora_inicio_mañana,
+                     :hora_fin_mañana,:hora_inicio_tarde,:hora_fin_tarde,:usuario_admin,:dias_atencion, :empresa_logo)
   end
  end

@@ -112,8 +112,12 @@ configuracion1 = Configuracion.create(empresa_nombre: 'CENADE',
 	                      empresa_email: 'cenade@gmail.com',
 	                      empresa_horario_atencion: 'De lunes a viernes 7:00-11:00, 13:00-17:00',
 	                      empresa_web: 'http://www.cenade.org/',
+	                      hora_inicio_mañana: '07:00',
+	                      hora_fin_mañana: '11:00',	                      
+	                      hora_inicio_tarde:'13:00',
+	                      hora_fin_tarde: '17:00',
+	                      dias_atencion:'De Lunes a Viernes')
 
-	                      )
 administrador = Role.create!(name: 'Administrador')
 admin.add_role :Administrador
 Permission.create([{nombre: 'Usuarios', model: 'User', grupo:'Configuracion'},
