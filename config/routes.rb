@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'pacientes/print_pacientes' => 'pacientes#print_pacientes'
+  get 'pacientes/print_paciente' => 'pacientes#print_paciente'
   get 'pacientes/check_ci' => 'pacientes#check_ci'
   get 'pacientes/new_paciente_modal' => 'pacientes#new_paciente_modal'
   resources :pacientes
