@@ -77,6 +77,11 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  # Para indicarle el css que debe usar en Heroku 
+  # Para indicarle el css para la impresión en pdf que debe usar en Heroku: En teoría debía ser pdf.css.scss
+  # Me equivoqué pero igual anduvo en Heroku y me encontró el estilo para los pdf
   config.assets.precompile += ['pages.css.scss']
+
+  # Para que en producción pueda encontrar los assets, ej. Las imágenes dentro de los assets
+  config.assets.compile = true
+
 end
