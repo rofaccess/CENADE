@@ -1,0 +1,39 @@
+
+<table id="table-turnos" class= "table table-condensed">
+  <thead>
+    <tr class="active">
+      <th>Turno</th>
+      <th>Paciente</th>
+      <th>C.I.</th>
+      <th>Profesional</th>
+      <th>Estado</th>
+      <th>Fecha</th>
+      <th>Área</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @turnos.each do |turno| %>
+    <tr>
+      <td ><%=turno.turno %></td>
+      <td ><%=turno.paciente.persona.nombre %> <%=turno.paciente.persona.apellido%></td>
+      <td ><%=turno.paciente.persona.ci %></td>
+        <%doctor= Empleado.find(turno.doctor_id)%>
+      <td ><%=doctor.persona.nombre %> <%=doctor.persona.apellido %></td>
+      <td ><span class="label label-success"><%=turno.estado %></span></td>
+      <td ><%=turno.fecha_expedicion.to_date%></td>
+      <td><%=turno.area.nombre%></td>
+
+      
+      <td class = "action">
+        
+        <%= link_to '<i class="fa fa-eye fa-lg"></i> '.html_safe, turno_path(turno)%>     
+        <%= link_to '<i class="fa fa-edit fa-lg"></i> '.html_safe, edit_turno_path(turno)%>        
+        <%= link_to '<i class="fa fa-times fa-lg"></i>'.html_safe, turno_path(turno), method: 'delete', data: {confirm: "¿Desea cancelar el turno?"}%>
+
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+

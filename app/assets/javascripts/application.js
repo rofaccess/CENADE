@@ -22,8 +22,7 @@
 //= require plugins/jquery-inputmask-regex-extensions.js
 //= require plugins/select2/select2.full.min.js
 //= require plugins/select2/i18n/es.js
-//= require plugins/select2/i18n/en.js
-
+//= require plugins/jquery.dataTables.js
 //= require plugins/loading-overlay-min.js
 
 //= require plugins/noty/jquery.noty
@@ -102,8 +101,11 @@ $.noty.defaults = {
     buttons: false
 };
 
+
+
 function configImprimir (params) {
   $('#imprimir-link').attr('href', $('#imprimir-link').data('url') + params.replace('amp;',''));
 }
+
 
 $( document ).on('ready', APP.init );

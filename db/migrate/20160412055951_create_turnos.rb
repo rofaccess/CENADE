@@ -10,6 +10,7 @@ class CreateTurnos < ActiveRecord::Migration
       t.integer :monto
       t.boolean :paga, null: false
       t.string :nro_factura
+      t.integer :turno
 
       t.timestamps null: false
     end

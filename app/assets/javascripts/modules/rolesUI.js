@@ -24,4 +24,4 @@ var rolesUI = (function(){
 		  	$('.nuevo-rol').validate();
 		}
 	};
-}());
+}()); 
