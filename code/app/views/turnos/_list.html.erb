@@ -1,20 +1,4 @@
-<div class="row well" >
-      <%= search_form_for @search, url: search_turnos_path, method: :post, remote: true, class: 'form-filtros' do |f| %>
-         <div class="row">
-          <%= FormBuilder::text_field_v(f, :paciente_persona_nombre_or_paciente_persona_apellido_cont, {col_class: 'col-md-3', label_text: 'Paciente', input_class: '',max_length: Domain::NOMBRE})%>
-          
-          <%= FormBuilder::text_field_v(f, :estado_cont, {col_class: 'col-md-2', label_text: 'Estado Turno', input_class: '',max_length: Domain::NOMBRE})%>
-          <%= FormBuilder::text_field_v(f, :area_nombre_cont, {col_class: 'col-md-3', label_text: 'Área', input_class: '',max_length: Domain::AREA})%>
-          <%= FormBuilder::text_field_v(f, :fecha_consulta_eq, {col_class: 'col-md-2', label_text: 'Fecha consulta', input_class: '',max_length: Domain::FECHA})%>
-        
-         <div class= "input-group pull-right" style = 'margin-top: 25px;'>
-          <%= f.submit 'Filtrar', class: 'btn btn-custom '%>
-          <%= f.submit 'Limpiar Filtros', type: 'reset', class: 'btn btn-link'%>
-         </div>
-         </div>
-      <% end %>
-  </div>
-</br>
+
 <table id="table-turnos" class= "table table-condensed">
   <thead>
     <tr class="active">
@@ -38,6 +22,7 @@
   <tbody>
     <% @turnos.each do |turno| %>
     <tr>
+      <%= turno.hidden_field :id, class: 'turno-id'%>
       <td ><%=turno.fecha_expedicion.to_date%></td>
       <td ><%=turno.turno %></td>
       <td ><%=turno.paciente.persona.nombre %> <%=turno.paciente.persona.apellido%></td>
@@ -52,7 +37,7 @@
         
         <%= link_to '<i class="fa fa-eye fa-lg"></i> '.html_safe, turno_path(turno), remote: true%>     
         <%= link_to '<i class="fa fa-edit fa-lg"></i> '.html_safe, edit_turno_path(turno), remote: true%>        
-        <%= link_to '<i class="fa fa-times fa-lg"></i>'.html_safe, turno_path(turno), method: 'delete', remote: true, data: {confirm: "¿Desea cancelar el turno?"}%>
+        <%= link_to '<i class="fa fa-times fa-lg"></i>'.html_safe, estado_path(turno), remote: true, data: {confirm: "¿Desea cancelar el turno?"}%>
 
       </td>
     </tr>
@@ -63,5 +48,11 @@
 <script type="text/javascript"> 
        
       turnosUI.initScript();
+      <% if !flash.notice.blank? %> 
+        var n = noty({text: '<%=notice%>', type: 'success'});   
+      <% end %>
+      <% if !flash.alert.blank?%> 
+        var n = noty({text: '<%=alert%>', type: 'error'});
+      <% end %>
 
 </script>
