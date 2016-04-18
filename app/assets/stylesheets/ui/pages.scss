@@ -32,6 +32,7 @@ $common-color: #24C1C1;
 }
 
 
+
 .titulos-campos{
 	font-weight: normal;
 	font-size:medium;
@@ -269,6 +270,11 @@ body{
 						font-weight: bold;
 					}
 				}
+
+				.nomb-empresa{
+					margin-left:-15px;
+				}
+
 			}
 
 			.border-img{
@@ -282,8 +288,8 @@ body{
 			.font-img{
 				color:#24C1C1;
 				font-weight: normal;
-				position: relative;
-				left:25%;
+				padding-left:36%;
+				text-align:center;
 			}
 
 			.uploader_button{

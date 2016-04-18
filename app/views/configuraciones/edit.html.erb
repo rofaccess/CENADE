@@ -1,7 +1,7 @@
 
 <% @submenu_layout = 'layouts/submenu_configuracion' %>
 <% @sidebar_layout = 'layouts/sidebar_configuracion' %>
-<div class= "form-content">  
+<div class= "form-content" style="padding-bottom: 40px;">  
   <div class="page-title" style = "left:200px;">
     Configuración del Sistema      
   </div>
@@ -10,27 +10,27 @@
 	    <h4>Datos de la Empresa</h4><hr>
 	    <div class="row">
 	    <div class="col-md-8">
-	    	<div>
+	    	<div class="nomb-empresa">
 	    		<%= FormBuilder::text_field_v(configuracion, :empresa_nombre, 
-									                    input_class: 'required minLength2', 
-									              		max_length: Domain::EMPRESA_NOMBRE,
-									                    autofocus: true,
-									                    col_class: 'col-md-5',
-									                    label_text: '* Nombre') %>
+										                    input_class: 'required minLength2', 
+										              		max_length: Domain::EMPRESA_NOMBRE,
+										                    autofocus: true,
+										                    col_class: 'col-md-5',
+										                    label_text: '* Nombre' ) %>
 
 				<%= FormBuilder::text_field_v(configuracion, :empresa_web,    
-									                    max_length: Domain::EMPRESA_WEB, 
-								                    autofocus: false,
-								                    col_class: 'col-md-7',
-								                    label_text: 'Sitio web') %>
+										                    max_length: Domain::EMPRESA_WEB, 
+										                    autofocus: false,
+										                    col_class: 'col-md-7',
+										                    label_text: 'Sitio web') %>
 	    	</div>
 	    	<div>
 	    		<%= FormBuilder::text_field_v(configuracion, :empresa_direccion, 
-								                    input_class: 'required minLength4', 
-								                    max_length: Domain::DIRECCION,
-								                    autofocus: false,
-								                    col_class: 'col-md-15',
-							                        label_text: '* Direccion') %>
+										                    input_class: 'required minLength4', 
+										                    max_length: Domain::DIRECCION,
+										                    autofocus: false,
+										                    col_class: 'col-md-15',
+									                        label_text: '* Direccion') %>
 
 	    	</div>
 	    </div>
@@ -62,21 +62,81 @@
 
 	    </div>
 	    <div class="row">
-			<%= FormBuilder::text_field_v(configuracion, :empresa_horario_atencion,	
-												max_length: Domain::EMPRESA_HORARIO,
-							                    col_class: 'col-md-11',
-							                    label_text: 'Horario de Atencion') %>
+	    	<h6 class="col-md-4">Horario de Atención T. Mañana</h6>
+	    	<h6 class="col-md-6">Horario de Atención T. Tarde   </h6>
+	    	<div class="row">
+	    		<div class="col-md-12">
+						<%= FormBuilder::text_field_v(configuracion, :hora_inicio_mañana,	
+																	max_length: Domain::EMPRESA_HORARIO,
+												                    col_class: 'col-md-2',
+												                    label_text: 'Inicio') %>
+
+						<%= FormBuilder::text_field_v(configuracion, :hora_fin_mañana,	
+																	max_length: Domain::EMPRESA_HORARIO,
+												                    col_class: 'col-md-2',
+												                    label_text: 'Fin') %>
+									
+					
+						<%= FormBuilder::text_field_v(configuracion, :hora_inicio_tarde,	
+																	max_length: Domain::EMPRESA_HORARIO,
+												                    col_class: 'col-md-2',
+												                    label_text: 'Inicio') %>
+
+						<%= FormBuilder::text_field_v(configuracion, :hora_fin_tarde,	
+																	max_length: Domain::EMPRESA_HORARIO,
+												                    col_class: 'col-md-2',
+												                    label_text: 'Fin') %>
+				
+						<%= FormBuilder::text_field_v(configuracion, :dias_atencion,	
+																	max_length: Domain::DIAS_DE_ATENCION,
+												                    col_class: 'col-md-4',
+												                    label_text: 'Días') %>
+				</div>
+			</div>
 		</div>	
 		<h4>Administración</h4><hr>
 		<div class="row">
-			
-
+			<div class="col-md-4">
+				<label>Usuario Admin</label>
+				<select class ="form-control required  " id="configuracion_usuario_id" name="configuracion[usuario_id]"  >
+			       <option value="">Nombre de Usuario </option>
+					<%@usuarios.each do |usuario|%>
+						<option value="<%= usuario.id%>">
+						    <%=usuario.username%>
+						</option>
+					<%end%>
+				</select>
+				<%@usuarios.each do |usuario|%>
+					<div class="hidden">
+						<input type="hidden" id="option-nombre-<%= usuario.id %>" value="<%= usuario.empleado.persona.nombre %>"/>
+						<input type="hidden" id="option-apellido-<%= usuario.id %>" value="<%= usuario.empleado.persona.apellido %>"/>
+						</div>
+				<%end%>
+			</div>
+			<div>
+    		<%= FormBuilder::text_field_v(configuracion, :usuario_admin,  
+					                    autofocus: true,
+					                    disabled: true,
+					                    col_class: 'col-md-5',
+					                    label_text: '* Empleado' ) %>
+		
+			</div>
+			<div class="form-button" style="margin-top: 24px;">   
+	      		<%= configuracion.submit 'Guardar cambios', class: 'btn btn-custom'%>
+	   		 </div>
 		</div>	                    
-		<div class="form-button">   
-	      <%= configuracion.submit 'Guardar cambios', class: 'btn btn-custom'%>
-	    </div>
+		
 	<%end%>
 </div>
 <script type="text/javascript">
-	configuracionesUI.initScript();
+	$(document).ready(function(){
+		$("#configuracion_usuario_id").select2().on("select2:select",function(){
+			id = $(this).val();
+			$("#user_empleado_id").val(id);
+			var nombre= $("#option-nombre-"+id).val() + " " + $("#option-apellido-"+id).val();
+			$("#configuracion_usuario_admin").val(nombre);
+	
+		});
+	});	
+		configuracionesUI.initScript();
 </script>
