@@ -1,3 +1,4 @@
+<h5>LISTA DE PACIENTES</h5>
 
 <table class= "table table-condensed">
   <thead>
@@ -8,7 +9,6 @@
       <th>Direccion</th>
       <th class="col-md-1">Telefono</th>
       <th class="col-md-2">Fec. de Ingreso</th>
-      <th></th>
     </tr>
   </thead>
   <% if @pacientes.blank? %>
@@ -26,15 +26,7 @@
       <td><%=paciente.persona.ci %></td>
       <td class="crop"><%=paciente.persona.direccion %></td>
       <td><%=paciente.persona.telefono %></td>
-      <td><%=Formatter.format_date(paciente.fecha_ingreso) %></td>
-      
-      <td class = "action">
-        
-        <%= link_to '<i class="fa fa-eye fa-lg"></i> '.html_safe, paciente_path(paciente), remote: true%>     
-        <%= link_to '<i class="fa fa-edit fa-lg"></i> '.html_safe, edit_paciente_path(paciente), remote: true%>        
-        <%= link_to '<i class="fa fa-trash-o fa-lg"></i>'.html_safe, paciente_path(paciente), method: 'delete', data: {confirm: "¿Desea eliminar al paciente #{paciente.persona.nombre}?"}%>
-
-      </td>
+      <td><%=Formatter.format_date(paciente.fecha_ingreso) %></td>      
     </tr>
     <% end %>   
   </tbody>

@@ -82,12 +82,15 @@ ActiveRecord::Schema.define(version: 20160413145411) do
     t.string   "padre_prof_act_ant",     limit: 100, default: ""
     t.string   "madre_nombre",           limit: 60,  default: ""
     t.string   "madre_edad",             limit: 3,   default: ""
+    t.string   "madre_num_hijos",        limit: 2,   default: ""
     t.string   "madre_prof_act_ant",     limit: 100, default: ""
     t.string   "encargado_nombre",       limit: 60,  default: ""
     t.string   "encargado_edad",         limit: 3,   default: ""
     t.string   "encargado_prof_act_ant", limit: 100, default: ""
+    t.integer  "paciente_id"
     t.datetime "created_at",                                      null: false
     t.datetime "updated_at",                                      null: false
+    t.datetime "deleted_at"
   end
 
   create_table "especialidades", force: :cascade do |t|
@@ -192,6 +195,7 @@ ActiveRecord::Schema.define(version: 20160413145411) do
     t.integer  "monto"
     t.boolean  "paga",             null: false
     t.string   "nro_factura"
+    t.integer  "turno"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
   end
@@ -233,7 +237,7 @@ ActiveRecord::Schema.define(version: 20160413145411) do
   add_foreign_key "empleados", "personas", on_delete: :restrict
   add_foreign_key "fechas", "horarios", on_delete: :restrict
   add_foreign_key "horarios", "empleados", on_delete: :cascade
-  add_foreign_key "pacientes", "personas", column: "encargado_id", on_delete: :restrict
+  add_foreign_key "pacientes", "encargados", on_delete: :restrict
   add_foreign_key "pacientes", "personas", on_delete: :restrict
   add_foreign_key "permissions_roles", "permissions"
   add_foreign_key "permissions_roles", "roles"

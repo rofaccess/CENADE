@@ -1,13 +1,20 @@
 Rails.application.routes.draw do
 
+  get 'pacientes/print_pacientes' => 'pacientes#print_pacientes'
+  get 'pacientes/print_paciente' => 'pacientes#print_paciente'
   get 'pacientes/check_ci' => 'pacientes#check_ci'
+  get 'pacientes/new_paciente_modal' => 'pacientes#new_paciente_modal'
   resources :pacientes
-  
   get 'roles/check_name' => 'roles#check_name'
   resources :roles
   resources :doctores
   resources :funcionarios
-  resources :turnos 
+
+  resources :turnos do
+    collection do
+      post 'get_paciente'
+    end
+  end
 
   get 'empleados/print_empleados' => 'empleados#print_empleados'
   get 'empleados/print_empleado' => 'empleados#print_empleado'
