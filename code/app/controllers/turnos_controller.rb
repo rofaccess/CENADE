@@ -10,17 +10,17 @@ class TurnosController < ApplicationController
 
   def new
   	@turno= Turno.new
-    @pacientes= Paciente.all
+  
   end
   def create
   	@turno = Turno.new(turno_params)
-    
+
   	 respond_to do |format|
       if @turno.save
         format.html { redirect_to turno_path(@turno.id), notice: 'Turno registrado exitosamente'}
       else
-       
         flash.now[:alert] = @turno.errors.full_messages.first
+        @turno= Turno.new
         format.html { render "new"}
         format.js { render "new"}
       end
