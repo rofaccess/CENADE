@@ -19,11 +19,13 @@
       <h4>Datos Personales</h4>
       <hr>
       <div class="row">
-        <div class="col-md-7">
-
-          <%= turno.label :paciente_id, '* Paciente' %> 
-          <%= turno.select(:paciente_id, Paciente.all.collect { |p| [p.persona.nombre, p.id] },{},{class: "paciente_select form-control", required: true, disabled: true,  id: 'paciente_id'})%>
-        </div>
+        <%= FormBuilder::text_field_v(turno, :paciente_id, 
+                                         
+                                          col_class: 'col-md-7',
+                                          disabled: true,
+                                          label_text: '* Paciente',
+                                          input_value: @turno.paciente.persona.nombre + "" +
+                                                        @turno.paciente.persona.apellido) %>
 
         <%= FormBuilder::text_field_v(turno, :fecha_expedicion, 
                                       input_class: 'date datepicker', 
@@ -81,21 +83,20 @@
     <hr>
 
     <div class="row">
-      <div class="col-md-4">
+      <%= FormBuilder::text_field_v(turno, :area_id, 
+                                         
+                                          col_class: 'col-md-4',
+                                          disabled: true,
+                                          label_text: 'Área',
+                                          input_value: @turno.area.nombre) %>
 
-        <%= turno.label :area_id, '* Área a consultar' %> 
-
-        <%= turno.select(:area_id, Area.all.collect { |a| [a.nombre, a.id] },{},{class: "area_select form-control", required: true, disabled: true, id: 'area_id'})%>
-
-      </div>
-
-      <div class="col-md-4">
-
-        <%= turno.label :doctor_id, '* Profesional de la Salud' %> 
-
-        <%= turno.select(:doctor_id, Empleado.where(type: 'Doctor').collect { |a| [a.persona.nombre, a.id] },{},{class: "profesional_select form-control", required: true, disabled: true,  id: 'doctor_id'})%>
-
-       </div>
+      <%= FormBuilder::text_field_v(turno, :doctor_id, 
+                                         
+                                          col_class: 'col-md-4',
+                                          disabled: true,
+                                          label_text: 'Profesional de la Salud',
+                                          input_value: @empleado.persona.nombre + "" +
+                                                        @empleado.persona.apellido) %>
 
        <%= FormBuilder::text_field_v(turno, :fecha_consulta, 
                                       input_class: 'date datepicker2', 

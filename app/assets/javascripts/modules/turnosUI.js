@@ -50,6 +50,16 @@ var turnosUI = (function(){
 		          
 		         });
 		      });
+		      $(".profesional_select").select2({
+		        placeholder: "Seleccione un Profesional",
+		        language: "es"
+
+		        });
+		    $(".area_select").select2({
+		        placeholder: "Seleccione un Área",
+		        language: "es"
+
+		        });
 
 	        $(".paga").on("change", function(){
 	          $("#factura").toggle($(this).hasClass("si_paga"));
@@ -78,7 +88,7 @@ var turnosUI = (function(){
 		        "searching": false,
 		        "columnDefs": [
 		            { "visible": false, "targets": 0 },
-		            { "visible": false, "targets": 6 }
+		            { "visible": false, "targets": 7 }
 	        	],
 		        "drawCallback": function ( settings ) {
 	            var api = this.api();
@@ -88,16 +98,16 @@ var turnosUI = (function(){
 	            api.column(0, {page:'current'} ).data().each( function ( group, i ) {
 	                if ( last !== group ) {
 	                    $(rows).eq( i ).before(
-	                        '<tr class="group" bgcolor="#CCCCCC"><td align="center" colspan="6">'+group+'</td></tr>'
+	                        '<tr class="group" bgcolor="#CCCCCC"><td align="center" colspan="7">'+group+'</td></tr>'
 	                    );
 	 
 	                    last = group;
 	                }
 	            } );
-	            api.column(6, {page:'current'} ).data().each( function ( group, i ) {
+	            api.column(7, {page:'current'} ).data().each( function ( group, i ) {
 	                if ( last !== group ) {
 	                    $(rows).eq( i ).before(
-	                        '<tr class="group" bgcolor="#EFEFEF"><td align="center" colspan="6">'+group+'</td></tr>'
+	                        '<tr class="group" bgcolor="#EFEFEF"><td align="center" colspan="7">'+"Fecha consulta "+group+'</td></tr>'
 	                    );
 	 
 	                    last = group;

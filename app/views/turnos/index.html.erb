@@ -8,8 +8,8 @@
             <%= f.search_field :paciente_persona_nombre_or_area_nombre_cont, placeholder: "Buscar por Área, o Paciente", class: "form-control", autofocus: true%>
             <span class="fa fa-search"></span>
           	<div class="input-group-btn"> 
-            <a href="#"><i class="fa fa-search-plus" aria-hidden="true" id= "show"></i></a>
-            <%= link_to '<i class="fa fa-plus-square"></i> '.html_safe, new_turno_path, remote: true %>          
+            <a href="#"><i class="fa fa-search-plus" aria-hidden="true" id= "show" data-toggle="tooltip" data-placement="bottom" title="Filtrar"></i></a>
+            <%= link_to '<i class="fa fa-plus-square" aria-hidden="true" id= "show" data-toggle="tooltip" data-placement="bottom" title="Nuevo Turno"></i> '.html_safe, new_turno_path, remote: true %>          
             <%= link_to '<i class="fa fa-print"></i> '.html_safe, turnos_print_turnos_path(:format => :pdf), target: '_blank' %>    
 
           <%=link_to '<i class="fa fa-print"></i>'.html_safe, turnos_print_turnos_path(format: 'pdf'), class: 'hide', id: 'imprimir-link', target: '_blank', data: {url: turnos_print_turnos_path(format: 'pdf')} %>
@@ -27,7 +27,7 @@
           
           <%= FormBuilder::text_field_v(f, :estado_cont, {col_class: 'col-md-2', label_text: 'Estado Turno', input_class: '',max_length: Domain::NOMBRE})%>
           <%= FormBuilder::text_field_v(f, :area_nombre_cont, {col_class: 'col-md-3', label_text: 'Área', input_class: '',max_length: Domain::AREA})%>
-          <%= FormBuilder::text_field_v(f, :fecha_consulta_eq, {col_class: 'col-md-2', label_text: 'Fecha consulta', input_class: '',max_length: Domain::FECHA})%>
+          <%= FormBuilder::text_field_v(f, :fecha_consulta_eq, {col_class: 'col-md-2', label_text: 'Fecha consulta', input_class: 'date',max_length: Domain::FECHA})%>
         
          <div class= "input-group pull-right" style = 'margin-top: 25px;'>
           <%= f.submit 'Filtrar', class: 'btn btn-custom '%>
@@ -51,6 +51,6 @@
     $("#show").click(function(){
         $("#advanced-search").show();
     });
-    
 });
+
 </script>
