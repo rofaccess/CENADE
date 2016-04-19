@@ -23,7 +23,7 @@
                                                         @turno.paciente.persona.apellido) %>
 
         <%= FormBuilder::text_field_v(turno, :fecha_expedicion, 
-                                      input_class: 'required datepicker', 
+                                      input_class: 'required', 
                                       max_length: Domain::FECHA,
                                       label_text: '* Fecha Actual',
                                       col_class: 'col-md-5')%>
@@ -93,7 +93,7 @@
           </div>
 
        <%= FormBuilder::text_field_v(turno, :fecha_consulta, 
-                                      input_class: 'required datepicker2', 
+                                      input_class: 'required', 
                                       max_length: Domain::FECHA,
                                       label_text: '* Fecha de Consulta',
                                       col_class: 'col-md-4')%>

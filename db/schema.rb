@@ -184,7 +184,7 @@ ActiveRecord::Schema.define(version: 20160413145411) do
 
   create_table "turnos", force: :cascade do |t|
     t.integer  "paciente_id",      null: false
-    t.datetime "fecha_expedicion", null: false
+    t.date     "fecha_expedicion", null: false
     t.date     "fecha_consulta",   null: false
     t.integer  "area_id",          null: false
     t.integer  "doctor_id",        null: false
