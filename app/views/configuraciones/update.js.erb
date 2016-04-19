@@ -1,5 +1,2 @@
 $("#principal-content").html('<%= j render file: 'configuraciones/edit', format: 'html'%>');
 
-<% if !flash.empty? %>
-	$("#flash_messages").html('<%= j render partial: 'layouts/messages', format: 'html'%>');
-<% end %>

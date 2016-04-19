@@ -30,7 +30,7 @@ jQuery.validator.setDefaults({
 // Reglas para las validaciones
 $.validator.addClassRules({
 	required: {
-		required: true
+		required: true,
 	},
 	date: {
 		dateITA: true
@@ -75,6 +75,9 @@ $.validator.addClassRules({
 	},
 	telCheck: {
 		telCheck: true
+	},
+	horaCheck:{
+		hora:true
 	}
 
 });
@@ -91,3 +94,7 @@ $.validator.addMethod("emailCheck",function(value,element){
 $.validator.addMethod("telCheck",function(value,element){
                 return this.optional(element) || /^[\d\s()+-]+$/.test(value);
             },"Debe tener el formato ej:(0982)256 974");
+
+$.validator.addMethod("hora", function(value, element){
+  return /^[0-9]{2}:[0-9]{2}$/i.test(value);},
+  "Formato hh:mm"); 

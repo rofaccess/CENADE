@@ -275,6 +275,19 @@ body{
 					margin-left:-15px;
 				}
 
+				div.select.text-error{
+					span.text-error{
+						position: relative;
+						padding-left:20px;
+						top:45px;
+					}
+					span.select2-container{
+					position: relative;
+					top:-14px;
+					}
+
+				}
+
 			}
 
 			.border-img{
