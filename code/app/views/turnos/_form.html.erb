@@ -6,6 +6,7 @@
       <div class="tool">
         <%= link_to '<i class="fa fa-list"></i> '.html_safe, turnos_path %> 
       </div>
+
     </div>
 <body>
     <%= form_for @turno, html: {class: 'nuevo-turno form-sin-submenu', :multipart => true }, remote: true do |turno|%>   
@@ -15,11 +16,13 @@
       <div class="row">
         <div class="col-md-7">
 
+
           <%= turno.label :paciente_id, '* Paciente' %> 
           <div class="row">
             <div class="col-md-10">
-            <%= turno.select(:paciente_id, Paciente.all.collect { |p| [p.persona.nombre, p.id] },{},{class: "paciente_select form-control", required: true,  id: 'paciente_id'})%></div>
-     
+
+            <%= turno.select(:paciente_id, Hash[Paciente.all.map{|a| [a.persona.nombre + " "+ a.persona.apellido, a.id]}],{},{class: "paciente_select form-control", required: true,  id: 'paciente_id'})%>
+          </div>
             <%= link_to '<i class="fa fa-plus"></i> '.html_safe, pacientes_new_paciente_modal_path, class: 'btn btn-custom col-md-1', style: 'height: 30px; width: 40px', remote: true%> 
             
         </div>
@@ -87,7 +90,7 @@
 
         <%= turno.label :doctor_id, '* Profesional de la Salud' %> 
 
-        <%= turno.select(:doctor_id, Empleado.where(type: 'Doctor').collect { |a| [a.persona.nombre, a.id] },{},{class: "profesional_select form-control", required: true,  id: 'doctor_id'})%>
+        <%= turno.select(:doctor_id, Hash[Empleado.where(type: 'Doctor').map{|a| [a.area.nombre + "-"+ a.persona.nombre + " "+ a.persona.apellido, a.id]}],{},{class: "profesional_select form-control", required: true,  id: 'doctor_id'})%>
 
        </div>
 
@@ -144,6 +147,7 @@
   <% if !flash.notice.blank? %> 
     var n = noty({text: '<%=notice%>', type: 'success'});   
   <% end %>
+  
   <% if !flash.alert.blank?%> 
     var n = noty({text: '<%=alert%>', type: 'error'});
   <% end %>

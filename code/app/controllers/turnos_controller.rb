@@ -10,16 +10,19 @@ class TurnosController < ApplicationController
 
   def new
   	@turno= Turno.new
+    @pacientes= Paciente.all
   end
   def create
   	@turno = Turno.new(turno_params)
+    
   	 respond_to do |format|
       if @turno.save
-        format.html { redirect_to turno_path(@turno.id), notice: 'Turno registrado correctamente'}
+        format.html { redirect_to turno_path(@turno.id), notice: 'Turno registrado exitosamente'}
       else
        
-        flash.now[:alert] = "Ha ocurrido un error al registrar turno"
-        format.html { render action: "new"}
+        flash.now[:alert] = @turno.errors.full_messages.first
+        format.html { render "new"}
+        format.js { render "new"}
       end
     end
   end
@@ -31,11 +34,12 @@ class TurnosController < ApplicationController
   	respond_to do |format|
       if @turno.update_attributes(turno_params)
 
-        format.html { redirect_to turno_path, notice: 'Turno actualizado correctamente'}
+        format.html { redirect_to turno_path, notice: 'Turno actualizado exitosamente'}
       else
         
-        flash.now[:alert] = "Ha ocurrido un error al actualizar el turno"
+        flash.now[:alert] = @turno.errors.full_messages.first
         format.html { render action: "edit"}
+        format.js { render action: "edit"}
       end
       
     end
@@ -46,7 +50,7 @@ class TurnosController < ApplicationController
     render 'index'
   end
   def show
-
+    @empleado= Empleado.find(@turno.doctor_id)
   end
   def destroy
     @turno.destroy
@@ -80,6 +84,10 @@ class TurnosController < ApplicationController
       @paciente= Paciente.find(params[:id])
       
     end
+    def update_profesional
+    @area= Area.find(params[:id])
+    render update_profesional, format: :js
+  end
     def cambiar_estado
 
       @turno= Turno.find(params[:id])
@@ -97,7 +105,7 @@ class TurnosController < ApplicationController
     end 
     def get_turnos
       @search = Turno.ransack(params[:q])
-      @search.sorts = 'turno asc'
+      
       @turnos= @search.result.page(params[:page])
     end
 

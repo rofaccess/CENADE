@@ -2,13 +2,14 @@ class Turno < ActiveRecord::Base
 	paginates_per 10
 	belongs_to :paciente
 	belongs_to :area
-	
+	validate :coincidencia_area
+  validate :verificar_fecha_consulta
   validate :paciente_unico_area_fecha_consulta
 	before_create :actualizar_turno
   before_create :actualizar_estado
 
 	def actualizar_turno
-      turno = Turno.where("fecha_expedicion = ? and area_id= ? and doctor_id= ?", self.fecha_expedicion, self.area_id, self.doctor_id).order(:turno)
+      turno = Turno.where("fecha_consulta = ? and area_id= ? and doctor_id= ?", self.fecha_consulta, self.area_id, self.doctor_id).order(:turno)
       if turno.empty?
         self.turno = 1
       else
@@ -20,12 +21,25 @@ class Turno < ActiveRecord::Base
   def actualizar_estado
       self.estado = 'pendiente'
     end
+  def verificar_fecha_consulta
+      if (self.fecha_consulta<self.fecha_expedicion)
 
+        errors.add(:base, "Fecha de consulta no válida ")
+    end
+
+   end
+
+  def coincidencia_area
+      if !(self.area_id == Empleado.where("id = ?", self.doctor_id).first.area_id)
+        errors.add(:base, "El Doctor no atiende en el Área de #{self.area.nombre}")
+      end
+    end
+ 
    def paciente_unico_area_fecha_consulta
 
       turno= Turno.find_by(paciente_id: self.paciente_id, fecha_consulta: self.fecha_consulta, area_id: self.area_id)
       if !turno.nil?
-        errors.add(:paciente_id, "El paciente ya posee un turno para el área y la fecha")
+        errors.add(:base, "El paciente ya posee un turno para el área y la fecha")
       end
     end
 	
