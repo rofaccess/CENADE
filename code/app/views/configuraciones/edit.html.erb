@@ -5,7 +5,7 @@
   <div class="page-title" style = "left:200px;">
     Configuración del Sistema      
   </div>
-	<%= form_for @configuracion, html: {class: 'nueva-conf'},:multipart => true do |configuracion|%>
+	<%= form_for @configuracion, html: {class: 'nueva-conf'} do |configuracion|%>
 
 	    <h4>Datos de la Empresa</h4><hr>
 	    <div class="row">
@@ -67,22 +67,26 @@
 	    	<div class="row">
 	    		<div class="col-md-12">
 						<%= FormBuilder::text_field_v(configuracion, :hora_inicio_mañana,	
+																	input_class: 'horaCheck',
 																	max_length: Domain::EMPRESA_HORARIO,
 												                    col_class: 'col-md-2',
 												                    label_text: 'Inicio') %>
 
-						<%= FormBuilder::text_field_v(configuracion, :hora_fin_mañana,	
+						<%= FormBuilder::text_field_v(configuracion, :hora_fin_mañana,
+																	input_class: 'horaCheck',	
 																	max_length: Domain::EMPRESA_HORARIO,
 												                    col_class: 'col-md-2',
 												                    label_text: 'Fin') %>
 									
 					
-						<%= FormBuilder::text_field_v(configuracion, :hora_inicio_tarde,	
+						<%= FormBuilder::text_field_v(configuracion, :hora_inicio_tarde,
+																	input_class: 'horaCheck',		
 																	max_length: Domain::EMPRESA_HORARIO,
 												                    col_class: 'col-md-2',
 												                    label_text: 'Inicio') %>
 
-						<%= FormBuilder::text_field_v(configuracion, :hora_fin_tarde,	
+						<%= FormBuilder::text_field_v(configuracion, :hora_fin_tarde,
+																	input_class: 'horaCheck',	
 																	max_length: Domain::EMPRESA_HORARIO,
 												                    col_class: 'col-md-2',
 												                    label_text: 'Fin') %>
@@ -96,9 +100,9 @@
 		</div>	
 		<h4>Administración</h4><hr>
 		<div class="row">
-			<div class="col-md-4">
-				<label>Usuario Admin</label>
-				<select class ="form-control required  " id="configuracion_usuario_id" name="configuracion[usuario_id]"  >
+			<div class="col-md-4 select">
+				<label>* Usuario Admin</label>
+				<select class ="form-control required  " id="usuario_id" name="usuario_id"  >
 			       <option value="">Nombre de Usuario </option>
 					<%@usuarios.each do |usuario|%>
 						<option value="<%= usuario.id%>">
@@ -113,13 +117,11 @@
 						</div>
 				<%end%>
 			</div>
-			<div>
-    		<%= FormBuilder::text_field_v(configuracion, :usuario_admin,  
-					                    autofocus: true,
-					                    disabled: true,
-					                    col_class: 'col-md-5',
-					                    label_text: '* Empleado' ) %>
-		
+			<div class="col-md-5">
+				<%= configuracion.text_field_tag :usuario_admin, "", class:"hidden" %>
+
+				<label class="control-label">* Empleado</label>
+				<input class="form-control usuario-nombre" disabled="disabled" value="" id="usuario_admin2">
 			</div>
 			<div class="form-button" style="margin-top: 24px;">   
 	      		<%= configuracion.submit 'Guardar cambios', class: 'btn btn-custom'%>
@@ -130,13 +132,22 @@
 </div>
 <script type="text/javascript">
 	$(document).ready(function(){
-		$("#configuracion_usuario_id").select2().on("select2:select",function(){
+		$("#usuario_id").select2().on("select2:select",function(){
 			id = $(this).val();
 			$("#user_empleado_id").val(id);
 			var nombre= $("#option-nombre-"+id).val() + " " + $("#option-apellido-"+id).val();
-			$("#configuracion_usuario_admin").val(nombre);
+			$("#usuario_admin2").val(nombre);
+			$("#usuario_admin").val(id);
 	
 		});
-	});	
-		configuracionesUI.initScript();
+	});
+
+	<% if !flash.notice.blank? %>	
+		var n = noty({text: '<%=notice%>', type: 'success'});		
+	<% end %>
+	<% if !flash.alert.blank?%>	
+		var n = noty({text: '<%=alert%>', type: 'error'});
+	<% end %>
+
+	configuracionesUI.initScript();
 </script>

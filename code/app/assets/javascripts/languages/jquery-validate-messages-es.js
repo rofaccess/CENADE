@@ -4,7 +4,7 @@
  */
 (function ($) {
 	$.extend($.validator.messages, {
-		required: "Este campo es obligatorio.",
+		required: "Campo Obligatorio.",
 		uniqueRoleName: "El Rol ya existe ",
 		remote: "El Numero ingresado ya existe para este Proveedor.",
 		email: "Por favor, escribe una dirección de correo válida",
