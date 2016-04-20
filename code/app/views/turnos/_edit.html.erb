@@ -81,7 +81,7 @@
 
         <%= turno.label :area_id, '* Área a consultar' %> 
 
-        <%= turno.select(:area_id, Area.all.collect { |a| [a.nombre, a.id] },{},{class: "area_select form-control", required: true, id: 'area_id'})%>
+        <%= turno.select(:area_id, Area.all.collect { |a| [a.nombre, a.id] },{},{class: "area_select form-control select2", required: true, id: 'area_id'})%>
 
       </div>
 
@@ -89,7 +89,7 @@
 
         <%= turno.label :doctor_id, '* Profesional de la Salud' %> 
 
-        <%= turno.select(:doctor_id, Hash[Empleado.where(type: 'Doctor').map{|a| [a.area.nombre + "-"+ a.persona.nombre + " "+ a.persona.apellido, a.id]}],{},{class: "profesional_select form-control", required: true,  id: 'doctor_id'})%>
+        <%= turno.select(:doctor_id, Hash[Empleado.where(type: 'Doctor').map{|a| [a.area.nombre + "-"+ a.persona.nombre + " "+ a.persona.apellido, a.id]}],{},{class: "profesional_select form-control select2", required: true,  id: 'doctor_id'})%>
           </div>
 
        <%= FormBuilder::text_field_v(turno, :fecha_consulta, 

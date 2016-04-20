@@ -27,19 +27,22 @@
         	<div class="col-md-12">
 
          	<%= role.label :nombre, '* Permisos' %> 
-           	<%= role.select(:permission_ids, Permission.all.collect { |permission| [permission.nombre, permission.id] },{},{class: "js-example-basic-multiple form-control", multiple: true, required: true, disabled: true})%>
+           	<%= role.select(:permission_ids, Permission.all.collect { |permission| [permission.nombre, permission.id] },{},{class: "multiple_select form-control", multiple: true, required: true, disabled: true})%>
       	</div>
       </div>
    <% end %>        
 </div>
 
 <script type="text/javascript">
-  $(document).ready(function() {
-  $(".js-example-basic-multiple").select2({
-      placeholder: "Interfaces disponibles...",
-      multiple: true
-  });
-});
+  
+    <% if !flash.notice.blank? %> 
+      var n = noty({text: '<%=notice%>', type: 'success'});   
+    <% end %>
+    
+    <% if !flash.alert.blank?%> 
+      var n = noty({text: '<%=alert%>', type: 'error'});
+    <% end %>
+  
   rolesUI.initScript();
 </script>    
       
