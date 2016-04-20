@@ -1,0 +1,38 @@
+<h5>LISTA DE TURNOS</h5>
+
+<table class= "table table-condensed">
+  <thead>
+    <tr class="active">
+      <th>Fecha</th>
+      <th>Turno</th>
+      <th>Paciente</th>
+      <th>C.I.</th>
+      <th>Profesional</th>
+      <th>Estado</th>
+      <th>Área</th>
+    </tr>
+  </thead>
+  <% if @turnos.blank? %>
+    <tfoot>
+      <tr>
+        <th colspan="8" scope="col">No se encontraron coincidencias </th>
+      </tr>
+    </tfoot>
+   <% end %>
+  <tbody>    
+    <% @turnos.each do |turno| %>
+    <tr data-url=<%= turno_path(turno)%>>
+      <td class="show-turno"><%=turno.fecha_expedicion.strftime("%m/%d/%Y")%></td>
+      <td class="show-turno"><%=turno.turno%></td>
+      <td class="show-turno crop"><%=turno.paciente.persona.nombre %> <%=turno.paciente.persona.apellido%></td>
+      <td class="show-turno"><%=turno.paciente.persona.ci %></td>
+      <%doctor= Empleado.find(turno.doctor_id)%>
+      <td class="show-turno"><%=doctor.persona.nombre %> <%=doctor.persona.apellido %></td>
+      <td class="show-turno"><%=turno.estado %></td>
+      <td class="show-turno"><%=turno.area.nombre%></td>
+      
+      
+    </tr>
+    <% end %>   
+  </tbody>
+</table>
