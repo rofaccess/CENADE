@@ -37,8 +37,7 @@ module Domain
 	EDAD      = 3
 	SEXO      = 9	
 	MONTO     = 13
-	CANTIDAD  = 5	
-	COSTO	  = 7
+	CANTIDAD  = 5
 	
 
 	TIPO_EMPLEADO   = 15
@@ -49,6 +48,7 @@ module Domain
 	EMPRESA_NOMBRE = 50
 	EMPRESA_WEB	   = 40
 	EMPRESA_HORARIO= 100
-
+	COSTO = 7
+	NRO_FACTURA = 15
 
 end

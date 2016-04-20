@@ -1,13 +1,16 @@
- <div class="form-content">
-    <div class="page-title page-title-sin-submenu">
-      <%=@paciente.id.nil? ? 'Nuevo Paciente' : 'Editar Paciente'%> 
+<div class="modal-header">
 
-      <div class="tool">
-        <%= link_to '<i class="fa fa-list"></i> '.html_safe, pacientes_path %> 
-      </div>
-    </div>
+	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 
-    <%= form_for @paciente, html: {class: 'form-paciente form-sin-submenu'} do |paciente|%>   
+	<h4 class="modal-title">
+		Agregar Paciente	
+	</h4>
+
+</div>
+
+<div class="modal-body">
+
+	<%= form_for @paciente, url: pacientes_recarga_paciente_path, html: {class: 'form-paciente form-sin-submenu'},  remote: true do |paciente|%>   
     	
     	<h4>Datos Personales</h4>
 		<hr>
@@ -123,16 +126,31 @@
 		<h4>Datos de los Padres o Encargados </h4>
 		<hr>
 		
-		<div class="form-button">					
+
+		<div class="row">   
+			<%= FormBuilder::text_field_v(paciente, :profesion, 
+													max_length: Domain::PROFESION,
+													col_class: 'col-md-5') %> 	
+
+			 
+			<%= FormBuilder::text_field_v(paciente, :lugar_trabajo, 
+													max_length: Domain::LUGAR_TRABAJO,
+													col_class: 'col-md-7') %> 												
+				
+		</div> 
+
+		<h4>Datos de los Padres o Encargados </h4>
+		<hr>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
 			<%= paciente.submit 'Guardar', class: 'btn btn-custom'%>
-		</div>
+		</div>  
 
 	<% end %>
-	
 
 </div>
 
-<script type="text/javascript">	
+<script type="text/javascript">
 	pacientesUI.initScript("<%= pacientes_check_ci_path %>");	
 	
 	
@@ -142,5 +160,4 @@
 	<% if !flash.alert.blank?%>	
 		var n = noty({text: '<%=alert%>', type: 'error'});
 	<% end %>
-
 </script>

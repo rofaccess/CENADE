@@ -1,0 +1,65 @@
+
+<table id="table-turnos" class= "table table-condensed">
+  <thead>
+    <tr class="active">
+      <th>ÁREA</th>
+      <th>Turno</th>
+      <th>Paciente</th>
+      <th>C.I.</th>
+      <th>Profesional</th>
+      <th>Fecha expedición</th>
+      <th>Estado</th>
+      <th>FECHA</th>
+      <th class="col-md-1"></th>
+    </tr>
+  </thead>
+  <% if @turnos.blank? %>
+    <tfoot>
+      <tr>
+        <th colspan="8" scope="col">No se encontraron coincidencias </th>
+      </tr>
+    </tfoot>
+   <% end %>
+  <tbody>
+    <% @turnos.each do |turno| %>
+    <tr>
+      
+      <td ><%=turno.area.nombre%></td>
+      <td ><%=turno.turno %></td>
+      <td ><%=turno.paciente.persona.nombre %> <%=turno.paciente.persona.apellido%></td>
+      <td ><%=turno.paciente.persona.ci %></td>
+        <%doctor= Empleado.find(turno.doctor_id)%>
+      <td ><%=doctor.persona.nombre %> <%=doctor.persona.apellido %></td>
+      <td ><%=turno.fecha_expedicion.strftime("%m/%d/%Y")%></td>
+      <%if turno.estado== "cancelado"%>
+      <td ><span class="label label-danger"><%=turno.estado %></span></td>
+      <%else%>
+      <td ><span class="label label-success"><%=turno.estado %></span></td>
+      <%end%>
+      <td><%=turno.fecha_consulta.strftime("%m/%d/%Y")%></td>
+
+      
+      <td class = "action">
+        
+        <%= link_to '<i class="fa fa-eye fa-lg" data-toggle="tooltip" data-placement="bottom" title="Ver turno"></i> '.html_safe, turno_path(turno), remote: true%>     
+        <%= link_to '<i class="fa fa-edit fa-lg" data-toggle="tooltip" data-placement="bottom" title="Editar Turno"></i> '.html_safe, edit_turno_path(turno), remote: true%>        
+        <%= link_to '<i class="fa fa-times fa-lg" data-toggle="tooltip" data-placement="bottom" title="Cancelar turno"></i>'.html_safe, estado_path(turno), remote: true, data: {confirm: "¿Desea cancelar el turno?"}%>
+         <%= link_to '<i class="fa fa-trash-o fa-lg data-toggle="tooltip" data-placement="bottom" title="Eliminar Turno"></i>'.html_safe, turno_path(turno), method: 'delete', data: {confirm: "¿Desea eliminar el Turno N° #{turno.turno}?"}%>
+
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<script type="text/javascript"> 
+       
+      turnosUI.initScript();
+      <% if !flash.notice.blank? %> 
+        var n = noty({text: '<%=notice%>', type: 'success'});   
+      <% end %>
+      <% if !flash.alert.blank?%> 
+        var n = noty({text: '<%=alert%>', type: 'error'});
+      <% end %>
+
+</script>
