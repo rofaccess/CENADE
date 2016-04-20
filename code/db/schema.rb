@@ -117,6 +117,12 @@ ActiveRecord::Schema.define(version: 20160413145411) do
     t.datetime "updated_at",               null: false
   end
 
+  create_table "grupos", force: :cascade do |t|
+    t.string   "nombre"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "horarios", force: :cascade do |t|
     t.integer  "empleado_id", null: false
     t.datetime "created_at"
@@ -137,7 +143,7 @@ ActiveRecord::Schema.define(version: 20160413145411) do
   end
 
   create_table "permissions", force: :cascade do |t|
-    t.string   "grupo"
+    t.integer  "grupo_id"
     t.string   "model"
     t.string   "nombre"
     t.datetime "created_at", null: false
@@ -234,6 +240,7 @@ ActiveRecord::Schema.define(version: 20160413145411) do
   add_foreign_key "horarios", "empleados", on_delete: :cascade
   add_foreign_key "pacientes", "personas", column: "encargado_id", on_delete: :restrict
   add_foreign_key "pacientes", "personas", on_delete: :restrict
+  add_foreign_key "permissions", "grupos", on_delete: :restrict
   add_foreign_key "permissions_roles", "permissions"
   add_foreign_key "permissions_roles", "roles"
   add_foreign_key "personas", "estados_civiles", on_delete: :restrict

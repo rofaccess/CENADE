@@ -6,5 +6,6 @@ class Role < ActiveRecord::Base
              :polymorphic => true
     
   scopify
+
  
 end

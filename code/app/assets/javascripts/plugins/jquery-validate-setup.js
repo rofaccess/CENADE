@@ -54,12 +54,16 @@ $.validator.addClassRules({
 		minlength: 4
 	},
 
-	nameLength: {
+	nameMinLength: {
 		minlength: 3
 	},
 
 	minLength2: {
 		minlength: 2
+	},
+
+	minLength3: {
+		minlength: 3
 	},
 
 	minLength4: {

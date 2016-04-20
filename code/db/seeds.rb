@@ -117,10 +117,13 @@ configuracion1 = Configuracion.create(empresa_nombre: 'CENADE',
 	                      )
 administrador = Role.create!(name: 'Administrador')
 admin.add_role :Administrador
-Permission.create([{nombre: 'Usuarios', model: 'User', grupo:'Configuracion'},
-                     {nombre: 'Datos de la empresa', model: 'Configuracion', grupo:'Configuracion'},
-                     {nombre: 'Empleados', model: 'Empleado', grupo:'Personal'},
-                     {nombre: 'Roles', model: 'Role', grupo:'Configuracion'}])
+Grupo.create([{nombre: 'Configuraciones'}, {nombre: 'Pacientes'}, {nombre: 'Turnos'}, {nombre: 'Personal'}])
+Permission.create([{nombre: 'Usuarios', model: 'User', grupo_id: 1},
+                     {nombre: 'Datos de la empresa', model: 'Configuracion', grupo_id:1},
+                     {nombre: 'Empleados', model: 'Empleado', grupo_id:4},
+                     {nombre: 'Roles', model: 'Role', grupo_id:1},
+                     {nombre: 'Paciente', model: 'Paciente', grupo_id:2},
+                     {nombre: 'Turno', model: 'Turno', grupo_id:3}])
 
  Permission.all.each do |p|
         PermissionsRole.create(role_id: 1, permission_id: p.id)

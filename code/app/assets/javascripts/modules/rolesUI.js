@@ -20,6 +20,12 @@ var rolesUI = (function(){
 		},
 		initScript: function(checkRoleNameUrl){
 			rolesUI.checkNAME(checkRoleNameUrl);
+            $(".multiple_select").select2({
+              placeholder: "Interfaces disponibles...",
+              multiple: true,
+              language: "es"
+
+            });
 		   	//Valida el formulario antes de enviarlo
 		  	$('.nuevo-rol').validate();
 		}
