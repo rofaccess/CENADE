@@ -21,7 +21,7 @@
           <div class="row">
             <div class="col-md-10">
 
-            <%= turno.select(:paciente_id, Hash[Paciente.all.map{|a| [a.persona.nombre + " "+ a.persona.apellido, a.id]}],{},{class: "paciente_select form-control", required: true,  id: 'paciente_id'})%>
+            <%= turno.select(:paciente_id, Hash[Paciente.all.map{|a| [a.persona.nombre + " "+ a.persona.apellido, a.id]}],{},{class: "paciente_select form-control select2", required: true,  id: 'paciente_id'})%>
           </div>
             <%= link_to '<i class="fa fa-plus"></i> '.html_safe, pacientes_new_paciente_modal_path, class: 'btn btn-custom col-md-1', style: 'height: 30px; width: 40px', remote: true%> 
             
@@ -82,7 +82,7 @@
 
         <%= turno.label :area_id, '* Área a consultar' %> 
 
-        <%= turno.select(:area_id, Area.all.collect { |a| [a.nombre, a.id] },{},{class: "area_select form-control", required: true,  id: 'area_id'})%>
+        <%= turno.select(:area_id, Area.all.collect { |a| [a.nombre, a.id] },{},{class: "area_select form-control select2", required: true,  id: 'area_id'})%>
 
       </div>
 
@@ -90,7 +90,7 @@
 
         <%= turno.label :doctor_id, '* Profesional de la Salud' %> 
 
-        <%= turno.select(:doctor_id, Hash[Empleado.where(type: 'Doctor').map{|a| [a.area.nombre + "-"+ a.persona.nombre + " "+ a.persona.apellido, a.id]}],{},{class: "profesional_select form-control", required: true,  id: 'doctor_id'})%>
+        <%= turno.select(:doctor_id, Hash[Empleado.where(type: 'Doctor').map{|a| [a.area.nombre + "-"+ a.persona.nombre + " "+ a.persona.apellido, a.id]}],{},{class: "profesional_select form-control select2", required: true,  id: 'doctor_id'})%>
 
        </div>
 

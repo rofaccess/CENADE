@@ -25,7 +25,9 @@ var rolesUI = (function(){
               multiple: true,
               language: "es"
 
-            });
+            }).on('change', function () {
+                    $(this).valid();
+                });
 		   	//Valida el formulario antes de enviarlo
 		  	$('.nuevo-rol').validate();
 		}

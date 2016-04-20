@@ -28,7 +28,7 @@
            	<div class="col-md-12">
 
            	<%= role.label :nombre, '* Permisos' %> 
-           	<%= role.select(:permission_ids, grouped_options_for_select(Permission.agruparRoPermission),{},{class: "multiple_select form-control", multiple: true, required: true})%>
+           	<%= role.select(:permission_ids, grouped_options_for_select(Permission.agruparRoPermission, @role.permissions.collect {|p| p.id}),{},{class: "multiple_select form-control select2", multiple: true, required: true})%>
              
         		</div>
          </div> 
@@ -41,7 +41,13 @@
 </div>
 
 <script type="text/javascript">
-  
+    <% if !flash.notice.blank? %> 
+      var n = noty({text: '<%=notice%>', type: 'success'});   
+    <% end %>
+    
+    <% if !flash.alert.blank?%> 
+      var n = noty({text: '<%=alert%>', type: 'error'});
+    <% end %>
   rolesUI.initScript("<%= roles_check_name_path %>");
 </script>    
       
