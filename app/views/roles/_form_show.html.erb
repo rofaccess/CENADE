@@ -10,6 +10,8 @@
     </div>  
 
     <%= form_for @role,html: {class: 'nuevo-rol small-form'},:multipart => true do |role|%>
+    <h4>Rol</h4>
+    <hr>
       <div class="row">
          <%= FormBuilder::text_field_v(role, :name, 
                                       input_class: 'required', 
