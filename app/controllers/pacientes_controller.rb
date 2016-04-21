@@ -11,7 +11,7 @@ class PacientesController < ApplicationController
 	def new    	
 		@paciente = Paciente.new
 		@paciente.build_persona
-     @paciente.build_encargado
+    @paciente.build_encargado
    end
 
    def create	
@@ -27,6 +27,69 @@ class PacientesController < ApplicationController
      end 
    end
    end
+   
+    def create	
+    	respond_to do |format|
+
+        @paciente = Paciente.new(paciente_params)       
+    		if @paciente.save		    
+    			flash.now[:notice] = "Se ha guardado el paciente #{@paciente.persona.nombre} #{@paciente.persona.apellido}."
+    			format.html {render 'show'}
+    		else
+    			flash.now[:alert] = "No se ha podido guardar el paciente #{@paciente.persona.nombre} #{@paciente.persona.apellido}."
+    			format.html { render action: "new"}	
+    		end 
+    	end
+    end
+
+    def edit
+    end
+
+    def update	
+    	respond_to do |format|
+	      if @paciente.update(paciente_params)
+	        flash.now[:notice] = "Se ha actualizado el paciente #{@paciente.persona.nombre} #{@paciente.persona.apellido}."
+	        format.html {render 'show'}   
+	      else
+	        flash.now[:alert] = "No se ha podido actualizar los datos del paciente #{@paciente.persona.nombre} #{@paciente.persona.apellido}."
+	        format.html { render action: "new"}        
+	      end 
+    	end   		
+    end
+
+    def show
+    end
+
+    def destroy    		
+		respond_to do |format|					
+			if @paciente.destroy							         
+				format.html { redirect_to pacientes_path, flash: {notice: "Se ha eliminado el paciente #{@paciente.persona.nombre} #{@paciente.persona.apellido}."}}
+			else
+			   	format.html { redirect_to pacientes_path, flash: {alert: "No se ha podido eliminar el paciente #{@paciente.persona.nombre} #{@paciente.persona.apellido}."}}	      		
+			end			
+		end	
+	end
+    def recarga_paciente
+      
+
+        @paciente = Paciente.new(paciente_params)       
+        if @paciente.save       
+          flash.now[:notice] = "Se ha guardado el paciente #{@paciente.persona.nombre} #{@paciente.persona.apellido}."
+          
+        else
+          flash.now[:alert] = "No se ha podido guardar el paciente #{@paciente.persona.nombre} #{@paciente.persona.apellido}."
+          
+        end
+        render 'recarga_paciente', format: :js 
+      
+      
+    end
+
+  	def new_paciente_modal
+  	  @paciente = Paciente.new
+       @paciente.build_persona
+      render 'new_paciente_modal', format: :js
+    end 
 
    def edit
       # Cuando el paciente a editar no tiene encargado, el field_for para encargado, no muestra los campos

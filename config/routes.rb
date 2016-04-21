@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get 'pacientes/print_pacientes' => 'pacientes#print_pacientes'
   get 'pacientes/print_paciente' => 'pacientes#print_paciente'
   get 'pacientes/check_ci' => 'pacientes#check_ci'
+  post 'pacientes/recarga_paciente' => 'pacientes#recarga_paciente'
   get 'pacientes/new_paciente_modal' => 'pacientes#new_paciente_modal'
   resources :pacientes
   get 'roles/check_name' => 'roles#check_name'
@@ -10,9 +11,14 @@ Rails.application.routes.draw do
   resources :doctores
   resources :funcionarios
 
+  get 'turnos/check_paciente' => 'empleados#check_paciente'
+  get'turnos/get_paciente' => 'turnos#get_paciente'
+  get'turnos/update_profesional' => 'turnos#update_profesional'
+  get 'turnos/print_turnos' => 'turnos#print_turnos'
+  get '/turnos:id', to: 'turnos#cambiar_estado', as: 'estado'
   resources :turnos do
     collection do
-      post 'get_paciente'
+      match 'buscar' => 'turnos#buscar', via: [:get, :post], as: :search
     end
   end
 
