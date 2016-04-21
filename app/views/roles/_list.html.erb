@@ -28,3 +28,13 @@
     <% end %>
   </tbody>
 </table>
+<script type="text/javascript">
+    <% if !flash.notice.blank? %> 
+      var n = noty({text: '<%=notice%>', type: 'success'});   
+    <% end %>
+    
+    <% if !flash.alert.blank?%> 
+      var n = noty({text: '<%=alert%>', type: 'error'});
+    <% end %>
+  r
+</script>

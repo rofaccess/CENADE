@@ -1,41 +1,27 @@
 
-          <div class="row">
-            <%= FormBuilder::text_field_v(turno, :paciente_id, 
-                                          input_class: 'paciente-nombre', 
-                                          col_class: 'col-md-4',
-                                          disabled: true,
-                                          label_text: 'Nombres',
-                                          input_value: paciente.persona.nombre) %>
-
-            <%= FormBuilder::text_field_v(turno, :paciente_id, 
-                                          input_class: 'paciente-apellido', 
-                                          col_class: 'col-md-5',
-                                          disabled: true,
-                                          label_text: 'Apellidos',
-                                          input_value: paciente.persona.apellido) %>
-
-            <%= FormBuilder::text_field_v(turno, :paciente_id, 
-                                          input_class: 'clear paciente-ci', 
-                                          max_length: Domain::CI,
-                                          col_class: 'col-md-3',
-                                          disabled: true,
-                                          label_text: 'CI',
-                                          input_value: paciente.persona.ci) %> 
-            </div>      
+ <div class="row">
+            <div class="col-md-4">
+                <label class="control-label">Nombres</label>
+                <input class="form-control" disabled="disabled" value="<%= @paciente.persona.nombre %>">
+              </div>
+             <div class="col-md-5">
+                <label class="control-label">Apellidos</label>
+                <input class="form-control" disabled="disabled" value="<%= @paciente.persona.apellido %>">
+              </div>
+              <div class="col-md-3">
+                <label class="control-label">C.I.</label>
+                <input class="form-control" disabled="disabled" value="<%= @paciente.persona.ci %>">
+              </div>
+            </div>
+          </br>
             <div class="row">
-              <%= FormBuilder::text_field_v(turno, :paciente_id, 
-                                        input_class: 'clear paciente-direccion', 
-                                        max_length: Domain::DIRECCION,
-                                        col_class: 'col-md-8',
-                                        disabled: true,
-                                        label_text: 'Direccion',
-                                        input_value: paciente.persona.direccion) %>
-               <%= FormBuilder::text_field_v(turno, :paciente_id, 
-                                        input_class: 'clear paciente-telefono', 
-                                        max_length: Domain::TELEFONO,
-                                        col_class: 'col-md-4',
-                                        disabled: true,
-                                        label_text: 'Telefono',
-                                        input_value: paciente.persona.telefono) %>
+              <div class="col-md-8">
+                <label class="control-label">Dirección</label>
+                <input class="form-control" disabled="disabled" value="<%= @paciente.persona.direccion %>">
+              </div>
+              <div class="col-md-4">
+                <label class="control-label">Teléfono</label>
+                <input class="form-control" disabled="disabled" value="<%= @paciente.persona.telefono %>">
+              </div>
+
           </div>
-   
