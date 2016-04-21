@@ -51,15 +51,20 @@ ActiveRecord::Schema.define(version: 20160413145411) do
   add_index "areas", ["nombre"], name: "index_areas_on_nombre", unique: true, using: :btree
 
   create_table "configuraciones", force: :cascade do |t|
-    t.string   "empresa_nombre",           limit: 50,  default: ""
-    t.string   "empresa_direccion",        limit: 125, default: ""
-    t.string   "empresa_tel",              limit: 50,  default: ""
-    t.string   "empresa_email",            limit: 50,  default: ""
-    t.string   "empresa_horario_atencion", limit: 100, default: ""
-    t.string   "empresa_web",              limit: 40,  default: ""
+    t.string   "empresa_nombre",     limit: 50,  default: ""
+    t.string   "empresa_direccion",  limit: 125, default: ""
+    t.string   "empresa_tel",        limit: 50,  default: ""
+    t.string   "empresa_email",      limit: 50,  default: ""
+    t.string   "empresa_web",        limit: 40,  default: ""
     t.string   "empresa_logo"
-    t.datetime "created_at",                                        null: false
-    t.datetime "updated_at",                                        null: false
+    t.string   "hora_inicio_mañana"
+    t.string   "hora_fin_mañana"
+    t.string   "hora_inicio_tarde"
+    t.string   "hora_fin_tarde"
+    t.string   "dias_atencion"
+    t.string   "usuario_admin"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "empleados", force: :cascade do |t|

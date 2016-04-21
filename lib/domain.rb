@@ -59,5 +59,7 @@ module Domain
 	# Datos de la Empresa
 	EMPRESA_NOMBRE = 50
 	EMPRESA_WEB	   = 40
-	EMPRESA_HORARIO= 100
+	EMPRESA_HORARIO= 5
+	DIAS_DE_ATENCION=20
+
 end
