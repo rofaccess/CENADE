@@ -49,8 +49,7 @@ module Domain
 	MONEDA 	  = 3		
 	CODIGO    = 15			
 	MONTO     = 13
-	CANTIDAD  = 5	
-	COSTO	  = 7
+	CANTIDAD  = 5
 	
 	DESCRIPCION5 = 500
 	DESCRIPCION2 = 200
@@ -61,5 +60,9 @@ module Domain
 	EMPRESA_WEB	   = 40
 	EMPRESA_HORARIO= 5
 	DIAS_DE_ATENCION=20
+	
+	# Turnos
+	COSTO = 7
+	NRO_FACTURA = 15
 
 end
