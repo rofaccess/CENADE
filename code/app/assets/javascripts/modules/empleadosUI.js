@@ -97,6 +97,15 @@ var empleadosUI = (function(){
 			$('.edad').inputmask('Regex', { regex: "[0-9]+" });
 
 			$('.date').inputmask('Regex', { regex: "[0-9]{2}\/[0-9]{2}\/[0-9]{4}" });
+
+			$('.datepicker').datepicker({
+		        format: "dd/mm/yyyy",
+		        language: "es",
+		        autoclose: true,
+		        orientation: "bottom",		       
+		        }).on('change', function() {
+        			$(this).valid();
+		    });
 			
 		   	//Valida el formulario antes de enviarlo
 		  	$('.form-empleado').last().validate();

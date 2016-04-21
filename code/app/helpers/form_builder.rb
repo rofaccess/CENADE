@@ -80,7 +80,7 @@ module FormBuilder
     html = ""
       html << "<div class='form-group #{option.key?(:col_class) ? option[:col_class] : ''}'>"
         html << f.label(field,"#{option.key?(:label_text) ? option[:label_text] : ''}", 
-                              class: "control-label #{option.key?(:label_class) ? option[:label_class] : 'titulos-campos'}")
+                              class: "control-label #{option.key?(:label_class) ? option[:label_class] : ''}")
         if option.key?(:input_value)
           html << f.text_field(field, class: "form-control #{option.key?(:input_class) ? option[:input_class] : ''}",
                                       value: "#{option.key?(:input_value) ? option[:input_value] : ''}", 
@@ -234,7 +234,7 @@ module FormBuilder
       html << "</div>"
     else
       html << f.label(field, "#{option.key?(:label_text) ? option[:label_text] : ''}",
-                               class: "control-label #{option.key?(:label_class) ? option[:label_class] : 'titulos-campos'}")
+                               class: "control-label #{option.key?(:label_class) ? option[:label_class] : ''}")
       html << "<div class='#{option.key?(:field_class) ? option[:field_class] : ''}'>"
         html << f.select(field, collection,
                                     {prompt: option.key?(:prompt) ? option[:prompt] : ''},
