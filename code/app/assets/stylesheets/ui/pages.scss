@@ -32,6 +32,7 @@ $common-color: #24C1C1;
 }
 
 
+
 .titulos-campos{
 	font-weight: normal;
 	font-size:medium;
@@ -276,6 +277,24 @@ body{
 						font-weight: bold;
 					}
 				}
+
+				.nomb-empresa{
+					margin-left:-15px;
+				}
+
+				div.select.text-error{
+					span.text-error{
+						position: relative;
+						padding-left:20px;
+						top:45px;
+					}
+					span.select2-container{
+					position: relative;
+					top:-14px;
+					}
+
+				}
+
 			}
 
 			.border-img{
@@ -289,14 +308,15 @@ body{
 			.font-img{
 				color:#24C1C1;
 				font-weight: normal;
-				position: relative;
-				left:25%;
+				padding-left:36%;
+				text-align:center;
 			}
 
 			.uploader_button{
 				position: relative;
 			    overflow: hidden;
 			    margin: 10px;
+			    
     			.file_uploader {
 					position: absolute;
 				    top: 0;
