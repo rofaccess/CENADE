@@ -1,6 +1,6 @@
 class PerfilUsuariosController < ApplicationController
 
-	respond_to :html, :js
+	
 
 	def edit
 		@persona = Persona.find(Empleado.find(current_user.empleado_id).persona_id)
@@ -14,16 +14,14 @@ class PerfilUsuariosController < ApplicationController
 		if usuario_params[:password].blank?
 			@usuario_u = usuario_params.except(:direccion, :telefono, :email,:password,:password_confirmation)
 		end
-		respond_to do |format|
+
 			if @usuario.update(@usuario_u) && @persona.update(@persona_u)      
-		        format.html { redirect_to perfil_usuarios_edit_path, flash: {notice: "Se ha actualizado el usuario #{@usuario.empleado.persona.nombre}
-		        #{@usuario.id}."}}     
+		        flash.now[:notice] = "Se ha actualizado el usuario #{@usuario.username}."   
 	    	else
-		        flash.alert = "No se ha podido actualizar el usuario #{@usuario} 
-		        #{@usuario.id}."
-		        format.html { render action: "edit"}
+		        flash.now[:alert] = "No se ha podido actualizar el usuario #{@usuario.username}."
 	    	end 
-	    end
+	    	render action: 'edit'
+
 
 	end
 
