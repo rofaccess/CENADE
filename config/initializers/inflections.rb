@@ -31,5 +31,6 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
 	inflect.irregular 'turno', 'turnos'
 	inflect.irregular 'paciente', 'pacientes'
 	inflect.irregular 'encargado', 'encargados'
+	inflect.irregular 'grupo', 'grupos'
 
 end

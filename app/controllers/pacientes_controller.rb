@@ -1,5 +1,5 @@
 class PacientesController < ApplicationController
-		
+
 	before_action :set_paciente, only: [:show, :edit, :update, :destroy]
 	#load_and_authorize_resource #Conflicto con check_ci
 	respond_to :html, :js	
@@ -9,87 +9,138 @@ class PacientesController < ApplicationController
 	end
 
 	def new    	
-    	@paciente = Paciente.new
-    	@paciente.build_persona
-    	@encargado = Encargado.new
-  	end
+		@paciente = Paciente.new
+		@paciente.build_persona
+		@paciente.build_encargado
+	end
 
-  	def create	
-  		respond_to do |format|
-	  		if paciente_params[:es_menor] == "true"
-				if not @encargado.save
-					flash.notice= "No se ha podido guardar el/los encargados, ni el paciente #{@paciente.persona.nombre}
-			    	#{@paciente.persona.apellido}."	
-			    	format.html { redirect_to pacientes_path} #Lo ideal es mostrar el mensaje en el mismo formulario			    	
-				end	    		
-		    end		
+	def create	
+		respond_to do |format|
 
-			if @paciente.save
-			    flash.notice= "Se ha guardado el paciente #{@paciente.persona.nombre}
-			    #{@paciente.persona.apellido}."	
-			    format.html { redirect_to pacientes_path}
-			    #format.js {render action: "show"} #Es mejor: Mostrar o Listar?
+			@paciente = Paciente.new(paciente_params)       
+			if @paciente.save		    
+				flash.now[:notice] = "Se ha guardado el paciente #{@paciente.persona.nombre} #{@paciente.persona.apellido}."
+				format.html {render 'show'}
 			else
-			    flash.alert = "No se ha podido guardar el paciente #{@paciente.persona.nombre} 
-			    #{@paciente.persona.apellido}."
-			    format.html { redirect_to pacientes_path} #Lo ideal es mostrar el mensaje en el mismo formulario	
+				flash.now[:alert] = "No se ha podido guardar el paciente #{@paciente.persona.nombre} #{@paciente.persona.apellido}."
+				format.html { render action: "new"}	
 			end 
-		end					  
-  	end
-
-  	def edit
- 	end
-
- 	def update	 		
-  	end
-
-  	def show
-  	end
-
-  	def update_list
-    	index
-    	render partial: 'update_list', format: 'js'
-  	end
-
-  	def destroy  
-	    if @paciente.destroy
-		  flash.notice = "Se ha eliminado el paciente #{@paciente.persona.nombre} 
-		  #{@paciente.persona.apellido}."	        
-	    else
-	      flash.alert = "No se ha podido eliminar el paciente #{@paciente.persona.nombre} 
-	      #{@paciente.persona.apellido}."
-	    end
-
-	    if request.xhr?
-  			# Do the ajax stuff
-  			update_list
-		else
-  			# Do normal stuff
-  			get_pacientes
-  			render 'index'
 		end
+	end 
+	
+	def recarga_paciente      
 
-  	end
+		@paciente = Paciente.new(paciente_params)       
+		if @paciente.save       
+			flash.now[:notice] = "Se ha guardado el paciente #{@paciente.persona.nombre} #{@paciente.persona.apellido}."
+			
+		else
+			flash.now[:alert] = "No se ha podido guardar el paciente #{@paciente.persona.nombre} #{@paciente.persona.apellido}."
+			
+		end
+		render 'recarga_paciente', format: :js 		
+	end
 
-  	def set_paciente
-      @paciente = Paciente.find(params[:id])
+	def new_paciente_modal
+		@paciente = Paciente.new
+		@paciente.build_persona
+    @paciente.build_encargado
+		render 'new_paciente_modal', format: :js
+	end 
+
+	def edit
+      # Cuando el paciente a editar no tiene encargado, el field_for para encargado, no muestra los campos
+      # es necesario hacer un build cuando el paciente no tiene encargado, para poder mostrar los campos
+      if @paciente.encargado_id.blank?
+      	@paciente.build_encargado
+      end
+   end
+
+   def update	
+   	respond_to do |format|       
+   		if @paciente.update(paciente_params)
+
+   			destroy_encargado(params[:paciente][:borrar_encargado], @paciente)
+
+   			flash.now[:notice] = "Se ha actualizado el paciente #{@paciente.persona.nombre} #{@paciente.persona.apellido}."
+   			format.html {render 'show'}   
+   		else
+   			flash.now[:alert] = "No se ha podido actualizar los datos del paciente #{@paciente.persona.nombre} #{@paciente.persona.apellido}."
+   			format.html { render action: "new"}        
+   		end 
+   	end   		
+   end
+
+   def show
+   end
+
+    # Si en el form de edición de paciente se desactiva el checkbox, se ejecutará el contenido de esta función para eliminar
+    # los datos del encargado, se usa un borrado osioso.
+    def destroy_encargado(condicion, paciente)
+    	if condicion == "true"
+
+    		if paciente.destroy_encargado
+    			paciente.update(encargado_id: nil)
+    		else 
+    			flash.now[:alert] = "No se ha podido eliminar los encargados del paciente #{paciente.persona.nombre} #{paciente.persona.apellido}."
+    			format.html { render action: "new"} 
+    		end 
+    	end
+    end    
+
+    def destroy    		
+    	respond_to do |format|					
+    		if @paciente.destroy							         
+    			format.html { redirect_to pacientes_path, flash: {notice: "Se ha eliminado el paciente #{@paciente.persona.nombre} #{@paciente.persona.apellido}."}}
+    		else
+    			format.html { redirect_to pacientes_path, flash: {alert: "No se ha podido eliminar el paciente #{@paciente.persona.nombre} #{@paciente.persona.apellido}."}}	      		
+    		end			
+    	end	
+    end
+
+    def print_paciente
+    	@paciente = Paciente.find params[:paciente_id]      
+    	respond_to do |format|
+    		format.pdf do
+    			render :pdf => "Paciente",
+    			:template => "pacientes/print_paciente.pdf.erb",
+    			:layout => "pdf.html"
+    		end
+    	end
+    end
+
+    def print_pacientes
+    	@pacientes = Paciente.all
+
+    	respond_to do |format|
+    		format.pdf do
+    			render :pdf => "Lista de Pacientes",
+    			:template => "pacientes/print_pacientes.pdf.erb",
+    			:layout => "pdf.html"
+    		end
+    	end
+    end
+
+    def set_paciente
+    	@paciente = Paciente.find(params[:id])
     end
 
     def get_pacientes
     	@search = Paciente.ransack(params[:q])
-		@pacientes= @search.result.page(params[:page])
+    	@pacientes= @search.result.page(params[:page])
     end
-     
+
     def check_ci
     	persona = Persona.find_by_ci(params[:ci])
-
-	    render json: (persona.nil? || persona.id == params[:id].to_i) ? true : "El número de CI especificado ya existe en el Sistema".to_json   		
+    	render json: (persona.nil? || persona.id == params[:id].to_i) ? true : "El número de CI especificado ya existe en el Sistema".to_json   		
     end	
 
-  	def paciente_params
-      params.require(:paciente).permit(:cargo,:especialidad_id,:type,
-      persona_attributes: [:id,:nombre,:apellido,:ci,:ruc,:fecha_nacimiento,:edad,
-      	                   :sexo,:estado_civil_id,:direccion,:telefono,:email,:nacionalidad])
+    def paciente_params
+    	params.require(:paciente).permit(:lugar_nacimiento,:fecha_ingreso,:profesion, :lugar_trabajo, :encargado_id,
+    		persona_attributes: [:id,:nombre,:apellido,:ci,:ruc,:fecha_nacimiento,:edad,
+    			:sexo,:estado_civil_id,:direccion,:telefono,:email,:nacionalidad],
+    			encargado_attributes: [:id,:padre_nombre, :padre_edad, :padre_prof_act_ant, :madre_nombre, :madre_edad, :madre_num_hijos,
+    				:madre_prof_act_ant, :encargado_nombre, :encargado_edad, :encargado_prof_act_ant])
     end
 
-end
+ end

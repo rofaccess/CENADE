@@ -30,22 +30,24 @@
       <%= FormBuilder::password_field(f, :password,  
                                         max_length: Domain::CONTRASEÑA,
                                         col_class: 'col-md-6',
-                                        label_text: '* Contraseña') %>
+                                        label_text: 'Contraseña') %>
 
-      <%= FormBuilder::password_field(f, :password_confirmation,  
+      <%= FormBuilder::password_field(f, :password_confirmation,
+                                        input_class: 'passwordEqual', 
                                         max_length: Domain::CONTRASEÑA,
                                         col_class: 'col-md-6',
-                                        label_text: '* Confirmar Contraseña') %>        
+                                        label_text: 'Confirmar Contraseña') %>        
     </div>
     <h4>Datos de Contacto</h4><hr>
     <div class="row">
       <div class="form-group col-md-12">
           <label class="control-label " for="user_username">* Direccion</label>
-          <input class="form-control required clear " placeholder="" value="<%= @persona.direccion %>" maxlength="30" type="text" name="user[direccion]" id="user_direccion">
+          <input class="form-control required clear " placeholder="" value="<%= @persona.direccion %>" maxlength="125" type="text" name="user[direccion]" id="user_direccion">
       </div>
     </div>
     <div class="row">
       <div class="form-group col-md-5">
+
           <label class="control-label " for="user_username">Telefono</label>
           <input class="form-control telCheck" placeholder="" value="<%= @persona.telefono %>" maxlength="100" type="text" name="user[telefono]" id="user_telefono">
       </div>
