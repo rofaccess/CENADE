@@ -38,7 +38,7 @@
             <%= link_to '<span class="fa fa-bar-chart" aria-hidden="true"></span>  Reportes'.html_safe, welcome_index_reportes_path  %>            
           </li>
           
-          <li class="<%= current_menu([welcome_index_configuracion_path, usuarios_path, edit_configuracion_path(Configuracion.first),configuracion_path(Configuracion.first), roles_path, edit_user_registration_path])%>">
+          <li class="<%= current_menu([welcome_index_configuracion_path, usuarios_path, edit_configuracion_path(Configuracion.first),configuracion_path(Configuracion.first), roles_path])%>">
             <%= link_to '<span class="fa fa-gear" aria-hidden="true"></span>  Configuración'.html_safe, edit_configuracion_path(Configuracion.first)  %> 
             
           </li>  
