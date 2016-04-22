@@ -58,10 +58,12 @@ class UsuariosController < ApplicationController
 	    @empleados = Empleado.includes(:persona).joins("LEFT JOIN users ON empleados.id = users.empleado_id").where(users: {empleado_id: nil})
 		respond_to do |format|
 			if @usuario.save
+				set_submenu
 				@usuario.role_ids = params[:user][:role_ids]	
 				flash.now[:notice] ="Se ha guardado el usuario #{@usuario.username}"
 				format.html { render action: "show"}     
 			else
+				set_submenu
 			    flash.now[:alert] = "No se ha podido guardar el usuario #{@usuario.username}"
 			    format.html { render action: "new"}
 			end 
