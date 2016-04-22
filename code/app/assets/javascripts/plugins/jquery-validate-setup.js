@@ -11,21 +11,16 @@ jQuery.validator.setDefaults({
 		$(element).closest('.form-control').removeClass('input-error');
 		$(element).closest('div').removeClass('text-error');
 	},	
-	errorPlacement: function(error, element) {
-       /*
-        if (element.attr("id") == "user_username" )  
-            error.appendTo('#username-error');
-        else if (element.attr("id") == "user_password" )  
-            error.appendTo('#password-error');
-        else{
-        	error.insertAfter(element);  
-        	element.focus();  
-        }	 */  
-            error.insertAfter(element);  
-        	element.focus();  
+	errorPlacement: function (error, element) {
+    if (element.parent('.input-group').length) { 
+        error.insertAfter(element.parent());      // radio/checkbox?
+    } else if (element.hasClass('select2')) {     
+        error.insertAfter(element.next('span'));  // select2
+    } else {                                      
+        error.insertAfter(element);               // default
     }
+}
 });
-
 
 // Reglas para las validaciones
 $.validator.addClassRules({
@@ -54,12 +49,16 @@ $.validator.addClassRules({
 		minlength: 4
 	},
 
-	nameLength: {
+	nameMinLength: {
 		minlength: 3
 	},
 
 	minLength2: {
 		minlength: 2
+	},
+
+	minLength3: {
+		minlength: 3
 	},
 
 	minLength4: {
@@ -76,10 +75,12 @@ $.validator.addClassRules({
 	telCheck: {
 		telCheck: true
 	},
+	passwordEqual:{
+		equalTo: "#user_password"
+	},
 	horaCheck:{
 		hora:true
 	}
-
 });
 
 

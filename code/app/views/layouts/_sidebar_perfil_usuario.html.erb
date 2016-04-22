@@ -12,9 +12,10 @@
 			<label ><%=current_user.username%></label>
 		</div>	
 
-      	<div class="label-profile"> 
-	      <%= @persona.direccion %><br>
-	      <br>
+      	<div class="label-profile">
+      		<div style="overflow-x: auto; width: 200px; overflow-y: hide;">
+      			<%= @persona.direccion %><br>
+      		</div> 
 	      <%= @persona.email %><br>
 	      <br>
 	      <%= @persona.telefono %>   	
