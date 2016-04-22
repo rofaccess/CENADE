@@ -33,7 +33,7 @@ module Domain
 
 	# Datos de Usuario
 	USERNAME   	= 30
-	CONTRASEÑA	= 20
+	CONTRASEÑA	= 40
 	ROL = 15	
 
 	# Datos Médicos

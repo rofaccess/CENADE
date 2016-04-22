@@ -35,32 +35,34 @@ class UsuariosController < ApplicationController
 	def update
 		respond_to do |format|
 			if params[:user][:pass_reset] == "true"
-				@usuario.password = usuario_params[:username]+"ABC123"
-				@usuario.password_confirmation =  usuario_params[:username]+"ABC123"	    		
+				@usuario.password = usuario_params[:username]
+				@usuario.password_confirmation =  usuario_params[:username]	    		
 	    	end		
 
 			if @usuario.update(usuario_params)
 				@usuario.role_ids = params[:user][:role_ids]		       
-		        format.html { redirect_to usuarios_path, flash: {notice: "Se ha actualizado el usuario #{@usuario.empleado.persona.nombre}
-		        #{@usuario.empleado.persona.apellido}."}}     
+		        flash.now[:notice]= "Se ha actualizado el usuario #{@usuario.empleado.persona.nombre} #{@usuario.empleado.persona.apellido}."     
+	    		format.html { render action: "show"} 
 	    	else
-		        flash.alert = "No se ha podido actualizar el usuario #{@usuario.empleado.persona.nombre} 
-		        #{@usuario.empleado.persona.apellido}."
-		        format.html { render action: "edit"}
+		        flash.now[:alert]  = "No se ha podido actualizar el usuario #{@usuario.empleado.persona.nombre} #{@usuario.empleado.persona.apellido}." 
+		        format.html { render action: "edit"}  
 	    	end 
+	    		
 	    end	   
 	end
 
 	def create
 		@usuario = User.new(usuario_params)
-	    @usuario.password_confirmation =  @usuario.username+"ABC123"
-	    @usuario.password = @usuario.username+"ABC123"
+	    @usuario.password_confirmation =  @usuario.username
+	    @usuario.password = @usuario.username
+	    @empleados = Empleado.includes(:persona).joins("LEFT JOIN users ON empleados.id = users.empleado_id").where(users: {empleado_id: nil})
 		respond_to do |format|
 			if @usuario.save
 				@usuario.role_ids = params[:user][:role_ids]	
-				format.html { redirect_to usuarios_path, flash: {notice: "Se ha guardado el usuario #{@usuario.username}"}}       
+				flash.now[:notice] ="Se ha guardado el usuario #{@usuario.username}"
+				format.html { render action: "show"}     
 			else
-			    flash.alert = "No se ha podido guardar el usuario #{@usuario.username}"
+			    flash.now[:alert] = "No se ha podido guardar el usuario #{@usuario.username}"
 			    format.html { render action: "new"}
 			end 
 		end								
