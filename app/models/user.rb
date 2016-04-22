@@ -11,6 +11,8 @@ class User < ActiveRecord::Base
          :secure_validatable, :registerable
 
   belongs_to :empleado
+
+  validates :username, length: {maximum: Domain::USERNAME, minimum: 3}
   
 	def email_required?
 	  	false
