@@ -65,4 +65,9 @@ module Domain
 	COSTO = 7
 	NRO_FACTURA = 15
 
+	
+	DESC50 = 50
+	DESC100 = 100
+	DESC250 = 250
+
 end
