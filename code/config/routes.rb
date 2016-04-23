@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :ficha_fisioterapia_ninos
+
   get 'pacientes/print_pacientes' => 'pacientes#print_pacientes'
   get 'pacientes/print_paciente' => 'pacientes#print_paciente'
   get 'pacientes/check_ci' => 'pacientes#check_ci'

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160413145411) do
+ActiveRecord::Schema.define(version: 20160423044623) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -123,6 +123,20 @@ ActiveRecord::Schema.define(version: 20160413145411) do
     t.time     "turno_tarde_hora_fin"
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
+  end
+
+  create_table "ficha_fisioterapia_ninos", force: :cascade do |t|
+    t.integer  "area_id",                                          null: false
+    t.integer  "paciente_id",                                      null: false
+    t.string   "control_embarazo",        limit: 100, default: ""
+    t.string   "edad_gestacional",        limit: 100, default: ""
+    t.string   "tipo_parto",              limit: 100, default: ""
+    t.string   "peso_nacer",              limit: 50,  default: ""
+    t.string   "apgar",                   limit: 50,  default: ""
+    t.string   "antecedentes_familiares", limit: 250, default: ""
+    t.string   "condicion_general",       limit: 250, default: ""
+    t.datetime "created_at",                                       null: false
+    t.datetime "updated_at",                                       null: false
   end
 
   create_table "grupos", force: :cascade do |t|
@@ -247,6 +261,8 @@ ActiveRecord::Schema.define(version: 20160413145411) do
   add_foreign_key "empleados", "areas", on_delete: :restrict
   add_foreign_key "empleados", "personas", on_delete: :restrict
   add_foreign_key "fechas", "horarios", on_delete: :restrict
+  add_foreign_key "ficha_fisioterapia_ninos", "areas", on_delete: :restrict
+  add_foreign_key "ficha_fisioterapia_ninos", "pacientes", on_delete: :restrict
   add_foreign_key "horarios", "empleados", on_delete: :cascade
   add_foreign_key "pacientes", "encargados", on_delete: :restrict
   add_foreign_key "pacientes", "personas", on_delete: :restrict
