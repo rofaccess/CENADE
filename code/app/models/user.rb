@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
 
   mount_uploader :profile_foto, ProfileFotoUploader
-  paginates_per 1
+  paginates_per 20
 
   devise :database_authenticatable, :timeoutable, :lockable,
          :recoverable, :rememberable, :trackable, :validatable
@@ -17,5 +17,13 @@ class User < ActiveRecord::Base
 	  	false
 	     	
 	end  
+  def get_role
+    role = Role.joins("LEFT JOIN users_roles ON roles.id = users_roles.role_id").where(users_roles: {user_id: self.id}).first
+    if !role.nil?
+      role.name
+    else
+      ""
+    end  
+  end
 
 end
