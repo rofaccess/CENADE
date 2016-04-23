@@ -7,10 +7,11 @@ class User < ActiveRecord::Base
   paginates_per 1
 
   devise :database_authenticatable, :timeoutable, :lockable,
-         :recoverable, :rememberable, :trackable, :validatable,
-         :secure_validatable, :registerable
+         :recoverable, :rememberable, :trackable, :validatable
 
   belongs_to :empleado
+
+  validates :username, length: {maximum: Domain::USERNAME, minimum: 3}
   
 	def email_required?
 	  	false
