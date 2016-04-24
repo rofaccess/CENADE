@@ -4,7 +4,7 @@ class CreateConsultas < ActiveRecord::Migration
 
     	t.integer :profesional_salud_id, 				null: true  # La consulta la atiende un profesional
     	#t.integer :turno_id, 							null: true  # Normalmente se saca turno para consultar
-    	t.integer :user_id, 							null: false # Un usuario del sistema guarda la consulta
+    	#t.integer :user_id, 							null: false # Un usuario del sistema guarda la consulta
     	t.integer :paciente_id,							null: false # La consulta pertenece a un paciente
     	t.integer :area_id,								null: false # La consulta se hace en un área
 
