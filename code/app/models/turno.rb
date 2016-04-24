@@ -1,7 +1,8 @@
 class Turno < ActiveRecord::Base
-	paginates_per 10
+	paginates_per 20
 	belongs_to :paciente
 	belongs_to :area
+  belongs_to :empleado
 	validate :coincidencia_area
   validate :verificar_fecha_consulta
   validate :paciente_unico_area_fecha_consulta

@@ -127,6 +127,7 @@ ActiveRecord::Schema.define(version: 20160423044623) do
 
   create_table "ficha_fisioterapia_ninos", force: :cascade do |t|
     t.integer  "area_id",                                          null: false
+    t.integer  "doctor_id",                                        null: false
     t.integer  "paciente_id",                                      null: false
     t.string   "control_embarazo",        limit: 100, default: ""
     t.string   "edad_gestacional",        limit: 100, default: ""
@@ -135,6 +136,8 @@ ActiveRecord::Schema.define(version: 20160423044623) do
     t.string   "apgar",                   limit: 50,  default: ""
     t.string   "antecedentes_familiares", limit: 250, default: ""
     t.string   "condicion_general",       limit: 250, default: ""
+    t.date     "fecha",                                            null: false
+    t.integer  "nro_ficha",                                        null: false
     t.datetime "created_at",                                       null: false
     t.datetime "updated_at",                                       null: false
   end
