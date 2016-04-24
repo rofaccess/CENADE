@@ -97,5 +97,5 @@ $.validator.addMethod("telCheck",function(value,element){
             },"Debe tener el formato ej:(0982)256 974");
 
 $.validator.addMethod("hora", function(value, element){
-  return /^[0-9]{2}:[0-9]{2}$/i.test(value);},
+  return value.length == 0 || /^[0-9]{2}:[0-9]{2}$/i.test(value);},
   "Formato hh:mm"); 
