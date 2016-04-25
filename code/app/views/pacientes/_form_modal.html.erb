@@ -102,7 +102,7 @@
 													max_length: Domain::TELEFONO,
 													col_class: 'col-md-4') %> 	
 			<%= FormBuilder::text_field_v(persona, :email, 
-													input_class: 'emailCheck', 
+													input_class: 'emailCheck minEmail8 required', 
 													max_length: Domain::EMAIL,
 													col_class: 'col-md-8') %> 
 		</div>  		
@@ -129,7 +129,10 @@
 						<%= check_box_tag 'encargado', true, @paciente.encargado_id.nil? ? false : true, class: 'checkbox-encargado'  %>
 
 							Padres o Encargados	
-							<%= paciente.hidden_field :borrar_encargado, value: false, class: 'borrar-encargado'%>							
+							
+							<% unless @paciente.id.nil? %>
+								<%= paciente.hidden_field :borrar_encargado, value: false, class: 'borrar-encargado'%>	
+							<% end %>							
 				</label>
 			</div>
 		</div>

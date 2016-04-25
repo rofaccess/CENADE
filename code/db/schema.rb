@@ -69,7 +69,6 @@ ActiveRecord::Schema.define(version: 20160423125256) do
 
   create_table "consultas", force: :cascade do |t|
     t.integer  "profesional_salud_id"
-    t.integer  "user_id",                                       null: false
     t.integer  "paciente_id",                                   null: false
     t.integer  "area_id",                                       null: false
     t.date     "fecha"
@@ -190,7 +189,7 @@ ActiveRecord::Schema.define(version: 20160423125256) do
     t.datetime "fecha_nacimiento"
     t.string   "sexo",             limit: 9,   default: ""
     t.string   "edad",             limit: 3,   default: ""
-    t.string   "nacionalidad",     limit: 20,  default: "", null: false
+    t.string   "nacionalidad",     limit: 20,  default: ""
     t.integer  "estado_civil_id"
     t.datetime "deleted_at"
     t.datetime "created_at"
@@ -261,7 +260,6 @@ ActiveRecord::Schema.define(version: 20160423125256) do
   add_foreign_key "consultas", "areas", on_delete: :restrict
   add_foreign_key "consultas", "empleados", column: "profesional_salud_id", on_delete: :restrict
   add_foreign_key "consultas", "pacientes", on_delete: :cascade
-  add_foreign_key "consultas", "users", on_delete: :restrict
   add_foreign_key "empleados", "areas", on_delete: :restrict
   add_foreign_key "empleados", "personas", on_delete: :restrict
   add_foreign_key "fechas", "horarios", on_delete: :restrict

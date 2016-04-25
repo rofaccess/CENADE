@@ -1,5 +1,4 @@
-class Consulta < ActiveRecord::Base
- 	pagintes_per 20
+class Consulta < ActiveRecord::Base 	
  	acts_as_paranoid
  	
  	belongs_to :Doctor
