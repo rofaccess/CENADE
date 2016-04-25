@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160423044623) do
+ActiveRecord::Schema.define(version: 20160425000212) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -142,6 +142,18 @@ ActiveRecord::Schema.define(version: 20160423044623) do
     t.datetime "updated_at",                                       null: false
   end
 
+  create_table "fichas_fonoaudiologicas", force: :cascade do |t|
+    t.integer  "paciente_id"
+    t.integer  "area_id"
+    t.string   "escolaridad", limit: 150, default: ""
+    t.string   "escuela",     limit: 150, default: ""
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+  end
+
+  add_index "fichas_fonoaudiologicas", ["area_id"], name: "index_fichas_fonoaudiologicas_on_area_id", using: :btree
+  add_index "fichas_fonoaudiologicas", ["paciente_id"], name: "index_fichas_fonoaudiologicas_on_paciente_id", using: :btree
+
   create_table "grupos", force: :cascade do |t|
     t.string   "nombre"
     t.datetime "created_at", null: false
@@ -266,6 +278,8 @@ ActiveRecord::Schema.define(version: 20160423044623) do
   add_foreign_key "fechas", "horarios", on_delete: :restrict
   add_foreign_key "ficha_fisioterapia_ninos", "areas", on_delete: :restrict
   add_foreign_key "ficha_fisioterapia_ninos", "pacientes", on_delete: :restrict
+  add_foreign_key "fichas_fonoaudiologicas", "areas", on_delete: :restrict
+  add_foreign_key "fichas_fonoaudiologicas", "pacientes", on_delete: :restrict
   add_foreign_key "horarios", "empleados", on_delete: :cascade
   add_foreign_key "pacientes", "encargados", on_delete: :restrict
   add_foreign_key "pacientes", "personas", on_delete: :restrict
