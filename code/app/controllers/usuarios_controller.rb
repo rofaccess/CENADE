@@ -14,7 +14,9 @@ class UsuariosController < ApplicationController
 	end
 
 	def new 
+		@roles = Role.all
 	    @usuario = User.new   	
+	    @role_id = 0
     	@empleados = Empleado.includes(:persona).joins("LEFT JOIN users ON empleados.id = users.empleado_id").where(users: {empleado_id: nil})
     	# Fuente:  http://blog.codinghorror.com/a-visual-explanation-of-sql-joins/
     	# Obtiene los empleados que no tengan ningún usuario
@@ -30,6 +32,10 @@ class UsuariosController < ApplicationController
 	end
 
 	def edit
+		@roles = Role.all
+		@usuario = User.find(params[:id])   	
+    	@role_id = UsersRole.where("user_id =?", @usuario.id).first.role_id 
+    	@empleados = Empleado.includes(:persona).joins("LEFT JOIN users ON empleados.id = users.empleado_id").where(users: {empleado_id: nil})
 	end
 
 	def update
@@ -39,8 +45,8 @@ class UsuariosController < ApplicationController
 				@usuario.password_confirmation =  usuario_params[:username]	    		
 	    	end		
 
-			if @usuario.update(usuario_params)
-				@usuario.role_ids = params[:user][:role_ids]		       
+			if @usuario.update(usuario_params.except(:role_id, :pass_reset))
+				UsersRole.where("user_id =?", @usuario.id).update_all({role_id: usuario_params[:role_id]})	       
 		        flash.now[:notice]= "Se ha actualizado el usuario #{@usuario.empleado.persona.nombre} #{@usuario.empleado.persona.apellido}."     
 	    		format.html { render action: "show"} 
 	    	else
@@ -52,14 +58,15 @@ class UsuariosController < ApplicationController
 	end
 
 	def create
-		@usuario = User.new(usuario_params)
+		@roles = Role.all
+		@usuario = User.new(usuario_params.except(:role_id))
 	    @usuario.password_confirmation =  @usuario.username
 	    @usuario.password = @usuario.username
 	    @empleados = Empleado.includes(:persona).joins("LEFT JOIN users ON empleados.id = users.empleado_id").where(users: {empleado_id: nil})
 		respond_to do |format|
 			if @usuario.save
-				set_submenu
-				@usuario.role_ids = params[:user][:role_ids]	
+				set_submenu	
+				UsersRole.create(user_id: @usuario.id, role_id: usuario_params[:role_id])
 				flash.now[:notice] ="Se ha guardado el usuario #{@usuario.username}"
 				format.html { render action: "show"}     
 			else
@@ -107,7 +114,7 @@ class UsuariosController < ApplicationController
   	end 
 
 	def usuario_params
-      params.require(:user).permit(:username,:empleado_id, :rol)
+      params.require(:user).permit(:username,:empleado_id, :role_id, :pass_reset)
       
     end
 

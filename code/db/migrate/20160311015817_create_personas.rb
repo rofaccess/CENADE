@@ -11,7 +11,7 @@ class CreatePersonas < ActiveRecord::Migration
       t.date :fecha_nacimiento
       t.string   :sexo              ,default: '' ,limit: Domain::SEXO      
       t.string   :edad              ,default: '' ,limit: Domain::EDAD
-      t.string   :nacionalidad      ,default: '' ,limit: Domain::NACIONALIDAD, null: false
+      t.string   :nacionalidad      ,default: '' ,limit: Domain::NACIONALIDAD
 
             
       t.integer  :estado_civil_id    

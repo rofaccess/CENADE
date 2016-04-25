@@ -2,14 +2,14 @@ class RolesController < ApplicationController
   before_action :set_submenu, only: [:edit, :new, :show, :index]
   before_action :set_role, only: [:show, :edit, :update, :destroy]
   #load_and_authorize_resource #Conflicto con check_name
+  respond_to :html, :js
 
   def set_submenu
    @submenu_layout = 'layouts/submenu_configuracion'
   end 
 
   def index
-  	@search = Role.ransack(params[:q])
-    @roles= @search.result.page(params[:page])
+  	get_roles
   end
 
   def show
@@ -65,7 +65,10 @@ class RolesController < ApplicationController
       
       render json: (role.nil? || role.id == params[:id].to_i) ? true : "Ya existe el Rol especificado".to_json     
   end 
-  
+  def get_roles
+    @search = Role.ransack(params[:q])
+    @roles= @search.result.page(params[:page])
+  end
   def set_role
      @role = Role.find(params[:id])
   end
