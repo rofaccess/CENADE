@@ -18,7 +18,8 @@
             <td class="show-usuario"><%=usuario.empleado.persona.apellido%></td>
             <td class="show-usuario"><%=usuario.empleado.cargo %></td>
             <td class="show-usuario"><%=usuario.empleado.persona.email%></td>
-            <td class="show-usuario"><%=usuario.rol%></td>
+            <td class="show-usuario"><%=usuario.get_role %></td>
+         
 
             <td class="action">
 
@@ -32,4 +33,12 @@
         <% end %>
       </tbody>
     </table>
-    
+    <script type="text/javascript">
+      
+      <% if !flash.notice.blank? %> 
+        var n = noty({text: '<%=notice%>', type: 'success'});   
+      <% end %>
+      <% if !flash.alert.blank?%> 
+        var n = noty({text: '<%=alert%>', type: 'error'});
+      <% end %>
+    </script>

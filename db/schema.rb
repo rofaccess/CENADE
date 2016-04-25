@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160413145411) do
+ActiveRecord::Schema.define(version: 20160423125256) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,15 +51,33 @@ ActiveRecord::Schema.define(version: 20160413145411) do
   add_index "areas", ["nombre"], name: "index_areas_on_nombre", unique: true, using: :btree
 
   create_table "configuraciones", force: :cascade do |t|
-    t.string   "empresa_nombre",           limit: 50,  default: ""
-    t.string   "empresa_direccion",        limit: 125, default: ""
-    t.string   "empresa_tel",              limit: 50,  default: ""
-    t.string   "empresa_email",            limit: 50,  default: ""
-    t.string   "empresa_horario_atencion", limit: 100, default: ""
-    t.string   "empresa_web",              limit: 40,  default: ""
+    t.string   "empresa_nombre",     limit: 50,  default: ""
+    t.string   "empresa_direccion",  limit: 125, default: ""
+    t.string   "empresa_tel",        limit: 50,  default: ""
+    t.string   "empresa_email",      limit: 50,  default: ""
+    t.string   "empresa_web",        limit: 40,  default: ""
     t.string   "empresa_logo"
-    t.datetime "created_at",                                        null: false
-    t.datetime "updated_at",                                        null: false
+    t.string   "hora_inicio_mañana"
+    t.string   "hora_fin_mañana"
+    t.string   "hora_inicio_tarde"
+    t.string   "hora_fin_tarde"
+    t.string   "dias_atencion"
+    t.string   "usuario_admin"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "consultas", force: :cascade do |t|
+    t.integer  "profesional_salud_id"
+    t.integer  "paciente_id",                                   null: false
+    t.integer  "area_id",                                       null: false
+    t.date     "fecha"
+    t.string   "profesional_salud",    limit: 60,  default: ""
+    t.string   "motivo_consulta",      limit: 250, default: ""
+    t.string   "evaluacion",           limit: 250, default: ""
+    t.string   "tratamiento",          limit: 250, default: ""
+    t.string   "observaciones",        limit: 250, default: ""
+    t.datetime "deleted_at"
   end
 
   create_table "empleados", force: :cascade do |t|
@@ -82,12 +100,15 @@ ActiveRecord::Schema.define(version: 20160413145411) do
     t.string   "padre_prof_act_ant",     limit: 100, default: ""
     t.string   "madre_nombre",           limit: 60,  default: ""
     t.string   "madre_edad",             limit: 3,   default: ""
+    t.string   "madre_num_hijos",        limit: 2,   default: ""
     t.string   "madre_prof_act_ant",     limit: 100, default: ""
     t.string   "encargado_nombre",       limit: 60,  default: ""
     t.string   "encargado_edad",         limit: 3,   default: ""
     t.string   "encargado_prof_act_ant", limit: 100, default: ""
+    t.integer  "paciente_id"
     t.datetime "created_at",                                      null: false
     t.datetime "updated_at",                                      null: false
+    t.datetime "deleted_at"
   end
 
   create_table "especialidades", force: :cascade do |t|
@@ -117,6 +138,12 @@ ActiveRecord::Schema.define(version: 20160413145411) do
     t.datetime "updated_at",               null: false
   end
 
+  create_table "grupos", force: :cascade do |t|
+    t.string   "nombre"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "horarios", force: :cascade do |t|
     t.integer  "empleado_id", null: false
     t.datetime "created_at"
@@ -137,7 +164,7 @@ ActiveRecord::Schema.define(version: 20160413145411) do
   end
 
   create_table "permissions", force: :cascade do |t|
-    t.string   "grupo"
+    t.integer  "grupo_id"
     t.string   "model"
     t.string   "nombre"
     t.datetime "created_at", null: false
@@ -162,7 +189,7 @@ ActiveRecord::Schema.define(version: 20160413145411) do
     t.datetime "fecha_nacimiento"
     t.string   "sexo",             limit: 9,   default: ""
     t.string   "edad",             limit: 3,   default: ""
-    t.string   "nacionalidad",     limit: 20,  default: "", null: false
+    t.string   "nacionalidad",     limit: 20,  default: ""
     t.integer  "estado_civil_id"
     t.datetime "deleted_at"
     t.datetime "created_at"
@@ -202,6 +229,7 @@ ActiveRecord::Schema.define(version: 20160413145411) do
     t.string   "username",               limit: 30, default: "", null: false
     t.string   "encrypted_password",                default: "", null: false
     t.string   "rol",                    limit: 15, default: "", null: false
+    t.string   "profile_foto"
     t.integer  "empleado_id",                                    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -229,12 +257,16 @@ ActiveRecord::Schema.define(version: 20160413145411) do
 
   add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
 
+  add_foreign_key "consultas", "areas", on_delete: :restrict
+  add_foreign_key "consultas", "empleados", column: "profesional_salud_id", on_delete: :restrict
+  add_foreign_key "consultas", "pacientes", on_delete: :cascade
   add_foreign_key "empleados", "areas", on_delete: :restrict
   add_foreign_key "empleados", "personas", on_delete: :restrict
   add_foreign_key "fechas", "horarios", on_delete: :restrict
   add_foreign_key "horarios", "empleados", on_delete: :cascade
-  add_foreign_key "pacientes", "personas", column: "encargado_id", on_delete: :restrict
+  add_foreign_key "pacientes", "encargados", on_delete: :restrict
   add_foreign_key "pacientes", "personas", on_delete: :restrict
+  add_foreign_key "permissions", "grupos", on_delete: :restrict
   add_foreign_key "permissions_roles", "permissions"
   add_foreign_key "permissions_roles", "roles"
   add_foreign_key "personas", "estados_civiles", on_delete: :restrict

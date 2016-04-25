@@ -9,7 +9,6 @@
       <th class="col-md-1">Telefono</th>
       <th>Cargo</th>
       <th>Area</th>
-      <th></th>
     </tr>
   </thead>
   <% if @empleados.blank? %>
@@ -21,28 +20,18 @@
    <% end %>
   <tbody>    
     <% @empleados.each do |empleado| %>
-    <tr data-url=<%= empleado_path(empleado)%>>
-      <td class="show-empleado"><%=empleado.abr_profesion %>  <%=empleado.persona.nombre %> <%=empleado.persona.apellido %></td>
-      <td class="show-empleado"><%=empleado.persona.ci %></td>
-      <td class="show-empleado crop"><%=empleado.persona.direccion %></td>
-      <td class="show-empleado"><%=empleado.persona.telefono %></td>
-      <td class="show-empleado"><%=empleado.cargo %></td>
-      <td class="show-empleado">
+    <tr>
+      <td><%=empleado.abr_profesion %>  <%=empleado.persona.nombre %> <%=empleado.persona.apellido %></td>
+      <td><%=empleado.persona.ci %></td>
+      <td class="crop"><%=empleado.persona.direccion %></td>
+      <td ><%=empleado.persona.telefono %></td>
+      <td><%=empleado.cargo %></td>
+      <td>
           <% if not empleado.type == 'Funcionario' %>         
             <%=empleado.area.nombre %>
           <% end %>  
-      </td> 
-
-      <td class = "action">
-        
-        <%= link_to '<i class="fa fa-eye fa-lg"></i> '.html_safe, empleado_path(empleado), remote: true%>     
-         
-        <%= link_to '<i class="fa fa-edit fa-lg"></i> '.html_safe, edit_empleado_path(empleado), remote: true%>
-        
-        <% unless current_user.empleado_id == empleado.id %>           
-          <%= link_to '<i class="fa fa-trash-o fa-lg"></i>'.html_safe, empleado_path(empleado), method: 'delete', data: {confirm: "¿Desea eliminar al empleado #{empleado.persona.nombre}?"}%>
-        <%end%>       
       </td>
+    
     </tr>
     <% end %>   
   </tbody>
