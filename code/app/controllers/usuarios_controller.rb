@@ -2,6 +2,10 @@ class UsuariosController < ApplicationController
 	
 	before_action :set_submenu, only: [:index,:new, :edit, :show]
 	before_action :set_usuario, only: [:show, :edit, :update, :destroy]
+
+	respond_to :html, :js
+
+	#layout false, only: [:new]
 	
 	#load_and_authorize_resource	
 
@@ -10,7 +14,9 @@ class UsuariosController < ApplicationController
 	end
 
 	def new 
+		@roles = Role.all
 	    @usuario = User.new   	
+	    @role_id = 0
     	@empleados = Empleado.includes(:persona).joins("LEFT JOIN users ON empleados.id = users.empleado_id").where(users: {empleado_id: nil})
     	# Fuente:  http://blog.codinghorror.com/a-visual-explanation-of-sql-joins/
     	# Obtiene los empleados que no tengan ningún usuario
@@ -26,37 +32,46 @@ class UsuariosController < ApplicationController
 	end
 
 	def edit
+		@roles = Role.all
+		@usuario = User.find(params[:id])   	
+    	@role_id = UsersRole.where("user_id =?", @usuario.id).first.role_id 
+    	@empleados = Empleado.includes(:persona).joins("LEFT JOIN users ON empleados.id = users.empleado_id").where(users: {empleado_id: nil})
 	end
 
 	def update
 		respond_to do |format|
 			if params[:user][:pass_reset] == "true"
-				@usuario.password = usuario_params[:username]+"ABC123"
-				@usuario.password_confirmation =  usuario_params[:username]+"ABC123"	    		
+				@usuario.password = usuario_params[:username]
+				@usuario.password_confirmation =  usuario_params[:username]	    		
 	    	end		
 
-			if @usuario.update(usuario_params)
-				@usuario.role_ids = params[:user][:role_ids]		       
-		        format.html { redirect_to usuarios_path, flash: {notice: "Se ha actualizado el usuario #{@usuario.empleado.persona.nombre}
-		        #{@usuario.empleado.persona.apellido}."}}     
+			if @usuario.update(usuario_params.except(:role_id, :pass_reset))
+				UsersRole.where("user_id =?", @usuario.id).update_all({role_id: usuario_params[:role_id]})	       
+		        flash.now[:notice]= "Se ha actualizado el usuario #{@usuario.empleado.persona.nombre} #{@usuario.empleado.persona.apellido}."     
+	    		format.html { render action: "show"} 
 	    	else
-		        flash.alert = "No se ha podido actualizar el usuario #{@usuario.empleado.persona.nombre} 
-		        #{@usuario.empleado.persona.apellido}."
-		        format.html { render action: "edit"}
+		        flash.now[:alert]  = "No se ha podido actualizar el usuario #{@usuario.empleado.persona.nombre} #{@usuario.empleado.persona.apellido}." 
+		        format.html { render action: "edit"}  
 	    	end 
+	    		
 	    end	   
 	end
 
 	def create
-		@usuario = User.new(usuario_params)
-	    @usuario.password_confirmation =  @usuario.username+"ABC123"
-	    @usuario.password = @usuario.username+"ABC123"
+		@roles = Role.all
+		@usuario = User.new(usuario_params.except(:role_id))
+	    @usuario.password_confirmation =  @usuario.username
+	    @usuario.password = @usuario.username
+	    @empleados = Empleado.includes(:persona).joins("LEFT JOIN users ON empleados.id = users.empleado_id").where(users: {empleado_id: nil})
 		respond_to do |format|
 			if @usuario.save
-				@usuario.role_ids = params[:user][:role_ids]	
-				format.html { redirect_to usuarios_path, flash: {notice: "Se ha guardado el usuario #{@usuario.username}"}}       
+				set_submenu	
+				UsersRole.create(user_id: @usuario.id, role_id: usuario_params[:role_id])
+				flash.now[:notice] ="Se ha guardado el usuario #{@usuario.username}"
+				format.html { render action: "show"}     
 			else
-			    flash.alert = "No se ha podido guardar el usuario #{@usuario.username}"
+				set_submenu
+			    flash.now[:alert] = "No se ha podido guardar el usuario #{@usuario.username}"
 			    format.html { render action: "new"}
 			end 
 		end								
@@ -99,7 +114,7 @@ class UsuariosController < ApplicationController
   	end 
 
 	def usuario_params
-      params.require(:user).permit(:username,:empleado_id, :rol)
+      params.require(:user).permit(:username,:empleado_id, :role_id, :pass_reset)
       
     end
 

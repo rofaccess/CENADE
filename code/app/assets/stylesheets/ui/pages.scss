@@ -21,17 +21,21 @@ $common-color: #24C1C1;
 	background-color : #EFEFEF;
 }
 
-.espacio{
-	padding-top:1%;
-	padding-left:4%;
-	padding-right:4%;
-	margin-top: 6%;
-	margin-left:25%;
-	margin-right:25%;
-	margin-botton:6%;
-	background-color:#ffffff;
-
+.label-profile{
+	text-align:center;
 }
+.profile-photo{
+	text-align:center;
+	background-color: #f3f3f3;
+	padding-top:30%;
+	margin-top: -20%;
+	
+	img{
+		border-radius:50%;
+	}
+}
+
+
 
 .titulos-campos{
 	font-weight: normal;
@@ -41,6 +45,12 @@ $common-color: #24C1C1;
 .titulos{
 	font-size: 24px;
 	font-weight: bold;
+}
+.menu-profile{
+	width: 28px;
+	height:28px;
+	border-radius:100%;
+	margin-top:-5px;
 }
 
 label.label-title {
@@ -164,12 +174,12 @@ body{
 	top: 30px;
 	height: 10px;
 	position: fixed;
-  	right: 0;
-  	left: 0; 
-  	background: #24C1C1;
-  	border-bottom:solid;
-  	border-bottom-color: #CCCCCC;
-  	z-index: 1030;
+	right: 0;
+	left: 0; 
+	background: #24C1C1;
+	border-bottom:solid;
+	border-bottom-color: #CCCCCC;
+	z-index: 1030;
 }
 
 #principal-content {
@@ -277,7 +287,59 @@ body{
 						font-weight: bold;
 					}
 				}
+
+				.nomb-empresa{
+					margin-left:-15px;
+				}
+
+				div.select.text-error{
+					span.text-error{
+						position: relative;
+						padding-left:20px;
+						top:45px;
+					}
+					span.select2-container{
+						position: relative;
+						top:-14px;
+					}
+
+				}
+
+			}
+
+			.border-img{
+				position: relative;
+				left:30%;
+				border:dotted;
+				border-color:#d9d9d9;
+				width:80px;
+				height:80px;
 			}	
+			.font-img{
+				color:#24C1C1;
+				font-weight: normal;
+				padding-left:36%;
+				text-align:center;
+			}
+
+			.uploader_button{
+				position: relative;
+				overflow: hidden;
+				margin: 10px;
+
+				.file_uploader {
+					position: absolute;
+					top: 0;
+					right: 0;
+					margin: 0;
+					padding: 0;
+					font-size: 20px;
+					cursor: pointer;
+					opacity: 0;
+					filter: alpha(opacity=0);
+				}
+			}
+			
 
 			.form-button{
 				text-align: right;
@@ -292,6 +354,11 @@ body{
 		form.small-form {
 			width: 40%;
 		}
+
+		form.medium-form {
+			width: 60%;
+			margin-top:80px;
+		}
 	}	
 }
 
@@ -301,8 +368,8 @@ body{
 	font-size: 14px;
 	
 	form {	
-	.input-group {
-		.form-control{
+		.input-group {
+			.form-control{
 				border-radius: 5px;						
 				color: #999999;											
 			}
@@ -328,14 +395,14 @@ body{
 			background-color: #24C1C1;
 			border-color: #24C1C1;
 			&,
-		    &:hover,
-		    &:focus {
-		      z-index: 2;
-		      color: white;
-		      background-color: #24C1C1;
-		      border-color: #24C1C1;
-		      cursor: default;
-		    }
+			&:hover,
+			&:focus {
+				z-index: 2;
+				color: white;
+				background-color: #24C1C1;
+				border-color: #24C1C1;
+				cursor: default;
+			}
 		}		
 	}
 
@@ -343,10 +410,10 @@ body{
 		a {
 			color: #999999;
 			&:hover,
-		    &:focus {
-		      background-color: $pagination-hover-bg;
-		      color: #24C1C1;
-		    }
+			&:focus {
+				background-color: $pagination-hover-bg;
+				color: #24C1C1;
+			}
 		}		
 	}
 }
@@ -354,4 +421,27 @@ body{
 .form-control:focus{
 	border-color: $common-color;
 	//box-shadow: 0 1px 1px $common-color; //Da un efecto de recuadro
+}
+
+
+/* Esto es especifico para el modal de turnos */
+form{
+	h4 {
+		font-weight: bold;
+		color: #999999;
+	}
+
+	hr {
+		margin-top: 5px;
+		color: #999999;
+	}
+
+	.row{
+		.form-group{
+			label{
+				font-size: 14px;
+				font-weight: bold;
+			}
+		}		
+	}
 }

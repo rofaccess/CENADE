@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'pacientes/print_pacientes' => 'pacientes#print_pacientes'
+  get 'pacientes/print_paciente' => 'pacientes#print_paciente'
   get 'pacientes/check_ci' => 'pacientes#check_ci'
   post 'pacientes/recarga_paciente' => 'pacientes#recarga_paciente'
   get 'pacientes/new_paciente_modal' => 'pacientes#new_paciente_modal'
@@ -32,6 +34,9 @@ Rails.application.routes.draw do
       post 'get_empleado'
     end
   end
+
+  get "perfil_usuarios/edit"
+  put "perfil_usuarios/update"
   get "welcome/index_configuracion"
   get "welcome/index_fichas"
   get "welcome/index_atencion_profesional"

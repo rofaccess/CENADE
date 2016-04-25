@@ -10,7 +10,7 @@
 			
 			<%= link_to '<i class="fa fa-trash-o"></i>'.html_safe, paciente_path(@paciente), method: 'delete', data: {confirm: "¿Desea eliminar al paciente #{@paciente.persona.nombre}?"}%>
 			
-			<%= link_to '<i class="fa fa-print"></i> '.html_safe, new_paciente_path, target: '_blank'%>
+			<%= link_to '<i class="fa fa-print"></i> '.html_safe, pacientes_print_paciente_path(paciente_id: @paciente.id, :format => :pdf), target: '_blank'%>
 		</div>
 	</div>
 	
@@ -112,14 +112,76 @@
 													col_class: 'col-md-7') %> 												
 				
 		</div> 
+		
+		<% unless @paciente.encargado_id.blank? %>
+			
+			<h4>Datos de los Padres o Encargados </h4>
+			<hr>
+			<%= paciente.fields_for(:encargado) do |encargado| %>
+				<div class="row">   
+						<%= FormBuilder::text_field_v(encargado, :padre_nombre, 
+															label_text: 'Nombre del Padre',
+															disabled: true,
+															col_class: 'col-md-5') %> 	
 
-		<h4>Datos de los Padres o Encargados </h4>
-		<hr>
+					 
+						<%= FormBuilder::text_field_v(encargado, :padre_edad, 
+															label_text: "Edad",
+															disabled: true,
+															col_class: 'col-md-1') %> 	
 
-	<% end %>
+						<%= FormBuilder::text_field_v(encargado, :padre_prof_act_ant,
+															label_text: "Profesión Actual y Anterior",
+															disabled: true,
+															col_class: 'col-md-6') %> 		
+				</div> 
+				<div class="row">   
+						<%= FormBuilder::text_field_v(encargado, :madre_nombre,
+															label_text: 'Nombre de la Madre',
+															disabled: true,
+															col_class: 'col-md-5') %> 	
+
+					 
+						<%= FormBuilder::text_field_v(encargado, :madre_edad,
+															label_text: "Edad",
+															disabled: true,
+															col_class: 'col-md-1') %>
+
+						<%= FormBuilder::text_field_v(encargado, :madre_num_hijos,
+															label_text: "Hijos",
+															disabled: true,
+															col_class: 'col-md-1') %> 						
+
+						<%= FormBuilder::text_field_v(encargado, :madre_prof_act_ant,
+															label_text: "Profesión Actual y Anterior",
+															disabled: true,
+															col_class: 'col-md-5') %> 			
+				</div> 
+				<div class="row">   
+						<%= FormBuilder::text_field_v(encargado, :encargado_nombre,
+															label_text: 'Nombre del Encargado',
+															disabled: true,
+															col_class: 'col-md-5') %> 	
+
+					 
+						<%= FormBuilder::text_field_v(encargado, :encargado_edad,
+															label_text: "Edad",
+															disabled: true,
+															col_class: 'col-md-1') %> 	
+
+						<%= FormBuilder::text_field_v(encargado, :encargado_prof_act_ant,
+															label_text: "Profesión Actual y Anterior",
+															disabled: true,
+															col_class: 'col-md-6') %> 					
+				</div> 
+			<% end %> <!-- Cierra fields_for encargado -->
+
+		<% end %> <!-- Cierra condición paciente.encargado_id.blank -->
+
+	<% end %> <!-- Cierra form_for @paciente -->
 	
-
 </div>
+
 
 <script type="text/javascript">
 	<% if !flash.notice.blank? %>	

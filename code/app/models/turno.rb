@@ -5,15 +5,16 @@ class Turno < ActiveRecord::Base
 	validate :coincidencia_area
   validate :verificar_fecha_consulta
   validate :paciente_unico_area_fecha_consulta
-	before_create :actualizar_turno
+	
   before_create :actualizar_estado
+  before_create :actualizar_turno
 
 	def actualizar_turno
-      turno = Turno.where("fecha_consulta = ? and area_id= ? and doctor_id= ?", self.fecha_consulta, self.area_id, self.doctor_id).order(:turno)
-      if turno.empty?
+      turnoo = Turno.where("fecha_consulta = ? and area_id= ? and doctor_id= ?", self.fecha_consulta, self.area_id, self.doctor_id).order(:turno)
+      if turnoo.empty?
         self.turno = 1
       else
-        nro_turno = turno.last.turno
+        nro_turno = turnoo.last.turno
         self.turno = nro_turno+1
       end
     end

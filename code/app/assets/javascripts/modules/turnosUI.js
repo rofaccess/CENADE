@@ -31,10 +31,11 @@ var turnosUI = (function(){
 
 			$(".paciente_select").select2({
 		        placeholder: "Seleccione un paciente",
-		        language: "es"
+		        language: "es",
+		        theme: "bootstrap"
 
 		        }).on("select2:select",function(){
- 
+ 				$(this).valid();
 		        id = $(this).val();
 
 		        $.ajax({
@@ -52,15 +53,21 @@ var turnosUI = (function(){
 		      });
 		      $(".profesional_select").select2({
 		        placeholder: "Seleccione un Profesional",
-		        language: "es"
+		        language: "es",
+		        theme: "bootstrap"
 
-		        });
+		        }).on('change', function () {
+        			$(this).valid();
+        		});
 		    $(".area_select").select2({
 		        placeholder: "Seleccione un Área",
+		        theme: "bootstrap",
 		        language: "es"
 
-		        });
-
+		        }).on('change', function () {
+        			$(this).valid();
+        		});
+		  
 	        $(".paga").on("change", function(){
 	          $("#factura").toggle($(this).hasClass("si_paga"));
 	        });
