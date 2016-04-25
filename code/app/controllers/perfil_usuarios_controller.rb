@@ -22,7 +22,6 @@ class PerfilUsuariosController < ApplicationController
 	    	end 
 	    	render action: 'edit'
 
-
 	end
 
 	def usuario_params
