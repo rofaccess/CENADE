@@ -64,9 +64,6 @@ gem 'devise-i18n-views'
 # TZInfo::Data - Timezone Data for TZInfo
 gem 'tzinfo-data'
 
-# A code metric tool for rails projects http://rails-bestpractices.com
-gem "rails_best_practices"
-
 # acts_as_paranoid for Rails 3 & 4 (Borrado oscioso)
 gem "paranoia", "~> 2.0"
 
@@ -88,6 +85,9 @@ gem 'faker'
 # PDF generator (from HTML) plugin for Ruby on Rails http://mileszs.com/blog/2009/06/17/wicked-pdf-plugin.html
 gem 'wicked_pdf'
 
+# Cloudinary GEM for Ruby on Rails integration http://cloudinary.com
+gem 'cloudinary' 
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -102,3 +102,9 @@ group :development, :test do
   gem 'spring'
 end
 
+group :development do
+  # gem 'better_errors'
+
+  # A code metric tool for rails projects http://rails-bestpractices.com
+  gem "rails_best_practices"
+end
