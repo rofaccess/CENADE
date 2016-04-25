@@ -19,7 +19,7 @@ class CreateEncargados < ActiveRecord::Migration
         # en ese momento se seteará este campo, ya que es borrado oscioso, es importante saber a que paciente perteneció
         # No es necesario una relación de clave foránea, porque es a modo informativo
         t.integer   :paciente_id, null: true
-
+ 
 		t.timestamps null: false
 
         t.datetime :deleted_at 
