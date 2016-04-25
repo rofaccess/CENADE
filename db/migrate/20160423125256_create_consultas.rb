@@ -24,7 +24,7 @@ class CreateConsultas < ActiveRecord::Migration
     add_foreign_key(:consultas, :empleados, column: 'profesional_salud_id', on_delete: :restrict)
 
     # ON DELETE RESTRICT: No se permite borrar un user relacionado a alguna consulta
-    add_foreign_key(:consultas, :users, column: 'user_id', on_delete: :restrict)
+    # add_foreign_key(:consultas, :users, column: 'user_id', on_delete: :restrict)
 
     # ON DELETE CASCADE: Si se borra un paciente se borran todas sus consultas
     add_foreign_key(:consultas, :pacientes, column: 'paciente_id', on_delete: :cascade)
