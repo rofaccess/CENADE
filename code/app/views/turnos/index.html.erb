@@ -19,8 +19,8 @@
   </div>
 
 </div>
- <div id="advanced-search" style = 'margin-top: 80px; display:none;'>
-  <div class="row well col-md-10 col-md-offset-1" >
+ <div id="advanced-search" style = 'margin-top: 80px; margin-left: 105px; display:none;'>
+  <div class="row well col-md-11 " >
       <%= search_form_for @search, url: search_turnos_path, method: :post, remote: true, class: 'form-filtros' do |f| %>
          <div class="row">
           <%= FormBuilder::text_field_v(f, :paciente_persona_nombre_or_paciente_persona_apellido_cont, {col_class: 'col-md-3', label_text: 'Paciente', input_class: '',max_length: Domain::NOMBRE})%>
