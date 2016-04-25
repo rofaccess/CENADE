@@ -61,6 +61,10 @@ $.validator.addClassRules({
 		minlength: 3
 	},
 
+	minEmail8: {
+		minlength: 8
+	},
+
 	minLength4: {
 		minlength: 4
 	},
@@ -97,5 +101,5 @@ $.validator.addMethod("telCheck",function(value,element){
             },"Debe tener el formato ej:(0982)256 974");
 
 $.validator.addMethod("hora", function(value, element){
-  return /^[0-9]{2}:[0-9]{2}$/i.test(value);},
+  return value.length == 0 || /^[0-9]{2}:[0-9]{2}$/i.test(value);},
   "Formato hh:mm"); 

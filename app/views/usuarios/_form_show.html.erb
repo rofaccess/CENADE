@@ -50,11 +50,11 @@
 								                        col_class: 'col-md-6',
 								                        label_text: '* Nombre Usuario') %>
 			
-			<%= FormBuilder::text_field_v(usuario, :rol, 
-														disabled: true,                      
-								                        col_class: 'col-md-6',
-								                        label_text: '* Rol') %>							                        
-			
+		<div class="form-group col-md-6">
+			<label class="control-label">Rol</label>
+			<input class="form-control " disabled="disabled" value="<%= @usuario.get_role %>">
+		</div>
+
 			<%= usuario.hidden_field :empleado_id%>																	
 		</div>
 

@@ -10,7 +10,7 @@
 
 <div class="modal-body">
 
-	<%= form_for @paciente, url: pacientes_recarga_paciente_path, html: {class: 'form-paciente'},  remote: true do |paciente|%>   
+	<%= form_for @paciente, url: pacientes_recarga_paciente_path(root: params[:root]), html: {class: 'form-paciente'},  remote: true do |paciente|%>   
     	
     	<h4>Datos Personales</h4>
 		<hr>
@@ -102,7 +102,8 @@
 													max_length: Domain::TELEFONO,
 													col_class: 'col-md-4') %> 	
 			<%= FormBuilder::text_field_v(persona, :email, 
-													input_class: 'emailCheck', 
+													label_text: '* Email',
+													input_class: 'emailCheck minEmail8 required', 
 													max_length: Domain::EMAIL,
 													col_class: 'col-md-8') %> 
 		</div>  		
@@ -129,7 +130,10 @@
 						<%= check_box_tag 'encargado', true, @paciente.encargado_id.nil? ? false : true, class: 'checkbox-encargado'  %>
 
 							Padres o Encargados	
-							<%= paciente.hidden_field :borrar_encargado, value: false, class: 'borrar-encargado'%>							
+							
+							<% unless @paciente.id.nil? %>
+								<%= paciente.hidden_field :borrar_encargado, value: false, class: 'borrar-encargado'%>	
+							<% end %>							
 				</label>
 			</div>
 		</div>

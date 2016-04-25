@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160423044623) do
+ActiveRecord::Schema.define(version: 20160423125256) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,6 +65,19 @@ ActiveRecord::Schema.define(version: 20160423044623) do
     t.string   "usuario_admin"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "consultas", force: :cascade do |t|
+    t.integer  "profesional_salud_id"
+    t.integer  "paciente_id",                                   null: false
+    t.integer  "area_id",                                       null: false
+    t.date     "fecha"
+    t.string   "profesional_salud",    limit: 60,  default: ""
+    t.string   "motivo_consulta",      limit: 250, default: ""
+    t.string   "evaluacion",           limit: 250, default: ""
+    t.string   "tratamiento",          limit: 250, default: ""
+    t.string   "observaciones",        limit: 250, default: ""
+    t.datetime "deleted_at"
   end
 
   create_table "empleados", force: :cascade do |t|
@@ -193,7 +206,7 @@ ActiveRecord::Schema.define(version: 20160423044623) do
     t.date     "fecha_nacimiento"
     t.string   "sexo",             limit: 9,   default: ""
     t.string   "edad",             limit: 3,   default: ""
-    t.string   "nacionalidad",     limit: 20,  default: "", null: false
+    t.string   "nacionalidad",     limit: 20,  default: ""
     t.integer  "estado_civil_id"
     t.datetime "deleted_at"
     t.datetime "created_at"
@@ -261,6 +274,9 @@ ActiveRecord::Schema.define(version: 20160423044623) do
 
   add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
 
+  add_foreign_key "consultas", "areas", on_delete: :restrict
+  add_foreign_key "consultas", "empleados", column: "profesional_salud_id", on_delete: :restrict
+  add_foreign_key "consultas", "pacientes", on_delete: :cascade
   add_foreign_key "empleados", "areas", on_delete: :restrict
   add_foreign_key "empleados", "personas", on_delete: :restrict
   add_foreign_key "fechas", "horarios", on_delete: :restrict
