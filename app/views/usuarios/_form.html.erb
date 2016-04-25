@@ -75,12 +75,19 @@
 								                        col_class: 'col-md-6',
 								                        label_text: '* Nombre Usuario',
 								                        label_class: 'error') %>
-			<%= FormBuilder::select_v(usuario, :rol,
-													[['Secretario', 'Secretario'], ['Doctor', 'Doctor'],['Administrador', 'Admnistrador']], 
-													prompt:'Seleccionar Rol', 
-													select_class: 'required', 
-													col_class: 'col-md-6',
-													label_text: '* Rol')%>
+
+		<div class="col-md-6">
+			<%= usuario.label :rol, '* Rol' %>
+			<select class ="form-control required" id="user_role_id" name="user[role_id]">
+			    <option value="">Seleccione un rol </option>
+				<%@roles.each do |role|%>
+					<option value="<%= role.id%>" <% if @role_id == role.id %> Selected <% end %>>
+						<%=role.name%>
+					</option>
+				<%end%>
+			</select>					                        
+		</div>
+
 			<%= usuario.hidden_field :empleado_id%>																	
 		</div>
 		

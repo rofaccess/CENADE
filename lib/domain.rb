@@ -78,4 +78,10 @@ module Domain
 	#Fichas Fonoaudiologicas
 	ESCOLARIDAD = 150
 	ESCUELA = 150
+
+	DESC50 = 50
+	DESC100 = 100
+	DESC250 = 250
+
+
 end

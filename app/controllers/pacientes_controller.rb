@@ -77,7 +77,7 @@ class PacientesController < ApplicationController
     # Si en el form de edición de paciente se desactiva el checkbox, se ejecutará el contenido de esta función para eliminar
     # los datos del encargado, se usa un borrado osioso.
     def destroy_encargado(condicion, paciente)
-    	if condicion == "true"
+    	if condicion == "true" && !paciente.encargado_id.nil?
 
     		if paciente.destroy_encargado
     			paciente.update(encargado_id: nil)
