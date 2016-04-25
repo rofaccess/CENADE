@@ -30,13 +30,13 @@
       <td ><%=turno.paciente.persona.ci %></td>
         <%doctor= Empleado.find(turno.doctor_id)%>
       <td ><%=doctor.persona.nombre %> <%=doctor.persona.apellido %></td>
-      <td ><%=turno.fecha_expedicion.strftime("%m/%d/%Y")%></td>
+      <td ><%=turno.fecha_expedicion.strftime("%d/%m/%Y")%></td>
       <%if turno.estado== "cancelado"%>
       <td ><span class="label label-danger"><%=turno.estado %></span></td>
       <%else%>
       <td ><span class="label label-success"><%=turno.estado %></span></td>
       <%end%>
-      <td><%=turno.fecha_consulta.strftime("%m/%d/%Y")%></td>
+      <td><%=turno.fecha_consulta.strftime("%d/%m/%Y")%></td>
 
       
       <td class = "action">
