@@ -8,7 +8,7 @@ class CreatePersonas < ActiveRecord::Migration
       t.string   :telefono          ,default: '' ,limit: Domain::TELEFONO
       t.string   :email             ,default: '' ,limit: Domain::EMAIL
       t.string   :ruc               ,default: '' ,limit: Domain::RUC
-      t.datetime :fecha_nacimiento
+      t.date :fecha_nacimiento
       t.string   :sexo              ,default: '' ,limit: Domain::SEXO      
       t.string   :edad              ,default: '' ,limit: Domain::EDAD
       t.string   :nacionalidad      ,default: '' ,limit: Domain::NACIONALIDAD, null: false

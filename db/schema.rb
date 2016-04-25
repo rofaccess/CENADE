@@ -137,7 +137,7 @@ ActiveRecord::Schema.define(version: 20160423044623) do
     t.string   "antecedentes_familiares", limit: 250, default: ""
     t.string   "condicion_general",       limit: 250, default: ""
     t.date     "fecha",                                            null: false
-    t.integer  "nro_ficha",                                        null: false
+    t.integer  "nro_ficha"
     t.datetime "created_at",                                       null: false
     t.datetime "updated_at",                                       null: false
   end
@@ -190,7 +190,7 @@ ActiveRecord::Schema.define(version: 20160423044623) do
     t.string   "telefono",         limit: 50,  default: ""
     t.string   "email",            limit: 50,  default: ""
     t.string   "ruc",              limit: 20,  default: ""
-    t.datetime "fecha_nacimiento"
+    t.date     "fecha_nacimiento"
     t.string   "sexo",             limit: 9,   default: ""
     t.string   "edad",             limit: 3,   default: ""
     t.string   "nacionalidad",     limit: 20,  default: "", null: false
