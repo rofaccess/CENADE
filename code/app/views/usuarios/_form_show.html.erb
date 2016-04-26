@@ -6,7 +6,7 @@
     	<div class="tool">
       	<%= link_to '<i class="fa fa-list"></i> '.html_safe, usuarios_path %> 
         <%= link_to '<i class="fa fa-plus-square"></i> '.html_safe, new_usuario_path%>
-			<% unless current_user.id == @usuario.id %>
+			<% unless current_user.id == @usuario.id || @usuario.id == Configuracion.first.usuario_admin %>
 		        <%= link_to '<i class="fa fa-edit"></i> '.html_safe, edit_usuario_path(@usuario.id)%> 
 		        <%= link_to '<i class="fa fa-trash-o"></i> '.html_safe, usuario_path(@usuario), method: 'delete', data: {confirm: "¿Desea eliminar el usuario #{@usuario.username}?"}%> 
 		    <%end%>    
