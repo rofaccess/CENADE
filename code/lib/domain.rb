@@ -73,15 +73,16 @@ module Domain
 	PESO_NACER = 50
 	APGAR = 50
 	ANT_FLIAR = 250
+
 	COND_GRAL = 250
 
 	#Fichas Fonoaudiologicas
 	ESCOLARIDAD = 150
 	ESCUELA = 150
 
+	COND_GRAL = 700
+
 	DESC50 = 50
 	DESC100 = 100
 	DESC250 = 250
-
-
 end
