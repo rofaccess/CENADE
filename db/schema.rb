@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(version: 20160413145411) do
     t.string   "hora_inicio_tarde"
     t.string   "hora_fin_tarde"
     t.string   "dias_atencion"
-    t.string   "usuario_admin"
+    t.integer  "usuario_admin"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

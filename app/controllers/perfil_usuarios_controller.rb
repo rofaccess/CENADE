@@ -20,7 +20,7 @@ class PerfilUsuariosController < ApplicationController
 	    	else
 		        flash.now[:alert] = "No se ha podido actualizar el usuario #{@usuario.username}."
 	    	end 
-	    	render action: 'edit'
+	    	redirect_to action: 'edit'
 
 	end
 
