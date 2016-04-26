@@ -65,6 +65,10 @@ module Domain
 	COSTO = 7
 	NRO_FACTURA = 15
 
+	#Fichas Fonoaudiologicas
+	ESCOLARIDAD = 150
+	ESCUELA = 150
+
 	#FICHAS FISIOTERAPIA NINOS
 
 	CONTROL_EMBARAZO = 100
@@ -75,12 +79,6 @@ module Domain
 	ANT_FLIAR = 250
 
 	COND_GRAL = 250
-
-	#Fichas Fonoaudiologicas
-	ESCOLARIDAD = 150
-	ESCUELA = 150
-
-	COND_GRAL = 700
 
 	DESC50 = 50
 	DESC100 = 100

@@ -3,7 +3,8 @@ class CreateFichasFonoaudiologicas < ActiveRecord::Migration
     create_table :fichas_fonoaudiologicas do |t|
       t.references :paciente, index: true
       t.references :area, index: true
-
+      
+      t.integer :doctor_id             , null: false
       t.string :escolaridad, default: '' ,limit: 150,   null: true
       t.string :escuela, default: '' ,limit: 150,   null: true
 
