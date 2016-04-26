@@ -18,8 +18,8 @@ var fonoaudiologicasUI = (function(){
                 }
             });
         },
-		initScript: function(checkFonoaudiologicaPacienteUrl){
-			fonoaudiologicasUI.checkPACIENTE(checkFonoaudiologicaPacienteUrl);
+		initScript: function(checkFichaFonoaudiologicaPacienteUrl){
+			fonoaudiologicasUI.checkPACIENTE(checkFichaFonoaudiologicaPacienteUrl);
             
             $(".paciente_select").select2({
                 placeholder: "Seleccione un paciente",
