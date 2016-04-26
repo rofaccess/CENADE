@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
-
+  get 'check_paciente_id' => 'fichas_fonoaudiologicas#check_paciente_id'
+  get 'get_paciente' => 'fichas_fonoaudiologicas#get_paciente'
   resources :fichas_fonoaudiologicas
 
   get 'ficha_fisioterapia_ninos/check_paciente_id' => 'ficha_fisioterapia_ninos#check_paciente_id'

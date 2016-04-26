@@ -11,7 +11,6 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
 ActiveRecord::Schema.define(version: 20160425000212) do
 
   # These are extensions that must be enabled in order to support this database
@@ -159,6 +158,7 @@ ActiveRecord::Schema.define(version: 20160425000212) do
   create_table "fichas_fonoaudiologicas", force: :cascade do |t|
     t.integer  "paciente_id"
     t.integer  "area_id"
+    t.integer  "doctor_id",                            null: false
     t.string   "escolaridad", limit: 150, default: ""
     t.string   "escuela",     limit: 150, default: ""
     t.datetime "created_at",                           null: false

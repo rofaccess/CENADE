@@ -11,12 +11,12 @@ class FichasFonoaudiologicasController < ApplicationController
   	end
 
 	def index
-		@search = FichasFonoaudiologica.ransack(params[:q])
+		@search = FichaFonoaudiologica.ransack(params[:q])
     	@fonoaudiologicas= @search.result.page(params[:page])
 	end
 
 	def create
-	  	@fonoaudiologica = FichasFonoaudiologica.new(fonoaudiologica_params)
+	  	@fonoaudiologica = FichaFonoaudiologica.new(fonoaudiologica_params)
 		    respond_to do |format|
 	     		if @fonoaudiologica.save
 		        flash.now[:notice] = 'Ficha registrada exitosamente'
@@ -28,13 +28,25 @@ class FichasFonoaudiologicasController < ApplicationController
 	      	end
    	  end
  	end
+ 	  #busca el paciente seleccionado en la base de datos
+  def get_paciente
+    @paciente= Paciente.find(params[:id])
+      
+  end
+
+    # Checkea que un paciente ya no tenga una ficha en Fonoaudiologia
+  def check_paciente_id
+    fonoaudiologica = FichaFonoaudiologica.find_by_paciente_id(params[:paciente_id])
+      
+    render json: (fonoaudiologica.nil? || fonoaudiologica.id == params[:id].to_i) ? true : "El Paciente ya posee una Ficha".to_json
+  end
  	
 	def show
 
 	end
 
 	def new
-		@fonoaudiologica= FichasFonoaudiologica.new
+		@fonoaudiologica= FichaFonoaudiologica.new
 
 	end
 
@@ -42,7 +54,7 @@ class FichasFonoaudiologicasController < ApplicationController
 
 	end
 	def fonoaudiologica_params
-  		params.require(:fichas_fonoaudiologicas).permit(:area_id, :paciente_id, :escolaridad, :escuela)
+  		params.require(:fichas_fonoaudiologicas).permit(:area_id, :paciente_id, :doctor_id, :fecha, :escolaridad, :escuela)
      				
   	end 
 
