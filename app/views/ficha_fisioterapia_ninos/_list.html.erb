@@ -14,9 +14,9 @@
     <% @fisio_ninos.each do |ficha| %>
     <tr>
       <td ><%=ficha.nro_ficha %></td>
-      <td ><%=ficha.fecha %></td>
+      <td ><%=ficha.fecha.strftime("%d/%m/%Y") %></td>
       <td ><%=ficha.paciente.persona.nombre %> <%=ficha.paciente.persona.apellido %></td>
-      <td ><%=ficha.doctor.persona.nombre %> <%=ficha.doctor.persona.apellido %></td>      
+      <td > <%=ficha.doctor.abr_profesion %> <%=ficha.doctor.persona.nombre %> <%=ficha.doctor.persona.apellido %></td>      
       <td class = "action">
         
         <%= link_to '<i class="fa fa-eye fa-lg"></i> '.html_safe, ficha_fisioterapia_nino_path(ficha), remote: true%>     

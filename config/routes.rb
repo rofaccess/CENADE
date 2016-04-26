@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'ficha_fisioterapia_ninos/check_paciente_id' => 'ficha_fisioterapia_ninos#check_paciente_id'
+
   resources :ficha_fisioterapia_ninos do
     collection do
       match 'buscar' => 'ficha_fisioterapia_ninos#buscar', via: [:get, :post], as: :search
