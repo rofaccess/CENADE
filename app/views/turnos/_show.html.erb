@@ -24,7 +24,7 @@
                                           col_class: 'col-md-7',
                                           disabled: true,
                                           label_text: '* Paciente',
-                                          input_value: @turno.paciente.persona.nombre + "" +
+                                          input_value: @turno.paciente.persona.nombre + " " +
                                                         @turno.paciente.persona.apellido) %>
 
         <%= FormBuilder::text_field_v(turno, :fecha_expedicion, 

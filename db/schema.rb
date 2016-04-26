@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(version: 20160423125256) do
     t.string   "hora_inicio_tarde"
     t.string   "hora_fin_tarde"
     t.string   "dias_atencion"
-    t.string   "usuario_admin"
+    t.integer  "usuario_admin"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -138,6 +138,23 @@ ActiveRecord::Schema.define(version: 20160423125256) do
     t.datetime "updated_at",               null: false
   end
 
+  create_table "ficha_fisioterapia_ninos", force: :cascade do |t|
+    t.integer  "area_id",                                          null: false
+    t.integer  "doctor_id",                                        null: false
+    t.integer  "paciente_id",                                      null: false
+    t.string   "control_embarazo",        limit: 100, default: ""
+    t.string   "edad_gestacional",        limit: 100, default: ""
+    t.string   "tipo_parto",              limit: 100, default: ""
+    t.string   "peso_nacer",              limit: 50,  default: ""
+    t.string   "apgar",                   limit: 50,  default: ""
+    t.string   "antecedentes_familiares", limit: 250, default: ""
+    t.string   "condicion_general",       limit: 250, default: ""
+    t.date     "fecha",                                            null: false
+    t.integer  "nro_ficha"
+    t.datetime "created_at",                                       null: false
+    t.datetime "updated_at",                                       null: false
+  end
+
   create_table "grupos", force: :cascade do |t|
     t.string   "nombre"
     t.datetime "created_at", null: false
@@ -186,7 +203,7 @@ ActiveRecord::Schema.define(version: 20160423125256) do
     t.string   "telefono",         limit: 50,  default: ""
     t.string   "email",            limit: 50,  default: ""
     t.string   "ruc",              limit: 20,  default: ""
-    t.datetime "fecha_nacimiento"
+    t.date     "fecha_nacimiento"
     t.string   "sexo",             limit: 9,   default: ""
     t.string   "edad",             limit: 3,   default: ""
     t.string   "nacionalidad",     limit: 20,  default: ""
@@ -263,6 +280,8 @@ ActiveRecord::Schema.define(version: 20160423125256) do
   add_foreign_key "empleados", "areas", on_delete: :restrict
   add_foreign_key "empleados", "personas", on_delete: :restrict
   add_foreign_key "fechas", "horarios", on_delete: :restrict
+  add_foreign_key "ficha_fisioterapia_ninos", "areas", on_delete: :restrict
+  add_foreign_key "ficha_fisioterapia_ninos", "pacientes", on_delete: :restrict
   add_foreign_key "horarios", "empleados", on_delete: :cascade
   add_foreign_key "pacientes", "encargados", on_delete: :restrict
   add_foreign_key "pacientes", "personas", on_delete: :restrict

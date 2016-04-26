@@ -1,7 +1,7 @@
 <div class= "col-md-10 col-md-offset-1">
   <div class="form-content">
     <div class="page-title page-title-sin-submenu">
-      Editar Turno N° <%= @turno.turno%>
+      <%=@turno_nuevo.nil? ? ('Editar Turno N°' + @turno.turno.to_s) : 'Nuevo Turno'%>
 
       <div class="tool">
         <%= link_to '<i class="fa fa-list"></i> '.html_safe, turnos_path %> 
@@ -14,19 +14,18 @@
       <hr>
       <div class="row">
 
-          <%= FormBuilder::text_field_v(turno, :paciente_id, 
-                                         
-                                          col_class: 'col-md-7',
-                                          disabled: true,
-                                          label_text: '* Paciente',
-                                          input_value: @turno.paciente.persona.nombre + "" +
-                                                        @turno.paciente.persona.apellido) %>
+          <div class="col-md-7">
+            <%= turno.label :paciente_id, '* Paciente' %> 
+
+            <%= turno.select(:paciente_id, Hash[Paciente.all.map{|a| [a.persona.nombre + " "+ a.persona.apellido, a.id]}],{},{class: "paciente_select form-control", required: true,  id: 'paciente_id'})%>
+        </div>
 
         <%= FormBuilder::text_field_v(turno, :fecha_expedicion, 
-                                      input_class: 'required', 
+                                      input_class: 'date datepicker required', 
                                       max_length: Domain::FECHA,
                                       label_text: '* Fecha Actual',
-                                      col_class: 'col-md-5')%>
+                                      col_class: 'col-md-5',
+                                      input_value: "#{turno.object.fecha_expedicion.strftime("%d/%m/%Y") unless turno.object.new_record?}")%>
             
        </div>
 
@@ -93,10 +92,11 @@
           </div>
 
        <%= FormBuilder::text_field_v(turno, :fecha_consulta, 
-                                      input_class: 'required', 
+                                      input_class: 'date datepicker2 required', 
                                       max_length: Domain::FECHA,
                                       label_text: '* Fecha de Consulta',
-                                      col_class: 'col-md-4')%>
+                                      col_class: 'col-md-4',
+                                      input_value: "#{turno.object.fecha_consulta.strftime("%d/%m/%Y") unless turno.object.new_record?}")%>
     </div>
   </br>
       <div class="row">
