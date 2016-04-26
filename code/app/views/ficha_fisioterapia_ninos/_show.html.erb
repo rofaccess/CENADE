@@ -9,7 +9,7 @@
       
       <%= link_to '<i class="fa fa-edit"></i> '.html_safe, edit_ficha_fisioterapia_nino_path(@fisio_nino.id), remote:true%> 
       
-      <%= link_to '<i class="fa fa-print"></i> '.html_safe%>
+      <%= link_to '<i class="fa fa-print"></i> '.html_safe, ficha_fisioterapia_ninos_print_ficha_path(ficha_id: @fisio_nino.id, :format => :pdf), target: '_blank'%>
     </div>
   </div>
     <%= form_for @fisio_nino, html: {class: 'form-ficha', :multipart => true }, remote: true do |ficha|%>
@@ -51,7 +51,7 @@
                                           input_class: 'paciente-apellido', 
                                           col_class: 'col-md-2',
                                           disabled: true,
-                                          input_value: @fisio_nino.paciente.persona.fecha_nacimiento,
+                                          input_value: @fisio_nino.paciente.persona.fecha_nacimiento.strftime("%d/%m/%Y"),
                                           label_text: 'Fecha de nac.') %>
 
             <%= FormBuilder::text_field_v(ficha, :paciente_id, 
@@ -105,27 +105,32 @@
     </br>
      <h4>Datos de Encargados</h4>
     <hr>
+    <%if @fisio_nino.paciente.encargado.nil? %>
     <div class="encargado_data">
       <div class="row">
               <%= FormBuilder::text_field_v(ficha, :paciente_id, 
                                           input_class: '', 
                                           col_class: 'col-md-4',
                                           disabled: true,
+                                          input_value: '',
                                           label_text: 'Madre') %> 
               <%= FormBuilder::text_field_v(ficha, :paciente_id, 
                                           input_class: '',
                                           col_class: 'col-md-2',
                                           disabled: true,
+                                          input_value: '',
                                           label_text: 'Edad') %>
               <%= FormBuilder::text_field_v(ficha, :paciente_id, 
                                           input_class: '',
                                           col_class: 'col-md-4',
                                           disabled: true,
+                                          input_value: '',
                                           label_text: 'Profesión') %>
               <%= FormBuilder::text_field_v(ficha, :paciente_id, 
                                           input_class: '',
                                           col_class: 'col-md-2',
                                           disabled: true,
+                                          input_value: '',
                                           label_text: 'Nro de Hijos') %>
                 
               
@@ -135,20 +140,27 @@
                                           input_class: '', 
                                           col_class: 'col-md-5',
                                           disabled: true,
+                                          input_value: '',
                                           label_text: 'Padre') %> 
               <%= FormBuilder::text_field_v(ficha, :paciente_id, 
                                           input_class: '',
                                           col_class: 'col-md-2',
                                           disabled: true,
+                                          input_value: '',
                                           label_text: 'Edad') %>
               <%= FormBuilder::text_field_v(ficha, :paciente_id, 
                                           input_class: '',
                                           col_class: 'col-md-5',
                                           disabled: true,
+                                          input_value: '',
                                           label_text: 'Profesión') %>
               
     </div>
     </div>
+    <%else%>
+     <% @paciente= @fisio_nino.paciente%>
+      <%= render 'encargado_form' %>
+    <%end%>
      <h4>Embarazo</h4>
     <hr>
     <div class="row">

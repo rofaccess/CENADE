@@ -1,5 +1,5 @@
 class CreateEncargados < ActiveRecord::Migration
-  def change
+  def change 
     create_table :encargados do |t|
 
     	t.string   :padre_nombre		,default: '' ,limit: Domain::NOM_APE, 		null: true
