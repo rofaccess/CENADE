@@ -11,8 +11,7 @@ class FichaFisioterapiaNino < ActiveRecord::Base
       ficha = FichaFisioterapiaNino.last
       if ficha.nil? 
         self.nro_ficha = 1
-      end
-      if ficha.nro_ficha.nil?
+      elsif  ficha.nro_ficha.nil?
       	self.nro_ficha = 1
       else
         ficha_nro = ficha.nro_ficha
