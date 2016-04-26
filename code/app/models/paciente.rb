@@ -8,11 +8,14 @@ class Paciente < ActiveRecord::Base
 	has_many :turnos
 	belongs_to :persona
 	belongs_to :encargado
+	has_one :ficha_fisioterapia_nino
 	has_many :consultas
+
 
 	# Permiten guardar persona y encargado en el formulario de paciente
 	accepts_nested_attributes_for :persona
 	accepts_nested_attributes_for :encargado
+
 
 	# Se elimina el registro de persona al eliminar el paciente
 	def destroy_persona

@@ -85,7 +85,7 @@ td.action {
 			}
 		}
 
-		i.fa-edit, i.fa-eye {
+		i.fa-edit, i.fa-eye, i.fa-plus-square-o {
 			&:hover,
 			&:focus {
 				color: #24C1C1;
@@ -204,8 +204,6 @@ body{
 			padding-left: 50px;
 			padding-right: 20px;
 			
-			
-
 			a {							
 				margin-left: 13px;
 				color: #999999;
@@ -222,6 +220,9 @@ body{
 		}
 		div.page-title-sin-submenu{
 			top: 40px;
+		}
+		div.page-title-ficha{
+			margin-left: 200px;
 		}
 	}
 
@@ -258,7 +259,7 @@ body{
 
 		.page-title > .tool {
 			text-align: right;
-		}		
+		}		 
 
 		form{			
 			width: 70%;
@@ -350,6 +351,11 @@ body{
 		form.form-sin-submenu{
 			margin-top: 90px;
 		}
+		form.form-ficha{
+			width: 80%;
+			margin-top: 80px;
+		}
+		
 
 		form.small-form {
 			width: 40%;

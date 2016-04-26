@@ -1,0 +1,81 @@
+<h3>Ficha Pediátrica - Fisioterapia</h3></br></br>
+<div class = "form-content">
+	<div class = "form-font">
+	  <div class= "row col-md-12">
+	  	<h4>Datos Personales</h4>
+		<hr>
+		<label class="control-label">Nombre y Apellido: </label> <%= @ficha.paciente.persona.nombre%> <%= 						@ficha.paciente.persona.apellido%>............
+		
+		<label class="control-label">Fecha de Ingreso: </label> <%= @ficha.fecha.strftime("%d/%m/%Y") %>.							  ..
+		<label class="control-label">Sexo </label> <%= @ficha.paciente.persona.sexo %>
+	</div>
+	</br>
+
+	<div class= "row col-md-12">
+		<label class="control-label">Nacionalidad: </label> <%= @ficha.paciente.persona.nacionalidad%> Paraguaya.............
+		<label class="control-label">Fecha de nacimiento: </label> <%= @ficha.paciente.persona.fecha_nacimiento.strftime("%d/%m/%Y") %>......
+
+		<label class="control-label">Edad: </label> <%= @ficha.paciente.persona.edad %>
+		
+	</div>
+	</br>
+
+	<div class= "row col-md-12">
+		<label class="control-label">Direccion </label> <%= @ficha.paciente.persona.direccion%>....
+	
+		<label class="control-label">N° de Teléfono: </label> <%= @ficha.paciente.persona.telefono %>
+
+	</div>
+	</br></br>
+	
+	<% encargado= @ficha.paciente.encargado%>
+
+	<%if !encargado.nil? %>
+	<h4>Datos de Encargados</h4>
+	<hr>
+	<div class= "row col-md-12">
+		<label class="control-label">Madre: </label> <%= encargado.madre_nombre %> ..
+		<label class="control-label">Edad: </label> <%= encargado.madre_edad%>...
+
+		<label class="control-label">Profesión: </label> <%= encargado.madre_prof_act_ant %>..
+		<label class="control-label">Nro de Hijos: </label> <%= encargado.madre_num_hijos %>
+
+	</div>
+	</br>
+	<div class= "row col-md-12">
+		<label class="control-label">Padre: </label> <%= encargado.padre_nombre%> .............
+		<label class="control-label">Edad: </label> <%= encargado.padre_edad %>......
+
+		<label class="control-label">Profesión: </label> <%= encargado.padre_prof_act_ant %>
+
+	</div>
+	</br>
+	<%end%>
+	<h4>Embarazo</h4>
+	<hr>
+	<div class= "row col-md-12">
+		<label class="control-label">Control Prenatal: </label> <%= @ficha.control_embarazo%>..
+		<label class="control-label">Edad Gestacional: </label> <%= @ficha.edad_gestacional%>..
+
+		<label class="control-label">Tipo de Parto: </label> <%= @ficha.tipo_parto %>
+
+	</div>
+	</br>
+	
+	<div class= "row col-md-12">
+		<label class="control-label">Peso al Nacer: </label> <%= @ficha.peso_nacer%>...
+		<label class="control-label">Apgar: </label> <%= @ficha.apgar%>...
+
+		<label class="control-label">Antecedentes Familiares: </label> <%= @ficha.antecedentes_familiares%>....
+
+	</div>
+	</br>
+
+	<div class= "row col-md-12">
+		<label class="control-label">Condiciones Generales del Recién Nacido: </label> <%= @ficha.condicion_general%>..................................................................................
+		</div>
+	 
+
+	</div>
+</div>
+
