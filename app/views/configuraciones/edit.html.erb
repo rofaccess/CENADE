@@ -118,7 +118,7 @@
 				<%end%>
 			</div>
 			<div class="col-md-5">
-				<%= configuracion.text_field_tag :usuario_admin, "", class:"hidden" %>
+				<input type="text" name="configuracion[usuario_admin]" id="usuario_admin" value="<%= @configuracion.usuario_admin %>" class="hidden">
 
 				<label class="control-label">* Empleado</label>
 				<input class="form-control usuario-nombre" disabled="disabled" value="" id="usuario_admin2">
@@ -132,6 +132,9 @@
 </div>
 <script type="text/javascript">
 	$(document).ready(function(){
+		$("option[value='<%= @configuracion.usuario_admin %>']").prop("selected",true);
+		nombre= $("#option-nombre-<%= @configuracion.usuario_admin %>").val() + " " + $("#option-apellido-<%= @configuracion.usuario_admin %>").val();
+		$("#usuario_admin2").val(nombre);
 		$("#usuario_id").select2().on("select2:select",function(){
 			id = $(this).val();
 			$("#user_empleado_id").val(id);
