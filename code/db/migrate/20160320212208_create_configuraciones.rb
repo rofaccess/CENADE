@@ -12,7 +12,7 @@ class CreateConfiguraciones < ActiveRecord::Migration
       t.string :hora_inicio_tarde
       t.string :hora_fin_tarde
       t.string :dias_atencion
-      t.string :usuario_admin
+      t.integer :usuario_admin
 
       t.timestamps
     end

@@ -24,8 +24,8 @@
             <td class="action">
 
               <%= link_to '<i class="fa fa-eye fa-lg"></i> '.html_safe, usuario_path(usuario)%>    
-              <% unless current_user.id == usuario.id %>
-                <%= link_to '<i class="fa fa-edit fa-lg"></i> '.html_safe, edit_usuario_path(usuario)%>                    
+                <%= link_to '<i class="fa fa-edit fa-lg"></i> '.html_safe, edit_usuario_path(usuario)%>
+              <% unless current_user.id == usuario.id || usuario.id == Configuracion.first.usuario_admin %>  
                 <%= link_to '<i class="fa fa-trash-o fa-lg"></i>'.html_safe, usuario_path(usuario), method: 'delete', data: {confirm: "¿Desea eliminar al usuario #{usuario.username}?"}, remote: true%>
               <% end %>  
             </td>
