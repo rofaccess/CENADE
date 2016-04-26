@@ -11,7 +11,7 @@ var fisioNinosUI = (function(){
                                 return $( "#paciente_id" ).val();
                             },
                             id: function() {
-                                return $('.fisio-nino-id').val();
+                                return $('#ficha_fisioterapia_nino_id').val();
                             }
                         }
                     }

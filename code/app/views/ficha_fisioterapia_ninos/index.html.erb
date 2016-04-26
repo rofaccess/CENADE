@@ -24,15 +24,18 @@
   <div class="row well col-md-10 col-md-offset-1" >
       <%= search_form_for @search, url: search_ficha_fisioterapia_ninos_path, method: :post, remote: true, class: 'form-filtros' do |f| %>
          <div class="row">
-          <%= FormBuilder::text_field_v(f, :paciente_persona_nombre_or_paciente_persona_apellido_cont, {col_class: 'col-md-3', label_text: 'Paciente', input_class: '',max_length: Domain::NOMBRE})%>
+
+          <%= FormBuilder::text_field_v(f, :paciente_persona_ci_or_paciente_persona_nombre_or_paciente_persona_apellido_cont, {col_class: 'col-md-3', label_text: 'Paciente', input_class: '',  placeholder: "Nombre, Apellido o CI"})%>
+
+          <%= FormBuilder::text_field_v(f, :doctor_persona_nombre_or_doctor_persona_apellido_cont, {col_class: 'col-md-3', label_text: 'Prof. de la Salud', input_class: '', placeholder: "Nombre o Apellido"})%>
           
-          <%= FormBuilder::text_field_v(f, :nro_ficha_cont, {col_class: 'col-md-2', label_text: 'Nro Ficha', input_class: ''})%>
+          <%= FormBuilder::text_field_v(f, :nro_ficha_cont, {col_class: 'col-md-1', label_text: 'Ficha', input_class: ''})%>
           
           <%= FormBuilder::text_field_v(f, :fecha_eq, {col_class: 'col-md-2', label_text: 'Fecha', input_class: 'date',max_length: Domain::FECHA})%>
         
          <div class= "input-group pull-right" style = 'margin-top: 25px;'>
           <%= f.submit 'Filtrar', class: 'btn btn-custom '%>
-          <%= f.submit 'Limpiar Filtros', type: 'reset', class: 'btn btn-link'%>
+          <%= f.submit 'Limpiar Campos', type: 'reset', class: 'btn btn-link'%>
          </div>
          </div>
       <% end %>
