@@ -10,7 +10,7 @@
               </div>
               <div class="col-md-2">
                 <label class="control-label">Fecha de Nac.</label>
-                <input class="form-control" disabled="disabled" value="<%= @paciente.persona.fecha_nacimiento %>">
+                <input class="form-control" disabled="disabled" value="<%= @paciente.persona.fecha_nacimiento.strftime("%d/%m/%Y") %>">
               </div>
             <div class="col-md-2">
                 <label class="control-label">Edad</label>

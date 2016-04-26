@@ -29,7 +29,11 @@ class FichaFisioterapiaNinosController < ApplicationController
 		    format.html {render 'show'}
         format.js { render "show"}
       else
-        flash.now[:alert] = "No se ha podido guardar la Ficha"
+        if @fisio_nino.errors.full_messages.any?
+          flash.now[:alert] = @fisio_nino.errors.full_messages.first
+        else
+          flash.now[:alert] = "No se ha podido guardar la Ficha"
+        end
         @fisio_nino_nuevo= true
         format.html { render "edit"}
         format.js { render "edit"}
@@ -49,7 +53,11 @@ class FichaFisioterapiaNinosController < ApplicationController
         format.html { redirect_to ficha_fisioterapia_nino_path, notice: 'Ficha actualizado exitosamente'}
       else
         
-        flash.now[:alert] = 'No se pudo crear la Ficha'
+        if @fisio_nino.errors.full_messages.any?
+          flash.now[:alert] = @fisio_nino.errors.full_messages.first
+        else
+          flash.now[:alert] = "No se ha podido guardar la Ficha"
+        end
         format.html { render action: "edit"}
         format.js { render action: "edit"}
       end
@@ -79,7 +87,16 @@ class FichaFisioterapiaNinosController < ApplicationController
     @fisio_ninos = @search.result.page(params[:page])
     render 'index'
   end
-
+  def print_ficha
+      @ficha = FichaFisioterapiaNino.find params[:ficha_id]      
+      respond_to do |format|
+        format.pdf do
+          render :pdf => "Ficha",
+          :template => "ficha_fisioterapia_ninos/print_ficha.pdf.erb",
+          :layout => "pdf.html"
+        end
+      end
+    end
   def set_fisionino
   	@fisio_nino= FichaFisioterapiaNino.find(params[:id])
   end 

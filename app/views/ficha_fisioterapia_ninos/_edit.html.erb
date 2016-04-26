@@ -29,7 +29,8 @@
                                       input_class: 'date datepicker required', 
                                       max_length: Domain::FECHA,
                                       label_text: '* Fecha',
-                                      col_class: 'col-md-3')%>
+                                      col_class: 'col-md-3',
+                                       input_value: "#{ficha.object.fecha.strftime("%d/%m/%Y") unless ficha.object.new_record?}")%>
      </div>
       <h4>Datos del Paciente</h4>
       <hr>
@@ -56,7 +57,7 @@
                                           input_class: 'paciente-apellido', 
                                           col_class: 'col-md-2',
                                           disabled: true,
-                                          input_value: @fisio_nino.paciente.persona.fecha_nacimiento,
+                                          input_value: @fisio_nino.paciente.persona.fecha_nacimiento.strftime("%d/%m/%Y"),
                                           label_text: 'Fecha de nac.') %>
 
             <%= FormBuilder::text_field_v(ficha, :paciente_id, 
@@ -162,6 +163,10 @@
               
     </div>
     </div>
+    <%else%>
+      <% @paciente= @fisio_nino.paciente%>
+      <%= render 'encargado_form'%>
+    <%end%>
      <h4>Embarazo</h4>
     <hr>
     <div class="row">
@@ -179,9 +184,6 @@
                                           label_text: 'Tipo de Parto') %>
               
     </div>
-    <%else%>
-      <%= render 'encargado_form'%>
-    <%end%>
     <h4>Datos de la Ficha</h4>
     <hr>
     <div class="row">

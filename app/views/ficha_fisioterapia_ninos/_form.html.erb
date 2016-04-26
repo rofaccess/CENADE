@@ -35,7 +35,8 @@
                                       input_class: 'date datepicker required', 
                                       max_length: Domain::FECHA,
                                       label_text: '* Fecha',
-                                      col_class: 'col-md-3')%>
+                                      col_class: 'col-md-3',
+                                       input_value: "#{ficha.object.fecha.strftime("%d/%m/%Y") unless ficha.object.new_record?}")%>
      </div>
 
       <h4>Datos del Paciente</h4>
