@@ -61,6 +61,10 @@ $.validator.addClassRules({
 		minlength: 3
 	},
 
+	minEmail8: {
+		minlength: 8
+	},
+
 	minLength4: {
 		minlength: 4
 	},

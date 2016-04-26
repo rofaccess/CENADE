@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   belongs_to :empleado
+  has_many :consultas
 
   validates :username, length: {maximum: Domain::USERNAME, minimum: 3}
   

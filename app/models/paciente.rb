@@ -1,5 +1,5 @@
 class Paciente < ActiveRecord::Base
-	paginates_per 10
+	paginates_per 20
 	acts_as_paranoid
 
 	# Despues de borrar el registro de paciente, se ejecutan estos métodos
@@ -8,6 +8,7 @@ class Paciente < ActiveRecord::Base
 	has_many :turnos
 	belongs_to :persona
 	belongs_to :encargado
+	has_many :consultas
 
 	# Permiten guardar persona y encargado en el formulario de paciente
 	accepts_nested_attributes_for :persona
