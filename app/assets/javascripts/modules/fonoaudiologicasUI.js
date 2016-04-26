@@ -35,7 +35,7 @@ var fonoaudiologicasUI = (function(){
                   url: "/fichas_fonoaudiologicas/get_paciente",
                   type: 'get',
                   data: {
-                   id : $(this).val()
+                   paciente_id : $(this).val()
                   },
                   success: function(resp){
                       //alert("Data");

@@ -30,8 +30,8 @@ class FichasFonoaudiologicasController < ApplicationController
  	end
  	  #busca el paciente seleccionado en la base de datos
   def get_paciente
-    @paciente= Paciente.find(params[:id])
-      
+    @paciente= Paciente.find(params[:paciente_id])
+  
   end
 
     # Checkea que un paciente ya no tenga una ficha en Fonoaudiologia

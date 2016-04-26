@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
 
   get 'check_paciente_id' => 'fichas_fonoaudiologicas#check_paciente_id'
-  get 'get_paciente' => 'fichas_fonoaudiologicas#get_paciente'
-  resources :fichas_fonoaudiologicas
-
+  resources :fichas_fonoaudiologicas do
+    collection do
+      get 'get_paciente' => 'fichas_fonoaudiologicas#get_paciente'
+    end
+  end
   get 'ficha_fisioterapia_ninos/check_paciente_id' => 'ficha_fisioterapia_ninos#check_paciente_id'
   get 'ficha_fisioterapia_ninos/print_ficha' => 'ficha_fisioterapia_ninos#print_ficha'
 
