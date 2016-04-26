@@ -11,16 +11,16 @@
     </tr>
   </thead>
   <tbody>
-    <% @fisio_ninos.each do |f| %>
+    <% @fisio_ninos.each do |ficha| %>
     <tr>
-      <td ><%=f.nro_ficha %></td>
-      <td ><%=f.fecha %></td>
-      <td ><%=f.paciente.persona.nombre %> <%=f.paciente.persona.nombre %></td>
-      <td ><%=f.doctor.persona.nombre %> <%=f.doctor.persona.nombre %></td>      
+      <td ><%=ficha.nro_ficha %></td>
+      <td ><%=ficha.fecha.strftime("%d/%m/%Y") %></td>
+      <td ><%=ficha.paciente.persona.nombre %> <%=ficha.paciente.persona.apellido %></td>
+      <td > <%=ficha.doctor.abr_profesion %> <%=ficha.doctor.persona.nombre %> <%=ficha.doctor.persona.apellido %></td>      
       <td class = "action">
         
-        <%= link_to '<i class="fa fa-eye fa-lg"></i> '.html_safe, ficha_fisioterapia_nino_path(f)%>     
-        <%= link_to '<i class="fa fa-edit fa-lg"></i> '.html_safe, edit_ficha_fisioterapia_nino_path(f)%>        
+        <%= link_to '<i class="fa fa-eye fa-lg"></i> '.html_safe, ficha_fisioterapia_nino_path(ficha), remote: true%>     
+        <%= link_to '<i class="fa fa-edit fa-lg"></i> '.html_safe, edit_ficha_fisioterapia_nino_path(ficha), remote: true %>        
         <%= link_to '<i class="fa fa-plus-square-o  fa-lg"></i>'.html_safe%>
 
       </td>
