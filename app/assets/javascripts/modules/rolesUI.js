@@ -18,6 +18,12 @@ var rolesUI = (function(){
                 }
             });
 		},
+
+        init: function(){   
+            $('body').on('click', '.show-role', function(e){
+                $.get($(this).parents('tr').data('url'), {}, function(){}, 'script');
+            });         
+        },  
 		initScript: function(checkRoleNameUrl){
 			rolesUI.checkNAME(checkRoleNameUrl);
             $(".multiple_select").select2({
@@ -33,3 +39,8 @@ var rolesUI = (function(){
 		}
 	};
 }()); 
+
+
+$(function(){
+    rolesUI.init();
+});
