@@ -16,11 +16,11 @@ class PerfilUsuariosController < ApplicationController
 		end
 
 			if @usuario.update(@usuario_u) && @persona.update(@persona_u)      
-		        flash.now[:notice] = "Se ha actualizado el usuario #{@usuario.username}."   
+		        redirect_to perfil_usuarios_edit_path, notice: "Se ha actualizado el usuario #{@usuario.username}." 
 	    	else
-		        flash.now[:alert] = "No se ha podido actualizar el usuario #{@usuario.username}."
+	    		redirect_to perfil_usuarios_edit_path, alert: "No se ha podido actualizar el usuario #{@usuario.username}."
 	    	end 
-	    	redirect_to action: 'edit'
+	    	
 
 	end
 
