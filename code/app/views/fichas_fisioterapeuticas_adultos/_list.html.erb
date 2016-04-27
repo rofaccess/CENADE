@@ -1,0 +1,40 @@
+
+<table class= "table table-condensed">
+  <thead>
+    <tr>
+      <th>Nro Ficha</th>
+      <th>Fecha</th>
+      <th>Paciente</th>
+      <th>Prof. de la Salud</th>
+      <th></th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    <% @fisio_adultos.each do |ficha| %>
+    <tr>
+      <td ><%=ficha.nro_ficha %></td>
+      <td ><%=ficha.fecha.strftime("%d/%m/%Y") %></td>
+      <td ><%=ficha.paciente.persona.nombre %> <%=ficha.paciente.persona.apellido %></td>
+      <td > <%=ficha.doctor.abr_profesion %> <%=ficha.doctor.persona.nombre %> <%=ficha.doctor.persona.apellido %></td>      
+      <td class = "action">
+        
+        <%= link_to '<i class="fa fa-eye fa-lg"></i> '.html_safe, ficha_fisioterapeutica_adulto_path(ficha), remote: true%>     
+        <%= link_to '<i class="fa fa-edit fa-lg"></i> '.html_safe, edit_ficha_fisioterapeutica_adulto_path(ficha), remote: true %>        
+        <%= link_to '<i class="fa fa-plus-square-o  fa-lg"></i>'.html_safe%>
+
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<script type="text/javascript">
+    <% if !flash.notice.blank? %> 
+      var n = noty({text: '<%=notice%>', type: 'success'});   
+    <% end %>
+    
+    <% if !flash.alert.blank?%> 
+      var n = noty({text: '<%=alert%>', type: 'error'});
+    <% end %>
+  r
+</script>
