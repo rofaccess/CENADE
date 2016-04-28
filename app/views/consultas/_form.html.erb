@@ -1,7 +1,7 @@
 
   <div class="form-content">
     <div class="page-title page-title-sin-submenu">
-      <%=@consulta.id.nil? ? 'Nueva Consulta' : 'Editar Consulta'%> 
+      Nueva Consulta
 
       <div class="tool">
         <%= link_to '<i class="fa fa-list" data-toggle="tooltip" data-placement="bottom" title="Lista de Consultas"></i> '.html_safe, consultas_path %> 
@@ -11,7 +11,7 @@
 <body>
     <%= form_for @consulta, html: {class: 'nueva-consulta', :multipart => true }, remote: true do |consulta|%>   
       <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-3">
 
 
           <%= consulta.label :paciente_id, '* Paciente' %> 
@@ -20,7 +20,7 @@
           
         </div>
 
-        <div class="col-md-3">
+        <div class="col-md-4">
 
 
           <%= consulta.label :profesional_salud_id, '* Prof. de la Salud' %> 
@@ -38,14 +38,71 @@
           
         </div>
 
-        <%= FormBuilder::text_field_v(turno, :fecha, 
+        <%= FormBuilder::text_field_v(consulta, :fecha, 
                                       input_class: 'date datepicker required', 
                                       max_length: Domain::FECHA,
-                                      label_text: '* Fecha Actual',
+                                      label_text: '* Fecha',
                                       col_class: 'col-md-2')%>
             
        </div>
-      
+       <h4>Datos del Paciente</h4>
+       <hr>
+       <div class ="paciente_data">
+          <div class="row">
+            <%= FormBuilder::text_field_v(consulta, :paciente_id, 
+                                          col_class: 'col-md-4',
+                                          disabled: true,
+                                          label_text: 'Nombres') %>
+
+            <%= FormBuilder::text_field_v(consulta, :paciente_id, 
+                                          col_class: 'col-md-5',
+                                          disabled: true,
+                                          label_text: 'Apellidos') %>
+
+            <%= FormBuilder::text_field_v(consulta, :paciente_id, 
+                                          max_length: Domain::CI,
+                                          col_class: 'col-md-3',
+                                          disabled: true,
+                                          label_text: 'CI') %> 
+            </div>      
+            <div class="row">
+              <%= FormBuilder::text_field_v(consulta, :paciente_id, 
+                                        col_class: 'col-md-8',
+                                        disabled: true,
+                                        label_text: 'Direccion') %>
+               <%= FormBuilder::text_field_v(consulta, :paciente_id, 
+                                        col_class: 'col-md-4',
+                                        disabled: true,
+                                        label_text: 'Telefono') %>
+          </div>
+   
+      </div>
+      <h4>Datos de Consulta</h4>
+      <hr>
+      <div class="row">
+        <div class="col-md-12">
+          <%= consulta.label :motivo_consulta, 'Motivo de Consulta' %> 
+          <%= consulta.text_area :motivo_consulta, rows: "2", class: "form-control"%> 
+        </div>
+      </div>
+    </br>
+    <div class="row">
+      <div class="col-md-6">
+        <%= consulta.label :evaluacion, 'Evaluación' %> 
+        <%= consulta.text_area :evaluacion, rows: "5", class: "form-control"%> 
+      </div>
+      <div class="col-md-6">
+        <%= consulta.label :tratamiento, 'Tratamiento' %> 
+        <%= consulta.text_area :tratamiento, rows: "5", class: "form-control"%> 
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <%= consulta.label :observaciones, 'Observaciones' %> 
+        <%= consulta.text_area :observaciones, rows: "2", class: "form-control"%> 
+      </div>
+    </div>
+    </br>
       <div class="form-button">         
         <%= consulta.submit 'Guardar', class: 'btn btn-custom'%>
       </div>

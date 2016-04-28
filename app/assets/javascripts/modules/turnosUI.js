@@ -19,22 +19,14 @@ var turnosUI = (function(){
                 }
             });
 		},
-		
-		// Inicia el script en el formulario
-		initScript: function(checkTurnoPacienteUrl){
-			//turnosUI.getPaciente(addpacienteUrl)
-			turnosUI.checkPACIENTE(checkTurnoPacienteUrl);
 
-			$(".nuevo-turno").validate();
-
-			$('.costo').inputmask('Regex', { regex: "[0-9\.]+" });
-
+		selectControl: function(){
 			$(".paciente_select").select2({
 		        placeholder: "Seleccione un paciente",
 		        language: "es",
 		        theme: "bootstrap"
 
-		        }).on("select2:select",function(){
+		       }).on("select2:select",function(){
  				$(this).valid();
 		        id = $(this).val();
 
@@ -68,28 +60,17 @@ var turnosUI = (function(){
         			$(this).valid();
         		});
 		  
-	        $(".paga").on("change", function(){
+		},
+
+		mostrarNroFactura: function(){
+			$(".paga").on("change", function(){
 	          $("#factura").toggle($(this).hasClass("si_paga"));
 	        });
+	    },
 
-	        $('.datepicker').datepicker({
-		        format: "dd/mm/yyyy",
-		        language: "es",
-		        autoclose: true,
-		        orientation: "bottom"
-		        }).on('change', function() {
-        			$(this).valid();
-		      	});
-		      $('.datepicker2').datepicker({
-		        format: "dd/mm/yyyy",
-		        language: "es",
-		        autoclose: true
-		        }).on('change', function() {
-        			$(this).valid();
-		      	});
-		     
+	    datatableControl: function(){
 
-			$('#table-turnos').DataTable( {
+	    	$('#table-turnos').DataTable( {
 		        "paging":   false,
 		        "info":     false,
 		        "searching": false,
@@ -121,7 +102,42 @@ var turnosUI = (function(){
 	                }
 	            } );
 	        }
-	    	});
+	      });
+		},
+
+		// Inicia el script en el formulario
+		initScript: function(checkTurnoPacienteUrl){
+			//turnosUI.getPaciente(addpacienteUrl)
+			turnosUI.checkPACIENTE(checkTurnoPacienteUrl);
+
+			turnosUI.selectControl();
+
+			turnosUI.mostrarNroFactura();
+
+			turnosUI.datatableControl();
+
+			$(".nuevo-turno").validate();
+
+			$('.costo').inputmask('Regex', { regex: "[0-9\.]+" });
+
+			
+
+	        $('.datepicker').datepicker({
+		        format: "dd/mm/yyyy",
+		        language: "es",
+		        autoclose: true,
+		        orientation: "bottom"
+		        }).on('change', function() {
+        			$(this).valid();
+		      	});
+		      $('.datepicker2').datepicker({
+		        format: "dd/mm/yyyy",
+		        language: "es",
+		        autoclose: true
+		        }).on('change', function() {
+        			$(this).valid();
+		      	});
+		     
 		}
 	};
 }());

@@ -9,7 +9,7 @@ class ConsultasController < ApplicationController
   end
 
   def new
-  	@consulta= Consulta.New
+  	@consulta= Consulta.new
   end
 
   def create
@@ -45,6 +45,12 @@ class ConsultasController < ApplicationController
 
   def show
 
+  end
+
+  #obtiene el paciente
+   def get_paciente
+    @paciente= Paciente.find(params[:id])
+      
   end
 
   def set_consulta
