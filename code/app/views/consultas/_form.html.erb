@@ -1,0 +1,69 @@
+
+  <div class="form-content">
+    <div class="page-title page-title-sin-submenu">
+      <%=@consulta.id.nil? ? 'Nueva Consulta' : 'Editar Consulta'%> 
+
+      <div class="tool">
+        <%= link_to '<i class="fa fa-list" data-toggle="tooltip" data-placement="bottom" title="Lista de Consultas"></i> '.html_safe, consultas_path %> 
+      </div>
+
+    </div>
+<body>
+    <%= form_for @consulta, html: {class: 'nueva-consulta', :multipart => true }, remote: true do |consulta|%>   
+      <div class="row">
+        <div class="col-md-4">
+
+
+          <%= consulta.label :paciente_id, '* Paciente' %> 
+          
+          <%= consulta.select(:paciente_id, Hash[Paciente.all.map{|a| [a.persona.nombre + " "+ a.persona.apellido, a.id]}],{},{class: "paciente_select form-control select2", required: true,  id: 'paciente_id'})%>
+          
+        </div>
+
+        <div class="col-md-3">
+
+
+          <%= consulta.label :profesional_salud_id, '* Prof. de la Salud' %> 
+          
+          <%= consulta.select(:profesional_salud_id, Hash[Empleado.where(type: 'Doctor').map{|a| [a.area.nombre + "-"+ a.persona.nombre + " "+ a.persona.apellido, a.id]}],{},{class: "profesional_select form-control select2", required: true,  id: 'profesional_salud_id'})%>
+          
+        </div>
+
+         <div class="col-md-3">
+
+
+          <%= consulta.label :area_id, '* Área' %> 
+          
+          <%= consulta.select(:area_id, Area.all.collect { |a| [a.nombre, a.id] },{},{class: "area_select form-control select2", required: true,  id: 'area_id'})%>
+          
+        </div>
+
+        <%= FormBuilder::text_field_v(turno, :fecha, 
+                                      input_class: 'date datepicker required', 
+                                      max_length: Domain::FECHA,
+                                      label_text: '* Fecha Actual',
+                                      col_class: 'col-md-2')%>
+            
+       </div>
+      
+      <div class="form-button">         
+        <%= consulta.submit 'Guardar', class: 'btn btn-custom'%>
+      </div>
+
+    <% end %>
+
+
+  </div>
+
+
+<script type="text/javascript"> 
+    
+  consultasUI.initScript();
+  <% if !flash.notice.blank? %> 
+    var n = noty({text: '<%=notice%>', type: 'success'});   
+  <% end %>
+  
+  <% if !flash.alert.blank?%> 
+    var n = noty({text: '<%=alert%>', type: 'error'});
+  <% end %>
+</script>

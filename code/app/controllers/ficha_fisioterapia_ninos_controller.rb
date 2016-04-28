@@ -12,8 +12,7 @@ class FichaFisioterapiaNinosController < ApplicationController
   end
 
   def index
-  	@search = FichaFisioterapiaNino.ransack(params[:q])
-    @fisio_ninos= @search.result.page(params[:page])
+  	get_ficha_fisioterapia_ninos
   end
 
   def new
@@ -80,6 +79,12 @@ class FichaFisioterapiaNinosController < ApplicationController
     @paciente= Paciente.find(params[:id])
       
   end
+
+  #Trae la fichas segun la busqueda y página
+  def get_ficha_fisioterapia_ninos
+    @search = FichaFisioterapiaNino.ransack(params[:q])
+    @fisio_ninos= @search.result.page(params[:page])
+  end 
 
   #metodo creado para el filtro
   def buscar
