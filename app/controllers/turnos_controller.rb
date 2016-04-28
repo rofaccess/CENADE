@@ -4,8 +4,7 @@ class TurnosController < ApplicationController
   respond_to :html, :js 
 
   def index
-  	 @search = Turno.ransack(params[:q])
-      @turnos= @search.result.page(params[:page])
+  	 get_turnos
   end
 
   def new
@@ -45,14 +44,18 @@ class TurnosController < ApplicationController
       
     end
   end
+
+  #Busca los turnos segun los datos puestos para filtrar
   def buscar
     @search = Turno.search(params[:q])
     @turnos = @search.result.page(params[:page])
     render 'index'
   end
+
   def show
     @empleado= Empleado.find(@turno.doctor_id)
   end
+
   def destroy
     @turno.destroy
     respond_to do |format|
@@ -60,9 +63,11 @@ class TurnosController < ApplicationController
       format.json { head :no_content }
     end
   end
+
   def set_turno
      @turno = Turno.find(params[:id])
   end
+
   def print_turnos
       
       @turnos = Turno.all
@@ -75,33 +80,38 @@ class TurnosController < ApplicationController
           end
         end
     end
- 
+  #Chequea si el paciente ya no tiene un turno en la fecha y área 
    def check_paciente
      turno= Turno.find_by(paciente_id: self.paciente_id, fecha_consulta: self.fecha_consulta, area_id: self.area_id)
 
       render json: (turno.nil? || turno.id == params[:id].to_i) ? true : "El paciente ya tiene un turno para el área y fecha".to_json       
     end 
+
+  #obtiene el paciente
    def get_paciente
-      @paciente= Paciente.find(params[:id])
+    @paciente= Paciente.find(params[:id])
       
-    end
-    def update_profesional
+  end
+
+  def update_profesional
     @area= Area.find(params[:id])
     render update_profesional, format: :js
   end
-    def cambiar_estado
+  
+  #Cambie el estado de pendiente a cancelado
+  def cambiar_estado
 
-      @turno= Turno.find(params[:id])
-      if (@turno.estado== 'pendiente')
+    @turno= Turno.find(params[:id])
+    if (@turno.estado== 'pendiente')
 
-        @turno.update_attribute(:estado, "cancelado")
-        flash.now[:notice] = "Turno N° #{@turno.turno} cancelado"
+      @turno.update_attribute(:estado, "cancelado")
+      flash.now[:notice] = "Turno N° #{@turno.turno} cancelado"
 
-      else
-        flash.now[:alert] = "Turno N° #{@turno.turno} no se puede cancelar"
-      end
-      index
-      render 'index'
+    else
+      flash.now[:alert] = "Turno N° #{@turno.turno} no se puede cancelar"
+    end
+    index
+    render 'index'
 
     end 
     def get_turnos
