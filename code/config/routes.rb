@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get 'check_paciente_id' => 'fichas_fonoaudiologicas#check_paciente_id'
   resources :fichas_fonoaudiologicas do
     collection do
+      match 'buscar' => 'fichas_fonoaudiologicas#buscar', via: [:get, :post], as: :search
       get 'get_paciente' => 'fichas_fonoaudiologicas#get_paciente'
     end
   end
