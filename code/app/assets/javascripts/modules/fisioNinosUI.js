@@ -18,10 +18,11 @@ var fisioNinosUI = (function(){
                 }
             });
         },
-		initScript: function(checkFisioNinoPacienteUrl){
-			fisioNinosUI.checkPACIENTE(checkFisioNinoPacienteUrl);
-            
-            $(".paciente_select").select2({
+
+
+        selectControl: function(){
+
+             $(".paciente_select").select2({
                 placeholder: "Seleccione un paciente",
                 language: "es",
                 theme: "bootstrap"
@@ -59,6 +60,14 @@ var fisioNinosUI = (function(){
                 }).on('change', function () {
                     $(this).valid();
                 });
+           
+        },
+
+		initScript: function(checkFisioNinoPacienteUrl){
+		   fisioNinosUI.checkPACIENTE(checkFisioNinoPacienteUrl);
+            
+           fisioNinosUI.selectControl();
+
             $('.datepicker').datepicker({
                 format: "dd/mm/yyyy",
                 language: "es",

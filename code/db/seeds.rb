@@ -108,7 +108,7 @@ Permission.all.each do |p|
 end
 
 # Turnos
-turno= Turno.create(paciente_id: 31, fecha_expedicion: '07/05/2015',
+turno= Turno.create(paciente_id: 1, fecha_expedicion: '07/05/2015',
 					fecha_consulta: '07/05/2015', area_id: 1, doctor_id: 16, 
 					estado: 'pendiente', monto: '5000', paga: true, nro_factura: '33-445-gh',
 					turno: 1)
