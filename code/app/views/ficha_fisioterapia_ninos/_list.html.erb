@@ -10,6 +10,15 @@
       
     </tr>
   </thead>
+
+  <% if @fisio_ninos.blank? %>
+    <tfoot>
+      <tr>
+        <th colspan="8" scope="col">No se encontraron coincidencias </th>
+      </tr>
+    </tfoot>
+  <% end %>
+
   <tbody>
     <% @fisio_ninos.each do |ficha| %>
     <tr>
