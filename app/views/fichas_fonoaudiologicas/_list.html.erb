@@ -1,20 +1,20 @@
 <table class= "table table-condensed">
   <thead>
     <tr>
+      <th>Nro Ficha</th>
+      <th>Fecha</th>
       <th>Paciente</th>
-      <th>C.I</th>
-      <th>Fecha Ultima Consulta</th>
       <th>Prof. de la Salud</th>
       <th></th>
     </tr>
   </thead>
   <tbody>
-    <% @fonoaudiologicas.each do |f| %>
+    <% @fonoaudiologicas.each do |ficha| %>
       <tr>
         <td ><%=%></td>
-        <td ><%=%></td>
-        <td ><%=%></td>
-        <td ><%=%></td>      
+        <td ><%=ficha.fecha.strftime("%d/%m/%Y") %></td>
+        <td ><%=ficha.paciente.persona.nombre %> <%=ficha.paciente.persona.apellido %></td>
+        <td ><%=ficha.doctor.abr_profesion %><%=ficha.doctor.persona.nombre %> <%=ficha.doctor.persona.apellido %></td>       
         <td class = "action">
           
           <%= link_to '<i class="fa fa-eye fa-lg"></i> '.html_safe %>     
