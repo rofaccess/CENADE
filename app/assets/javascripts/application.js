@@ -63,8 +63,32 @@ APP = {
 		});
     },
 
+    /* El evento para mostrar y esconder el sidebar, el elemento debera tener id=sidebar-toggle, todavía no se usa */
+    initSidebarToogle: function(){
+        $("#sidebar-toggle").click(function(e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });   
+    },    
+
+    /* Inicializa el script para mostrar y esconder la búsqueda avanzada presente en algunos index */
+    initBusquedaAvanzada: function(){
+        var show=true;
+        $("#show-advanced-search").click(function(){
+            if(show){
+                $("#advanced-search").show();
+                show=false;
+            }else{
+                $("#advanced-search").hide();
+                show=true;
+            }
+        });
+    },
+
     init: function() {        
 		APP.initBuscador();
+        APP.initSidebarToogle();
+        APP.initBusquedaAvanzada();
 
     }
 };
@@ -104,8 +128,7 @@ $.noty.defaults = {
     buttons: false
 };
 
-
-
+/* Todavía no se usa, envía el q de ransack para que se pueda imprimir solo la lista que se esta filtrando */
 function configImprimir (params) {
   $('#imprimir-link').attr('href', $('#imprimir-link').data('url') + params.replace('amp;',''));
 }
