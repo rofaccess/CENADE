@@ -17,6 +17,15 @@ Rails.application.routes.draw do
     end
   end
 
+  get 'consultas/print_consulta' => 'consultas#print_consulta'
+  resources :consultas do
+    collection do
+      match 'buscar' => 'consultas#buscar', via: [:get, :post], as: :search
+      get'get_paciente' => 'consultas#get_paciente'
+      get'recarga_profesional' => 'consultas#recarga_profesional'
+    end
+  end
+
   get 'pacientes/print_pacientes' => 'pacientes#print_pacientes'
   get 'pacientes/print_paciente' => 'pacientes#print_paciente'
   get 'pacientes/check_ci' => 'pacientes#check_ci'

@@ -10,7 +10,7 @@ class CreateFichaFisioterapiaNinos < ActiveRecord::Migration
       t.string :peso_nacer             , default: '' ,limit: 50,   null: true
       t.string :apgar                  , default: '' ,limit: 50,   null: true
       t.string :antecedentes_familiares,default: '' ,limit: 250,   null: true
-      t.string :condicion_general      ,default: '' ,limit: 250,   null: true
+      t.string :condicion_general      ,default: '' ,limit: 500,   null: true
       t.date :fecha                    , null: false
       t.integer :nro_ficha             
       t.timestamps null: false

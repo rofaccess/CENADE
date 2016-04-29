@@ -111,45 +111,53 @@
     <hr>
     <div class="encargado_data">
       <div class="row">
-              <%= FormBuilder::text_field_v(ficha, :paciente_id, 
-                                          input_class: '', 
-                                          col_class: 'col-md-4',
-                                          disabled: true,
-                                          label_text: 'Madre') %> 
-              <%= FormBuilder::text_field_v(ficha, :paciente_id, 
-                                          input_class: '',
-                                          col_class: 'col-md-2',
-                                          disabled: true,
-                                          label_text: 'Edad') %>
-              <%= FormBuilder::text_field_v(ficha, :paciente_id, 
-                                          input_class: '',
-                                          col_class: 'col-md-4',
-                                          disabled: true,
-                                          label_text: 'Profesión') %>
-              <%= FormBuilder::text_field_v(ficha, :paciente_id, 
-                                          input_class: '',
-                                          col_class: 'col-md-2',
-                                          disabled: true,
-                                          label_text: 'Nro de Hijos') %>
+   
+        <%= FormBuilder::text_field_v(ficha, :encargado, 
+                                      input_class: '', 
+                                      col_class: 'col-md-4',
+                                      disabled: true,
+                                      input_value: '',
+                                      label_text: 'Madre') %> 
+        <%= FormBuilder::text_field_v(ficha, :paciente_id, 
+                                      input_class: '',
+                                      col_class: 'col-md-2',
+                                      disabled: true,
+                                      input_value: '',
+                                      label_text: 'Edad') %>
+        <%= FormBuilder::text_field_v(ficha, :paciente_id, 
+                                      input_class: '',
+                                      col_class: 'col-md-4',
+                                      disabled: true,
+                                      input_value: '',
+                                      label_text: 'Profesión') %>
+        <%= FormBuilder::text_field_v(ficha, :paciente_id, 
+                                      input_class: '',
+                                      col_class: 'col-md-2',
+                                      disabled: true,
+                                      input_value: '',
+                                      label_text: 'Nro de Hijos') %>
                 
               
     </div>
      <div class="row">
+        <%= FormBuilder::text_field_v(ficha, :paciente_id, 
+                                      input_class: '', 
+                                      col_class: 'col-md-5',
+                                      disabled: true,
+                                      input_value: '',
+                                      label_text: 'Padre') %> 
+        <%= FormBuilder::text_field_v(ficha, :paciente_id, 
+                                      input_class: '',
+                                      col_class: 'col-md-2',
+                                      disabled: true,
+                                      input_value: '',
+                                      label_text: 'Edad') %>
               <%= FormBuilder::text_field_v(ficha, :paciente_id, 
-                                          input_class: '', 
-                                          col_class: 'col-md-5',
-                                          disabled: true,
-                                          label_text: 'Padre') %> 
-              <%= FormBuilder::text_field_v(ficha, :paciente_id, 
-                                          input_class: '',
-                                          col_class: 'col-md-2',
-                                          disabled: true,
-                                          label_text: 'Edad') %>
-              <%= FormBuilder::text_field_v(ficha, :paciente_id, 
-                                          input_class: '',
-                                          col_class: 'col-md-5',
-                                          disabled: true,
-                                          label_text: 'Profesión') %>
+                                      input_class: '',
+                                      col_class: 'col-md-5',
+                                      disabled: true,
+                                      input_value: '',
+                                      label_text: 'Profesión') %>
               
     </div>
     </div>

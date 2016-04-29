@@ -1,25 +1,13 @@
-var fisioNinosUI = (function(){
+var consultasUI = (function(){
 	return {		
-		checkPACIENTE: function(checkFisioNinoPacienteUrl){
-            $.validator.addClassRules({
-                uniquePACIENTE: {
-                    remote: {
-                        url: checkFisioNinoPacienteUrl,
-                        type: "get",
-                        data: {
-                            paciente_id: function() {
-                                return $( "#paciente_id" ).val();
-                            },
-                            id: function() {
-                                return $('#ficha_fisioterapia_nino_id').val();
-                            }
-                        }
-                    }
-                }
-            });
-        },
 
-        advancedSearchControl: function(){
+		init: function(){	
+			$('body').on('click', '.show-consulta', function(e){
+				$.get($(this).parents('tr').data('url'), {}, function(){}, 'script');
+			});			
+		},			
+
+    advancedSearchControl: function(){
           $(".to-hide").hide();
 
              $(document).ready(function(){
@@ -36,21 +24,20 @@ var fisioNinosUI = (function(){
             });
           });
         },
-
-        selectControl: function(){
-
-             $(".paciente_select").select2({
+			
+		selectControl: function(){
+            $(".paciente_select").select2({
                 placeholder: "Seleccione un paciente",
                 language: "es",
                 theme: "bootstrap"
 
-                }).on("select2:select",function(){
+               }).on("select2:select",function(){
                 $(this).valid();
                 id = $(this).val();
 
                 $.ajax({
                  
-                  url: "/ficha_fisioterapia_ninos/get_paciente",
+                  url: "/consultas/get_paciente",
                   type: 'get',
                   data: {
                    id : $(this).val()
@@ -68,6 +55,7 @@ var fisioNinosUI = (function(){
 
                 }).on('change', function () {
                     $(this).valid();
+
                 });
             $(".area_select").select2({
                 placeholder: "Seleccione un Área",
@@ -76,27 +64,45 @@ var fisioNinosUI = (function(){
 
                 }).on('change', function () {
                     $(this).valid();
+                    id = $(this).val();
+
+                    $.ajax({
+                     
+                      url: "/consultas/recarga_profesional",
+                      type: 'get',
+                      data: {
+                       id : $(this).val()
+                      },
+                      success: function(resp){
+                          //alert("Data");
+                       }
+                      
+                     });
                 });
-           
+          
         },
+		
+		// Inicia el script en el formulario
+		initScript: function(){
+			consultasUI.selectControl();
+      consultasUI.advancedSearchControl();			
 
-		initScript: function(checkFisioNinoPacienteUrl){
-		   fisioNinosUI.checkPACIENTE(checkFisioNinoPacienteUrl);
-
-       fisioNinosUI.advancedSearchControl();
-            
-           fisioNinosUI.selectControl();
-
-            $('.datepicker').datepicker({
-                format: "dd/mm/yyyy",
-                language: "es",
-                autoclose: true,
-                orientation: "bottom"
-                }).on('change', function() {
-                    $(this).valid();
-                });
+			$('.datepicker').datepicker({
+		        format: "dd/mm/yyyy",
+		        language: "es",
+		        autoclose: true,
+		        orientation: "bottom",
+		        theme: "bootstrap"		       
+		        }).on('change', function() {
+        			$(this).valid();
+		    });
+			
 		   	//Valida el formulario antes de enviarlo
-		  	$('.nueva-ficha').validate();
+		  	$('.nueva-consulta').last().validate();
 		}
 	};
-}()); 
+}());
+
+$(function(){
+	consultasUI.init();
+});
