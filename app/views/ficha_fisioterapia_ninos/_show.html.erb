@@ -105,7 +105,6 @@
     </br>
      <h4>Datos de Encargados</h4>
     <hr>
-    <%if @fisio_nino.paciente.encargado.nil? %>
     <div class="encargado_data">
       <div class="row">
               <%= FormBuilder::text_field_v(ficha, :paciente_id, 
@@ -157,10 +156,7 @@
               
     </div>
     </div>
-    <%else%>
-     <% @paciente= @fisio_nino.paciente%>
-      <%= render 'encargado_form' %>
-    <%end%>
+    
      <h4>Embarazo</h4>
     <hr>
     <div class="row">
