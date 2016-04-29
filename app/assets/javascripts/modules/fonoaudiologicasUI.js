@@ -1,23 +1,23 @@
 var fonoaudiologicasUI = (function(){
 	return {		
 		checkPACIENTE: function(checkFonoaudiologicaPacienteUrl){
-            $.validator.addClassRules({
-                uniquePACIENTE: {
-                    remote: {
-                        url: checkFonoaudiologicaPacienteUrl,
-                        type: "get",
-                        data: {
-                            paciente_id: function() {
-                                return $( "#paciente_id" ).val();
-                            },
-                            id: function() {
-                                return $('#fonoaudiologica_id').val();
-                            }
-                        }
-                    }
-                }
-            });
-        },
+      $.validator.addClassRules({
+          uniquePACIENTE: {
+              remote: {
+                  url: checkFonoaudiologicaPacienteUrl,
+                  type: "get",
+                  data: {
+                      paciente_id: function() {
+                          return $( "#paciente_id" ).val();
+                      },
+                      id: function() {
+                          return $('#fonoaudiologica_id').val();
+                      }
+                  }
+              }
+          }
+      });
+    },
 
         advancedSearchControl: function(){
           $(".to-hide").hide();
@@ -39,6 +39,7 @@ var fonoaudiologicasUI = (function(){
 
 		initScript: function(checkFichaFonoaudiologicaPacienteUrl){
 			fonoaudiologicasUI.checkPACIENTE(checkFichaFonoaudiologicaPacienteUrl);
+      fonoaudiologicasUI.advancedSearchControl();
             
             $(".paciente_select").select2({
                 placeholder: "Seleccione un paciente",
@@ -78,7 +79,7 @@ var fonoaudiologicasUI = (function(){
                 }).on('change', function () {
                     $(this).valid();
                 });
-            console.log("hola")
+
             $('.datepicker').datepicker({
                 format: "dd/mm/yyyy",
                 language: "es",

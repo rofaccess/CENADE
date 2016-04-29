@@ -42,24 +42,23 @@ class FichasFonoaudiologicasController < ApplicationController
 	    end
  	end
  	def update
- 		@fonoaudiologica= FichaFonoaudiologica.find(params[:id])
-  	respond_to do |format|
-      if @fonoaudiologica.update_attributes(fonoaudiologica_params)
+ 		
+  	  respond_to do |format|
+	      if @fonoaudiologica.update_attributes(fonoaudiologica_params)
 
-        format.html { redirect_to fichas_fonoaudiologicas_path, notice: 'Ficha actualizado exitosamente'}
-      else
-        
-        if @ficha_fonoaudiologica.errors.full_messages.any?
-          flash.now[:alert] = @ficha_fonoaudiologica.errors.full_messages.first
-        else
-          flash.now[:alert] = "No se ha podido guardar la Ficha"
-        end
-        format.html { render action: "edit"}
-        format.js { render action: "edit"}
-      end
-      
-    end
-  end
+	        format.html { redirect_to ficha_fonoaudiologica_path, notice: 'Ficha actualizado exitosamente'}
+	      else
+	        
+	        if @fonoaudiologica.errors.full_messages.any?
+	          flash.now[:alert] = @fonoaudiologica.errors.full_messages.first
+	        else
+	          flash.now[:alert] = "No se ha podido guardar la Ficha"
+	        end
+		        format.html { render action: "edit"}
+		        format.js { render action: "edit"}
+	      	end 
+    	end
+  	end
  	  #busca el paciente seleccionado en la base de datos
 	def get_paciente
 	    @paciente= Paciente.find(params[:paciente_id])
@@ -69,12 +68,17 @@ class FichasFonoaudiologicasController < ApplicationController
 	# Checkea que un paciente ya no tenga una ficha en Fonoaudiologia
 	def check_paciente_id
 	    fonoaudiologica = FichaFonoaudiologica.find_by_paciente_id(params[:paciente_id]) 
-	    render json: (fonoaudiologica.nil? || fonoaudiologica.id == params[:id].to_i) ? true : "El Paciente ya posee una Ficha".to_json
+	    render json: (fonoaudiologica.nil? || fonoaudiologica.id != params[:id].to_i) ? true : "El Paciente ya posee una Ficha".to_json
 	end
  	
 	def show
 	 @fonoaudiologica = FichaFonoaudiologica.find(params[:id])
 	end
+	  #Trae la fichas segun la busqueda y página
+	def get_fichas_fonoaudiologicas
+	    @search = FichaFonoaudiologica.ransack(params[:q])
+	    @fonoaudiologicas= @search.result.page(params[:page])
+	end 
 
 	#metodo creado para el filtro
 	def buscar
@@ -82,7 +86,16 @@ class FichasFonoaudiologicasController < ApplicationController
 	    @fonoaudiologicas = @search.result.page(params[:page])
 	    render 'index'
   	end
-  	
+  	def print_ficha
+      @ficha = FichaFonoaudiologica.find params[:ficha_id]      
+      respond_to do |format|
+        format.pdf do
+          render :pdf => "Ficha",
+          :template => "fichas_fonoaudiologicas/print_ficha.pdf.erb",
+          :layout => "pdf.html"
+        end
+      end
+    end
   	def set_fonoaudiologica
   	  @fonoaudiologica= FichaFonoaudiologica.find(params[:id])
     end 
