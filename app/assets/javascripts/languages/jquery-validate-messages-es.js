@@ -11,7 +11,7 @@
 		url: "Por favor, escribe una URL válida.",
 		date: "Por favor, escribe una fecha válida.",
 		dateISO: "Por favor, escribe una fecha (ISO) válida.",
-		dateITA: "Por favor, escribe una fecha (dd/mm/aaaa) válida.",
+		dateITA: "Fomato de Fecha (dd/mm/aaaa) válida.",
 		number: "Por favor, escribe un número entero válido.",
 		digits: "Por favor, escribe sólo dígitos.",
 		creditcard: "Por favor, escribe un número de tarjeta válido.",

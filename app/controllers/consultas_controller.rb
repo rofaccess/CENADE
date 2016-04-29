@@ -1,8 +1,12 @@
 class ConsultasController < ApplicationController
 	before_action :set_consulta, only: [:show, :edit, :update]
 	#load_and_authorize_resource 
-	respond_to :html, :js
+  before_action :set_submenu, only: [:edit, :update, :show, :index, :new]
+  respond_to :html, :js
 
+  def set_submenu
+   @submenu_layout = 'layouts/submenu_fichas_consultas'
+  end 
 
   def index
   	get_consultas
@@ -16,28 +20,42 @@ class ConsultasController < ApplicationController
   	respond_to do |format|
 
 		@consulta = Consulta.new(consulta_params)       
-		if @paciente.save		    
-			flash.now[:notice] = "Se ha guardado la consulta de #{@paciente.persona.nombre}."
+		if @consulta.save		    
+			flash.now[:notice] = "Se ha guardado la consulta de #{@consulta.paciente.persona.nombre}."
 			format.html {render 'show'}
+      format.js { render "show"}
 		else
-			flash.now[:alert] = "No se ha podido guardar la Consulta."
+      if @consulta.errors.full_messages.any?
+          flash.now[:alert] = @consulta.errors.full_messages.first
+      else
+          flash.now[:alert] = "No se ha podido guardar la Consulta."
+      end
+      @paciente= @consulta.paciente
 			format.html { render action: "new"}	
+      format.js { render "edit"}
 		end 
 	end
   end
 
   def edit
-
+    @paciente= @consulta.paciente
   end
 
   def update
   	respond_to do |format|       
    		if @consulta.update(consulta_params)
-   			flash.now[:notice] = "Se ha actualizado la consulta de #{@paciente.persona.nombre}."
-   			format.html {render 'show'}   
+   			flash.now[:notice] = "Se ha actualizado la consulta de #{@consulta.paciente.persona.nombre}."
+   			format.html {render 'show'}
+        format.js { render "show"}   
    		else
-   			flash.now[:alert] = "No se ha podido actualizar la consulta."
-   			format.html { render action: "edit"}        
+        if @consulta.errors.full_messages.any?
+          flash.now[:alert] = @consulta.errors.full_messages.first
+        else
+          flash.now[:alert] = "No se ha podido actualizar la Consulta."
+        end
+
+   			format.html { render action: "edit"}     
+        format.js { render "edit"}   
    		end 
    	end 
 
@@ -50,6 +68,12 @@ class ConsultasController < ApplicationController
   #obtiene el paciente
    def get_paciente
     @paciente= Paciente.find(params[:id])
+      
+  end
+
+  #recarga la lista de profesionales segun el area
+   def recarga_profesional
+    @area= Area.find(params[:id])
       
   end
 
@@ -69,6 +93,19 @@ class ConsultasController < ApplicationController
     @consultas = @search.result.page(params[:page])
     render 'index'
   end
+  
+  #imprime una consulta en específica
+
+  def print_consulta
+      @consulta = Consulta.find params[:consulta_id]      
+      respond_to do |format|
+        format.pdf do
+          render :pdf => "Consulta",
+          :template => "consultas/print_consulta.pdf.erb",
+          :layout => "pdf.html"
+        end
+      end
+    end
 
   def consulta_params
       params.require(:consulta).permit(:paciente_id, :area_id, :profesional_salud_id, :fecha, 

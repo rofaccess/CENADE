@@ -1,11 +1,19 @@
 class FichaFisioterapiaNino < ActiveRecord::Base
 	paginates_per 20
-	validates :condicion_general , length: { maximum: 700, message: ' soporta un máximo 700 caracteres' }
-	belongs_to :paciente
-	belongs_to :doctor, :foreign_key => :doctor_id
-	before_create :cargar_area_id
 
+	#asociaciones
+	belongs_to :paciente
+	belongs_to :area
+	belongs_to :doctor, :foreign_key => :doctor_id
+
+	#validaciones
+	validates :condicion_general , length: { maximum: 700, message: ' soporta un máximo 700 caracteres' }
+
+	#cargas automáticas
+	before_create :cargar_area_id
 	before_create :actualizar_nro
+
+
 
 	def actualizar_nro
       ficha = FichaFisioterapiaNino.last

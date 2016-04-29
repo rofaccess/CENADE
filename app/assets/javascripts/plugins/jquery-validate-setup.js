@@ -85,8 +85,15 @@ $.validator.addClassRules({
 	horaCheck:{
 		hora:true
 	},
+	biglength: {
+		maxlength: 300
+	},
+
 	maxlengthBig: {
-		maxlength: 250
+		maxlength: 500
+	},
+	maxlengthBig2: {
+		maxlength: 600
 	}
 });
 
