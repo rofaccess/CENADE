@@ -1,15 +1,15 @@
 
   <div class="form-content">
-    <div class="page-title page-title-sin-submenu">
-      Nueva Consulta
+    <div class="page-title">
+      <%=@consulta.id.nil? ? 'Nueva Consulta' : 'Editar Consulta'%>
 
       <div class="tool">
         <%= link_to '<i class="fa fa-list" data-toggle="tooltip" data-placement="bottom" title="Lista de Consultas"></i> '.html_safe, consultas_path %> 
       </div>
 
     </div>
-<body>
-    <%= form_for @consulta, html: {class: 'nueva-consulta', :multipart => true }, remote: true do |consulta|%>   
+
+    <%= form_for @consulta, html: {class: 'nueva-consulta', style: "width: 75%; margin-left: 160px;", :multipart => true }, remote: true do |consulta|%>   
       <div class="row">
         <div class="col-md-3">
 
@@ -20,16 +20,7 @@
           
         </div>
 
-        <div class="col-md-4">
-
-
-          <%= consulta.label :profesional_salud_id, '* Prof. de la Salud' %> 
-          
-          <%= consulta.select(:profesional_salud_id, Hash[Empleado.where(type: 'Doctor').map{|a| [a.area.nombre + "-"+ a.persona.nombre + " "+ a.persona.apellido, a.id]}],{},{class: "profesional_select form-control select2", required: true,  id: 'profesional_salud_id'})%>
-          
-        </div>
-
-         <div class="col-md-3">
+        <div class="col-md-3">
 
 
           <%= consulta.label :area_id, '* Área' %> 
@@ -38,11 +29,21 @@
           
         </div>
 
+        <div class="col-md-4">
+
+
+          <%= consulta.label :profesional_salud_id, '* Prof. de la Salud' %> 
+          <%= consulta.select(:profesional_salud_id, Hash[Empleado.where(type: 'Doctor').map{|a| [a.area.nombre + "-"+ a.persona.nombre + " "+ a.persona.apellido, a.id]}],{},{class: "profesional_select form-control select2", required: true,  id: 'profesional_salud_id', autofocus: true})%>
+          
+        </div>
+
+
         <%= FormBuilder::text_field_v(consulta, :fecha, 
                                       input_class: 'date datepicker required', 
                                       max_length: Domain::FECHA,
                                       label_text: '* Fecha',
-                                      col_class: 'col-md-2')%>
+                                      col_class: 'col-md-2',
+                                      input_value: "#{consulta.object.fecha.strftime("%d/%m/%Y") unless consulta.object.new_record?}")%>
             
        </div>
        <h4>Datos del Paciente</h4>
@@ -82,24 +83,24 @@
       <div class="row">
         <div class="col-md-12">
           <%= consulta.label :motivo_consulta, 'Motivo de Consulta' %> 
-          <%= consulta.text_area :motivo_consulta, rows: "2", class: "form-control"%> 
+          <%= consulta.text_area :motivo_consulta, rows: "2", class: "form-control biglength"%> 
         </div>
       </div>
     </br>
     <div class="row">
       <div class="col-md-6">
         <%= consulta.label :evaluacion, 'Evaluación' %> 
-        <%= consulta.text_area :evaluacion, rows: "5", class: "form-control"%> 
+        <%= consulta.text_area :evaluacion, rows: "5", class: "form-control biglength"%> 
       </div>
       <div class="col-md-6">
         <%= consulta.label :tratamiento, 'Tratamiento' %> 
-        <%= consulta.text_area :tratamiento, rows: "5", class: "form-control"%> 
+        <%= consulta.text_area :tratamiento, rows: "5", class: "form-control maxlengthBig2"%> 
       </div>
     </div>
     <div class="row">
       <div class="col-md-12">
         <%= consulta.label :observaciones, 'Observaciones' %> 
-        <%= consulta.text_area :observaciones, rows: "2", class: "form-control"%> 
+        <%= consulta.text_area :observaciones, rows: "2", class: "form-control longString"%> 
       </div>
     </div>
     </br>

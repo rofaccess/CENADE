@@ -6,6 +6,24 @@ var consultasUI = (function(){
 				$.get($(this).parents('tr').data('url'), {}, function(){}, 'script');
 			});			
 		},			
+
+    advancedSearchControl: function(){
+          $(".to-hide").hide();
+
+             $(document).ready(function(){
+              var show=true;
+              $("#show").click(function(){
+               if(show){
+                  $("#advanced-search").show();
+                  show=false;
+               }else{
+                  $("#advanced-search").hide();
+                  show=true;
+               }
+
+            });
+          });
+        },
 			
 		selectControl: function(){
             $(".paciente_select").select2({
@@ -37,6 +55,7 @@ var consultasUI = (function(){
 
                 }).on('change', function () {
                     $(this).valid();
+
                 });
             $(".area_select").select2({
                 placeholder: "Seleccione un Área",
@@ -45,13 +64,28 @@ var consultasUI = (function(){
 
                 }).on('change', function () {
                     $(this).valid();
+                    id = $(this).val();
+
+                    $.ajax({
+                     
+                      url: "/consultas/recarga_profesional",
+                      type: 'get',
+                      data: {
+                       id : $(this).val()
+                      },
+                      success: function(resp){
+                          //alert("Data");
+                       }
+                      
+                     });
                 });
           
         },
 		
 		// Inicia el script en el formulario
 		initScript: function(){
-			consultasUI.selectControl();			
+			consultasUI.selectControl();
+      consultasUI.advancedSearchControl();			
 
 			$('.datepicker').datepicker({
 		        format: "dd/mm/yyyy",

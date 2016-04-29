@@ -19,6 +19,23 @@ var fisioNinosUI = (function(){
             });
         },
 
+        advancedSearchControl: function(){
+          $(".to-hide").hide();
+
+             $(document).ready(function(){
+              var show=true;
+              $("#show").click(function(){
+               if(show){
+                  $("#advanced-search").show();
+                  show=false;
+               }else{
+                  $("#advanced-search").hide();
+                  show=true;
+               }
+
+            });
+          });
+        },
 
         selectControl: function(){
 
@@ -65,6 +82,8 @@ var fisioNinosUI = (function(){
 
 		initScript: function(checkFisioNinoPacienteUrl){
 		   fisioNinosUI.checkPACIENTE(checkFisioNinoPacienteUrl);
+
+       fisioNinosUI.advancedSearchControl();
             
            fisioNinosUI.selectControl();
 

@@ -22,13 +22,12 @@
       <td><%=consulta.fecha.strftime("%d/%m/%Y")%></td>
       <td ><%=consulta.paciente.persona.nombre %> <%=consulta.paciente.persona.apellido%></td>
       <td ><%=consulta.area.nombre %></td>
-        <%doctor= Empleado.find(consulta.rofesional_salud_id)%>
-      <td ><%=doctor.persona.nombre %> <%=doctor.persona.apellido %></td>
+      <td ><%=consulta.doctor.persona.nombre %> <%=consulta.doctor.persona.apellido %></td>
    
       <td class = "action">
         
         <%= link_to '<i class="fa fa-eye fa-lg" data-toggle="tooltip" data-placement="bottom" title="Ver Consulta"></i> '.html_safe, consulta_path(consulta), remote: true%>     
-        <%= link_to '<i class="fa fa-edit fa-lg" data-toggle="tooltip" data-placement="bottom" title="Editar Consulta"></i> '.html_safe, edit_consulta_path(conulta), remote: true%>        
+        <%= link_to '<i class="fa fa-edit fa-lg" data-toggle="tooltip" data-placement="bottom" title="Editar Consulta"></i> '.html_safe, edit_consulta_path(consulta), remote: true%>        
 
       </td>
     </tr>

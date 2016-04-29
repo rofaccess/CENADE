@@ -33,7 +33,7 @@ class FichaFisioterapiaNinosController < ApplicationController
         else
           flash.now[:alert] = "No se ha podido guardar la Ficha"
         end
-        @fisio_nino_nuevo= true
+        @paciente= @fisio_nino.paciente
         format.html { render "edit"}
         format.js { render "edit"}
 
@@ -42,7 +42,8 @@ class FichaFisioterapiaNinosController < ApplicationController
   end
 
   def edit
-    @fisio_nino_nuevo= nil
+    @paciente= @fisio_nino.paciente
+  
   end
 
   def update
@@ -57,6 +58,7 @@ class FichaFisioterapiaNinosController < ApplicationController
         else
           flash.now[:alert] = "No se ha podido guardar la Ficha"
         end
+        @paciente= @fisio_nino.paciente
         format.html { render action: "edit"}
         format.js { render action: "edit"}
       end

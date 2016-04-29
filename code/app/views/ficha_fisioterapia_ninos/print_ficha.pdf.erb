@@ -4,21 +4,23 @@
 	  <div class= "row col-md-12">
 	  	<h4>Datos Personales</h4>
 		<hr>
+
 		<label class="control-label">Nombre y Apellido: </label> <%= @ficha.paciente.persona.nombre%> <%= 						@ficha.paciente.persona.apellido%>............
 		
 		<label class="control-label">Fecha de Ingreso: </label> <%= @ficha.fecha.strftime("%d/%m/%Y") %>.							  ..
 		<label class="control-label">Sexo </label> <%= @ficha.paciente.persona.sexo %>
 	</div>
+
 	</br>
 
 	<div class= "row col-md-12">
+
 		<label class="control-label">Nacionalidad: </label> <%= @ficha.paciente.persona.nacionalidad%> Paraguaya.............
 		<label class="control-label">Fecha de nacimiento: </label> <%= @ficha.paciente.persona.fecha_nacimiento.strftime("%d/%m/%Y") %>......
-
 		<label class="control-label">Edad: </label> <%= @ficha.paciente.persona.edad %>
-		
 	</div>
 	</br>
+
 
 	<div class= "row col-md-12">
 		<label class="control-label">Direccion </label> <%= @ficha.paciente.persona.direccion%>....
@@ -26,6 +28,7 @@
 		<label class="control-label">N° de Teléfono: </label> <%= @ficha.paciente.persona.telefono %>
 
 	</div>
+	
 	</br></br>
 	
 	<% encargado= @ficha.paciente.encargado%>

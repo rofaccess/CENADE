@@ -9,10 +9,13 @@ Rails.application.routes.draw do
       get'get_paciente' => 'ficha_fisioterapia_ninos#get_paciente'
     end
   end
+
+  get 'consultas/print_consulta' => 'consultas#print_consulta'
   resources :consultas do
     collection do
       match 'buscar' => 'consultas#buscar', via: [:get, :post], as: :search
       get'get_paciente' => 'consultas#get_paciente'
+      get'recarga_profesional' => 'consultas#recarga_profesional'
     end
   end
 

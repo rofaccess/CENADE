@@ -73,9 +73,9 @@ ActiveRecord::Schema.define(version: 20160423125256) do
     t.integer  "area_id",                                       null: false
     t.date     "fecha"
     t.string   "profesional_salud",    limit: 60,  default: ""
-    t.string   "motivo_consulta",      limit: 250, default: ""
-    t.string   "evaluacion",           limit: 250, default: ""
-    t.string   "tratamiento",          limit: 250, default: ""
+    t.string   "motivo_consulta",      limit: 300, default: ""
+    t.string   "evaluacion",           limit: 300, default: ""
+    t.string   "tratamiento",          limit: 600, default: ""
     t.string   "observaciones",        limit: 250, default: ""
     t.datetime "deleted_at"
   end
@@ -148,7 +148,7 @@ ActiveRecord::Schema.define(version: 20160423125256) do
     t.string   "peso_nacer",              limit: 50,  default: ""
     t.string   "apgar",                   limit: 50,  default: ""
     t.string   "antecedentes_familiares", limit: 250, default: ""
-    t.string   "condicion_general",       limit: 250, default: ""
+    t.string   "condicion_general",       limit: 500, default: ""
     t.date     "fecha",                                            null: false
     t.integer  "nro_ficha"
     t.datetime "created_at",                                       null: false
