@@ -22,19 +22,25 @@ class FichasFonoaudiologicasController < ApplicationController
 
 	def create
 	  	@fonoaudiologica = FichaFonoaudiologica.new(fonoaudiologica_params)
-		    respond_to do |format|
-	     		if @fonoaudiologica.save
-		        flash.now[:notice] = 'Ficha registrada exitosamente'
-				    format.html {render 'show'}
-				    format.js { render "show"}
-	        else
-		        flash.now[:alert] = "No se ha podido guardar la Ficha"
-		        format.html { render "new"}
-		        format.js { render "new"}
-	      	end
-   	  end
- 	end
 
+	  	 respond_to do |format|
+	      if @fonoaudiologica.save
+	        flash.now[:notice] = 'Ficha registrada exitosamente'
+			    format.html {render 'show'}
+	        format.js { render "show"}
+	      else
+	        if @fonoaudiologica.errors.full_messages.any?
+	          flash.now[:alert] = @fonoaudiologica.errors.full_messages.first
+	        else
+	          flash.now[:alert] = "No se ha podido guardar la Ficha"
+	        end
+	        @fonoaudiologica_nuevo= true
+	        format.html { render "edit"}
+	        format.js { render "edit"}
+
+	      end
+	    end
+ 	end
  	def update
  		@fonoaudiologica= FichaFonoaudiologica.find(params[:id])
   	respond_to do |format|
@@ -76,6 +82,7 @@ class FichasFonoaudiologicasController < ApplicationController
 	    @fonoaudiologicas = @search.result.page(params[:page])
 	    render 'index'
   	end
+  	
   	def set_fonoaudiologica
   	  @fonoaudiologica= FichaFonoaudiologica.find(params[:id])
     end 
@@ -84,7 +91,7 @@ class FichasFonoaudiologicasController < ApplicationController
 
 	end
 	def fonoaudiologica_params
-  		params.require(:ficha_fonoaudiologica).permit(:area_id, :paciente_id, :doctor_id, :fecha, :escolaridad, :escuela)
+  		params.require(:ficha_fonoaudiologica).permit(:area_id, :paciente_id, :doctor_id, :fecha, :nro_ficha, :escolaridad, :escuela)
      				
   	end 
 end

@@ -68,71 +68,76 @@
   			</div>
 	    </div></br>
      	<h4>Datos de los Padres o Encargados</h4><hr>
-      	<div class="encargado_data">
-	      	<div class="row">
-		        <%= FormBuilder::text_field_v(ficha, :paciente_id,
-						                              col_class: 'col-md-5',
-						                              disabled: true,
-						                              input_value:@fonoaudiologica.paciente.encargado.padre_nombre,
-						                              label_text: 'Nombre del Padre') %> 
+     	<%if @fonoaudiologica.paciente.encargado.nil? %>
+	      	<div class="encargado_data">
+		      	<div class="row">
+			        <%= FormBuilder::text_field_v(ficha, :paciente_id,
+							                              col_class: 'col-md-5',
+							                              disabled: true,
+							                              input_value:'',
+							                              label_text: 'Nombre del Padre') %> 
 
-		        <%= FormBuilder::text_field_v(ficha, :paciente_id,
-				                                      col_class: 'col-md-2',
-				                                      disabled: true,
-				                                      input_value:@fonoaudiologica.paciente.encargado.padre_edad,
-				                                      label_text: 'Edad') %>
+			        <%= FormBuilder::text_field_v(ficha, :paciente_id,
+					                                      col_class: 'col-md-2',
+					                                      disabled: true,
+					                                      input_value:'',
+					                                      label_text: 'Edad') %>
 
-		        <%= FormBuilder::text_field_v(ficha, :paciente_id,
-				                                      col_class: 'col-md-5',
-				                                      disabled: true,
-				                                      input_value:@fonoaudiologica.paciente.encargado.padre_prof_act_ant,
-				                                      label_text: 'Profesión Actual y Anterior') %>
-	   		</div>
-	  		<div class="row">
-		        <%= FormBuilder::text_field_v(ficha, :paciente_id,
-			                                          col_class: 'col-md-4',
-			                                          disabled: true,
-			                                          input_value:@fonoaudiologica.paciente.encargado.madre_nombre,,
-			                                          label_text: 'Nombre de la Madre') %>
+			        <%= FormBuilder::text_field_v(ficha, :paciente_id,
+					                                      col_class: 'col-md-5',
+					                                      disabled: true,
+					                                      input_value:'',
+					                                      label_text: 'Profesión Actual y Anterior') %>
+		   		</div>
+		  		<div class="row">
+			        <%= FormBuilder::text_field_v(ficha, :paciente_id,
+				                                          col_class: 'col-md-4',
+				                                          disabled: true,
+				                                          input_value:'',
+				                                          label_text: 'Nombre de la Madre') %>
 
-		        <%= FormBuilder::text_field_v(ficha, :paciente_id,
-			                                          col_class: 'col-md-2',
-			                                          disabled: true,
-			                                          input_value:@fonoaudiologica.paciente.encargado.madre_apellido,
-			                                          label_text: 'Edad') %>
+			        <%= FormBuilder::text_field_v(ficha, :paciente_id,
+				                                          col_class: 'col-md-2',
+				                                          disabled: true,
+				                                          input_value:'',
+				                                          label_text: 'Edad') %>
 
-		        <%= FormBuilder::text_field_v(ficha, :paciente_id,
-			                                          col_class: 'col-md-2',
-			                                          disabled: true,
-			                                          input_value:@fonoaudiologica.paciente.encargado.madre_num_hijos,
-			                                          label_text: 'Nro de Hijos') %>
+			        <%= FormBuilder::text_field_v(ficha, :paciente_id,
+				                                          col_class: 'col-md-2',
+				                                          disabled: true,
+				                                          input_value:'',
+				                                          label_text: 'Nro de Hijos') %>
 
-		        <%= FormBuilder::text_field_v(ficha, :paciente_id,
-			                                          col_class: 'col-md-4',
-			                                          disabled: true,
-			                                          input_value:@fonoaudiologica.paciente.encargado.madre_prof_act_ant,
-			                                          label_text: 'Profesión Actual y Anterior') %>       
-	  		</div>
-	      	<div class="row">
-		        <%= FormBuilder::text_field_v(ficha, :paciente_id, 
-				                                      col_class: 'col-md-5',
-				                                      disabled: true,
-				                                      input_value:@fonoaudiologica.paciente.encargado.encargado_nombre,
-				                                      label_text: 'Nombre del Encargado') %> 
+			        <%= FormBuilder::text_field_v(ficha, :paciente_id,
+				                                          col_class: 'col-md-4',
+				                                          disabled: true,
+				                                          input_value:'',
+				                                          label_text: 'Profesión Actual y Anterior') %>       
+		  		</div>
+		      	<div class="row">
+			        <%= FormBuilder::text_field_v(ficha, :paciente_id, 
+					                                      col_class: 'col-md-5',
+					                                      disabled: true,
+					                                      input_value:'',
+					                                      label_text: 'Nombre del Encargado') %> 
 
-		        <%= FormBuilder::text_field_v(ficha, :paciente_id,
-				                                      col_class: 'col-md-2',
-				                                      disabled: true,
-				                                      input_value:@fonoaudiologica.paciente.encargado.encargado_edad,
-				                                      label_text: 'Edad') %>
+			        <%= FormBuilder::text_field_v(ficha, :paciente_id,
+					                                      col_class: 'col-md-2',
+					                                      disabled: true,
+					                                      input_value:'',
+					                                      label_text: 'Edad') %>
 
-		        <%= FormBuilder::text_field_v(ficha, :paciente_id,
-				                                      col_class: 'col-md-5',
-				                                      disabled: true,
-				                                      input_value:@fonoaudiologica.paciente.encargado.encargado_prof_act_ant,
-				                                      label_text: 'Profesión Actual y Anterior') %>
-			</div>
-	    </div>
+			        <%= FormBuilder::text_field_v(ficha, :paciente_id,
+					                                      col_class: 'col-md-5',
+					                                      disabled: true,
+					                                      input_value:'',
+					                                      label_text: 'Profesión Actual y Anterior') %>
+				</div>
+		    </div>
+	  	<%else%>
+		    <% @paciente= @fonoaudiologica.paciente%>
+		    <%= render 'encargado_form' %>
+    	<%end%>
         <h4>Datos de la Ficha</h4><hr>
   		<div class="row">
 	        <%= FormBuilder::text_field_v(ficha, :escolaridad, 
