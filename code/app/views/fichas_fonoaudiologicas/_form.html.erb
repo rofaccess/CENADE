@@ -1,6 +1,6 @@
 <div class="form-content form-ficha">
     <div class="page-title page-title-ficha">
-      Nueva Ficha
+      <%=@fonoaudiologica.id.nil? ? 'Nueva Ficha' : 'Editar Ficha'%> 
       <div class="tool">
         <%= link_to '<i class="fa fa-list"></i> '.html_safe, fichas_fonoaudiologicas_path %> 
       </div>

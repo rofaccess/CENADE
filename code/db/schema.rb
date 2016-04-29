@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(version: 20160425000212) do
     t.string   "hora_inicio_tarde"
     t.string   "hora_fin_tarde"
     t.string   "dias_atencion"
-    t.string   "usuario_admin"
+    t.integer  "usuario_admin"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -156,17 +156,16 @@ ActiveRecord::Schema.define(version: 20160425000212) do
   end
 
   create_table "fichas_fonoaudiologicas", force: :cascade do |t|
-    t.integer  "paciente_id"
-    t.integer  "area_id"
+    t.integer  "paciente_id",                          null: false
+    t.integer  "area_id",                              null: false
     t.integer  "doctor_id",                            null: false
     t.string   "escolaridad", limit: 150, default: ""
     t.string   "escuela",     limit: 150, default: ""
+    t.date     "fecha",                                null: false
+    t.integer  "nro_ficha"
     t.datetime "created_at",                           null: false
     t.datetime "updated_at",                           null: false
   end
-
-  add_index "fichas_fonoaudiologicas", ["area_id"], name: "index_fichas_fonoaudiologicas_on_area_id", using: :btree
-  add_index "fichas_fonoaudiologicas", ["paciente_id"], name: "index_fichas_fonoaudiologicas_on_paciente_id", using: :btree
 
   create_table "grupos", force: :cascade do |t|
     t.string   "nombre"

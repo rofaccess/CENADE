@@ -11,14 +11,14 @@
   <tbody>
     <% @fonoaudiologicas.each do |ficha| %>
       <tr>
-        <td ><%=%></td>
+        <td ><%=ficha.nro_ficha %></td>
         <td ><%=ficha.fecha.strftime("%d/%m/%Y") %></td>
         <td ><%=ficha.paciente.persona.nombre %> <%=ficha.paciente.persona.apellido %></td>
         <td ><%=ficha.doctor.abr_profesion %><%=ficha.doctor.persona.nombre %> <%=ficha.doctor.persona.apellido %></td>       
         <td class = "action">
           
-          <%= link_to '<i class="fa fa-eye fa-lg"></i> '.html_safe %>     
-          <%= link_to '<i class="fa fa-edit fa-lg"></i> '.html_safe %>        
+          <%= link_to '<i class="fa fa-eye fa-lg"></i> '.html_safe,edit_fichas_fonoaudiologicas_path(ficha), remote: true  %>     
+          <%= link_to '<i class="fa fa-edit fa-lg"></i> '.html_safe,edit_fichas_fonoaudiologicas_path(ficha), remote: true  %>        
           <%= link_to '<i class="fa fa-plus-square-o  fa-lg"></i>'.html_safe %>
 
         </td>
