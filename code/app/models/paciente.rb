@@ -9,6 +9,8 @@ class Paciente < ActiveRecord::Base
 	belongs_to :persona
 	belongs_to :encargado
 	has_one :ficha_fisioterapia_nino
+
+	has_one :ficha_fisioterapeutica_adulto
 	has_many :consultas
 
 

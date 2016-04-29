@@ -115,6 +115,12 @@ td.action {
 	}
 }
 
+/* Para que el boton + se ubique al lado del select */
+.btn-add{
+	margin-top: 25px;
+	width: 35px;
+}
+
 .btn-danger {    
 
 	background-color: #E41F25;
@@ -170,6 +176,7 @@ body{
 	text-align: center;
 }
 
+/* La linea celeste que se ve debajo del menú cuando no se tiene submenu */
 .line{
 	top: 30px;
 	height: 10px;
@@ -181,108 +188,6 @@ body{
 	border-bottom-color: #CCCCCC;
 	z-index: 1030;
 }
-
-
-
-// Por ahora esto sirve para fichas fisioterapia adulto y el index de turnos
-#principal-content {
-	.page-title {
-		//Posición fija
-		position: fixed;
-		right: 0;
-		left: 0;
-		top: 55px;		
-		z-index: 1030;
-
-		background-color: #FEFEFE;		
-		border-bottom: solid;
-		border-color: #CCCCCC;
-		font-size: 24px;
-		height: 50px;
-		font-weight: bold;
-		padding-top: 7px;
-		padding-left: 50px;
-		padding-right: 20px;
-
-		a {							
-			margin-left: 13px;
-			color: #999999;
-			font-size: 26px;
-			text-decoration: none;
-			i.fa-plus-square, i.fa-search-plus, i.fa-print, i.fa-list,i.fa-list-ul, i.fa-trash-o, i.fa-edit {
-				&:hover,
-				&:focus {
-					color: #24C1C1;
-				}	
-			}				
-		}			
-
-	}
-	
-	// Cuando se tiene el sidebar hay que agregar la clase page-title-con-sidebar al div de titulo de página
-	div.page-title-con-sidebar{
-		margin-left: 200px;
-	}
-	
-	// Cuando no se tiene submenu hay que agregar la siguiente clase, junto a page-title
-	div.page-title-sin-submenu{
-		top: 40px;
-	}
-	
-	/* Se usa en los index */
-	.content2{
-		margin-top: 75px;
-
-		#advanced-search{
-			margin-left: auto;
-			margin-right: auto;
-			background: #EFEFEF;
-			width: 90%;		
-			height: 100px;	
-			padding: 20px 50px 0px 50px; //Top Right Bottom Left
-			border: solid;
-			border-color: #CCCCCC;
-			border-width: 1px;
-			margin-bottom: 20px;
-		}
-		
-		// Cuando se tiene el sidebar hay que agregar la clase advanced-search-con-sidebar al div de busqueda avanzada
-		div.advanced-search-con-sidebar{
-			width: 100% !important;
-		}
-
-		#list {
-			margin-left: auto;
-			margin-right: auto;
-			background: white;
-			width: 90%;
-			padding-left: 50px;
-			padding-right: 50px;
-			padding-top: 50px;
-			padding-bottom: 1px;
-		}
-		
-		// Cuando se tiene el sidebar hay que agregar la clase list-con-sidebar al div de lista
-		div.list-con-sidebar{
-			width: 100% !important;
-		}
-
-		#list-paginate{
-			text-align: right;
-			margin-left: auto;
-			margin-right: auto;
-			background: white;
-			width: 90%;
-			padding-left: 50px;
-			padding-right: 50px; 
-		}
-
-		// Cuando se tiene el sidebar hay que agregar la clase list-paginate-con-sidebar al div de paginación
-		div.list-paginate-con-sidebar{
-			width: 100% !important;
-		}
-	}
-}	
 
 #principal-content {
 
@@ -361,7 +266,7 @@ body{
 	.form-content{
 
 		.page-title > .tool {
-			text-align: right;
+			text-align: right;			
 		}		 
 
 		form{			
@@ -378,6 +283,7 @@ body{
 				font-weight: bold;
 				color: #999999;
 			}
+			
 
 			hr {
 				margin-top: 5px;
@@ -478,7 +384,7 @@ body{
 	font-size: 14px;
 	text-align: right;
 	
-	/* Establece como se ve el input de búsqueda presente en los index */
+	/* Establece como se ve el input de búsqueda presente en los index junto al page-title */
 	form {	
 		.input-group {
 			.form-control{

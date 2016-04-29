@@ -12,9 +12,9 @@
       <%= link_to '<i class="fa fa-print" data-toggle="tooltip" data-placement="bottom" title="Imprimir Lsta de Turnos"></i> '.html_safe, turnos_print_turnos_path(:format => :pdf), target: '_blank' %>    
 
       <%=link_to '<i class="fa fa-print" data-toggle="tooltip" data-placement="bottom" title="Imprimir Lsta de Turnos"></i>'.html_safe, turnos_print_turnos_path(format: 'pdf'), class: 'hide', id: 'imprimir-link', target: '_blank', data: {url: turnos_print_turnos_path(format: 'pdf')} %>
-   </div> 
-</div>
-<% end %>
+    </div> 
+  </div>
+  <% end %>
 </div>
 
 </div>
@@ -40,14 +40,13 @@
       <div class= "input-group pull-right" style = 'margin-top: 25px;'>
        <%= f.submit 'Filtrar', class: 'btn btn-custom '%>
        <%= f.submit 'Limpiar Campos', type: 'reset', class: 'btn btn-link'%>
-    </div>
+     </div>
+   </div>
+   <% end %>
  </div>
- <% end %>
 </div>
-</br></br>
-</div>
-<div id="list" class="">
-   <%= render 'list' %>
+<div id="list">
+ <%= render 'list' %>
 </div> 
 
 <div id="list-paginate">

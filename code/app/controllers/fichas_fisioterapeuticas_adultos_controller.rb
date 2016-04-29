@@ -18,7 +18,13 @@ class FichasFisioterapeuticasAdultosController < ApplicationController
 
 	def new
 		@fisio_adulto= FichaFisioterapeuticaAdulto.new
+		get_doctores_fisioterapia
 	end
+
+	def get_doctores_fisioterapia
+		area = Area.find_by_nombre('Fisioterapia')
+		@doctores = Doctor.find_by_area_id(area.id)
+	end	
 
 	def create
 		@fisio_adulto = FichaFisioterapeuticaAdulto.new(fisio_adulto_params)
@@ -68,7 +74,7 @@ class FichasFisioterapeuticasAdultosController < ApplicationController
 	def show
 
 	end
-  # Checkea que un paciente ya no tenga una ficha en Fisio Adultos
+  # Checkea que un paciente ya no tenga una Ficha de Fisioterapia Adulto
   def check_paciente_id
   	fisio_adulto = FichaFisioterapeuticaAdulto.find_by_paciente_id(params[:paciente_id])
 
