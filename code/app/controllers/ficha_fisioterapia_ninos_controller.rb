@@ -1,7 +1,7 @@
 class FichaFisioterapiaNinosController < ApplicationController
 	before_action :set_submenu, only: [:edit, :new, :show, :index]
 	before_action :set_sidebar, only: [:edit, :new, :show, :index]
-  	before_action :set_fisionino, only: [:show, :edit, :update, :destroy]
+  before_action :set_fisionino, only: [:show, :edit, :update]
 
   def set_submenu
    @submenu_layout = 'layouts/submenu_fichas_consultas'
@@ -21,7 +21,7 @@ class FichaFisioterapiaNinosController < ApplicationController
 
    def create
   	@fisio_nino = FichaFisioterapiaNino.new(fisio_nino_params)
-
+    @paciente= @fisio_nino.paciente
   	 respond_to do |format|
       if @fisio_nino.save
         flash.now[:notice] = 'Ficha registrada exitosamente'
@@ -33,7 +33,7 @@ class FichaFisioterapiaNinosController < ApplicationController
         else
           flash.now[:alert] = "No se ha podido guardar la Ficha"
         end
-        @paciente= @fisio_nino.paciente
+        
         format.html { render "edit"}
         format.js { render "edit"}
 
@@ -43,10 +43,10 @@ class FichaFisioterapiaNinosController < ApplicationController
 
   def edit
     @paciente= @fisio_nino.paciente
-  
   end
 
   def update
+    @paciente= @fisio_nino.paciente
   	respond_to do |format|
       if @fisio_nino.update_attributes(fisio_nino_params)
 
@@ -58,7 +58,6 @@ class FichaFisioterapiaNinosController < ApplicationController
         else
           flash.now[:alert] = "No se ha podido guardar la Ficha"
         end
-        @paciente= @fisio_nino.paciente
         format.html { render action: "edit"}
         format.js { render action: "edit"}
       end
@@ -67,7 +66,7 @@ class FichaFisioterapiaNinosController < ApplicationController
   end
 
   def show
-
+    @paciente= @fisio_nino.paciente
   end
   # Checkea que un paciente ya no tenga una ficha en Fisio Niños
   def check_paciente_id
@@ -94,6 +93,7 @@ class FichaFisioterapiaNinosController < ApplicationController
     @fisio_ninos = @search.result.page(params[:page])
     render 'index'
   end
+
   def print_ficha
       @ficha = FichaFisioterapiaNino.find params[:ficha_id]      
       respond_to do |format|
