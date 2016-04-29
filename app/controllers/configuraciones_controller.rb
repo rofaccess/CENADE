@@ -14,16 +14,14 @@ class ConfiguracionesController < ApplicationController
   def update
     @configuracion = Configuracion.find(params[:id])
     @usuarios = User.all
-    respond_to do |format|
       if @configuracion.update_attributes(configuracion_params)
-        flash.now[:notice] = "Configuraciones actualizadas correctamente"
+        redirect_to edit_configuracion_path(@configuracion), notice: "Configuraciones actualizadas correctamente"
       else
         #@error = true
         #@message = "Ha ocurrido un problema al tratar de guardar la configuracion"
-        flash.now[:alert] = "Ha ocurrido un problema al tratar de guardar la configuracion"
+         redirect_to edit_configuracion_path(@configuracion), alert: "Ha ocurrido un problema al tratar de guardar la configuracion"
       end
-      format.html { render action: "edit"}
-    end
+     
   end
 
   def new  

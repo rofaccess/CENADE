@@ -65,7 +65,7 @@ label.label-title {
 
 
 td.action {
-	width: 80px;
+	width: 90px;
 
 	a {
 		color: #999999;
@@ -182,6 +182,86 @@ body{
 	z-index: 1030;
 }
 
+
+
+// Por ahora esto es especifico para turnos
+#principal-content {
+	.page-title {
+		//Posición fija
+		position: fixed;
+		right: 0;
+		left: 0;
+		top: 55px;		
+		z-index: 1030;
+
+		background-color: #FEFEFE;		
+		border-bottom: solid;
+		border-color: #CCCCCC;
+		font-size: 24px;
+		height: 50px;
+		font-weight: bold;
+		padding-top: 7px;
+		padding-left: 50px;
+		padding-right: 20px;
+
+		a {							
+			margin-left: 13px;
+			color: #999999;
+			font-size: 26px;
+			text-decoration: none;
+			i.fa-plus-square, i.fa-search-plus, i.fa-print, i.fa-list,i.fa-list-ul, i.fa-trash-o, i.fa-edit {
+				&:hover,
+				&:focus {
+					color: #24C1C1;
+				}	
+			}				
+		}			
+
+	}
+	
+	// Cuando no se tiene submenu hay que agregar la siguiente clase, junto a page-title
+	div.page-title-sin-submenu{
+		top: 40px;
+	}
+	
+	.content2{
+		margin-top: 75px;
+
+		#advanced-search{
+			margin-left: auto;
+			margin-right: auto;
+			background: #EFEFEF;
+			width: 90%;			
+			padding: 20px 50px 0px 50px; //Top Right Bottom Left
+			border: solid;
+			border-color: #CCCCCC;
+			border-width: 1px;
+			margin-bottom: 20px;
+		}
+
+		#list {
+			margin-left: auto;
+			margin-right: auto;
+			background: white;
+			width: 90%;
+			padding-left: 50px;
+			padding-right: 50px;
+			padding-top: 50px;
+			padding-bottom: 1px;
+		}
+
+		#list-paginate{
+			text-align: right;
+			margin-left: auto;
+			margin-right: auto;
+			background: white;
+			width: 90%;
+			padding-left: 50px;
+			padding-right: 50px; 
+		}
+	}
+}	
+
 #principal-content {
 
 	.content, .form-content{		
@@ -220,7 +300,8 @@ body{
 		}
 		div.page-title-sin-submenu{
 			top: 40px;
-		}
+		}		
+
 		div.page-title-ficha{
 			margin-left: 200px;
 		}
