@@ -34,7 +34,7 @@ class FichasFonoaudiologicasController < ApplicationController
 	        else
 	          flash.now[:alert] = "No se ha podido guardar la Ficha"
 	        end
-	        @fonoaudiologica_nuevo= true
+	        @paciente= @fonoaudiologica.paciente
 	        format.html { render "edit"}
 	        format.js { render "edit"}
 
@@ -88,7 +88,7 @@ class FichasFonoaudiologicasController < ApplicationController
     end 
 
 	def edit
-
+		@paciente= @fonoaudiologica.paciente
 	end
 	def fonoaudiologica_params
   		params.require(:ficha_fonoaudiologica).permit(:area_id, :paciente_id, :doctor_id, :fecha, :nro_ficha, :escolaridad, :escuela)

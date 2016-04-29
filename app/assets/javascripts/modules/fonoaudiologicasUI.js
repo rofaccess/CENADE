@@ -18,6 +18,25 @@ var fonoaudiologicasUI = (function(){
                 }
             });
         },
+
+        advancedSearchControl: function(){
+          $(".to-hide").hide();
+
+             $(document).ready(function(){
+              var show=true;
+              $("#show").click(function(){
+               if(show){
+                  $("#advanced-search").show();
+                  show=false;
+               }else{
+                  $("#advanced-search").hide();
+                  show=true;
+               }
+
+            });
+          });
+        },
+
 		initScript: function(checkFichaFonoaudiologicaPacienteUrl){
 			fonoaudiologicasUI.checkPACIENTE(checkFichaFonoaudiologicaPacienteUrl);
             

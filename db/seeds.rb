@@ -46,6 +46,7 @@ Area.create(nombre: 'Odontología')
 Area.create(nombre: 'Pediatría')
 Area.create(nombre: 'Psicologia')
 Area.create(nombre: 'Psicopedagogía')
+Area.create(nombre: 'Fonoaudiología')
 
 
 # Funcionarios

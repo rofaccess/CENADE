@@ -1,13 +1,17 @@
 class FichaFonoaudiologica < ActiveRecord::Base
   paginates_per 20
+  #asociaciones
   belongs_to :paciente
   belongs_to :area
   belongs_to :doctor, :foreign_key => :doctor_id
+
+
+  #cargas automáticas
   before_create :cargar_area_id
   before_create :actualizar_nro
 
 	def actualizar_nro
-      ficha = FichaFisioterapiaNino.last
+      ficha = FichaFonoaudiologica.last
       if ficha.nil? 
         self.nro_ficha = 1
       elsif  ficha.nro_ficha.nil?
