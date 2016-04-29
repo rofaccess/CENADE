@@ -2,12 +2,14 @@ var empleadosUI = (function(){
 	return {		
 
 		init: function(){	
+			
+			/* Muestra el show de paciente al hacer click en el registro de la lista de pacientes (Esta en uso) */
 			$('body').on('click', '.show-empleado', function(e){
 				$.get($(this).parents('tr').data('url'), {}, function(){}, 'script');
 			});
 
 			/* Envia el parametro q, pero no renderiza el pdf, y en nueva pestaña no envía q
-			   Actualmente no esta en uso
+			   Esto era una prueba por lo que actualmente no esta en uso
 			*/
 			$('body').on('click', '.print-empleados', function(e){
 				$.ajax({
@@ -97,10 +99,8 @@ var empleadosUI = (function(){
 			$('.telefono').inputmask('Regex', { regex: "[0-9\-\(\),]+" });
 			
 			$('.edad').inputmask('Regex', { regex: "[0-9]+" });
-
-			$('.date').inputmask('Regex', { regex: "[0-9]{2}\/[0-9]{2}\/[0-9]{4}" });
 			
-			APP.initDatepicker('.datepicker')
+			APP.initDatepicker('.datepicker') //Definido en application.js
 
 		   	//Valida el formulario antes de enviarlo
 		  	$('.form-empleado').last().validate();

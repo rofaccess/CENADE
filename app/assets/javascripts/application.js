@@ -95,10 +95,15 @@ APP = {
             autoclose: true,
             orientation: "bottom", 
             todayHighlight: true,           
+            }).on('change', function() {
+                /* Sin lo siguiente, no desaparecen los mensajes de error la primera vez que se selecciona una fecha */
+                $(this).valid(); 
             });
 
-        /* Solo permite escribir el formato dd/mm/yyyy */
-        $(element).inputmask('Regex', { regex: "[0-9]{2}\/[0-9]{2}\/[0-9]{4}" });
+        /* Solo permite escribir números y barras */
+        $(element).inputmask('Regex', { regex: "[0-9\/]+" }); 
+
+        $(element).attr('placeholder', 'dd/mm/aaaa');
     },
 
     init: function() {        
@@ -109,6 +114,7 @@ APP = {
     }
 };
 
+/* Espera el tiempo especificado antes de ejecutar el contenido (o la función?) de delay */
 var delay = (function(){
     var timer = 0;
     return function(callback, ms){
@@ -117,7 +123,7 @@ var delay = (function(){
     };
 })();
 
-/* Configura el plugin noty */
+/* Configura el plugin noty de forma global */
 $.noty.defaults = {
     layout: 'topCenter',
     theme: 'bootstrapTheme',
@@ -145,15 +151,15 @@ $.noty.defaults = {
     buttons: false
 };
 
-/* Configura el select2 */
-$.fn.select2.defaults.set("theme", "bootstrap");
-$.fn.select2.defaults.set("language", "es");
+/* Configura el select2 de forma global */
+$.fn.select2.defaults.set("theme", "bootstrap"); // Todos usarán el tema bootstrap
+$.fn.select2.defaults.set("language", "es");     // Todos usarán lenguaje español
 
 
-/* Todavía no se usa, envía el q de ransack para que se pueda imprimir solo la lista que se esta filtrando */
+/* Envía el q de ransack para que se pueda imprimir solo la lista que se esta filtrando (Actualmente no esta en uso)*/
 function configImprimir (params) {
   $('#imprimir-link').attr('href', $('#imprimir-link').data('url') + params.replace('amp;',''));
 }
 
-
+/* Cuando se carge toda la página se ejecuta la función init */
 $( document ).on('ready', APP.init );

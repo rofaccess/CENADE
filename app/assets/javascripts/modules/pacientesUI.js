@@ -1,6 +1,7 @@
 var pacientesUI = (function(){
 	return {		
 
+		/* Muestra el show de paciente al hacer click en el registro de la lista de pacientes (Actualmente no esta en uso) */
 		init: function(){	
 			$('body').on('click', '.show-paciente', function(e){
 				$.get($(this).parents('tr').data('url'), {}, function(){}, 'script');
@@ -80,16 +81,7 @@ var pacientesUI = (function(){
 			
 			$('.edad').inputmask('Regex', { regex: "[0-9]+" });
 
-			$('.date').inputmask('Regex', { regex: "[0-9]{2}\/[0-9]{2}\/[0-9]{4}" });
-
-			$('.datepicker').datepicker({
-		        format: "dd/mm/yyyy",
-		        language: "es",
-		        autoclose: true,
-		        orientation: "bottom",		       
-		        }).on('change', function() {
-        			$(this).valid();
-		    });
+			APP.initDatepicker('.datepicker') //Definido en application.js
 			
 		   	//Valida el formulario antes de enviarlo
 		  	$('.form-paciente').last().validate();
