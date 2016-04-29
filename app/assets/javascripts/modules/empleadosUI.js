@@ -6,7 +6,9 @@ var empleadosUI = (function(){
 				$.get($(this).parents('tr').data('url'), {}, function(){}, 'script');
 			});
 
-			/* Envia el parametro q, pero no renderiza el pdf, y en nueva pestaña no envía q */
+			/* Envia el parametro q, pero no renderiza el pdf, y en nueva pestaña no envía q
+			   Actualmente no esta en uso
+			*/
 			$('body').on('click', '.print-empleados', function(e){
 				$.ajax({
 					url: $(this).attr('href'),
@@ -97,16 +99,9 @@ var empleadosUI = (function(){
 			$('.edad').inputmask('Regex', { regex: "[0-9]+" });
 
 			$('.date').inputmask('Regex', { regex: "[0-9]{2}\/[0-9]{2}\/[0-9]{4}" });
-
-			$('.datepicker').datepicker({
-		        format: "dd/mm/yyyy",
-		        language: "es",
-		        autoclose: true,
-		        orientation: "bottom",		       
-		        }).on('change', function() {
-        			$(this).valid();
-		    });
 			
+			APP.initDatepicker('.datepicker')
+
 		   	//Valida el formulario antes de enviarlo
 		  	$('.form-empleado').last().validate();
 		}

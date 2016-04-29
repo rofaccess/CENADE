@@ -41,6 +41,7 @@
 //= require modules/configuracionesUI
 //= require modules/usuariosUI
 //= require modules/rolesUI
+//= require modules/fichasFisioterapeuticasAdultosUI
 
 //= require_tree .
 
@@ -85,6 +86,21 @@ APP = {
         });
     },
 
+    /* Inicia el datepicker en el elemento dado */
+    initDatepicker: function(element){
+        
+        $(element).datepicker({
+            format: "dd/mm/yyyy",
+            language: "es",
+            autoclose: true,
+            orientation: "bottom", 
+            todayHighlight: true,           
+            });
+
+        /* Solo permite escribir el formato dd/mm/yyyy */
+        $(element).inputmask('Regex', { regex: "[0-9]{2}\/[0-9]{2}\/[0-9]{4}" });
+    },
+
     init: function() {        
 		APP.initBuscador();
         APP.initSidebarToogle();
@@ -101,6 +117,7 @@ var delay = (function(){
     };
 })();
 
+/* Configura el plugin noty */
 $.noty.defaults = {
     layout: 'topCenter',
     theme: 'bootstrapTheme',
@@ -127,6 +144,11 @@ $.noty.defaults = {
     },
     buttons: false
 };
+
+/* Configura el select2 */
+$.fn.select2.defaults.set("theme", "bootstrap");
+$.fn.select2.defaults.set("language", "es");
+
 
 /* Todavía no se usa, envía el q de ransack para que se pueda imprimir solo la lista que se esta filtrando */
 function configImprimir (params) {
