@@ -10,7 +10,7 @@
 	    <h4>Datos de la Empresa</h4><hr>
 	    <div class="row">
 	    <div class="col-md-8">
-	    	<div class="nomb-empresa">
+	    	<div class=" row nomb-empresa">
 	    		<%= FormBuilder::text_field_v(configuracion, :empresa_nombre, 
 										                    input_class: 'required minLength3', 
 										              		max_length: Domain::EMPRESA_NOMBRE,
@@ -100,9 +100,9 @@
 		</div>	
 		<h4>Administración</h4><hr>
 		<div class="row">
-			<div class="col-md-4 select">
+			<div class="col-md-4">
 				<label>* Usuario Admin</label>
-				<select class ="form-control required  " id="usuario_id" name="usuario_id"  >
+				<select class ="form-control required select2 " id="usuario_id" name="usuario_id"  >
 			       <option value="">Nombre de Usuario </option>
 					<%@usuarios.each do |usuario|%>
 						<option value="<%= usuario.id%>">
@@ -118,7 +118,7 @@
 				<%end%>
 			</div>
 			<div class="col-md-5">
-				<%= configuracion.text_field_tag :usuario_admin, "", class:"hidden" %>
+				<input type="text" name="configuracion[usuario_admin]" id="usuario_admin" value="<%= @configuracion.usuario_admin %>" class="hidden">
 
 				<label class="control-label">* Empleado</label>
 				<input class="form-control usuario-nombre" disabled="disabled" value="" id="usuario_admin2">
@@ -132,11 +132,23 @@
 </div>
 <script type="text/javascript">
 	$(document).ready(function(){
+		$("option[value='<%= @configuracion.usuario_admin %>']").prop("selected",true);
+		nombre= $("#option-nombre-<%= @configuracion.usuario_admin %>").val() + " " + $("#option-apellido-<%= @configuracion.usuario_admin %>").val();
+		$("#usuario_admin2").val(nombre);
 		$("#usuario_id").select2().on("select2:select",function(){
 			id = $(this).val();
 			$("#user_empleado_id").val(id);
 			var nombre= $("#option-nombre-"+id).val() + " " + $("#option-apellido-"+id).val();
-			$("#usuario_admin2").val(nombre);
+			if(nombre!="undefined undefined"){
+				$("#usuario_admin2").val(nombre);
+				
+				//Para que quite los mensajes de error al seleccionar un usuario
+				$(".select2").closest('div').removeClass('text-error');
+				$('#usuario_id-error').hide();
+			}else{
+				$("#usuario_admin2").val("");
+			}
+
 			$("#usuario_admin").val(id);
 	
 		});

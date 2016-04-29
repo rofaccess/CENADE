@@ -20,14 +20,15 @@ class TurnosController < ApplicationController
         format.html { redirect_to turno_path(@turno.id), notice: 'Turno registrado exitosamente'}
       else
         flash.now[:alert] = @turno.errors.full_messages.first
-        @turno= Turno.new
+        @turno_nuevo= true
         format.html { render "new"}
-        format.js { render "new"}
+        format.js { render "edit"}
       end
     end
   end
 
   def edit
+    @turno_nuevo= nil
   end
 
   def update

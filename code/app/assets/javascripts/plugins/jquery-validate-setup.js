@@ -9,7 +9,7 @@ jQuery.validator.setDefaults({
 	},
 	unhighlight: function(element){
 		$(element).closest('.form-control').removeClass('input-error');
-		$(element).closest('div').removeClass('text-error');
+		$(element).closest('div').removeClass('text-error');		
 	},	
 	errorPlacement: function (error, element) {
     if (element.parent('.input-group').length) { 
