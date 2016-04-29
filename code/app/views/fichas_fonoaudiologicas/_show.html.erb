@@ -1,18 +1,27 @@
 <div class="form-content form-ficha">
     <div class="page-title page-title-ficha">
-      Nueva Ficha
+      Ficha de <%= @fonoaudiologica.paciente.persona.nombre%> <%= @fonoaudiologica.paciente.persona.apellido%>
       <div class="tool">
-       <%= link_to '<i class="fa fa-list"></i> '.html_safe, fichas_fonoaudiologicas_path %> 
-      <%= link_to '<i class="fa fa-plus-square"></i> '.html_safe, new_ficha_fonoaudiologica_path, remote: true%> 
-      
-      <%= link_to '<i class="fa fa-edit"></i> '.html_safe, edit_ficha_fonoaudiologica_path(@fonoaudiologica.id), remote:true%> 
+	       <%= link_to '<i class="fa fa-list"></i> '.html_safe, fichas_fonoaudiologicas_path %> 
+	       <%= link_to '<i class="fa fa-plus-square"></i> '.html_safe, new_ficha_fonoaudiologica_path, remote: true%> 
+	      
+	       <%= link_to '<i class="fa fa-edit"></i> '.html_safe, edit_ficha_fonoaudiologica_path(@fonoaudiologica.id), remote:true%>
+	            <%= link_to '<i class="fa fa-print"></i> '.html_safe, fichas_fonoaudiologicas_print_ficha_path(ficha_id: @fonoaudiologica.id, :format => :pdf), target: '_blank'%> 
       </div>
     </div>
     <%= form_for @fonoaudiologica, html: {class: 'nueva-ficha form-ficha', :multipart => true }, remote: true do |ficha|%>
     	<%= hidden_field_tag :id, @fonoaudiologica.id %>
 	      <h3 align="center">FICHA DE FONOAUDIOLOGIA</h3></br>
-
-			<h4>Datos del Paciente</h4><hr>
+	      <div class="row">
+          <div class="col-md-9">
+          	<h4><%= ficha.label :doctor_id, 'Profesional de la Salud: ' %> <%= @fonoaudiologica.doctor.persona.nombre%> <%= @fonoaudiologica.doctor.persona.apellido%> </h4>
+          </div>
+          <div class="col-md-3">
+            <h4><%= ficha.label :fecha, 'Fecha: ' %> <%= @fonoaudiologica.fecha%> </h4>
+          </div>
+        </div>
+        </br>
+		<h4>Datos del Paciente</h4><hr>
 
 		<div class ="paciente_data">
 	    	<div class="row">
@@ -144,23 +153,18 @@
 			                                      max_length: Domain::ESCOLARIDAD,
 			                                      col_class: 'col-md-6',
 			                                      disabled: true,
-			                                      input_value:'',
 			                                      label_text: 'Grado que Cursa') %> 
 
 	        <%= FormBuilder::text_field_v(ficha, :escuela,
 			                                      max_length: Domain::ESCUELA,
 			                                      col_class: 'col-md-6',
 			                                      disabled: true,
-			                                      input_value:'',
 			                                      label_text: 'Escuela') %>
-        </div> 
-        <div class="form-button">         
-      		<%= ficha.submit 'Guardar', class: 'btn btn-custom'%>
-    	</div>  
+        </div>   
     <%end%>
 </div>
 <script type="text/javascript"> 
-  fonoaudiologicasUI.initScript("<%= check_paciente_id_path %>");
+  fonoaudiologicasUI.initScript();
 
   <% if !flash.notice.blank? %> 
     var n = noty({text: '<%=notice%>', type: 'success'});   

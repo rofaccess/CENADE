@@ -1,1 +1,5 @@
-$("#principal-content").html('<%= j render 'edit', formats: 'html' %>');
+$("#principal-content").html('<%= j render 'form', formats: 'html' %>');
+$('.paciente_data').html("<%= j render partial: 'paciente_form'%>");
+<% if !@paciente.encargado.nil? %>
+	$('.encargado_data').html("<%= j render partial: 'encargado_form'%>");
+<%end%>
