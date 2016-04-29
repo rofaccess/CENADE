@@ -14,12 +14,12 @@
       <h4>Datos Personales</h4>
       <hr>
       <div class="row">
-        <div class="col-md-7">
+        <div class="col-md-7 error-especial">
 
 
           <%= turno.label :paciente_id, '* Paciente' %> 
           <div class="row">
-            <div class="col-md-10">
+            <div class="col-md-10 form-group">
 
             <%= turno.select(:paciente_id, Hash[Paciente.all.map{|a| [a.persona.nombre + " "+ a.persona.apellido, a.id]}],{},{class: "paciente_select form-control select2", required: true,  id: 'paciente_id'})%>
           </div>
@@ -80,7 +80,7 @@
     <hr>
 
     <div class="row">
-      <div class="col-md-4">
+      <div class="col-md-4 form-group">
 
         <%= turno.label :area_id, '* Área a consultar' %> 
 
@@ -88,7 +88,7 @@
 
       </div>
 
-      <div class="col-md-4">
+      <div class="col-md-4 form-group">
 
         <%= turno.label :doctor_id, '* Profesional de la Salud' %> 
 
