@@ -12,9 +12,9 @@ class CreateConsultas < ActiveRecord::Migration
     	t.date :fecha
     	t.string :profesional_salud,		default: '' ,limit: Domain::NOM_APE, null: true # Nombre y Apellido del Profesional por si las dudas
 
-    	t.string :motivo_consulta,			default: '' ,limit: Domain::DESC250, null: true
-    	t.string :evaluacion,				default: '' ,limit: Domain::DESC250, null: true
-    	t.string :tratamiento,				default: '' ,limit: Domain::DESC250, null: true
+    	t.string :motivo_consulta,			default: '' ,limit: Domain::DESC300, null: true
+    	t.string :evaluacion,				default: '' ,limit: Domain::DESC300, null: true
+    	t.string :tratamiento,				default: '' ,limit: Domain::DESC600, null: true
     	t.string :observaciones,			default: '' ,limit: Domain::DESC250, null: true
 
     	t.datetime :deleted_at 

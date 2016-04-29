@@ -83,4 +83,8 @@ module Domain
 	DESC50 = 50
 	DESC100 = 100
 	DESC250 = 250
+
+	DESC600 = 600
+	DESC300 = 300
+
 end
