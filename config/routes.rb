@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  get 'fichas_fisioterapeuticas_adultos/test' => 'fichas_fisioterapeuticas_adultos#test'
   get 'fichas_fisioterapeuticas_adultos/check_paciente_id' => 'fichas_fisioterapeuticas_adultos#check_paciente_id'
   get 'fichas_fisioterapeuticas_adultos/print_ficha' => 'fichas_fisioterapeuticas_adultos#print_ficha'
   resources :fichas_fisioterapeuticas_adultos do

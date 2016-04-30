@@ -35,4 +35,14 @@ class Paciente < ActiveRecord::Base
 
 	ransack_alias :persona, :persona_nombre_or_persona_apellido_or_persona_ci
 	#ransack_alias :paciente, :paciente_persona_ci_or_paciente_persona_nombre_or_paciente_persona_apellido_cont	
+
+	# Retorna el nombre y apellido del paciente, usado en /pacientes/buscar
+	def full_name
+  		"#{persona.nombre} #{persona.apellido}"
+	end
+
+	# Retorna el ci del paciente, usado en /pacientes/buscar
+	def ci
+		"#{persona.ci}"
+	end	
 end

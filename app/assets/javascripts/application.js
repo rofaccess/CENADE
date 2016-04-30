@@ -62,7 +62,7 @@ function formatSelectionClient(c){
 
 APP = {  
 
-    /* Para que el listado se actualice a medida que se tipea */
+    /* Para que el listado en los index se actualice a medida que se tipea en el buscador*/
     initBuscador: function(){
     	$('.buscador').on('keyup', 'input', function () {
 			delay(function(){
@@ -119,67 +119,8 @@ APP = {
         $(element).inputmask('Regex', { regex: "[0-9\/]+" }); 
 
         $(element).attr('placeholder', 'dd/mm/aaaa');
-    },
-
-     /**
-     * Funciones para inicializar el buscador de pacientes
-     */
-
+    }, 
     
-    // Retorna como se muestra cada opcion: Nombre y Apellido del Paciente + C.I.
-    
-    formatPacientes: function(m) {
-        return '<span>' + m + '</span> <br> <strong>CI: </strong>' + m;
-    },
-    
-    // Lo que se hace al seleccionar una opcion
-    // Se coloca el ci en la celda de ci
-    
-    formatPacientesSelection: function(m, el) {
-        $(el).parents('tr').find('.ci-celda').text(m);
-        return m;
-    },
-    
-    /**
-     * Inicializador del buscador de paciente con un select2
-     * Recibe un objeto con:
-     * {
-     *   elemento:      El objeto jquery del elemento input al que se va a utilizar como buscador,
-     *   url:           La url del metodo para buscar en el servidor
-     * }
-     */
-    initBuscarPaciente: function(options){
-        options.element.select2({
-            
-            minimumInputLength: 2,            
-            ajax: {
-                url: options.url,
-                dataType: 'json',
-                data: function(params){
-                    return {
-                        q: { paciente_persona_ci_or_paciente_persona_nombre_or_paciente_persona_apellido_cont: params.term }, // search term
-                        page: params.page
-                    };
-                },
-               
-                results: function (data, page) {                     
-                    var more = (page * 25) < data.total_count;
-                    return {
-                        results: eliminarItemsSeleccionados(data.items),
-                        more: more
-                    };
-                }             
-            },            
-            
-            //formatResult: formatPacientes,
-            //formatSelection: formatPacientesSelection,
-            //escapeMarkup: function(m) { return m; }
-        }).on("change",function(){
-            /* Sin lo siguiente no desaparecen los mensajes de error cuando se selecciona un item */
-            $(this).valid();
-        });
-    },
-
     init: function() {        
 		APP.initBuscador();
         APP.initSidebarToogle();
@@ -233,14 +174,6 @@ $.fn.select2.defaults.set("language", "es");     // Todos usarán lenguaje espa�
 /* Envía el q de ransack para que se pueda imprimir solo la lista que se esta filtrando (Actualmente no esta en uso)*/
 function configImprimir (params) {
   $('#imprimir-link').attr('href', $('#imprimir-link').data('url') + params.replace('amp;',''));
-}
-
-function formatPacientes(paciente) {
-  return '<div>' + paciente.persona.nombre + '</div>';
-}
-
-function formatPacientesSelection(paciente) {
-  return paciente.persona.nombre;
 }
 
 /* Cuando se carge toda la página se ejecuta la función init */
