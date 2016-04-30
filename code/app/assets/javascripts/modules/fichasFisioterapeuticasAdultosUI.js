@@ -18,53 +18,29 @@ var fichasFisioterapeuticasAdultosUI = (function(){
 				}
 			});
 		},
+
 		initScript: function(checkPacienteUrl){
-			fichasFisioterapeuticasAdultosUI.checkPaciente(checkPacienteUrl);
-           /*
-           $(".select-paciente").select2({
-            placeholder: "Seleccione un paciente",
-            language: "es",
-            theme: "bootstrap"
+			fichasFisioterapeuticasAdultosUI.checkPaciente(checkPacienteUrl);				
+			APP.initDatepicker('.datepicker')		   	
+		   	$('.form-ficha2').validate(); //Valida el formulario antes de enviarlo
 
-	        }).on("select2:select",function(){
-	            $(this).valid();
-	            id = $(this).val();
+		   	/* Inicializa select2 en pacientes */
+		   	
+		   	$(".select-paciente").select2({
+				placeholder: "Seleccione un Paciente"
+			}).on("change", function(){
+				$(this).valid();
+			});	
 
-	            $.ajax({
+			/* Inicializa select2 en Profesionales de Salud */
+		   	$(".select-doctor").select2({
+				placeholder: "Seleccione un Profesional de Salud"
+			}).on("change", function(){
+				$(this).valid();
+			});
 
-	              url: "/fichas_fisioterapeuticas_adultos/get_paciente",
-	              type: 'get',
-	              data: {
-	               id : $(this).val()
-	           },
-	           success: function(resp){
-	                      //alert("Data");
-	                  }
-	                  
-	              });
-	        });
-				*/
-				$(".profesional_select").select2({
-					placeholder: "Seleccione un Profesional",
-					language: "es",
-					theme: "bootstrap"
 
-				}).on('change', function () {
-					$(this).valid();
-				});
-				$(".area_select").select2({
-					placeholder: "Seleccione un Área",
-					theme: "bootstrap",
-					language: "es"
 
-				}).on('change', function () {
-					$(this).valid(); //onchange creo que sera mejor
-				});
-
-				APP.initDatepicker('.datepicker')
-
-		   	//Valida el formulario antes de enviarlo
-		   	$('.form-ficha2').validate();
-		   }
-		};
-	}()); 
+		}
+	};
+}()); 

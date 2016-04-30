@@ -1,6 +1,6 @@
 class FichasFisioterapeuticasAdultosController < ApplicationController
-	before_action :set_submenu, only: [:edit, :new, :show, :index]
-	before_action :set_sidebar, only: [:edit, :new, :show, :index]
+	before_action :set_submenu, only: [:edit, :new, :show, :index, :test]
+	before_action :set_sidebar, only: [:edit, :new, :show, :index, :test]
 	before_action :set_fisioadulto, only: [:show, :edit, :update, :destroy]
 
 	def set_submenu
@@ -24,6 +24,7 @@ class FichasFisioterapeuticasAdultosController < ApplicationController
 	def get_doctores_fisioterapia
 		area = Area.find_by_nombre('Fisioterapia')
 		@doctores = Doctor.find_by_area_id(area.id)
+		@pacientes = Paciente.all
 	end	
 
 	def create
@@ -92,6 +93,11 @@ class FichasFisioterapeuticasAdultosController < ApplicationController
   	@search = FichaFisioterapeuticaAdulto.search(params[:q])
   	@fisio_adultos = @search.result.page(params[:page])
   	render 'index'
+  end
+
+  # Método para testear el select 2
+  def test
+  	new 	
   end
 
   def print_ficha

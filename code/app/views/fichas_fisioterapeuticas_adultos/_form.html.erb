@@ -27,7 +27,7 @@
 							  collection: Doctor.all.collect { |a| [a.abr_profesion + " "+ a.persona.nombre + " "+ a.persona.apellido, a.id] },
 							  label: '* Profesional de la Salud',
 							  wrapper_html: { class: 'col-md-4' },
-							  input_html:	 { class: 'required'} %>				
+							  input_html:	 { class: 'required select-doctor select2'} %>				
 
 		<%= ficha.input :fecha, as: :string,
 							  label: '* Fecha',
@@ -35,29 +35,20 @@
 							  input_html:	 { class: 'datepicker required', max_length: Domain::FECHA} %>					  
 
 		
+	</div>	
+
+
+	<div class="form-button">         
+		<%= ficha.submit 'Guardar', class: 'btn btn-custom'%>
 	</div>
 
-
-		<div class="form-button">         
-			<%= ficha.submit 'Guardar', class: 'btn btn-custom'%>
-		</div>
-
-		<% end %>
+	<% end %>
 </div>
 
-<script type="text/javascript"> 
-	/*
-	$('#ficha_fisioterapeutica_adulto_paciente_id').select2({
-		placeholder: "Seleccione un Paciente",                
-	}).on("select2:select",function(){
-        $(this).valid();
-    }); 
-	*/	
-
-	APP.initBuscarPaciente({element: $('.select-paciente'), url: '<%= pacientes_buscar_path%>' });
-	
+<script type="text/javascript"> 		
 	
 	fichasFisioterapeuticasAdultosUI.initScript("<%= fichas_fisioterapeuticas_adultos_check_paciente_id_path%>");
+	
 	<% if !flash.notice.blank? %> 
 		var n = noty({text: '<%=notice%>', type: 'success'});   
 	<% end %>

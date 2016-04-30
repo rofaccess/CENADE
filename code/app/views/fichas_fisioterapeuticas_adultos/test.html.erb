@@ -1,0 +1,102 @@
+<div class="page-title page-title-con-sidebar">
+	Testeo de Select 2
+
+	<div class="tool">
+		<%= link_to '<i class="fa fa-list"></i> '.html_safe, fichas_fisioterapeuticas_adultos_path %> 
+	</div>
+
+</div>
+
+<div class="form-content2">    
+
+	<%= simple_form_for @fisio_adulto, html: {class: 'form-ficha2'}, remote: true do |ficha|%>
+	
+	
+	<h4 class="titulo-ficha">TEST SELECT 2</h4>
+	
+	<div class="row">			
+		<%= ficha.input :paciente_id, 
+                collection: [],
+                label: '* Paciente',
+                wrapper_html: { class: 'col-md-4'}, 
+                input_html:  { class: 'required select-paciente select2'} %>
+		
+		<div class="form-group col-md-4">
+			<label class="control-label">* Paciente</label>
+			<select class="required select-paciente select2 form-control" >	</select>
+		</div>
+
+		<!-- <%= FormBuilder::select_v(ficha, :paciente_id, [], 
+									col_class: 'col-md-4',
+									label_text: '* Pacientes',
+									input_class: 'required select-paciente select2') %> -->
+		
+	</div>
+
+	<div class="form-button">         
+		<%= ficha.submit 'Guardar', class: 'btn btn-custom'%>
+	</div>
+
+	<% end %>
+</div>
+
+<script type="text/javascript"> 
+	/*  */
+	
+	pacientesUI.buscarPaciente('.select-paciente');
+	//buscarPaciente({element: $('.select-paciente'), url: '<%= pacientes_buscar_path%>' });
+
+	$('.form-ficha2').validate();
+	
+	/* Función para buscar pacientes recibe el elemento que se usará como buscador y la url donde buscar */
+	function buscarPaciente (options) {
+		options.element.select2({
+            ajax: {            	
+                url: options.url,
+                dataType: 'json',
+                data: function(params){
+                    return {
+                        q: { persona_cont: params.term }, 
+                    };
+                },
+               
+                processResults: function (data, params) {
+			      	return {
+				        results: $.map( data.items, function(paciente, i) { 
+				            return { id:      	paciente.id, 
+				            		 text:      paciente.full_name, 
+				            	     full_name: paciente.full_name,
+				            	     ci:      	paciente.ci } 
+				        })			        
+      				};
+    			},
+
+    			cache: true        
+            },
+            placeholder: "Nombre, Apellido o CI",
+  			allowClear: true,            
+            minimumInputLength: 2,
+  			templateResult: formatPaciente,//formatPaciente es una función definida más abajo
+            escapeMarkup: function (markup) { return markup; } 
+
+        }).on("change",function(){
+            /* Sin lo siguiente no desaparecen los mensajes de error cuando se selecciona un item */
+            $(this).valid();
+        });		
+	};
+
+	/* 
+		Esto le da un formato customizado a los datos recibidos	
+		El argumento recibido puede nombrarse de otra forma Ej. En vez de paciente usar patient
+	*/
+	function formatPaciente (paciente) {
+		if (!paciente.id) { return paciente.text; }
+		 
+		  var $paciente = $(
+		    '<span>' + paciente.full_name + '<br><span class="fa fa-credit-card"> </span>  ' + paciente.ci + '</span>'
+		);
+		return $paciente;		
+	};		
+		
+
+</script>
