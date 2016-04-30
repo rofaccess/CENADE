@@ -262,6 +262,39 @@ body{
 	}
 }	
 
+.page-title2 {
+			//Posición fija
+			position: fixed;
+			width: 100%;
+			top: 55px;		
+			z-index: 1030;
+
+			background-color: #FEFEFE;		
+			border-bottom: solid;
+			border-color: #CCCCCC;
+			font-size: 24px;
+			height: 50px;
+			font-weight: bold;
+			padding-top: 7px;
+			padding-left: 50px;
+			padding-right: 20px;
+			
+			a {							
+				margin-left: 13px;
+				color: #999999;
+				font-size: 26px;
+				text-decoration: none;
+				i.fa-plus-square, i.fa-search-plus, i.fa-print, i.fa-list,i.fa-list-ul, i.fa-trash-o, i.fa-edit {
+					&:hover,
+					&:focus {
+						color: #24C1C1;
+					}	
+				}				
+			}			
+
+		}
+
+
 #principal-content {
 
 	.content, .form-content{		
@@ -298,9 +331,16 @@ body{
 			}			
 
 		}
+
+
 		div.page-title-sin-submenu{
 			top: 40px;
 		}		
+
+		div.page-title-auto{
+
+			margin: 0 0 0 auto;
+		}
 
 		div.page-title-ficha{
 			margin-left: 200px;
