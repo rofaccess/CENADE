@@ -16,10 +16,10 @@
 	
 	<div class="row">			
 		<%= ficha.input :paciente_id, 
-							  collection: Paciente.all.collect { |a| [a.persona.nombre + " "+ a.persona.apellido, a.id] },
-							  label: '* Paciente',
-							  wrapper_html: { class: 'col-md-4'}, 
-							  input_html:	 { class: 'required select2'} %>
+                collection: Paciente.all.collect { |a| [a.persona.nombre + " "+ a.persona.apellido, a.id] },
+                label: '* Paciente',
+                wrapper_html: { class: 'col-md-4'}, 
+                input_html:  { class: 'required select-paciente select2'} %>
 				
 		<%= link_to '<i class="fa fa-plus"></i> '.html_safe, pacientes_new_paciente_modal_path(root: 'fichas_fisioterapeuticas_adultos', encargado: true), class: 'btn btn-custom btn-add col-md-1', remote: true %> 
 				
@@ -46,13 +46,17 @@
 </div>
 
 <script type="text/javascript"> 
-
+	/*
 	$('#ficha_fisioterapeutica_adulto_paciente_id').select2({
 		placeholder: "Seleccione un Paciente",                
 	}).on("select2:select",function(){
         $(this).valid();
-    });    
+    }); 
+	*/	
 
+	APP.initBuscarPaciente({element: $('.select-paciente'), url: '<%= pacientes_buscar_path%>' });
+	
+	
 	fichasFisioterapeuticasAdultosUI.initScript("<%= fichas_fisioterapeuticas_adultos_check_paciente_id_path%>");
 	<% if !flash.notice.blank? %> 
 		var n = noty({text: '<%=notice%>', type: 'success'});   

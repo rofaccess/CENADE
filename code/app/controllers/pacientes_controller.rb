@@ -125,6 +125,12 @@ class PacientesController < ApplicationController
     	@paciente = Paciente.find(params[:id])
     end
 
+    # Buscador de pacientes
+    def buscar
+      get_pacientes
+      render json: {items: @pacientes, total_count: @pacientes.total_count}      
+    end
+
     def get_pacientes
     	@search = Paciente.ransack(params[:q])
     	@pacientes= @search.result.page(params[:page])
