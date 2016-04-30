@@ -22,7 +22,7 @@ class FichasFonoaudiologicasController < ApplicationController
 
 	def create
 	  	@fonoaudiologica = FichaFonoaudiologica.new(fonoaudiologica_params)
-
+	  	@paciente= @fonoaudiologica.paciente
 	  	 respond_to do |format|
 	      if @fonoaudiologica.save
 	        flash.now[:notice] = 'Ficha registrada exitosamente'
@@ -42,7 +42,7 @@ class FichasFonoaudiologicasController < ApplicationController
 	    end
  	end
  	def update
- 		
+ 	  @paciente= @fonoaudiologica.paciente
   	  respond_to do |format|
 	      if @fonoaudiologica.update_attributes(fonoaudiologica_params)
 
@@ -68,7 +68,7 @@ class FichasFonoaudiologicasController < ApplicationController
 	# Checkea que un paciente ya no tenga una ficha en Fonoaudiologia
 	def check_paciente_id
 	    fonoaudiologica = FichaFonoaudiologica.find_by_paciente_id(params[:paciente_id]) 
-	    render json: (fonoaudiologica.nil? || fonoaudiologica.id != params[:id].to_i) ? true : "El Paciente ya posee una Ficha".to_json
+	    render json: (fonoaudiologica.nil? || fonoaudiologica.id == params[:id].to_i) ? true : "El Paciente ya posee una Ficha".to_json
 	end
  	
 	def show

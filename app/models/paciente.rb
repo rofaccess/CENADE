@@ -10,7 +10,7 @@ class Paciente < ActiveRecord::Base
 	belongs_to :encargado
 
 	has_one :ficha_fisioterapia_nino
-	has_one :fichas_fonoaudiologicas
+	has_one :ficha_fonoaudiologica
 
 	has_many :consultas
 
