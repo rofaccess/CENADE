@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     end
   end
 
+  get 'consultas/consulta_from_ficha' => 'consultas#consulta_from_ficha'
   get 'consultas/print_consulta' => 'consultas#print_consulta'
   resources :consultas do
     collection do

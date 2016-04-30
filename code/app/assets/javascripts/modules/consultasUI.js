@@ -48,7 +48,7 @@ var consultasUI = (function(){
                   
                  });
               });
-              $(".profesional_select").select2({
+              $(".profesional_select2").select2({
                 placeholder: "Seleccione un Profesional",
                 language: "es",
                 theme: "bootstrap"
