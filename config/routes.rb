@@ -17,13 +17,15 @@ Rails.application.routes.draw do
       get'get_paciente' => 'ficha_fisioterapia_ninos#get_paciente'
     end
   end
-
+  
+  get 'pacientes/buscar' => 'pacientes#buscar'
   get 'pacientes/print_pacientes' => 'pacientes#print_pacientes'
   get 'pacientes/print_paciente' => 'pacientes#print_paciente'
   get 'pacientes/check_ci' => 'pacientes#check_ci'
   post 'pacientes/recarga_paciente' => 'pacientes#recarga_paciente'
   get 'pacientes/new_paciente_modal' => 'pacientes#new_paciente_modal'
   resources :pacientes
+  
   get 'roles/check_name' => 'roles#check_name'
   resources :roles
   resources :doctores

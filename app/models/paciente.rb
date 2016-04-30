@@ -34,4 +34,5 @@ class Paciente < ActiveRecord::Base
     end
 
 	ransack_alias :persona, :persona_nombre_or_persona_apellido_or_persona_ci
+	#ransack_alias :paciente, :paciente_persona_ci_or_paciente_persona_nombre_or_paciente_persona_apellido_cont	
 end

@@ -41,9 +41,24 @@
 //= require modules/configuracionesUI
 //= require modules/usuariosUI
 //= require modules/rolesUI
-//= require modules/fichasFisioterapeuticasAdultosUI
 
 //= require_tree .
+
+/* Nota: La línea anterior carga todos los script, asi que en teoría, no es necesario ćargar el contenido de los modules */
+
+/*
+function formatResults(c){
+    var markup = ['<li class="ciudad-result">'];
+    markup.push(c.nombre);
+    markup.push('</br><span>'+c.estado.nombre+', '+c.estado.pais.nombre+'</span>');
+    markup.push('</li>');
+    return markup.join('');
+}
+
+function formatSelectionClient(c){
+    return c.nombre;
+}
+*/
 
 APP = {  
 
@@ -86,7 +101,7 @@ APP = {
         });
     },
 
-    /* Inicia el datepicker en el elemento dado */
+    /* Inicia el datepicker en el element dado */
     initDatepicker: function(element){
         
         $(element).datepicker({
@@ -104,6 +119,65 @@ APP = {
         $(element).inputmask('Regex', { regex: "[0-9\/]+" }); 
 
         $(element).attr('placeholder', 'dd/mm/aaaa');
+    },
+
+     /**
+     * Funciones para inicializar el buscador de pacientes
+     */
+
+    
+    // Retorna como se muestra cada opcion: Nombre y Apellido del Paciente + C.I.
+    
+    formatPacientes: function(m) {
+        return '<span>' + m + '</span> <br> <strong>CI: </strong>' + m;
+    },
+    
+    // Lo que se hace al seleccionar una opcion
+    // Se coloca el ci en la celda de ci
+    
+    formatPacientesSelection: function(m, el) {
+        $(el).parents('tr').find('.ci-celda').text(m);
+        return m;
+    },
+    
+    /**
+     * Inicializador del buscador de paciente con un select2
+     * Recibe un objeto con:
+     * {
+     *   elemento:      El objeto jquery del elemento input al que se va a utilizar como buscador,
+     *   url:           La url del metodo para buscar en el servidor
+     * }
+     */
+    initBuscarPaciente: function(options){
+        options.element.select2({
+            
+            minimumInputLength: 2,            
+            ajax: {
+                url: options.url,
+                dataType: 'json',
+                data: function(params){
+                    return {
+                        q: { paciente_persona_ci_or_paciente_persona_nombre_or_paciente_persona_apellido_cont: params.term }, // search term
+                        page: params.page
+                    };
+                },
+               
+                results: function (data, page) {                     
+                    var more = (page * 25) < data.total_count;
+                    return {
+                        results: eliminarItemsSeleccionados(data.items),
+                        more: more
+                    };
+                }             
+            },            
+            
+            //formatResult: formatPacientes,
+            //formatSelection: formatPacientesSelection,
+            //escapeMarkup: function(m) { return m; }
+        }).on("change",function(){
+            /* Sin lo siguiente no desaparecen los mensajes de error cuando se selecciona un item */
+            $(this).valid();
+        });
     },
 
     init: function() {        
@@ -159,6 +233,14 @@ $.fn.select2.defaults.set("language", "es");     // Todos usarán lenguaje espa�
 /* Envía el q de ransack para que se pueda imprimir solo la lista que se esta filtrando (Actualmente no esta en uso)*/
 function configImprimir (params) {
   $('#imprimir-link').attr('href', $('#imprimir-link').data('url') + params.replace('amp;',''));
+}
+
+function formatPacientes(paciente) {
+  return '<div>' + paciente.persona.nombre + '</div>';
+}
+
+function formatPacientesSelection(paciente) {
+  return paciente.persona.nombre;
 }
 
 /* Cuando se carge toda la página se ejecuta la función init */

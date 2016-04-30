@@ -7,6 +7,14 @@
 
 </div>
 
+/*
+  <%= ficha.input :paciente_id, 
+                collection: Paciente.all.collect { |a| [a.persona.nombre + " "+ a.persona.apellido, a.id] },
+                label: '* Paciente',
+                wrapper_html: { class: 'col-md-4'}, 
+                input_html:  { class: 'required select-paciente select2'} %>
+  */
+
 <div class="form-content2">    
 
 <%= form_for @fisio_adulto, html: {class: 'form-ficha2', :multipart => true }, remote: true do |ficha|%>
