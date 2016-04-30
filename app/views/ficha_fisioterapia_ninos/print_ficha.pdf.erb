@@ -1,79 +1,109 @@
-<h3>Ficha Pediátrica - Fisioterapia</h3></br></br>
+<h3 align= "center">Ficha Pediátrica - Fisioterapia</h3></br></br>
 <div class = "form-content">
 	<div class = "form-font">
 	  <div class= "row col-md-12">
 	  	<h4>Datos Personales</h4>
-		<hr>
-		<label class="control-label">Nombre y Apellido: </label> <%= @ficha.paciente.persona.nombre%> <%= 						@ficha.paciente.persona.apellido%>............
+		<hr></br>
+
+		<label>Nombre y Apellido: </label> 
+		<input size="42" class= "border-input" value="<%= @ficha.paciente.persona.nombre%> <%= 											@ficha.paciente.persona.apellido%>">
 		
-		<label class="control-label">Fecha de Ingreso: </label> <%= @ficha.fecha.strftime("%d/%m/%Y") %>.							  ..
-		<label class="control-label">Sexo </label> <%= @ficha.paciente.persona.sexo %>
+		<label class="control-label">Fecha de Ingreso: </label>
+		<input size="10" class= "border-input" value="<%= @ficha.fecha.strftime("%d/%m/%Y")%>">	
+		
 	</div>
+
 	</br>
 
 	<div class= "row col-md-12">
-		<label class="control-label">Nacionalidad: </label> <%= @ficha.paciente.persona.nacionalidad%> Paraguaya.............
-		<label class="control-label">Fecha de nacimiento: </label> <%= @ficha.paciente.persona.fecha_nacimiento.strftime("%d/%m/%Y") %>......
 
-		<label class="control-label">Edad: </label> <%= @ficha.paciente.persona.edad %>
+		<label>Nacionalidad: </label>
+		<input size="27" class= "border-input" value="<%= @ficha.paciente.persona.nacionalidad%>">
+		<label >Fecha de nacimiento: </label> 
+		<input size="10" class= "border-input" value="<%= @ficha.paciente.persona.fecha_nacimiento.strftime("%d/%m/%Y") %>">
 		
+		<label class="control-label">Edad: </label>
+		<input size="3" class= "border-input" value="<%= @ficha.paciente.persona.edad %>">	
 	</div>
 	</br>
 
+
 	<div class= "row col-md-12">
-		<label class="control-label">Direccion </label> <%= @ficha.paciente.persona.direccion%>....
+		<label>Direccion </label> 
+		<input size="40" class= "border-input" value="<%= @ficha.paciente.persona.direccion%>">
 	
-		<label class="control-label">N° de Teléfono: </label> <%= @ficha.paciente.persona.telefono %>
+		<label >Teléfono: </label>
+		<input size="12" class= "border-input" value="<%= @ficha.paciente.persona.telefono %>">
+
+		<label >Sexo: </label> 
+		<input size="7" class= "border-input" value="<%= @ficha.paciente.persona.sexo %>">
 
 	</div>
+	
 	</br></br>
 	
 	<% encargado= @ficha.paciente.encargado%>
 
 	<%if !encargado.nil? %>
 	<h4>Datos de Encargados</h4>
-	<hr>
+	<hr></br>
 	<div class= "row col-md-12">
-		<label class="control-label">Madre: </label> <%= encargado.madre_nombre %> ..
-		<label class="control-label">Edad: </label> <%= encargado.madre_edad%>...
+		<label class="control-label">Madre: </label> 
+		<input size="25" class= "border-input" value="<%= encargado.madre_nombre %>">
+		<label class="control-label">Edad: </label>
+		<input size="3" class= "border-input" value="<%= encargado.madre_edad%>">
 
-		<label class="control-label">Profesión: </label> <%= encargado.madre_prof_act_ant %>..
-		<label class="control-label">Nro de Hijos: </label> <%= encargado.madre_num_hijos %>
+		<label class="control-label">Profesión: </label> 
+		<input size="17" class= "border-input" value="<%= encargado.madre_prof_act_ant %>">
+		<label class="control-label">N° Hijos: </label> 
+		<input size="2" class= "border-input" value="<%= encargado.madre_num_hijos %>">
 
 	</div>
 	</br>
 	<div class= "row col-md-12">
-		<label class="control-label">Padre: </label> <%= encargado.padre_nombre%> .............
-		<label class="control-label">Edad: </label> <%= encargado.padre_edad %>......
+	
+		<label class="control-label">Padre: </label> 
+		<input size="39" class= "border-input" value="<%= encargado.padre_nombre%>">
 
-		<label class="control-label">Profesión: </label> <%= encargado.padre_prof_act_ant %>
+		<label class="control-label">Edad: </label>
+		<input size="3" class= "border-input" value="<%= encargado.padre_edad %>">
+
+		<label class="control-label">Profesión: </label> 
+		<input size="23" class= "border-input" value="<%= encargado.padre_prof_act_ant %>">
+	
 
 	</div>
 	</br>
 	<%end%>
 	<h4>Embarazo</h4>
-	<hr>
+	<hr></br>
 	<div class= "row col-md-12">
-		<label class="control-label">Control Prenatal: </label> <%= @ficha.control_embarazo%>..
-		<label class="control-label">Edad Gestacional: </label> <%= @ficha.edad_gestacional%>..
-
-		<label class="control-label">Tipo de Parto: </label> <%= @ficha.tipo_parto %>
-
+		<label class="control-label">Control Prenatal: </label> 
+		<input size="33" class= "border-input" value="<%= @ficha.control_embarazo%>">
+		<label class="control-label">Edad Gestacional: </label> 
+		<input size="25" class= "border-input" value="<%= @ficha.edad_gestacional%>">
 	</div>
 	</br>
+		<label>Tipo de Parto: </label>
+		<input size="90" class= "border-input"value=" <%= @ficha.tipo_parto %>">
+	</br></br>
 	
 	<div class= "row col-md-12">
-		<label class="control-label">Peso al Nacer: </label> <%= @ficha.peso_nacer%>...
-		<label class="control-label">Apgar: </label> <%= @ficha.apgar%>...
-
-		<label class="control-label">Antecedentes Familiares: </label> <%= @ficha.antecedentes_familiares%>....
-
+		
+		<label class="">Peso al Nacer: </label>
+		<input size="35" class= "border-input" value="<%= @ficha.antecedentes_familiares%>">
+		<label class="control-label">Apgar: </label>
+		<input size="40" class= "border-input" value="<%= @ficha.apgar%>">
 	</div>
 	</br>
 
-	<div class= "row col-md-12">
-		<label class="control-label">Condiciones Generales del Recién Nacido: </label> <%= @ficha.condicion_general%>..................................................................................
-		</div>
+		<label class="control-label">Antecedentes Familiares: </label> 
+		<input size="77" class= "border-input" value="<%= @ficha.antecedentes_familiares%>">
+
+	</br></br>
+
+		<label class="control-label">Condiciones Generales del Recién Nacido: </label> 
+		<textarea rows="5" class= "form-control border-input"><%= @ficha.condicion_general%></textarea>
 	 
 
 	</div>
