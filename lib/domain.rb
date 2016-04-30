@@ -66,8 +66,8 @@ module Domain
 	NRO_FACTURA = 15
 
 	#Fichas Fonoaudiologicas
-	ESCOLARIDAD = 150
-	ESCUELA = 150
+	ESCOLARIDAD = 50
+	ESCUELA = 100
 
 	#FICHAS FISIOTERAPIA NINOS
 

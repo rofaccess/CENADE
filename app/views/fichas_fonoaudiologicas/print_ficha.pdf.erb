@@ -1,4 +1,4 @@
-<h3 align= "center">Ficha Fonoaudiología</h3></br></br>
+<h3 align= "center">FONOAUDIOLOGÍA</h3></br></br>
 <div class = "form-content">
 	<div class = "form-font">
 	  <div class= "row col-md-12">
@@ -28,7 +28,7 @@
 	</div>
 
 	<div class= "row col-md-12">
-		<label class="control-label">Curso que Cursa: </label> 
+		<label class="control-label">Grado que Cursa: </label> 
 		<input size="33" class= "border-input" value="<%= @ficha.escolaridad%>"></br>
 		<label class="control-label">Escuela: </label> 
 		<input size="25" class= "border-input" value="<%= @ficha.escuela%>"></br>
@@ -37,14 +37,14 @@
 
 	<% encargado= @ficha.paciente.encargado%>
 	<%if !encargado.nil? %>
-		<h4>Datos de Encargados</h4>
+		<h4>Datos de los Padres o Encargados</h4>
 		<hr>
 		<div class= "row col-md-12">
 			<label class="control-label">Nombre de la Madre: </label> 
 			<input size="25" class= "border-input" value="<%= encargado.madre_nombre %>"></br>
 			<label class="control-label">Edad: </label>
 			<input size="3" class= "border-input" value="<%= encargado.madre_edad%>"></br>
-			<label class="control-label">N° Hijos: </label> 
+			<label class="control-label">Numero de Hijos: </label> 
 			<input size="2" class= "border-input" value="<%= encargado.madre_num_hijos %>"></br>
 			<label class="control-label">Profesión Actual y Anterior: </label> 
 			<input size="17" class= "border-input" value="<%= encargado.madre_prof_act_ant %>"></br>

@@ -59,17 +59,18 @@ class FichasFonoaudiologicasController < ApplicationController
 	      	end 
     	end
   	end
- 	  #busca el paciente seleccionado en la base de datos
-	def get_paciente
-	    @paciente= Paciente.find(params[:paciente_id])
-	  
-	end
 
 	# Checkea que un paciente ya no tenga una ficha en Fonoaudiologia
 	def check_paciente_id
 	    fonoaudiologica = FichaFonoaudiologica.find_by_paciente_id(params[:paciente_id]) 
 	    render json: (fonoaudiologica.nil? || fonoaudiologica.id == params[:id].to_i) ? true : "El Paciente ya posee una Ficha".to_json
 	end
+
+	#busca el paciente seleccionado en la base de datos
+	def get_paciente
+    @paciente= Paciente.find(params[:id])
+      
+  	end
  	
 	def show
 	 @fonoaudiologica = FichaFonoaudiologica.find(params[:id])

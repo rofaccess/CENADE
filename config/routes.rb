@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  get 'check_paciente_id' => 'fichas_fonoaudiologicas#check_paciente_id'
+  get 'fichas_fonoaudiologicas_check_paciente_id' => 'fichas_fonoaudiologicas#check_paciente_id'
   get 'fichas_fonoaudiologicas/print_ficha' => 'fichas_fonoaudiologicas#print_ficha'
   resources :fichas_fonoaudiologicas do
     collection do

@@ -1,10 +1,10 @@
 var fonoaudiologicasUI = (function(){
 	return {		
-		checkPACIENTE: function(checkFonoaudiologicaPacienteUrl){
+		checkPACIENTE: function(checkFichaFonoaudiologicaPacienteUrl){
       $.validator.addClassRules({
           uniquePACIENTE: {
               remote: {
-                  url: checkFonoaudiologicaPacienteUrl,
+                  url: checkFichaFonoaudiologicaPacienteUrl,
                   type: "get",
                   data: {
                       paciente_id: function() {
@@ -37,11 +37,9 @@ var fonoaudiologicasUI = (function(){
           });
         },
 
-		initScript: function(checkFichaFonoaudiologicaPacienteUrl){
-			fonoaudiologicasUI.checkPACIENTE(checkFichaFonoaudiologicaPacienteUrl);
-      fonoaudiologicasUI.advancedSearchControl();
-            
-            $(".paciente_select").select2({
+        selectControl: function(){
+
+             $(".paciente_select").select2({
                 placeholder: "Seleccione un paciente",
                 language: "es",
                 theme: "bootstrap"
@@ -55,10 +53,10 @@ var fonoaudiologicasUI = (function(){
                   url: "/fichas_fonoaudiologicas/get_paciente",
                   type: 'get',
                   data: {
-                   paciente_id : $(this).val()
+                   id : $(this).val()
                   },
                   success: function(resp){
-                      //alert("Data");
+                      
                    }
                   
                  });
@@ -71,6 +69,7 @@ var fonoaudiologicasUI = (function(){
                 }).on('change', function () {
                     $(this).valid();
                 });
+
             $(".area_select").select2({
                 placeholder: "Seleccione un Área",
                 theme: "bootstrap",
@@ -79,7 +78,17 @@ var fonoaudiologicasUI = (function(){
                 }).on('change', function () {
                     $(this).valid();
                 });
+           
+        },
 
+		initScript: function(checkFichaFonoaudiologicaPacienteUrl){
+			    fonoaudiologicasUI.checkPACIENTE(checkFichaFonoaudiologicaPacienteUrl);
+
+          fonoaudiologicasUI.advancedSearchControl();
+            
+          fonoaudiologicasUI.selectControl();
+            
+            
             $('.datepicker').datepicker({
                 format: "dd/mm/yyyy",
                 language: "es",
