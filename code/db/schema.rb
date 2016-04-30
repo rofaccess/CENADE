@@ -159,8 +159,8 @@ ActiveRecord::Schema.define(version: 20160425000212) do
     t.integer  "paciente_id",                          null: false
     t.integer  "area_id",                              null: false
     t.integer  "doctor_id",                            null: false
-    t.string   "escolaridad", limit: 150, default: ""
-    t.string   "escuela",     limit: 150, default: ""
+    t.string   "escolaridad", limit: 50,  default: ""
+    t.string   "escuela",     limit: 100, default: ""
     t.date     "fecha",                                null: false
     t.integer  "nro_ficha"
     t.datetime "created_at",                           null: false
