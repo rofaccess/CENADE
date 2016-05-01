@@ -30,7 +30,9 @@ jQuery.validator.setDefaults({
 	}
 });
 
-// Reglas para las validaciones
+/* Reglas para las validaciones
+   Todas los identificadores de las reglas de validación tendrán el formato camello
+*/
 $.validator.addClassRules({
 	required: {
 		required: true,

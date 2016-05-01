@@ -35,7 +35,10 @@ $common-color: #24C1C1;
 	}
 }
 
-
+/* Evita que se puedan redimensionar horizontalmente los text area */
+textarea {
+    max-width: 100%; 
+}
 
 .titulos-campos{
 	font-weight: normal;

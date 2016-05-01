@@ -9,7 +9,7 @@
 
 <div class="form-content2">    
 
-	<%= simple_form_for @fisio_adulto, html: {class: 'form-ficha2'}, remote: true do |ficha|%>
+	<%= simple_form_for @ficha, html: {class: 'form-ficha2'}, remote: true do |ficha|%>
 	
 	
 	<h4 class="titulo-ficha">TEST SELECT 2</h4>
@@ -56,7 +56,7 @@
                 dataType: 'json',
                 data: function(params){
                     return {
-                        q: { persona_cont: params.term }, 
+                        q: { paciente_cont: params.term }, 
                     };
                 },
                
