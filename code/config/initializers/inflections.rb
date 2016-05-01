@@ -34,6 +34,7 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
 	inflect.irregular 'grupo', 'grupos'
 	inflect.irregular 'ficha_fisioterapia_nino', 'ficha_fisioterapia_ninos'
 	inflect.irregular 'ficha_fonoaudiologica','fichas_fonoaudiologicas'
+	inflect.irregular 'ficha_psicopedagogica','ficha_psicopedagogicas'
 	inflect.irregular 'consulta', 'consultas'
 
 

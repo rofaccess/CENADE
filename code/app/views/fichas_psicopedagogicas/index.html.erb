@@ -1,0 +1,16 @@
+<div class ="content">
+    <div class="page-title page-title-ficha">  
+   		Fichas 
+  	</div>
+  	<div class="tool">
+         <div class="input-group"> 
+          	<div class="input-group-btn"> 
+              <a href="#"><i class="fa fa-search-plus" aria-hidden="true" id= "show" data-toggle="tooltip" data-placement="bottom" title="Filtrar"></i></a>
+              <%= link_to '<i class="fa fa-plus-square" aria-hidden="true" id= "show" data-toggle="tooltip" data-placement="bottom" title="Nueva Ficha"></i> '.html_safe%>             
+          </div> 
+    	</div>
+	</div>
+</div>
+<div id="list">
+    <%= render 'list' %>
+</div>
