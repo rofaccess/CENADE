@@ -100,7 +100,7 @@ var empleadosUI = (function(){
 			
 			$('.edad').inputmask('Regex', { regex: "[0-9]+" });
 			
-			APP.initDatepicker('.datepicker') //Definido en application.js
+			APP.initDatepicker(); 
 
 		   	//Valida el formulario antes de enviarlo
 		  	$('.form-empleado').last().validate();

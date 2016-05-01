@@ -19,12 +19,12 @@ class FichasFisioterapeuticasAdultosController < ApplicationController
 	def new
 		@fisio_adulto= FichaFisioterapeuticaAdulto.new
 		get_doctores_fisioterapia
+		@paciente = Paciente.find(1)
 	end
 
 	def get_doctores_fisioterapia
 		area = Area.find_by_nombre('Fisioterapia')
-		@doctores = Doctor.find_by_area_id(area.id)
-		@pacientes = Paciente.all
+		@doctores = Doctor.where(area_id: area.id)
 	end	
 
 	def create

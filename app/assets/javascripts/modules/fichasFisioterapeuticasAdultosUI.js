@@ -4,7 +4,7 @@ var fichasFisioterapeuticasAdultosUI = (function(){
 			$.validator.addClassRules({
 				uniquePaciente: {
 					remote: {
-						url: checkPacienteUrl,
+						url: "/fichas_fisioteraputicas_adultos/check_paciente_id",
 						type: "get",
 						data: {
 							paciente_id: function() {
@@ -20,18 +20,14 @@ var fichasFisioterapeuticasAdultosUI = (function(){
 		},
 
 		initScript: function(checkPacienteUrl){
-			fichasFisioterapeuticasAdultosUI.checkPaciente(checkPacienteUrl);				
-			APP.initDatepicker('.datepicker')		   	
+			fichasFisioterapeuticasAdultosUI.checkPaciente();				
+			APP.initDatepicker()		   	
 		   	$('.form-ficha2').validate(); //Valida el formulario antes de enviarlo
-
-		   	/* Inicializa select2 en pacientes */
-		   	
-		   	$(".select-paciente").select2({
-				placeholder: "Seleccione un Paciente"
-			}).on("change", function(){
-				$(this).valid();
-			});	
-
+ 			
+ 			/* Inicializa el buscador de pacientes */
+ 			pacientesUI.buscarPaciente('.select-paciente');
+ 			
+ 			//buscarPaciente({element: $('.select-paciente'), url: '<%= pacientes_buscar_path%>' });	
 			/* Inicializa select2 en Profesionales de Salud */
 		   	$(".select-doctor").select2({
 				placeholder: "Seleccione un Profesional de Salud"

@@ -1,7 +1,7 @@
 var pacientesUI = (function(){
 	
 	/* 
-		Esto le da un formato customizado a los datos recibidos	
+		Esto le da un formato customizado a los datos recibidos	en buscarPaciente
 		El argumento recibido puede nombrarse de otra forma Ej. En vez de paciente usar patient
 	*/
 	function formatPaciente (paciente) {
@@ -13,14 +13,7 @@ var pacientesUI = (function(){
 		return $paciente;		
 	};		
 
-	return {		
-
-		/* Muestra el show de paciente al hacer click en el registro de la lista de pacientes (Actualmente no esta en uso) */
-		init: function(){	
-			$('body').on('click', '.show-paciente', function(e){
-				$.get($(this).parents('tr').data('url'), {}, function(){}, 'script');
-			});			
-		},	
+	return {			
 
 		/* Setea el element dado como buscador de pacientes */
 		buscarPaciente: function(element) {
@@ -28,6 +21,7 @@ var pacientesUI = (function(){
 	            ajax: { 
 	                url: '/pacientes/buscar',
 	                dataType: 'json',
+	                delay:300,
 	                data: function(params){
 	                    return {
 	                        q: { persona_cont: params.term }, 
@@ -47,16 +41,20 @@ var pacientesUI = (function(){
 
 	    			cache: true        
 	            },
-	            placeholder: "Nombre, Apellido o CI",
+	            placeholder: "Buscar por Nombre, Apellido o CI",
 	  			allowClear: true,            
 	            minimumInputLength: 2,
 	  			templateResult: formatPaciente,//formatPaciente es una función definida más arriba
 	            escapeMarkup: function (markup) { return markup; } 
 
-	        }).on("change",function(){
-	            /* Sin lo siguiente no desaparecen los mensajes de error cuando se selecciona un item */
-	            $(this).valid();
 	        });		
+		},
+
+		/* Valida cuando se elige otro paciente */
+		validatePaciente: function(element){
+			$(element).on("change", function(){
+				$(this).valid(); 			
+			});
 		},		
 			
 		/* Muestra los inputs para encargados dependiendo del checkbox */
@@ -94,20 +92,24 @@ var pacientesUI = (function(){
 			$('.borrar-encargado').attr("value","true");	
 		},
 		
-		/* Verifica que un ci especificado no exista ya en la base de datos */
-		checkCI: function(checkPacienteCIUrl){
+		
+		/**
+	     *  Verifica que un ci no exista ya en la base de datos 
+	     * Recibe un objeto con:
+	     * {
+	     *   ci: el ci a comprobar
+	     *	 persona_id: el id de persona al que esta relacionado el paciente
+	     * }
+	     */
+		checkCi: function(options){
 			$.validator.addClassRules({
-                uniquePacienteCI: {
+                uniquePacienteCi: {
                     remote: {
-                        url: checkPacienteCIUrl,
+                        url: "/pacientes/check_ci",
                         type: "get",
                         data: {
-                            ci: function() {
-                                return $( ".ci" ).val();
-                            },
-                            id: function() {
-                                return $('.paciente-id').val();
-                            }
+                            ci: options.ci,
+                            persona_id: options.persona_id
                         }
                     }
                 }
@@ -115,8 +117,8 @@ var pacientesUI = (function(){
 		},
 		
 		// Inicia el script en el formulario
-		initScript: function(checkPacienteCIUrl){
-			pacientesUI.checkCI(checkPacienteCIUrl);
+		initScript: function(){
+			pacientesUI.checkCi({ci: $('#paciente_persona_attributes_ci'), persona_id: $('paciente_persona_attributes_id'});
 
 			pacientesUI.mostrarEncargados();
 
@@ -134,14 +136,10 @@ var pacientesUI = (function(){
 			
 			$('.edad').inputmask('Regex', { regex: "[0-9]+" });
 
-			APP.initDatepicker('.datepicker') //Definido en application.js
+			APP.initDatepicker() 
 			
 		   	//Valida el formulario antes de enviarlo
 		  	$('.form-paciente').last().validate();
 		}
 	};
 }());
-
-$(function(){
-	pacientesUI.init();
-});

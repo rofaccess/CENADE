@@ -4,5 +4,5 @@ class Persona < ActiveRecord::Base
  	has_one :paciente
  	belongs_to :estado_civil
 
- 	validates :email, length: {maximum: Domain::EMAIL, minimum: 8}
+ 	validates :email, length: {maximum: Domain::EMAIL, minimum: 8} 	 	
 end
