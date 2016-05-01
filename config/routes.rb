@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   get 'fichas_fisioterapeuticas_adultos/test' => 'fichas_fisioterapeuticas_adultos#test'
-  get 'fichas_fisioterapeuticas_adultos/check_paciente_id' => 'fichas_fisioterapeuticas_adultos#check_paciente_id'
+  get 'fichas_fisioterapeuticas_adultos/check_paciente_has_ficha' => 'fichas_fisioterapeuticas_adultos#check_paciente_has_ficha'
   get 'fichas_fisioterapeuticas_adultos/print_ficha' => 'fichas_fisioterapeuticas_adultos#print_ficha'
   resources :fichas_fisioterapeuticas_adultos do
     collection do
@@ -29,6 +29,8 @@ Rails.application.routes.draw do
   
   get 'roles/check_name' => 'roles#check_name'
   resources :roles
+  
+  get 'doctores/buscar' => 'doctores#buscar'
   resources :doctores
   resources :funcionarios
 

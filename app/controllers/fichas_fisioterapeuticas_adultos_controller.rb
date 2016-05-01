@@ -1,7 +1,7 @@
 class FichasFisioterapeuticasAdultosController < ApplicationController
 	before_action :set_submenu, only: [:edit, :new, :show, :index, :test]
 	before_action :set_sidebar, only: [:edit, :new, :show, :index, :test]
-	before_action :set_fisioadulto, only: [:show, :edit, :update, :destroy]
+	before_action :set_ficha, only: [:show, :edit, :update, :destroy]
 
 	def set_submenu
 		@submenu_layout = 'layouts/submenu_fichas_consultas'
@@ -13,13 +13,15 @@ class FichasFisioterapeuticasAdultosController < ApplicationController
 
 	def index
 		@search = FichaFisioterapeuticaAdulto.ransack(params[:q])
-		@fisio_adultos= @search.result.page(params[:page])
+		@fichas= @search.result.page(params[:page])
 	end
 
 	def new
-		@fisio_adulto= FichaFisioterapeuticaAdulto.new
+		@ficha= FichaFisioterapeuticaAdulto.new
 		get_doctores_fisioterapia
-		@paciente = Paciente.find(1)
+
+		# Para renderizar un formulario vacio de datos del paciente
+		@paciente = Paciente.new
 	end
 
 	def get_doctores_fisioterapia
@@ -28,20 +30,19 @@ class FichasFisioterapeuticasAdultosController < ApplicationController
 	end	
 
 	def create
-		@fisio_adulto = FichaFisioterapeuticaAdulto.new(fisio_adulto_params)
+		@ficha = FichaFisioterapeuticaAdulto.new(ficha_params)
 
 		respond_to do |format|
-			if @fisio_adulto.save
-				flash.now[:notice] = 'Ficha registrada exitosamente'
+			if @ficha.save
+				flash.now[:notice] = 'Ficha registrada exitosamente'				
 				format.html {render 'show'}
-				format.js { render "show"}
 			else
-				if @fisio_adulto.errors.full_messages.any?
-					flash.now[:alert] = @fisio_adulto.errors.full_messages.first
+				if @ficha.errors.full_messages.any?
+					flash.now[:alert] = @ficha.errors.full_messages.first
 				else
 					flash.now[:alert] = "No se ha podido guardar la Ficha"
 				end
-				@fisio_adulto_nuevo= true
+				@ficha_nuevo= true
 				format.html { render "edit"}
 				format.js { render "edit"}
 
@@ -50,18 +51,18 @@ class FichasFisioterapeuticasAdultosController < ApplicationController
 	end
 
 	def edit
-		@fisio_adulto_nuevo= nil
+
 	end
 
 	def update
 		respond_to do |format|
-			if @fisio_adulto.update_attributes(fisio_adulto_params)
+			if @ficha.update_attributes(ficha_params)
 
 				format.html { redirect_to fichas_fisioterapeuticas_adultos_path, notice: 'Ficha actualizado exitosamente'}
 			else
 
-				if @fisio_adulto.errors.full_messages.any?
-					flash.now[:alert] = @fisio_adulto.errors.full_messages.first
+				if @ficha.errors.full_messages.any?
+					flash.now[:alert] = @ficha.errors.full_messages.first
 				else
 					flash.now[:alert] = "No se ha podido guardar la Ficha"
 				end
@@ -76,10 +77,10 @@ class FichasFisioterapeuticasAdultosController < ApplicationController
 
 	end
   # Checkea que un paciente ya no tenga una Ficha de Fisioterapia Adulto
-  def check_paciente_id
-  	fisio_adulto = FichaFisioterapeuticaAdulto.find_by_paciente_id(params[:paciente_id])
+  def check_paciente_has_ficha
+  	ficha = FichaFisioterapeuticaAdulto.find_by_paciente_id(params[:paciente_id])
 
-  	render json: (fisio_adulto.nil? || fisio_adulto.id == params[:id].to_i) ? true : "El Paciente ya posee una Ficha".to_json
+  	render json: (ficha.nil? || ficha.id == params[:id].to_i) ? true : "El Paciente ya posee una Ficha".to_json
   end
 
   # Busca el paciente seleccionado en la base de datos
@@ -91,7 +92,7 @@ class FichasFisioterapeuticasAdultosController < ApplicationController
   # Metodo creado para el filtro
   def buscar
   	@search = FichaFisioterapeuticaAdulto.search(params[:q])
-  	@fisio_adultos = @search.result.page(params[:page])
+  	@fichas = @search.result.page(params[:page])
   	render 'index'
   end
 
@@ -111,11 +112,12 @@ class FichasFisioterapeuticasAdultosController < ApplicationController
   	end
   end
 
-  def set_fisioadulto
-  	@fisio_adulto= FichaFisioterapeuticaAdulto.find(params[:id])
+  def set_ficha
+  	@ficha= FichaFisioterapeuticaAdulto.find(params[:id])
+  	@paciente = Paciente.find(@ficha.paciente_id)
   end 
 
-  def fisio_adulto_params
+  def ficha_params
   	params.require(:ficha_fisioterapeutica_adulto).permit(:area_id, :paciente_id, :doctor_id, :encargado, :medicamentos,
   		:antecedente_actual, :antecedente_hereditario, :condicion_paciente, :fecha, :nro_ficha)
   end 

@@ -50,12 +50,12 @@ Area.create(nombre: 'Psicopedagogía')
 
 # Funcionarios
 for i in 1..15
-	Funcionario.create(persona_id: i, cargo: Faker::Name.title )
+	Funcionario.create(persona_id: i, cargo: Faker::Name.title, abr_profesion: 'Lic. ' )
 end
 
 # Doctores
 for i in 16..30
-	Doctor.create(persona_id: i, cargo: Faker::Name.title, area_id: Faker::Number.positive(1, 9))
+	Doctor.create(persona_id: i, cargo: Faker::Name.title, area_id: Faker::Number.positive(1, 9), abr_profesion: 'Lic. ')
 end
 
 # Pacientes

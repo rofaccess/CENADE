@@ -31,20 +31,14 @@ class Paciente < ActiveRecord::Base
       	encargado.update(paciente_id: id)
       	encargado.destroy
       end	
-    end
-
-	ransack_alias :persona, :persona_nombre_or_persona_apellido_or_persona_ci
-	#ransack_alias :paciente, :paciente_persona_ci_or_paciente_persona_nombre_or_paciente_persona_apellido_cont	
+    end		
 
 	# Retorna el nombre y apellido del paciente, usado en /pacientes/buscar
 	def full_name
-  		"#{persona.nombre} #{persona.apellido}"
-	end
-
-	# Retorna el ci del paciente, usado en /pacientes/buscar
-	def ci
-		"#{persona.ci}"
+  		"#{persona_nombre} #{persona_apellido}"
 	end	
+
+	ransack_alias :paciente, :persona_nombre_or_persona_apellido_or_persona_ci
 
 	# Law of Demeter 
 	delegate :nombre, :apellido, :ci, :edad, :sexo, :ci, :nacionalidad, :fecha_nacimiento, :profesion, :telefono, :direccion, to: :persona, prefix: true, allow_nil: true
