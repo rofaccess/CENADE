@@ -6,5 +6,4 @@ class Doctor < Empleado
  	has_many :ficha_fisioterapia_ninos	
 
  	has_many :consultas
-
 end

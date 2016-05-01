@@ -60,8 +60,8 @@ function formatSelectionClient(c){
 }
 */
 
-APP = {  
-
+APP = {      
+    
     /* Para que el listado en los index se actualice a medida que se tipea en el buscador*/
     initBuscador: function(){
     	$('.buscador').on('keyup', 'input', function () {
@@ -101,10 +101,10 @@ APP = {
         });
     },
 
-    /* Inicia el datepicker en el element dado */
-    initDatepicker: function(element){
+    /* Inicia el datepicker en un campo que tenga la clase datepicker */
+    initDatepicker: function(){
         
-        $(element).datepicker({
+        $('.datepicker').datepicker({
             format: "dd/mm/yyyy",
             language: "es",
             autoclose: true,

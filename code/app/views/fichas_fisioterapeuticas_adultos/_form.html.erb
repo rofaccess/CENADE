@@ -15,28 +15,16 @@
 	<h4 class="titulo-ficha">FICHA FISIOTERAPIA ADULTO</h4>
 	
 	<div class="row">			
-		<%= ficha.input :paciente_id, 
-                collection: Paciente.all.collect { |a| [a.persona.nombre + " "+ a.persona.apellido, a.id] },
-                label: '* Paciente',
-                wrapper_html: { class: 'col-md-4'}, 
-                input_html:  { class: 'required select-paciente select2'} %>
+		<%= ficha.input :paciente_id, collection: [], label: '* Paciente', wrapper_html: { class: 'col-md-4'}, input_html:  { class: 'required select-paciente select2'} %>
 				
 		<%= link_to '<i class="fa fa-plus"></i> '.html_safe, pacientes_new_paciente_modal_path(root: 'fichas_fisioterapeuticas_adultos', encargado: true), class: 'btn btn-custom btn-add col-md-1', remote: true %> 
-				
-		<%= ficha.input :doctor_id, 
-							  collection: Doctor.all.collect { |a| [a.abr_profesion + " "+ a.persona.nombre + " "+ a.persona.apellido, a.id] },
-							  label: '* Profesional de la Salud',
-							  wrapper_html: { class: 'col-md-4' },
-							  input_html:	 { class: 'required select-doctor select2'} %>				
+			
+		<%= ficha.input :doctor_id, collection: @doctores.collect { |a| [a.abr_profesion + " "+ a.persona.nombre + " "+ a.persona.apellido, a.id] }, label: '* Profesional de la Salud', wrapper_html: { class: 'col-md-4' }, input_html:	 { class: 'required select-doctor select2'} %>				
 
-		<%= ficha.input :fecha, as: :string,
-							  label: '* Fecha',
-							  wrapper_html: { class: 'col-md-3'},
-							  input_html:	 { class: 'datepicker required', max_length: Domain::FECHA} %>					  
-
-		
+		<%= ficha.input :fecha, as: :string, label: '* Fecha', wrapper_html: { class: 'col-md-3'}, input_html: { class: 'datepicker required', max_length: Domain::FECHA} %>
 	</div>	
 
+	<%= render 'paciente_form' %>
 
 	<div class="form-button">         
 		<%= ficha.submit 'Guardar', class: 'btn btn-custom'%>
@@ -47,8 +35,11 @@
 
 <script type="text/javascript"> 		
 	
-	fichasFisioterapeuticasAdultosUI.initScript("<%= fichas_fisioterapeuticas_adultos_check_paciente_id_path%>");
+	fichasFisioterapeuticasAdultosUI.initScript();
 	
+	/* Inicializa el validador y actualiza los datos del paciente */
+ 	pacientesUI.onChangePaciente({element: $('.select-paciente'), url: '<%=fichas_fisioterapeuticas_adultos_paciente_has_ficha_path%>'});
+
 	<% if !flash.notice.blank? %> 
 		var n = noty({text: '<%=notice%>', type: 'success'});   
 	<% end %>

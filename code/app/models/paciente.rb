@@ -45,4 +45,7 @@ class Paciente < ActiveRecord::Base
 	def ci
 		"#{persona.ci}"
 	end	
+
+	# Law of Demeter 
+	delegate :nombre, :apellido, :ci, :edad, :sexo, :ci, :nacionalidad, :fecha_nacimiento, :profesion, :telefono, :direccion, to: :persona, prefix: true, allow_nil: true
 end
