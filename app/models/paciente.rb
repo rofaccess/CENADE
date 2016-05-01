@@ -8,7 +8,10 @@ class Paciente < ActiveRecord::Base
 	has_many :turnos
 	belongs_to :persona
 	belongs_to :encargado
+
 	has_one :ficha_fisioterapia_nino
+	has_one :ficha_fonoaudiologica
+
 	has_many :consultas
 
 
