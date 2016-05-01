@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
 
-  resources :fichas_psicopedagogicas
+  get 'fichas_psicopedagogicas_check_paciente_id'=> 'fichas_psicopedagogicas#check_paciente_id'
+  resources :fichas_psicopedagogicas do
+    collection do
+      match 'buscar'=>'fichas_psicopedagogicas#buscar', via: [:get, :post],as: :search
+      get 'get_paciente'=>'fichas_psicopedagogicas#get_paciente'
+    end
+  end
 
   get 'fichas_fonoaudiologicas_check_paciente_id' => 'fichas_fonoaudiologicas#check_paciente_id'
   get 'fichas_fonoaudiologicas/print_ficha' => 'fichas_fonoaudiologicas#print_ficha'
@@ -10,10 +16,10 @@ Rails.application.routes.draw do
       get 'get_paciente' => 'fichas_fonoaudiologicas#get_paciente'
     end
   end
+
+  
   get 'ficha_fisioterapia_ninos/check_paciente_id' => 'ficha_fisioterapia_ninos#check_paciente_id'
   get 'ficha_fisioterapia_ninos/print_ficha' => 'ficha_fisioterapia_ninos#print_ficha'
-
-
   resources :ficha_fisioterapia_ninos do
     collection do
       match 'buscar' => 'ficha_fisioterapia_ninos#buscar', via: [:get, :post], as: :search
