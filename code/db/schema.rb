@@ -207,6 +207,18 @@ ActiveRecord::Schema.define(version: 20160501050951) do
     t.datetime "updated_at",                  null: false
   end
 
+  create_table "fichas_fonoaudiologicas", force: :cascade do |t|
+    t.integer  "paciente_id",                          null: false
+    t.integer  "area_id",                              null: false
+    t.integer  "doctor_id",                            null: false
+    t.string   "escolaridad", limit: 50,  default: ""
+    t.string   "escuela",     limit: 100, default: ""
+    t.date     "fecha",                                null: false
+    t.integer  "nro_ficha"
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+  end
+
   create_table "fichas_nuricionales_pediatricas", force: :cascade do |t|
     t.integer  "paciente_id"
     t.integer  "area_id"
@@ -386,6 +398,8 @@ ActiveRecord::Schema.define(version: 20160501050951) do
   add_foreign_key "fechas", "horarios", on_delete: :restrict
   add_foreign_key "ficha_fisioterapia_ninos", "areas", on_delete: :restrict
   add_foreign_key "ficha_fisioterapia_ninos", "pacientes", on_delete: :restrict
+  add_foreign_key "fichas_fonoaudiologicas", "areas", on_delete: :restrict
+  add_foreign_key "fichas_fonoaudiologicas", "pacientes", on_delete: :restrict
   add_foreign_key "horarios", "empleados", on_delete: :cascade
   add_foreign_key "pacientes", "encargados", on_delete: :restrict
   add_foreign_key "pacientes", "personas", on_delete: :restrict

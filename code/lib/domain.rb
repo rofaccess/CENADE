@@ -65,6 +65,9 @@ module Domain
 	COSTO = 7
 	NRO_FACTURA = 15
 
+	#Fichas Fonoaudiologicas
+	ESCOLARIDAD = 50
+	ESCUELA = 100
 
 	#FICHAS FISIOTERAPIA NINOS
 
@@ -74,11 +77,13 @@ module Domain
 	PESO_NACER = 50
 	APGAR = 50
 	ANT_FLIAR = 250
-	COND_GRAL = 700
+
+	COND_GRAL = 250
 
 	DESC50 = 50
 	DESC100 = 100
 	DESC250 = 250
+
 	DESC600 = 600
 	DESC300 = 300
 
