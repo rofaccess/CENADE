@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160423125256) do
+ActiveRecord::Schema.define(version: 20160501050951) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -153,6 +153,110 @@ ActiveRecord::Schema.define(version: 20160423125256) do
     t.integer  "nro_ficha"
     t.datetime "created_at",                                       null: false
     t.datetime "updated_at",                                       null: false
+  end
+
+  create_table "ficha_nuricional_pediatricas", force: :cascade do |t|
+    t.integer  "paciente_id"
+    t.integer  "area_id"
+    t.integer  "profesional_salud_id"
+    t.date     "fecha"
+    t.string   "problema_embarazo"
+    t.string   "control_prenatal"
+    t.string   "alimentacion_embarazo"
+    t.string   "otros_datos"
+    t.string   "parto_vaginal_cesarea"
+    t.string   "termino_pretermino"
+    t.string   "lugar_parto"
+    t.string   "como_fue_parto"
+    t.string   "peso_nacimiento"
+    t.string   "asfixia_lloro"
+    t.string   "tomo_pecho"
+    t.string   "alimentacion_complementaria"
+    t.string   "sosten_cefalico"
+    t.string   "sento"
+    t.string   "paro"
+    t.string   "camino"
+    t.string   "sigue_luz"
+    t.string   "habilidades"
+    t.string   "mastica_deglute"
+    t.string   "otros"
+    t.string   "desayuno"
+    t.string   "media_manana"
+    t.string   "almuerzo"
+    t.string   "merienda"
+    t.string   "cena"
+    t.string   "cargo_quien"
+    t.string   "diarrea"
+    t.string   "vomitos"
+    t.string   "fiebre"
+    t.string   "constipacion"
+    t.string   "orina"
+    t.string   "sudor"
+    t.string   "problemas_respiratorios"
+    t.string   "distension_abdominal"
+    t.string   "otros2"
+    t.string   "diagnostico"
+    t.integer  "peso"
+    t.string   "talla"
+    t.string   "pc"
+    t.string   "imc"
+    t.string   "cm"
+    t.string   "evaluacion"
+    t.string   "indicaciones"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
+
+  create_table "fichas_nuricionales_pediatricas", force: :cascade do |t|
+    t.integer  "paciente_id"
+    t.integer  "area_id"
+    t.integer  "profesional_salud_id"
+    t.date     "fecha"
+    t.string   "problema_embarazo"
+    t.string   "control_prenatal"
+    t.string   "alimentacion_embarazo"
+    t.string   "otros_datos"
+    t.string   "parto_vaginal_cesarea"
+    t.string   "termino_pretermino"
+    t.string   "lugar_parto"
+    t.string   "como_fue_parto"
+    t.string   "peso_nacimiento"
+    t.string   "asfixia_lloro"
+    t.string   "tomo_pecho"
+    t.string   "alimentacion_complementaria"
+    t.string   "sosten_cefalico"
+    t.string   "sento"
+    t.string   "paro"
+    t.string   "camino"
+    t.string   "sigue_luz"
+    t.string   "habilidades"
+    t.string   "mastica_deglute"
+    t.string   "otros"
+    t.string   "desayuno"
+    t.string   "media_manana"
+    t.string   "almuerzo"
+    t.string   "merienda"
+    t.string   "cena"
+    t.string   "cargo_quien"
+    t.string   "diarrea"
+    t.string   "vomitos"
+    t.string   "fiebre"
+    t.string   "constipacion"
+    t.string   "orina"
+    t.string   "sudor"
+    t.string   "problemas_respiratorios"
+    t.string   "distension_abdominal"
+    t.string   "otros2"
+    t.string   "diagnostico"
+    t.integer  "peso"
+    t.string   "talla"
+    t.string   "pc"
+    t.string   "imc"
+    t.string   "cm"
+    t.string   "evaluacion"
+    t.string   "indicaciones"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   create_table "grupos", force: :cascade do |t|
