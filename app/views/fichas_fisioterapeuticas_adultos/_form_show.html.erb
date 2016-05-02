@@ -23,7 +23,7 @@
 	<div class="row">							
 		<%= ficha.input :doctor, label: 'Profesional de la Salud', wrapper_html: { class: 'col-md-4' }, input_html:	 {value: @ficha.doctor.abr_profesion+' '+@ficha.doctor.persona.nombre+' '+@ficha.doctor.persona.apellido, disabled: true} %>				
 
-		<%= ficha.input :fecha, as: :string, label: 'Fecha', wrapper_html: { class: 'col-md-2'}, input_html: {value: Formatter.format_date(@ficha.fecha), disabled: true}, required: false %>
+		<%= ficha.input :fecha, as: :string, label: 'Fecha', wrapper_html: { class: 'col-md-2 pull-right'}, input_html: {value: Formatter.format_date(@ficha.fecha), disabled: true}, required: false %>
   	</div>	
 
 	<%= render 'form_paciente', locals: @paciente %>
@@ -55,8 +55,6 @@
 </div>
 
 <script type="text/javascript"> 	
-	
-	pacientesUI.checkPacienteHasFicha("<%=fichas_fisioterapeuticas_adultos_check_paciente_has_ficha_path%>");	
 
 	<% if !flash.notice.blank? %> 
 		var n = noty({text: '<%=notice%>', type: 'success'});   

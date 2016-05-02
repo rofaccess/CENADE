@@ -33,9 +33,8 @@ class FichasFisioterapeuticasAdultosController < ApplicationController
 		@ficha = FichaFisioterapeuticaAdulto.new(ficha_params)
 
 		respond_to do |format|
-			if @ficha.save
-				flash.now[:notice] = 'Ficha registrada exitosamente'				
-				format.html {render 'show'}
+			if @ficha.save			 
+				format.html { redirect_to ficha_fisioterapeutica_adulto_path(@ficha), notice: 'Ficha registrada exitosamente'}
 			else
 				if @ficha.errors.full_messages.any?
 					flash.now[:alert] = @ficha.errors.full_messages.first
@@ -57,7 +56,6 @@ class FichasFisioterapeuticasAdultosController < ApplicationController
 	def update
 		respond_to do |format|
 			if @ficha.update_attributes(ficha_params)
-
 				format.html { redirect_to fichas_fisioterapeuticas_adultos_path, notice: 'Ficha actualizado exitosamente'}
 			else
 
