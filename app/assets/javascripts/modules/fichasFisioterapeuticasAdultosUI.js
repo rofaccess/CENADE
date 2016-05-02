@@ -9,6 +9,8 @@ var fichasFisioterapeuticasAdultosUI = (function(){
 
 	     	pacientesUI.initBuscarPaciente('.select-paciente');
 	     	//empleadosUI.initBuscarDoctor('.select-doctor');
+
+	     	pacientesUI.getPaciente({element: '.select-paciente', root: 'fichas_fisioterapeuticas_adultos'});
 	     	
 			/* Valida el formulario antes de enviarlo */
 			$('.form-ficha2').validate(); 

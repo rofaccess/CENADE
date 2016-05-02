@@ -39,6 +39,7 @@ class Paciente < ActiveRecord::Base
   		"#{persona_nombre} #{persona_apellido}"
 	end	
 
+	# Usado en initBuscarPaciente en pacientesUI
 	ransack_alias :paciente, :persona_nombre_or_persona_apellido_or_persona_ci
 
 	# Law of Demeter 

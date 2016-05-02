@@ -139,6 +139,11 @@ class PacientesController < ApplicationController
     	@pacientes= @search.result.page(params[:page])
     end
 
+    def get_paciente
+      @paciente= Paciente.find(params[:id])
+      render params[:root].to_s()+'/get_paciente', format: :js  
+    end
+
     def check_ci
     	persona = Persona.find_by_ci(params[:ci])
     	render json: (persona.nil? || persona.id == params[:persona_id].to_i) ? true : "El número de CI especificado ya existe en el Sistema".to_json   		

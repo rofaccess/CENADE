@@ -45,6 +45,34 @@ var pacientesUI = (function(){
 			});		
 		},
 
+		/* Cuando se selecciona otro valor en el element (select) dado se ejecuta la acción
+		   get_paciente del controlador Pacientes, para que actualize los datos del paciente
+		
+	        Recibe un objeto con:
+	        {
+	            element: el id o clase del objeto jquery Ej.: #select_paciente, .select-paciente
+	            root   : Indica desde donde se llamó a la acción get_paciente del controlador Pacientes
+	            con esto se sabrá donde está el js a ejecutar para recargar los datos del paciente.
+	        }
+    	*/
+		getPaciente: function(options){
+			$(options.element).on("change", function(){
+				$.ajax({
+                 
+                  url: "/pacientes/get_paciente",
+                  type: 'get',
+                  data: {
+                   	id : $(this).val(),
+                   	root: options.root
+                  },
+                  success: function(resp){
+                      
+                  }
+                  
+                });			
+			});
+		},
+
 		/*
 	      Verifica que un ci especificado para un paciente no exista ya en la base de datos 
 	      .ci        : es la clase del elemento (input) que contiene el ci 
