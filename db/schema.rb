@@ -207,6 +207,21 @@ ActiveRecord::Schema.define(version: 20160501050951) do
     t.datetime "updated_at",                  null: false
   end
 
+  create_table "fichas_fisioterapeuticas_adultos", force: :cascade do |t|
+    t.integer  "area_id",                                          null: false
+    t.integer  "doctor_id",                                        null: false
+    t.integer  "paciente_id",                                      null: false
+    t.string   "encargado",               limit: 50,  default: ""
+    t.string   "medicamentos",            limit: 250, default: ""
+    t.string   "antecedente_actual",      limit: 250, default: ""
+    t.string   "antecedente_hereditario", limit: 250, default: ""
+    t.string   "condicion_paciente",      limit: 250, default: ""
+    t.date     "fecha",                                            null: false
+    t.integer  "nro_ficha"
+    t.datetime "created_at",                                       null: false
+    t.datetime "updated_at",                                       null: false
+  end
+
   create_table "fichas_fonoaudiologicas", force: :cascade do |t|
     t.integer  "paciente_id",                          null: false
     t.integer  "area_id",                              null: false
@@ -398,6 +413,8 @@ ActiveRecord::Schema.define(version: 20160501050951) do
   add_foreign_key "fechas", "horarios", on_delete: :restrict
   add_foreign_key "ficha_fisioterapia_ninos", "areas", on_delete: :restrict
   add_foreign_key "ficha_fisioterapia_ninos", "pacientes", on_delete: :restrict
+  add_foreign_key "fichas_fisioterapeuticas_adultos", "areas", on_delete: :restrict
+  add_foreign_key "fichas_fisioterapeuticas_adultos", "pacientes", on_delete: :restrict
   add_foreign_key "fichas_fonoaudiologicas", "areas", on_delete: :restrict
   add_foreign_key "fichas_fonoaudiologicas", "pacientes", on_delete: :restrict
   add_foreign_key "horarios", "empleados", on_delete: :cascade

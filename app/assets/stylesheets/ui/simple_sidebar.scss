@@ -56,6 +56,23 @@
 
 /* Sidebar Styles */
 
+/* Esto esta definido para que se marque como seleccionado un item del sidebar
+   el css original no lo marca como activo */
+.sidebar-nav{
+ > .active > a {
+      &,
+      &:hover,
+      &:focus {
+        text-decoration: none;
+        background-color: white;
+        color: #24C1C1;
+        border-left: solid;
+        border-width: 6px;
+        border-color: #24C1C1;
+      }
+    }
+}
+
 .sidebar-nav {
     position: absolute;
     top: 0;
@@ -95,7 +112,7 @@
 }
 
 .sidebar-nav > .sidebar-brand {
-    height: 40px;
+    height: 50px;
     font-size: 16px;
     line-height: 45px;
     color: #98A4AE;

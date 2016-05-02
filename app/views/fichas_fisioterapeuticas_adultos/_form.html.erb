@@ -1,0 +1,73 @@
+<div class="page-title page-title-con-sidebar">
+	<%=@ficha.id.nil? ? 'Nueva Ficha' : 'Editar Ficha'%> 
+
+	<div class="tool">
+		<%= link_to '<i class="fa fa-list" data-toggle="tooltip" title="Lista de Fichas"></i> '.html_safe, fichas_fisioterapeuticas_adultos_path %> 
+	</div>
+
+</div>
+
+<div class="form-content2">    
+
+	<%= simple_form_for @ficha, html: {class: 'form-ficha2'} do |ficha|%>
+	<%= hidden_field_tag :ficha_id, @ficha.id, class: 'ficha-id'%>
+	
+	<h4 class="titulo-ficha">FICHA FISIOTERAPIA ADULTO</h4>
+	
+	<div class="row">			
+		<%= ficha.input :paciente_id, collection: [], label: '* Paciente', wrapper_html: { class: 'col-md-4'}, input_html:  { class: 'required select-paciente select2 uniquePacienteFicha paciente-id'} %>
+				
+		<%= link_to '<i class="fa fa-plus"></i> '.html_safe, pacientes_new_paciente_modal_path(root: 'fichas_fisioterapeuticas_adultos', encargado: true), class: 'btn btn-custom btn-add col-md-1', remote: true %> 
+			
+		<%= ficha.input :doctor_id, collection: @doctores.collect { |a| [a.abr_profesion+" "+a.persona_nombre+" "+a.persona_apellido, a.id] }, label: '* Profesional de la Salud', wrapper_html: { class: 'col-md-4' }, input_html:	 { class: 'required select-doctor select2'} %>				
+
+		<%= ficha.input :fecha, as: :string, label: '* Fecha', wrapper_html: { class: 'col-md-3'}, input_html: { class: 'datepicker required', maxLength: Domain::FECHA} %>
+	</div>	
+
+	<%= render 'form_paciente' %>
+	
+	<h4>Datos de la Ficha</h4>
+	<hr>
+
+	<div class="row">
+		<%= ficha.input :encargado, label: 'Encargado', wrapper_html: { class: 'col-md-6'}, input_html: { maxLength: Domain::DESC50} %>		
+	</div>	
+
+	<div class="row">
+		<%= ficha.input :medicamentos, as: :text, label: 'Medicamentos', wrapper_html: { class: 'col-md-12'}, input_html: { maxLength: Domain::DESC250} %>		
+	</div>	
+
+	<div class="row">
+		<%= ficha.input :antecedente_actual, as: :text, label: 'Antecedentes de la Enfermendad Actual', wrapper_html: { class: 'col-md-12'}, input_html: { maxLength: Domain::DESC250} %>		
+	</div>
+
+	<div class="row">
+		<%= ficha.input :antecedente_hereditario, as: :text, label: 'Antecedentes Hereditarios', wrapper_html: { class: 'col-md-12'}, input_html: { maxLength: Domain::DESC250} %>	
+	</div>		
+
+	<div class="row">
+		<%= ficha.input :condicion_paciente, as: :text, label: 'Condición General del Paciente', wrapper_html: { class: 'col-md-12'}, input_html: { maxLength: Domain::DESC250} %>	
+	</div>	
+
+	<div class="form-button">         
+		<%= ficha.submit 'Guardar', class: 'btn btn-custom'%>
+	</div>
+
+	<% end %>
+</div>
+
+<script type="text/javascript"> 		
+	
+	fichasFisioterapeuticasAdultosUI.initScript();
+	
+	pacientesUI.checkPacienteHasFicha("<%=fichas_fisioterapeuticas_adultos_check_paciente_has_ficha_path%>");	
+
+	<% if !flash.notice.blank? %> 
+		var n = noty({text: '<%=notice%>', type: 'success'});   
+	<% end %>
+
+	<% if !flash.alert.blank?%> 
+		var n = noty({text: '<%=alert%>', type: 'error'});
+	<% end %>
+
+</script>
