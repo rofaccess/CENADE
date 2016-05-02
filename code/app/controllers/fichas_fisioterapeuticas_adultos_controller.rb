@@ -34,38 +34,32 @@ class FichasFisioterapeuticasAdultosController < ApplicationController
 
 		respond_to do |format|
 			if @ficha.save			 
-				format.html { redirect_to ficha_fisioterapeutica_adulto_path(@ficha), notice: 'Ficha registrada exitosamente'}
+				format.html { redirect_to ficha_fisioterapeutica_adulto_path(@ficha), notice: 'Ficha registrada exitosamente'}				
 			else
 				if @ficha.errors.full_messages.any?
-					flash.now[:alert] = @ficha.errors.full_messages.first
+					format.html { redirect_to new_ficha_fisioterapeutica_adulto_path(), notice: @ficha.errors.full_messages.first}
 				else
-					flash.now[:alert] = "No se ha podido guardar la Ficha"
+					format.html { redirect_to new_ficha_fisioterapeutica_adulto_path(), notice: 'No se ha podido guardar la Ficha'}
 				end
-				@ficha_nuevo= true
-				format.html { render "edit"}
-				format.js { render "edit"}
-
 			end
 		end
 	end
 
 	def edit
-
+		get_doctores_fisioterapia
 	end
 
 	def update
 		respond_to do |format|
 			if @ficha.update_attributes(ficha_params)
-				format.html { redirect_to fichas_fisioterapeuticas_adultos_path, notice: 'Ficha actualizado exitosamente'}
+				format.html { redirect_to ficha_fisioterapeutica_adulto_path(@ficha), notice: 'Ficha actualizada exitosamente'}
 			else
 
 				if @ficha.errors.full_messages.any?
-					flash.now[:alert] = @ficha.errors.full_messages.first
+					format.html { redirect_to edit_ficha_fisioterapeutica_adulto_path(@ficha), notice: @ficha.errors.full_messages.first}
 				else
-					flash.now[:alert] = "No se ha podido guardar la Ficha"
+					format.html { redirect_to edit_ficha_fisioterapeutica_adulto_path(@ficha), notice: 'No se ha podido actualizar la Ficha'}
 				end
-				format.html { render action: "edit"}
-				format.js { render action: "edit"}
 			end
 
 		end
@@ -74,6 +68,17 @@ class FichasFisioterapeuticasAdultosController < ApplicationController
 	def show
 
 	end
+
+	def destroy    		
+		respond_to do |format|
+			if @ficha.destroy							         
+				format.html { redirect_to fichas_fisioterapeuticas_adultos_path, flash: {notice: "Se ha eliminado la ficha de #{@ficha.paciente.full_name}."}}
+			else
+			   	format.html { redirect_to fichas_fisioterapeuticas_adultos_path, flash: {alert: "No se ha podido eliminar la ficha de #{@ficha.paciente.full_name}."}}	      		
+			end			
+		end	
+	end
+
   # Checkea que un paciente ya no tenga una Ficha de Fisioterapia Adulto
   def check_paciente_has_ficha
   	ficha = FichaFisioterapeuticaAdulto.find_by_paciente_id(params[:paciente_id])

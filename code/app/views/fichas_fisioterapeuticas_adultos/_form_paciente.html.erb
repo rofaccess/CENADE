@@ -1,8 +1,6 @@
 <h4>Datos del Paciente</h4>
 <hr>
 
-<div class ="paciente-data">
-
 <%= simple_fields_for :paciente do |paciente| %>
     <div class="row">
     	<%= paciente.input :nombre, as: :string, label: 'Nombres', wrapper_html: { class: 'col-md-4'}, input_html: {value: @paciente.persona_nombre, disabled: true}, required: false %>
@@ -27,5 +25,4 @@
   		<%= paciente.input :apellido, as: :string, label: 'Dirección', wrapper_html: { class: 'col-md-9'}, input_html: {value: @paciente.persona_direccion, disabled: true}, required: false %>
   	</div>
 <% end %>
-		
-</div>	
+

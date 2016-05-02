@@ -4,7 +4,7 @@
   <div class="tool">
     <%= search_form_for @search, class: 'buscador', remote: true do |f| %>
     <div class="input-group"> 
-      <%= f.search_field :paciente_cont, placeholder: "Buscar por Nombre, Apellido o CI de Paciente", class: "form-control", autofocus: true%>
+      <%= f.search_field :paciente_persona_nombre_or_paciente_persona_apellido_or_paciente_persona_ci_cont, placeholder: "Buscar por Nombre, Apellido o CI de Paciente", class: "form-control", autofocus: true%>
       <span class="fa fa-search"></span>
       <div class="input-group-btn"> 
         <a href="#"><i class="fa fa-search-plus" aria-hidden="true" id= "show-advanced-search" data-toggle="tooltip" data-placement="bottom" title="Búsqueda Avanzada"></i></a>
@@ -21,7 +21,7 @@
       <%= search_form_for @search, url: search_fichas_fonoaudiologicas_path, method: :post, remote: true, class: 'form-filtros' do |f| %>
         <div class="row">
 
-          <%= FormBuilder::text_field_v(f, :paciente_cont, {col_class: 'col-md-3',label_text: 'Paciente',input_class: '',placeholder: "Nombre, Apellido o CI"})%>
+          <%= FormBuilder::text_field_v(f, :paciente_persona_nombre_or_paciente_persona_apellido_or_paciente_persona_ci_cont, {col_class: 'col-md-3',label_text: 'Paciente',input_class: '',placeholder: "Nombre, Apellido o CI"})%>
 
           <%= FormBuilder::text_field_v(f, :doctor_persona_nombre_or_doctor_persona_apellido_cont, {col_class: 'col-md-3',label_text: 'Prof. de la Salud',input_class: '',placeholder: "Nombre o Apellido"})%>
 

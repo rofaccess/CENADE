@@ -41,7 +41,7 @@ Rails.application.routes.draw do
     end
   end
 
-  
+  get 'pacientes/get_paciente' => 'pacientes#get_paciente'
   get 'pacientes/buscar' => 'pacientes#buscar'
   get 'pacientes/print_pacientes' => 'pacientes#print_pacientes'
   get 'pacientes/print_paciente' => 'pacientes#print_paciente'

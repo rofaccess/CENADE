@@ -8,7 +8,7 @@
 		
 		<%= link_to '<i class="fa fa-edit" data-toggle="tooltip" title="Editar Ficha"></i> '.html_safe, edit_ficha_fisioterapeutica_adulto_path(@ficha), remote:true%>
 
-		<%= link_to '<i class="fa fa-trash-o" data-toggle="tooltip" title="Eliminar Ficha"></i>'.html_safe, ficha_fisioterapeutica_adulto_path(@ficha), method: 'delete', data: {confirm: "¿Desea eliminar la ficha #{@ficha}?"}%> 
+		<%= link_to '<i class="fa fa-trash-o" data-toggle="tooltip" title="Eliminar Ficha"></i>'.html_safe, ficha_fisioterapeutica_adulto_path(@ficha), method: 'delete', data: {confirm: "¿Desea eliminar la ficha de #{@ficha.paciente.full_name}?"}%> 
 	</div>
 
 </div>
