@@ -12,6 +12,7 @@ class Paciente < ActiveRecord::Base
 	has_one :ficha_fisioterapia_nino
 	has_one :ficha_fonoaudiologica
 	has_one :ficha_fisioterapeutica_adulto
+	has_one :ficha_nuticional_pediatrica
 
 	has_many :consultas
 

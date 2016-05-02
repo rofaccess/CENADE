@@ -1,0 +1,49 @@
+
+<table class= "table table-condensed">
+  <thead>
+    <tr>
+      <th>Nro Ficha</th>
+      <th>Fecha</th>
+      <th>Paciente</th>
+      <th>Prof. de la Salud</th>
+      <th></th>
+      
+    </tr>
+  </thead>
+
+  <% if @nutri_pediatricas.blank? %>
+    <tfoot>
+      <tr>
+        <th colspan="8" scope="col">No se encontraron coincidencias </th>
+      </tr>
+    </tfoot>
+  <% end %>
+
+  <tbody>
+    <% @nutri_pediatricas.each do |ficha| %>
+    <tr>
+      <td ><%=ficha.nro_ficha %></td>
+      <td ><%=ficha.fecha.strftime("%d/%m/%Y") %></td>
+      <td ><%=ficha.paciente.persona.nombre %> <%=ficha.paciente.persona.apellido %></td>
+      <td > <%=ficha.doctor.abr_profesion %> <%=ficha.doctor.persona.nombre %> <%=ficha.doctor.persona.apellido %></td>      
+      <td class = "action">
+        
+        <%= link_to '<i class="fa fa-eye fa-lg"></i> '.html_safe, ficha_nutricional_pediatrica_path(ficha), remote: true%>     
+        <%= link_to '<i class="fa fa-edit fa-lg"></i> '.html_safe, edit_ficha_nutricional_pediatrica_path(ficha), remote: true %>        
+        <%= link_to '<i class="fa fa-plus-square-o  fa-lg"></i>'.html_safe, consultas_consulta_from_ficha_path(area: ficha.area_id, paciente: ficha.paciente_id, profesional: ficha.doctor_id), remote: true%>
+
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<script type="text/javascript">
+    <% if !flash.notice.blank? %> 
+      var n = noty({text: '<%=notice%>', type: 'success'});   
+    <% end %>
+    
+    <% if !flash.alert.blank?%> 
+      var n = noty({text: '<%=alert%>', type: 'error'});
+
+    <% end %>
+</script>

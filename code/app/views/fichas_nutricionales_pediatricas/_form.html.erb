@@ -1,0 +1,106 @@
+<div class="page-title page-title-con-sidebar">
+	<%=@ficha.id.nil? ? 'Nueva Ficha' : 'Editar Ficha'%> 
+
+	<div class="tool">
+		<%= link_to '<i class="fa fa-list" data-toggle="tooltip" title="Lista de Fichas"></i> '.html_safe, fichas_nutricionales_pediatricas_path %> 
+	</div>
+
+</div>
+<%= form_for @nutri_pediatrica, html: {class: 'nueva-ficha form-ficha', :multipart => true }, remote: true do |ficha|%>
+      <%= hidden_field_tag :ficha_nutricional_pediatrica_id, @nutri_pediatrica.id %>
+      <h4 align="center">FICHA NUTRICIONAL PEDÍATRICA</h4></br>
+      <div class="row">
+        <div class="col-md-5 error-especial">
+
+
+          <%= ficha.label :paciente_id, '* Paciente' %> 
+          <div class="row">
+            <div class="col-md-10 form-group">
+
+              <%= ficha.select(:paciente_id, Paciente.collect{|a| [a.persona.nombre + " "+ a.persona.apellido, a.id]},{},{class: "paciente_select form-control select2", required: true,  id: 'paciente_id'})%>
+            </div>
+          <%= link_to '<i class="fa fa-plus"></i> '.html_safe, pacientes_new_paciente_modal_path(root: 'fichas_nutricionales_pediatricas', encargado: false), class: 'btn btn-custom col-md-1', style: 'height: 30px; width: 40px', remote: true%> 
+            
+          </div>
+      </div>
+
+        <div class="col-md-4 form-group">
+          <%= ficha.label :profesional_salud_id, '* Profesional de la Salud' %>
+          <%= ficha.select(:profesional_salud_id, @doctores.collect{|a| [a.abr_profesion + " "+ a.persona.nombre + " "+ a.persona.apellido, a.id]},{},{class: "profesional_select form-control select2", required: true,  id: 'profesional_salud_id'})%>
+        </div>   
+        <%= FormBuilder::text_field_v(ficha, :fecha, 
+                                      input_class: 'date datepicker required', 
+                                      max_length: Domain::FECHA,
+                                      label_text: '* Fecha',
+                                      col_class: 'col-md-3',
+                                       input_value: "#{ficha.object.fecha.strftime("%d/%m/%Y") unless ficha.object.new_record?}")%>
+     </div>
+
+      <h4>Datos del Paciente</h4>
+      <hr>
+      
+      <div class ="paciente_data">
+      	<div class="row">
+
+            <%= FormBuilder::text_field_v(ficha, :paciente_id, 
+                                          input_class: 'paciente-nombre', 
+                                          col_class: 'col-md-4',
+                                          disabled: true,
+                                          label_text: 'Nombres') %>
+
+            <%= FormBuilder::text_field_v(ficha, :paciente_id, 
+                                          input_class: 'paciente-apellido', 
+                                          col_class: 'col-md-4',
+                                          disabled: true,
+                                          label_text: 'Apellidos') %>
+
+            <%= FormBuilder::text_field_v(ficha, :paciente_id, 
+                                          input_class: 'paciente-apellido', 
+                                          col_class: 'col-md-2',
+                                          disabled: true,
+                                          label_text: 'Fecha de nac.') %>
+
+            <%= FormBuilder::text_field_v(ficha, :paciente_id, 
+                                          input_class: 'clear', 
+                                          
+                                          col_class: 'col-md-2',
+                                          disabled: true,
+                                          label_text: 'Edad') %> 
+        </div>      
+        <div class="row">
+            <%= FormBuilder::text_field_v(ficha, :paciente_id, 
+                                          input_class: 'clear', 
+                                          col_class: 'col-md-9',
+                                          disabled: true,
+                                          label_text: 'Dirección') %> 
+              <%= FormBuilder::text_field_v(ficha, :paciente_id, 
+                                          input_class: 'clear paciente-ci',
+                                          col_class: 'col-md-3',
+                                          disabled: true,
+                                          label_text: 'Teléfono') %>
+                
+              
+        </div>
+    </div>
+    </br>
+  
+	    <div class="form-button">         
+	      <%= ficha.submit 'Guardar', class: 'btn btn-custom'%>
+	    </div>
+
+   <% end %>
+
+
+  </div>
+
+<script type="text/javascript"> 
+    
+  fichasNutriPediatricasUI.initScript();
+  <% if !flash.notice.blank? %> 
+    var n = noty({text: '<%=notice%>', type: 'success'});   
+  <% end %>
+  
+  <% if !flash.alert.blank?%> 
+    var n = noty({text: '<%=alert%>', type: 'error'});
+  <% end %>
+</script>
