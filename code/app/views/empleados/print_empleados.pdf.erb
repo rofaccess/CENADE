@@ -21,14 +21,14 @@
   <tbody>    
     <% @empleados.each do |empleado| %>
     <tr>
-      <td><%=empleado.abr_profesion %>  <%=empleado.persona.nombre %> <%=empleado.persona.apellido %></td>
-      <td><%=empleado.persona.ci %></td>
-      <td class="crop"><%=empleado.persona.direccion %></td>
-      <td ><%=empleado.persona.telefono %></td>
+      <td><%=empleado.abr_profesion %>  <%=empleado.persona_nombre %> <%=empleado.persona_apellido %></td>
+      <td><%=empleado.persona_ci %></td>
+      <td class="crop"><%=empleado.persona_direccion %></td>
+      <td ><%=empleado.persona_telefono %></td>
       <td><%=empleado.cargo %></td>
       <td>
           <% if not empleado.type == 'Funcionario' %>         
-            <%=empleado.area.nombre %>
+            <%=empleado.area_nombre %>
           <% end %>  
       </td>
     

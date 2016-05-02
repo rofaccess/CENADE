@@ -35,7 +35,10 @@ $common-color: #24C1C1;
 	}
 }
 
-
+/* Evita que se puedan redimensionar horizontalmente los text area */
+textarea {
+    max-width: 100%; 
+}
 
 .titulos-campos{
 	font-weight: normal;
@@ -115,6 +118,13 @@ td.action {
 	}
 }
 
+/* Para que el boton + se ubique al lado del select */
+.btn-add{
+	margin-top: 25px;
+	width: 35px;
+	margin-right: 37px;
+}
+
 .btn-danger {    
 
 	background-color: #E41F25;
@@ -170,6 +180,7 @@ body{
 	text-align: center;
 }
 
+/* La linea celeste que se ve debajo del menú cuando no se tiene submenu */
 .line{
 	top: 30px;
 	height: 10px;
@@ -181,119 +192,6 @@ body{
 	border-bottom-color: #CCCCCC;
 	z-index: 1030;
 }
-
-
-
-// Por ahora esto es especifico para turnos
-#principal-content {
-	.page-title {
-		//Posición fija
-		position: fixed;
-		right: 0;
-		left: 0;
-		top: 55px;		
-		z-index: 1030;
-
-		background-color: #FEFEFE;		
-		border-bottom: solid;
-		border-color: #CCCCCC;
-		font-size: 24px;
-		height: 50px;
-		font-weight: bold;
-		padding-top: 7px;
-		padding-left: 50px;
-		padding-right: 20px;
-
-		a {							
-			margin-left: 13px;
-			color: #999999;
-			font-size: 26px;
-			text-decoration: none;
-			i.fa-plus-square, i.fa-search-plus, i.fa-print, i.fa-list,i.fa-list-ul, i.fa-trash-o, i.fa-edit {
-				&:hover,
-				&:focus {
-					color: #24C1C1;
-				}	
-			}				
-		}			
-
-	}
-	
-	// Cuando no se tiene submenu hay que agregar la siguiente clase, junto a page-title
-	div.page-title-sin-submenu{
-		top: 40px;
-	}
-	
-	.content2{
-		margin-top: 75px;
-
-		#advanced-search{
-			margin-left: auto;
-			margin-right: auto;
-			background: #EFEFEF;
-			width: 90%;			
-			padding: 20px 50px 0px 50px; //Top Right Bottom Left
-			border: solid;
-			border-color: #CCCCCC;
-			border-width: 1px;
-			margin-bottom: 20px;
-		}
-
-		#list {
-			margin-left: auto;
-			margin-right: auto;
-			background: white;
-			width: 90%;
-			padding-left: 50px;
-			padding-right: 50px;
-			padding-top: 50px;
-			padding-bottom: 1px;
-		}
-
-		#list-paginate{
-			text-align: right;
-			margin-left: auto;
-			margin-right: auto;
-			background: white;
-			width: 90%;
-			padding-left: 50px;
-			padding-right: 50px; 
-		}
-	}
-}	
-
-.page-title2 {
-			//Posición fija
-			position: fixed;
-			width: 100%;
-			top: 55px;		
-			z-index: 1030;
-
-			background-color: #FEFEFE;		
-			border-bottom: solid;
-			border-color: #CCCCCC;
-			font-size: 24px;
-			height: 50px;
-			font-weight: bold;
-			padding-top: 7px;
-			padding-left: 50px;
-			padding-right: 20px;
-			
-			a {							
-				margin-left: 13px;
-				color: #999999;
-				font-size: 26px;
-				text-decoration: none;
-				i.fa-plus-square, i.fa-search-plus, i.fa-print, i.fa-list,i.fa-list-ul, i.fa-trash-o, i.fa-edit {
-					&:hover,
-					&:focus {
-						color: #24C1C1;
-					}	
-				}				
-			}			
-
-		}
-
 
 #principal-content {
 
@@ -379,7 +277,7 @@ body{
 	.form-content{
 
 		.page-title > .tool {
-			text-align: right;
+			text-align: right;			
 		}		 
 
 		form{			
@@ -396,6 +294,7 @@ body{
 				font-weight: bold;
 				color: #999999;
 			}
+			
 
 			hr {
 				margin-top: 5px;
@@ -489,11 +388,14 @@ body{
 	}	
 }
 
+/* Establece parte del aspecto y posición de los botones presentes junto al page-title  */
 .tool {
 	float: right;
 	width: 40%;
 	font-size: 14px;
+	text-align: right;
 	
+	/* Establece como se ve el input de búsqueda presente en los index junto al page-title */
 	form {	
 		.input-group {
 			.form-control{
@@ -516,6 +418,7 @@ body{
 	}
 } 
 
+/*  Establece los colores para la paginación */
 .pagination{
 	.active{
 		a {
@@ -545,6 +448,7 @@ body{
 	}
 }
 
+/* Establece el color del input donde se tiene el foco */
 .form-control:focus{
 	border-color: $common-color;
 	//box-shadow: 0 1px 1px $common-color; //Da un efecto de recuadro

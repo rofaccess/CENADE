@@ -39,24 +39,23 @@ end
 # Areas
 Area.create(nombre: 'Clínico')
 Area.create(nombre: 'Fisioterapia')
-Area.create(nombre: 'Fonoaudiologia')
+Area.create(nombre: 'Fonoaudiología')
 Area.create(nombre: 'Neurología')
 Area.create(nombre: 'Nutrición')
 Area.create(nombre: 'Odontología')
 Area.create(nombre: 'Pediatría')
 Area.create(nombre: 'Psicologia')
 Area.create(nombre: 'Psicopedagogía')
-Area.create(nombre: 'Fonoaudiología')
 
 
 # Funcionarios
 for i in 1..15
-	Funcionario.create(persona_id: i, cargo: Faker::Name.title )
+	Funcionario.create(persona_id: i, cargo: Faker::Name.title, abr_profesion: 'Lic. ' )
 end
 
 # Doctores
 for i in 16..30
-	Doctor.create(persona_id: i, cargo: Faker::Name.title, area_id: Faker::Number.positive(1, 9))
+	Doctor.create(persona_id: i, cargo: Faker::Name.title, area_id: Faker::Number.positive(1, 9), abr_profesion: 'Lic. ')
 end
 
 # Pacientes

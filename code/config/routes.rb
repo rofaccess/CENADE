@@ -11,6 +11,16 @@ Rails.application.routes.draw do
     end
   end
 
+  get 'fichas_fisioterapeuticas_adultos/test' => 'fichas_fisioterapeuticas_adultos#test'
+  get 'fichas_fisioterapeuticas_adultos/check_paciente_has_ficha' => 'fichas_fisioterapeuticas_adultos#check_paciente_has_ficha'
+  get 'fichas_fisioterapeuticas_adultos/print_ficha' => 'fichas_fisioterapeuticas_adultos#print_ficha'
+  resources :fichas_fisioterapeuticas_adultos do
+    collection do
+      match 'buscar' => 'fichas_fisioterapeuticas_adultos#buscar', via: [:get, :post], as: :search
+      get'get_paciente' => 'fichas_fisioterapeuticas_adultos#get_paciente'
+    end
+  end
+  
   get 'ficha_fisioterapia_ninos/check_paciente_id' => 'ficha_fisioterapia_ninos#check_paciente_id'
   get 'ficha_fisioterapia_ninos/print_ficha' => 'ficha_fisioterapia_ninos#print_ficha'
 
@@ -31,14 +41,19 @@ Rails.application.routes.draw do
     end
   end
 
+  
+  get 'pacientes/buscar' => 'pacientes#buscar'
   get 'pacientes/print_pacientes' => 'pacientes#print_pacientes'
   get 'pacientes/print_paciente' => 'pacientes#print_paciente'
   get 'pacientes/check_ci' => 'pacientes#check_ci'
   post 'pacientes/recarga_paciente' => 'pacientes#recarga_paciente'
   get 'pacientes/new_paciente_modal' => 'pacientes#new_paciente_modal'
   resources :pacientes
+  
   get 'roles/check_name' => 'roles#check_name'
   resources :roles
+  
+  get 'doctores/buscar' => 'doctores#buscar'
   resources :doctores
   resources :funcionarios
 
