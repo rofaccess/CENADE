@@ -29,7 +29,8 @@ var rolesUI = (function(){
             $(".multiple_select").select2({
               placeholder: "Interfaces disponibles...",
               multiple: true,
-              language: "es"
+              language: "es",
+              //theme: "default" //para sobreescribir el tema bootstrap seteado globalmente
 
             }).on('change', function () {
                     $(this).valid();

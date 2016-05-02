@@ -16,8 +16,8 @@
 			    <label class="label-title">Empleado</label>
 			</div>
 			
-			<div class="col-md-9">
-				<select class ="form-control required" id="empleado_id" name="empleado_id">
+			<div class="col-md-9 form-group">
+				<select class ="form-control required select2" id="empleado_id" name="empleado_id">
 			       <option value="">Seleccione un empleado </option>
 					<%@empleados.each do |empleado|%>
 						<option value="<%= empleado.id%>">
@@ -76,7 +76,7 @@
 								                        label_text: '* Nombre Usuario',
 								                        label_class: 'error') %>
 
-		<div class="col-md-6">
+		<div class="col-md-6 form-group">
 			<%= usuario.label :rol, '* Rol' %>
 			<select class ="form-control required" id="user_role_id" name="user[role_id]">
 			    <option value="">Seleccione un rol </option>
@@ -114,6 +114,8 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 		$("#empleado_id").select2().on("select2:select",function(){
+			$(this).valid();//Para que valide cada vez que se selecciona otra item del select
+
 			id = $(this).val();
 			$("#user_empleado_id").val(id);
 			$(".usuario-nombre").val($("#option-nombre-"+id).val());

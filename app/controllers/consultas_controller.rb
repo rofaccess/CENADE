@@ -73,6 +73,7 @@ class ConsultasController < ApplicationController
 
   #recarga la lista de profesionales segun el area
    def recarga_profesional
+    @sidebar_layout = ' '
     @area= Area.find(params[:id])
       
   end
@@ -86,6 +87,13 @@ class ConsultasController < ApplicationController
       
       @consultas= @search.result.page(params[:page])
     end
+
+  #autocompleta campos como area y paciente si se llama a nuevo desde alguna ficha
+  def consulta_from_ficha
+     @paciente= Paciente.find(params[:paciente])
+     new 
+
+  end
 
   #Busca las Consultas segun los datos puestos para filtrar
   def buscar

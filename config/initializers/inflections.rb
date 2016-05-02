@@ -33,7 +33,8 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
 	inflect.irregular 'encargado', 'encargados'
 	inflect.irregular 'grupo', 'grupos'
 	inflect.irregular 'ficha_fisioterapia_nino', 'ficha_fisioterapia_ninos'
+	inflect.irregular 'ficha_fonoaudiologica','fichas_fonoaudiologicas'
+	inflect.irregular 'ficha_fisioterapeutica_adulto', 'fichas_fisioterapeuticas_adultos'
 	inflect.irregular 'consulta', 'consultas'
-
-
+	inflect.irregular 'ficha_nutricional_pediatrica', 'fichas_nutricionales_pediatricas'
 end

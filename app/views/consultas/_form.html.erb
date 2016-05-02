@@ -9,7 +9,7 @@
 
     </div>
 
-    <%= form_for @consulta, html: {class: 'nueva-consulta', style: "width: 75%; margin-left: 160px;", :multipart => true }, remote: true do |consulta|%>   
+    <%= form_for @consulta, html: {class: 'nueva-consulta', style: "width: 80%; margin-left: 140px;", :multipart => true }, remote: true do |consulta|%>   
       <div class="row">
         <div class="col-md-3">
 
@@ -29,11 +29,11 @@
           
         </div>
 
-        <div class="col-md-4">
+        <div class="col-md-3">
 
 
           <%= consulta.label :profesional_salud_id, '* Prof. de la Salud' %> 
-          <%= consulta.select(:profesional_salud_id, Hash[Empleado.where(type: 'Doctor').map{|a| [a.area.nombre + "-"+ a.persona.nombre + " "+ a.persona.apellido, a.id]}],{},{class: "profesional_select form-control select2", required: true,  id: 'profesional_salud_id', autofocus: true})%>
+          <%= consulta.select(:profesional_salud_id, Hash[Empleado.where(type: 'Doctor').map{|a| [a.persona.nombre + " "+ a.persona.apellido + "-"+ a.area.nombre, a.id]}],{},{class: "profesional_select2 form-control select2", required: true,  id: 'profesional_salud_id', autofocus: true})%>
           
         </div>
 
@@ -42,7 +42,7 @@
                                       input_class: 'date datepicker required', 
                                       max_length: Domain::FECHA,
                                       label_text: '* Fecha',
-                                      col_class: 'col-md-2',
+                                      col_class: 'col-md-3',
                                       input_value: "#{consulta.object.fecha.strftime("%d/%m/%Y") unless consulta.object.new_record?}")%>
             
        </div>
