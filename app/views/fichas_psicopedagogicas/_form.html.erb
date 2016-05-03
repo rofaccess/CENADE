@@ -1,13 +1,13 @@
 
 <div class="form-content form-ficha">
     <div class="page-title page-title-ficha">
-      Nueva Ficha
+      <%=@psicopedagogica.id.nil? ? 'Nueva Ficha' : 'Editar Ficha'%>
       <div class="tool">
         <%= link_to '<i class="fa fa-list"></i> '.html_safe, fichas_psicopedagogicas_path %> 
       </div>
     </div>
     <%= form_for @psicopedagogica, html: {class: 'nueva-ficha form-ficha', :multipart => true }, remote: true do |ficha|%>
-       <%= hidden_field_tag :pasicopedagogica_id, @psicopedagogica.id %>
+       <%= hidden_field_tag :psicopedagogica_id, @psicopedagogica.id %>
        <h4 align="center">FICHA DE PSICOPEDAGOGÍA</h4></br>
        <div class="row">
 	        <div class="col-md-5">
@@ -163,6 +163,7 @@
 </div>
 <script type="text/javascript"> 
    psicopedagogicasUI.initScript("<%= fichas_psicopedagogicas_check_paciente_id_path %>");
+
   <% if !flash.notice.blank? %> 
     var n = noty({text: '<%=notice%>', type: 'success'});   
   <% end %>

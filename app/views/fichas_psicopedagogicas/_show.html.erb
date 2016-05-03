@@ -3,15 +3,15 @@
       Ficha de <%= @psicopedagogica.paciente.persona.nombre%> <%= @psicopedagogica.paciente.persona.apellido%>
       <div class="tool">
 	       <%= link_to '<i class="fa fa-list"></i> '.html_safe, fichas_psicopedagogicas_path %> 
-	       <%= link_to '<i class="fa fa-plus-square"></i> '.html_safe%> 
+	       <%= link_to '<i class="fa fa-plus-square"></i> '.html_safe, new_ficha_psicopedagogica_path, remote:true%> 
 	      
-	       <%= link_to '<i class="fa fa-edit"></i> '.html_safe%>
-	            <%= link_to '<i class="fa fa-print"></i> '.html_safe%> 
+	       <%= link_to '<i class="fa fa-edit"></i> '.html_safe, edit_ficha_psicopedagogica_path, remote:true%>
+	            <%= link_to '<i class="fa fa-print"></i> '.html_safe, fichas_psicopedagogicas_print_ficha_path(ficha_id: @psicopedagogica.id, :format => :pdf), target: '_blank'%> 
       </div>
     </div>
     <%= form_for @psicopedagogica, html: {class: 'nueva-ficha form-ficha', :multipart => true }, remote: true do |ficha|%>
     	<%= hidden_field_tag :id, @psicopedagogica.id %>
-	      <h3 align="center">FICHA DE PSICOPEDAGOGÍA</h3></br>
+	      <h4 align="center">FICHA DE PSICOPEDAGOGÍA</h4></br>
 	      <div class="row">
           <div class="col-md-9">
           	<h4><%= ficha.label :doctor_id, 'Profesional de la Salud: ' %> <%= @psicopedagogica.doctor.persona.nombre%> <%= @psicopedagogica.doctor.persona.apellido%> </h4>
