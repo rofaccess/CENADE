@@ -1,19 +1,50 @@
 <div id="sidebar-wrapper">
-<ul class="sidebar-nav">
-                <li>
-                    <a href="#">Clínico</a>
-                </li>
-                <li>
-                    <a href="#">Fisioterapia Adulto</a>
-                </li>
-                <li>
-                    <a href="/ficha_fisioterapia_ninos">Fisioterapia Pediátrica</a>
-                </li>  
-                <li>
-                    <a href="/fichas_fonoaudiologicas">Fonoaudiología</a>
-                </li> 
-                <li>
-                    <a href="/fichas_psicopedagogicas">Psicopedagogía</a>
-                </li>                
-            </ul>
+    <ul class="sidebar-nav">
+        <li class="sidebar-brand">
+        </li>
+
+        <li>
+            <a href="#">Clínico</a>
+        </li>
+
+        <li class="<%= current_sidebar([fichas_fisioterapeuticas_adultos_path])%>">
+            <%=link_to 'Fisioterapia Adulto', fichas_fisioterapeuticas_adultos_path %>
+        </li>
+        
+         <li class="<%= current_sidebar([ficha_fisioterapia_ninos_path])%>">
+            <%=link_to 'Fisioterapia Pediátrica', ficha_fisioterapia_ninos_path %>
+        </li>
+
+        <li class="<%= current_sidebar([fichas_fonoaudiologicas_path])%>">
+            <%=link_to 'Fonoaudiología', fichas_fonoaudiologicas_path %>
+        </li>
+
+        <li>
+            <a href="#">Neurología</a>
+        </li>
+
+        <li>
+            <a href="#">Nutricional Adulto</a>
+        </li>
+
+        <li class="<%= current_sidebar([fichas_nutricionales_pediatricas_path])%>">
+            <%=link_to 'Nutricional Pediátrica', fichas_nutricionales_pediatricas_path %>
+        </li>
+
+        <li>
+            <a href="#">Odontología Adulto</a>
+        </li>
+
+        <li>
+            <a href="#">Odontología Pediátrica</a>
+        </li>
+
+        <li>
+            <a href="#">Pediatría</a>
+        </li>
+        
+        <li>
+            <a href="#">Psicopedagogía</a>
+        </li>                 
+    </ul>
 </div>

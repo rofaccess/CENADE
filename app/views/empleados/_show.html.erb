@@ -43,7 +43,7 @@
 													disabled: true,
 													label_text: 'Fecha de Nac.',
 													col_class: 'col-md-2', 
-													input_value: Formatter.format_date(@empleado.persona.fecha_nacimiento))%> 	
+													input_value: Formatter.format_date(@empleado.persona_fecha_nacimiento))%> 	
 			<%= FormBuilder::text_field_v(persona, :edad, 
 													disabled: true,
 													col_class: 'col-md-1') %>  
@@ -56,7 +56,7 @@
 			<%= FormBuilder::text_field_v(persona, :estado_civil_id,
 													disabled: true,
 													label_text: 'Estado Civil',
-													input_value: @empleado.persona.estado_civil_id != nil ? @empleado.persona.estado_civil.descripcion : '' , 
+													input_value: @empleado.persona_estado_civil_id != nil ? @empleado.persona.estado_civil_descripcion : '' , 
 							                        col_class: 'col-md-3') %>  
 			<%= FormBuilder::text_field_v(persona, :nacionalidad, 
 													disabled: true,
@@ -119,7 +119,7 @@
 				<%= FormBuilder::text_field_v(empleado, :area_id,
 														disabled: true,
 														label_text: 'Area',
-														input_value: @empleado.area.nombre, 
+														input_value: @empleado.area_nombre, 
 								                        col_class: 'col-md-4') %>
 				<%= FormBuilder::text_field_v(empleado, :costo, 
 														disabled: true,	 

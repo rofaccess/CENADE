@@ -6,8 +6,10 @@ module ApplicationHelper
 	end
 		
 	def current_submenu(path)
-		path.each do |p|
-			return "active" if request.url.include?(p)
-		end
+		current_menu(path)
+	end	
+
+	def current_sidebar(path)
+		current_menu(path)
 	end	
 end

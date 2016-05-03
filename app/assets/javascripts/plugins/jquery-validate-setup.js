@@ -1,28 +1,38 @@
-// Configuraciones generales para las validaciones
+/* Configuraciones generales para las validaciones de Jquery Validate*/
 jQuery.validator.setDefaults({
 	errorElement:	'span',
-	errorClass:		'text-error',
+	errorClass:		'has-error',
 	onfocusout: function(element) { $(element).valid(); },
 	highlight: function(element){
-		$(element).closest('.form-control').addClass('input-error');
-		$(element).closest('div').addClass('text-error');
+		$(element).closest('.form-group').addClass('has-error');
+		
+		/* Para los que no siguen el formato form-group > label, .form-control */
+		$(element).closest('.error-especial').addClass('has-error');
 	},
-	unhighlight: function(element){
-		$(element).closest('.form-control').removeClass('input-error');
-		$(element).closest('div').removeClass('text-error');		
+	success: function(element){		
+		$(element).closest('.form-group').removeClass('has-error');
+		
+		/* Para los que no siguen el formato form-group > label, .form-control */
+		$(element).closest('.error-especial').removeClass('has-error');			
 	},	
-	errorPlacement: function (error, element) {
-    if (element.parent('.input-group').length) { 
-        error.insertAfter(element.parent());      // radio/checkbox?
-    } else if (element.hasClass('select2')) {     
-        error.insertAfter(element.next('span'));  // select2
-    } else {                                      
-        error.insertAfter(element);               // default
-    }
-}
+	
+
+	errorPlacement: function (error, element) {   	
+
+	   	if (element.parent('.input-group').length) { 
+	        error.insertAfter(element.parent());      // radio/checkbox?
+	    } else if (element.hasClass('select2')) {     
+	        error.insertAfter(element.next('span'));  // select2
+	    } else {                                      
+	        error.insertAfter(element);               // default
+	    }
+   
+	}
 });
 
-// Reglas para las validaciones
+/* Reglas para las validaciones
+   Todas los identificadores de las reglas de validación tendrán el formato camello
+*/
 $.validator.addClassRules({
 	required: {
 		required: true,

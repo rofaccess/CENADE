@@ -12,9 +12,9 @@ class Paciente < ActiveRecord::Base
 	has_one :ficha_fisioterapia_nino
 	has_one :ficha_fonoaudiologica
 	has_one :ficha_psicopedagogica
+	has_one :ficha_fisioterapeutica_adulto
 
 	has_many :consultas
-
 
 	# Permiten guardar persona y encargado en el formulario de paciente
 	accepts_nested_attributes_for :persona
@@ -33,7 +33,15 @@ class Paciente < ActiveRecord::Base
       	encargado.update(paciente_id: id)
       	encargado.destroy
       end	
-    end
+    end		
 
-	ransack_alias :persona, :persona_nombre_or_persona_apellido_or_persona_ci
+	# Retorna el nombre y apellido del paciente, usado en /pacientes/buscar
+	def full_name
+  		"#{persona_nombre} #{persona_apellido}"
+	end	
+
+	ransack_alias :paciente, :persona_nombre_or_persona_apellido_or_persona_ci
+
+	# Law of Demeter 
+	delegate :nombre, :apellido, :ci, :edad, :sexo, :ci, :nacionalidad, :fecha_nacimiento, :profesion, :telefono, :direccion, to: :persona, prefix: true, allow_nil: true
 end

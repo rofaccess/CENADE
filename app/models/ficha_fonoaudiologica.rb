@@ -34,4 +34,7 @@ class FichaFonoaudiologica < ActiveRecord::Base
 			errors.add(:base, "El paciente ya posee una Ficha en Fonoaudiología")
 		end
 	end
+
+  ransack_alias :paciente, :paciente_persona_nombre_or_paciente_persona_apellido_or_paciente_persona_ci 
+
 end

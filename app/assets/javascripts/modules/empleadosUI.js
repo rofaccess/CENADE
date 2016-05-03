@@ -1,22 +1,48 @@
+/* FUNCIONES GLOBALES */
+
 var empleadosUI = (function(){
-	return {		
+	return {	
+		/* Inicia el buscador del select2 en el element dado, para buscar doctores */
+		initBuscarDoctor: function(element) {
+			$(element).select2({
+				ajax: { 
+					url: '/doctores/buscar',
+					dataType: 'json',
+	                delay:300, //Tiempo de espera, antes de comenzar la búsqueda
+	                data: function(params){
+	                	return {
+	                		q: { doctor_cont: params.term }, 
+	                	};
+	                },
 
-		init: function(){	
-			$('body').on('click', '.show-empleado', function(e){
-				$.get($(this).parents('tr').data('url'), {}, function(){}, 'script');
-			});
+	                processResults: function (data, params) {
+	                	return {
+	                		results: $.map( data.items, function(doctor, i) { 
+	                			return { 
+	                				id       : doctor.id, 
+	                				text     : doctor.full_name, 
+	                				full_name: doctor.full_name,
+	                				area     : doctor.area_nombre } 
+	                			})			        
+	                	};
+	                },
 
-			/* Envia el parametro q, pero no renderiza el pdf, y en nueva pestaña no envía q */
-			$('body').on('click', '.print-empleados', function(e){
-				$.ajax({
-					url: $(this).attr('href'),
-					data: $('#q_persona_cont').serialize(),
-					dataType: 'script'
-				});
-				e.preventDefault();
-			});
-		},			
+	                cache: true        
+	            },
+	            placeholder: "Buscar por Nom., Ap. o Área",
+	  			allowClear: true,    		    //Muestra un icono x para limpiar la opción seleccionada		        
+	            minimumInputLength: 2,			//Obliga a escribir un mímimo de dos caracteres antes de realizar la búsqueda	
+	  			templateResult: formatDoctor,   //formatDoctor es una función definida más abajo
+	  			escapeMarkup: function (markup) { return markup; } 
+
+	  		});
 			
+			/* Valida cuando se elige otro paciente en el element (select) dado */
+	  		$(element).on("change", function(){
+				$(this).valid(); 			
+			});		
+		},
+
 		//Muestra el area si es doctor
 		mostrarArea: function(){
 			
@@ -69,7 +95,7 @@ var empleadosUI = (function(){
                         type: "get",
                         data: {
                             ci: function() {
-                                return $( ".ci" ).val();
+                                return $( ".ci" ).val();	
                             },
                             id: function() {
                                 return $('.empleado-id').val();
@@ -95,24 +121,24 @@ var empleadosUI = (function(){
 			$('.telefono').inputmask('Regex', { regex: "[0-9\-\(\),]+" });
 			
 			$('.edad').inputmask('Regex', { regex: "[0-9]+" });
-
-			$('.date').inputmask('Regex', { regex: "[0-9]{2}\/[0-9]{2}\/[0-9]{4}" });
-
-			$('.datepicker').datepicker({
-		        format: "dd/mm/yyyy",
-		        language: "es",
-		        autoclose: true,
-		        orientation: "bottom",		       
-		        }).on('change', function() {
-        			$(this).valid();
-		    });
 			
+			APP.initDatepicker(); 
+
 		   	//Valida el formulario antes de enviarlo
 		  	$('.form-empleado').last().validate();
 		}
 	};
 }());
 
-$(function(){
-	empleadosUI.init();
-});
+/* FUNCIONES LOCALES */
+/* 
+	Da un formato customizado a los datos recibidos	en initBuscarDoctor
+	El argumento recibido puede nombrarse de otra forma Ej. En vez de doctor usar doc
+*/
+function formatDoctor (doctor) {
+	if (!doctor.id) { return doctor.text; }
+
+	var $doctor = $('<span>' + doctor.full_name + '<br><strong> Area: </strong>  ' + doctor.area + '</span>');
+	
+	return $doctor;		
+};	

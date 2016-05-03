@@ -204,6 +204,9 @@
       </div>
     </div>
       </br>
+        <div class="form-button">         
+          <%= link_to "Agregar Consulta", consultas_consulta_from_ficha_path(area: @fisio_nino.area_id, paciente: @fisio_nino.paciente_id, profesional: @fisio_nino.doctor_id), class: "btn btn-custom", remote: true %>
+        </div>
 
     <% end %>
 

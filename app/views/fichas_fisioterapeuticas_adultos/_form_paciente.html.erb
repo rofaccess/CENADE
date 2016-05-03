@@ -1,0 +1,31 @@
+<h4>Datos del Paciente</h4>
+<hr>
+
+<div class ="paciente-data">
+
+<%= simple_fields_for :paciente do |paciente| %>
+    <div class="row">
+    	<%= paciente.input :nombre, as: :string, label: 'Nombres', wrapper_html: { class: 'col-md-4'}, input_html: {value: @paciente.persona_nombre, disabled: true}, required: false %>
+
+    	<%= paciente.input :apellido, as: :string, label: 'Apellidos', wrapper_html: { class: 'col-md-4'}, input_html: {value: @paciente.persona_apellido, disabled: true}, required: false %>
+
+    	<%= paciente.input :edad, as: :string, wrapper_html: { class: 'col-md-1'}, input_html: {value: @paciente.persona_edad, disabled: true}, required: false %>
+
+    	<%= paciente.input :sexo, as: :string, wrapper_html: { class: 'col-md-3'}, input_html: {value: @paciente.persona_sexo, disabled: true}, required: false %>
+  	</div>
+  	<div class="row">
+  		<%= paciente.input :ci, as: :string, wrapper_html: { class: 'col-md-2'}, input_html: {value: @paciente.persona_ci, disabled: true}, required: false %>
+
+  		<%= paciente.input :nacionalidad, as: :string, wrapper_html: { class: 'col-md-8'}, input_html: {value: @paciente.persona_nacionalidad, disabled: true}, required: false %>
+
+  		<%= paciente.input :fecha_nacimiento, as: :string, label: 'Fecha de Nac.', wrapper_html: { class: 'col-md-2'}, input_html: {value: Formatter.format_date(@paciente.persona_fecha_nacimiento), disabled: true}, required: false %>
+  	</div>
+
+  	<div class="row">
+		<%= paciente.input :telefono, as: :string, wrapper_html: { class: 'col-md-3'}, input_html: {value: @paciente.persona_telefono, disabled: true}, required: false %>
+
+  		<%= paciente.input :apellido, as: :string, label: 'Dirección', wrapper_html: { class: 'col-md-9'}, input_html: {value: @paciente.persona_direccion, disabled: true}, required: false %>
+  	</div>
+<% end %>
+		
+</div>	

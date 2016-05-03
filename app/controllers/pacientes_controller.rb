@@ -125,6 +125,15 @@ class PacientesController < ApplicationController
     	@paciente = Paciente.find(params[:id])
     end
 
+    # Buscador de pacientes
+    def buscar
+      @search = Paciente.ransack(params[:q])
+      @pacientes= @search.result
+      render json: {items: @pacientes.as_json(:only => [:id, :profesion,:lugar_trabajo,:lugar_nacimiento,:fecha_ingreso],                                              
+                                              :methods => [:full_name, :persona_ci],
+                                            )}      
+    end  
+
     def get_pacientes
     	@search = Paciente.ransack(params[:q])
     	@pacientes= @search.result.page(params[:page])
@@ -132,7 +141,7 @@ class PacientesController < ApplicationController
 
     def check_ci
     	persona = Persona.find_by_ci(params[:ci])
-    	render json: (persona.nil? || persona.id == params[:id].to_i) ? true : "El número de CI especificado ya existe en el Sistema".to_json   		
+    	render json: (persona.nil? || persona.id == params[:persona_id].to_i) ? true : "El número de CI especificado ya existe en el Sistema".to_json   		
     end	
 
     def paciente_params
