@@ -47,7 +47,26 @@ class PacientesController < ApplicationController
     @paciente.build_encargado
 		render 'new_paciente_modal', format: :js
 	end 
+  
+  # Por ahora especifico para ficha fisioterapia adulto
+  def recarga_paciente2  
+    @paciente = Paciente.new(paciente_params)       
+    if @paciente.save       
+      flash.now[:notice] = "Se ha guardado el paciente #{@paciente.persona.nombre} #{@paciente.persona.apellido}."      
+    else
+      flash.now[:alert] = "No se ha podido guardar el paciente #{@paciente.persona.nombre} #{@paciente.persona.apellido}."      
+    end
+    render 'recarga_paciente2', format: :js    
+  end
 
+  # Por ahora especifico para ficha fisioterapia adulto
+  def new_modal
+    @paciente = Paciente.new
+    @paciente.build_persona
+    @paciente.build_encargado
+    render 'new_modal', format: :js
+  end 
+  
 	def edit
       # Cuando el paciente a editar no tiene encargado, el field_for para encargado, no muestra los campos
       # es necesario hacer un build cuando el paciente no tiene encargado, para poder mostrar los campos

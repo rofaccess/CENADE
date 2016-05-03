@@ -41,6 +41,9 @@ Rails.application.routes.draw do
     end
   end
 
+  get 'pacientes/new_modal' => 'pacientes#new_modal'
+  post 'pacientes/recarga_paciente2' => 'pacientes#recarga_paciente2'
+
   get 'pacientes/get_paciente' => 'pacientes#get_paciente'
   get 'pacientes/buscar' => 'pacientes#buscar'
   get 'pacientes/print_pacientes' => 'pacientes#print_pacientes'
