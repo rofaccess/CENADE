@@ -43,11 +43,32 @@ class FichasPsicopedagogicasController < ApplicationController
 	    end
  	end
 
+ 	def update
+ 	  @paciente= @psicopedagogica.paciente
+  	  respond_to do |format|
+	      if @psicopedagogica.update_attributes(psicopedagogica_params)
+
+	        format.html { redirect_to ficha_psicopedagogica_path, notice: 'Ficha actualizado exitosamente'}
+	      else
+	        
+	        if @psicopedagogica.errors.full_messages.any?
+	          flash.now[:alert] = @psicopedagogica.errors.full_messages.first
+	        else
+	          flash.now[:alert] = "No se ha podido guardar la Ficha"
+	        end
+		        format.html { render action: "edit"}
+		        format.js { render action: "edit"}
+	      	end 
+    	end
+  	end
+
+
 	def show
 		@psicopedagogica = FichaPsicopedagogica.find(params[:id])
 	end
 
 	def edit
+		@paciente= @psicopedagogica.paciente
 	end
 
 		# Checkea que un paciente ya no tenga una ficha en Psicopedagogia
@@ -73,6 +94,17 @@ class FichasPsicopedagogicasController < ApplicationController
 	    @psicopedagogicas = @search.result.page(params[:page])
 	    render 'index'
   	end
+
+  	def print_ficha
+      @ficha = FichaPsicopedagogica.find params[:ficha_id]      
+      respond_to do |format|
+        format.pdf do
+          render :pdf => "Ficha",
+          :template => "fichas_psicopedagogicas/print_ficha.pdf.erb",
+          :layout => "pdf.html"
+        end
+      end
+    end
 
 	def set_psicopedagogica
 		@psicopedagogica = FichaPsicopedagogica.find(params[:id])

@@ -17,8 +17,8 @@
         <td ><%=ficha.doctor.abr_profesion %><%=ficha.doctor.persona.nombre %> <%=ficha.doctor.persona.apellido %></td>       
         <td class = "action">
           
-          <%= link_to '<i class="fa fa-eye fa-lg"></i> '.html_safe %>     
-          <%= link_to '<i class="fa fa-edit fa-lg"></i> '.html_safe%>        
+          <%= link_to '<i class="fa fa-eye fa-lg"></i> '.html_safe,ficha_psicopedagogica_path(ficha),remote:true  %>     
+          <%= link_to '<i class="fa fa-edit fa-lg"></i> '.html_safe, edit_ficha_psicopedagogica_path(ficha), remote:true%>        
           <%= link_to '<i class="fa fa-plus-square-o  fa-lg"></i>'.html_safe %>
 
         </td>

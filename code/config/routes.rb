@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   get 'fichas_psicopedagogicas_check_paciente_id'=> 'fichas_psicopedagogicas#check_paciente_id'
+  get 'fichas_psicopedagogicas/print_ficha'=>'fichas_psicopedagogicas#print_ficha'
   resources :fichas_psicopedagogicas do
     collection do
       match 'buscar'=>'fichas_psicopedagogicas#buscar', via: [:get, :post],as: :search
