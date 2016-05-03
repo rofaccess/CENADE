@@ -22,7 +22,7 @@
 	        </div>
 	        <div class="col-md-4">
 	          <%= ficha.label :doctor_id, '* Profesional de la Salud' %>
-	          <%= ficha.select(:doctor_id, Hash[Empleado.where(type: 'Doctor', area_id: 2).map{|a| [a.abr_profesion + " "+ a.persona.nombre + " "+ a.persona.apellido, a.id]}],{},{class: "profesional_select form-control select2", required: true,  id: 'doctor_id'})%>
+	          <%= ficha.select(:doctor_id, Hash[Empleado.where(type: 'Doctor', area_id: 3).map{|a| [a.abr_profesion + " "+ a.persona.nombre + " "+ a.persona.apellido, a.id]}],{},{class: "profesional_select form-control select2", required: true,  id: 'doctor_id'})%>
 	        </div>   
 	        <%= FormBuilder::text_field_v(ficha, :fecha, 
 			                                      input_class: 'date datepicker required', 

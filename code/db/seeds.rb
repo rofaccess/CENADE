@@ -39,29 +39,42 @@ end
 # Areas
 Area.create(nombre: 'Clínico')
 Area.create(nombre: 'Fisioterapia')
+Area.create(nombre: 'Fonoaudiología')
 Area.create(nombre: 'Neurología')
 Area.create(nombre: 'Nutrición')
 Area.create(nombre: 'Odontología')
 Area.create(nombre: 'Pediatría')
 Area.create(nombre: 'Psicologia')
 Area.create(nombre: 'Psicopedagogía')
-Area.create(nombre: 'Fonoaudiología')
 
 
 # Funcionarios
 for i in 1..15
-	Funcionario.create(persona_id: i, cargo: Faker::Name.title )
+	Funcionario.create(persona_id: i, cargo: Faker::Name.title, abr_profesion: 'Lic. ' )
 end
 
 # Doctores
 for i in 16..30
-	Doctor.create(persona_id: i, cargo: Faker::Name.title, area_id: Faker::Number.positive(1, 9))
+	Doctor.create(persona_id: i, cargo: Faker::Name.title, area_id: Faker::Number.positive(1, 9), abr_profesion: 'Lic. ')
 end
 
 # Pacientes
 for i in 31..50
 	Paciente.create(persona_id: i, fecha_ingreso: '07/05/1995', lugar_nacimiento: Faker::Address.city, profesion: Faker::Company.profession)
 end
+
+# Turnos
+for i in 1..25
+  Turno.create(paciente_id: Faker::Number.positive(1, 20), 
+			  fecha_expedicion: Date.today, 
+			  fecha_consulta: Date.today, 
+			  area_id: Faker::Number.positive(1, 9), 
+			  doctor_id: Faker::Number.positive(16, 30), 
+			  estado: 'Pendiente', 
+			  monto: Faker::Number.number(6), 
+			  paga: true, 
+			  turno: i) 
+end	
 
 # Usuario Admin
 admin = User.create(username: 'admin', 
@@ -107,11 +120,7 @@ Permission.all.each do |p|
         PermissionsRole.create(role_id: 1, permission_id: p.id)
 end
 
-# Turnos
-turno= Turno.create(paciente_id: 1, fecha_expedicion: '07/05/2015',
-					fecha_consulta: '07/05/2015', area_id: 1, doctor_id: 16, 
-					estado: 'pendiente', monto: '5000', paga: true, nro_factura: '33-445-gh',
-					turno: 1)
+
 
 
 

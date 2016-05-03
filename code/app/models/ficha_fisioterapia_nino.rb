@@ -39,4 +39,6 @@ class FichaFisioterapiaNino < ActiveRecord::Base
 		end
 	end
 
+	ransack_alias :paciente, :paciente_persona_nombre_or_paciente_persona_apellido_or_paciente_persona_ci	
+
 end

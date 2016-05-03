@@ -18,6 +18,15 @@ class DoctoresController < EmpleadosController
   	super
   end
 
+  # Buscador de doctores
+  def buscar
+    @search = Doctor.ransack(params[:q])
+    @doctores= @search.result
+    render json: {items: @doctores.as_json(:only => [:id, :abr_profesion],                                              
+                                              :methods => [:full_name, :area_nombre],
+                                            )}      
+  end  
+
   def empleado_params
       params.require(:doctor).permit(:cargo,:area_id, :costo,:type,:abr_profesion,
       persona_attributes: [:id,:nombre,:apellido,:ci,:ruc,:fecha_nacimiento,:edad,

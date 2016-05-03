@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160501001518) do
+ActiveRecord::Schema.define(version: 20160501050951) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -155,6 +155,73 @@ ActiveRecord::Schema.define(version: 20160501001518) do
     t.datetime "updated_at",                                       null: false
   end
 
+  create_table "ficha_nuricional_pediatricas", force: :cascade do |t|
+    t.integer  "paciente_id"
+    t.integer  "area_id"
+    t.integer  "profesional_salud_id"
+    t.date     "fecha"
+    t.string   "problema_embarazo"
+    t.string   "control_prenatal"
+    t.string   "alimentacion_embarazo"
+    t.string   "otros_datos"
+    t.string   "parto_vaginal_cesarea"
+    t.string   "termino_pretermino"
+    t.string   "lugar_parto"
+    t.string   "como_fue_parto"
+    t.string   "peso_nacimiento"
+    t.string   "asfixia_lloro"
+    t.string   "tomo_pecho"
+    t.string   "alimentacion_complementaria"
+    t.string   "sosten_cefalico"
+    t.string   "sento"
+    t.string   "paro"
+    t.string   "camino"
+    t.string   "sigue_luz"
+    t.string   "habilidades"
+    t.string   "mastica_deglute"
+    t.string   "otros"
+    t.string   "desayuno"
+    t.string   "media_manana"
+    t.string   "almuerzo"
+    t.string   "merienda"
+    t.string   "cena"
+    t.string   "cargo_quien"
+    t.string   "diarrea"
+    t.string   "vomitos"
+    t.string   "fiebre"
+    t.string   "constipacion"
+    t.string   "orina"
+    t.string   "sudor"
+    t.string   "problemas_respiratorios"
+    t.string   "distension_abdominal"
+    t.string   "otros2"
+    t.string   "diagnostico"
+    t.integer  "peso"
+    t.string   "talla"
+    t.string   "pc"
+    t.string   "imc"
+    t.string   "cm"
+    t.string   "evaluacion"
+    t.string   "indicaciones"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
+
+  create_table "fichas_fisioterapeuticas_adultos", force: :cascade do |t|
+    t.integer  "area_id",                                          null: false
+    t.integer  "doctor_id",                                        null: false
+    t.integer  "paciente_id",                                      null: false
+    t.string   "encargado",               limit: 50,  default: ""
+    t.string   "medicamentos",            limit: 250, default: ""
+    t.string   "antecedente_actual",      limit: 250, default: ""
+    t.string   "antecedente_hereditario", limit: 250, default: ""
+    t.string   "condicion_paciente",      limit: 250, default: ""
+    t.date     "fecha",                                            null: false
+    t.integer  "nro_ficha"
+    t.datetime "created_at",                                       null: false
+    t.datetime "updated_at",                                       null: false
+  end
+
   create_table "fichas_fonoaudiologicas", force: :cascade do |t|
     t.integer  "paciente_id",                          null: false
     t.integer  "area_id",                              null: false
@@ -167,16 +234,56 @@ ActiveRecord::Schema.define(version: 20160501001518) do
     t.datetime "updated_at",                           null: false
   end
 
-  create_table "fichas_psicopedagogicas", force: :cascade do |t|
-    t.integer  "paciente_id",                          null: false
-    t.integer  "area_id",                              null: false
-    t.integer  "doctor_id",                            null: false
-    t.string   "escolaridad", limit: 50,  default: ""
-    t.string   "escuela",     limit: 100, default: ""
-    t.date     "fecha",                                null: false
-    t.integer  "nro_ficha"
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
+  create_table "fichas_nuricionales_pediatricas", force: :cascade do |t|
+    t.integer  "paciente_id"
+    t.integer  "area_id"
+    t.integer  "profesional_salud_id"
+    t.date     "fecha"
+    t.string   "problema_embarazo"
+    t.string   "control_prenatal"
+    t.string   "alimentacion_embarazo"
+    t.string   "otros_datos"
+    t.string   "parto_vaginal_cesarea"
+    t.string   "termino_pretermino"
+    t.string   "lugar_parto"
+    t.string   "como_fue_parto"
+    t.string   "peso_nacimiento"
+    t.string   "asfixia_lloro"
+    t.string   "tomo_pecho"
+    t.string   "alimentacion_complementaria"
+    t.string   "sosten_cefalico"
+    t.string   "sento"
+    t.string   "paro"
+    t.string   "camino"
+    t.string   "sigue_luz"
+    t.string   "habilidades"
+    t.string   "mastica_deglute"
+    t.string   "otros"
+    t.string   "desayuno"
+    t.string   "media_manana"
+    t.string   "almuerzo"
+    t.string   "merienda"
+    t.string   "cena"
+    t.string   "cargo_quien"
+    t.string   "diarrea"
+    t.string   "vomitos"
+    t.string   "fiebre"
+    t.string   "constipacion"
+    t.string   "orina"
+    t.string   "sudor"
+    t.string   "problemas_respiratorios"
+    t.string   "distension_abdominal"
+    t.string   "otros2"
+    t.string   "diagnostico"
+    t.integer  "peso"
+    t.string   "talla"
+    t.string   "pc"
+    t.string   "imc"
+    t.string   "cm"
+    t.string   "evaluacion"
+    t.string   "indicaciones"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   create_table "grupos", force: :cascade do |t|
@@ -306,10 +413,10 @@ ActiveRecord::Schema.define(version: 20160501001518) do
   add_foreign_key "fechas", "horarios", on_delete: :restrict
   add_foreign_key "ficha_fisioterapia_ninos", "areas", on_delete: :restrict
   add_foreign_key "ficha_fisioterapia_ninos", "pacientes", on_delete: :restrict
+  add_foreign_key "fichas_fisioterapeuticas_adultos", "areas", on_delete: :restrict
+  add_foreign_key "fichas_fisioterapeuticas_adultos", "pacientes", on_delete: :restrict
   add_foreign_key "fichas_fonoaudiologicas", "areas", on_delete: :restrict
   add_foreign_key "fichas_fonoaudiologicas", "pacientes", on_delete: :restrict
-  add_foreign_key "fichas_psicopedagogicas", "areas", on_delete: :restrict
-  add_foreign_key "fichas_psicopedagogicas", "pacientes", on_delete: :restrict
   add_foreign_key "horarios", "empleados", on_delete: :cascade
   add_foreign_key "pacientes", "encargados", on_delete: :restrict
   add_foreign_key "pacientes", "personas", on_delete: :restrict
