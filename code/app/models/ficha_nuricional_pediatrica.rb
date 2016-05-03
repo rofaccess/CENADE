@@ -13,7 +13,7 @@ class FichaNuricionalPediatrica < ActiveRecord::Base
 
 
 	def actualizar_nro
-      ficha = FichaFisioterapiaNino.last
+      ficha = FichaNuricionalPediatrica.last
       if ficha.nil? 
         self.nro_ficha = 1
       elsif  ficha.nro_ficha.nil?
@@ -25,7 +25,7 @@ class FichaNuricionalPediatrica < ActiveRecord::Base
     end
 
 	def cargar_area_id
-		area= Area.where(nombre: 'Fisioterapia').first.id
+		area= Area.where(nombre: 'Nutrición').first.id
 		self.area_id= area
 	end
 	ransack_alias :paciente, :paciente_persona_nombre_or_paciente_persona_apellido_or_paciente_persona_ci

@@ -256,6 +256,9 @@ ActiveRecord::Schema.define(version: 20160502052959) do
     t.string   "paro",                        limit: 7
     t.string   "camino",                      limit: 7
     t.string   "sigue_luz",                   limit: 50
+    t.string   "busca_sonido",                limit: 50
+    t.string   "rie_llora",                   limit: 50
+    t.string   "emite_sonido",                limit: 50
     t.string   "habilidades",                 limit: 200
     t.string   "mastica_deglute",             limit: 100
     t.string   "otros",                       limit: 250
@@ -282,6 +285,7 @@ ActiveRecord::Schema.define(version: 20160502052959) do
     t.string   "cm",                          limit: 10
     t.string   "evaluacion",                  limit: 250
     t.string   "indicaciones",                limit: 600
+    t.integer  "nro_ficha"
     t.datetime "created_at",                              null: false
     t.datetime "updated_at",                              null: false
   end

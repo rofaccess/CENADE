@@ -1,10 +1,10 @@
 class CreateFichasNuricionalesPediatricas < ActiveRecord::Migration
   def change
     create_table :fichas_nuricionales_pediatricas do |t|
-
+ 
       t.integer :paciente_id              , null: false
       t.integer :area_id                  , null: false
-      t.integer :profesional_salud_id     , null: false
+      t.integer :profesional_salud_id     , null: false 
       t.date :fecha                       , null: false
       t.string :problema_embarazo         ,limit: Domain::DESC250,       null: true
       t.string :control_prenatal          ,limit: Domain::DESC250,       null: true
@@ -23,6 +23,9 @@ class CreateFichasNuricionalesPediatricas < ActiveRecord::Migration
       t.string :paro                      ,limit: Domain::TIEMPO,       null: true
       t.string :camino                    ,limit: Domain::TIEMPO,       null: true
       t.string :sigue_luz                 ,limit: Domain::DESC50,       null: true
+      t.string :busca_sonido              ,limit: Domain::DESC50,       null: true
+      t.string :rie_llora                 ,limit: Domain::DESC50,       null: true
+      t.string :emite_sonido              ,limit: Domain::DESC50,       null: true
       t.string :habilidades               ,limit: Domain::DESC200,       null: true
       t.string :mastica_deglute           ,limit: Domain::DESC100,       null: true
       t.string :otros                     ,limit: Domain::DESC250,       null: true
@@ -49,7 +52,7 @@ class CreateFichasNuricionalesPediatricas < ActiveRecord::Migration
       t.string :cm                        ,limit: Domain::NRO_CHICO,       null: true
       t.string :evaluacion                ,limit: Domain::DESC250,       null: true
       t.string :indicaciones              ,limit: Domain::DESC600,       null: true
-
+      t.integer :nro_ficha                 
       t.timestamps null: false
     end
   end
