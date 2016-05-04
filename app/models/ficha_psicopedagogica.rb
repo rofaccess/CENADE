@@ -1,17 +1,16 @@
-class FichaFonoaudiologica < ActiveRecord::Base
-  paginates_per 2
+class FichaPsicopedagogica < ActiveRecord::Base
+  paginates_per 20
   #asociaciones
   belongs_to :paciente
   belongs_to :area
   belongs_to :doctor, :foreign_key => :doctor_id
-
 
   #cargas automáticas
   before_create :cargar_area_id
   before_create :actualizar_nro
 
 	def actualizar_nro
-      ficha = FichaFonoaudiologica.last
+      ficha = FichaPsicopedagogica.last
       if ficha.nil? 
         self.nro_ficha = 1
       elsif  ficha.nro_ficha.nil?
@@ -23,18 +22,15 @@ class FichaFonoaudiologica < ActiveRecord::Base
     end
 
 	def cargar_area_id
-		area= Area.where(nombre: 'Fonoaudiología').first.id
+		area= Area.where(nombre: 'Psicopedagogía').first.id
 		self.area_id= area
 	end
 
 
   	def validate_paciente 
-		paciente= FichaFonoaudiologica.where("paciente_id = ?", self.paciente_id)
+		paciente= FichaPsicopedagogica.where("paciente_id = ?", self.paciente_id)
 		if !paciente.empty?
-			errors.add(:base, "El paciente ya posee una Ficha en Fonoaudiología")
+			errors.add(:base, "El paciente ya posee una Ficha en Psicopedagogía")
 		end
 	end
-
-  ransack_alias :paciente, :paciente_persona_nombre_or_paciente_persona_apellido_or_paciente_persona_ci 
-
 end

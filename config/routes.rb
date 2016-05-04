@@ -2,6 +2,15 @@ Rails.application.routes.draw do
   
   resources :fichas_nutricionales_pediatricas
 
+  get 'fichas_psicopedagogicas_check_paciente_id'=> 'fichas_psicopedagogicas#check_paciente_id'
+  get 'fichas_psicopedagogicas/print_ficha'=>'fichas_psicopedagogicas#print_ficha'
+  resources :fichas_psicopedagogicas do
+    collection do
+      match 'buscar'=>'fichas_psicopedagogicas#buscar', via: [:get, :post],as: :search
+      get 'get_paciente'=>'fichas_psicopedagogicas#get_paciente'
+    end
+  end
+
   get 'fichas_fonoaudiologicas_check_paciente_id' => 'fichas_fonoaudiologicas#check_paciente_id'
   get 'fichas_fonoaudiologicas/print_ficha' => 'fichas_fonoaudiologicas#print_ficha'
   resources :fichas_fonoaudiologicas do
@@ -10,7 +19,6 @@ Rails.application.routes.draw do
       get 'get_paciente' => 'fichas_fonoaudiologicas#get_paciente'
     end
   end
-
   get 'fichas_fisioterapeuticas_adultos/test' => 'fichas_fisioterapeuticas_adultos#test'
   get 'fichas_fisioterapeuticas_adultos/check_paciente_has_ficha' => 'fichas_fisioterapeuticas_adultos#check_paciente_has_ficha'
   get 'fichas_fisioterapeuticas_adultos/print_ficha' => 'fichas_fisioterapeuticas_adultos#print_ficha'
@@ -23,15 +31,14 @@ Rails.application.routes.draw do
   
   get 'ficha_fisioterapia_ninos/check_paciente_id' => 'ficha_fisioterapia_ninos#check_paciente_id'
   get 'ficha_fisioterapia_ninos/print_ficha' => 'ficha_fisioterapia_ninos#print_ficha'
-
   resources :ficha_fisioterapia_ninos do
     collection do
       match 'buscar' => 'ficha_fisioterapia_ninos#buscar', via: [:get, :post], as: :search
       get'get_paciente' => 'ficha_fisioterapia_ninos#get_paciente'
     end
   end
-
   get 'consultas/consulta_from_ficha' => 'consultas#consulta_from_ficha'
+
   get 'consultas/print_consulta' => 'consultas#print_consulta'
   resources :consultas do
     collection do

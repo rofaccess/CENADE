@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160501050951) do
+ActiveRecord::Schema.define(version: 20160502165017) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -79,6 +79,15 @@ ActiveRecord::Schema.define(version: 20160501050951) do
     t.string   "observaciones",        limit: 250, default: ""
     t.datetime "deleted_at"
   end
+
+  create_table "custom_auto_increments", force: :cascade do |t|
+    t.string   "counter_model_name"
+    t.integer  "counter",            default: 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "custom_auto_increments", ["counter_model_name"], name: "index_custom_auto_increments_on_counter_model_name", using: :btree
 
   create_table "empleados", force: :cascade do |t|
     t.integer  "persona_id",                             null: false
@@ -286,6 +295,18 @@ ActiveRecord::Schema.define(version: 20160501050951) do
     t.datetime "updated_at",                  null: false
   end
 
+  create_table "fichas_psicopedagogicas", force: :cascade do |t|
+    t.integer  "paciente_id",                          null: false
+    t.integer  "area_id",                              null: false
+    t.integer  "doctor_id",                            null: false
+    t.string   "escolaridad", limit: 50,  default: ""
+    t.string   "escuela",     limit: 100, default: ""
+    t.date     "fecha",                                null: false
+    t.integer  "nro_ficha"
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+  end
+
   create_table "grupos", force: :cascade do |t|
     t.string   "nombre"
     t.datetime "created_at", null: false
@@ -417,6 +438,8 @@ ActiveRecord::Schema.define(version: 20160501050951) do
   add_foreign_key "fichas_fisioterapeuticas_adultos", "pacientes", on_delete: :restrict
   add_foreign_key "fichas_fonoaudiologicas", "areas", on_delete: :restrict
   add_foreign_key "fichas_fonoaudiologicas", "pacientes", on_delete: :restrict
+  add_foreign_key "fichas_psicopedagogicas", "areas", on_delete: :restrict
+  add_foreign_key "fichas_psicopedagogicas", "pacientes", on_delete: :restrict
   add_foreign_key "horarios", "empleados", on_delete: :cascade
   add_foreign_key "pacientes", "encargados", on_delete: :restrict
   add_foreign_key "pacientes", "personas", on_delete: :restrict

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  escolaridad: MyString
+  escuela: MyString
+  area_id: 
+  paciente_id: 
+
+two:
+  escolaridad: MyString
+  escuela: MyString
+  area_id: 
+  paciente_id: 
