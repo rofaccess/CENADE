@@ -5,7 +5,7 @@
 	       <%= link_to '<i class="fa fa-list"></i> '.html_safe, fichas_psicopedagogicas_path %> 
 	       <%= link_to '<i class="fa fa-plus-square"></i> '.html_safe, new_ficha_psicopedagogica_path, remote:true%> 
 	      
-	       <%= link_to '<i class="fa fa-edit"></i> '.html_safe, edit_ficha_psicopedagogica_path, remote:true%>
+	       <%= link_to '<i class="fa fa-edit"></i> '.html_safe, edit_ficha_psicopedagogica_path(@psicopedagogica.id), remote:true%>
 	            <%= link_to '<i class="fa fa-print"></i> '.html_safe, fichas_psicopedagogicas_print_ficha_path(ficha_id: @psicopedagogica.id, :format => :pdf), target: '_blank'%> 
       </div>
     </div>
