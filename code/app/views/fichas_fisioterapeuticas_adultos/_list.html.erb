@@ -24,8 +24,8 @@
     <tr>
       <td ><%=ficha.nro_ficha %></td>
       <td ><%=ficha.fecha.strftime("%d/%m/%Y") %></td>
-      <td ><%=ficha.paciente.persona.nombre %> <%=ficha.paciente.persona.apellido %></td>
-      <td > <%=ficha.doctor.abr_profesion %> <%=ficha.doctor.persona_nombre %> <%=ficha.doctor.persona_apellido %></td>      
+      <td ><%=ficha.paciente_persona_full_name %></td>
+      <td > <%=ficha.doctor_abr_profesion %> <%=ficha.doctor_persona_full_name %></td>      
       <td class = "action">
         
         <%= link_to '<i class="fa fa-eye fa-lg" data-toggle="tooltip" title="Ver Ficha"></i> '.html_safe, ficha_fisioterapeutica_adulto_path(ficha), remote: true%>     
