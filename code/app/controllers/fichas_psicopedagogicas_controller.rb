@@ -12,7 +12,6 @@ class FichasPsicopedagogicasController < ApplicationController
   	end
 
   	def index
-  		@psicopedagogicas = FichaPsicopedagogica.all
   		@search = FichaPsicopedagogica.ransack(params[:q])
     	@psicopedagogicas= @search.result.page(params[:page])
   	end

@@ -1,5 +1,5 @@
 class FichaPsicopedagogica < ActiveRecord::Base
-  paginates_per 2
+  paginates_per 20
   #asociaciones
   belongs_to :paciente
   belongs_to :area
