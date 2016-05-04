@@ -21,8 +21,8 @@ var pacientesUI = (function(){
 	                		results: $.map( data.items, function(paciente, i) { 
 	                			return { 
 	                				id       : paciente.id, 
-	                				text     : paciente.full_name, 
-	                				full_name: paciente.full_name,
+	                				text     : paciente.persona_full_name, 
+	                				full_name: paciente.persona_full_name,
 	                				ci 		 :paciente.persona_ci 
 	                			} 
 	                		})			        

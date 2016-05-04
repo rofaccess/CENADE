@@ -11,9 +11,13 @@ class FichasFisioterapeuticasAdultosController < ApplicationController
 		@sidebar_layout = 'layouts/sidebar_fichas'
 	end
 
+	def set_ficha
+	  	@ficha= FichaFisioterapeuticaAdulto.find(params[:id])
+	  	@paciente = Paciente.find(@ficha.paciente_id)
+  	end 
+
 	def index
-		@search = FichaFisioterapeuticaAdulto.ransack(params[:q])
-		@fichas= @search.result.page(params[:page])
+		get_fichas
 	end
 
 	def new
@@ -23,11 +27,6 @@ class FichasFisioterapeuticasAdultosController < ApplicationController
 		# Para renderizar un formulario vacio de datos del paciente
 		@paciente = Paciente.new
 	end
-
-	def get_doctores_fisioterapia
-		area = Area.find_by_nombre('Fisioterapia')
-		@doctores = Doctor.where(area_id: area.id)
-	end	
 
 	def create
 		@ficha = FichaFisioterapeuticaAdulto.new(ficha_params)
@@ -72,30 +71,37 @@ class FichasFisioterapeuticasAdultosController < ApplicationController
 	def destroy    		
 		respond_to do |format|
 			if @ficha.destroy							         
-				format.html { redirect_to fichas_fisioterapeuticas_adultos_path, flash: {notice: "Se ha eliminado la ficha de #{@ficha.paciente.full_name}."}}
+				format.html { redirect_to fichas_fisioterapeuticas_adultos_path, flash: {notice: "Se ha eliminado la ficha de #{@ficha.paciente.persona_full_name}."}}
 			else
-			   	format.html { redirect_to fichas_fisioterapeuticas_adultos_path, flash: {alert: "No se ha podido eliminar la ficha de #{@ficha.paciente.full_name}."}}	      		
+			   	format.html { redirect_to fichas_fisioterapeuticas_adultos_path, flash: {alert: "No se ha podido eliminar la ficha de #{@ficha.paciente.persona_full_name}."}}	      		
 			end			
 		end	
 	end
-
-  # Checkea que un paciente ya no tenga una Ficha de Fisioterapia Adulto
+  
   def check_paciente_has_ficha
   	ficha = FichaFisioterapeuticaAdulto.find_by_paciente_id(params[:paciente_id])
 
   	render json: (ficha.nil? || ficha.id == params[:id].to_i) ? true : "El Paciente ya posee una Ficha".to_json
   end
+  
+  def get_doctores_fisioterapia
+		area = Area.find_by_nombre('Fisioterapia')
+		@doctores = Doctor.where(area_id: area.id)
+	end	
 
-  # Busca el paciente seleccionado en la base de datos
   def get_paciente
   	@paciente= Paciente.find(params[:id])
 
   end
+  
+  def get_fichas
+  	@search = FichaFisioterapeuticaAdulto.search(params[:q])
+  	@fichas = @search.result.order('nro_ficha').page(params[:page])
+  end	
 
   # Metodo creado para el filtro
   def buscar
-  	@search = FichaFisioterapeuticaAdulto.search(params[:q])
-  	@fichas = @search.result.page(params[:page])
+  	get_fichas
   	render 'index'
   end
 
@@ -113,12 +119,7 @@ class FichasFisioterapeuticasAdultosController < ApplicationController
   			:layout => "pdf.html"
   		end
   	end
-  end
-
-  def set_ficha
-  	@ficha= FichaFisioterapeuticaAdulto.find(params[:id])
-  	@paciente = Paciente.find(@ficha.paciente_id)
-  end 
+  end  
 
   def ficha_params
   	params.require(:ficha_fisioterapeutica_adulto).permit(:area_id, :paciente_id, :doctor_id, :encargado, :medicamentos,

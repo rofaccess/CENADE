@@ -149,7 +149,7 @@ class PacientesController < ApplicationController
       @search = Paciente.ransack(params[:q])
       @pacientes= @search.result
       render json: {items: @pacientes.as_json(:only => [:id, :profesion,:lugar_trabajo,:lugar_nacimiento,:fecha_ingreso],                                              
-                                              :methods => [:full_name, :persona_ci],
+                                              :methods => [:persona_full_name, :persona_ci],
                                             )}      
     end  
 

@@ -22,7 +22,7 @@ class Empleado < ActiveRecord::Base
     end
 
     # Law of Demeter 
-	delegate :nombre, :apellido, :ci, :edad, :sexo, :ci, :nacionalidad, :fecha_nacimiento, :profesion, :telefono, :direccion, :estado_civil_id, :encargado_id, to: :persona, prefix: true, allow_nil: true
+	delegate :full_name, :nombre, :apellido, :ci, :edad, :sexo, :ci, :nacionalidad, :fecha_nacimiento, :profesion, :telefono, :direccion, :estado_civil_id, :encargado_id, to: :persona, prefix: true, allow_nil: true
 
-    ransack_alias :empleado, :persona_nombre_or_persona_apellido_or_persona_ci
+  ransack_alias :empleado, :persona_nombre_or_persona_apellido_or_persona_ci
 end
