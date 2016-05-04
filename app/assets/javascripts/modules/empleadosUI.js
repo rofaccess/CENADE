@@ -20,8 +20,8 @@ var empleadosUI = (function(){
 	                		results: $.map( data.items, function(doctor, i) { 
 	                			return { 
 	                				id       : doctor.id, 
-	                				text     : doctor.full_name, 
-	                				full_name: doctor.full_name,
+	                				text     : doctor.persona_full_name, 
+	                				full_name: doctor.persona_full_name,
 	                				area     : doctor.area_nombre } 
 	                			})			        
 	                	};

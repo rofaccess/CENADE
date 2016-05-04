@@ -21,8 +21,8 @@ var pacientesUI = (function(){
 	                		results: $.map( data.items, function(paciente, i) { 
 	                			return { 
 	                				id       : paciente.id, 
-	                				text     : paciente.full_name, 
-	                				full_name: paciente.full_name,
+	                				text     : paciente.persona_full_name, 
+	                				full_name: paciente.persona_full_name,
 	                				ci 		 :paciente.persona_ci 
 	                			} 
 	                		})			        
@@ -43,6 +43,34 @@ var pacientesUI = (function(){
 	  		$(element).on("change", function(){
 				$(this).valid(); 			
 			});		
+		},
+
+		/* Cuando se selecciona otro valor en el element (select) dado se ejecuta la acción
+		   get_paciente del controlador Pacientes, para que actualize los datos del paciente
+		
+	        Recibe un objeto con:
+	        {
+	            element: el id o clase del objeto jquery Ej.: #select_paciente, .select-paciente
+	            root   : Indica desde donde se llamó a la acción get_paciente del controlador Pacientes
+	            con esto se sabrá donde está el js a ejecutar para recargar los datos del paciente.
+	        }
+    	*/
+		getPaciente: function(options){
+			$(options.element).on("change", function(){
+				$.ajax({
+                 
+                  url: "/pacientes/get_paciente",
+                  type: 'get',
+                  data: {
+                   	id : $(this).val(),
+                   	root: options.root
+                  },
+                  success: function(resp){
+                      
+                  }
+                  
+                });			
+			});
 		},
 
 		/*
