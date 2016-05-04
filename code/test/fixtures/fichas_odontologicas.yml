@@ -1,0 +1,75 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  fecha: 2016-05-03
+  motivo_consulta: MyString
+  observaciones: MyString
+  servicio_cenade: MyString
+  medicacion_actual: MyString
+  anestesico: MyString
+  penicilina: MyString
+  otros_medicamentos: MyString
+  hemorragias: MyString
+  problema_tratamiento: MyString
+  enfermedad_cardiovascular: MyString
+  diabetes: MyString
+  hepatitis: MyString
+  enfermedades_renales: MyString
+  artritis: MyString
+  tuberculosis: MyString
+  enfermedades_venereas: MyString
+  enfermedades_sanguineas: MyString
+  fumador: MyString
+  enfermedades_neurologicas: MyString
+  menstruacion: MyString
+  embarazada: MyString
+  tiene_hijos: MyString
+  cantidad_hijos: MyString
+  amamanta: MyString
+  hospitalizado: MyString
+  causa_hospitalizado: MyString
+  ecg: MyString
+  tac: MyString
+  rx: MyString
+  laboratorios: MyString
+  otros_examenes: MyString
+  tratamiento: MyString
+  paciente_id_id: 
+  area_id_id: 
+
+two:
+  fecha: 2016-05-03
+  motivo_consulta: MyString
+  observaciones: MyString
+  servicio_cenade: MyString
+  medicacion_actual: MyString
+  anestesico: MyString
+  penicilina: MyString
+  otros_medicamentos: MyString
+  hemorragias: MyString
+  problema_tratamiento: MyString
+  enfermedad_cardiovascular: MyString
+  diabetes: MyString
+  hepatitis: MyString
+  enfermedades_renales: MyString
+  artritis: MyString
+  tuberculosis: MyString
+  enfermedades_venereas: MyString
+  enfermedades_sanguineas: MyString
+  fumador: MyString
+  enfermedades_neurologicas: MyString
+  menstruacion: MyString
+  embarazada: MyString
+  tiene_hijos: MyString
+  cantidad_hijos: MyString
+  amamanta: MyString
+  hospitalizado: MyString
+  causa_hospitalizado: MyString
+  ecg: MyString
+  tac: MyString
+  rx: MyString
+  laboratorios: MyString
+  otros_examenes: MyString
+  tratamiento: MyString
+  paciente_id_id: 
+  area_id_id: 

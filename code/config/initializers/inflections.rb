@@ -38,4 +38,5 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
 	inflect.irregular 'ficha_fisioterapeutica_adulto', 'fichas_fisioterapeuticas_adultos'
 	inflect.irregular 'consulta', 'consultas'
 	inflect.irregular 'ficha_nutricional_pediatrica', 'fichas_nutricionales_pediatricas'
+	inflect.irregular 'ficha_odontologica','fichas_odontologicas'
 end

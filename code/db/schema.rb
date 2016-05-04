@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160501050951) do
+ActiveRecord::Schema.define(version: 20160504025744) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -286,6 +286,48 @@ ActiveRecord::Schema.define(version: 20160501050951) do
     t.datetime "updated_at",                  null: false
   end
 
+  create_table "fichas_odontologicas", force: :cascade do |t|
+    t.integer  "paciente_id",               null: false
+    t.integer  "area_id",                   null: false
+    t.integer  "doctor_id",                 null: false
+    t.integer  "nro_ficha"
+    t.date     "fecha"
+    t.string   "motivo_consulta"
+    t.string   "observaciones"
+    t.string   "servicio_cenade"
+    t.string   "medicacion_actual"
+    t.string   "anestesico"
+    t.string   "penicilina"
+    t.string   "otros_medicamentos"
+    t.string   "hemorragias"
+    t.string   "problema_tratamiento"
+    t.string   "enfermedad_cardiovascular"
+    t.string   "diabetes"
+    t.string   "hepatitis"
+    t.string   "enfermedades_renales"
+    t.string   "artritis"
+    t.string   "tuberculosis"
+    t.string   "enfermedades_venereas"
+    t.string   "enfermedades_sanguineas"
+    t.string   "fumador"
+    t.string   "enfermedades_neurologicas"
+    t.string   "menstruacion"
+    t.string   "embarazada"
+    t.string   "tiene_hijos"
+    t.string   "cantidad_hijos"
+    t.string   "amamanta"
+    t.string   "hospitalizado"
+    t.string   "causa_hospitalizado"
+    t.string   "ecg"
+    t.string   "tac"
+    t.string   "rx"
+    t.string   "laboratorios"
+    t.string   "otros_examenes"
+    t.string   "tratamiento"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
   create_table "fichas_psicopedagogicas", force: :cascade do |t|
     t.integer  "paciente_id",                          null: false
     t.integer  "area_id",                              null: false
@@ -429,6 +471,8 @@ ActiveRecord::Schema.define(version: 20160501050951) do
   add_foreign_key "fichas_fisioterapeuticas_adultos", "pacientes", on_delete: :restrict
   add_foreign_key "fichas_fonoaudiologicas", "areas", on_delete: :restrict
   add_foreign_key "fichas_fonoaudiologicas", "pacientes", on_delete: :restrict
+  add_foreign_key "fichas_odontologicas", "areas"
+  add_foreign_key "fichas_odontologicas", "pacientes"
   add_foreign_key "fichas_psicopedagogicas", "areas", on_delete: :restrict
   add_foreign_key "fichas_psicopedagogicas", "pacientes", on_delete: :restrict
   add_foreign_key "horarios", "empleados", on_delete: :cascade
