@@ -23,7 +23,7 @@ class DoctoresController < EmpleadosController
     @search = Doctor.ransack(params[:q])
     @doctores= @search.result
     render json: {items: @doctores.as_json(:only => [:id, :abr_profesion],                                              
-                                              :methods => [:full_name, :area_nombre],
+                                              :methods => [:persona_full_name, :area_nombre],
                                             )}      
   end  
 

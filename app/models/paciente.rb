@@ -35,13 +35,11 @@ class Paciente < ActiveRecord::Base
       end	
     end		
 
-	# Retorna el nombre y apellido del paciente, usado en /pacientes/buscar
-	def full_name
-  		"#{persona_nombre} #{persona_apellido}"
-	end	
-
+	# Usado en initBuscarPaciente en pacientesUI
 	ransack_alias :paciente, :persona_nombre_or_persona_apellido_or_persona_ci
 
 	# Law of Demeter 
-	delegate :nombre, :apellido, :ci, :edad, :sexo, :ci, :nacionalidad, :fecha_nacimiento, :profesion, :telefono, :direccion, to: :persona, prefix: true, allow_nil: true
+	delegate :full_name, :nombre, :apellido, :ci, :edad, :sexo, :ci, :nacionalidad, 
+			 :fecha_nacimiento, :profesion, :telefono, :direccion, :fecha_ingreso,
+			 to: :persona, prefix: true, allow_nil: true
 end
