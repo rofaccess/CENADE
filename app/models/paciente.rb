@@ -39,5 +39,7 @@ class Paciente < ActiveRecord::Base
 	ransack_alias :paciente, :persona_nombre_or_persona_apellido_or_persona_ci
 
 	# Law of Demeter 
-	delegate :full_name, :nombre, :apellido, :ci, :edad, :sexo, :ci, :nacionalidad, :fecha_nacimiento, :profesion, :telefono, :direccion, to: :persona, prefix: true, allow_nil: true
+	delegate :full_name, :nombre, :apellido, :ci, :edad, :sexo, :ci, :nacionalidad, 
+			 :fecha_nacimiento, :profesion, :telefono, :direccion, :fecha_ingreso,
+			 to: :persona, prefix: true, allow_nil: true
 end
