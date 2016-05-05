@@ -1,0 +1,55 @@
+
+  <div class="page-title page-title-con-sidebar">  
+ 		Fichas de Psicopedagogía
+  	<div class="tool">
+      <%= search_form_for @search, class: 'buscador', remote: true do |f| %>
+        <div class="input-group"> 
+            <%= f.search_field :paciente_persona_nombre_cont, placeholder: "Buscar por Paciente", class: "form-control", autofocus: true%>
+            <span class="fa fa-search"></span>
+          	<div class="input-group-btn"> 
+              <a href="#"><i class="fa fa-search-plus" aria-hidden="true" id= "show" data-toggle="tooltip" data-placement="bottom" title="Búsqueda Avanzada"></i></a>
+              <%= link_to '<i class="fa fa-plus-square" aria-hidden="true" id= "show" data-toggle="tooltip" data-placement="bottom" title="Nueva Ficha"></i> '.html_safe, new_ficha_psicopedagogica_path, remote: true%>             
+            </div> 
+        </div>
+      <%end%>
+    </div>
+  </div>
+
+<div class= "content2">
+  <div id="advanced-search" style = 'display:none;' class="advanced-search-con-sidebar">
+    <%= search_form_for @search, url: search_fichas_psicopedagogicas_path, method: :post, remote: true, class: 'form-filtros' do |f| %>
+      <div class="row">
+
+        <%= FormBuilder::text_field_v(f, :paciente_persona_ci_or_paciente_persona_nombre_or_paciente_persona_apellido_cont, {col_class: 'col-md-3',label_text: 'Paciente',input_class: '',placeholder: "Nombre, Apellido o CI"})%>
+
+        <%= FormBuilder::text_field_v(f, :doctor_persona_nombre_or_doctor_persona_apellido_cont, {col_class: 'col-md-3',label_text: 'Prof. de la Salud',input_class: '',placeholder: "Nombre o Apellido"})%>
+
+        <%= FormBuilder::text_field_v(f, :nro_ficha_eq, {col_class: 'col-md-1',label_text: 'Ficha',input_class: ''})%>
+
+        <%= FormBuilder::text_field_v(f, :fecha_eq, {col_class: 'col-md-2',label_text: 'Fecha',input_class: 'datepicker',max_length: Domain::FECHA})%>
+      
+        <div class= "input-group pull-right" style = 'margin-top: 25px;'>
+          <%= f.submit 'Filtrar', class: 'btn btn-custom '%>
+          <%= f.submit 'Limpiar Campos', type: 'reset', class: 'btn btn-link'%>
+        </div>
+      </div>
+    <% end %>
+    </br>
+  </div>
+  <div id="list" class="list-con-sidebar">
+      <%= render 'list' %>
+  </div>
+  <div id="list-paginate" class="list-paginate-con-sidebar">
+    <%= paginate @psicopedagogicas, remote: true %>
+  </div>
+</div>
+<script type="text/javascript"> 
+  psicopedagogicasUI.initScript();
+  
+   <% if !flash.notice.blank? %>  
+    var n = noty({text: '<%=notice%>', type: 'success'});   
+  <% end %>
+  <% if !flash.alert.blank?%> 
+    var n = noty({text: '<%=alert%>', type: 'error'});
+  <% end %>
+</script>

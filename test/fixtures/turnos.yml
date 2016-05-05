@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  paciente_id: 1
+  fecha_expedicion: 2016-04-12 01:59:51
+  fecha_consulta: 2016-04-12
+  area_id: 1
+  doctor_id: 1
+  estado: MyString
+  monto: 1
+  paga: false
+  nro_factura: MyString
+
+two:
+  paciente_id: 1
+  fecha_expedicion: 2016-04-12 01:59:51
+  fecha_consulta: 2016-04-12
+  area_id: 1
+  doctor_id: 1
+  estado: MyString
+  monto: 1
+  paga: false
+  nro_factura: MyString
