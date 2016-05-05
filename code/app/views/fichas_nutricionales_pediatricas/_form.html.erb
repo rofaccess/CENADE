@@ -1,177 +1,79 @@
-<div class="form-content form-ficha-mediano">
-  <div class="page-title page-title-con-sidebar">
-  	<%=@nutri_pediatrica.id.nil? ? 'Nueva Ficha' : 'Editar Ficha'%> 
 
-  	<div class="tool">
-  		<%= link_to '<i class="fa fa-list" data-toggle="tooltip" title="Lista de Fichas"></i> '.html_safe, fichas_nutricionales_pediatricas_path %> 
-  	</div>
+  <div class="page-title page-title-con-sidebar">
+    <%=@nutri_pediatrica.id.nil? ? 'Nueva Ficha' : 'Editar Ficha'%> 
+
+    <div class="tool">
+      <%= link_to '<i class="fa fa-list" data-toggle="tooltip" title="Lista de Fichas"></i> '.html_safe, fichas_nutricionales_pediatricas_path %> 
+    </div>
 
   </div>
-  <%= form_for @nutri_pediatrica, url: fichas_nutricionales_pediatricas_path, html: {class: 'nueva-ficha form-ficha-mediano', :multipart => true }, remote: true do |ficha|%>
-      <%= hidden_field_tag :ficha_nutricional_pediatrica_id, @nutri_pediatrica.id %>
-      <h4 align="center">FICHA NUTRICIONAL PEDÍATRICA</h4></br>
+  <div class="form-content2">    
+    <%= simple_form_for @nutri_pediatrica,url: fichas_nutricionales_pediatricas_path, html: {class: 'form-ficha2'} do |ficha|%>
+    <%= hidden_field_tag :ficha_id, @nutri_pediatrica.id, class: 'ficha-id'%>
+    
+    <h4 class="titulo-ficha">FICHA NUTRICIONAL PEDIÁTRICA</h4>
+    
+    <div class="row">   
+      <%= ficha.input :paciente_id, collection: Paciente.all.collect { |a| [a.persona_full_name, a.id] }, label: '* Paciente', wrapper_html: { class: @paciente.id.nil? ? 'col-md-4' : 'col-md-5' }, input_html: { class: 'required select-paciente select2 uniquePacienteFicha paciente-id', disabled: @paciente.id.nil? ? false : true} %> 
+        
+        <% if @paciente.id.nil? %> 
+          <%= link_to '<i class="fa fa-plus"></i> '.html_safe, pacientes_new_modal_path(root: 'fichas_nutricionales_pediatricas', encargado: false), class: 'btn btn-custom btn-add col-md-1', remote: true %> 
+        <% end %>
+        
+          
+        <%= ficha.input :profesional_salud_id, collection: @doctores.collect { |a| [a.abr_profesion+" "+a.persona_full_name, a.id] }, label: '* Profesional de la Salud', wrapper_html: { class: 'col-md-4' }, input_html:   { class: 'required select-doctor select2'} %>        
+
+        <%= ficha.input :fecha, as: :string, label: '* Fecha', wrapper_html: { class: 'col-md-3'}, input_html: { class: 'datepicker required', maxLength: Domain::FECHA, value:Formatter.format_date(@nutri_pediatrica.fecha)} %>
+    </div>  
+    <div id="paciente-data">
+      <%= render 'form_paciente' %>
+    </div>
+    <h4>I- Antecedentes Prenatal</h4>
+      <hr>
       <div class="row">
-        <div class="col-md-5 error-especial">
-
-
-          <%= ficha.label :paciente_id, '* Paciente' %> 
-          <div class="row">
-            <div class="col-md-10 form-group">
-
-              <%= ficha.select(:paciente_id, Paciente.all.collect{|a| [a.persona.nombre + " "+ a.persona.apellido, a.id]},{},{class: "paciente_select form-control select2", required: true,  id: 'paciente_id'})%>
-            </div>
-          <%= link_to '<i class="fa fa-plus"></i> '.html_safe, pacientes_new_paciente_modal_path(root: 'fichas_nutricionales_pediatricas', encargado: false), class: 'btn btn-custom col-md-1', style: 'height: 30px; width: 40px', remote: true%> 
-            
-          </div>
-      </div>
-
-        <div class="col-md-4 form-group">
-          <%= ficha.label :profesional_salud_id, '* Profesional de la Salud' %>
-          <%= ficha.select(:profesional_salud_id, @doctores.collect{|a| [a.abr_profesion + " "+ a.persona.nombre + " "+ a.persona.apellido, a.id]},{},{class: "profesional_select form-control select2", required: true,  id: 'profesional_salud_id'})%>
-        </div>   
-        <%= FormBuilder::text_field_v(ficha, :fecha, 
-                                      input_class: 'date datepicker required', 
-                                      max_length: Domain::FECHA,
-                                      label_text: '* Fecha',
-                                      col_class: 'col-md-3',
-                                       input_value: "#{ficha.object.fecha.strftime("%d/%m/%Y") unless ficha.object.new_record?}")%>
-     </div>
-
-      <h4>Datos del Paciente</h4>
+      <%= ficha.input :problema_embarazo, as: :text, label:  @titulos_largos.first.titulo, wrapper_html: { class: 'col-md-12'}, input_html: { maxLength: Domain::DESC250} %>    
+    </div>
+    <div class="row">
+      <%= ficha.input :control_prenatal, label:  @titulos_largos.find(2).titulo, wrapper_html: { class: 'col-md-12'}, input_html: { maxLength: Domain::DESC250} %>    
+    </div>
+    <div class="row">
+      <%= ficha.input :alimentacion_embarazo, as: :text, label:  @titulos_largos.find(3).titulo, wrapper_html: { class: 'col-md-12'}, input_html: { maxLength: Domain::DESC250} %>    
+    </div>
+    <div class="row">
+      <%= ficha.input :otros_datos, label:  'Otros datos', wrapper_html: { class: 'col-md-12'}, input_html: { maxLength: Domain::DESC250} %>    
+    </div>
+    <h4>II- Antecedentes del Parto</h4>
+      <hr>
+      <div class="row">
+      <%= ficha.input :parto_vaginal_cesarea, label: '¿Tuvo parto vaginal o cesárea?' , wrapper_html: { class: 'col-md-6'}, input_html: { maxLength: Domain::DESC50} %>   
+      <%= ficha.input :termino_pretermino, label: '¿Fue de término o pretermino?' , wrapper_html: { class: 'col-md-6'}, input_html: { maxLength: Domain::DESC50} %>   
+    </div>
+    <div class="row">
+      <%= ficha.input :lugar_parto, label: 'Lugar del Parto' , wrapper_html: { class: 'col-md-7'}, input_html: { maxLength: Domain::DESC100} %>   
+      <%= ficha.input :como_fue_parto, label: '¿Cómo fue el parto?' , wrapper_html: { class: 'col-md-5'}, input_html: { maxLength: Domain::DESC100} %>    
+    </div>  
+    <h4>III- Antecedentes Postnatal</h4>
       <hr>
       
-      <div class ="paciente_data">
-      	<div class="row">
-
-            <%= FormBuilder::text_field_v(ficha, :paciente_id, 
-                                          input_class: 'paciente-nombre', 
-                                          col_class: 'col-md-4',
-                                          disabled: true,
-                                          label_text: 'Nombres') %>
-
-            <%= FormBuilder::text_field_v(ficha, :paciente_id, 
-                                          input_class: 'paciente-apellido', 
-                                          col_class: 'col-md-4',
-                                          disabled: true,
-                                          label_text: 'Apellidos') %>
-
-            <%= FormBuilder::text_field_v(ficha, :paciente_id, 
-                                          input_class: 'paciente-apellido', 
-                                          col_class: 'col-md-2',
-                                          disabled: true,
-                                          label_text: 'Fecha de nac.') %>
-
-            <%= FormBuilder::text_field_v(ficha, :paciente_id, 
-                                          input_class: 'clear', 
-                                          
-                                          col_class: 'col-md-2',
-                                          disabled: true,
-                                          label_text: 'Edad') %> 
-        </div>      
-        <div class="row">
-            <%= FormBuilder::text_field_v(ficha, :paciente_id, 
-                                          input_class: 'clear', 
-                                          col_class: 'col-md-9',
-                                          disabled: true,
-                                          label_text: 'Dirección') %> 
-              <%= FormBuilder::text_field_v(ficha, :paciente_id, 
-                                          input_class: 'clear paciente-ci',
-                                          col_class: 'col-md-3',
-                                          disabled: true,
-                                          label_text: 'Teléfono') %>
-                
-              
-        </div>
+      <div class="row">
+      <%= ficha.input :asfixia_lloro, as: :text, label: @titulos_largos.find(4).titulo  , wrapper_html: { class: 'col-md-12'}, input_html: { maxLength: Domain::DESC250} %> 
     </div>
-    </br>
-    <h4>I- Antecedentes Prenatal</h4>
-    <hr>
-
-    <%= ficha.label :problema_embarazo, @titulos_largos.first.titulo %> 
-    <%= ficha.text_area :problema_embarazo, rows: "2", class: "form-control longString"%></br>             
     <div class="row">
-      <%= FormBuilder::text_field_v(ficha, :control_prenatal, 
-                                  input_class: 'clear',
-                                  col_class: 'col-md-12',
-                                  max_length: Domain::DESC250,
-                                  label_text: @titulos_largos.find(2).titulo) %>
+      <%= ficha.input :tomo_pecho, as: :text, label: @titulos_largos.find(5).titulo , wrapper_html: { class: 'col-md-12'}, input_html: { maxLength: Domain::DESC200} %>
 
-    </div></br>
-    <%= ficha.label :alimentacion_embarazo, @titulos_largos.find(3).titulo %> 
-    <%= ficha.text_area :alimentacion_embarazo, rows: "2", class: "form-control longString"%></br>
-
+    </div>
     <div class="row">
-      <%= FormBuilder::text_field_v(ficha, :otros_datos, 
-                                  input_class: 'clear',
-                                  col_class: 'col-md-12',
-                                  max_length: Domain::DESC250,
-                                  label_text: 'Otros datos' )%>
+      <%= ficha.input :peso_nacimiento, label: 'Peso de nacimiento', wrapper_html: { class: 'col-md-4'}, input_html: { maxLength: Domain::DESC50} %>
+      <%= ficha.input :alimentacion_complementaria, label: @titulos_largos.find(6).titulo, wrapper_html: { class: 'col-md-8'}, input_html: { maxLength: Domain::DESC100} %>
 
-    </div></br>
+    </div>
 
-    <h4>II- Antecedentes del Parto</h4>
-    <hr>
+    <div class="form-button">         
+      <%= ficha.submit 'Guardar', class: 'btn btn-custom'%>
+    </div>
 
-    <div class="row">
-      <%= FormBuilder::text_field_v(ficha, :parto_vaginal_cesarea, 
-                                  input_class: 'clear',
-                                  col_class: 'col-md-6',
-                                  max_length: Domain::DESC50,
-                                  label_text: '¿Tuvo parto vaginal o cesárea?') %>
-      <%= FormBuilder::text_field_v(ficha, :termino_pretermino, 
-                                  input_class: 'clear',
-                                  col_class: 'col-md-6',
-                                  max_length: Domain::DESC50,
-                                  label_text: '¿Fue de término o pretermino?') %>
+  <% end %>
 
-    </div></br>
-    <div class="row">
-      <%= FormBuilder::text_field_v(ficha, :lugar_parto , 
-                                  input_class: 'clear',
-                                  col_class: 'col-md-7',
-                                  max_length: Domain::DESC100 ,
-                                  label_text: 'Lugar del Parto') %>
-      <%= FormBuilder::text_field_v(ficha, :como_fue_parto, 
-                                  input_class: 'clear',
-                                  col_class: 'col-md-5',
-                                  max_length: Domain::DESC100,
-                                  label_text: '¿Cómo fue el parto?') %>
-
-    </div></br>
-
-    <h4>III- Antecedentes Postnatal</h4>
-    <hr>
-
-    <%= ficha.label :asfixia_lloro, @titulos_largos.find(4).titulo %> 
-    <%= ficha.text_area :asfixia_lloro, rows: "2", class: "form-control longString"%></br>
-
-    <%= ficha.label :tomo_pecho, @titulos_largos.find(5).titulo %> 
-    <%= ficha.text_area :tomo_pecho, rows: "2", class: "form-control longString200"%></br>
-
-    <div class="row">
-      <%= FormBuilder::text_field_v(ficha, :peso_nacimiento , 
-                                  input_class: 'clear',
-                                  col_class: 'col-md-4',
-                                  max_length: Domain::DESC50 ,
-                                  label_text: 'Peso de nacimiento') %>
-
-      <%= FormBuilder::text_field_v(ficha, :alimentacion_complementaria , 
-                                  input_class: 'clear',
-                                  col_class: 'col-md-8',
-                                  max_length: Domain::DESC100 ,
-                                  label_text: @titulos_largos.find(6).titulo) %>
-
-    </div></br>
-
-    
-
-	    <div class="form-button">         
-	      <%= ficha.submit 'Guardar', class: 'btn btn-custom'%>
-	    </div>
-
-   <% end %>
-
-  </div>
 </div>
 
 <script type="text/javascript"> 

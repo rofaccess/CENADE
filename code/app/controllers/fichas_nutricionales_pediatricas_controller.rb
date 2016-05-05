@@ -1,11 +1,16 @@
 class FichasNutricionalesPediatricasController < ApplicationController
 
-  before_action :set_submenu, only: [:edit, :new, :show, :index]
-  before_action :set_sidebar, only: [:edit, :new, :show, :index]
+  before_action :set_submenu, only: [:edit, :new, :show, :index, :create, :update]
+  before_action :set_sidebar, only: [:edit, :new, :show, :index, :create, :update]
   before_action :set_ficha_nutri_pediatrica, only: [:show, :edit, :update, :destroy]
+  before_action :set_Titulo, only: [:show, :create, :update, :edit, :new]
 
   def set_submenu
   	@submenu_layout = 'layouts/submenu_fichas_consultas'
+  end
+
+  def set_Titulo
+    @titulos_largos= TituloLargo.all
   end
 
   def set_sidebar
@@ -13,24 +18,25 @@ class FichasNutricionalesPediatricasController < ApplicationController
   end
 
   def index
-  	@search = FichaNuricionalPediatrica.ransack(params[:q])
+  	@search = FichaNutricionalPediatrica.ransack(params[:q])
     @nutri_pediatricas= @search.result.page(params[:page])
   end
 
   def new
-  	@nutri_pediatrica= FichaNuricionalPediatrica.new
-    @titulos_largos= TituloLargo.all
+  	@nutri_pediatrica= FichaNutricionalPediatrica.new
+    # Para renderizar un formulario vacio de datos del paciente
+    @paciente = Paciente.new
   	get_doctores_nutricion
 
   end
 
   def create
-  	@nutri_pediatrica = FichaNuricionalPediatrica.new(nutri_pediatrica_params)
-  
+  	@nutri_pediatrica = FichaNutricionalPediatrica.new(nutri_pediatrica_params)
+    @paciente= Paciente.find(@nutri_pediatrica.paciente_id) 
   	 respond_to do |format|
       if @nutri_pediatrica.save
         flash.now[:notice] = 'Ficha registrada exitosamente'
-		format.html {render 'show'}
+		    format.html {render 'show'}
         format.js { render "show"}
       else
         if @nutri_pediatrica.errors.full_messages.any?
@@ -50,11 +56,12 @@ class FichasNutricionalesPediatricasController < ApplicationController
   end
 
   def update
+    
   	respond_to do |format|
       if @nutri_pediatrica.update_attributes(nutri_pediatrica_params)
 	    flash.now[:notice] = 'Ficha actualizada exitosamente'
-		format.html {render 'show'}
-	    format.js { render "show"}
+    		format.html {render 'show'}
+    	    format.js { render "show"}
       else
         
         if @nutri_pediatrica.errors.full_messages.any?
@@ -69,6 +76,7 @@ class FichasNutricionalesPediatricasController < ApplicationController
   end
 
   def show
+    
   end
 
   def get_doctores_nutricion
@@ -83,13 +91,14 @@ class FichasNutricionalesPediatricasController < ApplicationController
  
   #metodo creado para el filtro
   def buscar
-    @search = FichaNuricionalPediatrica.search(params[:q])
+    @search = FichaNutricionalPediatrica.search(params[:q])
     @nutri_pediatricas = @search.result.page(params[:page])
     render 'index'
   end
 
   def set_ficha_nutri_pediatrica
-  	@nutri_pediatrica= FichaNuricionalPediatrica.find(params[:id])
+  	@nutri_pediatrica= FichaNutricionalPediatrica.find(params[:id])
+    @paciente= Paciente.find(@nutri_pediatrica.paciente_id) 
   end
 
   def nutri_pediatrica_params

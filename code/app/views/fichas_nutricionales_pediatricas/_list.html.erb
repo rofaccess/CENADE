@@ -30,7 +30,7 @@
         
         <%= link_to '<i class="fa fa-eye fa-lg"></i> '.html_safe, ficha_nutricional_pediatrica_path(ficha), remote: true%>     
         <%= link_to '<i class="fa fa-edit fa-lg"></i> '.html_safe, edit_ficha_nutricional_pediatrica_path(ficha), remote: true %>        
-        <%= link_to '<i class="fa fa-plus-square-o  fa-lg"></i>'.html_safe, consultas_consulta_from_ficha_path(area: ficha.area_id, paciente: ficha.paciente_id, profesional: ficha.doctor_id), remote: true%>
+        <%= link_to '<i class="fa fa-plus-square-o  fa-lg"></i>'.html_safe, consultas_consulta_from_ficha_path(area: ficha.area_id, paciente: ficha.paciente_id, profesional: ficha.profesional_salud_id), remote: true%>
 
       </td>
     </tr>

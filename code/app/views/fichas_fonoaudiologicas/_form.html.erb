@@ -8,19 +8,19 @@
     </div>
     <%= form_for @fonoaudiologica, html: {class: 'nueva-ficha form-ficha', :multipart => true }, remote: true do |ficha|%>
 
-    	<%= hidden_field_tag :fonoaudiologica_id, @fonoaudiologica.id %>
+    	<%= hidden_field_tag :fonoaudiologica_id, @fonoaudiologica.id, class: 'ficha-id' %>
 	      <h3 align="center">FICHA DE FONOAUDIOLOGIA</h3></br>
 	      <div class="row">
-	        <div class="col-md-5">
+	        <div class="col-md-5 error-especial">
 	          <%= ficha.label :paciente_id, '* Paciente' %> 
 		        <div class="row">
-		            <div class="col-md-10">
-		              <%= ficha.select(:paciente_id, Hash[Paciente.all.map{|a| [a.persona.nombre + " "+ a.persona.apellido, a.id]}],{},{class: "paciente_select form-control select2 uniquePACIENTE", required: true,  id: 'paciente_id'})%>
+		            <div class="col-md-10 form-group">
+		              <%= ficha.select(:paciente_id, Hash[Paciente.all.map{|a| [a.persona.nombre + " "+ a.persona.apellido, a.id]}],{},{class: "paciente_select form-control select2 uniquePacienteFicha y paciente-id", required: true,  id: 'paciente_id'})%>
 		            </div>
 		          	<%= link_to '<i class="fa fa-plus"></i> '.html_safe, pacientes_new_paciente_modal_path(root: 'fichas_fonoaudiologicas', encargado: true), class: 'btn btn-custom col-md-1', style: 'height: 30px; width: 40px', remote: true%>  
 		        </div>
 	        </div>
-	        <div class="col-md-4">
+	        <div class="col-md-4 form-group">
 	          <%= ficha.label :doctor_id, '* Profesional de la Salud' %>
 	          <%= ficha.select(:doctor_id, Hash[Empleado.where(type: 'Doctor', area_id: 3).map{|a| [a.abr_profesion + " "+ a.persona.nombre + " "+ a.persona.apellido, a.id]}],{},{class: "profesional_select form-control select2", required: true,  id: 'doctor_id'})%>
 	        </div>   
@@ -164,6 +164,16 @@
 </div>
 <script type="text/javascript"> 
   fonoaudiologicasUI.initScript("<%= fichas_fonoaudiologicas_check_paciente_id_path %>");
+
+  /* con lo siguiente ya pueden ver si un paciente tiene ficha, metan su url nomas
+   no se necesita crear un checkPACIENTE por cada fichaUI
+  la condición: 
+  usar esto <%= hidden_field_tag :fonoaudiologica_id, @fonoaudiologica.id, class:"ficha-id" %>
+  en vez de <%= hidden_field_tag :fonoaudiologica_id, @fonoaudiologica.id %>
+ agregar las clases uniquePacienteFicha y paciente-id 
+ a su select de paciente
+   */
+  pacientesUI.checkPacienteHasFicha("<%=fichas_fonoaudiologicas_check_paciente_id_path%>");
 
   <% if !flash.notice.blank? %> 
     var n = noty({text: '<%=notice%>', type: 'success'});   

@@ -1,33 +1,20 @@
+<h4>Datos del Paciente</h4>
+<hr>
+<%= simple_fields_for :paciente do |paciente| %>
+    <div class="row">
+      <%= paciente.input :nombre, as: :string, label: 'Nombres', wrapper_html: { class: 'col-md-4'}, input_html: {value: @paciente.persona_nombre, disabled: true}, required: false %>
 
- <div class="row">
-            <div class="col-md-4">
-                <label class="control-label">Nombres</label>
-                <input class="form-control" disabled="disabled" value="<%= @paciente.persona.nombre %>">
-              </div>
-             <div class="col-md-4">
-                <label class="control-label">Apellidos</label>
-                <input class="form-control" disabled="disabled" value="<%= @paciente.persona.apellido %>">
-              </div>
-              <div class="col-md-2">
-                <label class="control-label">Fecha de Nac.</label>
-                <input class="form-control" disabled="disabled" value="<%= @paciente.persona.fecha_nacimiento.strftime("%d/%m/%Y") %>">
-              </div>
-            <div class="col-md-2">
-                <label class="control-label">Edad</label>
-                <input class="form-control" disabled="disabled" value="<%= @paciente.persona.edad %>">
-              </div>
-            </div>
-          
-          </br>
-            <div class="row">
-              <div class="col-md-8">
-                <label class="control-label">Dirección</label>
-                <input class="form-control" disabled="disabled" value="<%= @paciente.persona.direccion %>">
-              </div>
-              <div class="col-md-4">
-                <label class="control-label">Teléfono</label>
-                <input class="form-control" disabled="disabled" value="<%= @paciente.persona.telefono %>">
-              </div>
+      <%= paciente.input :apellido, as: :string, label: 'Apellidos', wrapper_html: { class: 'col-md-4'}, input_html: {value: @paciente.persona_apellido, disabled: true}, required: false %>
 
-          </div>
-          
+
+      <%= paciente.input :fecha_nacimiento, as: :string, wrapper_html: { class: 'col-md-2'}, input_html: {value: @paciente.persona_fecha_nacimiento, disabled: true}, required: false %>
+
+      <%= paciente.input :edad, as: :string, wrapper_html: { class: 'col-md-2'}, input_html: {value: @paciente.persona_edad, disabled: true}, required: false %>
+    </div>
+    
+    <div class="row">
+    <%= paciente.input :telefono, as: :string, wrapper_html: { class: 'col-md-3'}, input_html: {value: @paciente.persona_telefono, disabled: true}, required: false %>
+
+      <%= paciente.input :apellido, as: :string, label: 'Dirección', wrapper_html: { class: 'col-md-9'}, input_html: {value: @paciente.persona_direccion, disabled: true}, required: false %>
+    </div>
+<% end %>

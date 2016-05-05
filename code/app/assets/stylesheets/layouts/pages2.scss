@@ -1,36 +1,5 @@
 
-/* Colores de error de form group */
-.form-group.has-error label {
-  color: #dd4b39;
-}
-.form-group.has-error .form-control {
-  border-color: #dd4b39;
-  box-shadow: none;  
-}
 
-/* Color del mensaje de error */
-.has-error{
-	color: #dd4b39;
-}
-
-/* Colores de error de select2 */
-.has-error .select2-container--focus .select2-selection,
-.has-error .select2-container--open .select2-selection {
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #ce8483;
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #ce8483;
-  border-color: #dd4b39 !important;
-}
-.has-error.select2-drop-active {
-  border-color: #dd4b39 !important;
-}
-.has-error.select2-drop-active.select2-drop.select2-drop-above {
-  border-top-color: #dd4b39 !important;
-}
-
-.has-error .select2-dropdown,
-.has-error .select2-selection {
-  border-color: #dd4b39 !important;
-}
 
 // Por ahora esto sirve para fichas fisioterapia adulto y el index de turnos
 
@@ -112,7 +81,7 @@
 			margin-right: auto;
 			background: white;
 			width: 90%;
-			padding-left: 50px;
+			padding-left: 50px; //sola linea
 			padding-right: 50px;
 			padding-top: 50px;
 			padding-bottom: 1px;
@@ -200,7 +169,7 @@
 		}
 
 		form.form-ficha2{
-			width: 100%;
+			width: 95%;
 		}
 
 	}

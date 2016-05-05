@@ -9,7 +9,7 @@
 	            <%= link_to '<i class="fa fa-print"></i> '.html_safe, fichas_fonoaudiologicas_print_ficha_path(ficha_id: @fonoaudiologica.id, :format => :pdf), target: '_blank'%> 
       </div>
     </div>
-    <%= form_for @fonoaudiologica, html: {class: 'nueva-ficha form-ficha', :multipart => true }, remote: true do |ficha|%>
+    <%= form_for @fonoaudiologica, html: {class: 'nueva-ficha form-ficha'}, remote: true do |ficha|%>
     	<%= hidden_field_tag :id, @fonoaudiologica.id %>
 	      <h3 align="center">FICHA DE FONOAUDIOLOGIA</h3></br>
 	      <div class="row">
@@ -17,7 +17,7 @@
           	<h4><%= ficha.label :doctor_id, 'Profesional de la Salud: ' %> <%= @fonoaudiologica.doctor.persona.nombre%> <%= @fonoaudiologica.doctor.persona.apellido%> </h4>
           </div>
           <div class="col-md-3">
-            <h4><%= ficha.label :fecha, 'Fecha: ' %> <%= @fonoaudiologica.fecha%> </h4>
+            <h4><%= ficha.label :fecha, 'Fecha: ' %> <%=Formatter.format_date(@fonoaudiologica.fecha)%> </h4>
           </div>
         </div>
         </br>
@@ -43,7 +43,7 @@
 					 								  input_class: 'paciente-fecha',
 				                                      col_class: 'col-md-2',
 				                                      disabled: true,
-				                                      input_value:@fonoaudiologica.paciente.persona.fecha_nacimiento,
+				                                      input_value:Formatter.format_date(@fonoaudiologica.paciente.persona.fecha_nacimiento) ,
 				                                      label_text: '* Fecha de Nac.') %>
 
 		        <%= FormBuilder::text_field_v(ficha, :paciente_id,

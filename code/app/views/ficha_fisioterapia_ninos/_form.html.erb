@@ -10,7 +10,7 @@
     </div>
 
     <%= form_for @fisio_nino, html: {class: 'nueva-ficha form-ficha', :multipart => true }, remote: true do |ficha|%>
-      <%= hidden_field_tag :ficha_fisioterapia_nino_id, @fisio_nino.id %>
+      <%= hidden_field_tag :ficha_fisioterapia_nino_id, @fisio_nino.id, class:'ficha-id' %>
       <h4 align="center">FICHA FISIOTERAPIA PEDIÁTRICA</h4></br>
       <div class="row">
         <div class="col-md-5 error-especial">
@@ -20,7 +20,7 @@
           <div class="row">
             <div class="col-md-10 form-group">
 
-              <%= ficha.select(:paciente_id, Hash[Paciente.all.map{|a| [a.persona.nombre + " "+ a.persona.apellido, a.id]}],{},{class: "paciente_select form-control select2 uniquePACIENTE", required: true,  id: 'paciente_id'})%>
+              <%= ficha.select(:paciente_id, Hash[Paciente.all.map{|a| [a.persona.nombre + " "+ a.persona.apellido, a.id]}],{},{class: "paciente_select form-control select2 uniquePacienteFicha paciente-id", required: true,  id: 'paciente_id'})%>
             </div>
           <%= link_to '<i class="fa fa-plus"></i> '.html_safe, pacientes_new_paciente_modal_path(root: 'ficha_fisioterapia_ninos', encargado: true), class: 'btn btn-custom col-md-1', style: 'height: 30px; width: 40px', remote: true%> 
             
@@ -219,7 +219,10 @@
 
 <script type="text/javascript"> 
     
-  fisioNinosUI.initScript("<%= ficha_fisioterapia_ninos_check_paciente_id_path%>");
+  fisioNinosUI.initScript();
+   
+  pacientesUI.checkPacienteHasFicha("<%=ficha_fisioterapia_ninos_check_paciente_id_path%>");
+
   <% if !flash.notice.blank? %> 
     var n = noty({text: '<%=notice%>', type: 'success'});   
   <% end %>

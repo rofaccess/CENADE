@@ -1,5 +1,10 @@
 var fonoaudiologicasUI = (function(){
-	return {		
+	return {	
+
+  /* si se usa pacientesUI.checkPacienteHasFicha("<%=ficha_fisioterapia_ninos_check_paciente_id_path%>");
+     en tu form de ficha, todo esta funcion ya no es necesaria
+     checkPacienteHasFicha se define una sola vez y se puede utilizar en todas los form de fichas
+     */	
 		checkPACIENTE: function(checkFichaFonoaudiologicaPacienteUrl){
       $.validator.addClassRules({
           uniquePACIENTE: {
@@ -18,7 +23,13 @@ var fonoaudiologicasUI = (function(){
           }
       });
     },
-
+    /* Lo siguiente ya se inicia globalmente en application.js con initAdvancedSearch
+      Por lo que se puede eliminar esta funcion, nota: en los comentarios de initAdvancedSearch se
+      explica como utilizarlo
+      - En vez de usar la clase show en el boton de busqueda avanzada deben establecer un id show-advanced-search al boton
+      - El div que contiene los campos de busqueda debe tener un id advanced-search y no la clase to-hide
+      el div debe tener style = 'display:none;'
+    */
         advancedSearchControl: function(){
           $(".to-hide").hide();
 
@@ -61,6 +72,12 @@ var fonoaudiologicasUI = (function(){
                   
                  });
               });
+
+                //Se puede usar esto
+              APP.initSelect2({element: '.profesional_select', placeholder: 'Seleccione un Profesional'});
+
+              //en vez de esto    
+              /*
               $(".profesional_select").select2({
                 placeholder: "Seleccione un Profesional",
                 language: "es",
@@ -70,6 +87,14 @@ var fonoaudiologicasUI = (function(){
                     $(this).valid();
                 });
 
+              */                
+
+              //Se puede usar esto
+              APP.initSelect2({element: '.area_select', placeholder: 'Seleccione un Profesional'});
+
+              //en vez de esto    
+              //Leslie esto creo que no se usa luego en el form de ficha fisioterapia niños  
+              /* 
             $(".area_select").select2({
                 placeholder: "Seleccione un Área",
                 theme: "bootstrap",
@@ -78,17 +103,22 @@ var fonoaudiologicasUI = (function(){
                 }).on('change', function () {
                     $(this).valid();
                 });
-           
+           */
         },
 
 		initScript: function(checkFichaFonoaudiologicaPacienteUrl){
-			    fonoaudiologicasUI.checkPACIENTE(checkFichaFonoaudiologicaPacienteUrl);
+			    
+          //fonoaudiologicasUI.checkPACIENTE(checkFichaFonoaudiologicaPacienteUrl);
 
-          fonoaudiologicasUI.advancedSearchControl();
+          /* Lo siguiente ya se inicia globalmente en application.js con initAdvancedSearch */
+          //fonoaudiologicasUI.advancedSearchControl();
             
           fonoaudiologicasUI.selectControl();
             
-            
+          // Se puede usar esto  (ver initDatepicker en application.js)
+           APP.initDatepicker();
+           // en vez de esto
+           /*  
             $('.datepicker').datepicker({
                 format: "dd/mm/yyyy",
                 language: "es",
@@ -97,6 +127,8 @@ var fonoaudiologicasUI = (function(){
                 }).on('change', function() {
                     $(this).valid();
                 });
+          */
+                
 		   	//Valida el formulario antes de enviarlo
 		  	$('.nueva-ficha').validate();
 		}

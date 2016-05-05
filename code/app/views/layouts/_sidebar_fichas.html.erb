@@ -1,5 +1,4 @@
 <div id="sidebar-wrapper">
-
     <ul class="sidebar-nav">
         <li class="sidebar-brand">
         </li>
@@ -44,9 +43,8 @@
             <a href="#">Pediatría</a>
         </li>
         
-        <li>
-            <a href="#">Psicopedagogía</a>
+        <li class="<%= current_sidebar([fichas_psicopedagogicas_path])%>">
+            <%=link_to 'Psicopedagogía', fichas_psicopedagogicas_path %>
         </li>                 
     </ul>
-
 </div>

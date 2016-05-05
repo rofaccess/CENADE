@@ -1,6 +1,6 @@
-class CreateFichaNuricionalPediatricas < ActiveRecord::Migration
+class CreateFichasNutricionalesPediatricas < ActiveRecord::Migration
   def change
-    create_table :ficha_nuricional_pediatricas do |t|
+    create_table :fichas_nutricionales_pediatricas do |t|
       t.integer :paciente_id
       t.integer :area_id
       t.integer :profesional_salud_id
@@ -21,5 +21,8 @@ class CreateFichaNuricionalPediatricas < ActiveRecord::Migration
 
       t.timestamps null: false
     end
+    add_foreign_key(:fichas_nutricionales_pediatricas, :pacientes, column: 'paciente_id', on_delete: :restrict)
+      add_foreign_key(:fichas_nutricionales_pediatricas, :areas, column: 'area_id', on_delete: :restrict)  
   end
 end
+

@@ -22,7 +22,7 @@
         </div>
         <div class="col-md-3">
 
-         <h4><%= ficha.label :fecha, 'Fecha: ' %> <%= @fisio_nino.fecha%> </h4>
+         <h4><%= ficha.label :fecha, 'Fecha: ' %> <%=Formatter.format_date(@fisio_nino.fecha)%> </h4>
         </div>
       </div>
     </br>
