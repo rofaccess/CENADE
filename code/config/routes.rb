@@ -2,8 +2,7 @@ Rails.application.routes.draw do
   
   resources :fichas_nutricionales_pediatricas
 
-  get 'fichas_odontologicas/test' => 'fichas_odontologicas#test'
-  get 'fichas_odontologicas_check_paciente_id'=> 'fichas_odontologicas#check_paciente_id'
+  get 'fichas_odontologicas/check_paciente_has_ficha' => 'fichas_odontologicas#check_paciente_has_ficha'
   resources :fichas_odontologicas do
     collection do
       match 'buscar'=>'fichas_odontologicas#buscar', via: [:get, :post],as: :search

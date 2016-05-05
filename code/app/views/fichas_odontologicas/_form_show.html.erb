@@ -1,0 +1,47 @@
+<div class="page-title page-title-con-sidebar">
+	Ficha de <%= @ficha.paciente_persona_full_name%>
+
+	<div class="tool">
+		<%= link_to '<i class="fa fa-list data-toggle="tooltip" title="Lista de Fichas"></i> '.html_safe, fichas_odontologicas_path %> 
+		
+		<%= link_to '<i class="fa fa-plus-square" data-toggle="tooltip" title="Nueva Ficha"></i> '.html_safe, new_ficha_odontologica_path, remote: true %>
+		
+		<%= link_to '<i class="fa fa-edit" data-toggle="tooltip" title="Editar Ficha"></i> '.html_safe, edit_ficha_odontologica_path(@ficha), remote:true%>
+		
+	</div>
+
+</div>
+<div class="form-content2">    
+
+	<%= simple_form_for @ficha, html: {class: 'form-ficha2'}, remote: true do |ficha|%>
+	
+	<h4 class="titulo-ficha">FICHA DE ODONTOLOGÍA</h4>
+	
+	<div class="row">							
+			
+		<h4 class="col-md-9"><strong>Profesional de la Salud: </strong> <%= @ficha.doctor.abr_profesion+' '+@ficha.doctor.persona_full_name%> </h4>		
+	  		
+  		<h4 class="col-md-3"><strong> Fecha: </strong> <%= Formatter.format_date(@ficha.fecha)%> </h4>
+  	</div>	
+
+	<%= render 'form_paciente' %>
+	<div class="row">
+		<%= ficha.input :nombre_tutor, label: 'Nombre de Tutor', wrapper_html: { class: 'col-md-4'}, input_html: { disabled: true} %>	
+
+		<%= ficha.input :tel_tutor, label: 'Teléfono del Tutor', wrapper_html: { class: 'col-md-4'}, input_html: { disabled: true} %>	
+
+		<%= ficha.input :profesion_tutor, label: 'Profesión del Tutor', wrapper_html: { class: 'col-md-4'}, input_html: { disabled: true} %>		
+	</div>
+	<%end%>
+</div>
+<script type="text/javascript"> 	
+
+	<% if !flash.notice.blank? %> 
+		var n = noty({text: '<%=notice%>', type: 'success'});   
+	<% end %>
+
+	<% if !flash.alert.blank?%> 
+		var n = noty({text: '<%=alert%>', type: 'error'});
+	<% end %>
+
+</script>

@@ -41,6 +41,6 @@ class Paciente < ActiveRecord::Base
 
 	# Law of Demeter 
 	delegate :full_name, :nombre, :apellido, :ci, :edad, :sexo, :ci, :nacionalidad, 
-			 :fecha_nacimiento, :profesion, :telefono, :direccion, :fecha_ingreso,
+			 :fecha_nacimiento, :profesion, :telefono, :direccion, :fecha_ingreso,:estado_civil_descripcion,
 			 to: :persona, prefix: true, allow_nil: true
 end

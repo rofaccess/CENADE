@@ -15,7 +15,7 @@
 	          <%= ficha.label :paciente_id, '* Paciente' %> 
 		        <div class="row">
 		            <div class="col-md-10 form-group">
-		              <%= ficha.select(:paciente_id, Hash[Paciente.all.map{|a| [a.persona.nombre + " "+ a.persona.apellido, a.id]}],{},{class: "paciente_select form-control select2 uniquePacienteFicha y paciente-id", required: true,  id: 'paciente_id'})%>
+		              <%= ficha.select(:paciente_id, Hash[Paciente.all.map{|a| [a.persona.nombre + " "+ a.persona.apellido, a.id]}],{},{class: "paciente_select form-control select2 uniquePacienteFicha paciente-id", required: true,  id: 'paciente_id'})%>
 		            </div>
 		          	<%= link_to '<i class="fa fa-plus"></i> '.html_safe, pacientes_new_paciente_modal_path(root: 'fichas_fonoaudiologicas', encargado: true), class: 'btn btn-custom col-md-1', style: 'height: 30px; width: 40px', remote: true%>  
 		        </div>
