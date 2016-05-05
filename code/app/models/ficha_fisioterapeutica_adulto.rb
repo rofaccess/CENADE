@@ -27,6 +27,10 @@ class FichaFisioterapeuticaAdulto < ActiveRecord::Base
 	#end
 
 	# Law of Demeter 
-	delegate :persona_nombre, :persona_apellido, :persona_full_name, to: :paciente, prefix: true, allow_nil: true
+	delegate :persona_nombre, :persona_apellido, :persona_full_name, 
+			 :persona_edad,:persona_sexo, :persona_ci, :persona_nacionalidad,
+			 :persona_fecha_nacimiento,:persona_telefono, :persona_direccion, 
+			 to: :paciente, prefix: true, allow_nil: true
+			 
 	delegate :persona_nombre, :persona_apellido, :persona_full_name, :abr_profesion, to: :doctor, prefix: true, allow_nil: true
 end
