@@ -1,0 +1,48 @@
+
+<table class= "table table-condensed">
+  <thead>
+    <tr>
+      <th>Nro Ficha</th>
+      <th>Fecha</th>
+      <th>Paciente</th>
+      <th>Prof. de la Salud</th>
+      <th></th>
+      
+    </tr>
+  </thead>
+
+  <% if @fichas.blank? %>
+    <tfoot>
+      <tr>
+        <th colspan="8" scope="col">No se encontraron coincidencias </th>
+      </tr>
+    </tfoot>
+  <% end %>
+
+  <tbody>
+    <% @fichas.each do |ficha| %>
+    <tr>
+      <td ><%=ficha.nro_ficha %></td>
+      <td ><%=ficha.fecha.strftime("%d/%m/%Y") %></td>
+      <td ><%=ficha.paciente_persona_full_name %></td>
+      <td > <%=ficha.doctor_abr_profesion %> <%=ficha.doctor_persona_full_name %></td>      
+      <td class = "action">
+        
+        <%= link_to '<i class="fa fa-eye fa-lg" data-toggle="tooltip" title="Ver Ficha"></i> '.html_safe, ficha_odontologica_path(ficha), remote: true%>     
+        <%= link_to '<i class="fa fa-edit fa-lg" data-toggle="tooltip" title="Editar Ficha"></i> '.html_safe, edit_ficha_odontologica_path(ficha), remote: true %>        
+        <%= link_to '<i class="fa fa-plus-square-o fa-lg" data-toggle="tooltip" title="Nueva Consulta"></i>'.html_safe%>
+
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<script type="text/javascript">
+    <% if !flash.notice.blank? %> 
+      var n = noty({text: '<%=notice%>', type: 'success'});   
+    <% end %>
+    
+    <% if !flash.alert.blank?%> 
+      var n = noty({text: '<%=alert%>', type: 'error'});
+    <% end %>  
+</script>

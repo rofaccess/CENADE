@@ -5,7 +5,8 @@ class Doctor < Empleado
  	has_many :turnos
  	has_many :ficha_fisioterapia_ninos
  	has_many :fichas_fonoaudiologicas
- 	has_many :fichas_psicopedagogicas	
+ 	has_many :fichas_psicopedagogicas
+ 	has_many :fichas_odontologicas	
 
  	has_many :consultas
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160502165017) do
+ActiveRecord::Schema.define(version: 20160504025744) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -295,6 +295,19 @@ ActiveRecord::Schema.define(version: 20160502165017) do
     t.datetime "updated_at",                  null: false
   end
 
+  create_table "fichas_odontologicas", force: :cascade do |t|
+    t.integer  "paciente_id",                             null: false
+    t.integer  "area_id",                                 null: false
+    t.integer  "doctor_id",                               null: false
+    t.integer  "nro_ficha"
+    t.date     "fecha",                                   null: false
+    t.string   "nombre_tutor",    limit: 30, default: ""
+    t.string   "profesion_tutor", limit: 50, default: ""
+    t.string   "tel_tutor",       limit: 50, default: ""
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
+  end
+
   create_table "fichas_psicopedagogicas", force: :cascade do |t|
     t.integer  "paciente_id",                          null: false
     t.integer  "area_id",                              null: false
@@ -438,6 +451,8 @@ ActiveRecord::Schema.define(version: 20160502165017) do
   add_foreign_key "fichas_fisioterapeuticas_adultos", "pacientes", on_delete: :restrict
   add_foreign_key "fichas_fonoaudiologicas", "areas", on_delete: :restrict
   add_foreign_key "fichas_fonoaudiologicas", "pacientes", on_delete: :restrict
+  add_foreign_key "fichas_odontologicas", "areas"
+  add_foreign_key "fichas_odontologicas", "pacientes"
   add_foreign_key "fichas_psicopedagogicas", "areas", on_delete: :restrict
   add_foreign_key "fichas_psicopedagogicas", "pacientes", on_delete: :restrict
   add_foreign_key "horarios", "empleados", on_delete: :cascade
@@ -452,4 +467,3 @@ ActiveRecord::Schema.define(version: 20160502165017) do
   add_foreign_key "turnos", "pacientes", on_delete: :restrict
   add_foreign_key "users", "empleados", on_delete: :restrict
 end
->>>>>>> c87e72fe7ec3f941ac92420684c581feba0e2013
