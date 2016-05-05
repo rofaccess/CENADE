@@ -29,6 +29,7 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
 	inflect.irregular 'permissions_rol', 'permissions_roles'
 	inflect.irregular 'fecha', 'fechas'
 	inflect.irregular 'turno', 'turnos'
+	inflect.irregular 'ficha_nutricional_pediatrica', 'fichas_nutricionales_pediatricas'
 	inflect.irregular 'paciente', 'pacientes'
 	inflect.irregular 'encargado', 'encargados'
 	inflect.irregular 'grupo', 'grupos'
@@ -36,5 +37,6 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
 	inflect.irregular 'ficha_fonoaudiologica','fichas_fonoaudiologicas'
 	inflect.irregular 'ficha_fisioterapeutica_adulto', 'fichas_fisioterapeuticas_adultos'
 	inflect.irregular 'consulta', 'consultas'
-	inflect.irregular 'ficha_nutricional_pediatrica', 'fichas_nutricionales_pediatricas'
+
+
 end

@@ -88,7 +88,7 @@
     <hr>
 
     <%= ficha.label :problema_embarazo, @titulos_largos.first.titulo %> 
-    <%= ficha.text_area :problema_embarazo, rows: "3", class: "form-control longString"%></br>             
+    <%= ficha.text_area :problema_embarazo, rows: "2", class: "form-control longString"%></br>             
     <div class="row">
       <%= FormBuilder::text_field_v(ficha, :control_prenatal, 
                                   input_class: 'clear',
@@ -163,112 +163,7 @@
 
     </div></br>
 
-    <h4>IV- Valoración del Desarrollo</h4>
-    <hr>
-
-    <div class="row">
-      <%= FormBuilder::text_field_v(ficha, :sosten_cefalico , 
-                                  input_class: 'clear',
-                                  col_class: 'col-md-12',
-                                  max_length: Domain::DESC100 ,
-                                  label_text: 'Sostén Cefálico') %>
-
-    </div></br>
-    <div class="row">
-      <%= FormBuilder::text_field_v(ficha, :sento , 
-                                  input_class: 'clear',
-                                  col_class: 'col-md-4',
-                                  max_length: Domain::TIEMPO ,
-                                  label_text: 'Se sentó a los:') %>
-      <%= FormBuilder::text_field_v(ficha, :paro , 
-                                  input_class: 'clear',
-                                  col_class: 'col-md-4',
-                                  max_length: Domain::TIEMPO ,
-                                  label_text: 'Se paró a los:') %>
-      <%= FormBuilder::text_field_v(ficha, :camino , 
-                                  input_class: 'clear',
-                                  col_class: 'col-md-4',
-                                  max_length: Domain::TIEMPO ,
-                                  label_text: 'Caminó a los:') %>
-
-    </div></br>
-
-    <div class="row">
-      <%= FormBuilder::text_field_v(ficha, :sigue_luz  , 
-                                  input_class: 'clear',
-                                  col_class: 'col-md-4',
-                                  max_length: Domain::DESC50 ,
-                                  label_text: '¿Sigue la luz u objetos coloridos?') %>
-      <%= FormBuilder::text_field_v(ficha, :rie_llora , 
-                                  input_class: 'clear',
-                                  col_class: 'col-md-4',
-                                  max_length: Domain::DESC50 ,
-                                  label_text: 'Rie - Llora') %>
-      <%= FormBuilder::text_field_v(ficha, :mastica_deglute , 
-                                  input_class: 'clear',
-                                  col_class: 'col-md-4',
-                                  max_length: Domain::DESC50,
-                                  label_text: 'Mastica - Deglute') %>
-
-    </div></br>
-
-
-    <div class="row">
-      <%= FormBuilder::text_field_v(ficha, :paro , 
-                                  input_class: 'clear',
-                                  col_class: 'col-md-6',
-                                  max_length: Domain::DESC50 ,
-                                  label_text: '¿Busca Sonido?') %>
-      <%= FormBuilder::text_field_v(ficha, :camino , 
-                                  input_class: 'clear',
-                                  col_class: 'col-md-6',
-                                  max_length: Domain::DESC50,
-                                  label_text: '¿Emite Sonido?') %>
-
-    </div></br>
-
-    <%= ficha.label :habilidades, @titulos_largos.find(7).titulo %> 
-    <%= ficha.text_area :habilidades, rows: "2", class: "form-control longString200"%></br>
-
-    <div class="row">
     
-      <%= FormBuilder::text_field_v(ficha, :otros , 
-                                  input_class: 'clear',
-                                  col_class: 'col-md-12',
-                                  max_length: Domain::DESC250,
-                                  label_text: 'Otros') %>
-
-    </div></br>
-
-    <h4>V- Alimentación Actual</h4>
-    <hr>
-    <%= ficha.label :desayuno, 'Desayuno:' %> 
-    <%= ficha.text_area :desayuno, rows: "2", class: "form-control longString"%></br>
-
-    <%= ficha.label :media_manana, 'Media mañana:' %> 
-    <%= ficha.text_area :habilidades, rows: "2", class: "form-control longString"%></br>
-
-    <%= ficha.label :almuerzo, 'Almuerzo:' %> 
-    <%= ficha.text_area :almuerzo, rows: "2", class: "form-control longString"%></br>
-
-    <%= ficha.label :merienda, 'Merienda:' %> 
-    <%= ficha.text_area :merienda, rows: "2", class: "form-control longString"%></br>
-
-    <%= ficha.label :cena, 'Cena:' %> 
-    <%= ficha.text_area :cena, rows: "2", class: "form-control longString"%></br>
-    
-    <h4>VI- A cargo de quién está el niño/a?</h4>
-    <hr>
-    <h4>VII- Sígnos y/o Síntomas</h4>
-    <hr>
-    <h4>VIII- Diagnóstico Médico </h4>
-    <hr>
-    <h4>IX- Datos Antropométricos</h4>
-    <hr>
-    <h4>X- Evaluación Nutricional</h4>
-    <hr>
-    <h4>XI- Indicaciones</h4>
-    <hr>
 
 	    <div class="form-button">         
 	      <%= ficha.submit 'Guardar', class: 'btn btn-custom'%>

@@ -95,9 +95,6 @@ class FichasNutricionalesPediatricasController < ApplicationController
   def nutri_pediatrica_params
   	params.require(:ficha_nutricional_pediatrica).permit(:area_id, :paciente_id, :profesional_salud_id, :fecha, :nro_ficha, 
   		 :problema_embarazo,:control_prenatal,:alimentacion_embarazo,:otros_datos,:parto_vaginal_cesarea, :termino_pretermino, 
-  		 :lugar_parto,:como_fue_parto, :peso_nacimiento, :asfixia_lloro, :tomo_pecho, :alimentacion_complementaria, :sosten_cefalico, 
-  		 :sento, :paro,:camino, :sigue_luz, :rie_llora, :busca_sonido, :emite_sonido, :habilidades, :mastica_deglute, :otros, :desayuno, :media_manana, :almuerzo, 
-  		 :merienda, :cena, :cargo_quien, :diarrea, :vomitos, :fiebre, :constipacion, :orina, :sudor, :problemas_respiratorios, 
-  		 :distension_abdominal, :otros2, :diagnostico, :peso, :talla, :pc, :imc, :cm, :evaluacion, :indicaciones)
+  		 :lugar_parto,:como_fue_parto, :peso_nacimiento, :asfixia_lloro, :tomo_pecho, :alimentacion_complementaria)
   end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160502052959) do
+ActiveRecord::Schema.define(version: 20160505041757) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -159,52 +159,22 @@ ActiveRecord::Schema.define(version: 20160502052959) do
     t.integer  "paciente_id"
     t.integer  "area_id"
     t.integer  "profesional_salud_id"
+    t.integer  "nro_ficha"
     t.date     "fecha"
-    t.string   "problema_embarazo"
-    t.string   "control_prenatal"
-    t.string   "alimentacion_embarazo"
-    t.string   "otros_datos"
-    t.string   "parto_vaginal_cesarea"
-    t.string   "termino_pretermino"
-    t.string   "lugar_parto"
-    t.string   "como_fue_parto"
-    t.string   "peso_nacimiento"
-    t.string   "asfixia_lloro"
-    t.string   "tomo_pecho"
-    t.string   "alimentacion_complementaria"
-    t.string   "sosten_cefalico"
-    t.string   "sento"
-    t.string   "paro"
-    t.string   "camino"
-    t.string   "sigue_luz"
-    t.string   "habilidades"
-    t.string   "mastica_deglute"
-    t.string   "otros"
-    t.string   "desayuno"
-    t.string   "media_manana"
-    t.string   "almuerzo"
-    t.string   "merienda"
-    t.string   "cena"
-    t.string   "cargo_quien"
-    t.string   "diarrea"
-    t.string   "vomitos"
-    t.string   "fiebre"
-    t.string   "constipacion"
-    t.string   "orina"
-    t.string   "sudor"
-    t.string   "problemas_respiratorios"
-    t.string   "distension_abdominal"
-    t.string   "otros2"
-    t.string   "diagnostico"
-    t.integer  "peso"
-    t.string   "talla"
-    t.string   "pc"
-    t.string   "imc"
-    t.string   "cm"
-    t.string   "evaluacion"
-    t.string   "indicaciones"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.string   "problema_embarazo",           limit: 250
+    t.string   "control_prenatal",            limit: 250
+    t.string   "alimentacion_embarazo",       limit: 250
+    t.string   "otros_datos",                 limit: 250
+    t.string   "parto_vaginal_cesarea",       limit: 50
+    t.string   "termino_pretermino",          limit: 50
+    t.string   "lugar_parto",                 limit: 100
+    t.string   "como_fue_parto",              limit: 100
+    t.string   "peso_nacimiento",             limit: 50
+    t.string   "asfixia_lloro",               limit: 250
+    t.string   "tomo_pecho",                  limit: 200
+    t.string   "alimentacion_complementaria", limit: 100
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
   end
 
   create_table "fichas_fisioterapeuticas_adultos", force: :cascade do |t|
@@ -232,62 +202,6 @@ ActiveRecord::Schema.define(version: 20160502052959) do
     t.integer  "nro_ficha"
     t.datetime "created_at",                           null: false
     t.datetime "updated_at",                           null: false
-  end
-
-  create_table "fichas_nuricionales_pediatricas", force: :cascade do |t|
-    t.integer  "paciente_id",                             null: false
-    t.integer  "area_id",                                 null: false
-    t.integer  "profesional_salud_id",                    null: false
-    t.date     "fecha",                                   null: false
-    t.string   "problema_embarazo",           limit: 250
-    t.string   "control_prenatal",            limit: 250
-    t.string   "alimentacion_embarazo",       limit: 250
-    t.string   "otros_datos",                 limit: 250
-    t.string   "parto_vaginal_cesarea",       limit: 50
-    t.string   "termino_pretermino",          limit: 50
-    t.string   "lugar_parto",                 limit: 100
-    t.string   "como_fue_parto",              limit: 100
-    t.string   "peso_nacimiento",             limit: 50
-    t.string   "asfixia_lloro",               limit: 250
-    t.string   "tomo_pecho",                  limit: 200
-    t.string   "alimentacion_complementaria", limit: 100
-    t.string   "sosten_cefalico",             limit: 100
-    t.string   "sento",                       limit: 7
-    t.string   "paro",                        limit: 7
-    t.string   "camino",                      limit: 7
-    t.string   "sigue_luz",                   limit: 50
-    t.string   "busca_sonido",                limit: 50
-    t.string   "rie_llora",                   limit: 50
-    t.string   "emite_sonido",                limit: 50
-    t.string   "habilidades",                 limit: 200
-    t.string   "mastica_deglute",             limit: 100
-    t.string   "otros",                       limit: 250
-    t.string   "desayuno",                    limit: 250
-    t.string   "media_manana",                limit: 250
-    t.string   "almuerzo",                    limit: 250
-    t.string   "merienda",                    limit: 250
-    t.string   "cena",                        limit: 250
-    t.string   "cargo_quien",                 limit: 100
-    t.boolean  "diarrea"
-    t.boolean  "vomitos"
-    t.boolean  "fiebre"
-    t.string   "constipacion",                limit: 100
-    t.string   "orina",                       limit: 100
-    t.string   "sudor",                       limit: 100
-    t.boolean  "problemas_respiratorios"
-    t.boolean  "distension_abdominal"
-    t.string   "otros2",                      limit: 250
-    t.string   "diagnostico",                 limit: 250
-    t.string   "peso",                        limit: 10
-    t.string   "talla",                       limit: 10
-    t.string   "pc",                          limit: 10
-    t.string   "imc",                         limit: 10
-    t.string   "cm",                          limit: 10
-    t.string   "evaluacion",                  limit: 250
-    t.string   "indicaciones",                limit: 600
-    t.integer  "nro_ficha"
-    t.datetime "created_at",                              null: false
-    t.datetime "updated_at",                              null: false
   end
 
   create_table "grupos", force: :cascade do |t|

@@ -3,8 +3,9 @@
 one:
   paciente_id: 1
   area_id: 1
+  fecha: 2016-05-05
   profesional_salud_id: 1
-  fecha: 2016-05-01
+  nro_fichainteger: MyString
   problema_embarazo: MyString
   control_prenatal: MyString
   alimentacion_embarazo: MyString
@@ -17,43 +18,13 @@ one:
   asfixia_lloro: MyString
   tomo_pecho: MyString
   alimentacion_complementaria: MyString
-  sosten_cefalico: MyString
-  sento: MyString
-  paro: MyString
-  camino: MyString
-  sigue_luz: MyString
-  habilidades: MyString
-  mastica_deglute: MyString
-  otros: MyString
-  desayuno: MyString
-  media_manana: MyString
-  almuerzo: MyString
-  merienda: MyString
-  cena: MyString
-  cargo_quien: MyString
-  diarrea: MyString
-  vomitos: MyString
-  fiebre: MyString
-  constipacion: MyString
-  orina: MyString
-  sudor: MyString
-  problemas_respiratorios: MyString
-  distension_abdominal: MyString
-  otros2: MyString
-  diagnostico: MyString
-  peso: 1
-  talla: MyString
-  pc: MyString
-  imc: MyString
-  cm: MyString
-  evaluacion: MyString
-  indicaciones: MyString
 
 two:
   paciente_id: 1
   area_id: 1
+  fecha: 2016-05-05
   profesional_salud_id: 1
-  fecha: 2016-05-01
+  nro_fichainteger: MyString
   problema_embarazo: MyString
   control_prenatal: MyString
   alimentacion_embarazo: MyString
@@ -66,34 +37,3 @@ two:
   asfixia_lloro: MyString
   tomo_pecho: MyString
   alimentacion_complementaria: MyString
-  sosten_cefalico: MyString
-  sento: MyString
-  paro: MyString
-  camino: MyString
-  sigue_luz: MyString
-  habilidades: MyString
-  mastica_deglute: MyString
-  otros: MyString
-  desayuno: MyString
-  media_manana: MyString
-  almuerzo: MyString
-  merienda: MyString
-  cena: MyString
-  cargo_quien: MyString
-  diarrea: MyString
-  vomitos: MyString
-  fiebre: MyString
-  constipacion: MyString
-  orina: MyString
-  sudor: MyString
-  problemas_respiratorios: MyString
-  distension_abdominal: MyString
-  otros2: MyString
-  diagnostico: MyString
-  peso: 1
-  talla: MyString
-  pc: MyString
-  imc: MyString
-  cm: MyString
-  evaluacion: MyString
-  indicaciones: MyString
