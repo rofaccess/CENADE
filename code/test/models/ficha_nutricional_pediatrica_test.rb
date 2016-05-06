@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class FichaNuricionalPediatricaTest < ActiveSupport::TestCase
+class FichaNutricionalPediatricaTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

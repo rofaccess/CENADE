@@ -110,19 +110,14 @@ var empleadosUI = (function(){
 		initScript: function(checkEmpleadoCIUrl){
 			empleadosUI.checkCI(checkEmpleadoCIUrl);
 
-			empleadosUI.mostrarArea();
-
-			$('.ruc').inputmask('Regex', { regex: "[0-9\-a-z]+" });
-
-			$('.ci').inputmask('Regex', { regex: "[0-9]+" });
-
-			$('.costo').inputmask('Regex', { regex: "[0-9]+" });
-
-			$('.telefono').inputmask('Regex', { regex: "[0-9\-\(\),]+" });
+			empleadosUI.mostrarArea();			
 			
-			$('.edad').inputmask('Regex', { regex: "[0-9]+" });
-			
+			/* Funciones Globales */
 			APP.initDatepicker(); 
+			APP.initNumberOnly();
+	     	APP.initTelephoneOnly();
+	     	APP.initRucOnly();
+			APP.initCalculateAge({fecha_nacimiento: '.fecha-nacimiento', edad: '.edad'});
 
 		   	//Valida el formulario antes de enviarlo
 		  	$('.form-empleado').last().validate();

@@ -1,6 +1,13 @@
 Rails.application.routes.draw do
   
-  resources :fichas_nutricionales_pediatricas
+  get 'fichas_nutricionales_pediatricas/check_paciente_has_ficha' => 'fichas_nutricionales_pediatricas#check_paciente_has_ficha'
+  get 'fichas_nutricionales_pediatricas/print_ficha'=>'fichas_nutricionales_pediatricas#print_ficha'
+  resources :fichas_nutricionales_pediatricas do
+    collection do
+      match 'buscar' => 'fichas_nutricionales_pediatricas#buscar', via: [:get, :post], as: :search
+      get 'get_paciente' => 'fichas_nutricionales_pediatricas#get_paciente'
+    end
+  end
 
   get 'fichas_psicopedagogicas_check_paciente_id'=> 'fichas_psicopedagogicas#check_paciente_id'
   get 'fichas_psicopedagogicas/print_ficha'=>'fichas_psicopedagogicas#print_ficha'

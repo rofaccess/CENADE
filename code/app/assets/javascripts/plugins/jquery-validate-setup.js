@@ -55,10 +55,6 @@ $.validator.addClassRules({
 		minlength: 8
 	},
 
-	ciLength: {
-		minlength: 4
-	},
-
 	nameMinLength: {
 		minlength: 3
 	},
@@ -71,13 +67,13 @@ $.validator.addClassRules({
 		minlength: 3
 	},
 
-	minEmail8: {
-		minlength: 8
-	},
-
 	minLength4: {
 		minlength: 4
 	},
+
+	minLength8: {
+		minlength: 8
+	},	
 
 	passwordCheck: {
 		passwordCheck: true
@@ -89,6 +85,9 @@ $.validator.addClassRules({
 	telCheck: {
 		telCheck: true
 	},
+	dateBornCheck: {
+		dateBornCheck: true
+	},
 	passwordEqual:{
 		equalTo: "#user_password"
 	},
@@ -97,6 +96,10 @@ $.validator.addClassRules({
 	},
 	biglength: {
 		maxlength: 300
+	},
+
+	longString200: {
+		maxlength: 200
 	},
 
 	maxlengthBig: {
@@ -123,3 +126,13 @@ $.validator.addMethod("telCheck",function(value,element){
 $.validator.addMethod("hora", function(value, element){
   return value.length == 0 || /^[0-9]{2}:[0-9]{2}$/i.test(value);},
   "Formato hh:mm"); 
+
+$.validator.addMethod("dateBornCheck", function(value, element) {
+  return this.optional(element) || checkDateBorn(value);
+}, jQuery.validator.format("La fecha debe ser menor o igual a la fecha del sistema"));
+
+
+/* Si la fecha de nacimiento es menor o igual a la fecha del sistema devuelve true, caso contrario false */
+function checkDateBorn(dateBorn){	
+    return APP.compareDate(APP.systemDate(),dateBorn);	    
+};

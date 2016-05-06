@@ -145,15 +145,14 @@ var pacientesUI = (function(){
 	    /* Para iniciar el script para el formulario de paciente */		
 	    initScript: function(){
 	     	pacientesUI.checkPacienteCi();
-	     	pacientesUI.mostrarEncargados();
-
-	     	/* Regexs para campos */
-	     	$('.ruc').inputmask('Regex', { regex: "[0-9\-a-z]+" });
-	     	$('.telefono').inputmask('Regex', { regex: "[0-9\-\(\),]+" });			
+	     	pacientesUI.mostrarEncargados();	     	     				
 
 	     	/* Script globales */
 	     	APP.initDatepicker(); 
 	     	APP.initNumberOnly();
+	     	APP.initTelephoneOnly();
+	     	APP.initRucOnly();
+	     	APP.initCalculateAge({fecha_nacimiento: '.fecha-nacimiento', edad: '.edad'});
 
 	     	/* Valida el formulario antes de enviarlo */
 	     	$('.form-paciente').last().validate();

@@ -1,8 +1,10 @@
 $("#principal-content").html('<%= j render 'form', formats: 'html' %>');
 
-$('.paciente_select').val("<%=j params[:area].to_s %>").trigger("change");
+$('.paciente_select').val("<%=j params[:paciente].to_s %>").trigger("change");
 
-$('.area_select').val("<%=j params[:paciente].to_s %>").trigger("change");
+$('.select-paciente').val("<%=j params[:paciente].to_s %>").trigger("change");
+
+$('.area_select').val("<%=j params[:area].to_s %>").trigger("change");
 
 $('.profesional_select2').val("<%=j params[:profesional].to_s %>").trigger("change");
 
