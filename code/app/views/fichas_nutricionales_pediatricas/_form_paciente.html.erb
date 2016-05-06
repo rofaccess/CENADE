@@ -8,7 +8,7 @@
     	<%= paciente.input :apellido, as: :string, label: 'Apellidos', wrapper_html: { class: 'col-md-4'}, input_html: {value: @paciente.persona_apellido, disabled: true}, required: false %>
 
 
-    	<%= paciente.input :fecha_nacimiento, as: :string, wrapper_html: { class: 'col-md-2'}, input_html: {value: @paciente.persona_fecha_nacimiento, disabled: true}, required: false %>
+    	<%= paciente.input :fecha_nacimiento, as: :string, label: 'Fecha de Nac.', wrapper_html: { class: 'col-md-2'}, input_html: {value: @paciente.persona_fecha_nacimiento, disabled: true}, required: false %>
 
       <%= paciente.input :edad, as: :string, wrapper_html: { class: 'col-md-2'}, input_html: {value: @paciente.persona_edad, disabled: true}, required: false %>
   	</div>
