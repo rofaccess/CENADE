@@ -1,1 +1,2 @@
 $("#list").html('<%= j render partial: 'list', format: 'html'%>');
+$("#list-paginate").html('<%= j paginate(@fichas, remote: true)%>');

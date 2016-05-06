@@ -7,6 +7,8 @@
 		<%= link_to '<i class="fa fa-plus-square" data-toggle="tooltip" title="Nueva Ficha"></i> '.html_safe, new_ficha_odontologica_path, remote: true %>
 		
 		<%= link_to '<i class="fa fa-edit" data-toggle="tooltip" title="Editar Ficha"></i> '.html_safe, edit_ficha_odontologica_path(@ficha), remote:true%>
+
+		<%= link_to '<i class="fa fa-print" data-toggle="tooltip" title="Imprimir Ficha"></i> '.html_safe, fichas_odontologicas_print_ficha_path(ficha_id: @ficha.id, :format => :pdf), target: '_blank'%>
 		
 	</div>
 

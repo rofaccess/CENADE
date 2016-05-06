@@ -1,0 +1,85 @@
+<h4 class="ficha-title">FICHA ODONTOLOGIA</h4>
+
+<h4>Datos Personales</h4>
+<hr>
+<div class="row">
+	<div class="form-group col-md-6">
+		<label class="control-label">Nombre y Apellido</label>
+		<div class="data"> <%=@ficha.paciente_persona_full_name%> </div>
+	</div>
+
+	<div class="form-group col-md-2">
+		<label class="control-label">CI</label>
+		<div class="data"> <%=@ficha.paciente_persona_ci%> </div>
+	</div>
+
+	<div class="form-group col-md-2">
+		<label class="control-label">Sexo</label>
+		<div class="data"> <%=@ficha.paciente_persona_sexo%> </div>
+	</div>
+
+	<div class="form-group col-md-2">
+		<label class="control-label">Fecha de Nac.</label>
+		<div class="data"> <%=@ficha.paciente_persona_fecha_nacimiento%> </div>
+	</div>	
+</div>
+<div class="row">	
+
+	<div class="form-group col-md-1">
+		<label class="control-label">Edad</label>
+		<div class="data"> <%=@ficha.paciente_persona_edad%> </div>
+	</div>
+
+	<div class="form-group col-md-4">
+		<label class="control-label">Nacionalidad</label>
+		<div class="data"> <%=@ficha.paciente_persona_nacionalidad%> </div>
+	</div>
+
+	<div class="form-group col-md-3">
+		<label class="control-label">Estado Civil</label>
+		<div class="data"> <%=@ficha.paciente_persona_estado_civil_descripcion%> </div>
+	</div>
+
+	<div class="form-group col-md-4">
+		<label class="control-label">Teléfono</label>
+		<div class="data"> <%=@ficha.paciente_persona_telefono%> </div>
+	</div>
+
+</div>
+
+<div class="row">
+	<div class="form-group col-md-6">
+		<label class="control-label">Lugar de Trabajo</label>
+		<div class="data"> <%=@ficha.paciente.lugar_trabajo%> </div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="form-group col-md-12">
+		<label class="control-label">Dirección</label>
+		<div class="data"> <%=@ficha.paciente_persona_direccion%> </div>
+	</div>	
+</div>	
+
+<h4>Datos del Tutor</h4>
+<hr>
+
+<div class="row">
+	<div class="form-group col-md-4">
+		<label class="control-label">Nombre del Tutor</label>
+		<div class="data"> <%=@ficha.nombre_tutor%> </div>
+	</div>	
+
+	<div class="form-group col-md-4">
+		<label class="control-label">Teléfono</label>
+		<div class="data"> <%=@ficha.tel_tutor%> </div>
+	</div>
+	
+	<div class="form-group col-md-4">
+		<label class="control-label">Profesion</label>
+		<div class="data"> <%=@ficha.profesion_tutor%> </div>
+	</div>
+		
+</div>	
+	
+

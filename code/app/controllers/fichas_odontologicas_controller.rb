@@ -40,8 +40,28 @@ class FichasOdontologicasController < ApplicationController
 		end
 	end
 
+	def update
+		respond_to do |format|
+			if @ficha.update_attributes(ficha_params)
+				format.html { redirect_to ficha_odontologica_path(@ficha), notice: 'Ficha actualizada exitosamente'}
+			else
+
+				if @ficha.errors.full_messages.any?
+					format.html { redirect_to edit_ficha_odontologica_path(@ficha), notice: @ficha.errors.full_messages.first}
+				else
+					format.html { redirect_to edit_ficha_odontologica_path(@ficha), notice: 'No se ha podido actualizar la Ficha'}
+				end
+			end
+
+		end
+	end
+
 	def index
 		get_fichas
+	end
+
+	def edit
+		get_doctores_odontologia
 	end
 
 	def get_doctores_odontologia
@@ -70,13 +90,20 @@ class FichasOdontologicasController < ApplicationController
 	  	render 'index'
 	end
 
-	def edit
-
-	end
-
 	def show
 	  	
 	end
+
+	def print_ficha
+  	@ficha = FichaOdontologica.find params[:ficha_id]      
+  	respond_to do |format|
+  		format.pdf do
+  			render :pdf => "Ficha",
+  			:template => "fichas_odontologicas/print_ficha.pdf.erb",
+  			:layout => "pdf.html"
+  		end
+  	end
+  end  
 
 	def ficha_params
 		params.require(:ficha_odontologica).permit(:area_id, :paciente_id, :doctor_id, :fecha, :nro_ficha,:nombre_tutor,:tel_tutor,:profesion_tutor)
