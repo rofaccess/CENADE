@@ -6,7 +6,7 @@
     
     <%= link_to '<i class="fa fa-plus-square" data-toggle="tooltip" title="Nueva Ficha"></i> '.html_safe, new_ficha_nutricional_pediatrica_path, remote: true %>
     
-    <%= link_to '<i class="fa fa-edit" data-toggle="tooltip" title="Editar Ficha"></i> '.html_safe, edit_nutricional_pediatrica_path(@nutri_pediatrica), remote:true%>
+    <%= link_to '<i class="fa fa-edit" data-toggle="tooltip" title="Editar Ficha"></i> '.html_safe, edit_ficha_nutricional_pediatrica_path(@nutri_pediatrica), remote:true%>
 
     <%= link_to '<i class="fa fa-print" data-toggle="tooltip" title="Imprimir Ficha"></i> '.html_safe, fichas_nutricionales_pediatricas_print_ficha_path(ficha_id: @nutri_pediatrica.id, :format => :pdf), target: '_blank'%>
     

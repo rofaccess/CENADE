@@ -8,7 +8,7 @@
 
   </div>
   <div class="form-content2">    
-    <%= simple_form_for @nutri_pediatrica,url: fichas_nutricionales_pediatricas_path, html: {class: 'form-ficha2'} do |ficha|%>
+    <%= simple_form_for @nutri_pediatrica, html: {class: 'form-ficha2'} do |ficha|%>
     <%= hidden_field_tag :ficha_id, @nutri_pediatrica.id, class: 'ficha-id'%>
     
     <h4 class="titulo-ficha">FICHA NUTRICIONAL PEDIÁTRICA</h4>
@@ -29,7 +29,7 @@
       <%= render 'form_paciente' %>
     </div>
     <h4>I- Antecedentes Prenatal</h4>
-      <hr>
+      <hr> 
       <div class="row">
       <%= ficha.input :problema_embarazo, as: :text, label:  @titulos_largos.first.titulo, wrapper_html: { class: 'col-md-12'}, input_html: { maxLength: Domain::DESC250} %>    
     </div>
@@ -79,6 +79,8 @@
 <script type="text/javascript"> 
     
   fichasNutriPediatricasUI.initScript();
+  pacientesUI.checkPacienteHasFicha("<%=fichas_nutricionales_pediatricas_check_paciente_has_ficha_path%>");
+
   <% if !flash.notice.blank? %> 
     var n = noty({text: '<%=notice%>', type: 'success'});   
   <% end %>

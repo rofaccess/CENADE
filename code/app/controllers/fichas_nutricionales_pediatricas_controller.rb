@@ -3,7 +3,7 @@ class FichasNutricionalesPediatricasController < ApplicationController
   before_action :set_submenu, only: [:edit, :new, :show, :index, :create, :update]
   before_action :set_sidebar, only: [:edit, :new, :show, :index, :create, :update]
   before_action :set_ficha_nutri_pediatrica, only: [:show, :edit, :update, :destroy]
-  before_action :set_Titulo, only: [:show, :create, :update, :edit, :new]
+  before_action :set_Titulo, only: [:show, :create, :update, :edit, :new, :print_ficha]
 
   def set_submenu
   	@submenu_layout = 'layouts/submenu_fichas_consultas'
@@ -18,8 +18,7 @@ class FichasNutricionalesPediatricasController < ApplicationController
   end
 
   def index
-  	@search = FichaNutricionalPediatrica.ransack(params[:q])
-    @nutri_pediatricas= @search.result.page(params[:page])
+  	get_fichas
   end
 
   def new
@@ -53,14 +52,20 @@ class FichasNutricionalesPediatricasController < ApplicationController
   end
 
   def edit
+    get_doctores_nutricion
   end
+
+  def get_fichas
+    @search = FichaNutricionalPediatrica.search(params[:q])
+    @nutri_pediatricas = @search.result.order('nro_ficha').page(params[:page])
+  end 
 
   def update
     
   	respond_to do |format|
       if @nutri_pediatrica.update_attributes(nutri_pediatrica_params)
-	    flash.now[:notice] = 'Ficha actualizada exitosamente'
-    		format.html {render 'show'}
+	        flash.now[:notice] = 'Ficha actualizada exitosamente'
+    		  format.html {render 'show'}
     	    format.js { render "show"}
       else
         
@@ -69,14 +74,26 @@ class FichasNutricionalesPediatricasController < ApplicationController
         else
           flash.now[:alert] = "No se ha podido guardar la Ficha"
         end
-        format.html { render action: "edit"}
-        format.js { render action: "edit"}
+        format.html { render "edit"}
+        format.js { render "edit"}
       end
     end
   end
 
   def show
     
+  end
+
+   def print_ficha
+    @nutri_pediatrica = FichaNutricionalPediatrica.find params[:ficha_id]   
+
+    respond_to do |format|
+      format.pdf do
+        render :pdf => "Ficha",
+        :template => "fichas_nutricionales_pediatricas/print_ficha.pdf.erb",
+        :layout => "pdf.html"
+      end
+    end
   end
 
   def get_doctores_nutricion
@@ -91,9 +108,14 @@ class FichasNutricionalesPediatricasController < ApplicationController
  
   #metodo creado para el filtro
   def buscar
-    @search = FichaNutricionalPediatrica.search(params[:q])
-    @nutri_pediatricas = @search.result.page(params[:page])
+    get_fichas
     render 'index'
+  end
+
+  def check_paciente_has_ficha
+    ficha = FichaNutricionalPediatrica.find_by_paciente_id(params[:paciente_id])
+
+    render json: (ficha.nil? || ficha.id == params[:id].to_i) ? true : "El Paciente ya posee una Ficha".to_json
   end
 
   def set_ficha_nutri_pediatrica
