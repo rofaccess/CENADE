@@ -5,7 +5,7 @@
 		<%= link_to '<i class="fa fa-list" data-toggle="tooltip" title="Lista de Fichas"></i> '.html_safe, fichas_fisioterapeuticas_adultos_path %> 
 	</div>
 
-</div>
+</div> 
 
 <div class="form-content2">    
 
@@ -17,7 +17,7 @@
 	<div class="row">			
 		<!-- <%= ficha.input :paciente_id, collection: @paciente.id.nil? ? [] : [[@paciente.persona_full_name, @paciente.id]], label: '* Paciente', wrapper_html: { class: 'col-md-4'}, input_html:  { class: 'required select-paciente select2 uniquePacienteFicha paciente-id'} %> -->
 		
-		<%= ficha.input :paciente_id, collection: Paciente.all.collect { |a| [a.persona_full_name, a.id] }, label: '* Profesional de la Salud', wrapper_html: { class: @paciente.id.nil? ? 'col-md-4' : 'col-md-5' }, input_html: { class: 'required select-paciente select2 uniquePacienteFicha paciente-id', disabled: @paciente.id.nil? ? false : true} %>	
+		<%= ficha.input :paciente_id, collection: Paciente.all.collect { |a| [a.persona_full_name, a.id] }, label: '* Paciente', wrapper_html: { class: @paciente.id.nil? ? 'col-md-4' : 'col-md-5' }, input_html: { class: 'required select-paciente select2 uniquePacienteFicha paciente-id', disabled: @paciente.id.nil? ? false : true} %>	
 		
 		<% if @paciente.id.nil? %> 
 			<%= link_to '<i class="fa fa-plus"></i> '.html_safe, pacientes_new_modal_path(root: 'fichas_fisioterapeuticas_adultos', encargado: false), class: 'btn btn-custom btn-add col-md-1', remote: true %> 

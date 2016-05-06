@@ -98,6 +98,10 @@ $.validator.addClassRules({
 		maxlength: 300
 	},
 
+	longString200: {
+		maxlength: 200
+	},
+
 	maxlengthBig: {
 		maxlength: 500
 	},
