@@ -81,6 +81,7 @@ hr {
 		border-width: 1px;
 		min-height: 25px;
 		border-color: $border-line-color;
+		word-break: break-all;
 	}
 
 	.data-bordered{		

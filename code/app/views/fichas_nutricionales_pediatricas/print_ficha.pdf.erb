@@ -11,7 +11,7 @@
 
 	<div class="form-group col-md-3">
 		<label class="control-label">Fecha de nac.:</label>
-		<div class="data"> <%=@nutri_pediatrica.paciente_persona_fecha_nacimiento%> </div>
+		<div class="data"> <%=Formatter.format_date(@nutri_pediatrica.paciente_persona_fecha_nacimiento)%> </div>
 	</div>
 
 	<div class="form-group col-md-1">

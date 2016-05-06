@@ -19,39 +19,42 @@
 		<%= persona.hidden_field :id, class: 'persona-id'%>
 		<div class="row">	
 			<%= FormBuilder::text_field_v(persona, :nombre, 
-													input_class: 'required nameLength', 
+													input_class: 'required minLength3', 
 													max_length: Domain::NOMBRE, 
 													autofocus: true,
 													col_class: 'col-md-4',
 													label_text: '* Nombre',
 													label_class: 'error') %>
 			<%= FormBuilder::text_field_v(persona, :apellido, 
-													input_class: 'required nameLength', 
+													input_class: 'required minLength3', 
 													max_length: Domain::NOMBRE,
 													col_class: 'col-md-4',
 													label_text: '* Apellido') %>
 			<%= FormBuilder::text_field_v(persona, :ci, 
-													input_class: 'required number-only ciLength uniquePacienteCi ci', 
+													input_class: 'required number-only minLength4 uniquePacienteCi', 
 													max_length: Domain::CI,
 													col_class: 'col-md-2',
 													label_text: '* Cédula Nº') %>  
 			<%= FormBuilder::text_field_v(persona, :ruc, 
-													input_class: 'ruc', 
+													input_class: 'ruc-only', 
 													max_length: Domain::RUC,
 													col_class: 'col-md-2') %>                           
 		</div>					                        
 		<div class="row">   
 
 			<%= FormBuilder::text_field_v(persona, :fecha_nacimiento, 
-													input_class: 'required datepicker', 
+													input_class: 'required datepicker fecha-nacimiento dateBornCheck', 
 													max_length: Domain::FECHA,
 													label_text: '* Fecha de Nac.',
 													col_class: 'col-md-2', 
 													input_value: Formatter.format_date(@paciente.persona.fecha_nacimiento))%> 	
+			
+			<%= persona.hidden_field :edad, class: 'edad'%>
 			<%= FormBuilder::text_field_v(persona, :edad, 
-													input_class: 'number-only', 
+													input_class: 'number-only edad', 
 													max_length: Domain::EDAD,
-													col_class: 'col-md-1') %>                  		                            
+													col_class: 'col-md-1',
+													disabled: true) %>                  		                            
 			<%= FormBuilder::select_v(persona, :sexo,
 												[['Masculino', 'Masculino'], ['Femenino', 'Femenino']], 
 												prompt:'Seleccione Sexo', 
@@ -75,7 +78,8 @@
 			<%= FormBuilder::text_field_v(paciente, :lugar_nacimiento, 
 													max_length: Domain::LUGAR_NACIMIENTO,
 													col_class: 'col-md-10',
-													label_text: 'Lugar de Nacimiento')%> 
+													label_text: 'Lugar de Nacimiento',
+													input_class: 'minLength3')%> 
 
 			<%= FormBuilder::text_field_v(paciente, :fecha_ingreso, 
 													input_class: 'required datepicker',
@@ -98,12 +102,11 @@
 		<div class="row">   
 
 			<%= FormBuilder::text_field_v(persona, :telefono, 
-													input_class: 'telefono', 
+													input_class: 'tel-only', 
 													max_length: Domain::TELEFONO,
 													col_class: 'col-md-4') %> 	
 			<%= FormBuilder::text_field_v(persona, :email, 
-													label_text: 'Email',
-													input_class: 'emailCheck', 
+													input_class: 'emailCheck minLength8', 
 													max_length: Domain::EMAIL,
 													col_class: 'col-md-8') %> 
 		</div>  		
@@ -115,12 +118,14 @@
 		<div class="row">   
 			<%= FormBuilder::text_field_v(paciente, :profesion, 
 													max_length: Domain::PROFESION,
-													col_class: 'col-md-5') %> 	
+													col_class: 'col-md-5',
+													input_class: 'minLength3') %> 	
 
 			 
 			<%= FormBuilder::text_field_v(paciente, :lugar_trabajo, 
 													max_length: Domain::LUGAR_TRABAJO,
-													col_class: 'col-md-7') %> 												
+													col_class: 'col-md-7',
+													input_class: 'minLength3') %> 												
 				
 		</div> 
 
@@ -130,14 +135,11 @@
 						<%= check_box_tag 'encargado', true, @paciente.encargado_id.nil? ? false : true, class: 'checkbox-encargado'  %>
 
 							Padres o Encargados	
-							
-							<% unless @paciente.id.nil? %>
-								<%= paciente.hidden_field :borrar_encargado, value: false, class: 'borrar-encargado'%>	
-							<% end %>							
+							<%= paciente.hidden_field :borrar_encargado, value: false, class: 'borrar-encargado'%>		
+												
 				</label>
 			</div>
 		</div>
-
 		<div class="datos-encargados">	
 			<h4>Datos de los Padres o Encargados </h4>
 			<hr>
@@ -148,7 +150,7 @@
 														max_length: Domain::NOM_APE,
 														col_class: 'col-md-5',
 														label_text: 'Nombre del Padre',
-														input_class: "dato-encargado") %> 	
+														input_class: "dato-encargado minLength3") %> 	
 
 				 
 					<%= FormBuilder::text_field_v(encargado, :padre_edad, 
@@ -161,14 +163,14 @@
 														max_length: Domain::PROF_ACT_ANT,
 														col_class: 'col-md-6',
 														label_text: "Profesión Actual y Anterior",
-														input_class: "dato-encargado") %> 		
+														input_class: "dato-encargado minLength2") %> 		
 				</div> 
 				<div class="row">   
 					<%= FormBuilder::text_field_v(encargado, :madre_nombre, 
 														max_length: Domain::NOM_APE,
 														col_class: 'col-md-5',
 														label_text: 'Nombre de la Madre',
-														input_class: "dato-encargado") %> 	
+														input_class: "dato-encargado minLength3") %> 	
 
 				 
 					<%= FormBuilder::text_field_v(encargado, :madre_edad, 
@@ -187,14 +189,14 @@
 														max_length: Domain::PROF_ACT_ANT,
 														col_class: 'col-md-5',
 														label_text: "Profesión Actual y Anterior",
-														input_class: "dato-encargado") %> 			
+														input_class: "dato-encargado minLength2") %> 			
 				</div> 
 				<div class="row">   
 					<%= FormBuilder::text_field_v(encargado, :encargado_nombre, 
 														max_length: Domain::NOM_APE,
 														col_class: 'col-md-5',
 														label_text: 'Nombre del Encargado',
-														input_class: "dato-encargado") %> 	
+														input_class: "dato-encargado minLength3") %> 	
 
 				 
 					<%= FormBuilder::text_field_v(encargado, :encargado_edad, 
@@ -207,12 +209,11 @@
 														max_length: Domain::PROF_ACT_ANT,
 														col_class: 'col-md-6',
 														label_text: "Profesión Actual y Anterior",
-														input_class: "dato-encargado") %> 					
+														input_class: "dato-encargado minLength2") %> 					
 				</div> 
 			<% end %>
 				
 		</div>
-
 
 		<div class="modal-footer">
 			<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
