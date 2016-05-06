@@ -122,7 +122,9 @@ var empleadosUI = (function(){
 			
 			$('.edad').inputmask('Regex', { regex: "[0-9]+" });
 			
+			/* Funciones Globales */
 			APP.initDatepicker(); 
+			APP.initCalculateAge({fecha_nacimiento: '.fecha-nacimiento', edad: '.edad'});
 
 		   	//Valida el formulario antes de enviarlo
 		  	$('.form-empleado').last().validate();

@@ -148,12 +148,13 @@ var pacientesUI = (function(){
 	     	pacientesUI.mostrarEncargados();
 
 	     	/* Regexs para campos */
-	     	$('.ruc').inputmask('Regex', { regex: "[0-9\-a-z]+" });
-	     	$('.telefono').inputmask('Regex', { regex: "[0-9\-\(\),]+" });			
+	     	$('.ruc').inputmask('Regex', { regex: "[0-9\-a-z]+" });	     				
 
 	     	/* Script globales */
 	     	APP.initDatepicker(); 
 	     	APP.initNumberOnly();
+	     	APP.initTelephoneOnly();
+	     	APP.initCalculateAge({fecha_nacimiento: '.fecha-nacimiento', edad: '.edad'});
 
 	     	/* Valida el formulario antes de enviarlo */
 	     	$('.form-paciente').last().validate();

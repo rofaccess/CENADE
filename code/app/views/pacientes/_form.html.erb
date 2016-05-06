@@ -40,15 +40,17 @@
 		<div class="row">   
 
 			<%= FormBuilder::text_field_v(persona, :fecha_nacimiento, 
-													input_class: 'required datepicker', 
+													input_class: 'required datepicker fecha-nacimiento', 
 													max_length: Domain::FECHA,
 													label_text: '* Fecha de Nac.',
 													col_class: 'col-md-2', 
 													input_value: Formatter.format_date(@paciente.persona.fecha_nacimiento))%> 	
+			
 			<%= FormBuilder::text_field_v(persona, :edad, 
-													input_class: 'number-only', 
+													input_class: 'number-only edad', 
 													max_length: Domain::EDAD,
-													col_class: 'col-md-1') %>                  		                            
+													col_class: 'col-md-1',
+													disabled: true) %>                  		                            
 			<%= FormBuilder::select_v(persona, :sexo,
 												[['Masculino', 'Masculino'], ['Femenino', 'Femenino']], 
 												prompt:'Seleccione Sexo', 
@@ -95,7 +97,7 @@
 		<div class="row">   
 
 			<%= FormBuilder::text_field_v(persona, :telefono, 
-													input_class: 'telefono', 
+													input_class: 'tel-only', 
 													max_length: Domain::TELEFONO,
 													col_class: 'col-md-4') %> 	
 			<%= FormBuilder::text_field_v(persona, :email, 

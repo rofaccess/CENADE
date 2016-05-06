@@ -106,7 +106,8 @@ APP = {
             language: "es",
             autoclose: true,
             orientation: "bottom", 
-            todayHighlight: true,           
+            todayHighlight: true,   
+            todayBtn: true,        
             }).on('change', function() {
                 /* Sin lo siguiente, no desaparecen los mensajes de error la primera vez que se selecciona una fecha */
                 $(this).valid(); 
@@ -125,6 +126,55 @@ APP = {
         $('.number-only').inputmask('Regex', { regex: "[0-9]+" }); 
     },
 
+    /* Inicia el inputmask para el campo que debe recibir solo números de teléfono
+       .tel-only: es la clase del elemento (input) que sólo permitirá numeros de teléfono
+    */
+    initTelephoneOnly: function(){
+        $('.tel-only').inputmask('Regex', { regex: "[\\d\\s()+-]+" });
+    },
+
+    /*
+        Permite calcular la edad a partir de la fecha de nacimiento y la fecha de hoy
+        Recibe un objeto con:
+        {
+            fecha_nacimiento: el id o clase del objeto jquery (input) que contiene la fecha de nacimiento
+            edad: el id o clase del objeto jquery (input) donde se mostrará la edad
+        }
+    */
+    initCalculateAge: function(options){         
+        $(options.fecha_nacimiento).on('change', function(){           
+            var today = new Date();
+            
+            var day = parseInt(today.getDate());
+            var month = parseInt(today.getMonth())+1;
+            var year = parseInt(today.getFullYear());
+
+            var fec_nac = $(this).val().split('/');
+
+            var day_nac = parseInt(fec_nac[0]);
+            var month_nac = parseInt(fec_nac[1]);
+            var year_nac = parseInt(fec_nac[2]);
+
+            var day_dif = day_nac - day;
+            var month_dif = month_nac - month;          
+            var age = year - year_nac;
+
+            if (year_nac < year){
+                if(month_nac < month){
+                    $(options.edad).val(age);
+                }else if(month_nac == month && day_nac <= day){
+                    $(options.edad).val(age);
+                }else{
+                    $(options.edad).val(age-1);
+                }
+            }else{
+                $(options.edad).val(0);
+            }
+            
+        });
+        
+    },
+        
     /*
         Inicializa el select2
         Recibe un objeto con:
@@ -174,7 +224,7 @@ function configImprimir (params) {
   $('#imprimir-link').attr('href', $('#imprimir-link').data('url') + params.replace('amp;',''));
 }
 
-/* CONFIGURACIONES POR DEFECTO PARA PLUGINS */
+/* CONFIGURACIONES POR DEFECTO PARA VENDORS */
 
 /* Configura el plugin noty de forma global */
 $.noty.defaults = {

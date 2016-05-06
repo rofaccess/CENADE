@@ -28,7 +28,7 @@
 													col_class: 'col-md-4',
 													label_text: '* Apellido') %>
 			<%= FormBuilder::text_field_v(persona, :ci, 
-													input_class: 'required ci ciLength uniqueEmpleadoCI', 
+													input_class: 'required number-only ciLength uniqueEmpleadoCI', 
 													max_length: Domain::CI,
 													col_class: 'col-md-2',
 													label_text: '* Cédula Nº') %>  
@@ -40,15 +40,16 @@
 		<div class="row">   
 
 			<%= FormBuilder::text_field_v(persona, :fecha_nacimiento, 
-													input_class: 'required date datepicker', 
+													input_class: 'required datepicker fecha-nacimiento', 
 													max_length: Domain::FECHA,
 													label_text: '* Fecha de Nac.',
 													col_class: 'col-md-2', 
 													input_value: Formatter.format_date(@empleado.persona.fecha_nacimiento))%> 	
 			<%= FormBuilder::text_field_v(persona, :edad, 
-													input_class: 'edad', 
+													input_class: 'edad number-only', 
 													max_length: Domain::EDAD,
-													col_class: 'col-md-1') %>                  		                            
+													col_class: 'col-md-1',
+													disabled: true) %>                  		                            
 			<%= FormBuilder::select_v(persona, :sexo,
 												[['Masculino', 'Masculino'], ['Femenino', 'Femenino']], 
 												prompt:'Seleccione Sexo', 
@@ -81,7 +82,7 @@
 		<div class="row">   
 
 			<%= FormBuilder::text_field_v(persona, :telefono, 
-													input_class: 'telefono', 
+													input_class: 'tel-only', 
 													max_length: Domain::TELEFONO,
 													col_class: 'col-md-4') %> 	
 			<%= FormBuilder::text_field_v(persona, :email, 
@@ -128,9 +129,8 @@
 															select_class: 'empleado-select')%>	
 
 			<%= FormBuilder::text_field_v(empleado, :costo, 
-													max_length: Domain::COSTO,									
-													input_class: 'costo', 
-													value: '2342',
+													max_length: Domain::COSTO,					
+													input_class: 'number-only',
 													col_class: 'col-md-2 to-hide') %> 	
 		</div>											
 		
