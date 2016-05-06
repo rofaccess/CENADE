@@ -1,5 +1,0 @@
-$('#principal-content').html('<%= j render 'show', formats: 'html'%>');
-<% if !@paciente.encargado.nil? %>
-	$('.encargado_data').html("<%= j render partial: 'encargado_form'%>");
-<%end%>
-

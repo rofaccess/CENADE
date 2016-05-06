@@ -1,2 +1,0 @@
-$('.profesional_select').html("<%= escape_javascript(options_for_select(Empleado.where(type: 'Doctor', area_id: @area.id).collect{ |p| [p.persona.nombre, p.id] }).insert(0, 'Seleccione un paciente')) %>");
-$('.profesional_select').select2('destroy');
