@@ -18,6 +18,4 @@ class Doctor < Empleado
 
 	# Law of Demeter 
 	delegate :nombre, :costo, to: :area, prefix: true, allow_nil: true
-
-	ransack_alias :doctor, :persona_nombre_or_persona_apellido_or_area_nombre
 end
