@@ -12,7 +12,7 @@ var pacientesUI = (function(){
 	                delay:300, //Tiempo de espera, antes de comenzar la búsqueda
 	                data: function(params){
 	                	return {
-	                		q: { paciente_cont: params.term }, 
+	                		q: { persona_nombre_or_persona_apellido_or_persona_ci_cont: params.term }, 
 	                	};
 	                },
 

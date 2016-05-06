@@ -34,10 +34,7 @@ class Paciente < ActiveRecord::Base
       	encargado.update(paciente_id: id)
       	encargado.destroy
       end	
-    end		
-
-	# Usado en initBuscarPaciente en pacientesUI
-	ransack_alias :paciente, :persona_nombre_or_persona_apellido_or_persona_ci
+    end	
 
 	# Law of Demeter 
 	delegate :full_name, :nombre, :apellido, :ci, :edad, :sexo, :ci, :nacionalidad, 
