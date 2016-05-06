@@ -133,6 +133,27 @@ APP = {
         $('.tel-only').inputmask('Regex', { regex: "[\\d\\s()+-]+" });
     },
 
+    /* Inicia el inputmask para el campo que debe recibir solo ruc
+       .ruc-only: es la clase del elemento (input) que sólo permitirá ruc
+    */
+    initRucOnly: function(){
+        $('.ruc-only').inputmask('Regex', { regex: "[0-9\-a-z]+" }); 
+    },
+
+    /* Retorna la fecha del sistema en formato 'dd/mm/aa' */
+    systemDate: function(){
+        var today = new Date();
+                    
+        var day = today.getDate();
+        var month = today.getMonth()+1;
+        var year = today.getFullYear();
+        //Del 1 al 9 le agrega un cero delante
+        if(day<10) day = '0'+ day;
+        if(month < 10) month = '0' + month;
+
+        return day+'/'+month+'/'+year; 
+    },
+
     /*
         Permite calcular la edad a partir de la fecha de nacimiento y la fecha de hoy
         Recibe un objeto con:
@@ -149,14 +170,13 @@ APP = {
             var month = parseInt(today.getMonth())+1;
             var year = parseInt(today.getFullYear());
 
+
+
             var fec_nac = $(this).val().split('/');
 
             var day_nac = parseInt(fec_nac[0]);
             var month_nac = parseInt(fec_nac[1]);
             var year_nac = parseInt(fec_nac[2]);
-
-            var day_dif = day_nac - day;
-            var month_dif = month_nac - month;          
             var age = year - year_nac;
 
             if (year_nac < year){
@@ -165,14 +185,56 @@ APP = {
                 }else if(month_nac == month && day_nac <= day){
                     $(options.edad).val(age);
                 }else{
-                    $(options.edad).val(age-1);
+                    $(options.edad).val(age -1);
                 }
+            }else if(year_nac == year){
+                 if(month_nac < month){
+                    $(options.edad).val(age);
+                }else if(month_nac == month && day_nac <= day){
+                    $(options.edad).val(age);
+                }else{
+                    $(options.edad).val('');
+                }           
             }else{
-                $(options.edad).val(0);
-            }
-            
-        });
+                $(options.edad).val('');
+            }            
+        });        
+    },
+
+    /*
+        Compara dos strings de fechas con el formato 'dd/mm/aaaa'
+        Retorna true si el primero es mayor o igual al segundo caso contrario false
+    */
+    //- Se puede usar para implementar la validación de nuevo turno, que la fecha de consulta sea mayor o igual a la fecha de expedicion del turno   
+    compareDate: function(date1, date2){                     
+        var d1 = date1.split('/');
+        var day1 = parseInt(d1[0]);
+        var month1 = parseInt(d1[1]);
+        var year1 = parseInt(d1[2]);               
         
+        var d2 = date2.split('/');
+        var day2 = parseInt(d2[0]);
+        var month2 = parseInt(d2[1]);
+        var year2 = parseInt(d2[2]); 
+        
+        if (year1 > year2){           
+            return true;                 
+        }else if(year1==year2){
+            if(month1 > month2){
+                return true;
+            }else if(month1 == month2){
+                if(day1 >= day2){
+                    return true;
+                }else{
+                    return false;
+                }
+
+            }else{
+                return false;
+            }        
+        }else{
+            return false;
+        } 
     },
         
     /*
@@ -200,7 +262,7 @@ APP = {
 		APP.initBuscador();        
         APP.initAdvancedSearch();
         APP.initDatepicker();
-        //APP.initSidebarToogle(); //Tal vez se use
+        //APP.initSidebarToogle(); //- Tal vez se use
     }
 };
 
@@ -219,10 +281,11 @@ var delay = (function(){
     };
 })();
 
-/* Envía el q de ransack para que se pueda imprimir solo la lista que se esta filtrando (Actualmente no esta en uso)*/
+/* Envía el q de ransack para que se pueda imprimir solo la lista que se esta filtrando */
+//- Actualmente no esta en uso
 function configImprimir (params) {
   $('#imprimir-link').attr('href', $('#imprimir-link').data('url') + params.replace('amp;',''));
-}
+};
 
 /* CONFIGURACIONES POR DEFECTO PARA VENDORS */
 
