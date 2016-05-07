@@ -12,22 +12,31 @@
   	</div>
   	<div class="row">
 
-      <%= paciente.input :fecha_nacimiento, as: :string, label: 'Fecha de Nac.', wrapper_html: { class: 'col-md-2'}, input_html: {value: Formatter.format_date(@paciente.persona_fecha_nacimiento), disabled: true}, required: false %>
+      <%= paciente.input :fecha_nacimiento, as: :string, label: 'Fecha de Nac.', wrapper_html: { class: 'col-md-3'}, input_html: {value: Formatter.format_date(@paciente.persona_fecha_nacimiento), disabled: true}, required: false %>
 
   		<%= paciente.input :edad, as: :string, wrapper_html: { class: 'col-md-1'}, input_html: {value: @paciente.persona_edad, disabled: true}, required: false %>
 
-  		<%= paciente.input :nacionalidad, as: :string, wrapper_html: { class: 'col-md-3'}, input_html: {value: @paciente.persona_nacionalidad, disabled: true}, required: false %>
+      <%= paciente.input :lugar_nacimiento, as: :string, wrapper_html: { class: 'col-md-4'}, input_html: {value: @paciente.lugar_nacimiento, disabled: true}, required: false %>
 
+      <%= paciente.input :nacionalidad, as: :string, wrapper_html: { class: 'col-md-4'}, input_html: {value: @paciente.persona_nacionalidad, disabled: true}, required: false %>
+
+    </div>
+    <div class ="row">
+      
       <%= paciente.input :apellido, as: :string, label: 'Estado Civil', wrapper_html: { class: 'col-md-3'}, input_html: {value: @paciente.persona_estado_civil_descripcion, disabled: true}, required: false %>
 
+    <%= paciente.input :apellido, as: :string, label: 'Dirección', wrapper_html: { class: 'col-md-6'}, input_html: {value: @paciente.persona_direccion, disabled: true}, required: false %>
+
       <%= paciente.input :telefono, as: :string, wrapper_html: { class: 'col-md-3'}, input_html: {value: @paciente.persona_telefono, disabled: true}, required: false %>
-  	</div>
+
+    </div>
 
   	<div class="row">
 		
-    <%= paciente.input :apellido, as: :string, label: 'Lugar de Trabajo', wrapper_html: { class: 'col-md-6'}, input_html: {value: @paciente.lugar_trabajo, disabled: true}, required: false %>
+      <%= paciente.input :apellido, as: :string, label: 'Lugar de Trabajo', wrapper_html: { class: 'col-md-6'}, input_html: {value: @paciente.lugar_trabajo, disabled: true}, required: false %>
 
-  		<%= paciente.input :apellido, as: :string, label: 'Dirección', wrapper_html: { class: 'col-md-6'}, input_html: {value: @paciente.persona_direccion, disabled: true}, required: false %>
-  	</div>
+      <%= paciente.input :apellido, as: :string, label: 'Profesión', wrapper_html: { class: 'col-md-6'}, input_html: {value: @paciente.profesion, disabled: true}, required: false %>
+    </div>
+  
 <% end %>
 

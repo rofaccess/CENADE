@@ -8,7 +8,6 @@ class CreateFichasOdontologicas < ActiveRecord::Migration
 
       t.date :fecha                           , null: false
       t.string :nombre_tutor                  ,default: '' ,limit: Domain::NOMBRE,     null: true
-      t.string :profesion_tutor               ,default: '' ,limit: Domain::PROFESION,  null: true
       t.string :tel_tutor                     ,default: '' ,limit: Domain::TELEFONO,   null: true
      
       

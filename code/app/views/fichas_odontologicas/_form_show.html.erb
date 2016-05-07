@@ -27,12 +27,13 @@
   	</div>	
 
 	<%= render 'form_paciente' %>
+
+	<h4>Datos de la Ficha</h4>
+	<hr>
 	<div class="row">
-		<%= ficha.input :nombre_tutor, label: 'Nombre de Tutor', wrapper_html: { class: 'col-md-4'}, input_html: { disabled: true} %>	
+		<%= ficha.input :nombre_tutor, label: 'Nombre de Tutor', wrapper_html: { class: 'col-md-6'}, input_html: { disabled: true} %>	
 
-		<%= ficha.input :tel_tutor, label: 'Teléfono del Tutor', wrapper_html: { class: 'col-md-4'}, input_html: { disabled: true} %>	
-
-		<%= ficha.input :profesion_tutor, label: 'Profesión del Tutor', wrapper_html: { class: 'col-md-4'}, input_html: { disabled: true} %>		
+		<%= ficha.input :tel_tutor, label: 'Teléfono del Tutor', wrapper_html: { class: 'col-md-6'}, input_html: { disabled: true} %>		
 	</div>
 	<%end%>
 </div>

@@ -30,12 +30,14 @@
 		<%= render 'form_paciente' %>
 	</div>
 
+	<h4>Datos de la Ficha</h4>
+	<hr>
+	
 	<div class="row">
-		<%= ficha.input :nombre_tutor, label: 'Nombre de Tutor', wrapper_html: { class: 'col-md-4'}, input_html: { maxLength: Domain::NOMBRE} %>	
+		<%= ficha.input :nombre_tutor, label: 'Nombre de Tutor', wrapper_html: { class: 'col-md-6'}, input_html: { maxLength: Domain::NOMBRE} %>	
 
-		<%= ficha.input :tel_tutor, label: 'Teléfono del Tutor', wrapper_html: { class: 'col-md-4'}, input_html: { maxLength: Domain::TELEFONO} %>	
-
-		<%= ficha.input :profesion_tutor, label: 'Profesión del Tutor', wrapper_html: { class: 'col-md-4'}, input_html: { maxLength: Domain::PROFESION} %>		
+		<%= ficha.input :tel_tutor, label: 'Teléfono del Tutor', wrapper_html: { class: 'col-md-6'}, input_html: { maxLength: Domain::TELEFONO} %>	
+	
 	</div>
 	<div class="form-button">         
 		<%= ficha.submit 'Guardar', class: 'btn btn-custom'%>

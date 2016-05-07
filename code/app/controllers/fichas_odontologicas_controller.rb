@@ -106,6 +106,6 @@ class FichasOdontologicasController < ApplicationController
   end  
 
 	def ficha_params
-		params.require(:ficha_odontologica).permit(:area_id, :paciente_id, :doctor_id, :fecha, :nro_ficha,:nombre_tutor,:tel_tutor,:profesion_tutor)
+		params.require(:ficha_odontologica).permit(:area_id, :paciente_id, :doctor_id, :fecha, :nro_ficha,:nombre_tutor,:tel_tutor)
     end
 end

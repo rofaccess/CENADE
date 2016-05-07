@@ -296,16 +296,15 @@ ActiveRecord::Schema.define(version: 20160504025744) do
   end
 
   create_table "fichas_odontologicas", force: :cascade do |t|
-    t.integer  "paciente_id",                             null: false
-    t.integer  "area_id",                                 null: false
-    t.integer  "doctor_id",                               null: false
+    t.integer  "paciente_id",                          null: false
+    t.integer  "area_id",                              null: false
+    t.integer  "doctor_id",                            null: false
     t.integer  "nro_ficha"
-    t.date     "fecha",                                   null: false
-    t.string   "nombre_tutor",    limit: 30, default: ""
-    t.string   "profesion_tutor", limit: 50, default: ""
-    t.string   "tel_tutor",       limit: 50, default: ""
-    t.datetime "created_at",                              null: false
-    t.datetime "updated_at",                              null: false
+    t.date     "fecha",                                null: false
+    t.string   "nombre_tutor", limit: 30, default: ""
+    t.string   "tel_tutor",    limit: 50, default: ""
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
   end
 
   create_table "fichas_psicopedagogicas", force: :cascade do |t|
