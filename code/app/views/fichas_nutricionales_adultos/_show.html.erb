@@ -1,0 +1,68 @@
+<div class="page-title page-title-con-sidebar">
+  Ficha de <%= @nutri_adulto.paciente_persona_full_name%>
+
+  <div class="tool">
+    <%= link_to '<i class="fa fa-list data-toggle="tooltip" title="Lista de Fichas"></i> '.html_safe, fichas_nutricionales_adultos_path %> 
+    
+    <%= link_to '<i class="fa fa-plus-square" data-toggle="tooltip" title="Nueva Ficha"></i> '.html_safe, new_ficha_nutricional_adulto_path, remote: true %>
+    
+    <%= link_to '<i class="fa fa-edit" data-toggle="tooltip" title="Editar Ficha"></i> '.html_safe, edit_ficha_nutricional_adulto_path(@nutri_adulto), remote:true%>
+
+    <%= link_to '<i class="fa fa-print" data-toggle="tooltip" title="Imprimir Ficha"></i> '.html_safe, fichas_nutricionales_adultos_print_ficha_path(ficha_id: @nutri_adulto.id, :format => :pdf), target: '_blank'%>
+    
+  </div>
+
+</div>
+  <div class="form-content2">    
+    <%= simple_form_for @nutri_adulto, html: {class: 'form-ficha2'} do |ficha|%>
+    <%= hidden_field_tag :ficha_id, @nutri_adulto.id, class: 'ficha-id'%>
+    
+    <h4 class="titulo-ficha">FICHA NUTRICIONAL ADULTO</h4>
+    <div class="row">   
+      <h4 class="col-md-9"><strong>Profesional de la Salud: </strong> <%= @nutri_adulto.doctor.abr_profesion+' '+@nutri_adulto.doctor.persona_full_name%> </h4>   
+        
+      <h4 class="col-md-3"><strong> Fecha: </strong> <%= Formatter.format_date(@nutri_adulto.fecha)%> </h4>
+    </div>
+    
+    <%= render 'form_paciente' %>
+
+    <div class="row">
+      <%= ficha.input :nro_hijos, label: 'N° Hijos'  , wrapper_html: { class: 'col-md-2'}, input_html: { disabled: true} %>
+    </div>
+
+    <h4>II- Antecedentes</h4>
+    <hr>
+    <div class="row col-md-12">
+      <h3>Familiares:</h3>
+    </div>
+      
+      <div class="row">
+      <%= ficha.input :obesidad, label: 'Obesidad'  , wrapper_html: { class: 'col-md-3'}, input_html: {disabled: true} %>
+      <%= ficha.input :dbt, label: 'DBT'  , wrapper_html: { class: 'col-md-3'}, input_html: { disabled: true} %>
+      <%= ficha.input :hta, label: 'HTA'  , wrapper_html: { class: 'col-md-3'}, input_html: { disabled: true} %>
+      <%= ficha.input :cardiopatias, label: 'Cardiopatías'  , wrapper_html: { class: 'col-md-3'}, input_html: { disabled: true} %> 
+    </div>
+    
+    <div class="row">
+      <%= ficha.input :actuales, as: :text, label: 'Actuales del Paciente:' , wrapper_html: { class: 'col-md-12'}, input_html: {disabled: true} %>
+
+    </div>
+  
+
+  <% end %>
+
+</div>
+
+
+<script type="text/javascript"> 
+    
+  
+
+  <% if !flash.notice.blank? %> 
+    var n = noty({text: '<%=notice%>', type: 'success'});   
+  <% end %>
+  
+  <% if !flash.alert.blank?%> 
+    var n = noty({text: '<%=alert%>', type: 'error'});
+  <% end %>
+</script>
