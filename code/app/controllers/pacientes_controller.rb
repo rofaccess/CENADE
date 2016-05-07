@@ -121,9 +121,14 @@ class PacientesController < ApplicationController
     	@paciente = Paciente.find params[:paciente_id]      
     	respond_to do |format|
     		format.pdf do
-    			render :pdf => "Paciente",
-    			:template => "pacientes/print_paciente.pdf.erb",
-    			:layout => "pdf.html"
+    			render pdf:  'Registro de Paciente',
+    			template:    'pacientes/print_paciente.pdf.erb',
+    			layout:      'pdf.html',
+          title:       'Registro de Paciente',
+          footer: { 
+            center: '[page] de [topage]',
+            left: "#{Formatter.format_datetime(Time.now)}" 
+          }     
     		end
     	end
     end
@@ -133,9 +138,16 @@ class PacientesController < ApplicationController
 
     	respond_to do |format|
     		format.pdf do
-    			render :pdf => "Lista de Pacientes",
-    			:template => "pacientes/print_pacientes.pdf.erb",
-    			:layout => "pdf.html"
+    			render pdf:   'Lista de Pacientes',
+    			template:     'pacientes/print_pacientes.pdf.erb',
+    			layout:       'pdf.html',
+          orientation:  'Landscape',
+          title:        'Lista de Pacientes',            
+          footer: { 
+            center: '[page] de [topage]',
+            left: "#{Formatter.format_datetime(Time.now)}" 
+          }                            
+          #disposition:  'attachment' # Ya descarga el pdf en la pc
     		end
     	end
     end

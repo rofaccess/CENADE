@@ -69,6 +69,13 @@ h4{
 		margin-bottom: 20px;
 		color: $page-title-color;
 	}
+	
+	&.title{
+		text-align: center;
+		margin-bottom: 20px;
+		color: $page-title-color;
+	}
+
 }
 
 hr {
@@ -97,4 +104,23 @@ hr {
 		padding-top: 30px;
 		text-align: center;
 	}
+}
+
+//A partir del elemento que contenga esta clase se mostrará en la siguiente página
+.page-break{
+	page-break-before: always;
+}
+
+/*
+thead { display: table-header-group; }
+tfoot { display: table-row-group; }
+tr { page-break-inside: avoid; }
+*/
+
+/* Para que wkhtmltopdf 0.12.3 el head de las tablas en cada página se vea bien
+   Supuestamente asegura que los registros no se vean mitad y mitad entre páginas
+   En la versión 0.9.9 ni se ve el thead a partir de la segunda página
+ */
+table, tr, td, th, tbody, thead, tfoot {
+    page-break-inside: avoid;
 }
