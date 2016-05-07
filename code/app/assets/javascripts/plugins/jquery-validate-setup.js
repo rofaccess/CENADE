@@ -85,8 +85,8 @@ $.validator.addClassRules({
 	telCheck: {
 		telCheck: true
 	},
-	dateBornCheck: {
-		dateBornCheck: true
+	dateLessSystemDate: {
+		dateLessSystemDate: true
 	},
 	passwordEqual:{
 		equalTo: "#user_password"
@@ -127,12 +127,12 @@ $.validator.addMethod("hora", function(value, element){
   return value.length == 0 || /^[0-9]{2}:[0-9]{2}$/i.test(value);},
   "Formato hh:mm"); 
 
-$.validator.addMethod("dateBornCheck", function(value, element) {
-  return this.optional(element) || checkDateBorn(value);
+$.validator.addMethod("dateLessSystemDate", function(value, element) {
+  return this.optional(element) || checkDateLessSystemDate(value);
 }, jQuery.validator.format("La fecha debe ser menor o igual a la fecha del sistema"));
 
 
-/* Si la fecha de nacimiento es menor o igual a la fecha del sistema devuelve true, caso contrario false */
-function checkDateBorn(dateBorn){	
-    return APP.compareDate(APP.systemDate(),dateBorn);	    
+/* Si la fecha especificada es menor o igual a la fecha del sistema devuelve true, caso contrario false */
+function checkDateLessSystemDate(date){	
+    return APP.compareDate(APP.systemDate(),date);	    
 };
