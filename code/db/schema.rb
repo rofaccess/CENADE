@@ -126,6 +126,8 @@ ActiveRecord::Schema.define(version: 20160505065702) do
     t.datetime "deleted_at"
   end
 
+  add_index "encargados", ["paciente_id"], name: "index_encargados_on_paciente_id", using: :btree
+
   create_table "especialidades", force: :cascade do |t|
     t.string   "descripcion", limit: 50, default: "", null: false
     t.datetime "created_at"
