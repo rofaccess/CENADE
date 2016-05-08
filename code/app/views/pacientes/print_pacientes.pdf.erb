@@ -1,14 +1,14 @@
 <table class= "table table-condensed"> 
   <thead>    
     <tr>
-        <th colspan="8" scope="col"> <h4 class="title">LISTA DE PACIENTES</h4></th>
-      </tr>
+      <th colspan="8" scope="col"> <h4 class="title">LISTA DE PACIENTES</h4></th>
+    </tr>
     <tr>
       <th>Nombre</th>
       <th>Apellido</th>
       <th>C.I</th>
-      <th>Direccion</th>
-      <th>Telefono</th>
+      <th class="col-md-4">Direccion</th>
+      <th class="col-md-2">Telefono</th>
       <th class="col-md-2">Fec. de Ingreso</th>
     </tr>
   </thead>
@@ -26,7 +26,7 @@
       <td><%=paciente.persona.apellido %></td>
       <td><%=paciente.persona.ci %></td>
       <td class="crop"><%=paciente.persona.direccion %></td>
-      <td><%=paciente.persona.telefono %></td>
+      <td class="crop"><%=paciente.persona.telefono %></td>
       <td><%=Formatter.format_date(paciente.fecha_ingreso) %></td>      
     </tr>
     <% end %>   

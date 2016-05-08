@@ -37,14 +37,14 @@
 													max_length: Domain::RUC,
 													col_class: 'col-md-2') %>                           
 		</div>					                        
-		<div class="row">   
-			<%= persona.hidden_field :edad, class: 'edad'%>
+		<div class="row">  			
 			<%= FormBuilder::text_field_v(persona, :fecha_nacimiento, 
 													input_class: 'required datepicker fecha-nacimiento dateLessSystemDate', 
 													max_length: Domain::FECHA,
 													label_text: '* Fecha de Nac.',
 													col_class: 'col-md-2', 
 													input_value: Formatter.format_date(@empleado.persona.fecha_nacimiento))%> 	
+			<%= persona.hidden_field :edad, class: 'edad'%>
 			<%= FormBuilder::text_field_v(persona, :edad, 
 													input_class: 'edad number-only', 
 													max_length: Domain::EDAD,

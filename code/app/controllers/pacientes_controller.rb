@@ -125,10 +125,13 @@ class PacientesController < ApplicationController
     			template:    'pacientes/print_paciente.pdf.erb',
     			layout:      'pdf.html',
           title:       'Registro de Paciente',
+          # //- Muestra el header en cada página pero el footer ya no se muestra
+          #header: {html: {template: 'layouts/_pdf_header.html.erb'}, spacing: 5},          
           footer: { 
             center: '[page] de [topage]',
-            left: "#{Formatter.format_datetime(Time.now)}" 
-          }     
+            right: "#{Formatter.format_datetime(Time.now)}",
+            left: "CI Nº: #{@paciente.persona_ci}"
+          }          
     		end
     	end
     end
@@ -145,7 +148,7 @@ class PacientesController < ApplicationController
           title:        'Lista de Pacientes',            
           footer: { 
             center: '[page] de [topage]',
-            left: "#{Formatter.format_datetime(Time.now)}" 
+            right: "#{Formatter.format_datetime(Time.now)}" 
           }                            
           #disposition:  'attachment' # Ya descarga el pdf en la pc
     		end
