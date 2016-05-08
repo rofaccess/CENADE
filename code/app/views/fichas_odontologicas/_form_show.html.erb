@@ -14,31 +14,24 @@
 
 </div>
 <div class="form-content2">    
-
 	<%= simple_form_for @ficha, html: {class: 'form-ficha2'}, remote: true do |ficha|%>
 	
-	<h4 class="titulo-ficha">FICHA DE ODONTOLOGÍA</h4>
-	
-	<div class="row">							
-			
-		<h4 class="col-md-9"><strong>Profesional de la Salud: </strong> <%= @ficha.doctor.abr_profesion+' '+@ficha.doctor.persona_full_name%> </h4>		
-	  		
-  		<h4 class="col-md-3"><strong> Fecha: </strong> <%= Formatter.format_date(@ficha.fecha)%> </h4>
-  	</div>	
-
-	<%= render 'form_paciente' %>
-
-	<h4>Datos de la Ficha</h4>
-	<hr>
-	<div class="row">
-		<%= ficha.input :nombre_tutor, label: 'Nombre de Tutor', wrapper_html: { class: 'col-md-6'}, input_html: { disabled: true} %>	
-
-		<%= ficha.input :tel_tutor, label: 'Teléfono del Tutor', wrapper_html: { class: 'col-md-6'}, input_html: { disabled: true} %>		
-	</div>
+		<h4 class="titulo-ficha">FICHA DE ODONTOLOGÍA</h4>
+		
+		<div class="row">								
+			<h4 class="col-md-9"><strong>Profesional de la Salud: </strong> <%= @ficha.doctor.abr_profesion+' '+@ficha.doctor.persona_full_name%> </h4>		
+	  		<h4 class="col-md-3"><strong> Fecha: </strong> <%= Formatter.format_date(@ficha.fecha)%> </h4>
+	  	</div>	
+		<%= render 'form_paciente' %>
+		<h4>Datos de la Ficha</h4>
+		<hr>
+		<div class="row">
+			<%= ficha.input :nombre_tutor, label: 'Nombre de Tutor', wrapper_html: { class: 'col-md-6'}, input_html: { disabled: true} %>	
+			<%= ficha.input :tel_tutor, label: 'Teléfono del Tutor', wrapper_html: { class: 'col-md-6'}, input_html: { disabled: true} %>		
+		</div>
 	<%end%>
 </div>
 <script type="text/javascript"> 	
-
 	<% if !flash.notice.blank? %> 
 		var n = noty({text: '<%=notice%>', type: 'success'});   
 	<% end %>
@@ -46,5 +39,4 @@
 	<% if !flash.alert.blank?%> 
 		var n = noty({text: '<%=alert%>', type: 'error'});
 	<% end %>
-
 </script>
