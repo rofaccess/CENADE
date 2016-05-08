@@ -2,7 +2,7 @@ class FichasNutricionalesAdultosController < ApplicationController
 
   before_action :set_submenu, only: [:edit, :new, :show, :index, :create, :update]
   before_action :set_sidebar, only: [:edit, :new, :show, :index, :create, :update]
-  before_action :set_ficha_nutri_adulto, only: [:show, :edit, :update, :destroy]
+  before_action :set_ficha_nutri_adulto, only: [:show, :edit, :update]
 
   def set_submenu
   	@submenu_layout = 'layouts/submenu_fichas_consultas'
@@ -26,7 +26,7 @@ class FichasNutricionalesAdultosController < ApplicationController
 
   def create
   	@nutri_adulto = FichaNutricionalAdulto.new(nutri_adulto_params)
-    @paciente= Paciente.find(@nutri_adulto.paciente_id) 
+    @paciente= @nutri_adulto.paciente
   	 respond_to do |format|
       if @nutri_adulto.save
         flash.now[:notice] = 'Ficha registrada exitosamente'
