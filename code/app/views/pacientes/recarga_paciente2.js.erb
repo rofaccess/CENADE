@@ -1,6 +1,6 @@
 $('#modal-lg').modal('hide');
 
-$('#paciente-data').html("<%= j render params[:root].to_s()+'/form_paciente' %>");
+$('#paciente-data').html("<%= j render params[:root].to_s()+'/form_paciente', paciente: @paciente %>");
 
 // Carga todos los pacientes en el select, y setea el paciente recién guardado como seleccionado
 $('.select-paciente').html("<%= escape_javascript(options_for_select(Paciente.all.collect {|a| [a.persona_full_name, a.id]}, selected: @paciente.id)) %>");
