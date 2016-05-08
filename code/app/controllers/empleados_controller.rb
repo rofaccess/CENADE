@@ -71,27 +71,39 @@ class EmpleadosController < ApplicationController
   		@empleado = Empleado.find params[:empleado_id]  		
 	    respond_to do |format|
 	      format.pdf do
-	        render :pdf => "Empleado",
-	               :template => "empleados/print_empleado.pdf.erb",
-	               :layout => "pdf.html"
+	        render pdf: 	 'Registro de Empleado',
+	               template: 'empleados/print_empleado.pdf.erb',
+	               layout:   'pdf.html',
+	               title:    'Registro de Paciente',
+	               footer: { 
+			            center: '[page] de [topage]',
+			            right: "#{Formatter.format_datetime(Time.now)}",
+			            left: "CI Nº: #{@empleado.persona_ci}"
+			        } 
       		end
       	end
     end
 
     def print_empleados
+  		# //- También se puede imprimir una lista filtrada, no esta implementado
   		#@search = Empleado.ransack(params[:q]) 	
   		#@empleados= @search.result
   		@empleados = Empleado.all
 
 	    respond_to do |format|
 	      format.pdf do
-	        render :pdf => "Lista de Empleados",
-	               :template => "empleados/print_empleados.pdf.erb",
-	               :layout => "pdf.html"
+	        render pdf:         'Lista de Empleados',
+	               template:    'empleados/print_empleados.pdf.erb',
+	               layout:      'pdf.html',
+	               orientation: 'Landscape',
+			       title:       'Lista de Empleados',            
+			       footer: { 
+			       		center: '[page] de [topage]',
+			            right: "#{Formatter.format_datetime(Time.now)}" 
+			       }          
       		end
       	end
     end
- 
 
   	def set_empleado
       @empleado = Empleado.find(params[:id])

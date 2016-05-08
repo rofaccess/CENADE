@@ -8,7 +8,7 @@ class CreatePersonas < ActiveRecord::Migration
       t.string   :telefono          ,default: '' ,limit: Domain::TELEFONO
       t.string   :email             ,default: '' ,limit: Domain::EMAIL
       t.string   :ruc               ,default: '' ,limit: Domain::RUC
-      t.date :fecha_nacimiento
+      t.date     :fecha_nacimiento
       t.string   :sexo              ,default: '' ,limit: Domain::SEXO      
       t.string   :edad              ,default: '' ,limit: Domain::EDAD
       t.string   :nacionalidad      ,default: '' ,limit: Domain::NACIONALIDAD
@@ -25,5 +25,6 @@ class CreatePersonas < ActiveRecord::Migration
     # ON DELETE RESTRICT: No te permite borrar el estado civil si esta relacionado con una persona
     add_foreign_key(:personas, :estados_civiles, column: 'estado_civil_id', on_delete: :restrict)
 
+    add_index :personas, :estado_civil_id
   end
 end

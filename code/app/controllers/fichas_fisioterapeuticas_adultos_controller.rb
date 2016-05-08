@@ -114,9 +114,15 @@ class FichasFisioterapeuticasAdultosController < ApplicationController
   	@ficha = FichaFisioterapeuticaAdulto.find params[:ficha_id]      
   	respond_to do |format|
   		format.pdf do
-  			render :pdf => "Ficha",
-  			:template => "fichas_fisioterapeuticas_adultos/print_ficha.pdf.erb",
-  			:layout => "pdf.html"
+  			render pdf: "Ficha",
+  			template: 	"fichas_fisioterapeuticas_adultos/print_ficha.pdf.erb",
+  			layout: 	"pdf.html",
+  			title:    	'Ficha de Fisioterapia Adulto',
+	        footer: { 
+			    center: '[page] de [topage]',
+			    right: 	"#{Formatter.format_datetime(Time.now)}",
+			    left: 	"CI Nº: #{@ficha.paciente_persona_ci}"
+			} 
   		end
   	end
   end  

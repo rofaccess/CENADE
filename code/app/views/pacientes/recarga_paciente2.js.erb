@@ -1,6 +1,6 @@
 $('#modal-lg').modal('hide');
 
-$('#paciente-data').html("<%= j render partial: params[:root].to_s()+'/form_paciente' %>");
+$('#paciente-data').html("<%= j render params[:root].to_s()+'/form_paciente' %>");
 
 // Carga todos los pacientes en el select, y setea el paciente recién guardado como seleccionado
 $('.select-paciente').html("<%= escape_javascript(options_for_select(Paciente.all.collect {|a| [a.persona_full_name, a.id]}, selected: @paciente.id)) %>");
@@ -12,7 +12,7 @@ $('.select-paciente').select2({
 
 //- Se usa solo con el select buscador de pacientes
 /*
-//- El .insert(0, 'Seleccione un paciente') no es necesario para el select2 con buscador, para un select común si es necesario  
+//- El .insert(0, 'Seleccione un paciente') no es necesario para el select2 con buscador, para un select común si es necesario
 // Carga el paciente recién guardado en el select y lo setea como seleccionado
 $('.select-paciente').html("<%= escape_javascript(options_for_select([[@paciente.persona_nombre+" "+@paciente.persona_apellido, @paciente.id]], selected: @paciente.id).insert(0, 'Seleccione un paciente')) %>");
 

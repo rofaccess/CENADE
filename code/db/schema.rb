@@ -80,6 +80,10 @@ ActiveRecord::Schema.define(version: 20160505065702) do
     t.datetime "deleted_at"
   end
 
+  add_index "consultas", ["area_id"], name: "index_consultas_on_area_id", using: :btree
+  add_index "consultas", ["paciente_id"], name: "index_consultas_on_paciente_id", using: :btree
+  add_index "consultas", ["profesional_salud_id"], name: "index_consultas_on_profesional_salud_id", using: :btree
+
   create_table "custom_auto_increments", force: :cascade do |t|
     t.string   "counter_model_name"
     t.integer  "counter",            default: 0
@@ -101,7 +105,9 @@ ActiveRecord::Schema.define(version: 20160505065702) do
     t.datetime "updated_at"
   end
 
+  add_index "empleados", ["area_id"], name: "index_empleados_on_area_id", using: :btree
   add_index "empleados", ["deleted_at"], name: "index_empleados_on_deleted_at", unique: true, using: :btree
+  add_index "empleados", ["persona_id"], name: "index_empleados_on_persona_id", using: :btree
 
   create_table "encargados", force: :cascade do |t|
     t.string   "padre_nombre",           limit: 60,  default: ""
@@ -147,6 +153,8 @@ ActiveRecord::Schema.define(version: 20160505065702) do
     t.datetime "updated_at",               null: false
   end
 
+  add_index "fechas", ["horario_id"], name: "index_fechas_on_horario_id", using: :btree
+
   create_table "ficha_fisioterapia_ninos", force: :cascade do |t|
     t.integer  "area_id",                                          null: false
     t.integer  "doctor_id",                                        null: false
@@ -164,6 +172,10 @@ ActiveRecord::Schema.define(version: 20160505065702) do
     t.datetime "updated_at",                                       null: false
   end
 
+  add_index "ficha_fisioterapia_ninos", ["area_id"], name: "index_ficha_fisioterapia_ninos_on_area_id", using: :btree
+  add_index "ficha_fisioterapia_ninos", ["doctor_id"], name: "index_ficha_fisioterapia_ninos_on_doctor_id", using: :btree
+  add_index "ficha_fisioterapia_ninos", ["paciente_id"], name: "index_ficha_fisioterapia_ninos_on_paciente_id", using: :btree
+
   create_table "fichas_fisioterapeuticas_adultos", force: :cascade do |t|
     t.integer  "area_id",                                          null: false
     t.integer  "doctor_id",                                        null: false
@@ -179,6 +191,10 @@ ActiveRecord::Schema.define(version: 20160505065702) do
     t.datetime "updated_at",                                       null: false
   end
 
+  add_index "fichas_fisioterapeuticas_adultos", ["area_id"], name: "index_fichas_fisioterapeuticas_adultos_on_area_id", using: :btree
+  add_index "fichas_fisioterapeuticas_adultos", ["doctor_id"], name: "index_fichas_fisioterapeuticas_adultos_on_doctor_id", using: :btree
+  add_index "fichas_fisioterapeuticas_adultos", ["paciente_id"], name: "index_fichas_fisioterapeuticas_adultos_on_paciente_id", using: :btree
+
   create_table "fichas_fonoaudiologicas", force: :cascade do |t|
     t.integer  "paciente_id",                          null: false
     t.integer  "area_id",                              null: false
@@ -190,6 +206,10 @@ ActiveRecord::Schema.define(version: 20160505065702) do
     t.datetime "created_at",                           null: false
     t.datetime "updated_at",                           null: false
   end
+
+  add_index "fichas_fonoaudiologicas", ["area_id"], name: "index_fichas_fonoaudiologicas_on_area_id", using: :btree
+  add_index "fichas_fonoaudiologicas", ["doctor_id"], name: "index_fichas_fonoaudiologicas_on_doctor_id", using: :btree
+  add_index "fichas_fonoaudiologicas", ["paciente_id"], name: "index_fichas_fonoaudiologicas_on_paciente_id", using: :btree
 
   create_table "fichas_nutricionales_pediatricas", force: :cascade do |t|
     t.integer  "paciente_id"
@@ -213,6 +233,10 @@ ActiveRecord::Schema.define(version: 20160505065702) do
     t.datetime "updated_at",                              null: false
   end
 
+  add_index "fichas_nutricionales_pediatricas", ["area_id"], name: "index_fichas_nutricionales_pediatricas_on_area_id", using: :btree
+  add_index "fichas_nutricionales_pediatricas", ["paciente_id"], name: "index_fichas_nutricionales_pediatricas_on_paciente_id", using: :btree
+  add_index "fichas_nutricionales_pediatricas", ["profesional_salud_id"], name: "index_fichas_nutricionales_pediatricas_on_profesional_salud_id", using: :btree
+
   create_table "fichas_psicopedagogicas", force: :cascade do |t|
     t.integer  "paciente_id",                          null: false
     t.integer  "area_id",                              null: false
@@ -225,6 +249,10 @@ ActiveRecord::Schema.define(version: 20160505065702) do
     t.datetime "updated_at",                           null: false
   end
 
+  add_index "fichas_psicopedagogicas", ["area_id"], name: "index_fichas_psicopedagogicas_on_area_id", using: :btree
+  add_index "fichas_psicopedagogicas", ["doctor_id"], name: "index_fichas_psicopedagogicas_on_doctor_id", using: :btree
+  add_index "fichas_psicopedagogicas", ["paciente_id"], name: "index_fichas_psicopedagogicas_on_paciente_id", using: :btree
+
   create_table "grupos", force: :cascade do |t|
     t.string   "nombre"
     t.datetime "created_at", null: false
@@ -236,6 +264,8 @@ ActiveRecord::Schema.define(version: 20160505065702) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "horarios", ["empleado_id"], name: "index_horarios_on_empleado_id", using: :btree
 
   create_table "pacientes", force: :cascade do |t|
     t.integer  "persona_id",                                null: false
@@ -250,6 +280,9 @@ ActiveRecord::Schema.define(version: 20160505065702) do
     t.datetime "updated_at",                                null: false
   end
 
+  add_index "pacientes", ["encargado_id"], name: "index_pacientes_on_encargado_id", using: :btree
+  add_index "pacientes", ["persona_id"], name: "index_pacientes_on_persona_id", using: :btree
+
   create_table "permissions", force: :cascade do |t|
     t.integer  "grupo_id"
     t.string   "model"
@@ -258,12 +291,17 @@ ActiveRecord::Schema.define(version: 20160505065702) do
     t.datetime "updated_at", null: false
   end
 
+  add_index "permissions", ["grupo_id"], name: "index_permissions_on_grupo_id", using: :btree
+
   create_table "permissions_roles", force: :cascade do |t|
     t.integer  "role_id"
     t.integer  "permission_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
+
+  add_index "permissions_roles", ["permission_id"], name: "index_permissions_roles_on_permission_id", using: :btree
+  add_index "permissions_roles", ["role_id"], name: "index_permissions_roles_on_role_id", using: :btree
 
   create_table "personas", force: :cascade do |t|
     t.string   "ci",               limit: 15,  default: "", null: false
@@ -284,6 +322,7 @@ ActiveRecord::Schema.define(version: 20160505065702) do
   end
 
   add_index "personas", ["deleted_at"], name: "index_personas_on_deleted_at", unique: true, using: :btree
+  add_index "personas", ["estado_civil_id"], name: "index_personas_on_estado_civil_id", using: :btree
 
   create_table "roles", force: :cascade do |t|
     t.string   "name"
@@ -317,6 +356,10 @@ ActiveRecord::Schema.define(version: 20160505065702) do
     t.datetime "updated_at",       null: false
   end
 
+  add_index "turnos", ["area_id"], name: "index_turnos_on_area_id", using: :btree
+  add_index "turnos", ["doctor_id"], name: "index_turnos_on_doctor_id", using: :btree
+  add_index "turnos", ["paciente_id"], name: "index_turnos_on_paciente_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "email"
     t.string   "username",               limit: 30, default: "", null: false
@@ -339,6 +382,7 @@ ActiveRecord::Schema.define(version: 20160505065702) do
     t.datetime "updated_at"
   end
 
+  add_index "users", ["empleado_id"], name: "index_users_on_empleado_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
   add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree

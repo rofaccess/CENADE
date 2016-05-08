@@ -22,7 +22,11 @@ class CreateFichasNutricionalesPediatricas < ActiveRecord::Migration
       t.timestamps null: false
     end
     add_foreign_key(:fichas_nutricionales_pediatricas, :pacientes, column: 'paciente_id', on_delete: :restrict)
-      add_foreign_key(:fichas_nutricionales_pediatricas, :areas, column: 'area_id', on_delete: :restrict)  
+    add_foreign_key(:fichas_nutricionales_pediatricas, :areas, column: 'area_id', on_delete: :restrict)  
+  
+    add_index :fichas_nutricionales_pediatricas, :paciente_id
+    add_index :fichas_nutricionales_pediatricas, :profesional_salud_id
+    add_index :fichas_nutricionales_pediatricas, :area_id
   end
 end
 

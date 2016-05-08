@@ -17,5 +17,9 @@ class CreateTurnos < ActiveRecord::Migration
     add_foreign_key(:turnos, :pacientes, column: 'paciente_id', on_delete: :restrict)    
     add_foreign_key(:turnos, :areas, column: 'area_id', on_delete: :restrict)
     add_foreign_key(:turnos, :empleados, column: 'doctor_id', on_delete: :restrict)
+
+    add_index :turnos, :paciente_id
+    add_index :turnos, :area_id
+    add_index :turnos, :doctor_id
   end
 end
