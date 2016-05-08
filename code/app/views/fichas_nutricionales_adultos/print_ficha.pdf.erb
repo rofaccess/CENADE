@@ -1,0 +1,74 @@
+<h4 class="ficha-title">FICHA NUTRICIONAL ADULTO</h4>
+
+<h4>I- Datos Personales</h4>
+<hr></br>
+
+<div class="row">
+	<div class="form-group col-md-6">
+		<label class="control-label">Nombres y Apellidos:</label>
+		<div class="data"> <%=@nutri_adulto.paciente_persona_full_name%> </div>
+	</div>
+
+	<div class="form-group col-md-3">
+		<label class="control-label">Fecha de nac.:</label>
+		<div class="data"> <%=Formatter.format_date(@nutri_adulto.paciente_persona_fecha_nacimiento)%> </div>
+	</div>
+
+	<div class="form-group col-md-1">
+		<label class="control-label">Edad:</label>
+		<div class="data"> <%=@nutri_adulto.paciente_persona_edad%> </div>
+	</div>
+	<div class="form-group col-md-2">
+		<label class="control-label">N° Hijos:</label>
+		<div class="data"> <%=@nutri_adulto.nro_hijos%> </div>
+	</div>	
+</div>
+<div class="row">
+
+	<div class="form-group col-md-3">
+		<label class="control-label">Tel.:</label>
+		<div class="data"> <%=@nutri_adulto.paciente_persona_telefono%> </div>
+	</div>	
+
+	<div class="form-group col-md-6">
+		<label class="control-label">Dirección:</label>
+		<div class="data"> <%=@nutri_adulto.paciente_persona_direccion%> </div>
+	</div>
+	<div class="form-group col-md-3">
+		<label class="control-label">Estado civil:</label>
+		<div class="data"> <%=@nutri_adulto.paciente_persona_estado_civil_descripcion%> </div>
+	</div>		
+</div>	
+</br>
+<h4>II- Antecedentes</h4>
+<hr></br>
+<div class="row col-md-12">
+    <label class="control-label">Familiares:</label></br>
+</div>
+<div class="row">
+	<div class="form-group col-md-3">
+		<label class="control-label">Obesidad</label>
+		<div class="data"> <%=@nutri_adulto.obesidad%> </div>
+	</div>
+	<div class="form-group col-md-3">
+		<label class="control-label">DBT</label>
+		<div class="data"> <%=@nutri_adulto.dbt%> </div>
+	</div>
+	<div class="form-group col-md-3">
+		<label class="control-label">HTA</label>
+		<div class="data"> <%=@nutri_adulto.hta%> </div>
+	</div>
+	<div class="form-group col-md-3">
+		<label class="control-label">Cardiopatías</label>
+		<div class="data"> <%=@nutri_adulto.cardiopatias%> </div>
+	</div>	
+
+</div></br>
+
+<div class="row">
+	<div class="form-group col-md-12">
+		<label class="control-label">Actuales del Paciente:</label>
+		<div class="data"> <%=@nutri_adulto.actuales%> </div>
+	</div>			
+</div>
+
