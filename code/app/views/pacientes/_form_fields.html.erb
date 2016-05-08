@@ -52,7 +52,8 @@
 			EstadoCivil.all, :id, :descripcion,
 			prompt:'Seleccione Est. Civil',
 			label_text: 'Estado Civil', 
-			col_class: 'col-md-3')%>
+			col_class: 'col-md-3',
+			select_class: 'estado-civil')%>
 
 		<%= FormBuilder::text_field_v(persona, :nacionalidad, 
 			max_length: Domain::NACIONALIDAD,
@@ -130,6 +131,10 @@
 <div class="datos-encargados">	
 	<h4>Datos de los Padres o Encargados </h4>
 	<hr>
+	<div class="alert alert-danger hide">
+		Debe establecer por lo menos un nombre de encargado cuando el paciente es menor de edad
+	</div>
+	
 	<%= paciente.fields_for(:encargado) do |encargado| %>
 		<div class="row">   
 

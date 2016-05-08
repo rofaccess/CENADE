@@ -12,15 +12,15 @@
     	<%= render 'form_fields', paciente: paciente %>
 
 		<div class="form-button">					
-			<%= paciente.submit 'Guardar', class: 'btn btn-custom'%>
+			<%= paciente.submit 'Guardar', class: 'btn btn-custom', id: 'new-paciente-submit'%>
 		</div>
 
 	<% end %>
 </div>
 
 <script type="text/javascript">	
-	pacientesUI.initScript();		
-	
+	pacientesUI.initScript();	
+
 	<% if !flash.notice.blank? %>	
 		var n = noty({text: '<%=notice%>', type: 'success'});		
 	<% end %>
