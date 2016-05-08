@@ -11,5 +11,7 @@ class CreateFechas < ActiveRecord::Migration
       t.timestamps null: false
     end
     add_foreign_key(:fechas, :horarios, column: 'horario_id', on_delete: :restrict)
+
+    add_index :fechas, :horario_id
   end
 end

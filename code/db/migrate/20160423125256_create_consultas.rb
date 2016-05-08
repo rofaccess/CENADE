@@ -31,5 +31,9 @@ class CreateConsultas < ActiveRecord::Migration
 
     # ON DELETE RESTRICT: No se permite borrar un área relacionada a alguna consulta
     add_foreign_key(:consultas, :areas, column: 'area_id', on_delete: :restrict)
+
+    add_index :consultas, :paciente_id
+    add_index :consultas, :profesional_salud_id
+    add_index :consultas, :area_id
   end
 end

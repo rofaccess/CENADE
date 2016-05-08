@@ -12,14 +12,14 @@
 	<div class="form-group col-md-2">
 		<label class="control-label">CI</label>
 		<div class="data"> <%=@paciente.persona_ci%> </div>
-	</div>	
+	</div>
 
 	<div class="form-group col-md-2">
 		<label class="control-label">RUC</label>
 		<div class="data"> <%=@paciente.persona_ruc%> </div>
-	</div>			
+	</div>
 </div>
-	
+
 <div class="row">
 	<div class="form-group col-md-3">
 		<label class="control-label">Fecha de Nac.</label>
@@ -29,7 +29,7 @@
 	<div class="form-group col-md-1">
 		<label class="control-label">Edad</label>
 		<div class="data"> <%=@paciente.persona_edad%> </div>
-	</div>	
+	</div>
 
 	<div class="form-group col-md-2">
 		<label class="control-label">Sexo</label>
@@ -39,13 +39,13 @@
 	<div class="form-group col-md-3">
 		<label class="control-label">Estado Civil</label>
 		<div class="data"> <%=@paciente.persona_estado_civil_descripcion%> </div>
-	</div>	
+	</div>
 
 	<div class="form-group col-md-3">
 		<label class="control-label">Nacionalidad</label>
 		<div class="data"> <%=@paciente.persona_nacionalidad%> </div>
-	</div>				
-</div>	
+	</div>
+</div>
 
 <div class="row">
 	<div class="form-group col-md-9">
@@ -56,9 +56,9 @@
 	<div class="form-group col-md-3">
 		<label class="control-label">Fecha de Ingreso</label>
 		<div class="data"> <%=Formatter.format_date(@paciente.fecha_ingreso)%> </div>
-	</div>		
-</div>	
-		
+	</div>
+</div>
+
 <h4>Datos de Contacto</h4>
 <hr>
 
@@ -66,8 +66,8 @@
 	<div class="form-group col-md-12">
 		<label class="control-label">Dirección</label>
 		<div class="data"> <%=@paciente.persona_direccion%> </div>
-	</div>	
-</div>	
+	</div>
+</div>
 
 <div class="row">
 	<div class="form-group col-md-4">
@@ -78,8 +78,8 @@
 	<div class="form-group col-md-8">
 		<label class="control-label">Email</label>
 		<div class="data"> <%=@paciente.persona_email%> </div>
-	</div>		
-</div>	
+	</div>
+</div>
 
 <h4>Datos Laborales</h4>
 <hr>
@@ -93,12 +93,12 @@
 	<div class="form-group col-md-7">
 		<label class="control-label">Lugar de Trabajo</label>
 		<div class="data"> <%=@paciente.lugar_trabajo%> </div>
-	</div>		
-</div>		
+	</div>
+</div>
 
-	
-<% unless @paciente.encargado_id.blank? %>	
-	
+
+<% unless @paciente.encargado_id.blank? %>
+
 	<h4>Datos de los Padres o Encargados</h4>
 	<hr>
 
@@ -111,12 +111,12 @@
 		<div class="form-group col-md-1">
 			<label class="control-label">Edad</label>
 			<div class="data"> <%=@paciente.encargado_padre_edad%> </div>
-		</div>	
+		</div>
 
 		<div class="form-group col-md-6">
 			<label class="control-label">Profesión Actual y Anterior</label>
 			<div class="data"> <%=@paciente.encargado_padre_prof_act_ant%> </div>
-		</div>			
+		</div>
 	</div>
 
 	<div class="row">
@@ -128,7 +128,7 @@
 		<div class="form-group col-md-1">
 			<label class="control-label">Edad</label>
 			<div class="data"> <%=@paciente.encargado_madre_edad%> </div>
-		</div>	
+		</div>
 
 		<div class="form-group col-md-1">
 			<label class="control-label">Hijos</label>
@@ -138,7 +138,7 @@
 		<div class="form-group col-md-5">
 			<label class="control-label">Profesión Actual y Anterior</label>
 			<div class="data"> <%=@paciente.encargado_madre_prof_act_ant%> </div>
-		</div>			
+		</div>
 	</div>
 
 	<div class="row">
@@ -150,12 +150,12 @@
 		<div class="form-group col-md-1">
 			<label class="control-label">Edad</label>
 			<div class="data"> <%=@paciente.encargado_encargado_edad%> </div>
-		</div>	
+		</div>
 
 		<div class="form-group col-md-6">
 			<label class="control-label">Profesión Actual y Anterior</label>
 			<div class="data"> <%=@paciente.encargado_encargado_prof_act_ant%> </div>
-		</div>			
-	</div>		
+		</div>
+	</div>
 
 <% end %>

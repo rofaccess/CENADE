@@ -26,6 +26,8 @@ class CreateEncargados < ActiveRecord::Migration
     end
 
     # Se agrega la columna encargado_id a pacientes
-    add_foreign_key(:pacientes, :encargados, column: 'encargado_id', on_delete: :restrict)
+    add_foreign_key(:pacientes, :encargados, column: 'encargado_id', on_delete: :restrict) 
+
+    add_index :pacientes, :encargado_id   
   end
 end

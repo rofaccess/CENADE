@@ -1,30 +1,30 @@
 <div class="form-content">
     <div class="page-title page-title-sin-submenu">
-      <%=@paciente.id.nil? ? 'Nuevo Paciente' : 'Editar Paciente'%> 
+      <%=paciente.id.nil? ? 'Nuevo Paciente' : 'Editar Paciente'%>
 
       <div class="tool">
-        <%= link_to '<i class="fa fa-list"></i> '.html_safe, pacientes_path %> 
+        <%= link_to '<i class="fa fa-list"></i> '.html_safe, pacientes_path %>
       </div>
     </div>
 
-    <%= form_for @paciente, html: {class: 'form-paciente form-sin-submenu'} do |paciente|%>   
+    <%= form_for paciente, html: {class: 'form-paciente form-sin-submenu'} do |pacient|%>
     	<!-- Se debe pasar paciente del form al render, o sino dirá que paciente no existe y en el partial se lo necesita -->
-    	<%= render 'form_fields', paciente: paciente %>
+    	<%= render 'form_fields', pacient: pacient, paciente: paciente %>
 
-		<div class="form-button">					
-			<%= paciente.submit 'Guardar', class: 'btn btn-custom', id: 'new-paciente-submit'%>
+		<div class="form-button">
+			<%= pacient.submit 'Guardar', class: 'btn btn-custom', id: 'new-paciente-submit'%>
 		</div>
 
 	<% end %>
 </div>
 
-<script type="text/javascript">	
-	pacientesUI.initScript();	
+<script type="text/javascript">
+	pacientesUI.initScript();
 
-	<% if !flash.notice.blank? %>	
-		var n = noty({text: '<%=notice%>', type: 'success'});		
+	<% if !flash.notice.blank? %>
+		var n = noty({text: '<%=notice%>', type: 'success'});
 	<% end %>
-	<% if !flash.alert.blank?%>	
+	<% if !flash.alert.blank?%>
 		var n = noty({text: '<%=alert%>', type: 'error'});
 	<% end %>
 
