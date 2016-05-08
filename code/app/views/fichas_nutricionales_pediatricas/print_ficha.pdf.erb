@@ -1,0 +1,116 @@
+<h4 class="ficha-title">FICHA NUTRICIONAL PEDIÁTRICA</h4>
+
+<h4>Datos Personales</h4>
+<hr>
+
+<div class="row">
+	<div class="form-group col-md-8">
+		<label class="control-label">Nombre y Apellido:</label>
+		<div class="data"> <%=@nutri_pediatrica.paciente_persona_full_name%> </div>
+	</div>
+
+	<div class="form-group col-md-3">
+		<label class="control-label">Fecha de nac.:</label>
+		<div class="data"> <%=Formatter.format_date(@nutri_pediatrica.paciente_persona_fecha_nacimiento)%> </div>
+	</div>
+
+	<div class="form-group col-md-1">
+		<label class="control-label">Edad:</label>
+		<div class="data"> <%=@nutri_pediatrica.paciente_persona_edad%> </div>
+	</div>	
+</div>
+<div class="row">
+
+	<div class="form-group col-md-3">
+		<label class="control-label">Tel.:</label>
+		<div class="data"> <%=@nutri_pediatrica.paciente_persona_telefono%> </div>
+	</div>	
+
+	<div class="form-group col-md-9">
+		<label class="control-label">Dirección:</label>
+		<div class="data"> <%=@nutri_pediatrica.paciente_persona_direccion%> </div>
+	</div>	
+</div>	
+</br>
+<h4>I- Antecedentes Prenatal</h4>
+<hr>
+<div class="row">
+	<div class="form-group col-md-12">
+		<label class="control-label"><%=@titulos_largos.first.titulo%></label>
+		<div class="data-bordered"> <%=@nutri_pediatrica.problema_embarazo%> </div>
+	</div>		
+</div>	
+
+<div class="row">
+	<div class="form-group col-md-12">
+		<label class="control-label"><%=@titulos_largos.find(2).titulo%></label>
+		<div class="data"> <%=@nutri_pediatrica.control_prenatal%> </div>
+	</div>			
+</div>
+
+<div class="row">
+	<div class="form-group col-md-12">
+		<label class="control-label"><%=@titulos_largos.find(3).titulo%></label>
+		<div class="data-bordered"> <%=@nutri_pediatrica.alimentacion_embarazo%> </div>
+	</div>	
+</div>		
+
+<div class="row">
+	<div class="form-group col-md-12">
+		<label class="control-label">Otros datos</label>
+		<div class="data-bordered"> <%=@nutri_pediatrica.otros_datos%> </div>
+	</div>				
+</div>
+</br>
+<h4>II- Antecedentes del Parto</h4>
+<hr>
+
+<div class="row">
+	<div class="form-group col-md-6">
+		<label class="control-label">¿Tuvo parto Vaginal o Cesárea?</label>
+		<div class="data"> <%=@nutri_pediatrica.parto_vaginal_cesarea%> </div>
+	</div>	
+	<div class="form-group col-md-6">
+		<label class="control-label">¿Fue de término o pretermino?</label>
+		<div class="data"> <%=@nutri_pediatrica.termino_pretermino%> </div>
+	</div>					
+</div>
+
+<div class="row">
+	<div class="form-group col-md-7">
+		<label class="control-label">Lugar del parto</label>
+		<div class="data"> <%=@nutri_pediatrica.lugar_parto%> </div>
+	</div>	
+	<div class="form-group col-md-5">
+		<label class="control-label">¿Cómo fue el parto?</label>
+		<div class="data"> <%=@nutri_pediatrica.como_fue_parto%> </div>
+	</div>					
+</div>
+
+<h4>I- Antecedentes Postnatal</h4>
+<hr>
+
+<div class="row">
+	<div class="form-group col-md-12">
+		<label class="control-label"><%=@titulos_largos.find(4).titulo%></label>
+		<div class="data-bordered"> <%=@nutri_pediatrica.asfixia_lloro%> </div>
+	</div>			
+</div>
+
+<div class="row">
+	<div class="form-group col-md-12">
+		<label class="control-label"><%=@titulos_largos.find(5).titulo%></label>
+		<div class="data-bordered"> <%=@nutri_pediatrica.tomo_pecho%> </div>
+	</div>	
+</div>		
+
+<div class="row">
+	<div class="form-group col-md-4">
+		<label class="control-label">Peso de Nacimiento</label>
+		<div class="data"> <%=@nutri_pediatrica.peso_nacimiento%> </div>
+	</div>
+	<div class="form-group col-md-8">
+		<label class="control-label"><%=@titulos_largos.find(6).titulo%></label>
+		<div class="data"> <%=@nutri_pediatrica.alimentacion_complementaria%> </div>
+	</div>				
+</div>

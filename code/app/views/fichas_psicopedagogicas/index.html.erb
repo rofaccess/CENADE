@@ -4,7 +4,7 @@
   	<div class="tool">
       <%= search_form_for @search, class: 'buscador', remote: true do |f| %>
         <div class="input-group"> 
-            <%= f.search_field :paciente_persona_nombre_cont, placeholder: "Buscar por Paciente", class: "form-control", autofocus: true%>
+            <%= f.search_field :paciente_persona_ci_or_paciente_persona_nombre_or_paciente_persona_apellido_cont, placeholder: "Buscar por Paciente", class: "form-control", autofocus: true%>
             <span class="fa fa-search"></span>
           	<div class="input-group-btn"> 
               <a href="#"><i class="fa fa-search-plus" aria-hidden="true" id= "show" data-toggle="tooltip" data-placement="bottom" title="Búsqueda Avanzada"></i></a>

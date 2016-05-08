@@ -5,6 +5,7 @@ class Empleado < ActiveRecord::Base
     
  	has_one :user
  	belongs_to :persona
+  belongs_to :area
  	accepts_nested_attributes_for :persona
 
  	has_one :horario
@@ -21,8 +22,11 @@ class Empleado < ActiveRecord::Base
       	end	
     end
 
-    # Law of Demeter 
-	delegate :full_name, :nombre, :apellido, :ci, :edad, :sexo, :ci, :nacionalidad, :fecha_nacimiento, :profesion, :telefono, :direccion, :estado_civil_id, :encargado_id, to: :persona, prefix: true, allow_nil: true
+  # Law of Demeter 
+	delegate :full_name, :nombre, :apellido, :ci,:ruc, :edad, :sexo, :nacionalidad, 
+           :fecha_nacimiento, :profesion, :telefono, :direccion, :fecha_ingreso,
+           :estado_civil_descripcion,:estado_civil_id, :email,
+           to: :persona, prefix: true, allow_nil: true
 
-  ransack_alias :empleado, :persona_nombre_or_persona_apellido_or_persona_ci
+  delegate :nombre, :costo, to: :area, prefix: true, allow_nil: true
 end

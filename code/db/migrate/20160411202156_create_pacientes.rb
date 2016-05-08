@@ -1,11 +1,11 @@
 class CreatePacientes < ActiveRecord::Migration
   def change
     create_table :pacientes do |t|
-      	t.integer :persona_id,		null: false
-      	t.integer :encargado_id, 	null: true
-	    
-	    t.date 	  :fecha_ingreso, 	null: false
-	   
+      t.integer :persona_id,		null: false
+      t.integer :encargado_id, 	null: true
+
+      t.date 	  :fecha_ingreso, 	null: false
+
 
 	    t.boolean :es_menor, 		null: true
 
@@ -13,10 +13,12 @@ class CreatePacientes < ActiveRecord::Migration
 	    t.string   :profesion		 ,default: '' ,limit: Domain::PROFESION, 			null: true
 	    t.string   :lugar_trabajo    ,default: '' ,limit: Domain::LUGAR_TRABAJO, 		null: true
 
-      t.datetime :deleted_at 
-      
+      t.datetime :deleted_at
+
      	t.timestamps null: false
     end
-    add_foreign_key(:pacientes, :personas, column: 'persona_id', on_delete: :restrict)    
+    add_foreign_key(:pacientes, :personas, column: 'persona_id', on_delete: :restrict)
+
+    add_index :pacientes, :persona_id
   end
 end

@@ -11,7 +11,7 @@ var empleadosUI = (function(){
 	                delay:300, //Tiempo de espera, antes de comenzar la búsqueda
 	                data: function(params){
 	                	return {
-	                		q: { doctor_cont: params.term }, 
+	                		q: { persona_nombre_or_persona_apellido_or_area_nombre_cont: params.term }, 
 	                	};
 	                },
 
@@ -37,68 +37,46 @@ var empleadosUI = (function(){
 
 	  		});
 			
-			/* Valida cuando se elige otro paciente en el element (select) dado */
+			/* Valida cuando se elige otro doctor en el element (select) dado */
 	  		$(element).on("change", function(){
 				$(this).valid(); 			
 			});		
 		},
 
-		//Muestra el area si es doctor
-		mostrarArea: function(){
-			
+		/* Muestra el area si es doctor (Profesional de Salud) */
+		mostrarArea: function(){			
 			if ($(".checkbox-doctor").is(":checked")){
-				empleadosUI.esDoctor();
+				esDoctor();
 			}else{
-				empleadosUI.esFuncionario();
-			} 
-		    	
+				esFuncionario();
+			} 		    	
 		    
 		    $(".checkbox-doctor").change(function() {
 			    if(this.checked) {
-			    	empleadosUI.esDoctor();
+			    	esDoctor();
 			    }else{
-			    	empleadosUI.esFuncionario();
+			    	esFuncionario();
 			    }
 			});
-		},
-
-		esDoctor: function(){
-			$('.to-hide').show();
-			
-			$('.empleado-select').addClass('required');
-			$('.empleado-select').attr("disabled",false);
-			$('.costo').attr("disabled",false);
-			
-			$('.tipo-empleado').attr("value","Doctor");
-			
-			$('.area-id').attr("disabled",true);
-
-		},
-
-		esFuncionario: function(){
-			$('.to-hide').hide();
-			
-			$('.empleado-select').removeClass('required');
-			$('.empleado-select').attr("disabled",true);
-			$('.costo').attr("disabled",true);
-
-			$('.tipo-empleado').attr("value","Funcionario");	
-
-			$('.area-id').attr("disabled",false);
-		},
+		},		
 		
-		checkCI: function(checkEmpleadoCIUrl){
+		/*
+	      Verifica que un ci especificado para un empleado no exista ya en la base de datos 
+	      .ci        : es la clase del elemento (input) que contiene el ci 
+	      .persona-id: es la clase del elemento (inputo) que contiene el id de la persona relacionada al empleado
+	    */
+		checkEmpleadoCi: function(){
 			$.validator.addClassRules({
                 uniqueEmpleadoCI: {
                     remote: {
-                        url: checkEmpleadoCIUrl,
+                        url: '/empleados/check_ci',
                         type: "get",
                         data: {
                             ci: function() {
                                 return $( ".ci" ).val();	
                             },
                             id: function() {
-                                return $('.empleado-id').val();
+                                return $('.persona-id').val();
                             }
                         }
                     }
@@ -106,23 +84,17 @@ var empleadosUI = (function(){
             });
 		},
 		
-		// Inicia el script en el formulario
-		initScript: function(checkEmpleadoCIUrl){
-			empleadosUI.checkCI(checkEmpleadoCIUrl);
-
-			empleadosUI.mostrarArea();
-
-			$('.ruc').inputmask('Regex', { regex: "[0-9\-a-z]+" });
-
-			$('.ci').inputmask('Regex', { regex: "[0-9]+" });
-
-			$('.costo').inputmask('Regex', { regex: "[0-9]+" });
-
-			$('.telefono').inputmask('Regex', { regex: "[0-9\-\(\),]+" });
+		// Para iniciar el script para el formulario de empleado 
+		initScript: function(){
+			empleadosUI.checkEmpleadoCi();
+			empleadosUI.mostrarArea();			
 			
-			$('.edad').inputmask('Regex', { regex: "[0-9]+" });
-			
+			// Funciones Globales
 			APP.initDatepicker(); 
+			APP.initNumberOnly();
+	     	APP.initTelephoneOnly();
+	     	APP.initRucOnly();
+			APP.initCalculateAge({fecha_nacimiento: '.fecha-nacimiento', edad: '.edad'});
 
 		   	//Valida el formulario antes de enviarlo
 		  	$('.form-empleado').last().validate();
@@ -135,10 +107,40 @@ var empleadosUI = (function(){
 	Da un formato customizado a los datos recibidos	en initBuscarDoctor
 	El argumento recibido puede nombrarse de otra forma Ej. En vez de doctor usar doc
 */
-function formatDoctor (doctor) {
+function formatDoctor(doctor) {
 	if (!doctor.id) { return doctor.text; }
 
 	var $doctor = $('<span>' + doctor.full_name + '<br><strong> Area: </strong>  ' + doctor.area + '</span>');
 	
 	return $doctor;		
 };	
+
+/* 
+	.datos-doctor    : la clase del div que contiene los campos a esconder 
+ 	.dato-encargado: es la clase de los campos (input) correspondientes a los datos de encargados 
+ */
+
+function esDoctor(){
+	$('.datos-doctor').show();
+		
+	$('.select-area').addClass('required');
+	$('.select-area').attr("disabled",false);
+	$('.costo').attr("disabled",false);
+			
+	$('.tipo-empleado').attr("value","Doctor");
+			
+	$('.area-id').attr("disabled",true);
+
+};
+
+function esFuncionario(){
+	$('.datos-doctor').hide();
+			
+	$('.select-area').removeClass('required');
+	$('.select-area').attr("disabled",true);
+	$('.costo').attr("disabled",true);
+
+	$('.tipo-empleado').attr("value","Funcionario");	
+
+	$('.area-id').attr("disabled",false);
+};

@@ -9,7 +9,7 @@
 	            <%= link_to '<i class="fa fa-print"></i> '.html_safe, fichas_fonoaudiologicas_print_ficha_path(ficha_id: @fonoaudiologica.id, :format => :pdf), target: '_blank'%> 
       </div>
     </div>
-    <%= form_for @fonoaudiologica, html: {class: 'nueva-ficha form-ficha', :multipart => true }, remote: true do |ficha|%>
+    <%= form_for @fonoaudiologica, html: {class: 'nueva-ficha form-ficha'}, remote: true do |ficha|%>
     	<%= hidden_field_tag :id, @fonoaudiologica.id %>
 	      <h3 align="center">FICHA DE FONOAUDIOLOGIA</h3></br>
 	      <div class="row">

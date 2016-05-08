@@ -1,5 +1,7 @@
- source 'https://rubygems.org'
+source 'https://rubygems.org'
 
+# Requeriment for Heroku
+ruby '2.2.4'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
@@ -14,7 +16,7 @@ gem 'font-awesome-sass'
 gem 'carrierwave'
 
 # Object-based searching. The successor to MetaSearch.
-gem 'ransack', github: 'activerecord-hackery/ransack'
+gem 'ransack'
 
 # A Scope & Engine based, clean, powerful, customizable and sophisticated paginator for Rails
 gem 'kaminari'
@@ -79,9 +81,6 @@ gem 'faker'
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
 
-# Cloudinary GEM for Ruby on Rails integration http://cloudinary.com
-gem 'cloudinary' 
-
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -107,4 +106,11 @@ group :development do
 
   # A code metric tool for rails projects http://rails-bestpractices.com
   gem "rails_best_practices"
+end
+
+group :production do
+  gem 'rails_12factor'
+
+  # Cloudinary GEM for Ruby on Rails integration http://cloudinary.com
+  gem 'cloudinary' 
 end

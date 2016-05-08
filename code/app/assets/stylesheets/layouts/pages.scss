@@ -1,6 +1,6 @@
 $common-color: #24C1C1;
 
-/* Si la palabra es muy larga, esta clase lo corta */
+/* Si el texto es muy largo, esta clase lo corta */
 .crop {
 	word-break: break-all;
 }​
@@ -375,7 +375,11 @@ body{
 			width: 100%;
 			margin-top: 80px;
 		}
-		
+
+		form.form-ficha-mediano{
+			width: 85%;
+			margin-top: 80px;
+		}
 
 		form.small-form {
 			width: 40%;

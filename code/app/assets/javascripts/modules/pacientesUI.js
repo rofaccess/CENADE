@@ -12,7 +12,7 @@ var pacientesUI = (function(){
 	                delay:300, //Tiempo de espera, antes de comenzar la búsqueda
 	                data: function(params){
 	                	return {
-	                		q: { paciente_cont: params.term }, 
+	                		q: { persona_nombre_or_persona_apellido_or_persona_ci_cont: params.term }, 
 	                	};
 	                },
 
@@ -140,22 +140,23 @@ var pacientesUI = (function(){
 		   			sinEncargados();
 		   		}
 		   	});
-	   	},		
+	   	},	   	
 
-	    /* Para iniciar el script para el formulario de paciente */		
+	    // Para iniciar el script para el formulario de paciente 		
 	    initScript: function(){
+	     	esMenor();
+
 	     	pacientesUI.checkPacienteCi();
 	     	pacientesUI.mostrarEncargados();
 
-	     	/* Regexs para campos */
-	     	$('.ruc').inputmask('Regex', { regex: "[0-9\-a-z]+" });
-	     	$('.telefono').inputmask('Regex', { regex: "[0-9\-\(\),]+" });			
-
-	     	/* Script globales */
+	     	// Script globales 
 	     	APP.initDatepicker(); 
 	     	APP.initNumberOnly();
+	     	APP.initTelephoneOnly();
+	     	APP.initRucOnly();
+	     	APP.initCalculateAge({fecha_nacimiento: '.fecha-nacimiento', edad: '.edad'});
 
-	     	/* Valida el formulario antes de enviarlo */
+	     	// Valida el formulario antes de enviarlo 
 	     	$('.form-paciente').last().validate();
 	    }
 	};
@@ -198,3 +199,52 @@ function sinEncargados(){
 	//Setea el campo borrar_encargado definido en el formulario	
 	$('.borrar-encargado').attr("value","true");	
 };
+
+
+/* Si es menor, muestra los campos de encargado y obliga a que por lo menos uno de ellos se rellene */
+function esMenor(){	
+	
+	// Al mostrar el formulario de editar, si el paciente es menor se muestra el encargado
+	var estado_civil = $('.estado-civil option:selected').text();
+	if(estado_civil == 'Menor'){		
+		$('.checkbox-encargado').prop('checked', true);
+	   	$('.checkbox-encargado').prop('disabled', true);
+	   	$('.alert').addClass('show');
+	   	pacientesUI.mostrarEncargados();
+	}
+
+	//Muestra el encargado cuando se setea el select de estado civil a menor
+	$('.estado-civil').on("change", function(){
+		estado_civil = $('.estado-civil option:selected').text();
+
+		if(estado_civil == 'Menor'){
+			$('.checkbox-encargado').prop('checked', true);
+			$('.checkbox-encargado').prop('disabled', true);
+			$('.alert').addClass('show');
+			pacientesUI.mostrarEncargados();
+		}else{
+			$('.checkbox-encargado').prop('disabled', false);
+			$('.alert').removeClass('show');
+		}
+	});
+
+	// Chequea que se  haya establecido un encargado antes de enviar el formulario
+	$('#new-paciente-submit').click(function(e){
+		// Controlar que se haya establecido por lo menos un nombre de encargado
+		if(!$('.form-paciente').valid()){return false;}
+		var estado_civil = $('.estado-civil option:selected').text();
+		var padre = $('#paciente_encargado_attributes_padre_nombre').val().length;
+		var madre = $('#paciente_encargado_attributes_madre_nombre').val().length; 	
+		var encargado = $('#paciente_encargado_attributes_encargado_nombre').val().length;
+		
+		if(estado_civil == 'Menor'){
+			if( padre == 0 && madre == 0 && encargado == 0){
+				$('.alert').addClass('show');
+				return false;
+			}
+		}	
+		// Enviar el formulario
+		$('.form-paciente').submit();
+		e.preventDefault();
+	});	   			
+};	

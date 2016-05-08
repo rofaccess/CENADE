@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160504025744) do
+ActiveRecord::Schema.define(version: 20160507010849) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -80,6 +80,10 @@ ActiveRecord::Schema.define(version: 20160504025744) do
     t.datetime "deleted_at"
   end
 
+  add_index "consultas", ["area_id"], name: "index_consultas_on_area_id", using: :btree
+  add_index "consultas", ["paciente_id"], name: "index_consultas_on_paciente_id", using: :btree
+  add_index "consultas", ["profesional_salud_id"], name: "index_consultas_on_profesional_salud_id", using: :btree
+
   create_table "custom_auto_increments", force: :cascade do |t|
     t.string   "counter_model_name"
     t.integer  "counter",            default: 0
@@ -101,7 +105,9 @@ ActiveRecord::Schema.define(version: 20160504025744) do
     t.datetime "updated_at"
   end
 
+  add_index "empleados", ["area_id"], name: "index_empleados_on_area_id", using: :btree
   add_index "empleados", ["deleted_at"], name: "index_empleados_on_deleted_at", unique: true, using: :btree
+  add_index "empleados", ["persona_id"], name: "index_empleados_on_persona_id", using: :btree
 
   create_table "encargados", force: :cascade do |t|
     t.string   "padre_nombre",           limit: 60,  default: ""
@@ -119,6 +125,8 @@ ActiveRecord::Schema.define(version: 20160504025744) do
     t.datetime "updated_at",                                      null: false
     t.datetime "deleted_at"
   end
+
+  add_index "encargados", ["paciente_id"], name: "index_encargados_on_paciente_id", using: :btree
 
   create_table "especialidades", force: :cascade do |t|
     t.string   "descripcion", limit: 50, default: "", null: false
@@ -147,6 +155,8 @@ ActiveRecord::Schema.define(version: 20160504025744) do
     t.datetime "updated_at",               null: false
   end
 
+  add_index "fechas", ["horario_id"], name: "index_fechas_on_horario_id", using: :btree
+
   create_table "ficha_fisioterapia_ninos", force: :cascade do |t|
     t.integer  "area_id",                                          null: false
     t.integer  "doctor_id",                                        null: false
@@ -164,57 +174,9 @@ ActiveRecord::Schema.define(version: 20160504025744) do
     t.datetime "updated_at",                                       null: false
   end
 
-  create_table "ficha_nuricional_pediatricas", force: :cascade do |t|
-    t.integer  "paciente_id"
-    t.integer  "area_id"
-    t.integer  "profesional_salud_id"
-    t.date     "fecha"
-    t.string   "problema_embarazo"
-    t.string   "control_prenatal"
-    t.string   "alimentacion_embarazo"
-    t.string   "otros_datos"
-    t.string   "parto_vaginal_cesarea"
-    t.string   "termino_pretermino"
-    t.string   "lugar_parto"
-    t.string   "como_fue_parto"
-    t.string   "peso_nacimiento"
-    t.string   "asfixia_lloro"
-    t.string   "tomo_pecho"
-    t.string   "alimentacion_complementaria"
-    t.string   "sosten_cefalico"
-    t.string   "sento"
-    t.string   "paro"
-    t.string   "camino"
-    t.string   "sigue_luz"
-    t.string   "habilidades"
-    t.string   "mastica_deglute"
-    t.string   "otros"
-    t.string   "desayuno"
-    t.string   "media_manana"
-    t.string   "almuerzo"
-    t.string   "merienda"
-    t.string   "cena"
-    t.string   "cargo_quien"
-    t.string   "diarrea"
-    t.string   "vomitos"
-    t.string   "fiebre"
-    t.string   "constipacion"
-    t.string   "orina"
-    t.string   "sudor"
-    t.string   "problemas_respiratorios"
-    t.string   "distension_abdominal"
-    t.string   "otros2"
-    t.string   "diagnostico"
-    t.integer  "peso"
-    t.string   "talla"
-    t.string   "pc"
-    t.string   "imc"
-    t.string   "cm"
-    t.string   "evaluacion"
-    t.string   "indicaciones"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
-  end
+  add_index "ficha_fisioterapia_ninos", ["area_id"], name: "index_ficha_fisioterapia_ninos_on_area_id", using: :btree
+  add_index "ficha_fisioterapia_ninos", ["doctor_id"], name: "index_ficha_fisioterapia_ninos_on_doctor_id", using: :btree
+  add_index "ficha_fisioterapia_ninos", ["paciente_id"], name: "index_ficha_fisioterapia_ninos_on_paciente_id", using: :btree
 
   create_table "fichas_fisioterapeuticas_adultos", force: :cascade do |t|
     t.integer  "area_id",                                          null: false
@@ -231,6 +193,10 @@ ActiveRecord::Schema.define(version: 20160504025744) do
     t.datetime "updated_at",                                       null: false
   end
 
+  add_index "fichas_fisioterapeuticas_adultos", ["area_id"], name: "index_fichas_fisioterapeuticas_adultos_on_area_id", using: :btree
+  add_index "fichas_fisioterapeuticas_adultos", ["doctor_id"], name: "index_fichas_fisioterapeuticas_adultos_on_doctor_id", using: :btree
+  add_index "fichas_fisioterapeuticas_adultos", ["paciente_id"], name: "index_fichas_fisioterapeuticas_adultos_on_paciente_id", using: :btree
+
   create_table "fichas_fonoaudiologicas", force: :cascade do |t|
     t.integer  "paciente_id",                          null: false
     t.integer  "area_id",                              null: false
@@ -243,69 +209,51 @@ ActiveRecord::Schema.define(version: 20160504025744) do
     t.datetime "updated_at",                           null: false
   end
 
-  create_table "fichas_nuricionales_pediatricas", force: :cascade do |t|
-    t.integer  "paciente_id"
-    t.integer  "area_id"
-    t.integer  "profesional_salud_id"
-    t.date     "fecha"
-    t.string   "problema_embarazo"
-    t.string   "control_prenatal"
-    t.string   "alimentacion_embarazo"
-    t.string   "otros_datos"
-    t.string   "parto_vaginal_cesarea"
-    t.string   "termino_pretermino"
-    t.string   "lugar_parto"
-    t.string   "como_fue_parto"
-    t.string   "peso_nacimiento"
-    t.string   "asfixia_lloro"
-    t.string   "tomo_pecho"
-    t.string   "alimentacion_complementaria"
-    t.string   "sosten_cefalico"
-    t.string   "sento"
-    t.string   "paro"
-    t.string   "camino"
-    t.string   "sigue_luz"
-    t.string   "habilidades"
-    t.string   "mastica_deglute"
-    t.string   "otros"
-    t.string   "desayuno"
-    t.string   "media_manana"
-    t.string   "almuerzo"
-    t.string   "merienda"
-    t.string   "cena"
-    t.string   "cargo_quien"
-    t.string   "diarrea"
-    t.string   "vomitos"
-    t.string   "fiebre"
-    t.string   "constipacion"
-    t.string   "orina"
-    t.string   "sudor"
-    t.string   "problemas_respiratorios"
-    t.string   "distension_abdominal"
-    t.string   "otros2"
-    t.string   "diagnostico"
-    t.integer  "peso"
-    t.string   "talla"
-    t.string   "pc"
-    t.string   "imc"
-    t.string   "cm"
-    t.string   "evaluacion"
-    t.string   "indicaciones"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+  add_index "fichas_fonoaudiologicas", ["area_id"], name: "index_fichas_fonoaudiologicas_on_area_id", using: :btree
+  add_index "fichas_fonoaudiologicas", ["doctor_id"], name: "index_fichas_fonoaudiologicas_on_doctor_id", using: :btree
+  add_index "fichas_fonoaudiologicas", ["paciente_id"], name: "index_fichas_fonoaudiologicas_on_paciente_id", using: :btree
+
+  create_table "fichas_nutricionales_adultos", force: :cascade do |t|
+    t.integer  "paciente_id",              null: false
+    t.integer  "area_id",                  null: false
+    t.integer  "doctor_id",                null: false
+    t.date     "fecha",                    null: false
+    t.integer  "nro_ficha"
+    t.integer  "nro_hijos",    limit: 2
+    t.string   "obesidad",     limit: 50
+    t.string   "dbt",          limit: 50
+    t.string   "hta",          limit: 50
+    t.string   "cardiopatias", limit: 50
+    t.string   "actuales",     limit: 200
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
-  create_table "fichas_odontologicas", force: :cascade do |t|
-    t.integer  "paciente_id",                          null: false
-    t.integer  "area_id",                              null: false
-    t.integer  "doctor_id",                            null: false
+  create_table "fichas_nutricionales_pediatricas", force: :cascade do |t|
+    t.integer  "paciente_id",                             null: false
+    t.integer  "area_id",                                 null: false
+    t.integer  "profesional_salud_id",                    null: false
     t.integer  "nro_ficha"
-    t.date     "fecha",                                null: false
-    t.string   "nombre_tutor", limit: 30, default: ""
-    t.string   "tel_tutor",    limit: 50, default: ""
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
+    t.date     "fecha",                                   null: false
+    t.string   "problema_embarazo",           limit: 250
+    t.string   "control_prenatal",            limit: 250
+    t.string   "alimentacion_embarazo",       limit: 250
+    t.string   "otros_datos",                 limit: 250
+    t.string   "parto_vaginal_cesarea",       limit: 50
+    t.string   "termino_pretermino",          limit: 50
+    t.string   "lugar_parto",                 limit: 100
+    t.string   "como_fue_parto",              limit: 100
+    t.string   "peso_nacimiento",             limit: 50
+    t.string   "asfixia_lloro",               limit: 250
+    t.string   "tomo_pecho",                  limit: 200
+    t.string   "alimentacion_complementaria", limit: 100
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
   end
+
+  add_index "fichas_nutricionales_pediatricas", ["area_id"], name: "index_fichas_nutricionales_pediatricas_on_area_id", using: :btree
+  add_index "fichas_nutricionales_pediatricas", ["paciente_id"], name: "index_fichas_nutricionales_pediatricas_on_paciente_id", using: :btree
+  add_index "fichas_nutricionales_pediatricas", ["profesional_salud_id"], name: "index_fichas_nutricionales_pediatricas_on_profesional_salud_id", using: :btree
 
   create_table "fichas_psicopedagogicas", force: :cascade do |t|
     t.integer  "paciente_id",                          null: false
@@ -319,6 +267,10 @@ ActiveRecord::Schema.define(version: 20160504025744) do
     t.datetime "updated_at",                           null: false
   end
 
+  add_index "fichas_psicopedagogicas", ["area_id"], name: "index_fichas_psicopedagogicas_on_area_id", using: :btree
+  add_index "fichas_psicopedagogicas", ["doctor_id"], name: "index_fichas_psicopedagogicas_on_doctor_id", using: :btree
+  add_index "fichas_psicopedagogicas", ["paciente_id"], name: "index_fichas_psicopedagogicas_on_paciente_id", using: :btree
+
   create_table "grupos", force: :cascade do |t|
     t.string   "nombre"
     t.datetime "created_at", null: false
@@ -330,6 +282,8 @@ ActiveRecord::Schema.define(version: 20160504025744) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "horarios", ["empleado_id"], name: "index_horarios_on_empleado_id", using: :btree
 
   create_table "pacientes", force: :cascade do |t|
     t.integer  "persona_id",                                null: false
@@ -344,6 +298,9 @@ ActiveRecord::Schema.define(version: 20160504025744) do
     t.datetime "updated_at",                                null: false
   end
 
+  add_index "pacientes", ["encargado_id"], name: "index_pacientes_on_encargado_id", using: :btree
+  add_index "pacientes", ["persona_id"], name: "index_pacientes_on_persona_id", using: :btree
+
   create_table "permissions", force: :cascade do |t|
     t.integer  "grupo_id"
     t.string   "model"
@@ -352,12 +309,17 @@ ActiveRecord::Schema.define(version: 20160504025744) do
     t.datetime "updated_at", null: false
   end
 
+  add_index "permissions", ["grupo_id"], name: "index_permissions_on_grupo_id", using: :btree
+
   create_table "permissions_roles", force: :cascade do |t|
     t.integer  "role_id"
     t.integer  "permission_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
+
+  add_index "permissions_roles", ["permission_id"], name: "index_permissions_roles_on_permission_id", using: :btree
+  add_index "permissions_roles", ["role_id"], name: "index_permissions_roles_on_role_id", using: :btree
 
   create_table "personas", force: :cascade do |t|
     t.string   "ci",               limit: 15,  default: "", null: false
@@ -378,6 +340,7 @@ ActiveRecord::Schema.define(version: 20160504025744) do
   end
 
   add_index "personas", ["deleted_at"], name: "index_personas_on_deleted_at", unique: true, using: :btree
+  add_index "personas", ["estado_civil_id"], name: "index_personas_on_estado_civil_id", using: :btree
 
   create_table "roles", force: :cascade do |t|
     t.string   "name"
@@ -389,6 +352,12 @@ ActiveRecord::Schema.define(version: 20160504025744) do
 
   add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id", using: :btree
   add_index "roles", ["name"], name: "index_roles_on_name", using: :btree
+
+  create_table "titulo_largos", force: :cascade do |t|
+    t.string   "titulo"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "turnos", force: :cascade do |t|
     t.integer  "paciente_id",      null: false
@@ -404,6 +373,10 @@ ActiveRecord::Schema.define(version: 20160504025744) do
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
   end
+
+  add_index "turnos", ["area_id"], name: "index_turnos_on_area_id", using: :btree
+  add_index "turnos", ["doctor_id"], name: "index_turnos_on_doctor_id", using: :btree
+  add_index "turnos", ["paciente_id"], name: "index_turnos_on_paciente_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email"
@@ -427,6 +400,7 @@ ActiveRecord::Schema.define(version: 20160504025744) do
     t.datetime "updated_at"
   end
 
+  add_index "users", ["empleado_id"], name: "index_users_on_empleado_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
   add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
@@ -450,8 +424,10 @@ ActiveRecord::Schema.define(version: 20160504025744) do
   add_foreign_key "fichas_fisioterapeuticas_adultos", "pacientes", on_delete: :restrict
   add_foreign_key "fichas_fonoaudiologicas", "areas", on_delete: :restrict
   add_foreign_key "fichas_fonoaudiologicas", "pacientes", on_delete: :restrict
-  add_foreign_key "fichas_odontologicas", "areas"
-  add_foreign_key "fichas_odontologicas", "pacientes"
+  add_foreign_key "fichas_nutricionales_adultos", "areas", on_delete: :restrict
+  add_foreign_key "fichas_nutricionales_adultos", "pacientes", on_delete: :restrict
+  add_foreign_key "fichas_nutricionales_pediatricas", "areas", on_delete: :restrict
+  add_foreign_key "fichas_nutricionales_pediatricas", "pacientes", on_delete: :restrict
   add_foreign_key "fichas_psicopedagogicas", "areas", on_delete: :restrict
   add_foreign_key "fichas_psicopedagogicas", "pacientes", on_delete: :restrict
   add_foreign_key "horarios", "empleados", on_delete: :cascade
@@ -466,3 +442,4 @@ ActiveRecord::Schema.define(version: 20160504025744) do
   add_foreign_key "turnos", "pacientes", on_delete: :restrict
   add_foreign_key "users", "empleados", on_delete: :restrict
 end
+>>>>>>> 931b28942b143ecfb467171bb2c2398c35a5a5db

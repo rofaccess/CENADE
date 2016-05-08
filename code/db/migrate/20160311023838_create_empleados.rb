@@ -25,5 +25,8 @@ class CreateEmpleados < ActiveRecord::Migration
 
     # Se hacen algunas modificaciones a la tabla users
     add_foreign_key(:users, :empleados, column: 'empleado_id',on_delete: :restrict)
+
+    add_index :empleados, :persona_id
+    add_index :empleados, :area_id
   end  
 end
