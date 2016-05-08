@@ -1,186 +1,59 @@
-<div class="form-content form-ficha">
-    <div class="page-title page-title-ficha">
-      <%=@fonoaudiologica.id.nil? ? 'Nueva Ficha' : 'Editar Ficha'%> 
-      
-      <div class="tool">
-        <%= link_to '<i class="fa fa-list"></i> '.html_safe, fichas_fonoaudiologicas_path %> 
-      </div>
-    </div>
-    <%= form_for @fonoaudiologica, html: {class: 'nueva-ficha form-ficha', :multipart => true }, remote: true do |ficha|%>
+<div class="page-title page-title-ficha">
+  <%=@ficha.id.nil? ? 'Nueva Ficha' : 'Editar Ficha'%>
 
-    	<%= hidden_field_tag :fonoaudiologica_id, @fonoaudiologica.id, class: 'ficha-id' %>	      
-	      <h4 align="center">FICHA DE FONOAUDIOLOGIA</h4></br>
-	      <div class="row">
-	        <div class="col-md-5 error-especial">
-	          <%= ficha.label :paciente_id, '* Paciente' %> 
-		        <div class="row">
-		            <div class="col-md-10 form-group">
-		              <%= ficha.select(:paciente_id, Hash[Paciente.all.map{|a| [a.persona.nombre + " "+ a.persona.apellido, a.id]}],{},{class: "paciente_select form-control select2 uniquePacienteFicha y paciente-id", required: true,  id: 'paciente_id'})%>
-		            </div>
-		          	<%= link_to '<i class="fa fa-plus"></i> '.html_safe, pacientes_new_paciente_modal_path(root: 'fichas_fonoaudiologicas', encargado: true), class: 'btn btn-custom col-md-1', style: 'height: 30px; width: 40px', remote: true%>  
-		        </div>
-	        </div>
-	        <div class="col-md-4 form-group">
-	          <%= ficha.label :doctor_id, '* Profesional de la Salud' %>
-	          <%= ficha.select(:doctor_id, Hash[Empleado.where(type: 'Doctor', area_id: 3).map{|a| [a.abr_profesion + " "+ a.persona.nombre + " "+ a.persona.apellido, a.id]}],{},{class: "profesional_select form-control select2", required: true,  id: 'doctor_id'})%>
-	        </div>   
-	        <%= FormBuilder::text_field_v(ficha, :fecha, 
-			                                      input_class: 'date datepicker required', 
-			                                      max_length: Domain::FECHA,
-			                                      label_text: '* Fecha',
-			                                      col_class: 'col-md-3',
-			                                      input_value: "#{ficha.object.fecha.strftime("%d/%m/%Y") unless ficha.object.new_record?}")%>
-		</div>
-		<h4>Datos del Paciente</h4><hr>
+  <div class="tool">
+    <%= link_to '<i class="fa fa-list" data-toggle="tooltip" title="Lista de Fichas"></i> '.html_safe, fichas_fonoaudiologicas_path %>
+  </div>
 
-		<div class ="paciente_data">
-	    	<div class="row">
-		    	<%= FormBuilder::text_field_v(ficha, :paciente_id,
-					      							  input_class: 'paciente-nombre', 
-				                                      col_class: 'col-md-4',
-				                                      disabled: true,
-				                                      label_text: '* Nombres') %>
-
-		        <%= FormBuilder::text_field_v(ficha, :paciente_id,
-		  											  input_class: 'paciente-apellido',
-				                                      col_class: 'col-md-4',
-				                                      disabled: true,
-				                                      label_text: '* Apellidos') %>
-
-		        <%= FormBuilder::text_field_v(ficha, :paciente_id,
-					 								  input_class: 'paciente-fecha',
-				                                      col_class: 'col-md-2',
-				                                      disabled: true,
-				                                      label_text: '* Fecha de Nac.') %>
-
-		        <%= FormBuilder::text_field_v(ficha, :paciente_id,
-													  input_class: 'paciente-edad',
-				                                      col_class: 'col-md-2',
-				                                      disabled: true,
-				                                      label_text: 'Edad') %>
-			</div>
-			<div class="row">
-
-		        <%= FormBuilder::text_field_v(ficha, :paciente_id, 
-			                                         col_class: 'col-md-3',
-			                                         disabled: true,
-			                                         label_text: '* Sexo') %>
-
-		        <%= FormBuilder::text_field_v(ficha, :paciente_id,
-													input_class: 'paciente-dir', 
-			                                        col_class: 'col-md-6',
-			                                        disabled: true,
-			                                        label_text: 'Dirección') %> 
-
-		        <%= FormBuilder::text_field_v(ficha, :paciente_id, 
-			                                        input_class: 'paciente-tel',
-			                                        col_class: 'col-md-3',
-			                                        disabled: true,
-			                                        label_text: 'Teléfono') %>
-  			</div>
-	    </div></br>
-     	<h4>Datos de los Padres o Encargados</h4><hr>
-      	<div class="encargado_data">
-	      	<div class="row">
-		        <%= FormBuilder::text_field_v(ficha, :paciente_id,
-						                              col_class: 'col-md-5',
-						                              disabled: true,
-						                              input_value: '',
-						                              label_text: 'Nombre del Padre') %> 
-
-		        <%= FormBuilder::text_field_v(ficha, :paciente_id,
-				                                      col_class: 'col-md-2',
-				                                      disabled: true,
-				                                      input_value: '',
-				                                      label_text: 'Edad') %>
-
-		        <%= FormBuilder::text_field_v(ficha, :paciente_id,
-				                                      col_class: 'col-md-5',
-				                                      disabled: true,
-				                                      input_value: '',
-				                                      label_text: 'Profesión Actual y Anterior') %>
-	   		</div>
-	  		<div class="row">
-		        <%= FormBuilder::text_field_v(ficha, :paciente_id,
-			                                          col_class: 'col-md-4',
-			                                          disabled: true,
-			                                          input_value: '',
-			                                          label_text: 'Nombre de la Madre') %>
-
-		        <%= FormBuilder::text_field_v(ficha, :paciente_id,
-			                                          col_class: 'col-md-2',
-			                                          disabled: true,
-			                                          input_value: '',
-			                                          label_text: 'Edad') %>
-
-		        <%= FormBuilder::text_field_v(ficha, :paciente_id,
-			                                          col_class: 'col-md-2',
-			                                          disabled: true,
-			                                          input_value: '',
-			                                          label_text: 'Nro de Hijos') %>
-
-		        <%= FormBuilder::text_field_v(ficha, :paciente_id,
-			                                          col_class: 'col-md-4',
-			                                          disabled: true,
-			                                          input_value: '',
-			                                          label_text: 'Profesión Actual y Anterior') %>       
-	  		</div>
-	      	<div class="row">
-		        <%= FormBuilder::text_field_v(ficha, :paciente_id, 
-				                                      col_class: 'col-md-5',
-				                                      disabled: true,
-				                                      input_value: '',
-				                                      label_text: 'Nombre del Encargado') %> 
-
-		        <%= FormBuilder::text_field_v(ficha, :paciente_id,
-				                                      col_class: 'col-md-2',
-				                                      disabled: true,
-				                                      input_value: '',
-				                                      label_text: 'Edad') %>
-
-		        <%= FormBuilder::text_field_v(ficha, :paciente_id,
-				                                      col_class: 'col-md-5',
-				                                      disabled: true,
-				                                      input_value: '',
-				                                      label_text: 'Profesión Actual y Anterior') %>
-			</div>
-	    </div>
-        <h4>Datos de la Ficha</h4><hr>
-  		<div class="row">
-	        <%= FormBuilder::text_field_v(ficha, :escolaridad, 
-			                                      max_length: Domain::ESCOLARIDAD,
-			                                      col_class: 'col-md-6',
-			                                      label_text: 'Grado que Cursa') %> 
-
-	        <%= FormBuilder::text_field_v(ficha, :escuela,
-			                                      max_length: Domain::ESCUELA,
-			                                      col_class: 'col-md-6',
-			                                      label_text: 'Escuela') %>
-        </div> 
-        <div class="form-button">         
-      		<%= ficha.submit 'Guardar', class: 'btn btn-custom'%>
-    	</div>  
-    <%end%>
 </div>
-<script type="text/javascript"> 
-  fonoaudiologicasUI.initScript("<%= fichas_fonoaudiologicas_check_paciente_id_path %>");
 
-  /* con lo siguiente ya pueden ver si un paciente tiene ficha, metan su url nomas
-   no se necesita crear un checkPACIENTE por cada fichaUI
-  la condición: 
-  usar esto <%= hidden_field_tag :fonoaudiologica_id, @fonoaudiologica.id, class:"ficha-id" %>
-  en vez de <%= hidden_field_tag :fonoaudiologica_id, @fonoaudiologica.id %>
- agregar las clases uniquePacienteFicha y paciente-id 
- a su select de paciente
-   */
-  pacientesUI.checkPacienteHasFicha("<%=fichas_fonoaudiologicas_check_paciente_id_path%>");
+<div class="form-content2">
 
-  <% if !flash.notice.blank? %> 
-    var n = noty({text: '<%=notice%>', type: 'success'});   
-  <% end %>
-  
-  <% if !flash.alert.blank?%> 
-    var n = noty({text: '<%=alert%>', type: 'error'});
-  <% end %>
+	<%= simple_form_for @ficha, html: {class: 'form-ficha2'} do |ficha|%>
+	<%= hidden_field_tag :ficha_id, @ficha.id, class: 'ficha-id'%>
+
+	<h4 class="titulo-ficha">FICHA FONOAUDIOLOGIA</h4>
+	<div class="row">
+
+		<%= ficha.input :paciente_id, collection: Paciente.all.collect { |a| [a.persona_full_name, a.id] }, label: '* Paciente', wrapper_html: { class: @paciente.id.nil? ? 'col-md-4' : 'col-md-5' }, input_html: { class: 'required select-paciente select2 uniquePacienteFicha paciente-id', disabled: @paciente.id.nil? ? false : true} %>
+
+		<% if @paciente.id.nil? %>
+			<%= link_to '<i class="fa fa-plus"></i> '.html_safe, pacientes_new_modal_path(root: 'fichas_fonoaudiologicas', encargado: false), class: 'btn btn-custom btn-add col-md-1', remote: true %>
+		<% end %>
+
+
+		<%= ficha.input :doctor_id, collection: @doctores.collect { |a| [a.abr_profesion+" "+a.persona_full_name, a.id] }, label: '* Profesional de la Salud', wrapper_html: { class: 'col-md-4' }, input_html:	 { class: 'required select-doctor select2'} %>
+
+		<%= ficha.input :fecha, as: :string, label: '* Fecha', wrapper_html: { class: 'col-md-3'}, input_html: { class: 'datepicker required', maxLength: Domain::FECHA, value:Formatter.format_date(@ficha.fecha)} %>
+	</div>
+	<div id="paciente-data">
+		<%= render 'form_paciente' %>
+	</div>
+
+		<h4>Datos de la Ficha</h4>
+		<hr>
+
+		<div class="row">
+			<%= ficha.input :escolaridad, label: 'Grado que cursa', wrapper_html: { class: 'col-md-6'}, input_html: { maxLength: Domain::ESCOLARIDAD} %>
+			<%= ficha.input :escuela, label: 'Escuela', wrapper_html: { class: 'col-md-6'}, input_html: { maxLength: Domain::ESCUELA} %>
+		</div>
+
+	    <div class="form-button">
+	  		<%= ficha.submit 'Guardar', class: 'btn btn-custom'%>
+		</div>
+
+	<%end%>
+</div>
+<script type="text/javascript">
+	fichasFonoaudiologicasUI.initScript();
+	pacientesUI.checkPacienteHasFicha("<%=fichas_fonoaudiologicas_check_paciente_has_ficha_path%>");
+
+	<% if !flash.notice.blank? %>
+	var n = noty({text: '<%=notice%>', type: 'success'});
+	<% end %>
+
+	<% if !flash.alert.blank?%>
+	var n = noty({text: '<%=alert%>', type: 'error'});
+	<% end %>
 
 </script>
