@@ -1,15 +1,15 @@
-<div class="page-title page-title-con-sidebar">  
+<div class="page-title page-title-con-sidebar">
 	Fichas de Fisioterapia Adulto
 
 	<div class="tool">
 		<%= search_form_for @search, class: 'buscador', remote: true do |f| %>
-		<div class="input-group"> 
+		<div class="input-group">
 			<%= f.search_field :paciente_persona_nombre_or_paciente_persona_apellido_or_paciente_persona_ci_cont, placeholder: "Buscar por Nombre, Apellido o CI de Paciente", class: "form-control", autofocus: true%>
 			<span class="fa fa-search"></span>
-			<div class="input-group-btn"> 
+			<div class="input-group-btn">
 				<a href="#"><i class="fa fa-search-plus" aria-hidden="true" id= "show-advanced-search" data-toggle="tooltip" data-placement="bottom" title="Búsqueda Avanzada"></i></a>
-				<%= link_to '<i class="fa fa-plus-square" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Nueva Ficha"></i> '.html_safe, new_ficha_fisioterapeutica_adulto_path, remote: true %>          
-			</div> 
+				<%= link_to '<i class="fa fa-plus-square" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Nueva Ficha"></i> '.html_safe, new_ficha_fisioterapeutica_adulto_path, remote: true %>
+			</div>
 		</div>
 		<% end %>
 	</div>
@@ -39,13 +39,13 @@
 			<% end %>
 		</div>
 	</div>
-	
+
 	<div id="list" class="list-con-sidebar">
-		<%= render 'list' %>
-	</div> 
+		<%= render 'list', fichas: @fichas %>
+	</div>
 
 	<div id="list-paginate" class="list-paginate-con-sidebar">
 		<%= paginate @fichas, remote: true %>
-	</div>  
+	</div>
 </div>
 

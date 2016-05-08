@@ -1,5 +1,5 @@
 class EmpleadosController < ApplicationController
-	
+
 	before_action :set_submenu, only: [:index,:new, :show]
 	before_action :set_empleado, only: [:show, :edit, :update, :destroy]
 	#load_and_authorize_resource #Conflicto con check_ci
@@ -10,83 +10,83 @@ class EmpleadosController < ApplicationController
 	end
 
 	def index
-		get_empleados		
+		get_empleados
 	end
 
-	def new    	
+	def new
     	@empleado = Empleado.new
     	@empleado.build_persona
   	end
 
-  	def create		  	
-	  	if empleado_params[:area_id].blank?    
+  	def create
+	  	if empleado_params[:area_id].blank?
 		   	@empleado = Funcionario.new(empleado_params)
 		else
 		   	@empleado = Doctor.new(empleado_params)
-		end	
+		end
 		respond_to do |format|
 			if @empleado.save
-				set_submenu			    
+				set_submenu
 			    flash.now[:notice] = "Se ha guardado el empleado #{@empleado.persona.nombre} #{@empleado.persona.apellido}."
 			    format.html {render 'show'}
 			else
 				set_submenu
 				flash.now[:alert] = "No se ha podido guardar el empleado #{@empleado.persona.nombre} #{@empleado.persona.apellido}."
-       			format.html { render action: "new"}	      		
-			end 
-		end			  
+       			format.html { render "new"}
+			end
+		end
   	end
 
   	def edit
  	end
 
- 	def update	 		
+ 	def update
   	end
 
-  	def show	    
-  	end  
+  	def show
+  	end
 
-  	def destroy    		
+  	def destroy
 		respond_to do |format|
-			if checkCurrentUserEmployee(@empleado)		
+			if checkCurrentUserEmployee(@empleado)
 	      		format.html { redirect_to empleados_path, flash: {alert: "No puedes eliminar tu propio registro de empleado"}}
 
-			elsif @empleado.destroy							         
+			elsif @empleado.destroy
 				format.html { redirect_to empleados_path, flash: {notice: "Se ha eliminado el empleado #{@empleado.persona.nombre} #{@empleado.persona.apellido}."}}
 			else
-			   	format.html { redirect_to empleados_path, flash: {alert: "No se ha podido eliminar el empleado #{@empleado.persona.nombre} #{@empleado.persona.apellido}."}}	      		
-			end			
-		end	
+			   	format.html { redirect_to empleados_path, flash: {alert: "No se ha podido eliminar el empleado #{@empleado.persona.nombre} #{@empleado.persona.apellido}."}}
+			end
+		end
 	end
 
-  	# Si el registro de empleado que se intenta borrar corresponde al 
+  	# Si el registro de empleado que se intenta borrar corresponde al
   	# usuario actual, no se lo permite.
   	def checkCurrentUserEmployee(empleado)
-  		if current_user.empleado_id == empleado.id 
+  		if current_user.empleado_id == empleado.id
   			return true
   		end
-  	end	
+  	end
 
   	def print_empleado
-  		@empleado = Empleado.find params[:empleado_id]  		
+  		@empleado = Empleado.find params[:empleado_id]
 	    respond_to do |format|
 	      format.pdf do
 	        render pdf: 	 'Registro de Empleado',
 	               template: 'empleados/print_empleado.pdf.erb',
 	               layout:   'pdf.html',
 	               title:    'Registro de Paciente',
-	               footer: { 
+	               footer: {
 			            center: '[page] de [topage]',
 			            right: "#{Formatter.format_datetime(Time.now)}",
 			            left: "CI Nº: #{@empleado.persona_ci}"
-			        } 
+			        }
       		end
       	end
     end
 
     def print_empleados
   		# //- También se puede imprimir una lista filtrada, no esta implementado
-  		#@search = Empleado.ransack(params[:q]) 	
+  		#@search = Empleado.ransack(params[:q])
   		#@empleados= @search.result
   		@empleados = Empleado.all
 
@@ -96,11 +96,11 @@ class EmpleadosController < ApplicationController
 	               template:    'empleados/print_empleados.pdf.erb',
 	               layout:      'pdf.html',
 	               orientation: 'Landscape',
-			       title:       'Lista de Empleados',            
-			       footer: { 
+			       title:       'Lista de Empleados',
+			       footer: {
 			       		center: '[page] de [topage]',
-			            right: "#{Formatter.format_datetime(Time.now)}" 
-			       }          
+			            right: "#{Formatter.format_datetime(Time.now)}"
+			       }
       		end
       	end
     end
@@ -113,12 +113,12 @@ class EmpleadosController < ApplicationController
     	@search = Empleado.ransack(params[:q])
 		@empleados= @search.result.page(params[:page])
     end
-     
+
     def check_ci
     	persona = Persona.find_by_ci(params[:ci])
 
-	    render json: (persona.nil? || persona.id == params[:id].to_i) ? true : "El número de CI especificado ya existe en el Sistema".to_json   		
-    end	
+	    render json: (persona.nil? || persona.id == params[:id].to_i) ? true : "El número de CI especificado ya existe en el Sistema".to_json
+    end
 
   	def empleado_params
       params.require(:empleado).permit(:cargo,:area_id, :costo,:type,:abr_profesion,

@@ -6,6 +6,7 @@ class Doctor < Empleado
  	has_many :ficha_fisioterapia_ninos
  	has_many :fichas_fonoaudiologicas
  	has_many :fichas_nutricionales_pediatricas
+ 	has_many :fichas_nutricionales_adultos
  	has_many :fichas_psicopedagogicas	
 
 
