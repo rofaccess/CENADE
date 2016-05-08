@@ -5,6 +5,7 @@ class Empleado < ActiveRecord::Base
     
  	has_one :user
  	belongs_to :persona
+  belongs_to :area
  	accepts_nested_attributes_for :persona
 
  	has_one :horario
@@ -21,7 +22,7 @@ class Empleado < ActiveRecord::Base
       	end	
     end
 
-    # Law of Demeter 
+  # Law of Demeter 
 	delegate :full_name, :nombre, :apellido, :ci, :edad, :sexo, :ci, :nacionalidad, :fecha_nacimiento, :profesion, :telefono, :direccion, :estado_civil_id, :encargado_id, to: :persona, prefix: true, allow_nil: true
-
+  delegate :nombre, :costo, to: :area, prefix: true, allow_nil: true
 end

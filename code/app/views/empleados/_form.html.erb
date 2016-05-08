@@ -13,7 +13,7 @@
 		<hr>
 
 		<%= empleado.fields_for(:persona) do |persona| %>
-		<%= persona.hidden_field :id, class: 'empleado-id'%>
+		<%= persona.hidden_field :id, class: 'persona-id'%>
 		<div class="row">	
 			<%= FormBuilder::text_field_v(persona, :nombre, 
 													input_class: 'required minLength3', 
@@ -28,7 +28,7 @@
 													col_class: 'col-md-4',
 													label_text: '* Apellido') %>
 			<%= FormBuilder::text_field_v(persona, :ci, 
-													input_class: 'required number-only minLength4 uniqueEmpleadoCI', 
+													input_class: 'required number-only minLength4 uniqueEmpleadoCI ci', 
 													max_length: Domain::CI,
 													col_class: 'col-md-2',
 													label_text: '* Cédula Nº') %>  
@@ -40,7 +40,7 @@
 		<div class="row">   
 			<%= persona.hidden_field :edad, class: 'edad'%>
 			<%= FormBuilder::text_field_v(persona, :fecha_nacimiento, 
-													input_class: 'required datepicker fecha-nacimiento dateBornCheck', 
+													input_class: 'required datepicker fecha-nacimiento dateLessSystemDate', 
 													max_length: Domain::FECHA,
 													label_text: '* Fecha de Nac.',
 													col_class: 'col-md-2', 
@@ -120,18 +120,18 @@
 																		
 		</div> 
 
-		<div class="row">
+		<div class="row datos-doctor">
 			<%= FormBuilder::collection_select_v(empleado, :area_id, 
 															Area.all, :id, :nombre,
 															prompt:'Seleccione Area',
 															label_text: '* Area', 
-															col_class: 'col-md-4 to-hide',
-															select_class: 'empleado-select')%>	
+															col_class: 'col-md-4',
+															select_class: 'select-area')%>	
 
 			<%= FormBuilder::text_field_v(empleado, :costo, 
 													max_length: Domain::COSTO,					
 													input_class: 'number-only',
-													col_class: 'col-md-2 to-hide') %> 	
+													col_class: 'col-md-2') %> 	
 		</div>											
 		
 		<div class="form-button">					
@@ -144,8 +144,7 @@
 </div>
 
 <script type="text/javascript">	
-	empleadosUI.initScript("<%= empleados_check_ci_path %>");
-	
+	empleadosUI.initScript();
 	<% if !flash.notice.blank? %>	
 		var n = noty({text: '<%=notice%>', type: 'success'});		
 	<% end %>

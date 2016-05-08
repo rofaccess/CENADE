@@ -8,8 +8,8 @@
     </div>
     <%= form_for @fonoaudiologica, html: {class: 'nueva-ficha form-ficha', :multipart => true }, remote: true do |ficha|%>
 
-    	<%= hidden_field_tag :fonoaudiologica_id, @fonoaudiologica.id, class: 'ficha-id' %>
-	      <h3 align="center">FICHA DE FONOAUDIOLOGIA</h3></br>
+    	<%= hidden_field_tag :fonoaudiologica_id, @fonoaudiologica.id, class: 'ficha-id' %>	      
+	      <h4 align="center">FICHA DE FONOAUDIOLOGIA</h4></br>
 	      <div class="row">
 	        <div class="col-md-5 error-especial">
 	          <%= ficha.label :paciente_id, '* Paciente' %> 
