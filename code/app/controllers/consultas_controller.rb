@@ -2,6 +2,7 @@ class ConsultasController < ApplicationController
 	before_action :set_consulta, only: [:show, :edit, :update]
 	#load_and_authorize_resource 
   before_action :set_submenu, only: [:edit, :update, :show, :index, :new]
+  
   respond_to :html, :js
 
   def set_submenu
@@ -36,7 +37,7 @@ class ConsultasController < ApplicationController
 		end 
 	end
   end
-
+ 
   def edit
     @paciente= @consulta.paciente
   end

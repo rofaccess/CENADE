@@ -107,27 +107,24 @@ var fisioNinosUI = (function(){
         },
 
 		initScript: function(checkFisioNinoPacienteUrl){
-		   //fisioNinosUI.checkPACIENTE(checkFisioNinoPacienteUrl);
 
-       /* Lo siguiente ya se inicia globalmente en application.js con initAdvancedSearch */
-       //fisioNinosUI.advancedSearchControl();
+		       var tabs;
             
            fisioNinosUI.selectControl();
 
-           // Se puede usar esto  (ver initDatepicker en application.js)
            APP.initDatepicker();
-           // en vez de esto
-           /*
-            $('.datepicker').datepicker({
-                format: "dd/mm/yyyy",
-                language: "es",
-                autoclose: true,
-                orientation: "bottom"
-                }).on('change', function() {
-                    $(this).valid();
+           
+            jQuery(function($) {
+                tabs = $('.tabscontent').tabbedContent({loop: true}).data('api');
+
+               
+                // Next and prev actions
+                $('.controls a').on('click', function(e) {
+                    var action = $(this).attr('href').replace('#', '');
+                    tabs[action]();
+                    e.preventDefault();
                 });
-          */      
-		   	//Valida el formulario antes de enviarlo
+            });
 		  	$('.nueva-ficha').validate();
 		}
 	};

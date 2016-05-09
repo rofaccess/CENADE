@@ -2,12 +2,10 @@
   Ficha de <%= @nutri_adulto.paciente_persona_full_name%>
 
   <div class="tool">
-    
     <%= link_to '<i class="fa fa-list data-toggle="tooltip" title="Lista de Fichas"></i> '.html_safe, fichas_nutricionales_adultos_path %> 
     <%= link_to '<i class="fa fa-plus-square" data-toggle="tooltip" title="Nueva Ficha"></i> '.html_safe, new_ficha_nutricional_adulto_path, remote: true %>
     <%= link_to '<i class="fa fa-edit" data-toggle="tooltip" title="Editar Ficha"></i> '.html_safe, edit_ficha_nutricional_adulto_path(@nutri_adulto), remote:true%>
     <%= link_to '<i class="fa fa-print" data-toggle="tooltip" title="Imprimir Ficha"></i> '.html_safe, fichas_nutricionales_adultos_print_ficha_path(ficha_id: @nutri_adulto.id, :format => :pdf), target: '_blank'%>
-    
   </div>
 
 </div>

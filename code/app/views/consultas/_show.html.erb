@@ -1,6 +1,6 @@
 <div class="form-content">
   <div class="page-title">
-    Consulta de <%= @consulta.paciente.persona.nombre%> <%= @consulta.paciente.persona.apellido%>
+    Consulta en <%= @consulta.area_nombre%>
 
     <div class="tool">
       <%= link_to '<i class="fa fa-list"></i> '.html_safe, consultas_path %> 
@@ -14,25 +14,12 @@
     <%= form_for @consulta, html: {class: 'nueva-consulta', :multipart => true }, remote: true do |consulta|%>   
 
       <div class="row">
-      
-        <%= FormBuilder::text_field_v(consulta, :profesional_salud_id, 
-                                         
-                                          col_class: 'col-md-5',
-                                          disabled: true,
-                                          label_text: 'Profesional de la Salud',
-                                          input_value: @consulta.doctor.persona.nombre+ " " + @consulta.doctor.persona.apellido) %>
-        <%= FormBuilder::text_field_v(consulta, :area_id, 
-                                         
-                                          col_class: 'col-md-4',
-                                          disabled: true,
-                                          label_text: 'Área',
-                                          input_value: @consulta.area.nombre) %>
-        <%= FormBuilder::text_field_v(consulta, :fecha, 
-                                         
-                                          col_class: 'col-md-3',
-                                          disabled: true,
-                                          label_text: 'Fecha',
-                                          input_value: @consulta.fecha.strftime('%d/%m/%Y')) %>
+        <div class="col-md-9">
+          <h4><%= consulta.label :profesional_salud_id, 'Profesional de la Salud: ' %> <%= @consulta.doctor_persona_full_name%> </h4>
+        </div>
+        <div class="col-md-3">
+            <h4><%= consulta.label :fecha, 'Fecha: ' %> <%=Formatter.format_date(@consulta.fecha)%> </h4>
+        </div>
       </div></br>
 
       <h4>Datos del Paciente</h4>

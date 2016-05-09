@@ -247,6 +247,7 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.2)
+    unf_ext (0.0.7.2-x86-mingw32)
     warden (1.2.6)
       rack (>= 1.0)
     web-console (2.3.0)
