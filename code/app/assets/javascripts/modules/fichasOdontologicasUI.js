@@ -1,8 +1,8 @@
-var odontologicasUI = (function(){
-	return {		
+var fichasOdontologicasUI = (function(){
+	return {
 
-		initScript: function(){	
-			
+		initScript: function(){
+
 			/* Script globales */
 	     	APP.initDatepicker();
 	     	APP.initSelect2({element: '.select-paciente', placeholder: 'Seleccione un Paciente'})
@@ -12,9 +12,9 @@ var odontologicasUI = (function(){
 	     	//empleadosUI.initBuscarDoctor('.select-doctor');
 
 	     	pacientesUI.getPaciente({element: '.select-paciente', root: 'fichas_odontologicas'});
-	     	
+
 			/* Valida el formulario antes de enviarlo */
-			$('.form-ficha2').validate(); 
+			$('.form-ficha2').validate();
 		}
 	};
-}()); 
+}());
