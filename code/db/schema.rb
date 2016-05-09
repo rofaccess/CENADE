@@ -213,12 +213,6 @@ ActiveRecord::Schema.define(version: 20160507010849) do
   add_index "fichas_fonoaudiologicas", ["doctor_id"], name: "index_fichas_fonoaudiologicas_on_doctor_id", using: :btree
   add_index "fichas_fonoaudiologicas", ["paciente_id"], name: "index_fichas_fonoaudiologicas_on_paciente_id", using: :btree
 
-  create_table "fichas_nutricionales_pediatricas", force: :cascade do |t|
-    t.integer  "paciente_id"
-    t.integer  "area_id"
-    t.integer  "profesional_salud_id"
-    t.integer  "nro_ficha"
-    t.date     "fecha"
   create_table "fichas_nutricionales_adultos", force: :cascade do |t|
     t.integer  "paciente_id",              null: false
     t.integer  "area_id",                  null: false
@@ -241,7 +235,6 @@ ActiveRecord::Schema.define(version: 20160507010849) do
     t.integer  "profesional_salud_id",                    null: false
     t.integer  "nro_ficha"
     t.date     "fecha",                                   null: false
-
     t.string   "problema_embarazo",           limit: 250
     t.string   "control_prenatal",            limit: 250
     t.string   "alimentacion_embarazo",       limit: 250
@@ -447,9 +440,6 @@ ActiveRecord::Schema.define(version: 20160507010849) do
   add_foreign_key "fichas_fisioterapeuticas_adultos", "pacientes", on_delete: :restrict
   add_foreign_key "fichas_fonoaudiologicas", "areas", on_delete: :restrict
   add_foreign_key "fichas_fonoaudiologicas", "pacientes", on_delete: :restrict
-
-  add_foreign_key "fichas_nutricionales_pediatricas", "areas", on_delete: :restrict
-  add_foreign_key "fichas_nutricionales_pediatricas", "pacientes", on_delete: :restrict
   add_foreign_key "fichas_nutricionales_adultos", "areas", on_delete: :restrict
   add_foreign_key "fichas_nutricionales_adultos", "pacientes", on_delete: :restrict
   add_foreign_key "fichas_nutricionales_pediatricas", "areas", on_delete: :restrict
