@@ -2,6 +2,7 @@ class FichaFisioterapiaNinosController < ApplicationController
 	before_action :set_submenu, only: [:edit, :new, :show, :index]
 	before_action :set_sidebar, only: [:edit, :new, :show, :index]
   before_action :set_fisionino, only: [:show, :edit, :update]
+  before_action :set_consulta, only: [:show, :edit]
 
   def set_submenu
    @submenu_layout = 'layouts/submenu_fichas_consultas'
@@ -24,6 +25,7 @@ class FichaFisioterapiaNinosController < ApplicationController
     @paciente= @fisio_nino.paciente
   	 respond_to do |format|
       if @fisio_nino.save
+        set_consulta
         flash.now[:notice] = 'Ficha registrada exitosamente'
 		    format.html {render 'show'}
         format.js { render "show"}
@@ -68,6 +70,7 @@ class FichaFisioterapiaNinosController < ApplicationController
   def show
     @paciente= @fisio_nino.paciente
   end
+
   # Checkea que un paciente ya no tenga una ficha en Fisio Niños
   def check_paciente_id
     fisio_nino = FichaFisioterapiaNino.find_by_paciente_id(params[:paciente_id])
@@ -84,13 +87,12 @@ class FichaFisioterapiaNinosController < ApplicationController
   #Trae la fichas segun la busqueda y página
   def get_ficha_fisioterapia_ninos
     @search = FichaFisioterapiaNino.ransack(params[:q])
-    @fisio_ninos= @search.result.page(params[:page])
+    @fisio_ninos= @search.result.order('nro_ficha').page(params[:page])
   end 
 
   #metodo creado para el filtro
   def buscar
-    @search = FichaFisioterapiaNino.search(params[:q])
-    @fisio_ninos = @search.result.page(params[:page])
+    get_ficha_fisioterapia_ninos
     render 'index'
   end
 
@@ -106,6 +108,9 @@ class FichaFisioterapiaNinosController < ApplicationController
     end
   def set_fisionino
   	@fisio_nino= FichaFisioterapiaNino.find(params[:id])
+  end 
+  def set_consulta
+    @consultas= Consulta.where(area_id: @fisio_nino.area_id, paciente_id: @fisio_nino.paciente_id).limit(9).order(id: :desc)
   end 
 
   def fisio_nino_params
