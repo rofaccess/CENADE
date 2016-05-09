@@ -7,16 +7,16 @@
       </div>
     </div>
     <%= form_for @psicopedagogica, html: {class: 'nueva-ficha form-ficha', :multipart => true }, remote: true do |ficha|%>
-       <%= hidden_field_tag :psicopedagogica_id, @psicopedagogica.id %>
+       <%= hidden_field_tag :psicopedagogica_id, @psicopedagogica.id, class: 'ficha-id'%>
        <h4 align="center">FICHA DE PSICOPEDAGOGÍA</h4></br>
        <div class="row">
 	        <div class="col-md-5">
 		          <%= ficha.label :paciente_id, '* Paciente' %> 
 		          <div class="row">
 			            <div class="col-md-10">
-			              <%= ficha.select(:paciente_id, Hash[Paciente.all.map{|a| [a.persona.nombre + " "+ a.persona.apellido, a.id]}],{},{class: "paciente_select form-control select2 uniquePACIENTE", required: true,  id: 'paciente_id'})%>
+			              <%= ficha.select(:paciente_id, Hash[Paciente.all.map{|a| [a.persona.nombre + " "+ a.persona.apellido, a.id]}],{},{class: "paciente_select form-control select2 uniquePacienteFicha paciente-id", required: true,  id: 'paciente_id'})%>
 			            </div>
-			         	 <%= link_to '<i class="fa fa-plus"></i> '.html_safe, pacientes_new_paciente_modal_path(root: 'ficha_fisioterapia_ninos', encargado: true), class: 'btn btn-custom col-md-1', style: 'height: 30px; width: 40px', remote: true%> 
+			         	 <%= link_to '<i class="fa fa-plus"></i> '.html_safe, pacientes_new_paciente_modal_path(root: 'ficha_psicopedagogica', encargado: true), class: 'btn btn-custom col-md-1', style: 'height: 30px; width: 40px', remote: true%> 
 		          	</div>
 	      	</div>
 		        <div class="col-md-4">
@@ -162,7 +162,8 @@
     <%end%>
 </div>
 <script type="text/javascript"> 
-   psicopedagogicasUI.initScript("<%= fichas_psicopedagogicas_check_paciente_id_path %>");
+   psicopedagogicasUI.initScript();
+   pacientesUI.checkPacienteHasFicha("<%= fichas_psicopedagogicas_check_paciente_id_path %>");
 
   <% if !flash.notice.blank? %> 
     var n = noty({text: '<%=notice%>', type: 'success'});   

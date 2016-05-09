@@ -1,5 +1,5 @@
 module Domain
-	
+
 	# Datos Personales
 	NOMBRE    	= 30
 	CI           = 15
@@ -16,7 +16,7 @@ module Domain
 	TELEFONO     = 50
 	EMAIL     	= 50
 
-	
+
 	# Datos Laborales
 	PROFESION	= 50
 	LUGAR_TRABAJO = 100
@@ -27,14 +27,14 @@ module Domain
 	CARGO_EMPLEADO = 100
 
 	# Datos de Encargado
-	NOM_APE		 = 60	
+	NOM_APE		 = 60
 	NUM_HIJOS = 2
 	PROF_ACT_ANT  = 100
 
 	# Datos de Usuario
 	USERNAME   	= 30
 	CONTRASEÑA	= 30
-	ROL = 15	
+	ROL = 15
 
 	# Datos Médicos
 	SINTOMAS     = 500
@@ -46,21 +46,21 @@ module Domain
 	DIAGNOSTICO        = 150
 
 	# Varios
-	MONEDA 	  = 3		
-	CODIGO    = 15			
+	MONEDA 	  = 3
+	CODIGO    = 15
 	MONTO     = 13
 	CANTIDAD  = 5
-	
+
 	DESCRIPCION5 = 500
 	DESCRIPCION2 = 200
 	DESCRIPCION4 = 400
-	
+
 	# Datos de la Empresa
 	EMPRESA_NOMBRE = 50
 	EMPRESA_WEB	   = 40
 	EMPRESA_HORARIO= 5
 	DIAS_DE_ATENCION=20
-	
+
 	# Turnos
 	COSTO = 7
 	NRO_FACTURA = 15
@@ -84,6 +84,8 @@ module Domain
 
 	NRO_CHICO = 10
 
+	DESC10 = 10
+	DESC20 = 20
 	DESC50 = 50
 	DESC100 = 100
 	DESC250 = 250
