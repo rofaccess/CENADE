@@ -32,7 +32,7 @@
 //= require plugins/noty/packaged/jquery.noty.packaged
 //= require plugins/noty/layouts/topCenter
 //= require plugins/noty/themes/default
-
+//= require plugins/tabbedcontent.min.js
 
 //= require languages/jquery-validate-messages-es.js
 //= require languages/jquery-ui-datepicker-es.js
