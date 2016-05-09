@@ -14,7 +14,7 @@ class CreateFichasFonoaudiologicas < ActiveRecord::Migration
     end
     add_foreign_key(:fichas_fonoaudiologicas, :pacientes, column: 'paciente_id', on_delete: :restrict)
     add_foreign_key(:fichas_fonoaudiologicas, :areas, column: 'area_id', on_delete: :restrict)
-  
+
     add_index :fichas_fonoaudiologicas, :paciente_id
     add_index :fichas_fonoaudiologicas, :doctor_id
     add_index :fichas_fonoaudiologicas, :area_id

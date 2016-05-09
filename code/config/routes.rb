@@ -1,11 +1,27 @@
 Rails.application.routes.draw do
-
+  get 'fichas_nutricionales_adultos/check_paciente_has_ficha' => 'fichas_nutricionales_adultos#check_paciente_has_ficha'
+  get 'fichas_nutricionales_adultos/print_ficha'=>'fichas_nutricionales_adultos#print_ficha'
+  resources :fichas_nutricionales_adultos do
+    collection do
+      match 'buscar' => 'fichas_nutricionales_adultos#buscar', via: [:get, :post], as: :search
+      get 'get_paciente' => 'fichas_nutricionales_adultos#get_paciente'
+    end
+  end
   get 'fichas_nutricionales_pediatricas/check_paciente_has_ficha' => 'fichas_nutricionales_pediatricas#check_paciente_has_ficha'
   get 'fichas_nutricionales_pediatricas/print_ficha'=>'fichas_nutricionales_pediatricas#print_ficha'
   resources :fichas_nutricionales_pediatricas do
     collection do
       match 'buscar' => 'fichas_nutricionales_pediatricas#buscar', via: [:get, :post], as: :search
       get 'get_paciente' => 'fichas_nutricionales_pediatricas#get_paciente'
+    end
+  end
+
+  get 'fichas_odontologicas/check_paciente_has_ficha' => 'fichas_odontologicas#check_paciente_has_ficha'
+  get 'fichas_odontologicas/print_ficha' => 'fichas_odontologicas#print_ficha'
+  resources :fichas_odontologicas do
+    collection do
+      match 'buscar'=>'fichas_odontologicas#buscar', via: [:get, :post],as: :search
+      get 'get_paciente'=>'fichas_odontologicas#get_paciente'
     end
   end
 

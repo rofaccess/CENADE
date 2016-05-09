@@ -1,0 +1,2 @@
+module FichasNutricionalesAdultosHelper
+end

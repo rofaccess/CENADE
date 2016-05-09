@@ -13,7 +13,9 @@ class Paciente < ActiveRecord::Base
 	has_one :ficha_fonoaudiologica
 	has_one :ficha_psicopedagogica
 	has_one :ficha_fisioterapeutica_adulto
+	has_one :ficha_odontologica
 	has_one :ficha_nuticional_pediatrica
+	has_one :ficha_nuticional_adulto
 
 	has_many :consultas
 
@@ -37,7 +39,7 @@ class Paciente < ActiveRecord::Base
     end
 
 	# Law of Demeter
-	delegate :full_name, :nombre, :apellido, :ci,:ruc, :edad, :sexo, :nacionalidad,
+	delegate :full_name, :nombre, :apellido, :ruc, :edad, :sexo, :ci, :nacionalidad,
 			 :fecha_nacimiento, :profesion, :telefono, :direccion, :fecha_ingreso,
 			 :estado_civil_descripcion, :lugar_nacimiento,:email,:estado_civil_id,
 			 to: :persona, prefix: true, allow_nil: true

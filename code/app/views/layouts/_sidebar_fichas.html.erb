@@ -23,20 +23,16 @@
             <a href="#">Neurología</a>
         </li>
 
-        <li>
-            <a href="#">Nutricional Adulto</a>
+        <li class="<%= current_sidebar([fichas_nutricionales_adultos_path])%>">
+            <%=link_to 'Nutricional Adulto', fichas_nutricionales_adultos_path %>
         </li>
 
         <li class="<%= current_sidebar([fichas_nutricionales_pediatricas_path])%>">
             <%=link_to 'Nutricional Pediátrica', fichas_nutricionales_pediatricas_path %>
         </li>
 
-        <li>
-            <a href="#">Odontología Adulto</a>
-        </li>
-
-        <li>
-            <a href="#">Odontología Pediátrica</a>
+        <li class="<%= current_sidebar([fichas_odontologicas_path])%>">
+            <%=link_to 'Odontología', fichas_odontologicas_path %>
         </li>
 
         <li>

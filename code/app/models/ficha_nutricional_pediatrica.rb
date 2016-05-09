@@ -1,5 +1,5 @@
 class FichaNutricionalPediatrica < ActiveRecord::Base
-paginates_per 20
+	paginates_per 20
     
     #incremento automatico de nro de ficha
 	protokoll :nro_ficha, pattern: '#'
