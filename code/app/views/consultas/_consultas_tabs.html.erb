@@ -4,7 +4,7 @@
 
     <%end%>
 </ul>
-               
+
 <div class="tabscontent">
     <% @consultas.each do |consulta| %>
         <div id="tab-<%= consulta.id%>">
@@ -20,7 +20,7 @@
                     <%= c.input :evaluacion, as: :text, label: 'Evaluación', wrapper_html: { class: 'col-md-6'}, input_html: {value: consulta.evaluacion, disabled: true, :rows => 4}, required: false %>
                     <%= c.input :tratamiento, as: :text, label: 'Tratamiento', wrapper_html: { class: 'col-md-6'}, input_html: {value: consulta.tratamiento, disabled: true, :rows => 4}, required: false %>
                 </div>
-                       
+
                 <div class="row">
                     <%= c.input :observaciones, as: :string, label: 'Observaciones', wrapper_html: { class: 'col-md-12'}, input_html: {value: consulta.observaciones, disabled: true}, required: false %>
                 </div>
@@ -28,4 +28,3 @@
         </div>
     <%end%>
 </div>
-    
