@@ -95,21 +95,16 @@ class FichasFonoaudiologicasController < ApplicationController
 	end
 
   	def print_ficha
-  	@ficha = FichaFonoaudiologica.find params[:ficha_id]
-  	respond_to do |format|
-  		format.pdf do
-  			render pdf: "Ficha",
-  			template: 	"fichas_fonoaudiologicas/print_ficha.pdf.erb",
-  			layout: 	"pdf.html",
-  			title:    	'Ficha de Fonoaudiología',
-	        footer: {
-			    center: '[page] de [topage]',
-			    right: 	"#{Formatter.format_datetime(Time.now)}",
-			    left: 	"CI Nº: #{@ficha.paciente_persona_ci}"
-			}
-  		end
+  		@ficha = FichaFonoaudiologica.find params[:ficha_id]
+	  	respond_to do |format|
+	  		format.pdf do
+	  			render pdf: "Ficha",
+	  			template: 	"fichas_fonoaudiologicas/print_ficha.pdf.erb",
+	  			layout: 	"pdf.html",
+	  			title:    	'Ficha de Fonoaudiología'
+	  		end
+	  	end
   	end
-  end
 
 
 	def fonoaudiologica_params

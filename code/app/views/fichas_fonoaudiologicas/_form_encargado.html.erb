@@ -1,48 +1,31 @@
-<div class="row">
-      <div class="col-md-5">
-        <label class="control-label">Nombre del Padre</label>
-        <input class="form-control" disabled="disabled" value="<%= @paciente.encargado.padre_nombre %>">
-      </div>
-      <div class="col-md-2">
-        <label class="control-label">Edad</label>
-        <input class="form-control" disabled="disabled" value="<%= @paciente.encargado.padre_edad%>">
-      </div>
-      <div class="col-md-5">
-        <label class="control-label">Profesión Actual y Anterior</label>
-        <input class="form-control" disabled="disabled" value="<%= @paciente.encargado.padre_prof_act_ant %>">
-      </div>
-  </br>
+<h4>Datos de los Padres o Encargados</h4>
+<hr>
 
-  <div class="col-md-4">
-        <label class="control-label">Nombre de la Madre</label>
-        <input class="form-control" disabled="disabled" value="<%= @paciente.encargado.madre_nombre %>">
-      </div>
-      <div class="col-md-2">
-        <label class="control-label">Edad</label>
-        <input class="form-control" disabled="disabled" value="<%= @paciente.encargado.madre_edad  %>">
-      </div>
-      <div class="col-md-2">
-        <label class="control-label">Nro de Hijos</label>
-        <input class="form-control" disabled="disabled" value="<%= @paciente.encargado.madre_num_hijos%>">
-      </div>
-      <div class="col-md-4">
-        <label class="control-label">Profesión Actual y Anterior</label>
-        <input class="form-control" disabled="disabled" value="<%= @paciente.encargado.madre_prof_act_ant  %>">
-      </div>
-  </div>
-  </br>
+<%= simple_fields_for :encargado do |encargado| %>
+    <div class="row">
+      <%= encargado.input :padre_nombre, as: :string, label: 'Nombre del Padre', wrapper_html: { class: 'col-md-5'}, input_html: {value: @paciente.encargado_padre_nombre, disabled: true}, required: false %>
 
-  <div class="row">
-      <div class="col-md-5">
-        <label class="control-label">Nombre del Encargado</label>
-        <input class="form-control" disabled="disabled" value="<%= @paciente.encargado.encargado_nombre %>">
-      </div>
-      <div class="col-md-2">
-        <label class="control-label">Edad</label>
-        <input class="form-control" disabled="disabled" value="<%= @paciente.encargado.encargado_edad%>">
-      </div>
-      <div class="col-md-5">
-        <label class="control-label">Profesión Actual y Anterior</label>
-        <input class="form-control" disabled="disabled" value="<%= @paciente.encargado.encargado_prof_act_ant %>">
-      </div>
-  </div>
+      <%= encargado.input :padre_edad, as: :string, label: 'Edad', wrapper_html: { class: 'col-md-2'}, input_html: {value: @paciente.encargado_padre_edad, disabled: true}, required: false %>
+
+      <%= encargado.input :padre_prof_act_ant, as: :string, label: 'Profesion Actual y Anterior', wrapper_html: { class: 'col-md-5'}, input_html: {value: @paciente.encargado_padre_prof_act_ant , disabled: true}, required: false %>
+
+    </div>
+    <div class="row">
+      <%= encargado.input :madre_nombre, as: :string, label: 'Nombre de la Madre', wrapper_html: { class: 'col-md-5'}, input_html: {value: @paciente.encargado_madre_nombre, disabled: true}, required: false %>
+
+      <%= encargado.input :madre_edad, as: :string, label: 'Edad', wrapper_html: { class: 'col-md-1'}, input_html: {value: @paciente.encargado_madre_edad, disabled: true}, required: false %>
+
+      <%= encargado.input :madre_num_hijos, as: :string, label: 'Num de Hijos', wrapper_html: { class: 'col-md-2'}, input_html: {value: @paciente.encargado_madre_num_hijos, disabled: true}, required: false %>
+
+      <%= encargado.input :madre_prof_act_ant, as: :string, label: 'Profesion Actual y Anterior', wrapper_html: { class: 'col-md-4'}, input_html: {value: @paciente.encargado_madre_prof_act_ant , disabled: true}, required: false %>
+
+    </div>
+    <div class="row">
+      <%= encargado.input :encargado_nombre, as: :string, label: 'Nombre del Encargado', wrapper_html: { class: 'col-md-5'}, input_html: {value: @paciente.encargado_encargado_nombre, disabled: true}, required: false %>
+
+      <%= encargado.input :encargado_edad, as: :string, label: 'Edad', wrapper_html: { class: 'col-md-2'}, input_html: {value: @paciente.encargado_encargado_edad, disabled: true}, required: false %>
+
+      <%= encargado.input :encargado_prof_act_ant, as: :string, label: 'Profesion Actual y Anterior', wrapper_html: { class: 'col-md-5'}, input_html: {value: @paciente.encargado_encargado_prof_act_ant , disabled: true}, required: false %>
+
+    </div>
+<% end %>
