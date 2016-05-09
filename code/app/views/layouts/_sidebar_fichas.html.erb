@@ -10,7 +10,7 @@
         <li class="<%= current_sidebar([fichas_fisioterapeuticas_adultos_path])%>">
             <%=link_to 'Fisioterapia Adulto', fichas_fisioterapeuticas_adultos_path %>
         </li>
-        
+
          <li class="<%= current_sidebar([ficha_fisioterapia_ninos_path])%>">
             <%=link_to 'Fisioterapia Pediátrica', ficha_fisioterapia_ninos_path %>
         </li>
@@ -39,12 +39,12 @@
             <a href="#">Odontología Pediátrica</a>
         </li>
 
-        <li>
-            <a href="#">Pediatría</a>
+         <li class="<%= current_sidebar([fichas_pediatricas_path])%>">
+            <%=link_to 'Pediatría', fichas_pediatricas_path %>
         </li>
-        
+
         <li class="<%= current_sidebar([fichas_psicopedagogicas_path])%>">
             <%=link_to 'Psicopedagogía', fichas_psicopedagogicas_path %>
-        </li>                 
+        </li>
     </ul>
 </div>
