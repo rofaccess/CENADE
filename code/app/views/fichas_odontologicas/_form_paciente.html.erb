@@ -1,0 +1,43 @@
+<h4>Datos del Paciente</h4>
+<hr>
+
+<%= simple_fields_for :paciente do |p| %>
+    <div class="row">
+    	<%= p.input :nombre, as: :string, label: 'Nombres', wrapper_html: { class: 'col-md-4'}, input_html: {value: paciente.persona_nombre, disabled: true}, required: false %>
+
+    	<%= p.input :apellido, as: :string, label: 'Apellidos', wrapper_html: { class: 'col-md-4'}, input_html: {value: paciente.persona_apellido, disabled: true}, required: false %>
+
+      <%= p.input :ci, as: :string, label: 'CI', wrapper_html: { class: 'col-md-2'}, input_html: {value:paciente.persona_ci, disabled: true}, required: false %>
+
+    	<%= p.input :sexo, as: :string, wrapper_html: { class: 'col-md-2'}, input_html: {value: paciente.persona_sexo, disabled: true}, required: false %>
+  	</div>
+  	<div class="row">
+
+      <%= p.input :fecha_nacimiento, as: :string, label: 'Fecha de Nac.', wrapper_html: { class: 'col-md-3'}, input_html: {value: Formatter.format_date(paciente.persona_fecha_nacimiento), disabled: true}, required: false %>
+
+  		<%= p.input :edad, as: :string, wrapper_html: { class: 'col-md-1'}, input_html: {value: paciente.persona_edad, disabled: true}, required: false %>
+
+      <%= p.input :lugar_nacimiento, as: :string, wrapper_html: { class: 'col-md-4'}, input_html: {value:paciente.lugar_nacimiento, disabled: true}, required: false %>
+
+      <%= p.input :nacionalidad, as: :string, wrapper_html: { class: 'col-md-4'}, input_html: {value: paciente.persona_nacionalidad, disabled: true}, required: false %>
+
+    </div>
+    <div class ="row">
+
+      <%= p.input :apellido, as: :string, label: 'Estado Civil', wrapper_html: { class: 'col-md-3'}, input_html: {value: paciente.persona_estado_civil_descripcion, disabled: true}, required: false %>
+
+      <%= p.input :apellido, as: :string, label: 'Dirección', wrapper_html: { class: 'col-md-6'}, input_html: {value: paciente.persona_direccion, disabled: true}, required: false %>
+
+      <%= p.input :telefono, as: :string, wrapper_html: { class: 'col-md-3'}, input_html: {value:paciente.persona_telefono, disabled: true}, required: false %>
+
+    </div>
+
+  	<div class="row">
+
+      <%= p.input :apellido, as: :string, label: 'Lugar de Trabajo', wrapper_html: { class: 'col-md-6'}, input_html: {value: paciente.lugar_trabajo, disabled: true}, required: false %>
+
+      <%= p.input :apellido, as: :string, label: 'Profesión', wrapper_html: { class: 'col-md-6'}, input_html: {value: paciente.profesion, disabled: true}, required: false %>
+    </div>
+
+<% end %>
+

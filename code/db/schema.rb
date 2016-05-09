@@ -255,6 +255,22 @@ ActiveRecord::Schema.define(version: 20160509000329) do
   add_index "fichas_nutricionales_pediatricas", ["paciente_id"], name: "index_fichas_nutricionales_pediatricas_on_paciente_id", using: :btree
   add_index "fichas_nutricionales_pediatricas", ["profesional_salud_id"], name: "index_fichas_nutricionales_pediatricas_on_profesional_salud_id", using: :btree
 
+  create_table "fichas_odontologicas", force: :cascade do |t|
+    t.integer  "paciente_id",                          null: false
+    t.integer  "area_id",                              null: false
+    t.integer  "doctor_id",                            null: false
+    t.integer  "nro_ficha"
+    t.date     "fecha",                                null: false
+    t.string   "nombre_tutor", limit: 30, default: ""
+    t.string   "tel_tutor",    limit: 50, default: ""
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+  end
+
+  add_index "fichas_odontologicas", ["area_id"], name: "index_fichas_odontologicas_on_area_id", using: :btree
+  add_index "fichas_odontologicas", ["doctor_id"], name: "index_fichas_odontologicas_on_doctor_id", using: :btree
+  add_index "fichas_odontologicas", ["paciente_id"], name: "index_fichas_odontologicas_on_paciente_id", using: :btree
+
   create_table "fichas_pediatricas", force: :cascade do |t|
     t.integer  "paciente_id",                                      null: false
     t.integer  "area_id",                                          null: false
@@ -517,6 +533,8 @@ ActiveRecord::Schema.define(version: 20160509000329) do
   add_foreign_key "fichas_nutricionales_adultos", "pacientes", on_delete: :restrict
   add_foreign_key "fichas_nutricionales_pediatricas", "areas", on_delete: :restrict
   add_foreign_key "fichas_nutricionales_pediatricas", "pacientes", on_delete: :restrict
+  add_foreign_key "fichas_odontologicas", "areas", on_delete: :restrict
+  add_foreign_key "fichas_odontologicas", "pacientes", on_delete: :restrict
   add_foreign_key "fichas_pediatricas", "areas", on_delete: :restrict
   add_foreign_key "fichas_pediatricas", "pacientes", on_delete: :restrict
   add_foreign_key "fichas_psicopedagogicas", "areas", on_delete: :restrict

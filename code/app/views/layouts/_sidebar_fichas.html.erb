@@ -31,12 +31,8 @@
             <%=link_to 'Nutricional Pediátrica', fichas_nutricionales_pediatricas_path %>
         </li>
 
-        <li>
-            <a href="#">Odontología Adulto</a>
-        </li>
-
-        <li>
-            <a href="#">Odontología Pediátrica</a>
+        <li class="<%= current_sidebar([fichas_odontologicas_path])%>">
+            <%=link_to 'Odontología', fichas_odontologicas_path %>
         </li>
 
          <li class="<%= current_sidebar([fichas_pediatricas_path])%>">

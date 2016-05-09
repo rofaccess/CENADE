@@ -26,6 +26,15 @@ Rails.application.routes.draw do
     end
   end
 
+  get 'fichas_odontologicas/check_paciente_has_ficha' => 'fichas_odontologicas#check_paciente_has_ficha'
+  get 'fichas_odontologicas/print_ficha' => 'fichas_odontologicas#print_ficha'
+  resources :fichas_odontologicas do
+    collection do
+      match 'buscar'=>'fichas_odontologicas#buscar', via: [:get, :post],as: :search
+      get 'get_paciente'=>'fichas_odontologicas#get_paciente'
+    end
+  end
+
   get 'fichas_psicopedagogicas_check_paciente_id'=> 'fichas_psicopedagogicas#check_paciente_id'
   get 'fichas_psicopedagogicas/print_ficha'=>'fichas_psicopedagogicas#print_ficha'
   resources :fichas_psicopedagogicas do

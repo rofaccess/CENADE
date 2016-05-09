@@ -38,7 +38,6 @@
 
 		<%= ficha.input :paciente_id, collection: Paciente.all.collect { |a| [a.persona_nombre+" "+a.persona_apellido, a.id] }, label: '* Paciente', wrapper_html: { class: 'col-md-4' }, input_html:	 { class: 'required select-paciente3 select2'} %>
 	</div>
-
 	<div class="form-button">
 		<%= ficha.submit 'Guardar', class: 'btn btn-custom'%>
 	</div>
@@ -50,7 +49,9 @@
 	/*  */
 	APP.initSelect2({element: '.select-paciente3', placeholder: 'Seleccione un Paciente'});
 
-	pacientesUI.initBuscarPaciente('.select-paciente2');
+	pacientesUI.initBuscarPaciente('.select-paciente2');//- No anda, arreglar
+
+	empleadosUI.initBuscarDoctor('.select-doctor');
 
 	pacientesUI.initBuscarPaciente('.select-paciente');
 
