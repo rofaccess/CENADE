@@ -5,11 +5,10 @@ class FichaFonoaudiologica < ActiveRecord::Base
   belongs_to :area
   belongs_to :doctor, :foreign_key => :doctor_id
 
-
-  before_create :cargar_area_id
   # Autoincremente el numero de ficha
   protokoll :nro_ficha, pattern: '#'
 
+  before_create :cargar_area_id
 
 	def cargar_area_id
 		area= Area.where(nombre: 'Fonoaudiología').first.id
