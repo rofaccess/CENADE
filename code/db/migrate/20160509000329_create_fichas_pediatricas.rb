@@ -17,7 +17,6 @@ class CreateFichasPediatricas < ActiveRecord::Migration
 		    t.string :nacidos_muertos   ,default: '' ,limit: Domain::DESC100,   null: true
 		    t.string :partos_anteriores ,default: '' ,limit: Domain::DESC100,   null: true
 		    t.string :gru_san_paciente  ,default: '' ,limit: Domain::DESC10,   null: true
-		    t.string :gru_san_paciente  ,default: '' ,limit: Domain::DESC10,   null: true
 		    t.string :rh_paciente       ,default: '' ,limit: Domain::DESC10,   null: true
 		    t.string :coombs       	 	,default: '' ,limit: Domain::DESC10,   null: true
 		    t.string :gru_san_padre     ,default: '' ,limit: Domain::DESC10,   null: true
@@ -28,7 +27,7 @@ class CreateFichasPediatricas < ActiveRecord::Migration
 		    t.string :riesgos       	,default: '' ,limit: Domain::DESC50,   null: true
 		    t.string :tipo_parto       	,default: '' ,limit: Domain::DESC50,   null: true
 		    t.string :anestesia       	,default: '' ,limit: Domain::DESC50,   null: true
-		    t.string :anelgesia       	,default: '' ,limit: Domain::DESC50,   null: true
+		    t.string :analgesia       	,default: '' ,limit: Domain::DESC50,   null: true
 		    t.string :neonatal_cianosis ,default: '' ,limit: Domain::DESC50,   null: true
 		    t.string :ictericia_antes   ,default: '' ,limit: Domain::DESC50,   null: true
 		    t.string :ictericia_despues ,default: '' ,limit: Domain::DESC50,   null: true
@@ -51,9 +50,9 @@ class CreateFichasPediatricas < ActiveRecord::Migration
 		    t.string :pb       	 		,default: '' ,limit: Domain::DESC50,   null: true
 		    t.string :pt1       	 	,default: '' ,limit: Domain::DESC50,   null: true
 
-		    t.string :alimentacion_natural		,default: '' ,limit: Domain::DESC50,   null: true
+		    t.string :alimentacion_natural		,default: '' ,limit: Domain::DESC100,   null: true
 		    t.string :duracion       	,default: '' ,limit: Domain::DESC50,   null: true
-		    t.string :alimentacion_artificial   ,default: '' ,limit: Domain::DESC50,   null: true
+		    t.string :alimentacion_artificial   ,default: '' ,limit: Domain::DESC100,   null: true
 
 		    t.string :bcg       	 	,default: '' ,limit: Domain::DESC50,   null: true
 		    t.string :antisarampionosa  ,default: '' ,limit: Domain::DESC50,   null: true

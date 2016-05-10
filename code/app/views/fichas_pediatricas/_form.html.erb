@@ -25,71 +25,14 @@
 
 		<%= fich.input :doctor_id, collection: doctores.collect { |a| [a.abr_profesion+" "+a.persona_full_name, a.id] }, label: '* Profesional de la Salud', wrapper_html: { class: 'col-md-4' }, input_html:	 { class: 'required select-doctor select2'} %>
 
-		<%= fich.input :fecha, as: :string, label: '* Fecha', wrapper_html: { class: 'col-md-3'}, input_html: { class: 'datepicker required', maxLength: Domain::FECHA, value:Formatter.format_date(ficha.fecha)} %>
+		<%= fich.input :fecha, as: :string, label: '* Fecha', wrapper_html: { class: 'col-md-3'}, input_html: { class: 'datepicker dateLessSystemDate required', maxLength: Domain::FECHA, value:Formatter.format_date(ficha.fecha)} %>
 	</div>
 
 	<div id="paciente-data">
 		<%= render 'form_paciente', paciente: paciente %>
 	</div>
 
-	<h4>Datos de la Ficha</h4>
-	<hr>
-
-	<div class="row">
-		<%= fich.input :p, label: 'p', wrapper_html: { class: 'col-md-2'}, input_html: { maxLength: Domain::DESC10} %>
-
-		<%= fich.input :a, label: 'a', wrapper_html: { class: 'col-md-2'}, input_html: { maxLength: Domain::DESC10} %>
-
-		<%= fich.input :pc1, label: 'pc', wrapper_html: { class: 'col-md-2'}, input_html: { maxLength: Domain::DESC10} %>
-
-		<%= fich.input :pt1, label: 'pt', wrapper_html: { class: 'col-md-2'}, input_html: { maxLength: Domain::DESC10} %>
-
-		<%= fich.input :pa, label: 'pa', wrapper_html: { class: 'col-md-2'}, input_html: { maxLength: Domain::DESC10} %>
-	</div>
-	<div class="row">
-		<%= fich.input :control, label: 'Control Cefálico - Control de Tronco - Equilibrio - Marcha', wrapper_html: { class: 'col-md-12'}, input_html: { maxLength: Domain::DESC250} %>
-	</div>
-
-	<h4>Antecedentes Gestacionales y Obstétricos</h4>
-	<hr>
-	<div class="row">
-		<%= fich.input :gestacion, label: 'Gestación', wrapper_html: { class: 'col-md-3'}, input_html: { maxLength: Domain::DESC100} %>
-
-		<%= fich.input :paridad, label: 'Paridad', wrapper_html: { class: 'col-md-3'}, input_html: { maxLength: Domain::DESC100} %>
-
-		<%= fich.input :abortos, label: 'Abortos', wrapper_html: { class: 'col-md-3'}, input_html: { maxLength: Domain::DESC100} %>
-
-		<%= fich.input :nacidos_muertos, label: 'Nacidos Muertos', wrapper_html: { class: 'col-md-3'}, input_html: { maxLength: Domain::DESC100} %>
-	</div>
-
-	<div class="row">
-		<%= fich.input :control, label: 'Gestaciones y Partos Anteriores', wrapper_html: { class: 'col-md-12'}, input_html: { maxLength: Domain::DESC100} %>
-	</div>
-
-	<div class="row">
-		<%= fich.input :gru_san_paciente, label: 'G. Sanguíneo', wrapper_html: { class: 'col-md-3'}, input_html: { maxLength: Domain::DESC10} %>
-
-		<%= fich.input :rh_paciente, label: 'Rh', wrapper_html: { class: 'col-md-2'}, input_html: { maxLength: Domain::DESC10} %>
-
-		<%= fich.input :coombs, label: 'Coombs', wrapper_html: { class: 'col-md-2'}, input_html: { maxLength: Domain::DESC10} %>
-
-		<%= fich.input :gru_san_padre, label: 'Padre G. Sanguíneo', wrapper_html: { class: 'col-md-3'}, input_html: { maxLength: Domain::DESC10} %>
-
-		<%= fich.input :rh_padre, label: 'Rh', wrapper_html: { class: 'col-md-2'}, input_html: { maxLength: Domain::DESC10} %>
-	</div>
-
-	<h4>Gestación Actual</h4>
-	<hr>
-
-	<div class="row">
-		<%= fich.input :fum, label: 'F.U.M', wrapper_html: { class: 'col-md-3'}, input_html: { maxLength: Domain::DESC50} %>
-
-		<%= fich.input :fp, label: 'FP', wrapper_html: { class: 'col-md-3'}, input_html: { maxLength: Domain::DESC50} %>
-
-		<%= fich.input :duracion, label: 'Duración', wrapper_html: { class: 'col-md-3'}, input_html: { maxLength: Domain::DESC50} %>
-
-		<%= fich.input :riesgos, label: 'Riesgos', wrapper_html: { class: 'col-md-3'}, input_html: { maxLength: Domain::DESC50} %>
-	</div>
+	<%= render 'compartido/form_fields_ficha', fich: fich %>
 
 	<div class="form-button">
 		<%= fich.submit 'Guardar', class: 'btn btn-custom'%>
