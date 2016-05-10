@@ -67,6 +67,15 @@ class FichasFonoaudiologicasController < ApplicationController
 		end
 	end
 
+	def destroy
+		respond_to do |format|
+			if @ficha.destroy
+				format.html { redirect_to fichas_fonoaudiologicas_path, flash: {notice: "Se ha eliminado la ficha de #{@ficha.paciente.persona_full_name}."}}
+			else
+			   	format.html { redirect_to fichas_fonoaudiologicas_path, flash: {alert: "No se ha podido eliminar la ficha de #{@ficha.paciente.persona_full_name}."}}
+			end
+		end
+	end
 
   	def check_paciente_has_ficha
   		ficha = FichaFonoaudiologica.find_by_paciente_id(params[:paciente_id])

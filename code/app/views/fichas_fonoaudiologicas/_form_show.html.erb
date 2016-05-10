@@ -11,34 +11,33 @@
 		<%= link_to '<i class="fa fa-print" data-toggle="tooltip" title="Imprimir Ficha"></i> '.html_safe, fichas_fonoaudiologicas_print_ficha_path(ficha_id: ficha.id, :format => :pdf), target: '_blank'%>
 
 	</div>
-
 </div>
 
 <div class="form-content2">
 
 	<%= simple_form_for ficha, html: {class: 'form-ficha2'}, remote: true do |f|%>
-
-
 	<h4 class="titulo-ficha">FICHA FONOAUDIOLOGIA </h4>
 
 	<div class="row">
-
 		<h4 class="col-md-9"><strong>Profesional de la Salud: </strong> <%= ficha.doctor.abr_profesion+' '+ficha.doctor.persona_full_name%> </h4>
-
   		<h4 class="col-md-3"><strong> Fecha: </strong> <%= Formatter.format_date(ficha.fecha)%> </h4>
   	</div>
 
 	<div id="paciente-data">
-		<%= render 'form_paciente' %>
+		<%= render 'form_paciente', paciente: paciente %>
 	</div>
 
-		<h4>Datos de la Ficha</h4>
-		<hr>
+	<div id="encargado-data">
+		<%= render 'form_encargado', paciente: paciente%>
+	</div>
 
-		<div class="row">
-			<%= f.input :escolaridad, label: 'Grado que cursa', wrapper_html: { class: 'col-md-6'}, input_html: { disabled: true}  %>
-			<%= f.input :escuela, label: 'Escuela', wrapper_html: { class: 'col-md-6'}, input_html: { disabled: true}  %>
-		</div>
+	<h4>Datos de la Ficha</h4>
+	<hr>
+
+	<div class="row">
+		<%= f.input :escolaridad, label: 'Grado que cursa', wrapper_html: { class: 'col-md-6'}, input_html: { disabled: true}  %>
+		<%= f.input :escuela, label: 'Escuela', wrapper_html: { class: 'col-md-6'}, input_html: { disabled: true}  %>
+	</div>
 
     <%end%>
 </div>
