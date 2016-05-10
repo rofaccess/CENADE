@@ -1,91 +1,91 @@
 
-  <div class="page-title page-title-con-sidebar">
-    <%=@nutri_pediatrica.id.nil? ? 'Nueva Ficha' : 'Editar Ficha'%> 
+	<div class="page-title page-title-con-sidebar">
+		<%=nutri_pediatrica.id.nil? ? 'Nueva Ficha' : 'Editar Ficha'%>
 
-    <div class="tool">
-      <%= link_to '<i class="fa fa-list" data-toggle="tooltip" title="Lista de Fichas"></i> '.html_safe, fichas_nutricionales_pediatricas_path %> 
-    </div>
+		<div class="tool">
+			<%= link_to '<i class="fa fa-list" data-toggle="tooltip" title="Lista de Fichas"></i> '.html_safe, fichas_nutricionales_pediatricas_path %>
+		</div>
 
-  </div>
-  <div class="form-content2">    
-    <%= simple_form_for @nutri_pediatrica, html: {class: 'form-ficha2'} do |ficha|%>
-    <%= hidden_field_tag :ficha_id, @nutri_pediatrica.id, class: 'ficha-id'%>
-    
-    <h4 class="titulo-ficha">FICHA NUTRICIONAL PEDIÁTRICA</h4>
-    
-    <div class="row">   
-      <%= ficha.input :paciente_id, collection: Paciente.all.collect { |a| [a.persona_full_name, a.id] }, label: '* Paciente', wrapper_html: { class: @paciente.id.nil? ? 'col-md-4' : 'col-md-5' }, input_html: { class: 'required select-paciente select2 uniquePacienteFicha paciente-id', disabled: @paciente.id.nil? ? false : true} %> 
-        
-        <% if @paciente.id.nil? %> 
-          <%= link_to '<i class="fa fa-plus"></i> '.html_safe, pacientes_new_modal_path(root: 'fichas_nutricionales_pediatricas', encargado: false), class: 'btn btn-custom btn-add col-md-1', remote: true %> 
-        <% end %>
-        
-          
-        <%= ficha.input :profesional_salud_id, collection: @doctores.collect { |a| [a.abr_profesion+" "+a.persona_full_name, a.id] }, label: '* Profesional de la Salud', wrapper_html: { class: 'col-md-4' }, input_html:   { class: 'required select-doctor select2'} %>        
+	</div>
+	<div class="form-content2">
+		<%= simple_form_for nutri_pediatrica, html: {class: 'form-ficha2'} do |ficha|%>
+		<%= hidden_field_tag :ficha_id, nutri_pediatrica.id, class: 'ficha-id'%>
 
-        <%= ficha.input :fecha, as: :string, label: '* Fecha', wrapper_html: { class: 'col-md-3'}, input_html: { class: 'datepicker required', maxLength: Domain::FECHA, value:Formatter.format_date(@nutri_pediatrica.fecha)} %>
-    </div>  
-    <div id="paciente-data">
-      <%= render 'form_paciente' %>
-    </div>
-    <h4>I- Antecedentes Prenatal</h4>
-      <hr> 
-      <div class="row">
-      <%= ficha.input :problema_embarazo, as: :text, label:  @titulos_largos.first.titulo, wrapper_html: { class: 'col-md-12'}, input_html: { maxLength: Domain::DESC250} %>    
-    </div>
-    <div class="row">
-      <%= ficha.input :control_prenatal, label:  @titulos_largos.find(2).titulo, wrapper_html: { class: 'col-md-12'}, input_html: { maxLength: Domain::DESC250} %>    
-    </div>
-    <div class="row">
-      <%= ficha.input :alimentacion_embarazo, as: :text, label:  @titulos_largos.find(3).titulo, wrapper_html: { class: 'col-md-12'}, input_html: { maxLength: Domain::DESC250} %>    
-    </div>
-    <div class="row">
-      <%= ficha.input :otros_datos, label:  'Otros datos', wrapper_html: { class: 'col-md-12'}, input_html: { maxLength: Domain::DESC250} %>    
-    </div>
-    <h4>II- Antecedentes del Parto</h4>
-      <hr>
-      <div class="row">
-      <%= ficha.input :parto_vaginal_cesarea, label: '¿Tuvo parto vaginal o cesárea?' , wrapper_html: { class: 'col-md-6'}, input_html: { maxLength: Domain::DESC50} %>   
-      <%= ficha.input :termino_pretermino, label: '¿Fue de término o pretermino?' , wrapper_html: { class: 'col-md-6'}, input_html: { maxLength: Domain::DESC50} %>   
-    </div>
-    <div class="row">
-      <%= ficha.input :lugar_parto, label: 'Lugar del Parto' , wrapper_html: { class: 'col-md-7'}, input_html: { maxLength: Domain::DESC100} %>   
-      <%= ficha.input :como_fue_parto, label: '¿Cómo fue el parto?' , wrapper_html: { class: 'col-md-5'}, input_html: { maxLength: Domain::DESC100} %>    
-    </div>  
-    <h4>III- Antecedentes Postnatal</h4>
-      <hr>
-      
-      <div class="row">
-      <%= ficha.input :asfixia_lloro, as: :text, label: @titulos_largos.find(4).titulo  , wrapper_html: { class: 'col-md-12'}, input_html: { maxLength: Domain::DESC250} %> 
-    </div>
-    <div class="row">
-      <%= ficha.input :tomo_pecho, as: :text, label: @titulos_largos.find(5).titulo , wrapper_html: { class: 'col-md-12'}, input_html: { maxLength: Domain::DESC200} %>
+		<h4 class="titulo-ficha">FICHA NUTRICIONAL PEDIÁTRICA</h4>
 
-    </div>
-    <div class="row">
-      <%= ficha.input :peso_nacimiento, label: 'Peso de nacimiento', wrapper_html: { class: 'col-md-4'}, input_html: { maxLength: Domain::DESC50} %>
-      <%= ficha.input :alimentacion_complementaria, label: @titulos_largos.find(6).titulo, wrapper_html: { class: 'col-md-8'}, input_html: { maxLength: Domain::DESC100} %>
+		<div class="row">
+			<%= ficha.input :paciente_id, collection: Paciente.all.collect { |a| [a.persona_full_name, a.id] }, label: '* Paciente', wrapper_html: { class: paciente.id.nil? ? 'col-md-4' : 'col-md-5' }, input_html: { class: 'required select-paciente select2 uniquePacienteFicha paciente-id', disabled: paciente.id.nil? ? false : true} %>
 
-    </div>
+				<% if paciente.id.nil? %>
+					<%= link_to '<i class="fa fa-plus"></i> '.html_safe, pacientes_new_modal_path(root: 'fichas_nutricionales_pediatricas', encargado: false), class: 'btn btn-custom btn-add col-md-1', remote: true %>
+				<% end %>
 
-    <div class="form-button">         
-      <%= ficha.submit 'Guardar', class: 'btn btn-custom'%>
-    </div>
 
-  <% end %>
+				<%= ficha.input :profesional_salud_id, collection: doctores.collect { |a| [a.abr_profesion+" "+a.persona_full_name, a.id] }, label: '* Profesional de la Salud', wrapper_html: { class: 'col-md-4' }, input_html:   { class: 'required select-doctor select2'} %>
+
+				<%= ficha.input :fecha, as: :string, label: '* Fecha', wrapper_html: { class: 'col-md-3'}, input_html: { class: 'datepicker required', maxLength: Domain::FECHA, value:Formatter.format_date(nutri_pediatrica.fecha)} %>
+		</div>
+		<div id="paciente-data">
+			<%= render 'form_paciente', paciente: paciente%>
+		</div>
+		<h4>I- Antecedentes Prenatal</h4>
+			<hr>
+			<div class="row">
+			<%= ficha.input :problema_embarazo, as: :text, label:  titulos_largos.first.titulo, wrapper_html: { class: 'col-md-12'}, input_html: { maxLength: Domain::DESC250} %>
+		</div>
+		<div class="row">
+			<%= ficha.input :control_prenatal, label:  titulos_largos.find(2).titulo, wrapper_html: { class: 'col-md-12'}, input_html: { maxLength: Domain::DESC250} %>
+		</div>
+		<div class="row">
+			<%= ficha.input :alimentacion_embarazo, as: :text, label:  titulos_largos.find(3).titulo, wrapper_html: { class: 'col-md-12'}, input_html: { maxLength: Domain::DESC250} %>
+		</div>
+		<div class="row">
+			<%= ficha.input :otros_datos, label:  'Otros datos', wrapper_html: { class: 'col-md-12'}, input_html: { maxLength: Domain::DESC250} %>
+		</div>
+		<h4>II- Antecedentes del Parto</h4>
+			<hr>
+			<div class="row">
+			<%= ficha.input :parto_vaginal_cesarea, label: '¿Tuvo parto vaginal o cesárea?' , wrapper_html: { class: 'col-md-6'}, input_html: { maxLength: Domain::DESC50} %>
+			<%= ficha.input :termino_pretermino, label: '¿Fue de término o pretermino?' , wrapper_html: { class: 'col-md-6'}, input_html: { maxLength: Domain::DESC50} %>
+		</div>
+		<div class="row">
+			<%= ficha.input :lugar_parto, label: 'Lugar del Parto' , wrapper_html: { class: 'col-md-7'}, input_html: { maxLength: Domain::DESC100} %>
+			<%= ficha.input :como_fue_parto, label: '¿Cómo fue el parto?' , wrapper_html: { class: 'col-md-5'}, input_html: { maxLength: Domain::DESC100} %>
+		</div>
+		<h4>III- Antecedentes Postnatal</h4>
+			<hr>
+
+			<div class="row">
+			<%= ficha.input :asfixia_lloro, as: :text, label: titulos_largos.find(4).titulo  , wrapper_html: { class: 'col-md-12'}, input_html: { maxLength: Domain::DESC250} %>
+		</div>
+		<div class="row">
+			<%= ficha.input :tomo_pecho, as: :text, label: titulos_largos.find(5).titulo , wrapper_html: { class: 'col-md-12'}, input_html: { maxLength: Domain::DESC200} %>
+
+		</div>
+		<div class="row">
+			<%= ficha.input :peso_nacimiento, label: 'Peso de nacimiento', wrapper_html: { class: 'col-md-4'}, input_html: { maxLength: Domain::DESC50} %>
+			<%= ficha.input :alimentacion_complementaria, label: titulos_largos.find(6).titulo, wrapper_html: { class: 'col-md-8'}, input_html: { maxLength: Domain::DESC100} %>
+
+		</div>
+
+		<div class="form-button">
+			<%= ficha.submit 'Guardar', class: 'btn btn-custom'%>
+		</div>
+
+	<% end %>
 
 </div>
 
-<script type="text/javascript"> 
-    
-  fichasNutriPediatricasUI.initScript();
-  pacientesUI.checkPacienteHasFicha("<%=fichas_nutricionales_pediatricas_check_paciente_has_ficha_path%>");
+<script type="text/javascript">
 
-  <% if !flash.notice.blank? %> 
-    var n = noty({text: '<%=notice%>', type: 'success'});   
-  <% end %>
-  
-  <% if !flash.alert.blank?%> 
-    var n = noty({text: '<%=alert%>', type: 'error'});
-  <% end %>
+	fichasNutriPediatricasUI.initScript();
+	pacientesUI.checkPacienteHasFicha("<%=fichas_nutricionales_pediatricas_check_paciente_has_ficha_path%>");
+
+	<% if !flash.notice.blank? %>
+		var n = noty({text: '<%=notice%>', type: 'success'});
+	<% end %>
+
+	<% if !flash.alert.blank?%>
+		var n = noty({text: '<%=alert%>', type: 'error'});
+	<% end %>
 </script>
