@@ -110,7 +110,7 @@ class FichasFonoaudiologicasController < ApplicationController
 	  			render pdf: "Ficha",
 	  			template: 	"fichas_fonoaudiologicas/print_ficha.pdf.erb",
 	  			layout: 	"pdf.html",
-	  			title:    	'Ficha de Fonoaudiología'
+	  			title:    	'Ficha Fonoaudiología'
 	  		end
 	  	end
   	end

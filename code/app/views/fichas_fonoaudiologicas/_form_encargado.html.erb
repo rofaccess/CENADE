@@ -5,9 +5,9 @@
     <div class="row">
       <%= encar.input :padre_nombre, as: :string, label: 'Nombre del Padre', wrapper_html: { class: 'col-md-5'}, input_html: {value: paciente.encargado_padre_nombre, disabled: true}, required: false %>
 
-      <%= encar.input :padre_edad, as: :string, label: 'Edad', wrapper_html: { class: 'col-md-2'}, input_html: {value: paciente.encargado_padre_edad, disabled: true}, required: false %>
+      <%= encar.input :padre_edad, as: :string, label: 'Edad', wrapper_html: { class: 'col-md-1'}, input_html: {value: paciente.encargado_padre_edad, disabled: true}, required: false %>
 
-      <%= encar.input :padre_prof_act_ant, as: :string, label: 'Profesion Actual y Anterior', wrapper_html: { class: 'col-md-5'}, input_html: {value: paciente.encargado_padre_prof_act_ant , disabled: true}, required: false %>
+      <%= encar.input :padre_prof_act_ant, as: :string, label: 'Profesion Actual y Anterior', wrapper_html: { class: 'col-md-6'}, input_html: {value: paciente.encargado_padre_prof_act_ant , disabled: true}, required: false %>
 
     </div>
     <div class="row">
@@ -15,17 +15,17 @@
 
       <%= encar.input :madre_edad, as: :string, label: 'Edad', wrapper_html: { class: 'col-md-1'}, input_html: {value: paciente.encargado_madre_edad, disabled: true}, required: false %>
 
-      <%= encar.input :madre_num_hijos, as: :string, label: 'Num de Hijos', wrapper_html: { class: 'col-md-2'}, input_html: {value: paciente.encargado_madre_num_hijos, disabled: true}, required: false %>
+      <%= encar.input :madre_num_hijos, as: :string, label: 'Hijos', wrapper_html: { class: 'col-md-1'}, input_html: {value: paciente.encargado_madre_num_hijos, disabled: true}, required: false %>
 
-      <%= encar.input :madre_prof_act_ant, as: :string, label: 'Profesion Actual y Anterior', wrapper_html: { class: 'col-md-4'}, input_html: {value: paciente.encargado_madre_prof_act_ant , disabled: true}, required: false %>
+      <%= encar.input :madre_prof_act_ant, as: :string, label: 'Profesion Actual y Anterior', wrapper_html: { class: 'col-md-5'}, input_html: {value: paciente.encargado_madre_prof_act_ant , disabled: true}, required: false %>
 
     </div>
     <div class="row">
       <%= encar.input :encargado_nombre, as: :string, label: 'Nombre del Encargado', wrapper_html: { class: 'col-md-5'}, input_html: {value: paciente.encargado_encargado_nombre, disabled: true}, required: false %>
 
-      <%= encar.input :encargado_edad, as: :string, label: 'Edad', wrapper_html: { class: 'col-md-2'}, input_html: {value: paciente.encargado_encargado_edad, disabled: true}, required: false %>
+      <%= encar.input :encargado_edad, as: :string, label: 'Edad', wrapper_html: { class: 'col-md-1'}, input_html: {value: paciente.encargado_encargado_edad, disabled: true}, required: false %>
 
-      <%= encar.input :encargado_prof_act_ant, as: :string, label: 'Profesion Actual y Anterior', wrapper_html: { class: 'col-md-5'}, input_html: {value: paciente.encargado_encargado_prof_act_ant , disabled: true}, required: false %>
+      <%= encar.input :encargado_prof_act_ant, as: :string, label: 'Profesion Actual y Anterior', wrapper_html: { class: 'col-md-6'}, input_html: {value: paciente.encargado_encargado_prof_act_ant , disabled: true}, required: false %>
 
     </div>
 <% end %>

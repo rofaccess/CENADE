@@ -19,3 +19,6 @@
       <%= p.input :telefono, as: :string, wrapper_html: { class: 'col-md-3'}, input_html: {value: paciente.persona_telefono, disabled: true}, required: false %>
     </div>
 <% end %>
+<div id="encargado-data">
+    <%= render 'fichas_fonoaudiologicas/form_encargado', paciente: paciente%>
+</div>
