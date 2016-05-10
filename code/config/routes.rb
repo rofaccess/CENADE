@@ -1,4 +1,14 @@
 Rails.application.routes.draw do
+
+  get 'consultas_nutricionales_pediatricas/check_paciente_has_ficha' => 'consultas_nutricionales_pediatricas#check_paciente_has_ficha'
+  get 'consultas_nutricionales_pediatricas/print_ficha'=>'consultas_nutricionales_pediatricas#print_ficha'
+  resources :consultas_nutricionales_pediatricas, :except => [:destroy] do
+    collection do
+      match 'buscar' => 'consultas_nutricionales_pediatricas#buscar', via: [:get, :post], as: :search
+      get 'get_paciente' => 'consultas_nutricionales_pediatricas#get_paciente'
+    end
+  end
+
   get 'fichas_pediatricas/check_paciente_has_ficha' => 'fichas_pediatricas#check_paciente_has_ficha'
   get 'fichas_pediatricas/print_ficha' => 'fichas_pediatricas#print_ficha'
   resources :fichas_pediatricas do
