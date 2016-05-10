@@ -1,80 +1,116 @@
-<h3 align= "center">FONOAUDIOLOGÍA</h3></br></br>
-<div class = "form-content">
-	<div class = "form-font">
-	  <div class= "row col-md-12">
-	  	<h4>Datos Personales</h4><hr>
-	  	<label class="control-label">Fecha de Ingreso: </label>
-		<input size="10" class= "border-input" value="<%= @ficha.fecha.strftime("%d/%m/%Y")%>"></br>	
+<h4 class="ficha-title">FICHA FONOAUDIOLOGIA</h4>
 
-		<label>Nombre y Apellido: </label> 
-		<input size="42" class= "border-input" value="<%= @ficha.paciente.persona.nombre%> <%= 											@ficha.paciente.persona.apellido%>"></br>	
-	</div>
-	
-	<div class= "row col-md-12">
-		<label >Fecha de nacimiento: </label> 
-		<input size="10" class= "border-input" value="<%= @ficha.paciente.persona.fecha_nacimiento.strftime("%d/%m/%Y") %>"></br>
-		<label class="control-label">Edad: </label>
-		<input size="3" class= "border-input" value="<%= @ficha.paciente.persona.edad %>"></br>
-		<label >Sexo: </label>
-		<input size="7" class= "border-input" value="<%= @ficha.paciente.persona.sexo %>"></br>	
-	</div>
-	
-	<div class= "row col-md-12">
-		<label>Direccion </label> 
-		<input size="40" class= "border-input" value="<%= @ficha.paciente.persona.direccion%>"></br>
-	
-		<label >Teléfono: </label>
-		<input size="12" class= "border-input" value="<%= @ficha.paciente.persona.telefono %>"></br>
+<h4>Datos Personales</h4>
+<hr>
+
+<div class="row">
+	<div class="form-group col-md-6">
+		<label class="control-label">Nombres y Apellidos</label>
+		<div class="data"> <%=@ficha.paciente_persona_full_name%> </div>
 	</div>
 
-	<div class= "row col-md-12">
-		<label class="control-label">Grado que Cursa: </label> 
-		<input size="33" class= "border-input" value="<%= @ficha.escolaridad%>"></br>
-		<label class="control-label">Escuela: </label> 
-		<input size="25" class= "border-input" value="<%= @ficha.escuela%>"></br>
+	<div class="form-group col-md-3">
+		<label class="control-label">Fecha de Nac.</label>
+		<div class="data"> <%=Formatter.format_date(@ficha.paciente_persona_fecha_nacimiento)%> </div>
 	</div>
-	</br>
 
-	<% encargado= @ficha.paciente.encargado%>
-	<%if !encargado.nil? %>
-		<h4>Datos de los Padres o Encargados</h4>
-		<hr>
-		<div class= "row col-md-12">
-			<label class="control-label">Nombre de la Madre: </label> 
-			<input size="25" class= "border-input" value="<%= encargado.madre_nombre %>"></br>
-			<label class="control-label">Edad: </label>
-			<input size="3" class= "border-input" value="<%= encargado.madre_edad%>"></br>
-			<label class="control-label">Numero de Hijos: </label> 
-			<input size="2" class= "border-input" value="<%= encargado.madre_num_hijos %>"></br>
-			<label class="control-label">Profesión Actual y Anterior: </label> 
-			<input size="17" class= "border-input" value="<%= encargado.madre_prof_act_ant %>"></br>
-		</div>
-		</br>
-		<div class= "row col-md-12">
-		
-			<label class="control-label">Nombre del Padre: </label> 
-			<input size="39" class= "border-input" value="<%= encargado.padre_nombre%>"></br>
-
-			<label class="control-label">Edad: </label>
-			<input size="3" class= "border-input" value="<%= encargado.padre_edad %>"></br>
-
-			<label class="control-label">Profesión Actual y Anterior: </label> 
-			<input size="23" class= "border-input" value="<%= encargado.padre_prof_act_ant %>"></br>
-		
-		</div>
-		</br>
-		<div class= "row col-md-12">
-		
-			<label class="control-label">Nombre del Encargado: </label> 
-			<input size="39" class= "border-input" value="<%= encargado.encargado_nombre%>"></br>
-
-			<label class="control-label">Edad: </label>
-			<input size="3" class= "border-input" value="<%= encargado.encargado_edad %>"></br>
-
-			<label class="control-label">Profesión Actual y Anterior: </label> 
-			<input size="23" class= "border-input" value="<%= encargado.encargado_prof_act_ant %>"></br>
-		
-		</div>
-	<%end%>
+	<div class="form-group col-md-3">
+		<label class="control-label">Edad</label>
+		<div class="data"> <%=@ficha.paciente_persona_edad%> </div>
+	</div>
 </div>
+<div class="row">
+
+	<div class="form-group col-md-3">
+		<label class="control-label">Sexo</label>
+		<div class="data"> <%=@ficha.paciente_persona_sexo%> </div>
+	</div>
+
+	<div class="form-group col-md-6">
+		<label class="control-label">Dirección</label>
+		<div class="data"> <%=@ficha.paciente_persona_direccion%> </div>
+	</div>
+
+	<div class="form-group col-md-3">
+		<label class="control-label">Teléfono</label>
+		<div class="data"> <%=@ficha.paciente_persona_telefono%> </div>
+	</div>
+
+</div>
+<h4>Datos de los Padres o Encargados</h4>
+<hr>
+<div class="row">
+
+	<div class="form-group col-md-5">
+		<label class="control-label">Nombre del Padre</label>
+		<div class="data"> <%=@ficha.paciente_encargado_padre_nombre%> </div>
+	</div>
+
+	<div class="form-group col-md-1">
+		<label class="control-label">Edad</label>
+		<div class="data"> <%=@ficha.paciente_encargado_padre_edad%> </div>
+	</div>
+
+	<div class="form-group col-md-6">
+		<label class="control-label">Profesión Actual y Anterior</label>
+		<div class="data"> <%=@ficha.paciente_encargado_padre_prof_act_ant%> </div>
+	</div>
+
+</div>
+<div class="row">
+
+	<div class="form-group col-md-5">
+		<label class="control-label">Nombre de la Madre</label>
+		<div class="data"> <%=@ficha.paciente_encargado_madre_nombre%> </div>
+	</div>
+
+	<div class="form-group col-md-1">
+		<label class="control-label">Edad</label>
+		<div class="data"> <%=@ficha.paciente_encargado_madre_edad%> </div>
+	</div>
+	<div class="form-group col-md-1">
+		<label class="control-label">Hijos</label>
+		<div class="data"> <%=@ficha.paciente_encargado_madre_num_hijos%> </div>
+	</div>
+
+	<div class="form-group col-md-5">
+		<label class="control-label">Profesión Actual y Anterior</label>
+		<div class="data"> <%=@ficha.paciente_encargado_madre_prof_act_ant%> </div>
+	</div>
+
+</div>
+<div class="row">
+
+	<div class="form-group col-md-5">
+		<label class="control-label">Nombre del Encargado</label>
+		<div class="data"> <%=@ficha.paciente_encargado_encargado_nombre%> </div>
+	</div>
+
+	<div class="form-group col-md-1">
+		<label class="control-label">Edad</label>
+		<div class="data"> <%=@ficha.paciente_encargado_encargado_edad%> </div>
+	</div>
+
+	<div class="form-group col-md-6">
+		<label class="control-label">Profesión Actual y Anterior</label>
+		<div class="data"> <%=@ficha.paciente_encargado_encargado_prof_act_ant%> </div>
+	</div>
+
+</div>
+
+<h4>Datos de la Ficha</h4>
+<hr>
+
+<div class="row">
+	<div class="form-group col-md-6">
+		<label class="control-label">Grado que cursa</label>
+		<div class="data"> <%=@ficha.escolaridad%> </div>
+	</div>
+
+	<div class="form-group col-md-6">
+		<label class="control-label">Escuela</label>
+		<div class="data"> <%=@ficha.escuela%> </div>
+	</div>
+</div>
+
 
