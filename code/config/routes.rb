@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   get 'fichas_pediatricas/check_paciente_has_ficha' => 'fichas_pediatricas#check_paciente_has_ficha'
   get 'fichas_pediatricas/print_ficha' => 'fichas_pediatricas#print_ficha'
   resources :fichas_pediatricas do
@@ -44,7 +45,7 @@ Rails.application.routes.draw do
     end
   end
 
-  get 'fichas_fonoaudiologicas_check_paciente_id' => 'fichas_fonoaudiologicas#check_paciente_id'
+  get 'fichas_fonoaudiologicas/check_paciente_has_ficha' => 'fichas_fonoaudiologicas#check_paciente_has_ficha'
   get 'fichas_fonoaudiologicas/print_ficha' => 'fichas_fonoaudiologicas#print_ficha'
   resources :fichas_fonoaudiologicas do
     collection do
