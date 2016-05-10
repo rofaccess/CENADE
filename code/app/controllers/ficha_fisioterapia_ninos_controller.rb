@@ -35,7 +35,7 @@ class FichaFisioterapiaNinosController < ApplicationController
         else
           flash.now[:alert] = "No se ha podido guardar la Ficha"
         end
-        
+
         format.html { render "edit"}
         format.js { render "edit"}
 
@@ -54,7 +54,7 @@ class FichaFisioterapiaNinosController < ApplicationController
 
         format.html { redirect_to ficha_fisioterapia_nino_path, notice: 'Ficha actualizado exitosamente'}
       else
-        
+
         if @fisio_nino.errors.full_messages.any?
           flash.now[:alert] = @fisio_nino.errors.full_messages.first
         else
@@ -63,7 +63,7 @@ class FichaFisioterapiaNinosController < ApplicationController
         format.html { render action: "edit"}
         format.js { render action: "edit"}
       end
-      
+
     end
   end
 
@@ -74,21 +74,21 @@ class FichaFisioterapiaNinosController < ApplicationController
   # Checkea que un paciente ya no tenga una ficha en Fisio Niños
   def check_paciente_id
     fisio_nino = FichaFisioterapiaNino.find_by_paciente_id(params[:paciente_id])
-      
+
     render json: (fisio_nino.nil? || fisio_nino.id == params[:id].to_i) ? true : "El Paciente ya posee una Ficha".to_json
   end
 
   #busca el paciente seleccionado en la base de datos
   def get_paciente
     @paciente= Paciente.find(params[:id])
-      
+
   end
 
   #Trae la fichas segun la busqueda y página
   def get_ficha_fisioterapia_ninos
     @search = FichaFisioterapiaNino.ransack(params[:q])
     @fisio_ninos= @search.result.order('nro_ficha').page(params[:page])
-  end 
+  end
 
   #metodo creado para el filtro
   def buscar
@@ -97,7 +97,7 @@ class FichaFisioterapiaNinosController < ApplicationController
   end
 
   def print_ficha
-      @ficha = FichaFisioterapiaNino.find params[:ficha_id]      
+      @ficha = FichaFisioterapiaNino.find params[:ficha_id]
       respond_to do |format|
         format.pdf do
           render :pdf => "Ficha",
@@ -108,13 +108,13 @@ class FichaFisioterapiaNinosController < ApplicationController
     end
   def set_fisionino
   	@fisio_nino= FichaFisioterapiaNino.find(params[:id])
-  end 
+  end
   def set_consulta
     @consultas= Consulta.where(area_id: @fisio_nino.area_id, paciente_id: @fisio_nino.paciente_id).limit(9).order(id: :desc)
-  end 
+  end
 
   def fisio_nino_params
   	params.require(:ficha_fisioterapia_nino).permit(:area_id, :paciente_id, :doctor_id, :control_embarazo, :edad_gestacional,
      				:tipo_parto, :peso_nacer, :apgar, :antecedentes_familiares, :condicion_general,:fecha, :nro_ficha)
-  end 
+  end
 end
