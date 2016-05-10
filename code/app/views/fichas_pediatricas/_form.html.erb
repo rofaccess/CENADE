@@ -53,15 +53,13 @@
 	<h4>Antecedentes Gestacionales y Obstétricos</h4>
 	<hr>
 	<div class="row">
-		<%= fich.input :gestacion, label: 'Gestación', wrapper_html: { class: 'col-md-6'}, input_html: { maxLength: Domain::DESC100} %>
+		<%= fich.input :gestacion, label: 'Gestación', wrapper_html: { class: 'col-md-3'}, input_html: { maxLength: Domain::DESC100} %>
 
-		<%= fich.input :paridad, label: 'Paridad', wrapper_html: { class: 'col-md-6'}, input_html: { maxLength: Domain::DESC100} %>
-	</div>
+		<%= fich.input :paridad, label: 'Paridad', wrapper_html: { class: 'col-md-3'}, input_html: { maxLength: Domain::DESC100} %>
 
-	<div class="row">
-		<%= fich.input :abortos, label: 'Abortos', wrapper_html: { class: 'col-md-6'}, input_html: { maxLength: Domain::DESC100} %>
+		<%= fich.input :abortos, label: 'Abortos', wrapper_html: { class: 'col-md-3'}, input_html: { maxLength: Domain::DESC100} %>
 
-		<%= fich.input :nacidos_muertos, label: 'Nacidos Muertos', wrapper_html: { class: 'col-md-6'}, input_html: { maxLength: Domain::DESC100} %>
+		<%= fich.input :nacidos_muertos, label: 'Nacidos Muertos', wrapper_html: { class: 'col-md-3'}, input_html: { maxLength: Domain::DESC100} %>
 	</div>
 
 	<div class="row">
@@ -78,6 +76,19 @@
 		<%= fich.input :gru_san_padre, label: 'Padre G. Sanguíneo', wrapper_html: { class: 'col-md-3'}, input_html: { maxLength: Domain::DESC10} %>
 
 		<%= fich.input :rh_padre, label: 'Rh', wrapper_html: { class: 'col-md-2'}, input_html: { maxLength: Domain::DESC10} %>
+	</div>
+
+	<h4>Gestación Actual</h4>
+	<hr>
+
+	<div class="row">
+		<%= fich.input :fum, label: 'F.U.M', wrapper_html: { class: 'col-md-3'}, input_html: { maxLength: Domain::DESC50} %>
+
+		<%= fich.input :fp, label: 'FP', wrapper_html: { class: 'col-md-3'}, input_html: { maxLength: Domain::DESC50} %>
+
+		<%= fich.input :duracion, label: 'Duración', wrapper_html: { class: 'col-md-3'}, input_html: { maxLength: Domain::DESC50} %>
+
+		<%= fich.input :riesgos, label: 'Riesgos', wrapper_html: { class: 'col-md-3'}, input_html: { maxLength: Domain::DESC50} %>
 	</div>
 
 	<div class="form-button">
