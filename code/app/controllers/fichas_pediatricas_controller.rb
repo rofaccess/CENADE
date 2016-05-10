@@ -45,7 +45,7 @@ class FichasPediatricasController < ApplicationController
 	end
 
 	def edit
-		get_doctores_fisioterapia
+		get_doctores_pediatria
 	end
 
 	def update
