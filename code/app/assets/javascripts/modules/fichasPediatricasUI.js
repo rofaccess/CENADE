@@ -1,4 +1,4 @@
-var fichasFisioterapeuticasAdultosUI = (function(){
+var fichasPediatricasUI = (function(){
 	return {
 
 		initScript: function(){
@@ -8,11 +8,7 @@ var fichasFisioterapeuticasAdultosUI = (function(){
 	     	APP.initSelect2({element: '.select-paciente', placeholder: 'Seleccione un Paciente'})
 	     	APP.initSelect2({element: '.select-doctor', placeholder: 'Seleccione un Profesional'});
 
-	     	//pacientesUI.initBuscarPaciente('.select-paciente');
-	     	//empleadosUI.initBuscarDoctor('.select-doctor');
-
-	     	pacientesUI.getPaciente({element: '.select-paciente', root: 'fichas_fisioterapeuticas_adultos'});
-
+	     	pacientesUI.getPaciente({element: '.select-paciente', root: 'fichas_pediatricas'});
 
 			/* Valida el formulario antes de enviarlo */
 			$('.form-ficha2').validate();
