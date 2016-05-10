@@ -5,32 +5,25 @@ class FichaPsicopedagogica < ActiveRecord::Base
   belongs_to :area
   belongs_to :doctor, :foreign_key => :doctor_id
 
-  #cargas automáticas
+  # Autoincremente el numero de ficha
+  protokoll :nro_ficha, pattern: '#'
+
   before_create :cargar_area_id
-  before_create :actualizar_nro
 
-	def actualizar_nro
-      ficha = FichaPsicopedagogica.last
-      if ficha.nil? 
-        self.nro_ficha = 1
-      elsif  ficha.nro_ficha.nil?
-      	self.nro_ficha = 1
-      else
-        ficha_nro = ficha.nro_ficha
-        self.nro_ficha = ficha_nro+1
-      end
-    end
+  def cargar_area_id
+    area= Area.where(nombre: 'Psicopedagogía').first.id
+    self.area_id= area
+  end
 
-	def cargar_area_id
-		area= Area.where(nombre: 'Psicopedagogía').first.id
-		self.area_id= area
-	end
+  # Law of Demeter
+  delegate :persona_nombre, :persona_apellido, :persona_full_name,
+           :persona_edad,:persona_sexo, :persona_ci, :persona_nacionalidad,
+           :persona_fecha_nacimiento,:persona_telefono, :persona_direccion,
+           :encargado_padre_nombre, :encargado_padre_edad, :encargado_padre_prof_act_ant,
+           :encargado_madre_nombre, :encargado_madre_edad, :encargado_madre_prof_act_ant, :encargado_madre_num_hijos,
+           :encargado_encargado_nombre, :encargado_encargado_edad, :encargado_encargado_prof_act_ant,
+           to: :paciente, prefix: true, allow_nil: true
 
+  delegate :persona_nombre, :persona_apellido, :persona_full_name, :abr_profesion, to: :doctor, prefix: true, allow_nil: true
 
-  	def validate_paciente 
-		paciente= FichaPsicopedagogica.where("paciente_id = ?", self.paciente_id)
-		if !paciente.empty?
-			errors.add(:base, "El paciente ya posee una Ficha en Psicopedagogía")
-		end
-	end
 end

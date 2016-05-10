@@ -25,7 +25,7 @@
 
 		<%= fich.input :doctor_id, collection: doctores.collect { |a| [a.abr_profesion+" "+a.persona_full_name, a.id] }, label: '* Profesional de la Salud', wrapper_html: { class: 'col-md-4' }, input_html:	 { class: 'required select-doctor select2'} %>
 
-		<%= fich.input :fecha, as: :string, label: '* Fecha', wrapper_html: { class: 'col-md-3'}, input_html: { class: 'datepicker required', maxLength: Domain::FECHA, value:Formatter.format_date(ficha.fecha)} %>
+		<%= fich.input :fecha, as: :string, label: '* Fecha', wrapper_html: { class: 'col-md-3'}, input_html: { class: 'datepicker required dateLessSystemDate', maxLength: Domain::FECHA, value:Formatter.format_date(ficha.fecha)} %>
 	</div>
 
 	<div id="paciente-data">

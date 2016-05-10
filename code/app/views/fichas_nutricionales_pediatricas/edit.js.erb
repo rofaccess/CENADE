@@ -1,3 +1,3 @@
-$("#principal-content").html('<%= j render 'form', formats: 'html' %>');
-$('.paciente_data').html("<%= j render partial: 'paciente_form'%>");
+$("#principal-content").html('<%= j render 'form', nutri_pediatrica: @nutri_pediatrica, paciente: @paciente, doctores: @doctores, titulos_largos: @titulos_largos, formats: 'html' %>');
+
 
