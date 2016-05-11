@@ -1,4 +1,4 @@
-var fichasPediatricasUI = (function(){
+var fichasNeurologicasUI = (function(){
 	return {
 
 		initScript: function(){

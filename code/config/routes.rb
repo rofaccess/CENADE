@@ -1,4 +1,21 @@
 Rails.application.routes.draw do
+  get 'fichas_clinicos/check_paciente_has_ficha' => 'fichas_clinicos#check_paciente_has_ficha'
+  get 'fichas_clinicos/print_ficha' => 'fichas_clinicos#print_ficha'
+  resources :fichas_clinicos do
+    collection do
+      match 'buscar' => 'fichas_clinicos#buscar', via: [:get, :post], as: :search
+      get'get_paciente' => 'fichas_clinicos#get_paciente'
+    end
+  end
+
+  get 'fichas_neurologicas/check_paciente_has_ficha' => 'fichas_neurologicas#check_paciente_has_ficha'
+  get 'fichas_neurologicas/print_ficha' => 'fichas_neurologicas#print_ficha'
+  resources :fichas_neurologicas do
+    collection do
+      match 'buscar' => 'fichas_neurologicas#buscar', via: [:get, :post], as: :search
+      get'get_paciente' => 'fichas_neurologicas#get_paciente'
+    end
+  end
 
   get 'fichas_pediatricas/check_paciente_has_ficha' => 'fichas_pediatricas#check_paciente_has_ficha'
   get 'fichas_pediatricas/print_ficha' => 'fichas_pediatricas#print_ficha'

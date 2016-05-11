@@ -2,7 +2,7 @@
 	<%=ficha.id.nil? ? 'Nueva Ficha' : 'Editar Ficha'%>
 
 	<div class="tool">
-		<%= link_to '<i class="fa fa-list" data-toggle="tooltip" title="Lista de Fichas"></i> '.html_safe, fichas_pediatricas_path %>
+		<%= link_to '<i class="fa fa-list" data-toggle="tooltip" title="Lista de Fichas"></i> '.html_safe, fichas_neurologicas_path %>
 	</div>
 
 </div>
@@ -12,7 +12,7 @@
 	<%= simple_form_for ficha, html: {class: 'form-ficha2'} do |fich|%>
 	<%= hidden_field_tag :ficha_id, ficha.id, class: 'ficha-id'%>
 
-	<h4 class="titulo-ficha">FICHA DE PEDIATRÍA</h4>
+	<h4 class="titulo-ficha">FICHA DE NEUROLOGÍA</h4>
 
 	<div class="row">
 
@@ -43,9 +43,9 @@
 
 <script type="text/javascript">
 
-	fichasPediatricasUI.initScript();
+	fichasNeurologicasUI.initScript();
 
-	pacientesUI.checkPacienteHasFicha("<%=fichas_pediatricas_check_paciente_has_ficha_path%>");
+	pacientesUI.checkPacienteHasFicha("<%=fichas_neurologicas_check_paciente_has_ficha_path%>");
 
 	<% if !flash.notice.blank? %>
 		var n = noty({text: '<%=notice%>', type: 'success'});

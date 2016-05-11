@@ -14,8 +14,11 @@ class Paciente < ActiveRecord::Base
 	has_one :ficha_psicopedagogica
 	has_one :ficha_fisioterapeutica_adulto
 	has_one :ficha_odontologica
-	has_one :ficha_nuticional_pediatrica
+	has_one :ficha_nuticional_pediatrica # //- Mal escrito, igual funciona?
 	has_one :ficha_nuticional_adulto
+	has_one :ficha_clinico
+	has_one :ficha_neurologica
+	has_one :ficha_pediatrica
 
 	has_many :consultas
 

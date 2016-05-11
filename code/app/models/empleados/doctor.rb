@@ -3,14 +3,16 @@ class Doctor < Empleado
  	belongs_to :especialidad
  	belongs_to :area
  	has_many :turnos
- 	has_many :ficha_fisioterapia_ninos
+ 	has_many :ficha_fisioterapia_ninos # //- Actualizar al formato requerido
  	has_many :fichas_fonoaudiologicas
  	has_many :fichas_psicopedagogicas
  	has_many :fichas_odontologicas
  	has_many :fichas_nutricionales_pediatricas
  	has_many :fichas_nutricionales_adultos
  	has_many :fichas_psicopedagogicas
-
+ 	has_many :fichas_clinicos
+ 	has_many :fichas_neurologicas
+ 	has_many :fichas_pediatricas
 
  	has_many :consultas
 
