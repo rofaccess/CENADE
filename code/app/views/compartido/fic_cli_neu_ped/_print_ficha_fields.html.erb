@@ -1,0 +1,481 @@
+<h4 class="ficha-title">FICHA DE PEDIATRÍA</h4>
+
+<h4>Datos Personales</h4>
+<hr>
+
+<div class="row">
+	<div class="form-group col-md-8">
+		<label class="control-label">Nombre y Apellido</label>
+		<div class="data"> <%=ficha.paciente_persona_full_name%> </div>
+	</div>
+
+	<div class="form-group col-md-1">
+		<label class="control-label">Edad</label>
+		<div class="data"> <%=ficha.paciente_persona_edad%> </div>
+	</div>
+
+	<div class="form-group col-md-3">
+		<label class="control-label">Nacionalidad</label>
+		<div class="data"> <%=ficha.paciente_persona_nacionalidad%> </div>
+	</div>
+</div>
+
+<div class="row">
+
+	<div class="form-group col-md-2">
+		<label class="control-label">CI</label>
+		<div class="data"> <%=ficha.paciente_persona_ci%> </div>
+	</div>
+
+	<div class="form-group col-md-3">
+		<label class="control-label">Fecha de Nac.</label>
+		<div class="data"> <%=Formatter.format_date(ficha.paciente_persona_fecha_nacimiento)%> </div>
+	</div>
+
+	<div class="form-group col-md-3">
+		<label class="control-label">Sexo</label>
+		<div class="data"> <%=ficha.paciente_persona_sexo%> </div>
+	</div>
+
+	<div class="form-group col-md-4">
+		<label class="control-label">Telefono</label>
+		<div class="data"> <%=ficha.paciente_persona_telefono%> </div>
+	</div>
+
+</div>
+
+<div class="row">
+	<div class="form-group col-md-12">
+		<label class="control-label">Dirección</label>
+		<div class="data"> <%=ficha.paciente_persona_direccion%> </div>
+	</div>
+</div>
+
+<h4>Datos de Encargados</h4>
+<hr>
+
+<div class="row">
+	<div class="form-group col-md-6">
+		<label class="control-label">Padre</label>
+		<div class="data"> <%=ficha.paciente_encargado_padre_nombre%> </div>
+	</div>
+
+	<div class="form-group col-md-1">
+		<label class="control-label">Edad</label>
+		<div class="data"> <%=ficha.paciente_encargado_padre_edad%> </div>
+	</div>
+
+	<div class="form-group col-md-5">
+		<label class="control-label">Profesión</label>
+		<div class="data"> <%=ficha.paciente_encargado_padre_prof_act_ant%> </div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="form-group col-md-6">
+		<label class="control-label">Madre</label>
+		<div class="data"> <%=ficha.paciente_encargado_madre_nombre%> </div>
+	</div>
+
+	<div class="form-group col-md-1">
+		<label class="control-label">Edad</label>
+		<div class="data"> <%=ficha.paciente_encargado_madre_edad%> </div>
+	</div>
+
+	<div class="form-group col-md-5">
+		<label class="control-label">Profesión</label>
+		<div class="data"> <%=ficha.paciente_encargado_madre_prof_act_ant%> </div>
+	</div>
+</div>
+
+<h4>Datos de la Ficha</h4>
+<hr>
+
+<div class="row">
+	<div class="form-group col-md-2">
+		<label class="control-label">P</label>
+		<div class="data"> <%=ficha.p%> </div>
+	</div>
+
+	<div class="form-group col-md-2">
+		<label class="control-label">A</label>
+		<div class="data"> <%=ficha.a%> </div>
+	</div>
+
+	<div class="form-group col-md-2">
+		<label class="control-label">PC</label>
+		<div class="data"> <%=ficha.pc1%> </div>
+	</div>
+
+	<div class="form-group col-md-2">
+		<label class="control-label">PT</label>
+		<div class="data"> <%=ficha.pt1%> </div>
+	</div>
+
+	<div class="form-group col-md-2">
+		<label class="control-label">PA</label>
+		<div class="data"> <%=ficha.pa%> </div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="form-group col-md-12">
+		<label class="control-label">Control Cefálico - Control de Tronco - Equilibrio - Marcha</label>
+		<div class="data"> <%=ficha.control%> </div>
+	</div>
+</div>
+
+<h4>Antecedentes Gestacionales y Obstétricos</h4>
+<hr>
+<div class="row">
+	<div class="form-group col-md-3">
+		<label class="control-label">Gestación</label>
+		<div class="data"> <%=ficha.gestacion%> </div>
+	</div>
+	<div class="form-group col-md-3">
+		<label class="control-label">Paridad</label>
+		<div class="data"> <%=ficha.paridad%> </div>
+	</div>
+	<div class="form-group col-md-3">
+		<label class="control-label">Abortos</label>
+		<div class="data"> <%=ficha.abortos%> </div>
+	</div>
+	<div class="form-group col-md-3">
+		<label class="control-label">Nacidos Muertos</label>
+		<div class="data"> <%=ficha.nacidos_muertos%> </div>
+	</div>
+</div>
+
+<div class="form-group col-md-12">
+	<label class="control-label">Gestaciones y Partos Anteriores</label>
+	<div class="data"> <%=ficha.partos_anteriores%> </div>
+</div>
+
+<div class="row">
+	<div class="form-group col-md-3">
+		<label class="control-label">G. Sanguíneo</label>
+		<div class="data"> <%=ficha.gru_san_paciente%> </div>
+	</div>
+	<div class="form-group col-md-2">
+		<label class="control-label">Rh</label>
+		<div class="data"> <%=ficha.rh_paciente%> </div>
+	</div>
+	<div class="form-group col-md-2">
+		<label class="control-label">Coombs</label>
+		<div class="data"> <%=ficha.coombs%> </div>
+	</div>
+	<div class="form-group col-md-3">
+		<label class="control-label">Padre G. Sanguíneo</label>
+		<div class="data"> <%=ficha.gru_san_padre%> </div>
+	</div>
+	<div class="form-group col-md-2">
+		<label class="control-label">Rh</label>
+		<div class="data"> <%=ficha.rh_padre%> </div>
+	</div>
+</div>
+
+<h4>Gestación Actual</h4>
+<hr>
+
+<div class="row">
+	<div class="form-group col-md-3">
+		<label class="control-label">F.U.M.</label>
+		<div class="data"> <%=ficha.fum%> </div>
+	</div>
+	<div class="form-group col-md-3">
+		<label class="control-label">FP</label>
+		<div class="data"> <%=ficha.fp%> </div>
+	</div>
+	<div class="form-group col-md-3">
+		<label class="control-label">Duración</label>
+		<div class="data"> <%=ficha.duracion%> </div>
+	</div>
+	<div class="form-group col-md-3">
+		<label class="control-label">Riesgos</label>
+		<div class="data"> <%=ficha.riesgos%> </div>
+	</div>
+</div>
+
+<h4>Observaciones</h4>
+<hr>
+
+<div class="row">
+	<div class="form-group col-md-12">
+		<label class="control-label">Tipo de Parto</label>
+		<div class="data"> <%=ficha.tipo_parto%> </div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="form-group col-md-6">
+		<label class="control-label">Anestesia</label>
+		<div class="data"> <%=ficha.anestesia%> </div>
+	</div>
+	<div class="form-group col-md-6">
+		<label class="control-label">Analgesia</label>
+		<div class="data"> <%=ficha.analgesia%> </div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="form-group col-md-4">
+		<label class="control-label">Neonatal:Cianosis</label>
+		<div class="data"> <%=ficha.neonatal_cianosis%> </div>
+	</div>
+	<div class="form-group col-md-4">
+		<label class="control-label">Ictericia Antes 72 Hs</label>
+		<div class="data"> <%=ficha.ictericia_antes%> </div>
+	</div>
+	<div class="form-group col-md-4">
+		<label class="control-label">Después de 72 Hs</label>
+		<div class="data"> <%=ficha.ictericia_despues%> </div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="form-group col-md-3">
+		<label class="control-label">APGAR</label>
+		<div class="data"> <%=ficha.apgar%> </div>
+	</div>
+	<div class="form-group col-md-2">
+		<label class="control-label">Peso</label>
+		<div class="data"> <%=ficha.peso1%> </div>
+	</div>
+	<div class="form-group col-md-2">
+		<label class="control-label">Talla</label>
+		<div class="data"> <%=ficha.talla1%> </div>
+	</div>
+	<div class="form-group col-md-1">
+		<label class="control-label">PC</label>
+		<div class="data"> <%=ficha.pc2%> </div>
+	</div>
+	<div class="form-group col-md-1">
+		<label class="control-label">TP</label>
+		<div class="data"> <%=ficha.tp%> </div>
+	</div>
+	<div class="form-group col-md-3">
+		<label class="control-label">Fontanela</label>
+		<div class="data"> <%=ficha.fontanela%> </div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="form-group col-md-4">
+		<label class="control-label">Dubowitz</label>
+		<div class="data"> <%=ficha.dubowitz%> </div>
+	</div>
+	<div class="form-group col-md-4">
+		<label class="control-label">Parkin</label>
+		<div class="data"> <%=ficha.parkin%> </div>
+	</div>
+	<div class="form-group col-md-2">
+		<label class="control-label">Grupo Sang.</label>
+		<div class="data"> <%=ficha.gru_san2%> </div>
+	</div>
+	<div class="form-group col-md-2">
+		<label class="control-label">Rh</label>
+		<div class="data"> <%=ficha.rh2%> </div>
+	</div>
+</div>
+
+<h4>Observaciones</h4>
+<hr>
+
+<div class="row">
+	<div class="form-group col-md-6">
+		<label class="control-label">Medicación</label>
+		<div class="data"> <%=ficha.medicacion%> </div>
+	</div>
+	<div class="form-group col-md-6">
+		<label class="control-label">CCU</label>
+		<div class="data"> <%=ficha.ccu%> </div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="form-group col-md-3">
+		<label class="control-label">Tiempo de Internación</label>
+		<div class="data"> <%=ficha.tiempo_internacion%> </div>
+	</div>
+	<div class="form-group col-md-3">
+		<label class="control-label">Alta</label>
+		<div class="data"> <%=ficha.alta%> </div>
+	</div>
+	<div class="form-group col-md-2">
+		<label class="control-label">Peso</label>
+		<div class="data"> <%=ficha.peso2%> </div>
+	</div>
+	<div class="form-group col-md-2">
+		<label class="control-label">Talla</label>
+		<div class="data"> <%=ficha.talla2%> </div>
+	</div>
+	<div class="form-group col-md-1">
+		<label class="control-label">PB</label>
+		<div class="data"> <%=ficha.pb%> </div>
+	</div>
+	<div class="form-group col-md-1">
+		<label class="control-label">PT</label>
+		<div class="data"> <%=ficha.pt1%> </div>
+	</div>
+</div>
+
+<h5><strong>Alimentación:</strong></h5>
+
+<div class="row">
+	<div class="form-group col-md-9">
+		<label class="control-label">Natural</label>
+		<div class="data"> <%=ficha.alimentacion_natural%> </div>
+	</div>
+	<div class="form-group col-md-3">
+		<label class="control-label">Duración</label>
+		<div class="data"> <%=ficha.duracion%> </div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="form-group col-md-12">
+		<label class="control-label">Artificial</label>
+		<div class="data"> <%=ficha.alimentacion_artificial%> </div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="form-group col-md-3">
+		<label class="control-label">BCG</label>
+		<div class="data"> <%=ficha.bcg%> </div>
+	</div>
+	<div class="form-group col-md-3">
+		<label class="control-label">Antisarampionosa</label>
+		<div class="data"> <%=ficha.antisarampionosa%> </div>
+	</div>
+	<div class="form-group col-md-3">
+		<label class="control-label">Antigripal</label>
+		<div class="data"> <%=ficha.antigripal%> </div>
+	</div>
+	<div class="form-group col-md-3">
+		<label class="control-label">MMR</label>
+		<div class="data"> <%=ficha.mmr%> </div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="form-group col-md-3">
+		<label class="control-label">DPT</label>
+		<div class="data"> <%=ficha.dpt%> </div>
+	</div>
+	<div class="form-group col-md-3">
+		<label class="control-label">1ª</label>
+		<div class="data"> <%=ficha.dpt1%> </div>
+	</div>
+	<div class="form-group col-md-3">
+		<label class="control-label">2ª</label>
+		<div class="data"> <%=ficha.dpt2%> </div>
+	</div>
+	<div class="form-group col-md-3">
+		<label class="control-label">3ª</label>
+		<div class="data"> <%=ficha.dpt3%> </div>
+	</div>
+	<div class="form-group col-md-3">
+		<label class="control-label">Ref. 1ª</label>
+		<div class="data"> <%=ficha.dpt_ref1%> </div>
+	</div>
+	<div class="form-group col-md-3">
+		<label class="control-label">Ref. 2ª</label>
+		<div class="data"> <%=ficha.dpt_ref2%> </div>
+	</div>
+	<div class="form-group col-md-3">
+		<label class="control-label">Ref. 3ª</label>
+		<div class="data"> <%=ficha.dpt_ref3%> </div>
+	</div>
+	<div class="form-group col-md-3">
+		<label class="control-label">Ref. 4ª</label>
+		<div class="data"> <%=ficha.dpt_ref4%> </div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="form-group col-md-3">
+		<label class="control-label">SABIN</label>
+		<div class="data"> <%=ficha.sabin%> </div>
+	</div>
+	<div class="form-group col-md-3">
+		<label class="control-label">1ª</label>
+		<div class="data"> <%=ficha.sabin1%> </div>
+	</div>
+	<div class="form-group col-md-3">
+		<label class="control-label">2ª</label>
+		<div class="data"> <%=ficha.sabin2%> </div>
+	</div>
+	<div class="form-group col-md-3">
+		<label class="control-label">3ª</label>
+		<div class="data"> <%=ficha.sabin3%> </div>
+	</div>
+	<div class="form-group col-md-3">
+		<label class="control-label">Ref. 1ª</label>
+		<div class="data"> <%=ficha.sabin_ref1%> </div>
+	</div>
+	<div class="form-group col-md-3">
+		<label class="control-label">Ref. 2ª</label>
+		<div class="data"> <%=ficha.sabin_ref2%> </div>
+	</div>
+	<div class="form-group col-md-3">
+		<label class="control-label">Ref. 3ª</label>
+		<div class="data"> <%=ficha.sabin_ref3%> </div>
+	</div>
+	<div class="form-group col-md-3">
+		<label class="control-label">Ref. 4ª</label>
+		<div class="data"> <%=ficha.sabin_ref4%> </div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="form-group col-md-12">
+		<label class="control-label">Otras</label>
+		<div class="data"> <%=ficha.otras%> </div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="form-group col-md-4">
+		<label class="control-label">A.P.P.</label>
+		<div class="data"> <%=ficha.app%> </div>
+	</div>
+	<div class="form-group col-md-4">
+		<label class="control-label">A.P.F.</label>
+		<div class="data"> <%=ficha.apf%> </div>
+	</div>
+	<div class="form-group col-md-4">
+		<label class="control-label">Edad Mental</label>
+		<div class="data"> <%=ficha.edad_mental%> </div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="form-group col-md-4">
+		<label class="control-label">E.P.L.</label>
+		<div class="data"> <%=ficha.epl%> </div>
+	</div>
+	<div class="form-group col-md-4">
+		<label class="control-label">D.P.M.</label>
+		<div class="data"> <%=ficha.dpm%> </div>
+	</div>
+	<div class="form-group col-md-4">
+		<label class="control-label">TTO. ANT.</label>
+		<div class="data"> <%=ficha.tto_ant%> </div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="form-group col-md-4">
+		<label class="control-label">Sosten Cefálico</label>
+		<div class="data"> <%=ficha.sosten_cefalico%> </div>
+	</div>
+	<div class="form-group col-md-4">
+		<label class="control-label">Sedentación</label>
+		<div class="data"> <%=ficha.sedentacion%> </div>
+	</div>
+	<div class="form-group col-md-4">
+		<label class="control-label">Mancha</label>
+		<div class="data"> <%=ficha.mancha%> </div>
+	</div>
+</div>

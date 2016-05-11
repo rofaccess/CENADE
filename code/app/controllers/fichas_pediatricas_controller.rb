@@ -130,7 +130,7 @@ class FichasPediatricasController < ApplicationController
   		:apgar,:peso1,:talla1,:pc2,:tp,:fontanela,:dubowitz,:parkin,:gru_san2,:rh2,:medicacion,:ccu,
   		:tiempo_internacion,:alta,:peso2,:talla2,:pb,:pt1,:alimentacion_natural,:duracion,
   		:alimentacion_artificial,:bcg,:antisarampionosa,:antigripal,:mmr,:dpt,:dpt1,:dpt2,:dpt3,
-  		:dpt_ref1,:dpt_ref2,:dpt_ref4,:sabin,:sabin1,:sabin2,:sabin3,:sabin_ref1,:sabin_ref2,:sabin_ref3,
+  		:dpt_ref1,:dpt_ref2,:dpt_ref3,:dpt_ref4,:sabin,:sabin1,:sabin2,:sabin3,:sabin_ref1,:sabin_ref2,:sabin_ref3,
   		:sabin_ref4,:otras,:app,:apf,:edad_mental,:dpt2,:epl,:dpm,:tto_ant,:epl,:sosten_cefalico,:sedentacion,
   		:mancha)
   end

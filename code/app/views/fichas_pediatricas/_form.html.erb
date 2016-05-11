@@ -29,10 +29,10 @@
 	</div>
 
 	<div id="paciente-data">
-		<%= render 'form_paciente', paciente: paciente %>
+		<%= render 'compartido/fic_cli_neu_ped/form_paciente', paciente: paciente %>
 	</div>
 
-	<%= render 'compartido/form_fields_ficha', fich: fich %>
+	<%= render 'compartido/fic_cli_neu_ped/form_fields', fich: fich %>
 
 	<div class="form-button">
 		<%= fich.submit 'Guardar', class: 'btn btn-custom'%>

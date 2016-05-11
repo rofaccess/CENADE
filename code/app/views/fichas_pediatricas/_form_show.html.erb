@@ -28,9 +28,9 @@
   		<h4 class="col-md-3"><strong> Fecha: </strong> <%= Formatter.format_date(ficha.fecha)%> </h4>
   	</div>
 
-	<%= render 'form_paciente', paciente: paciente %>
+	<%= render 'compartido/fic_cli_neu_ped/form_paciente', paciente: paciente %>
 
-	<%= render 'compartido/form_show_fields_ficha', fich: fich %>
+	<%= render 'compartido/fic_cli_neu_ped/form_show_fields', fich: fich %>
 
 	<% end %>
 </div>
