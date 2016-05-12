@@ -1,12 +1,7 @@
 var consultasUI = (function(){
 	return {
 
-		init: function(){
-			$('body').on('click', '.show-consulta', function(e){
-				$.get($(this).parents('tr').data('url'), {}, function(){}, 'script');
-			});
-		},
-
+    /* Inicia la funcionalidad de los tabs en el show de las fichas */
     initConsultasTab: function(){
       var tabs;
       jQuery(function($) {
@@ -20,25 +15,6 @@ var consultasUI = (function(){
                   e.preventDefault();
                 });
               });
-    },
-
-
-    advancedSearchControl: function(){
-      $(".to-hide").hide();
-
-      $(document).ready(function(){
-        var show=true;
-        $("#show").click(function(){
-         if(show){
-          $("#advanced-search").show();
-          show=false;
-        }else{
-          $("#advanced-search").hide();
-          show=true;
-        }
-
-      });
-      });
     },
 
     selectControl: function(){
@@ -101,24 +77,13 @@ var consultasUI = (function(){
 		// Inicia el script en el formulario
 		initScript: function(){
 			consultasUI.selectControl();
-      consultasUI.advancedSearchControl();
 
-      $('.datepicker').datepicker({
-        format: "dd/mm/yyyy",
-        language: "es",
-        autoclose: true,
-        orientation: "bottom",
-        theme: "bootstrap"
-      }).on('change', function() {
-       $(this).valid();
-     });
+      // Script globales
+      APP.initDatepicker();
 
-		   	//Valida el formulario antes de enviarlo
-       $('.nueva-consulta').last().validate();
+		  //Valida el formulario antes de enviarlo
+      $('.nueva-consulta').last().validate();
      }
    };
  }());
 
-$(function(){
-	consultasUI.init();
-});
