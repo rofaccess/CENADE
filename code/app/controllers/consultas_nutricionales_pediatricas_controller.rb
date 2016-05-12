@@ -109,7 +109,7 @@ class ConsultasNutricionalesPediatricasController < ApplicationController
     render json: !(ficha.nil? || ficha.id == params[:id].to_i) ? true : "El Paciente no posee una Ficha aún".to_json
   end
 
-  def set_ficha_nutri_pediatrica
+  def set_consulta
   	@consulta= ConsultaNutricionalPediatrica.find(params[:id])
     @paciente= Paciente.find(@consulta.paciente_id)
   end
