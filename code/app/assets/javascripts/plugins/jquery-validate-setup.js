@@ -5,28 +5,28 @@ jQuery.validator.setDefaults({
 	onfocusout: function(element) { $(element).valid(); },
 	highlight: function(element){
 		$(element).closest('.form-group').addClass('has-error');
-		
+
 		/* Para los que no siguen el formato form-group > label, .form-control */
 		$(element).closest('.error-especial').addClass('has-error');
 	},
-	success: function(element){		
+	success: function(element){
 		$(element).closest('.form-group').removeClass('has-error');
-		
+
 		/* Para los que no siguen el formato form-group > label, .form-control */
-		$(element).closest('.error-especial').removeClass('has-error');			
-	},	
-	
+		$(element).closest('.error-especial').removeClass('has-error');
+	},
 
-	errorPlacement: function (error, element) {   	
 
-	   	if (element.parent('.input-group').length) { 
+	errorPlacement: function (error, element) {
+
+	   	if (element.parent('.input-group').length) {
 	        error.insertAfter(element.parent());      // radio/checkbox?
-	    } else if (element.hasClass('select2')) {     
+	    } else if (element.hasClass('select2')) {
 	        error.insertAfter(element.next('span'));  // select2
-	    } else {                                      
+	    } else {
 	        error.insertAfter(element);               // default
 	    }
-   
+
 	}
 });
 
@@ -49,7 +49,7 @@ $.validator.addClassRules({
 	longString: {
 		maxlength: 250
 	},
-	
+
 	passwordLength: {
 		maxlength: 20,
 		minlength: 8
@@ -73,7 +73,7 @@ $.validator.addClassRules({
 
 	minLength8: {
 		minlength: 8
-	},	
+	},
 
 	passwordCheck: {
 		passwordCheck: true
@@ -125,7 +125,7 @@ $.validator.addMethod("telCheck",function(value,element){
 
 $.validator.addMethod("hora", function(value, element){
   return value.length == 0 || /^[0-9]{2}:[0-9]{2}$/i.test(value);},
-  "Formato hh:mm"); 
+  "Formato hh:mm");
 
 $.validator.addMethod("dateLessSystemDate", function(value, element) {
   return this.optional(element) || checkDateLessSystemDate(value);
@@ -133,6 +133,6 @@ $.validator.addMethod("dateLessSystemDate", function(value, element) {
 
 
 /* Si la fecha especificada es menor o igual a la fecha del sistema devuelve true, caso contrario false */
-function checkDateLessSystemDate(date){	
-    return APP.compareDate(APP.systemDate(),date);	    
+function checkDateLessSystemDate(date){
+    return APP.compareDate(APP.systemDate(),date);
 };

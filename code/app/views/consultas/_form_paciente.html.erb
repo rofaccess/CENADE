@@ -1,0 +1,17 @@
+<h4>Datos del Paciente</h4>
+<hr>
+
+<%= simple_fields_for :paciente do |pacient| %>
+    <div class="row">
+      <%= pacient.input :nombre, as: :string, label: 'Nombres', wrapper_html: { class: 'col-md-5'}, input_html: {value: paciente.persona_nombre, disabled: true}, required: false %>
+
+      <%= pacient.input :apellido, as: :string, label: 'Apellidos', wrapper_html: { class: 'col-md-5'}, input_html: {value: paciente.persona_apellido, disabled: true}, required: false %>
+
+      <%= pacient.input :ci, as: :string, wrapper_html: { class: 'col-md-2'}, input_html: {value: paciente.persona_ci, disabled: true}, required: false %>
+    </div>
+
+    <div class="row">
+      <%= pacient.input :direccion, as: :string, label: 'Dirección', wrapper_html: { class: 'col-md-8'}, input_html: {value: paciente.persona_direccion, disabled: true}, required: false %>
+      <%= pacient.input :telefono, as: :string, wrapper_html: { class: 'col-md-4'}, input_html: {value: paciente.persona_telefono, disabled: true}, required: false %>
+    </div>
+<% end %>

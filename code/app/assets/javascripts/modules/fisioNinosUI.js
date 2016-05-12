@@ -1,6 +1,6 @@
 var fisioNinosUI = (function(){
-	return {		
-		
+	return {
+
     /* si se usa pacientesUI.checkPacienteHasFicha("<%=fichas_fonoaudiologicas_check_paciente_id_path%>");
      en tu form de ficha, todo esta funcion ya no es necesaria
      checkPacienteHasFicha se define una sola vez y se puede utilizar en todas los form de fichas
@@ -61,7 +61,7 @@ var fisioNinosUI = (function(){
                 id = $(this).val();
 
                 $.ajax({
-                 
+
                   url: "/ficha_fisioterapia_ninos/get_paciente",
                   type: 'get',
                   data: {
@@ -70,14 +70,14 @@ var fisioNinosUI = (function(){
                   success: function(resp){
                       //alert("Data");
                    }
-                  
+
                  });
               });
-              
+
               //Se puede usar esto
               APP.initSelect2({element: '.profesional_select', placeholder: 'Seleccione un Profesional'});
 
-              //en vez de esto    
+              //en vez de esto
               /*
               $(".profesional_select").select2({
                 placeholder: "Seleccione un Profesional",
@@ -92,9 +92,9 @@ var fisioNinosUI = (function(){
               //Se puede usar esto
               APP.initSelect2({element: '.area_select', placeholder: 'Seleccione un Profesional'});
 
-              //en vez de esto    
-              //Leslie esto creo que no se usa luego en el form de ficha fisioterapia niños  
-              /* 
+              //en vez de esto
+              //Leslie esto creo que no se usa luego en el form de ficha fisioterapia niños
+              /*
             $(".area_select").select2({
                 placeholder: "Seleccione un Área",
                 theme: "bootstrap",
@@ -108,24 +108,24 @@ var fisioNinosUI = (function(){
 
 		initScript: function(checkFisioNinoPacienteUrl){
 
-		       var tabs;
-            
+		       //var tabs;
+
            fisioNinosUI.selectControl();
 
            APP.initDatepicker();
-           
+           /*//Este script se llama en show asi: consultasUI.initConsultasTab();
             jQuery(function($) {
                 tabs = $('.tabscontent').tabbedContent({loop: true}).data('api');
 
-               
+
                 // Next and prev actions
                 $('.controls a').on('click', function(e) {
                     var action = $(this).attr('href').replace('#', '');
                     tabs[action]();
                     e.preventDefault();
                 });
-            });
+            });*/
 		  	$('.nueva-ficha').validate();
 		}
 	};
-}()); 
+}());

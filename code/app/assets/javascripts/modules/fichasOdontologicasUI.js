@@ -5,6 +5,7 @@ var fichasOdontologicasUI = (function(){
 
 			/* Script globales */
 	     	APP.initDatepicker();
+	     	APP.initTelephoneOnly();
 	     	APP.initSelect2({element: '.select-paciente', placeholder: 'Seleccione un Paciente'})
 	     	APP.initSelect2({element: '.select-doctor', placeholder: 'Seleccione un Profesional'});
 

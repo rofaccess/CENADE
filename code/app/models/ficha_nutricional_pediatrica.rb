@@ -8,6 +8,7 @@ class FichaNutricionalPediatrica < ActiveRecord::Base
  	belongs_to :doctor, :foreign_key => :profesional_salud_id
  	belongs_to :paciente
  	belongs_to :area
+ 	has_many :consultas_nutricionales_pediatricas
 
 
  	before_create :cargar_area_id

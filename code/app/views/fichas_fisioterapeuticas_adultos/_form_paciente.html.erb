@@ -22,7 +22,7 @@
   	<div class="row">
 		  <%= pacient.input :telefono, as: :string, wrapper_html: { class: 'col-md-3'}, input_html: {value: paciente.persona_telefono, disabled: true}, required: false %>
 
-  		<%= pacient.input :apellido, as: :string, label: 'Dirección', wrapper_html: { class: 'col-md-9'}, input_html: {value: paciente.persona_direccion, disabled: true}, required: false %>
+  		<%= pacient.input :direccion, as: :string, label: 'Dirección', wrapper_html: { class: 'col-md-9'}, input_html: {value: paciente.persona_direccion, disabled: true}, required: false %>
   	</div>
 <% end %>
 
