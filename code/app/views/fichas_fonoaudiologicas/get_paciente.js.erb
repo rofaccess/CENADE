@@ -1,5 +1,5 @@
+$('#paciente-data').html("<%= j render params[:root].to_s()+'/form_paciente', paciente: @paciente%>");
+// $('#encargado-data').html("<%= j render params[:root].to_s()+'/form_encargado', paciente: @paciente%>");
 
-$('.paciente_data').html("<%= j render partial: 'paciente_form'%>");
-<% if !@paciente.encargado.nil? %>
-$('.encargado_data').html("<%= j render partial: 'encargado_form'%>");
-<%end%>
+
+

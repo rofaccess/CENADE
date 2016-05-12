@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   get 'consultas_nutricionales_pediatricas/check_paciente_has_ficha' => 'consultas_nutricionales_pediatricas#check_paciente_has_ficha'
-  get 'consultas_nutricionales_pediatricas/print_ficha'=>'consultas_nutricionales_pediatricas#print_ficha'
+  get 'consultas_nutricionales_pediatricas/print_consulta'=>'consultas_nutricionales_pediatricas#print_consulta'
   resources :consultas_nutricionales_pediatricas, :except => [:destroy] do
     collection do
       match 'buscar' => 'consultas_nutricionales_pediatricas#buscar', via: [:get, :post], as: :search
@@ -45,7 +45,7 @@ Rails.application.routes.draw do
     end
   end
 
-  get 'fichas_psicopedagogicas_check_paciente_id'=> 'fichas_psicopedagogicas#check_paciente_id'
+  get 'fichas_psicopedagogicas_check_paciente_has_ficha'=> 'fichas_psicopedagogicas#check_paciente_has_ficha'
   get 'fichas_psicopedagogicas/print_ficha'=>'fichas_psicopedagogicas#print_ficha'
   resources :fichas_psicopedagogicas do
     collection do
@@ -54,7 +54,7 @@ Rails.application.routes.draw do
     end
   end
 
-  get 'fichas_fonoaudiologicas_check_paciente_id' => 'fichas_fonoaudiologicas#check_paciente_id'
+  get 'fichas_fonoaudiologicas/check_paciente_has_ficha' => 'fichas_fonoaudiologicas#check_paciente_has_ficha'
   get 'fichas_fonoaudiologicas/print_ficha' => 'fichas_fonoaudiologicas#print_ficha'
   resources :fichas_fonoaudiologicas do
     collection do

@@ -1,7 +1,7 @@
 class FichasFonoaudiologicasController < ApplicationController
 	before_action :set_submenu, only: [:edit, :new, :show, :index]
 	before_action :set_sidebar, only: [:edit, :new, :show, :index]
-	before_action :set_fonoaudiologica, only: [:show, :edit, :update, :destroy]
+	before_action :set_ficha, only: [:show, :edit, :update, :destroy]
 
 	def set_submenu
   		@submenu_layout = 'layouts/submenu_fichas_consultas'
@@ -11,101 +11,113 @@ class FichasFonoaudiologicasController < ApplicationController
    		@sidebar_layout = 'layouts/sidebar_fichas'
   	end
 
-  	def new
-		@fonoaudiologica= FichaFonoaudiologica.new
+  	def set_ficha
+	  	@ficha= FichaFonoaudiologica.find(params[:id])
+	  	@paciente = Paciente.find(@ficha.paciente_id)
+  	end
+
+	def new
+		@ficha= FichaFonoaudiologica.new
+		get_doctores_fonoaudiologia
+
+		# Para renderizar un formulario vacio de datos del paciente
+		@paciente = Paciente.new
+	end
+
+	def show
+
 	end
 
 	def index
-		@search = FichaFonoaudiologica.ransack(params[:q])
-    	@fonoaudiologicas= @search.result.page(params[:page])
+		get_fichas
 	end
-
-	def create
-	  	@fonoaudiologica = FichaFonoaudiologica.new(fonoaudiologica_params)
-	  	@paciente= @fonoaudiologica.paciente
-	  	 respond_to do |format|
-	      if @fonoaudiologica.save
-	        flash.now[:notice] = 'Ficha registrada exitosamente'
-			    format.html {render 'show'}
-	        format.js { render "show"}
-	      else
-	        if @fonoaudiologica.errors.full_messages.any?
-	          flash.now[:alert] = @fonoaudiologica.errors.full_messages.first
-	        else
-	          flash.now[:alert] = "No se ha podido guardar la Ficha"
-	        end
-	        @paciente= @fonoaudiologica.paciente
-	        format.html { render "edit"}
-	        format.js { render "edit"}
-
-	      end
-	    end
- 	end
- 	def update
- 	  @paciente= @fonoaudiologica.paciente
-  	  respond_to do |format|
-	      if @fonoaudiologica.update_attributes(fonoaudiologica_params)
-
-	        format.html { redirect_to ficha_fonoaudiologica_path, notice: 'Ficha actualizado exitosamente'}
-	      else
-	        
-	        if @fonoaudiologica.errors.full_messages.any?
-	          flash.now[:alert] = @fonoaudiologica.errors.full_messages.first
-	        else
-	          flash.now[:alert] = "No se ha podido guardar la Ficha"
-	        end
-		        format.html { render action: "edit"}
-		        format.js { render action: "edit"}
-	      	end 
-    	end
-  	end
-
-	# Checkea que un paciente ya no tenga una ficha en Fonoaudiologia
-	def check_paciente_id
-	    fonoaudiologica = FichaFonoaudiologica.find_by_paciente_id(params[:paciente_id]) 
-	    render json: (fonoaudiologica.nil? || fonoaudiologica.id == params[:id].to_i) ? true : "El Paciente ya posee una Ficha".to_json
-	end
-
-	#busca el paciente seleccionado en la base de datos
-	def get_paciente
-    @paciente= Paciente.find(params[:id])
-      
-  	end
- 	
-	def show
-	 @fonoaudiologica = FichaFonoaudiologica.find(params[:id])
-	end
-	  #Trae la fichas segun la busqueda y página
-	def get_fichas_fonoaudiologicas
-	    @search = FichaFonoaudiologica.ransack(params[:q])
-	    @fonoaudiologicas= @search.result.page(params[:page])
-	end 
-
-	#metodo creado para el filtro
-	def buscar
-	    @search = FichaFonoaudiologica.search(params[:q])
-	    @fonoaudiologicas = @search.result.page(params[:page])
-	    render 'index'
-  	end
-  	def print_ficha
-      @ficha = FichaFonoaudiologica.find params[:ficha_id]      
-      respond_to do |format|
-        format.pdf do
-          render :pdf => "Ficha",
-          :template => "fichas_fonoaudiologicas/print_ficha.pdf.erb",
-          :layout => "pdf.html"
-        end
-      end
-    end
-  	def set_fonoaudiologica
-  	  @fonoaudiologica= FichaFonoaudiologica.find(params[:id])
-    end 
 
 	def edit
-		@paciente= @fonoaudiologica.paciente
+		get_doctores_fonoaudiologia
 	end
+
+		def create
+		@ficha = FichaFonoaudiologica.new(fonoaudiologica_params)
+
+		respond_to do |format|
+			if @ficha.save
+				format.html { redirect_to ficha_fonoaudiologica_path(@ficha), notice: 'Ficha registrada exitosamente'}
+			else
+				if @ficha.errors.full_messages.any?
+					format.html { redirect_to new_ficha_fonoaudiologica_path(), notice: @ficha.errors.full_messages.first}
+				else
+					format.html { redirect_to new_ficha_fonoaudiologica_path(), notice: 'No se ha podido guardar la Ficha'}
+				end
+			end
+		end
+	end
+ 	def update
+		respond_to do |format|
+			if @ficha.update_attributes(fonoaudiologica_params)
+				format.html { redirect_to ficha_fonoaudiologica_path(@ficha), notice: 'Ficha actualizada exitosamente'}
+			else
+
+				if @ficha.errors.full_messages.any?
+					format.html { redirect_to edit_ficha_fonoaudiologica_path(@ficha), notice: @ficha.errors.full_messages.first}
+				else
+					format.html { redirect_to edit_ficha_fonoaudiologica_path(@ficha), notice: 'No se ha podido actualizar la Ficha'}
+				end
+			end
+
+		end
+	end
+
+	def destroy
+		respond_to do |format|
+			if @ficha.destroy
+				format.html { redirect_to fichas_fonoaudiologicas_path, flash: {notice: "Se ha eliminado la ficha de #{@ficha.paciente.persona_full_name}."}}
+			else
+			   	format.html { redirect_to fichas_fonoaudiologicas_path, flash: {alert: "No se ha podido eliminar la ficha de #{@ficha.paciente.persona_full_name}."}}
+			end
+		end
+	end
+
+  	def check_paciente_has_ficha
+  		ficha = FichaFonoaudiologica.find_by_paciente_id(params[:paciente_id])
+  		render json: (ficha.nil? || ficha.id == params[:id].to_i) ? true : "El Paciente ya posee una Ficha".to_json
+  	end
+
+ 	def get_doctores_fonoaudiologia
+		area = Area.find_by_nombre('Fonoaudiología')
+		@doctores = Doctor.where(area_id: area.id)
+	end
+
+  	def get_paciente
+  		@paciente= Paciente.find(params[:id])
+
+  	end
+
+  	def get_fichas
+	  	@search = FichaFonoaudiologica.search(params[:q])
+	  	@fichas = @search.result.order('nro_ficha').page(params[:page])
+ 	 end
+
+	# Metodo creado para el filtro
+	def buscar
+	  get_fichas
+	  render 'index'
+	end
+
+  	def print_ficha
+  		@ficha = FichaFonoaudiologica.find params[:ficha_id]
+	  	respond_to do |format|
+	  		format.pdf do
+	  			render pdf: "Ficha",
+	  			template: 	"fichas_fonoaudiologicas/print_ficha.pdf.erb",
+	  			layout: 	"pdf.html",
+	  			title:    	'Ficha Fonoaudiología'
+	  		end
+	  	end
+  	end
+
+
 	def fonoaudiologica_params
   		params.require(:ficha_fonoaudiologica).permit(:area_id, :paciente_id, :doctor_id, :fecha, :nro_ficha, :escolaridad, :escuela)
-     				
-  	end 
+
+  	end
 end

@@ -3,11 +3,20 @@ class ConsultaNutricionalPediatrica < ActiveRecord::Base
  	paginates_per 20
 
 	#asociaciones
- 	belongs_to :doctor, :foreign_key => :profesional_salud_id
+ 	belongs_to :doctor, :foreign_key => :doctor_id
  	belongs_to :user
  	belongs_to :paciente
  	belongs_to :area
  	belongs_to :ficha_nutricional_pediatrica
+
+ 	#carga id area antes de guardar la consulta
+ 	before_create :cargar_area_id
+
+ 	#carga el area automaticamente
+ 	def cargar_area_id
+		area= Area.where(nombre: 'Nutrición').first.id
+		self.area_id= area
+	end
 
 
  	# Law of Demeter
