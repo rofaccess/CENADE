@@ -68,21 +68,20 @@ ActiveRecord::Schema.define(version: 20160511214336) do
   end
 
   create_table "consultas", force: :cascade do |t|
-    t.integer  "profesional_salud_id"
-    t.integer  "paciente_id",                                   null: false
-    t.integer  "area_id",                                       null: false
+    t.integer  "doctor_id"
+    t.integer  "paciente_id",                              null: false
+    t.integer  "area_id",                                  null: false
     t.date     "fecha"
-    t.string   "profesional_salud",    limit: 60,  default: ""
-    t.string   "motivo_consulta",      limit: 300, default: ""
-    t.string   "evaluacion",           limit: 300, default: ""
-    t.string   "tratamiento",          limit: 600, default: ""
-    t.string   "observaciones",        limit: 250, default: ""
+    t.string   "motivo_consulta", limit: 300, default: ""
+    t.string   "evaluacion",      limit: 300, default: ""
+    t.string   "tratamiento",     limit: 600, default: ""
+    t.string   "observaciones",   limit: 250, default: ""
     t.datetime "deleted_at"
   end
 
   add_index "consultas", ["area_id"], name: "index_consultas_on_area_id", using: :btree
+  add_index "consultas", ["doctor_id"], name: "index_consultas_on_doctor_id", using: :btree
   add_index "consultas", ["paciente_id"], name: "index_consultas_on_paciente_id", using: :btree
-  add_index "consultas", ["profesional_salud_id"], name: "index_consultas_on_profesional_salud_id", using: :btree
 
   create_table "consultas_nutricionales_pediatricas", force: :cascade do |t|
     t.integer  "paciente_id",                         null: false
@@ -737,7 +736,7 @@ ActiveRecord::Schema.define(version: 20160511214336) do
   add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
 
   add_foreign_key "consultas", "areas", on_delete: :restrict
-  add_foreign_key "consultas", "empleados", column: "profesional_salud_id", on_delete: :restrict
+  add_foreign_key "consultas", "empleados", column: "doctor_id", on_delete: :restrict
   add_foreign_key "consultas", "pacientes", on_delete: :cascade
   add_foreign_key "consultas_nutricionales_pediatricas", "areas", on_delete: :restrict
   add_foreign_key "consultas_nutricionales_pediatricas", "pacientes", on_delete: :restrict

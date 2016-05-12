@@ -17,73 +17,43 @@ var consultasUI = (function(){
               });
     },
 
-    selectControl: function(){
-      $(".paciente_select").select2({
-        placeholder: "Seleccione un paciente",
-        language: "es",
-        theme: "bootstrap"
+    /* Cuando se selecciona otro valor en el element (select) dado se ejecuta la acción
+       recarga_profesional del controlador Consultas, para que muestre en el select
+       de profesional, solo los profesionales del área especificada
 
-      }).on("select2:select",function(){
-        $(this).valid();
-        id = $(this).val();
-
+       element: el id o clase del objeto jquery Ej.: #select_profesional, .select-doctor, etc.
+    */
+    initRecargaProfesional: function(element){
+      $(element).on("change", function(){
         $.ajax({
-
-          url: "/consultas/get_paciente",
-          type: 'get',
-          data: {
-           id : $(this).val()
-         },
-         success: function(resp){
-                      //alert("Data");
-                    }
-
-                  });
-      });
-      $(".profesional_select2").select2({
-        placeholder: "Seleccione un Profesional",
-        language: "es",
-        theme: "bootstrap"
-
-      }).on('change', function () {
-        $(this).valid();
-
-      });
-      $(".area_select").select2({
-        placeholder: "Seleccione un Área",
-        theme: "bootstrap",
-        language: "es"
-
-      }).on('change', function () {
-        $(this).valid();
-        id = $(this).val();
-
-        $.ajax({
-
           url: "/consultas/recarga_profesional",
           type: 'get',
           data: {
-           id : $(this).val()
-         },
-         success: function(resp){
-                          //alert("Data");
-                        }
+            id : $(this).val()
+          },
+          success: function(resp){
 
-                      });
+          }
+        });
       });
-
     },
 
 		// Inicia el script en el formulario
 		initScript: function(){
-			consultasUI.selectControl();
+      consultasUI.initRecargaProfesional('.select-area');
 
       // Script globales
       APP.initDatepicker();
 
+      APP.initSelect2({element: '.select-paciente', placeholder: 'Seleccione un Paciente'});
+      APP.initSelect2({element: '.select-area', placeholder: 'Seleccione un Área'});
+      APP.initSelect2({element: '.select-doctor', placeholder: 'Seleccione un Profesional'});
+
+      pacientesUI.getPaciente({element: '.select-paciente', root: 'consultas'});
+
 		  //Valida el formulario antes de enviarlo
-      $('.nueva-consulta').last().validate();
-     }
-   };
- }());
+      $('.form-consulta').last().validate();
+    }
+  };
+}());
 

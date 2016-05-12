@@ -3,7 +3,7 @@ class Consulta < ActiveRecord::Base
  	paginates_per 20
 
  	#asociaciones
- 	belongs_to :doctor, :foreign_key => :profesional_salud_id
+ 	belongs_to :doctor, :foreign_key => :doctor_id
  	belongs_to :user
  	belongs_to :paciente
  	belongs_to :area
