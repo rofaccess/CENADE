@@ -2,6 +2,7 @@ class FichasPediatricasController < ApplicationController
 	before_action :set_submenu, only: [:edit, :new, :show, :index, :test]
 	before_action :set_sidebar, only: [:edit, :new, :show, :index, :test]
 	before_action :set_ficha, only: [:show, :edit, :update, :destroy]
+	before_action :set_consulta, only: [:show, :edit]
 
 	def set_submenu
 		@submenu_layout = 'layouts/submenu_fichas_consultas'
@@ -45,7 +46,7 @@ class FichasPediatricasController < ApplicationController
 	end
 
 	def edit
-		get_doctores_fisioterapia
+		get_doctores_pediatria
 	end
 
 	def update
@@ -122,7 +123,20 @@ class FichasPediatricasController < ApplicationController
   	end
   end
 
+  def set_consulta
+    @consultas= Consulta.where(area_id: @ficha.area_id, paciente_id: @ficha.paciente_id).limit(9).order(id: :desc)
+  end
+
   def ficha_params
-  	params.require(:ficha_pediatrica).permit(:area_id, :paciente_id, :doctor_id, :fecha, :nro_ficha)
+  	params.require(:ficha_pediatrica).permit(:area_id, :paciente_id, :doctor_id, :fecha, :nro_ficha,
+  		:p,:a,:pc1,:pt1,:pa,:control,:gestacion,:paridad,:abortos,:nacidos_muertos,:partos_anteriores,
+  		:gru_san_paciente, :rh_paciente,:coombs,:gru_san_padre,:rh_padre,:fum,:fp,:duracion,:riesgos,
+  		:tipo_parto,:anestesia,:analgesia,:neonatal_cianosis,:ictericia_antes,:ictericia_despues,
+  		:apgar,:peso1,:talla1,:pc2,:tp,:fontanela,:dubowitz,:parkin,:gru_san2,:rh2,:medicacion,:ccu,
+  		:tiempo_internacion,:alta,:peso2,:talla2,:pb,:pt1,:alimentacion_natural,:duracion,
+  		:alimentacion_artificial,:bcg,:antisarampionosa,:antigripal,:mmr,:dpt,:dpt1,:dpt2,:dpt3,
+  		:dpt_ref1,:dpt_ref2,:dpt_ref3,:dpt_ref4,:sabin,:sabin1,:sabin2,:sabin3,:sabin_ref1,:sabin_ref2,:sabin_ref3,
+  		:sabin_ref4,:otras,:app,:apf,:edad_mental,:dpt2,:epl,:dpm,:tto_ant,:epl,:sosten_cefalico,:sedentacion,
+  		:mancha)
   end
 end

@@ -1,16 +1,16 @@
 <ul class="nav nav-tabs">
-    <% @consultas.each do |c| %>
+    <% consultas.each do |c| %>
         <li><a href="#tab-<%= c.id%>"><%= c.fecha.strftime("%d/%m/%Y")%></a></li>
 
     <%end%>
 </ul>
 
 <div class="tabscontent">
-    <% @consultas.each do |consulta| %>
+    <% consultas.each do |consulta| %>
         <div id="tab-<%= consulta.id%>">
             <%= simple_fields_for :consulta do |c| %>
                 <div class="row">
-                    <%= c.input :doctor_id, as: :string, label: 'Profesional de la salud', wrapper_html: { class: 'col-md-9'}, input_html: {value: consulta.doctor.persona_nombre, disabled: true}, required: false %>
+                    <%= c.input :doctor_id, as: :string, label: 'Profesional de la salud', wrapper_html: { class: 'col-md-9'}, input_html: {value: consulta.doctor_abr_profesion + consulta.doctor_persona_full_name, disabled: true}, required: false %>
                     <%= c.input :doctor_id, as: :string, label: 'Fecha Consulta', wrapper_html: { class: 'col-md-3'}, input_html: {value: Formatter.format_date(consulta.fecha), disabled: true}, required: false %>
                 </div>
                 <div class="row">

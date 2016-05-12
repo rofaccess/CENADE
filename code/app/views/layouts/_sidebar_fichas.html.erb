@@ -3,8 +3,8 @@
         <li class="sidebar-brand">
         </li>
 
-        <li>
-            <a href="#">Clínico</a>
+         <li class="<%= current_sidebar([fichas_clinicos_path])%>">
+            <%=link_to 'Clínico', fichas_clinicos_path %>
         </li>
 
         <li class="<%= current_sidebar([fichas_fisioterapeuticas_adultos_path])%>">
@@ -19,8 +19,8 @@
             <%=link_to 'Fonoaudiología', fichas_fonoaudiologicas_path %>
         </li>
 
-        <li>
-            <a href="#">Neurología</a>
+         <li class="<%= current_sidebar([fichas_neurologicas_path])%>">
+            <%=link_to 'Neurología', fichas_neurologicas_path %>
         </li>
 
         <li class="<%= current_sidebar([fichas_nutricionales_adultos_path])%>">

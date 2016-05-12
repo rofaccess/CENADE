@@ -1,0 +1,58 @@
+<div class="page-title page-title-con-sidebar">
+	<%=ficha.id.nil? ? 'Nueva Ficha' : 'Editar Ficha'%>
+
+	<div class="tool">
+		<%= link_to '<i class="fa fa-list" data-toggle="tooltip" title="Lista de Fichas"></i> '.html_safe, fichas_pediatricas_path %>
+	</div>
+
+</div>
+
+<div class="form-content2">
+
+	<%= simple_form_for ficha, html: {class: 'form-ficha2'} do |fich|%>
+	<%= hidden_field_tag :ficha_id, ficha.id, class: 'ficha-id'%>
+
+	<h4 class="titulo-ficha">FICHA DE PEDIATRÍA</h4>
+
+	<div class="row">
+
+		<%= fich.input :paciente_id, collection: Paciente.all.collect { |a| [a.persona_full_name, a.id] }, label: '* Paciente', wrapper_html: { class: paciente.id.nil? ? 'col-md-4' : 'col-md-5' }, input_html: { class: 'required select-paciente select2 uniquePacienteFicha paciente-id', disabled: paciente.id.nil? ? false : true} %>
+
+		<% if paciente.id.nil? %>
+			<%= link_to '<i class="fa fa-plus"></i> '.html_safe, pacientes_new_modal_path(root: 'compartido/fic_cli_neu_ped', encargado: false), class: 'btn btn-custom btn-add col-md-1', remote: true %>
+		<% end %>
+
+
+		<%= fich.input :doctor_id, collection: doctores.collect { |a| [a.abr_profesion+" "+a.persona_full_name, a.id] }, label: '* Profesional de la Salud', wrapper_html: { class: 'col-md-4' }, input_html:	 { class: 'required select-doctor select2'} %>
+
+		<%= fich.input :fecha, as: :string, label: '* Fecha', wrapper_html: { class: 'col-md-3'}, input_html: { class: 'datepicker dateLessSystemDate required', maxLength: Domain::FECHA, value:Formatter.format_date(ficha.fecha)} %>
+	</div>
+
+	<div id="paciente-data">
+		<%= render 'compartido/fic_cli_neu_ped/form_paciente', paciente: paciente %>
+	</div>
+
+	<%= render 'compartido/fic_cli_neu_ped/form_fields', fich: fich %>
+
+	<div class="form-button">
+		<%= fich.submit 'Guardar', class: 'btn btn-custom'%>
+	</div>
+
+	<% end %>
+</div>
+
+<script type="text/javascript">
+
+	fichasPediatricasUI.initScript();
+
+	pacientesUI.checkPacienteHasFicha("<%=fichas_pediatricas_check_paciente_has_ficha_path%>");
+
+	<% if !flash.notice.blank? %>
+		var n = noty({text: '<%=notice%>', type: 'success'});
+	<% end %>
+
+	<% if !flash.alert.blank?%>
+		var n = noty({text: '<%=alert%>', type: 'error'});
+	<% end %>
+
+</script>

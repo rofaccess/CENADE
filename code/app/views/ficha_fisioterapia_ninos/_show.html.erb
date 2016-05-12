@@ -4,11 +4,11 @@
       Ficha de <%= @fisio_nino.paciente.persona.nombre%> <%= @fisio_nino.paciente.persona.apellido%>
 
     <div class="tool">
-      <%= link_to '<i class="fa fa-list"></i> '.html_safe, ficha_fisioterapia_ninos_path %> 
-      <%= link_to '<i class="fa fa-plus-square"></i> '.html_safe, new_ficha_fisioterapia_nino_path, remote: true%> 
-      
-      <%= link_to '<i class="fa fa-edit"></i> '.html_safe, edit_ficha_fisioterapia_nino_path(@fisio_nino.id), remote:true%> 
-      
+      <%= link_to '<i class="fa fa-list"></i> '.html_safe, ficha_fisioterapia_ninos_path %>
+      <%= link_to '<i class="fa fa-plus-square"></i> '.html_safe, new_ficha_fisioterapia_nino_path, remote: true%>
+
+      <%= link_to '<i class="fa fa-edit"></i> '.html_safe, edit_ficha_fisioterapia_nino_path(@fisio_nino.id), remote:true%>
+
       <%= link_to '<i class="fa fa-print"></i> '.html_safe, ficha_fisioterapia_ninos_print_ficha_path(ficha_id: @fisio_nino.id, :format => :pdf), target: '_blank'%>
     </div>
   </div>
@@ -28,179 +28,179 @@
     </br>
       <h4>Datos del Paciente</h4>
       <hr>
-    
+
 
           <div class ="paciente_data">
           <div class="row">
 
-            <%= FormBuilder::text_field_v(ficha, :paciente_id, 
-                                          input_class: 'paciente-nombre', 
+            <%= FormBuilder::text_field_v(ficha, :paciente_id,
+                                          input_class: 'paciente-nombre',
                                           col_class: 'col-md-4',
                                           disabled: true,
                                           input_value: @fisio_nino.paciente.persona.nombre,
                                           label_text: 'Nombres') %>
 
-            <%= FormBuilder::text_field_v(ficha, :paciente_id, 
-                                          input_class: 'paciente-apellido', 
+            <%= FormBuilder::text_field_v(ficha, :paciente_id,
+                                          input_class: 'paciente-apellido',
                                           col_class: 'col-md-4',
                                           disabled: true,
                                           input_value: @fisio_nino.paciente.persona.apellido,
                                           label_text: 'Apellidos') %>
 
-            <%= FormBuilder::text_field_v(ficha, :paciente_id, 
-                                          input_class: 'paciente-apellido', 
+            <%= FormBuilder::text_field_v(ficha, :paciente_id,
+                                          input_class: 'paciente-apellido',
                                           col_class: 'col-md-2',
                                           disabled: true,
                                           input_value: @fisio_nino.paciente.persona.fecha_nacimiento.strftime("%d/%m/%Y"),
                                           label_text: 'Fecha de nac.') %>
 
-            <%= FormBuilder::text_field_v(ficha, :paciente_id, 
-                                          input_class: 'clear', 
-                                          
+            <%= FormBuilder::text_field_v(ficha, :paciente_id,
+                                          input_class: 'clear',
+
                                           col_class: 'col-md-2',
                                           disabled: true,
                                           input_value: @fisio_nino.paciente.persona.edad,
-                                          label_text: 'Edad') %> 
-            </div>      
+                                          label_text: 'Edad') %>
+            </div>
             <div class="row">
-              <%= FormBuilder::text_field_v(ficha, :paciente_id, 
-                                          input_class: 'clear', 
+              <%= FormBuilder::text_field_v(ficha, :paciente_id,
+                                          input_class: 'clear',
                                           col_class: 'col-md-4',
                                           disabled: true,
                                           input_value: @fisio_nino.paciente.persona.sexo,
-                                          label_text: 'Sexo') %> 
-              <%= FormBuilder::text_field_v(ficha, :paciente_id, 
+                                          label_text: 'Sexo') %>
+              <%= FormBuilder::text_field_v(ficha, :paciente_id,
                                           input_class: 'clear paciente-ci',
                                           col_class: 'col-md-3',
                                           disabled: true,
                                           input_value: @fisio_nino.paciente.persona.ci,
                                           label_text: 'CI') %>
-              <%= FormBuilder::text_field_v(ficha, :paciente_id, 
-                                          input_class: 'clear', 
+              <%= FormBuilder::text_field_v(ficha, :paciente_id,
+                                          input_class: 'clear',
                                           col_class: 'col-md-5',
                                           disabled: true,
                                           input_value: @fisio_nino.paciente.persona.nacionalidad,
-                                          label_text: 'Nacionalidad') %>  
-              
+                                          label_text: 'Nacionalidad') %>
+
           </div>
           <div class="row">
-              <%= FormBuilder::text_field_v(ficha, :paciente_id, 
-                                          input_class: 'clear', 
+              <%= FormBuilder::text_field_v(ficha, :paciente_id,
+                                          input_class: 'clear',
                                           col_class: 'col-md-9',
                                           disabled: true,
                                           input_value: @fisio_nino.paciente.persona.direccion,
-                                          label_text: 'Dirección') %> 
-              <%= FormBuilder::text_field_v(ficha, :paciente_id, 
+                                          label_text: 'Dirección') %>
+              <%= FormBuilder::text_field_v(ficha, :paciente_id,
                                           input_class: 'clear paciente-ci',
                                           col_class: 'col-md-3',
                                           disabled: true,
                                           input_value: @fisio_nino.paciente.persona.telefono,
                                           label_text: 'Teléfono') %>
-                
-              
+
+
           </div>
 
-   
+
       </div>
     </br>
      <h4>Datos de Encargados</h4>
     <hr>
     <div class="encargado_data">
       <div class="row">
-              <%= FormBuilder::text_field_v(ficha, :paciente_id, 
-                                          input_class: '', 
+              <%= FormBuilder::text_field_v(ficha, :paciente_id,
+                                          input_class: '',
                                           col_class: 'col-md-4',
                                           disabled: true,
                                           input_value: '',
-                                          label_text: 'Madre') %> 
-              <%= FormBuilder::text_field_v(ficha, :paciente_id, 
+                                          label_text: 'Madre') %>
+              <%= FormBuilder::text_field_v(ficha, :paciente_id,
                                           input_class: '',
                                           col_class: 'col-md-2',
                                           disabled: true,
                                           input_value: '',
                                           label_text: 'Edad') %>
-              <%= FormBuilder::text_field_v(ficha, :paciente_id, 
+              <%= FormBuilder::text_field_v(ficha, :paciente_id,
                                           input_class: '',
                                           col_class: 'col-md-4',
                                           disabled: true,
                                           input_value: '',
                                           label_text: 'Profesión') %>
-              <%= FormBuilder::text_field_v(ficha, :paciente_id, 
+              <%= FormBuilder::text_field_v(ficha, :paciente_id,
                                           input_class: '',
                                           col_class: 'col-md-2',
                                           disabled: true,
                                           input_value: '',
                                           label_text: 'Nro de Hijos') %>
-                
-              
+
+
     </div>
      <div class="row">
-              <%= FormBuilder::text_field_v(ficha, :paciente_id, 
-                                          input_class: '', 
+              <%= FormBuilder::text_field_v(ficha, :paciente_id,
+                                          input_class: '',
                                           col_class: 'col-md-5',
                                           disabled: true,
                                           input_value: '',
-                                          label_text: 'Padre') %> 
-              <%= FormBuilder::text_field_v(ficha, :paciente_id, 
+                                          label_text: 'Padre') %>
+              <%= FormBuilder::text_field_v(ficha, :paciente_id,
                                           input_class: '',
                                           col_class: 'col-md-2',
                                           disabled: true,
                                           input_value: '',
                                           label_text: 'Edad') %>
-              <%= FormBuilder::text_field_v(ficha, :paciente_id, 
+              <%= FormBuilder::text_field_v(ficha, :paciente_id,
                                           input_class: '',
                                           col_class: 'col-md-5',
                                           disabled: true,
                                           input_value: '',
                                           label_text: 'Profesión') %>
-              
+
     </div>
     </div>
-    
+
      <h4>Embarazo</h4>
     <hr>
     <div class="row">
-              <%= FormBuilder::text_field_v(ficha, :control_embarazo, 
+              <%= FormBuilder::text_field_v(ficha, :control_embarazo,
                                           input_class: '',
                                           col_class: 'col-md-5',
                                           disabled: true,
-                                          label_text: 'Control Prenatal') %> 
-              <%= FormBuilder::text_field_v(ficha, :edad_gestacional, 
+                                          label_text: 'Control Prenatal') %>
+              <%= FormBuilder::text_field_v(ficha, :edad_gestacional,
                                           input_class: '',
                                           col_class: 'col-md-3',
                                           disabled: true,
                                           label_text: 'Edad Gestacional') %>
-              <%= FormBuilder::text_field_v(ficha, :tipo_parto, 
+              <%= FormBuilder::text_field_v(ficha, :tipo_parto,
                                           input_class: '',
                                           col_class: 'col-md-4',
                                           disabled: true,
                                           label_text: 'Tipo de Parto') %>
-              
+
     </div>
     <h4>Datos de la Ficha</h4>
     <hr>
     <div class="row">
-              <%= FormBuilder::text_field_v(ficha, :peso_nacer, 
-                                          input_class: '', 
+              <%= FormBuilder::text_field_v(ficha, :peso_nacer,
+                                          input_class: '',
                                           col_class: 'col-md-2',
                                           disabled: true,
-                                          label_text: 'Peso al Nacer') %> 
-              <%= FormBuilder::text_field_v(ficha, :apgar, 
+                                          label_text: 'Peso al Nacer') %>
+              <%= FormBuilder::text_field_v(ficha, :apgar,
                                           input_class: '',
                                           col_class: 'col-md-3',
                                           disabled: true,
                                           label_text: 'Apgar') %>
-              <%= FormBuilder::text_field_v(ficha, :antecedentes_familiares, 
+              <%= FormBuilder::text_field_v(ficha, :antecedentes_familiares,
                                           input_class: '',
                                           col_class: 'col-md-7',
                                           disabled: true,
                                           label_text: 'Antecedentes Familiares') %>
-              
+
     </div>
     <div class="row">
       <div class="col-md-12">
-        <%= ficha.label :condicion_general, 'Condiciones Generales del Recién Nacido' %> 
-        <%= ficha.text_area :condicion_general, rows: "4", class: "form-control", disabled: true %> 
+        <%= ficha.label :condicion_general, 'Condiciones Generales del Recién Nacido' %>
+        <%= ficha.text_area :condicion_general, rows: "4", class: "form-control", disabled: true %>
       </div>
     </div>
     </br>
@@ -213,22 +213,23 @@
       </div>
     </div>
     <hr>
-        <%=render "consultas/consultas_tabs"%>
+    <%=render 'consultas/consultas_tabs', consultas: @consultas%>
 
     <% end %>
 
 
   </div>
 
-<script type="text/javascript"> 
-    
-  fisioNinosUI.initScript();
-  <% if !flash.notice.blank? %> 
-    var n = noty({text: '<%=notice%>', type: 'success'});   
+<script type="text/javascript">
+
+  consultasUI.initConsultasTab();
+
+  <% if !flash.notice.blank? %>
+    var n = noty({text: '<%=notice%>', type: 'success'});
   <% end %>
-  
-  <% if !flash.alert.blank?%> 
+
+  <% if !flash.alert.blank?%>
     var n = noty({text: '<%=alert%>', type: 'error'});
   <% end %>
-  
+
 </script>
