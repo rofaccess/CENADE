@@ -42,4 +42,5 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
 	inflect.irregular 'ficha_pediatrica', 'fichas_pediatricas'
 	inflect.irregular 'ficha_nutricional_pediatrica', 'fichas_nutricionales_pediatricas'
 	inflect.irregular 'ficha_odontologica','fichas_odontologicas'
+	inflect.irregular 'consulta_odontologica','consultas_odontologicas'
 end

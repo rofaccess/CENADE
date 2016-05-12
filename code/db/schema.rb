@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160509000329) do
+ActiveRecord::Schema.define(version: 20160511225806) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -83,6 +83,51 @@ ActiveRecord::Schema.define(version: 20160509000329) do
   add_index "consultas", ["area_id"], name: "index_consultas_on_area_id", using: :btree
   add_index "consultas", ["paciente_id"], name: "index_consultas_on_paciente_id", using: :btree
   add_index "consultas", ["profesional_salud_id"], name: "index_consultas_on_profesional_salud_id", using: :btree
+
+  create_table "consultas_odontologicas", force: :cascade do |t|
+    t.integer  "paciente_id",                           null: false
+    t.integer  "area_id",                               null: false
+    t.integer  "doctor_id",                             null: false
+    t.date     "fecha",                                 null: false
+    t.string   "motivo_consulta",           limit: 250
+    t.string   "observaciones",             limit: 250
+    t.string   "servicio_cenade",           limit: 250
+    t.string   "medicacion_actual",         limit: 250
+    t.string   "anestesico",                limit: 50
+    t.string   "penicilina",                limit: 50
+    t.string   "otros_medicamentos",        limit: 50
+    t.string   "hemorragias",               limit: 250
+    t.string   "problema_tratamiento",      limit: 250
+    t.string   "enfermedad_cardiovascular", limit: 250
+    t.string   "diabetes",                  limit: 50
+    t.string   "hepatitis",                 limit: 50
+    t.string   "enfermedades_renales",      limit: 50
+    t.string   "artritis",                  limit: 50
+    t.string   "tuberculosis",              limit: 50
+    t.string   "enfermedades_venereas",     limit: 50
+    t.string   "enfermedades_sanguineas",   limit: 50
+    t.string   "fumador",                   limit: 50
+    t.string   "enfemedades_neurologicas",  limit: 50
+    t.string   "menstruacion",              limit: 50
+    t.string   "embarazada",                limit: 50
+    t.string   "tiene_hijos",               limit: 50
+    t.string   "cantidad_hijos",            limit: 2
+    t.string   "amamanta",                  limit: 50
+    t.string   "hospitalizado",             limit: 50
+    t.string   "causa_hospitalizado",       limit: 50
+    t.string   "ecg",                       limit: 50
+    t.string   "tac",                       limit: 50
+    t.string   "rx",                        limit: 50
+    t.string   "laboratorios",              limit: 50
+    t.string   "otros_examenes",            limit: 50
+    t.string   "tratamiento",               limit: 250
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+  end
+
+  add_index "consultas_odontologicas", ["area_id"], name: "index_consultas_odontologicas_on_area_id", using: :btree
+  add_index "consultas_odontologicas", ["doctor_id"], name: "index_consultas_odontologicas_on_doctor_id", using: :btree
+  add_index "consultas_odontologicas", ["paciente_id"], name: "index_consultas_odontologicas_on_paciente_id", using: :btree
 
   create_table "custom_auto_increments", force: :cascade do |t|
     t.string   "counter_model_name"
@@ -520,6 +565,8 @@ ActiveRecord::Schema.define(version: 20160509000329) do
   add_foreign_key "consultas", "areas", on_delete: :restrict
   add_foreign_key "consultas", "empleados", column: "profesional_salud_id", on_delete: :restrict
   add_foreign_key "consultas", "pacientes", on_delete: :cascade
+  add_foreign_key "consultas_odontologicas", "areas", on_delete: :restrict
+  add_foreign_key "consultas_odontologicas", "pacientes", on_delete: :restrict
   add_foreign_key "empleados", "areas", on_delete: :restrict
   add_foreign_key "empleados", "personas", on_delete: :restrict
   add_foreign_key "fechas", "horarios", on_delete: :restrict

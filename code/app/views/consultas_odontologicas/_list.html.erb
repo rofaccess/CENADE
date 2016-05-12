@@ -1,0 +1,45 @@
+
+<table class= "table table-condensed">
+  <thead>
+    <tr>
+      <th>Fecha de Consulta</th>
+      <th>Paciente</th>
+      <th>Área</th>
+      <th>Profesional</th>
+      <th></th>
+    </tr>
+  </thead>
+  <% if consultas.blank? %>
+    <tfoot>
+      <tr>
+        <th colspan="8" scope="col">No se encontraron coincidencias </th>
+      </tr>
+    </tfoot>
+   <% end %>
+  <tbody>
+    <% consultas.each do |consulta| %>
+    <tr>
+      <td><%=consulta.fecha.strftime("%d/%m/%Y")%></td>
+      <td ><%=consulta.paciente_persona_full_name %></td>
+      <td ><%=consulta.area_nombre %></td>
+      <td ><%=consulta.doctor.persona_full_name %></td>
+
+      <td class = "action">
+
+        <%= link_to '<i class="fa fa-eye fa-lg" data-toggle="tooltip" data-placement="bottom" title="Ver Consulta"></i> '.html_safe, consulta_odontologica_path(consulta), remote: true%>
+        <%= link_to '<i class="fa fa-edit fa-lg" data-toggle="tooltip" data-placement="bottom" title="Editar Consulta"></i> '.html_safe, edit_consulta_odontologica_path(consulta), remote: true%>
+
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<script type="text/javascript">
+      <% if !flash.notice.blank? %>
+        var n = noty({text: '<%=notice%>', type: 'success'});
+      <% end %>
+      <% if !flash.alert.blank?%>
+        var n = noty({text: '<%=alert%>', type: 'error'});
+      <% end %>
+</script>

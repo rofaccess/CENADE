@@ -1,22 +1,8 @@
-class FichaOdontologica < ActiveRecord::Base
-
-  paginates_per 20
-
-  # Autoincremente el numero de ficha
-  protokoll :nro_ficha, pattern: '#'
-
-  #asociaciones
+class ConsultaOdontologica < ActiveRecord::Base
+  belongs_to :area
   belongs_to :paciente
-  belongs_to :doctor, :foreign_key => :doctor_id
-  before_create :cargar_area_id
-  has_many :consulta_odontologica
-
-
-
-  	def cargar_area_id
-		area= Area.where(nombre: 'Odontología').first.id
-		self.area_id= area
-	end
+  belongs_to :doctor,    :foreign_key => :profesional_salud_id
+  belongs_to :ficha_odontologica
 
 
   # Law of Demeter
