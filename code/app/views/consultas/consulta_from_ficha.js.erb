@@ -1,17 +1,18 @@
-$("#principal-content").html('<%= j render 'form', formats: 'html' %>');
+$("#wrapper").toggleClass("toggled");
 
-$('.paciente_select').val("<%=j params[:paciente].to_s %>").trigger("change");
+$("#principal-content").html('<%= j render 'form', consulta: @consulta, paciente: @paciente, from_ficha: true, formats: 'html' %>');
 
 $('.select-paciente').val("<%=j params[:paciente].to_s %>").trigger("change");
+$('.select-paciente').attr("disabled","true");
+$('#consulta_paciente_id').val("<%=j params[:paciente].to_s %>");
 
-$('.area_select').val("<%=j params[:area].to_s %>").trigger("change");
+$('.select-area').val("<%=j params[:area].to_s %>").trigger("change");
+$('.select-area').attr("disabled","true");
+$('#consulta_area_id').val("<%=j params[:area].to_s %>");
 
-$('.profesional_select2').val("<%=j params[:profesional].to_s %>").trigger("change");
+$('.select-doctor').val("<%=j params[:profesional].to_s %>").trigger("change");
 
-$("#sidebar-wrapper").hide();
+$('.select2').attr("style","width: 100%;");//- Sin esto los select se ven ajustados
 
-$("#wrapper").css({"padding-left":"100px", "padding-right": "120px"});
-
-$('.paciente_data').html("<%= j render partial: 'paciente_form'%>");
 
 

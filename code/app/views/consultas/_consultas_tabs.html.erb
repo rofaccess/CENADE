@@ -1,7 +1,10 @@
+<% if consultas.size == 0 %>
+    <strong>No se encontraron consultas</strong>
+<% end %>
+
 <ul class="nav nav-tabs">
     <% consultas.each do |c| %>
         <li><a href="#tab-<%= c.id%>"><%= c.fecha.strftime("%d/%m/%Y")%></a></li>
-
     <%end%>
 </ul>
 
