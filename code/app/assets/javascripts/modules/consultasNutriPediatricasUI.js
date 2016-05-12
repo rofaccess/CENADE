@@ -1,21 +1,21 @@
-var fichasFonoaudiologicasUI = (function(){
-  return {    
+var consultasNutriPediatricasUI = (function(){
+  return {
 
-    initScript: function(){ 
-      
+    initScript: function(){
+
       /* Script globales */
         APP.initDatepicker();
         APP.initSelect2({element: '.select-paciente', placeholder: 'Seleccione un Paciente'})
         APP.initSelect2({element: '.select-doctor', placeholder: 'Seleccione un Profesional'});
+        APP.initSelect2({element: '.select-area', placeholder: 'Seleccione un Área'});
 
         //pacientesUI.initBuscarPaciente('.select-paciente');
         //empleadosUI.initBuscarDoctor('.select-doctor');
 
-        pacientesUI.getPaciente({element: '.select-paciente', root: 'fichas_fonoaudiologicas'});
-        
-        
+        pacientesUI.getPaciente({element: '.select-paciente', root: 'consultas_nutricionales_pediatricas'});
+
       /* Valida el formulario antes de enviarlo */
-      $('.form-ficha2').validate(); 
+      $('.nueva-consulta').validate();
     }
   };
-}()); 
+}());

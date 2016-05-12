@@ -125,8 +125,7 @@ TituloLargo.create([{titulo: '¿Tuvo algún problema en el embarazo?'},
 					{titulo: '¿Cómo fué su alimentación durante el embarazo?¿Tomó vitaminas/minerales?'},
 					{titulo: '¿Tuvo asfixia postnatal?¿Lloró enseguida el bebé?¿Estuvo internado después del nacimiento?'},
 					{titulo: '¿Tomó pecho materno?¿Cuánto tiempo tomo solo pecho materno?¿Qué clase de leche tomó?'},
-					{titulo: '¿Cuando inició la alimentación complementaria?'},
-					{titulo: 'Habilidades presentes y/o ausentes para la edad'}])
+					{titulo: '¿Cuando inició la alimentación complementaria?'}])
 
 
 
