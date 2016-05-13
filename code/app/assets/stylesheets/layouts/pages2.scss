@@ -6,7 +6,7 @@
 // me refiero a todo el contenido desde aqui
 
 /* Define lo referente al aspecto del título de página Ej.: Turnos, y los iconos listar, editar, eliminar, etc.
-   que se encuentran a la derecha de ese título 
+   que se encuentran a la derecha de ese título
 */
 #principal-content {
 	.page-title {
@@ -14,10 +14,10 @@
 		position: fixed;
 		right: 0;
 		left: 0;
-		top: 55px;		
+		top: 55px;
 		z-index: 1030;
 
-		background-color: #FEFEFE;		
+		background-color: #FEFEFE;
 		border-bottom: solid;
 		border-color: #CCCCCC;
 		font-size: 24px;
@@ -27,7 +27,7 @@
 		padding-left: 50px;
 		padding-right: 20px;
 
-		a {							
+		a {
 			margin-left: 13px;
 			color: #999999;
 			font-size: 26px;
@@ -36,17 +36,17 @@
 				&:hover,
 				&:focus {
 					color: #24C1C1;
-				}	
-			}				
-		}			
+				}
+			}
+		}
 
 	}
-	
+
 	// Cuando se tiene el sidebar hay que agregar la clase page-title-con-sidebar al div de titulo de página
 	div.page-title-con-sidebar{
 		margin-left: 200px;
 	}
-	
+
 	// Cuando no se tiene submenu hay que agregar la siguiente clase, junto a page-title
 	div.page-title-sin-submenu{
 		top: 40px;
@@ -54,7 +54,7 @@
 }
 
 /* Define lo referente al contenido principal de los index */
-#principal-content {	
+#principal-content {
 	.content2{
 		margin-top: 75px;
 
@@ -62,15 +62,15 @@
 			margin-left: auto;
 			margin-right: auto;
 			background: #EFEFEF;
-			width: 90%;		
-			height: 100px;	
+			width: 90%;
+			height: 100px;
 			padding: 20px 50px 0px 50px; //Top Right Bottom Left
 			border: solid;
 			border-color: #CCCCCC;
 			border-width: 1px;
 			margin-bottom: 20px;
 		}
-		
+
 		// Cuando se tiene el sidebar hay que agregar la clase advanced-search-con-sidebar al div de busqueda avanzada
 		div.advanced-search-con-sidebar{
 			width: 100% !important;
@@ -86,7 +86,7 @@
 			padding-top: 50px;
 			padding-bottom: 1px;
 		}
-		
+
 		// Cuando se tiene el sidebar hay que agregar la clase list-con-sidebar al div de lista
 		div.list-con-sidebar{
 			width: 100% !important;
@@ -99,7 +99,7 @@
 			background: white;
 			width: 90%;
 			padding-left: 50px;
-			padding-right: 50px; 
+			padding-right: 50px;
 		}
 
 		// Cuando se tiene el sidebar hay que agregar la clase list-paginate-con-sidebar al div de paginación
@@ -107,14 +107,14 @@
 			width: 100% !important;
 		}
 	}
-}	
+}
 
 /* Define el aspecto de los formularios */
 #principal-content{
 	.form-content2{
 		margin-top: 75px;
 
-		form{			
+		form{
 			width: 70%;
 			background: white;
 			margin-left: auto;
@@ -147,7 +147,7 @@
 						font-size: 14px;
 						font-weight: bold;
 					}
-				}				
+				}
 
 				div.select.text-error{
 					span.text-error{
@@ -162,18 +162,21 @@
 
 				}
 
-			}		
-			
+			}
+
 
 			.form-button{
 				text-align: right;
 			}
-			
+
 		}
 
 		form.form-ficha2{
 			width: 100%;
 		}
+		form.nueva-consulta{
+			width: 93%;
+		}
 
 	}
-}	
+}

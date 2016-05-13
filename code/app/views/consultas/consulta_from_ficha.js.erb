@@ -11,12 +11,9 @@ $('.select-area').val("<%=j params[:area].to_s %>").trigger("change");//Establec
 $('.select-area').attr("disabled","true");//Bloquea el select de area
 $('#consulta_area_id').val("<%=j params[:area].to_s %>");//Setea un hidden field con el id del area
 
-//- Establece como seleccionado un profesional especificado
-//- No funciona porque, el recarga paciente de consultasUI, actualiza de nuevo el select
-//- y muestra como seleccionado el primer doctor de la lista
-//$('.select-doctor').val("<%=j params[:profesional].to_s %>").trigger("change");
+//$("#sidebar-wrapper").hide();
 
-$('.select2').attr("style","width: 100%;");//- Sin esto los select se ven ajustados
+//$("#wrapper").css({"padding-left":"100px", "padding-right": "120px"});
 
 
 

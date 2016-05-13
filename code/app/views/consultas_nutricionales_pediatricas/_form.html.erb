@@ -1,4 +1,4 @@
-	<div class="page-title">
+	<div class="page-title page-title-con-sidebar">
 		<%=consulta.id.nil? ? 'Nueva Consulta' : 'Editar Consulta'%>
 
 		<div class="tool">
@@ -9,6 +9,8 @@
 	<div class="form-content2">
 		<%= simple_form_for consulta, html: {class: 'nueva-consulta'} do |consult|%>
 			<%= hidden_field_tag :consulta_id, consulta.id, class: 'consulta-id'%>
+
+			<h4 class="titulo-ficha">Consulta en Nutrición Pediátrica</h4>
 
 			<div class="row">
 				<%= consult.input :area_id, as: :string, label: '* Área', wrapper_html: { class: 'col-md-2' }, input_html: {disabled: true, value: area.nombre} %>

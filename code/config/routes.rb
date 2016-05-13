@@ -105,7 +105,6 @@ Rails.application.routes.draw do
     collection do
       match 'buscar' => 'consultas#buscar', via: [:get, :post], as: :search
       get'get_paciente' => 'consultas#get_paciente'
-      get'recarga_profesional' => 'consultas#recarga_profesional'
     end
   end
 
