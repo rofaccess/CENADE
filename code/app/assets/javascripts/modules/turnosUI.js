@@ -1,6 +1,6 @@
 var turnosUI = (function(){
 
-	return {	
+	return {
 		checkPACIENTE: function(checkTurnoPacienteUrl){
 			$.validator.addClassRules({
                 uniquePACIENTE: {
@@ -31,7 +31,7 @@ var turnosUI = (function(){
 		        id = $(this).val();
 
 		        $.ajax({
-		         
+
 		          url: "/turnos/get_paciente",
 		          type: 'get',
 		          data: {
@@ -40,7 +40,7 @@ var turnosUI = (function(){
 		          success: function(resp){
 		              //alert("Data");
 		           }
-		          
+
 		         });
 		      });
 		      $(".profesional_select").select2({
@@ -59,7 +59,7 @@ var turnosUI = (function(){
 		        }).on('change', function () {
         			$(this).valid();
         		});
-		  
+
 		},
 
 		mostrarNroFactura: function(){
@@ -82,13 +82,13 @@ var turnosUI = (function(){
 	            var api = this.api();
 	            var rows = api.rows( {page:'current'} ).nodes();
 	            var last=null;
-	 			
+
 	            api.column(0, {page:'current'} ).data().each( function ( group, i ) {
 	                if ( last !== group ) {
 	                    $(rows).eq( i ).before(
 	                        '<tr class="group" bgcolor="#CCCCCC"><td align="center" colspan="7">'+group+'</td></tr>'
 	                    );
-	 
+
 	                    last = group;
 	                }
 	            } );
@@ -97,7 +97,7 @@ var turnosUI = (function(){
 	                    $(rows).eq( i ).before(
 	                        '<tr class="group" bgcolor="#EFEFEF"><td align="center" colspan="7">'+"Fecha consulta "+group+'</td></tr>'
 	                    );
-	 
+
 	                    last = group;
 	                }
 	            } );
@@ -120,7 +120,7 @@ var turnosUI = (function(){
 
 			$('.costo').inputmask('Regex', { regex: "[0-9\.]+" });
 
-			
+
 
 	        $('.datepicker').datepicker({
 		        format: "dd/mm/yyyy",
@@ -137,7 +137,7 @@ var turnosUI = (function(){
 		        }).on('change', function() {
         			$(this).valid();
 		      	});
-		     
+
 		}
 	};
 }());

@@ -12,7 +12,7 @@ class CreateEmpleados < ActiveRecord::Migration
     t.string   :abr_profesion ,default: '' ,limit: Domain::ABREVIATURA_PROFESION, null: true
 
 
-   t.string   :costo ,default: '' ,limit: Domain::COSTO, null: true
+    #t.string   :costo ,default: '' ,limit: Domain::COSTO, null: true
 
     t.datetime :deleted_at
     t.timestamps

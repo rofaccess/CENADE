@@ -121,7 +121,7 @@ class EmpleadosController < ApplicationController
     end
 
   	def empleado_params
-      params.require(:empleado).permit(:cargo,:area_id, :costo,:type,:abr_profesion,
+      params.require(:empleado).permit(:cargo,:area_id,:type,:abr_profesion,
       persona_attributes: [:id,:nombre,:apellido,:ci,:ruc,:fecha_nacimiento,:edad,
       	                   :sexo,:estado_civil_id,:direccion,:telefono,:email,:nacionalidad])
     end
