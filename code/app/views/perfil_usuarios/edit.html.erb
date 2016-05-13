@@ -1,18 +1,18 @@
 <% @submenu_layout = 'layouts/submenu_configuracion' %>
-<% @sidebar_layout = 'layouts/sidebar_perfil_usuario' %>
-<div class= "form-content">  
+<% @sidebar_layout = 'layouts/sidebar_perfil_usuario'%>
+<div class= "form-content">
   <div class="page-title" style = "left:200px;">
-    Perfil de Usuario      
+    Perfil de Usuario
   </div>
   <%= hidden_field_tag :usuario_id, current_user.id %>
 
   <%= form_for current_user, url: {action: "update"}, html: {method: "put",class:' form-perfil medium-form'} do |f| %>
-  
+
     <h4>Datos de Usuario</h4><hr>
     <div class="row">
-      <%= FormBuilder::text_field_v(f, :username, 
-                                        input_class: 'required uniqueUsuarioUsername username nameMinLength', 
-                                        max_length: Domain::USERNAME, 
+      <%= FormBuilder::text_field_v(f, :username,
+                                        input_class: 'required uniqueUsuarioUsername username nameMinLength',
+                                        max_length: Domain::USERNAME,
                                         autofocus: true,
                                         col_class: 'col-md-6',
                                         label_text: '* Usuario') %>
@@ -26,16 +26,16 @@
     </div>
 
     <div class="row">
-      <%= FormBuilder::password_field(f, :password,  
+      <%= FormBuilder::password_field(f, :password,
                                         max_length: Domain::CONTRASEÑA,
                                         col_class: 'col-md-6',
                                         label_text: 'Contraseña') %>
 
       <%= FormBuilder::password_field(f, :password_confirmation,
-                                        input_class: 'passwordEqual', 
+                                        input_class: 'passwordEqual',
                                         max_length: Domain::CONTRASEÑA,
                                         col_class: 'col-md-6',
-                                        label_text: 'Confirmar Contraseña') %>        
+                                        label_text: 'Confirmar Contraseña') %>
     </div>
     <h4>Datos de Contacto</h4><hr>
     <div class="row">
@@ -56,18 +56,18 @@
           <input class="form-control required clear emailCheck " placeholder=""  maxlength="50" type="text" value="<%= @persona.email %>" name="user[email]" id="user_email">
       </div>
     </div>
-    
-    <div class="form-button">   
+
+    <div class="form-button">
       <%= f.submit 'Guardar cambios', class: 'btn btn-custom'%>
     </div>
   <% end %>
 </div>
 <script type="text/javascript">
 
-  <% if !flash.notice.blank? %> 
-    var n = noty({text: '<%=notice%>', type: 'success'});   
+  <% if !flash.notice.blank? %>
+    var n = noty({text: '<%=notice%>', type: 'success'});
   <% end %>
-  <% if !flash.alert.blank?%> 
+  <% if !flash.alert.blank?%>
     var n = noty({text: '<%=alert%>', type: 'error'});
   <% end %>
 

@@ -11,42 +11,43 @@
       <th></th>
     </tr>
   </thead>
-  <% if @empleados.blank? %>
+  <% if empleados.blank? %>
     <tfoot>
       <tr>
         <th colspan="8" scope="col">No se encontraron coincidencias </th>
       </tr>
     </tfoot>
    <% end %>
-  <tbody>    
-    <% @empleados.each do |empleado| %>
+  <tbody>
+    <% empleados.each do |empleado| %>
     <tr data-url=<%= empleado_path(empleado)%>>
-      <td><%=empleado.abr_profesion %>  <%=empleado.persona_nombre %> <%=empleado.persona_apellido %></td>
+      <td><%=empleado.abr_profesion %>  <%=empleado.persona_full_name %> </td>
       <td><%=empleado.persona_ci %></td>
       <td><%=empleado.persona_direccion %></td>
       <td><%=empleado.persona_telefono %></td>
       <td><%=empleado.cargo %></td>
       <td>
-          <% if not empleado.type == 'Funcionario' %>         
+          <% if not empleado.type == 'Funcionario' %>
             <%=empleado.area_nombre %>
-          <% end %>  
-      </td> 
+          <% end %>
+      </td>
 
       <td class = "action">
-        
-        <%= link_to '<i class="fa fa-eye fa-lg"></i> '.html_safe, empleado_path(empleado), remote: true%>     
-         
+
+        <%= link_to '<i class="fa fa-eye fa-lg"></i> '.html_safe, empleado_path(empleado), remote: true%>
+
         <%= link_to '<i class="fa fa-edit fa-lg"></i> '.html_safe, edit_empleado_path(empleado), remote: true%>
-        
-        <% unless current_user.empleado_id == empleado.id %>           
-          <%= link_to '<i class="fa fa-trash-o fa-lg"></i>'.html_safe, empleado_path(empleado), method: 'delete', data: {confirm: "¿Desea eliminar al empleado #{empleado.persona.nombre}?"}%>
-        <%end%>       
+
+        <% unless current_user.empleado_id == empleado.id %>
+          <%= link_to '<i class="fa fa-trash-o fa-lg"></i>'.html_safe, empleado_path(empleado), method: 'delete', data: {confirm: "¿Desea eliminar al empleado #{empleado.persona_full_name}?"}%>
+        <%end%>
       </td>
     </tr>
-    <% end %>   
+    <% end %>
   </tbody>
 </table>
 
 <script type="text/javascript">
+//- Todavía no se usa, permitiría imprimir una lista filtrada, según el buscador básico
   configImprimir("<%= params[:q].nil? ? '' : '?'+params[:q].to_query('q')%>");
 </script>

@@ -5,7 +5,7 @@ class Permission < ActiveRecord::Base
 	def self.agruparRoPermission
   	grupos= Grupo.all
   	grupo= []
- 	
+
 
      grupos.each do |g|
      grupos_arr = []
@@ -22,7 +22,7 @@ class Permission < ActiveRecord::Base
        grupos_arr<<subgrupo2
        grupo <<grupos_arr
      end
- 
+
      grupo
 
   end

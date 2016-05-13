@@ -9,7 +9,7 @@ $common-color: #24C1C1;
 
 }
 /* Lo anterior se necesita para que lo siguiente funcione. Porque? */
-.nuevo-empleado{
+.form-empleado{
 	.row{
 		.checkbox{
 			padding-top: 20px;
@@ -17,7 +17,7 @@ $common-color: #24C1C1;
 	}
 }
 .well {
-	
+
 	background-color : #EFEFEF;
 }
 
@@ -29,7 +29,7 @@ $common-color: #24C1C1;
 	background-color: #f3f3f3;
 	padding-top:30%;
 	margin-top: -20%;
-	
+
 	img{
 		border-radius:50%;
 	}
@@ -37,7 +37,7 @@ $common-color: #24C1C1;
 
 /* Evita que se puedan redimensionar horizontalmente los text area */
 textarea {
-    max-width: 100%; 
+    max-width: 100%;
 }
 
 .titulos-campos{
@@ -59,7 +59,7 @@ textarea {
 label.label-title {
 	font-weight: bold;
 	color: #999999;
-	font-size: 20px;					 
+	font-size: 20px;
 }
 
 .show-empleado{
@@ -72,19 +72,19 @@ td.action {
 
 	a {
 		color: #999999;
-		text-decoration: none; //Quita el subrayado de los link	
+		text-decoration: none; //Quita el subrayado de los link
 		i.fa-trash-o {
 			&:hover,
 			&:focus {
 				color: #FF1414;
-				
+
 			}
 		}
 		i.fa-times {
 			&:hover,
 			&:focus {
 				color: #FF1414;
-				
+
 			}
 		}
 
@@ -93,11 +93,11 @@ td.action {
 			&:focus {
 				color: #24C1C1;
 			}
-		}	
+		}
 	}
 }
 
-.btn-custom {    
+.btn-custom {
 
 	background-color: #24C1C1;
 	border: none;
@@ -141,7 +141,7 @@ td.action {
 	margin-right: 37px;
 }
 
-.btn-danger {    
+.btn-danger {
 
 	background-color: #E41F25;
 	border: none;
@@ -178,18 +178,18 @@ td.action {
 
 body{
 	background: #EAF0F3;
-	padding-top: 30px;	
+	padding-top: 30px;
 }
 
 /*
 .alert {
-	    
+
 		padding: 8px 35px 8px 14px;
 		-webkit-border-radius: 4px;
 		-moz-border-radius: 4px;
 		border-radius: 4px;
 		font-size: 12px;
-		
+
 	}
 */
 .align-left {
@@ -202,7 +202,7 @@ body{
 	height: 10px;
 	position: fixed;
 	right: 0;
-	left: 0; 
+	left: 0;
 	background: #24C1C1;
 	border-bottom:solid;
 	border-bottom-color: #CCCCCC;
@@ -211,17 +211,17 @@ body{
 
 #principal-content {
 
-	.content, .form-content{		
+	.content, .form-content{
 
 		.page-title {
 			//Posición fija
 			position: fixed;
 			right: 0;
 			left: 0;
-			top: 55px;		
+			top: 55px;
 			z-index: 1030;
 
-			background-color: #FEFEFE;		
+			background-color: #FEFEFE;
 			border-bottom: solid;
 			border-color: #CCCCCC;
 			font-size: 24px;
@@ -230,8 +230,8 @@ body{
 			padding-top: 7px;
 			padding-left: 50px;
 			padding-right: 20px;
-			
-			a {							
+
+			a {
 				margin-left: 13px;
 				color: #999999;
 				font-size: 26px;
@@ -240,16 +240,16 @@ body{
 					&:hover,
 					&:focus {
 						color: #24C1C1;
-					}	
-				}				
-			}			
+					}
+				}
+			}
 
 		}
 
 
 		div.page-title-sin-submenu{
 			top: 40px;
-		}		
+		}
 
 		div.page-title-auto{
 
@@ -268,7 +268,7 @@ body{
 			margin-right: auto;
 			background: white;
 			width: 90%;
-			margin-top: 105px; 
+			margin-top: 105px;
 			padding-left: 50px;
 			padding-right: 50px;
 			padding-top: 50px;
@@ -286,17 +286,17 @@ body{
 			background: white;
 			width: 90%;
 			padding-left: 50px;
-			padding-right: 50px; 
+			padding-right: 50px;
 		}
 	}
-	
+
 	.form-content{
 
 		.page-title > .tool {
-			text-align: right;			
-		}		 
+			text-align: right;
+		}
 
-		form{			
+		form{
 			width: 70%;
 			background: white;
 			margin-left: auto;
@@ -310,7 +310,7 @@ body{
 				font-weight: bold;
 				color: #999999;
 			}
-			
+
 
 			hr {
 				margin-top: 5px;
@@ -351,7 +351,7 @@ body{
 				border-color:#d9d9d9;
 				width:80px;
 				height:80px;
-			}	
+			}
 			.font-img{
 				color:#24C1C1;
 				font-weight: normal;
@@ -376,12 +376,12 @@ body{
 					filter: alpha(opacity=0);
 				}
 			}
-			
+
 
 			.form-button{
 				text-align: right;
 			}
-			
+
 		}
 
 		form.form-sin-submenu{
@@ -405,7 +405,7 @@ body{
 			width: 60%;
 			margin-top:80px;
 		}
-	}	
+	}
 }
 
 /* Establece parte del aspecto y posición de los botones presentes junto al page-title  */
@@ -414,13 +414,13 @@ body{
 	width: 40%;
 	font-size: 14px;
 	text-align: right;
-	
+
 	/* Establece como se ve el input de búsqueda presente en los index junto al page-title */
-	form {	
+	form {
 		.input-group {
 			.form-control{
-				border-radius: 5px;						
-				color: #999999;											
+				border-radius: 5px;
+				color: #999999;
 			}
 
 			.fa-search {
@@ -433,10 +433,10 @@ body{
 				font-size: 15pt;
 			}
 
-			
+
 		}
 	}
-} 
+}
 
 /*  Establece los colores para la paginación */
 .pagination{
@@ -453,7 +453,7 @@ body{
 				border-color: #24C1C1;
 				cursor: default;
 			}
-		}		
+		}
 	}
 
 	li {
@@ -464,7 +464,7 @@ body{
 				background-color: $pagination-hover-bg;
 				color: #24C1C1;
 			}
-		}		
+		}
 	}
 }
 
@@ -493,6 +493,6 @@ form{
 				font-size: 14px;
 				font-weight: bold;
 			}
-		}		
+		}
 	}
 }

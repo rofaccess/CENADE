@@ -1,12 +1,12 @@
 class DeviseCreateUsers < ActiveRecord::Migration
   def change
     create_table(:users) do |t|
-      ## Database authenticatable  
-      t.string :email              
+      ## Database authenticatable
+      t.string :email
       t.string :username,           null: false, default: "", limit: Domain::USERNAME
       t.string :encrypted_password, null: false, default: ""
       t.string :rol               , null: false, default: "", limit: Domain::ROL
-      t.string :profile_foto 
+      t.string :profile_foto
 
       t.integer  :empleado_id,      null: false
 
@@ -23,7 +23,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.datetime :last_sign_in_at
       t.inet     :current_sign_in_ip
       t.inet     :last_sign_in_ip
-      
+
 
       ## Confirmable
       # t.string   :confirmation_token

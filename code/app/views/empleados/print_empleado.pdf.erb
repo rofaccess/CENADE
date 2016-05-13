@@ -12,14 +12,14 @@
 	<div class="form-group col-md-2">
 		<label class="control-label">CI</label>
 		<div class="data"> <%=@empleado.persona_ci%> </div>
-	</div>	
+	</div>
 
 	<div class="form-group col-md-2">
 		<label class="control-label">RUC</label>
 		<div class="data"> <%=@empleado.persona_ruc%> </div>
-	</div>			
+	</div>
 </div>
-	
+
 <div class="row">
 	<div class="form-group col-md-3">
 		<label class="control-label">Fecha de Nac.</label>
@@ -29,7 +29,7 @@
 	<div class="form-group col-md-1">
 		<label class="control-label">Edad</label>
 		<div class="data"> <%=@empleado.persona_edad%> </div>
-	</div>	
+	</div>
 
 	<div class="form-group col-md-2">
 		<label class="control-label">Sexo</label>
@@ -39,14 +39,14 @@
 	<div class="form-group col-md-3">
 		<label class="control-label">Estado Civil</label>
 		<div class="data"> <%=@empleado.persona_estado_civil_descripcion%> </div>
-	</div>	
+	</div>
 
 	<div class="form-group col-md-3">
 		<label class="control-label">Nacionalidad</label>
 		<div class="data"> <%=@empleado.persona_nacionalidad%> </div>
-	</div>				
-</div>	
-		
+	</div>
+</div>
+
 <h4>Datos de Contacto</h4>
 <hr>
 
@@ -54,8 +54,8 @@
 	<div class="form-group col-md-12">
 		<label class="control-label">Dirección</label>
 		<div class="data"> <%=@empleado.persona_direccion%> </div>
-	</div>	
-</div>	
+	</div>
+</div>
 
 <div class="row">
 	<div class="form-group col-md-4">
@@ -66,8 +66,8 @@
 	<div class="form-group col-md-8">
 		<label class="control-label">Email</label>
 		<div class="data"> <%=@empleado.persona_email%> </div>
-	</div>		
-</div>	
+	</div>
+</div>
 
 <h4>Datos Laborales</h4>
 <hr>
@@ -81,21 +81,16 @@
 	<div class="form-group col-md-2">
 		<label class="control-label">Abr. Prof.</label>
 		<div class="data"> <%=@empleado.abr_profesion%> </div>
-	</div>	
-	
-	<% unless @empleado.type == 'Funcionario' %>	
+	</div>
+
+	<% unless @empleado.type == 'Funcionario' %>
 		<div class="form-group col-md-3">
 			<label class="control-label">Area</label>
 			<div class="data"> <%=@empleado.area_nombre%> </div>
-		</div>	
-		
-		<div class="form-group col-md-2">
-			<label class="control-label">Costo</label>
-			<div class="data"> <%=@empleado.costo%> </div>
-		</div>	
+		</div>
 	<% end %>
 
 
-</div>		
+</div>
 
-	
+

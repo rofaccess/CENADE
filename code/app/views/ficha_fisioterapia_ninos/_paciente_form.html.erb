@@ -2,34 +2,34 @@
  <div class="row">
             <div class="col-md-4">
                 <label class="control-label">Nombres</label>
-                <input class="form-control" disabled="disabled" value="<%= @paciente.persona.nombre %>">
+                <input class="form-control" disabled="disabled" value="<%= @paciente.persona_nombre %>">
               </div>
              <div class="col-md-4">
                 <label class="control-label">Apellidos</label>
-                <input class="form-control" disabled="disabled" value="<%= @paciente.persona.apellido %>">
+                <input class="form-control" disabled="disabled" value="<%= @paciente.persona_apellido %>">
               </div>
               <div class="col-md-2">
                 <label class="control-label">Fecha de Nac.</label>
-                <input class="form-control" disabled="disabled" value="<%= @paciente.persona.fecha_nacimiento.strftime("%d/%m/%Y") %>">
+                <input class="form-control" disabled="disabled" value="<%= @paciente.persona_fecha_nacimiento.strftime("%d/%m/%Y") %>">
               </div>
             <div class="col-md-2">
                 <label class="control-label">Edad</label>
-                <input class="form-control" disabled="disabled" value="<%= @paciente.persona.edad %>">
+                <input class="form-control" disabled="disabled" value="<%= @paciente.persona_edad %>">
               </div>
             </div>
           </br>
           <div class="row">
               <div class="col-md-4">
                 <label class="control-label">Sexo</label>
-                <input class="form-control" disabled="disabled" value="<%= @paciente.persona.sexo %>">
+                <input class="form-control" disabled="disabled" value="<%= @paciente.persona_sexo %>">
               </div>
               <div class="col-md-3">
                 <label class="control-label">C.I.</label>
-                <input class="form-control" disabled="disabled" value="<%= @paciente.persona.ci %>">
+                <input class="form-control" disabled="disabled" value="<%= @paciente.persona_ci %>">
               </div>
               <div class="col-md-5">
                 <label class="control-label">Nacionalidad</label>
-                <input class="form-control" disabled="disabled" value="<%= @paciente.persona.nacionalidad %>">
+                <input class="form-control" disabled="disabled" value="<%= @paciente.persona_nacionalidad %>">
               </div>
 
           </div>
@@ -37,12 +37,11 @@
             <div class="row">
               <div class="col-md-8">
                 <label class="control-label">Dirección</label>
-                <input class="form-control" disabled="disabled" value="<%= @paciente.persona.direccion %>">
+                <input class="form-control" disabled="disabled" value="<%= @paciente.persona_direccion %>">
               </div>
               <div class="col-md-4">
                 <label class="control-label">Teléfono</label>
-                <input class="form-control" disabled="disabled" value="<%= @paciente.persona.telefono %>">
+                <input class="form-control" disabled="disabled" value="<%= @paciente.persona_telefono %>">
               </div>
 
           </div>
-          

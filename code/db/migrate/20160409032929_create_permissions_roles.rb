@@ -8,7 +8,7 @@ class CreatePermissionsRoles < ActiveRecord::Migration
     end
     add_foreign_key(:permissions_roles, :roles, column: 'role_id', options: 'ON DELETE CASCADE')
     add_foreign_key(:permissions_roles, :permissions, column: 'permission_id', options: 'ON DELETE CASCADE')
-    
+
     add_index :permissions_roles, :role_id
     add_index :permissions_roles, :permission_id
   end

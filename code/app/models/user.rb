@@ -13,18 +13,23 @@ class User < ActiveRecord::Base
   has_many :consultas
 
   validates :username, length: {maximum: Domain::USERNAME, minimum: 3}
-  
+
 	def email_required?
 	  	false
-	     	
-	end  
+
+	end
   def get_role
     role = Role.joins("LEFT JOIN users_roles ON roles.id = users_roles.role_id").where(users_roles: {user_id: self.id}).first
     if !role.nil?
       role.name
     else
       ""
-    end  
+    end
   end
+
+  # Law of Demeter
+  delegate :persona_nombre, :persona_apellido, :persona_full_name,
+           :persona_email,:persona_telefono,:persona_direccion,:cargo,
+           to: :empleado, prefix: true, allow_nil: true
 
 end
