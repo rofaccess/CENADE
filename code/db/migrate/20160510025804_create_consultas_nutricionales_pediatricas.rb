@@ -42,5 +42,7 @@ class CreateConsultasNutricionalesPediatricas < ActiveRecord::Migration
     end
     add_foreign_key(:consultas_nutricionales_pediatricas, :pacientes, column: 'paciente_id', on_delete: :restrict)
     add_foreign_key(:consultas_nutricionales_pediatricas, :areas, column: 'area_id', on_delete: :restrict)
+    add_index :consultas_nutricionales_pediatricas, :paciente_id
+    add_index :consultas_nutricionales_pediatricas, :area_id
   end
 end

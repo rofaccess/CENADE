@@ -125,6 +125,9 @@ ActiveRecord::Schema.define(version: 20160510025804) do
     t.datetime "updated_at",                          null: false
   end
 
+  add_index "consultas_nutricionales_pediatricas", ["area_id"], name: "index_consultas_nutricionales_pediatricas_on_area_id", using: :btree
+  add_index "consultas_nutricionales_pediatricas", ["paciente_id"], name: "index_consultas_nutricionales_pediatricas_on_paciente_id", using: :btree
+
   create_table "custom_auto_increments", force: :cascade do |t|
     t.string   "counter_model_name"
     t.integer  "counter",            default: 0
