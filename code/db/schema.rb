@@ -1,4 +1,3 @@
-
 # encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
@@ -125,6 +124,9 @@ ActiveRecord::Schema.define(version: 20160511225806) do
     t.datetime "updated_at",                          null: false
   end
 
+  add_index "consultas_nutricionales_pediatricas", ["area_id"], name: "index_consultas_nutricionales_pediatricas_on_area_id", using: :btree
+  add_index "consultas_nutricionales_pediatricas", ["paciente_id"], name: "index_consultas_nutricionales_pediatricas_on_paciente_id", using: :btree
+
   create_table "consultas_odontologicas", force: :cascade do |t|
     t.integer  "paciente_id",                           null: false
     t.integer  "area_id",                               null: false
@@ -185,7 +187,6 @@ ActiveRecord::Schema.define(version: 20160511225806) do
     t.string   "type",          limit: 15,  default: "", null: false
     t.string   "cargo",         limit: 100, default: "", null: false
     t.string   "abr_profesion", limit: 5,   default: ""
-    t.string   "costo",         limit: 7,   default: ""
     t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -492,6 +493,10 @@ ActiveRecord::Schema.define(version: 20160511225806) do
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
   end
+
+  add_index "fichas_nutricionales_adultos", ["area_id"], name: "index_fichas_nutricionales_adultos_on_area_id", using: :btree
+  add_index "fichas_nutricionales_adultos", ["doctor_id"], name: "index_fichas_nutricionales_adultos_on_doctor_id", using: :btree
+  add_index "fichas_nutricionales_adultos", ["paciente_id"], name: "index_fichas_nutricionales_adultos_on_paciente_id", using: :btree
 
   create_table "fichas_nutricionales_pediatricas", force: :cascade do |t|
     t.integer  "paciente_id",                             null: false

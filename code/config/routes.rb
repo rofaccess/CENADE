@@ -109,7 +109,7 @@ Rails.application.routes.draw do
   end
 
   get 'consultas_odontologicas/check_paciente_has_ficha' => 'consultas_odontologicas#check_paciente_has_ficha'
-  get 'consultas_odontologicas/print_ficha'=>'consultas_odontologicas#print_ficha'
+  get 'consultas_odontologicas/print_consulta'=>'consultas_odontologicas#print_consulta'
   resources :consultas_odontologicas do
     collection do
       match 'buscar' =>'consultas_odontologicas#buscar', via: [:get, :post], as: :search

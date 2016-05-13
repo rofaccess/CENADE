@@ -2,6 +2,7 @@ class ConsultasOdontologicasController < ApplicationController
 
   before_action :set_consulta, only: [:show, :edit, :update]
 	#load_and_authorize_resource
+  before_action :set_sidebar, only: [:edit, :new, :show, :index]
   before_action :set_submenu, only: [:edit, :update, :show, :index, :new]
   before_action :set_Titulo, only: [:show, :create, :update, :edit, :new, :print_ficha]
   respond_to :html, :js
@@ -10,8 +11,17 @@ class ConsultasOdontologicasController < ApplicationController
    @submenu_layout = 'layouts/submenu_fichas_consultas'
   end
 
+  def set_sidebar
+    @sidebar_layout = 'layouts/sidebar_consultas'
+  end
+
   def set_Titulo
     @titulos_largos= TituloLargo.all
+  end
+
+  def set_consulta
+    @consulta= ConsultaOdontologica.find(params[:id])
+    @paciente= Paciente.find(@consulta.paciente_id)
   end
 
   def index
@@ -120,7 +130,7 @@ class ConsultasOdontologicasController < ApplicationController
   end
 
   def consulta_params
-  	params.require(:consulta_odontologica).permit(:area_id, :paciente_id, :profesional_salud_id, :fecha,
+  	params.require(:consulta_odontologica).permit(:area_id, :paciente_id, :doctor_id, :fecha,
       :motivo_consulta, :observaciones,:servicio_cenade,:medicacion_actual, :anestesico,:penicilina, :otros_medicamentos,
       :hemorragias,:problema_tratamiento,:enfermedad_cardiovascular,:diabetes,:hepatitis,:enfermedades_renales,:artritis,
       :tuberculosis,:enfermedades_venereas,:enfermedades_sanguineas,:fumador,:enfemedades_neurologicas,:menstruacion,

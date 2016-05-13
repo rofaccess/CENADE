@@ -1,5 +1,4 @@
-
-    <div class="page-title">
+    <div class="page-title page-title-con-sidebar">
       <%=consulta.id.nil? ? 'Nueva Consulta' : 'Editar Consulta'%>
 
       <div class="tool">
@@ -8,22 +7,20 @@
 
     </div>
     <div class="form-content2">
-    <%= simple_form_for consulta, html: {class: 'form-consulta', style: "width: 80%; margin-left: 140px;", :multipart => true }, remote: true do |consult|%>
+    <%= simple_form_for consulta, html: {class: 'nueva-consulta'} do |consult|%>
+      <%= hidden_field_tag :consulta_id, consulta.id, class: 'consulta-id'%>
+
+      <h4 class="titulo-ficha">Consulta en Odontológia</h4>
+
       <div class="row">
-        <!-- Si el form se renderiza desde la ficha, para agregar una consulta, paciente y area aparecen desactivados, con estos hidden_field se asegura que se envién sus respectivos id -->
-        <% if from_ficha %>
-          <%= consult.hidden_field :paciente_id%>
-          <%= consult.hidden_field :area_id%>
-        <% end %>
-        <%= consult.input :paciente_id, collection: Paciente.all.collect { |a| [a.persona_full_name, a.id] }, label: '* Paciente', wrapper_html: { class: 'col-md-3' }, input_html: { class: 'required select-paciente select2 paciente-id', disabled: consulta.paciente_id.nil? ? false : true} %>
+        <%= consult.input :area_id, as: :string, label: '* Área', wrapper_html: { class: 'col-md-2' }, input_html: {disabled: true, value: area.nombre} %>
 
-        <%= consult.input :area_id, collection: Area.all.collect { |a| [a.nombre, a.id] }, label: '* Área', wrapper_html: { class: 'col-md-3'}, input_html: { class: 'required select-area select2', disabled: consulta.paciente_id.nil? ? false : true} %>
+        <%= consult.input :paciente_id, collection: Paciente.all.collect { |a| [a.persona_full_name, a.id] }, label: '* Paciente', wrapper_html: {class: 'col-md-3' },input_html: { class: 'required select-paciente select2 paciente-id', disabled: paciente.id.nil? ? false : true} %>
 
 
-        <%= consult.input :doctor_id, collection: Doctor.all.collect { |a| [a.abr_profesion+" "+a.persona_full_name+"-"+ a.area.nombre, a.id] }, label: '* Prof. de la Salud', wrapper_html: { class: 'col-md-3' }, input_html:  { class: 'required select-doctor select2'} %>
+        <%= consult.input :doctor_id, collection: doctores.collect { |a| [a.abr_profesion+" "+a.persona_full_name, a.id] }, label: '* Profesional de la Salud', wrapper_html: { class: 'col-md-4' }, input_html:   { class: 'required select-doctor select2'} %>
 
-        <%= consult.input :fecha, as: :string, label: '* Fecha', wrapper_html: { class: 'col-md-3'}, input_html: { class: 'datepicker dateLessSystemDate required', maxLength: Domain::FECHA, value:Formatter.format_date(consulta.fecha)} %>
-
+        <%= consult.input :fecha, as: :string, label: '* Fecha', wrapper_html: { class: 'col-md-3'}, input_html: { class: 'datepicker required', maxLength: Domain::FECHA, value:Formatter.format_date(consulta.fecha)} %>
       </div>
       <div id="paciente-data">
         <%= render 'form_paciente', paciente: paciente %>
@@ -69,7 +66,7 @@
       <div class="row">
         <%= consult.input :tiene_hijos, as: :string, label: 'Tiene hijos?', wrapper_html: { class: 'col-md-4'}, input_html: { maxLength: Domain::DESC50} %>
 
-        <%= consult.input :cantidad_hijos, as: :string, label:'cuantos:', wrapper_html: { class: 'col-md-4'}, input_html: { maxLength: Domain::DESC50} %>
+        <%= consult.input :cantidad_hijos, as: :string, label:'cuantos:', wrapper_html: { class: 'col-md-4'}, input_html: { maxLength: Domain::NUM_HIJOS} %>
 
          <%= consult.input :amamanta, as: :string, label:'amamanta?', wrapper_html: { class: 'col-md-4'}, input_html: { maxLength: Domain::DESC50} %>
       </div>
