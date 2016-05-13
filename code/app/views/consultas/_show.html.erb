@@ -8,57 +8,29 @@
 
     <%= link_to '<i class="fa fa-edit" data-toggle="tooltip" title="Editar Consulta"></i> '.html_safe, edit_consulta_path(consulta), remote:true%>
 
-    <%= link_to '<i class="fa fa-print" data-toggle="tooltip" title="Imprimir Consulta"></i> '.html_safe, consultas_print_consulta_path(consulta_id: consulta.id, :format => :pdf), target: '_blank'%>
+     <%= link_to '<i class="fa fa-print" data-toggle="tooltip" title="Imprimir Consulta"></i> '.html_safe, consultas_print_consulta_path(consulta_id: consulta.id, :format => :pdf), target: '_blank'%>
 
   </div>
 </div>
+
   <div class="form-content2">
-    <%= form_for consulta, html: {class: 'nueva-consulta', :multipart => true }, remote: true do |consult|%>
+    <%= form_for consulta, html: {class: 'form-consulta', :multipart => true }, remote: true do |consult|%>
       <h4 class="titulo-ficha">Consulta en <%= area.nombre%></h4></br>
       <div class="row">
         <div class="col-md-9">
-          <h4><%= consult.label :profesional_salud_id, 'Profesional de la Salud: ' %> <%= consulta.doctor_persona_full_name%> </h4>
+
+          <h4><%= consult.label :doctor_id, 'Profesional de la Salud: ' %> <%= consulta.doctor_persona_full_name%> </h4>
+
         </div>
         <div class="col-md-3">
             <h4><%= consult.label :fecha, 'Fecha: ' %> <%=Formatter.format_date(consulta.fecha)%> </h4>
         </div>
       </div></br>
 
-      <h4>Datos del Paciente</h4>
-       <hr>
-       <div class="row">
-            <%= FormBuilder::text_field_v(consult, :paciente_id,
+      <div id="paciente-data">
+        <%= render 'form_paciente', paciente: consulta.paciente %>
+      </div>
 
-                                          col_class: 'col-md-4',
-                                          disabled: true,
-                                          label_text: 'Nombres',
-                                          input_value: consulta.paciente_persona_nombre) %>
-
-            <%= FormBuilder::text_field_v(consult, :paciente_id,
-                                          col_class: 'col-md-5',
-                                          disabled: true,
-                                          label_text: 'Apellidos',
-                                          input_value: consulta.paciente_persona_apellido) %>
-
-            <%= FormBuilder::text_field_v(consult, :paciente_id,
-                                          col_class: 'col-md-3',
-                                          disabled: true,
-                                          label_text: 'CI',
-                                          input_value: consulta.paciente_persona_ci) %>
-          </div>
-          <div class="row">
-              <%= FormBuilder::text_field_v(consult, :paciente_id,
-
-                                        col_class: 'col-md-8',
-                                        disabled: true,
-                                        label_text: 'Direccion',
-                                        input_value: consulta.paciente_persona_direccion) %>
-               <%= FormBuilder::text_field_v(consult, :paciente_id,
-                                        col_class: 'col-md-4',
-                                        disabled: true,
-                                        label_text: 'Telefono',
-                                        input_value: consulta.paciente_persona_telefono) %>
-        </div>
 
       <h4>Datos de Consulta</h4>
       <hr>

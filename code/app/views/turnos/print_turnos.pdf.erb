@@ -19,20 +19,19 @@
       </tr>
     </tfoot>
    <% end %>
-  <tbody>    
+  <tbody>
     <% @turnos.each do |turno| %>
     <tr data-url=<%= turno_path(turno)%>>
       <td class="show-turno"><%=turno.fecha_expedicion.strftime("%m/%d/%Y")%></td>
       <td class="show-turno"><%=turno.turno%></td>
-      <td class="show-turno crop"><%=turno.paciente.persona.nombre %> <%=turno.paciente.persona.apellido%></td>
-      <td class="show-turno"><%=turno.paciente.persona.ci %></td>
-      <%doctor= Empleado.find(turno.doctor_id)%>
-      <td class="show-turno"><%=doctor.persona.nombre %> <%=doctor.persona.apellido %></td>
+      <td class="show-turno crop"><%=turno.paciente_persona_full_name%></td>
+      <td class="show-turno"><%=turno.paciente_persona_ci %></td>
+      <td class="show-turno"><%=turno.doctor.persona_full_name %></td>
       <td class="show-turno"><%=turno.estado %></td>
-      <td class="show-turno"><%=turno.area.nombre%></td>
-      
-      
+      <td class="show-turno"><%=turno.area_nombre%></td>
+
+
     </tr>
-    <% end %>   
+    <% end %>
   </tbody>
 </table>

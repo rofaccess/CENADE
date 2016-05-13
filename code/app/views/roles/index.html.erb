@@ -1,26 +1,26 @@
 <div class= "content">
-  	<div class="page-title">    
+  	<div class="page-title">
    Permisos por Roles
-  
+
    <div class="tool">
       <%= search_form_for @search, class: 'buscador', remote: true do |f| %>
-         <div class="input-group"> 
+         <div class="input-group">
             <%= f.search_field :name_cont, placeholder: " Buscar por Rol", class: "form-control", autofocus: true%>
             <span class="fa fa-search"></span>
-          	<div class="input-group-btn"> 
-            <%= link_to '<i class="fa fa-plus-square"></i> '.html_safe, new_role_path%>          
-          </div> 
+          	<div class="input-group-btn">
+            <%= link_to '<i class="fa fa-plus-square"></i> '.html_safe, new_role_path%>
+          </div>
         </div>
       <% end %>
     </div>
   </div>
-  
+
   <div id="list">
-    <%= render 'list' %>
-  </div> 
+    <%= render 'list', roles: @roles %>
+  </div>
 
   <div id="list-paginate">
     <%= paginate @roles, remote: true %>
-  </div>  
+  </div>
 </div>
 

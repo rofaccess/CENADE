@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160510025804) do
+ActiveRecord::Schema.define(version: 20160511214336) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,21 +68,20 @@ ActiveRecord::Schema.define(version: 20160510025804) do
   end
 
   create_table "consultas", force: :cascade do |t|
-    t.integer  "profesional_salud_id"
-    t.integer  "paciente_id",                                   null: false
-    t.integer  "area_id",                                       null: false
+    t.integer  "doctor_id"
+    t.integer  "paciente_id",                              null: false
+    t.integer  "area_id",                                  null: false
     t.date     "fecha"
-    t.string   "profesional_salud",    limit: 60,  default: ""
-    t.string   "motivo_consulta",      limit: 300, default: ""
-    t.string   "evaluacion",           limit: 300, default: ""
-    t.string   "tratamiento",          limit: 600, default: ""
-    t.string   "observaciones",        limit: 250, default: ""
+    t.string   "motivo_consulta", limit: 300, default: ""
+    t.string   "evaluacion",      limit: 300, default: ""
+    t.string   "tratamiento",     limit: 600, default: ""
+    t.string   "observaciones",   limit: 250, default: ""
     t.datetime "deleted_at"
   end
 
   add_index "consultas", ["area_id"], name: "index_consultas_on_area_id", using: :btree
+  add_index "consultas", ["doctor_id"], name: "index_consultas_on_doctor_id", using: :btree
   add_index "consultas", ["paciente_id"], name: "index_consultas_on_paciente_id", using: :btree
-  add_index "consultas", ["profesional_salud_id"], name: "index_consultas_on_profesional_salud_id", using: :btree
 
   create_table "consultas_nutricionales_pediatricas", force: :cascade do |t|
     t.integer  "paciente_id",                         null: false
@@ -143,7 +142,6 @@ ActiveRecord::Schema.define(version: 20160510025804) do
     t.string   "type",          limit: 15,  default: "", null: false
     t.string   "cargo",         limit: 100, default: "", null: false
     t.string   "abr_profesion", limit: 5,   default: ""
-    t.string   "costo",         limit: 7,   default: ""
     t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -222,6 +220,95 @@ ActiveRecord::Schema.define(version: 20160510025804) do
   add_index "ficha_fisioterapia_ninos", ["doctor_id"], name: "index_ficha_fisioterapia_ninos_on_doctor_id", using: :btree
   add_index "ficha_fisioterapia_ninos", ["paciente_id"], name: "index_ficha_fisioterapia_ninos_on_paciente_id", using: :btree
 
+  create_table "fichas_clinicos", force: :cascade do |t|
+    t.integer  "paciente_id",                                      null: false
+    t.integer  "area_id",                                          null: false
+    t.integer  "doctor_id",                                        null: false
+    t.string   "p",                       limit: 10,  default: ""
+    t.string   "a",                       limit: 10,  default: ""
+    t.string   "pc1",                     limit: 10,  default: ""
+    t.string   "pt1",                     limit: 50,  default: ""
+    t.string   "pa",                      limit: 10,  default: ""
+    t.string   "control",                 limit: 250, default: ""
+    t.string   "gestacion",               limit: 100, default: ""
+    t.string   "paridad",                 limit: 100, default: ""
+    t.string   "abortos",                 limit: 100, default: ""
+    t.string   "nacidos_muertos",         limit: 100, default: ""
+    t.string   "partos_anteriores",       limit: 100, default: ""
+    t.string   "gru_san_paciente",        limit: 10,  default: ""
+    t.string   "rh_paciente",             limit: 10,  default: ""
+    t.string   "coombs",                  limit: 10,  default: ""
+    t.string   "gru_san_padre",           limit: 10,  default: ""
+    t.string   "rh_padre",                limit: 10,  default: ""
+    t.string   "fum",                     limit: 50,  default: ""
+    t.string   "fp",                      limit: 50,  default: ""
+    t.string   "duracion",                limit: 50,  default: ""
+    t.string   "riesgos",                 limit: 50,  default: ""
+    t.string   "tipo_parto",              limit: 50,  default: ""
+    t.string   "anestesia",               limit: 50,  default: ""
+    t.string   "analgesia",               limit: 50,  default: ""
+    t.string   "neonatal_cianosis",       limit: 50,  default: ""
+    t.string   "ictericia_antes",         limit: 50,  default: ""
+    t.string   "ictericia_despues",       limit: 50,  default: ""
+    t.string   "apgar",                   limit: 50,  default: ""
+    t.string   "peso1",                   limit: 50,  default: ""
+    t.string   "talla1",                  limit: 50,  default: ""
+    t.string   "pc2",                     limit: 50,  default: ""
+    t.string   "tp",                      limit: 50,  default: ""
+    t.string   "fontanela",               limit: 50,  default: ""
+    t.string   "dubowitz",                limit: 50,  default: ""
+    t.string   "parkin",                  limit: 50,  default: ""
+    t.string   "gru_san2",                limit: 10,  default: ""
+    t.string   "rh2",                     limit: 10,  default: ""
+    t.string   "medicacion",              limit: 50,  default: ""
+    t.string   "ccu",                     limit: 50,  default: ""
+    t.string   "tiempo_internacion",      limit: 50,  default: ""
+    t.string   "alta",                    limit: 50,  default: ""
+    t.string   "peso2",                   limit: 50,  default: ""
+    t.string   "talla2",                  limit: 50,  default: ""
+    t.string   "pb",                      limit: 50,  default: ""
+    t.string   "alimentacion_natural",    limit: 100, default: ""
+    t.string   "alimentacion_artificial", limit: 100, default: ""
+    t.string   "bcg",                     limit: 50,  default: ""
+    t.string   "antisarampionosa",        limit: 50,  default: ""
+    t.string   "antigripal",              limit: 50,  default: ""
+    t.string   "mmr",                     limit: 50,  default: ""
+    t.string   "dpt",                     limit: 20,  default: ""
+    t.string   "dpt1",                    limit: 20,  default: ""
+    t.string   "dpt2",                    limit: 50,  default: ""
+    t.string   "dpt3",                    limit: 20,  default: ""
+    t.string   "dpt_ref1",                limit: 20,  default: ""
+    t.string   "dpt_ref2",                limit: 20,  default: ""
+    t.string   "dpt_ref3",                limit: 20,  default: ""
+    t.string   "dpt_ref4",                limit: 20,  default: ""
+    t.string   "sabin",                   limit: 20,  default: ""
+    t.string   "sabin1",                  limit: 20,  default: ""
+    t.string   "sabin2",                  limit: 20,  default: ""
+    t.string   "sabin3",                  limit: 20,  default: ""
+    t.string   "sabin_ref1",              limit: 20,  default: ""
+    t.string   "sabin_ref2",              limit: 20,  default: ""
+    t.string   "sabin_ref3",              limit: 20,  default: ""
+    t.string   "sabin_ref4",              limit: 20,  default: ""
+    t.string   "otras",                   limit: 50,  default: ""
+    t.string   "app",                     limit: 50,  default: ""
+    t.string   "apf",                     limit: 50,  default: ""
+    t.string   "edad_mental",             limit: 50,  default: ""
+    t.string   "epl",                     limit: 50,  default: ""
+    t.string   "dpm",                     limit: 50,  default: ""
+    t.string   "tto_ant",                 limit: 50,  default: ""
+    t.string   "sosten_cefalico",         limit: 50,  default: ""
+    t.string   "sedentacion",             limit: 50,  default: ""
+    t.string   "mancha",                  limit: 50,  default: ""
+    t.date     "fecha",                                            null: false
+    t.integer  "nro_ficha"
+    t.datetime "created_at",                                       null: false
+    t.datetime "updated_at",                                       null: false
+  end
+
+  add_index "fichas_clinicos", ["area_id"], name: "index_fichas_clinicos_on_area_id", using: :btree
+  add_index "fichas_clinicos", ["doctor_id"], name: "index_fichas_clinicos_on_doctor_id", using: :btree
+  add_index "fichas_clinicos", ["paciente_id"], name: "index_fichas_clinicos_on_paciente_id", using: :btree
+
   create_table "fichas_fisioterapeuticas_adultos", force: :cascade do |t|
     t.integer  "area_id",                                          null: false
     t.integer  "doctor_id",                                        null: false
@@ -257,6 +344,95 @@ ActiveRecord::Schema.define(version: 20160510025804) do
   add_index "fichas_fonoaudiologicas", ["doctor_id"], name: "index_fichas_fonoaudiologicas_on_doctor_id", using: :btree
   add_index "fichas_fonoaudiologicas", ["paciente_id"], name: "index_fichas_fonoaudiologicas_on_paciente_id", using: :btree
 
+  create_table "fichas_neurologicas", force: :cascade do |t|
+    t.integer  "paciente_id",                                      null: false
+    t.integer  "area_id",                                          null: false
+    t.integer  "doctor_id",                                        null: false
+    t.string   "p",                       limit: 10,  default: ""
+    t.string   "a",                       limit: 10,  default: ""
+    t.string   "pc1",                     limit: 10,  default: ""
+    t.string   "pt1",                     limit: 50,  default: ""
+    t.string   "pa",                      limit: 10,  default: ""
+    t.string   "control",                 limit: 250, default: ""
+    t.string   "gestacion",               limit: 100, default: ""
+    t.string   "paridad",                 limit: 100, default: ""
+    t.string   "abortos",                 limit: 100, default: ""
+    t.string   "nacidos_muertos",         limit: 100, default: ""
+    t.string   "partos_anteriores",       limit: 100, default: ""
+    t.string   "gru_san_paciente",        limit: 10,  default: ""
+    t.string   "rh_paciente",             limit: 10,  default: ""
+    t.string   "coombs",                  limit: 10,  default: ""
+    t.string   "gru_san_padre",           limit: 10,  default: ""
+    t.string   "rh_padre",                limit: 10,  default: ""
+    t.string   "fum",                     limit: 50,  default: ""
+    t.string   "fp",                      limit: 50,  default: ""
+    t.string   "duracion",                limit: 50,  default: ""
+    t.string   "riesgos",                 limit: 50,  default: ""
+    t.string   "tipo_parto",              limit: 50,  default: ""
+    t.string   "anestesia",               limit: 50,  default: ""
+    t.string   "analgesia",               limit: 50,  default: ""
+    t.string   "neonatal_cianosis",       limit: 50,  default: ""
+    t.string   "ictericia_antes",         limit: 50,  default: ""
+    t.string   "ictericia_despues",       limit: 50,  default: ""
+    t.string   "apgar",                   limit: 50,  default: ""
+    t.string   "peso1",                   limit: 50,  default: ""
+    t.string   "talla1",                  limit: 50,  default: ""
+    t.string   "pc2",                     limit: 50,  default: ""
+    t.string   "tp",                      limit: 50,  default: ""
+    t.string   "fontanela",               limit: 50,  default: ""
+    t.string   "dubowitz",                limit: 50,  default: ""
+    t.string   "parkin",                  limit: 50,  default: ""
+    t.string   "gru_san2",                limit: 10,  default: ""
+    t.string   "rh2",                     limit: 10,  default: ""
+    t.string   "medicacion",              limit: 50,  default: ""
+    t.string   "ccu",                     limit: 50,  default: ""
+    t.string   "tiempo_internacion",      limit: 50,  default: ""
+    t.string   "alta",                    limit: 50,  default: ""
+    t.string   "peso2",                   limit: 50,  default: ""
+    t.string   "talla2",                  limit: 50,  default: ""
+    t.string   "pb",                      limit: 50,  default: ""
+    t.string   "alimentacion_natural",    limit: 100, default: ""
+    t.string   "alimentacion_artificial", limit: 100, default: ""
+    t.string   "bcg",                     limit: 50,  default: ""
+    t.string   "antisarampionosa",        limit: 50,  default: ""
+    t.string   "antigripal",              limit: 50,  default: ""
+    t.string   "mmr",                     limit: 50,  default: ""
+    t.string   "dpt",                     limit: 20,  default: ""
+    t.string   "dpt1",                    limit: 20,  default: ""
+    t.string   "dpt2",                    limit: 50,  default: ""
+    t.string   "dpt3",                    limit: 20,  default: ""
+    t.string   "dpt_ref1",                limit: 20,  default: ""
+    t.string   "dpt_ref2",                limit: 20,  default: ""
+    t.string   "dpt_ref3",                limit: 20,  default: ""
+    t.string   "dpt_ref4",                limit: 20,  default: ""
+    t.string   "sabin",                   limit: 20,  default: ""
+    t.string   "sabin1",                  limit: 20,  default: ""
+    t.string   "sabin2",                  limit: 20,  default: ""
+    t.string   "sabin3",                  limit: 20,  default: ""
+    t.string   "sabin_ref1",              limit: 20,  default: ""
+    t.string   "sabin_ref2",              limit: 20,  default: ""
+    t.string   "sabin_ref3",              limit: 20,  default: ""
+    t.string   "sabin_ref4",              limit: 20,  default: ""
+    t.string   "otras",                   limit: 50,  default: ""
+    t.string   "app",                     limit: 50,  default: ""
+    t.string   "apf",                     limit: 50,  default: ""
+    t.string   "edad_mental",             limit: 50,  default: ""
+    t.string   "epl",                     limit: 50,  default: ""
+    t.string   "dpm",                     limit: 50,  default: ""
+    t.string   "tto_ant",                 limit: 50,  default: ""
+    t.string   "sosten_cefalico",         limit: 50,  default: ""
+    t.string   "sedentacion",             limit: 50,  default: ""
+    t.string   "mancha",                  limit: 50,  default: ""
+    t.date     "fecha",                                            null: false
+    t.integer  "nro_ficha"
+    t.datetime "created_at",                                       null: false
+    t.datetime "updated_at",                                       null: false
+  end
+
+  add_index "fichas_neurologicas", ["area_id"], name: "index_fichas_neurologicas_on_area_id", using: :btree
+  add_index "fichas_neurologicas", ["doctor_id"], name: "index_fichas_neurologicas_on_doctor_id", using: :btree
+  add_index "fichas_neurologicas", ["paciente_id"], name: "index_fichas_neurologicas_on_paciente_id", using: :btree
+
   create_table "fichas_nutricionales_adultos", force: :cascade do |t|
     t.integer  "paciente_id",              null: false
     t.integer  "area_id",                  null: false
@@ -272,6 +448,10 @@ ActiveRecord::Schema.define(version: 20160510025804) do
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
   end
+
+  add_index "fichas_nutricionales_adultos", ["area_id"], name: "index_fichas_nutricionales_adultos_on_area_id", using: :btree
+  add_index "fichas_nutricionales_adultos", ["doctor_id"], name: "index_fichas_nutricionales_adultos_on_doctor_id", using: :btree
+  add_index "fichas_nutricionales_adultos", ["paciente_id"], name: "index_fichas_nutricionales_adultos_on_paciente_id", using: :btree
 
   create_table "fichas_nutricionales_pediatricas", force: :cascade do |t|
     t.integer  "paciente_id",                             null: false
@@ -341,7 +521,7 @@ ActiveRecord::Schema.define(version: 20160510025804) do
     t.string   "riesgos",                 limit: 50,  default: ""
     t.string   "tipo_parto",              limit: 50,  default: ""
     t.string   "anestesia",               limit: 50,  default: ""
-    t.string   "anelgesia",               limit: 50,  default: ""
+    t.string   "analgesia",               limit: 50,  default: ""
     t.string   "neonatal_cianosis",       limit: 50,  default: ""
     t.string   "ictericia_antes",         limit: 50,  default: ""
     t.string   "ictericia_despues",       limit: 50,  default: ""
@@ -362,8 +542,8 @@ ActiveRecord::Schema.define(version: 20160510025804) do
     t.string   "peso2",                   limit: 50,  default: ""
     t.string   "talla2",                  limit: 50,  default: ""
     t.string   "pb",                      limit: 50,  default: ""
-    t.string   "alimentacion_natural",    limit: 50,  default: ""
-    t.string   "alimentacion_artificial", limit: 50,  default: ""
+    t.string   "alimentacion_natural",    limit: 100, default: ""
+    t.string   "alimentacion_artificial", limit: 100, default: ""
     t.string   "bcg",                     limit: 50,  default: ""
     t.string   "antisarampionosa",        limit: 50,  default: ""
     t.string   "antigripal",              limit: 50,  default: ""
@@ -562,7 +742,7 @@ ActiveRecord::Schema.define(version: 20160510025804) do
   add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
 
   add_foreign_key "consultas", "areas", on_delete: :restrict
-  add_foreign_key "consultas", "empleados", column: "profesional_salud_id", on_delete: :restrict
+  add_foreign_key "consultas", "empleados", column: "doctor_id", on_delete: :restrict
   add_foreign_key "consultas", "pacientes", on_delete: :cascade
   add_foreign_key "consultas_nutricionales_pediatricas", "areas", on_delete: :restrict
   add_foreign_key "consultas_nutricionales_pediatricas", "pacientes", on_delete: :restrict
@@ -571,10 +751,14 @@ ActiveRecord::Schema.define(version: 20160510025804) do
   add_foreign_key "fechas", "horarios", on_delete: :restrict
   add_foreign_key "ficha_fisioterapia_ninos", "areas", on_delete: :restrict
   add_foreign_key "ficha_fisioterapia_ninos", "pacientes", on_delete: :restrict
+  add_foreign_key "fichas_clinicos", "areas", on_delete: :restrict
+  add_foreign_key "fichas_clinicos", "pacientes", on_delete: :restrict
   add_foreign_key "fichas_fisioterapeuticas_adultos", "areas", on_delete: :restrict
   add_foreign_key "fichas_fisioterapeuticas_adultos", "pacientes", on_delete: :restrict
   add_foreign_key "fichas_fonoaudiologicas", "areas", on_delete: :restrict
   add_foreign_key "fichas_fonoaudiologicas", "pacientes", on_delete: :restrict
+  add_foreign_key "fichas_neurologicas", "areas", on_delete: :restrict
+  add_foreign_key "fichas_neurologicas", "pacientes", on_delete: :restrict
   add_foreign_key "fichas_nutricionales_adultos", "areas", on_delete: :restrict
   add_foreign_key "fichas_nutricionales_adultos", "pacientes", on_delete: :restrict
   add_foreign_key "fichas_nutricionales_pediatricas", "areas", on_delete: :restrict

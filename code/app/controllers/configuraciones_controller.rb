@@ -4,11 +4,11 @@ class ConfiguracionesController < ApplicationController
 
   def set_submenu
    @submenu_layout = 'layouts/submenu_configuracion'
-  end 
+  end
   def edit
    @configuracion = Configuracion.find(params[:id])
-   @usuarios = User.all 
-  
+   @usuarios = User.all
+
   end
 
   def update
@@ -21,15 +21,15 @@ class ConfiguracionesController < ApplicationController
         #@message = "Ha ocurrido un problema al tratar de guardar la configuracion"
          redirect_to edit_configuracion_path(@configuracion), alert: "Ha ocurrido un problema al tratar de guardar la configuracion"
       end
-     
+
   end
 
-  def new  
+  def new
 
-  end 
+  end
 
   def create
-  end 
+  end
   # def show
   #   @configuracion = Configuracion.find(params[:id])
 
@@ -39,7 +39,7 @@ class ConfiguracionesController < ApplicationController
   #     format.json { render json: @configuracion }
   #   end
   # end
- 
+
   private
 
   def configuracion_params

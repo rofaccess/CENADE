@@ -44,7 +44,7 @@ Area.create(nombre: 'Neurología')
 Area.create(nombre: 'Nutrición')
 Area.create(nombre: 'Odontología')
 Area.create(nombre: 'Pediatría')
-Area.create(nombre: 'Psicologia')
+Area.create(nombre: 'Psicología')
 Area.create(nombre: 'Psicopedagogía')
 
 

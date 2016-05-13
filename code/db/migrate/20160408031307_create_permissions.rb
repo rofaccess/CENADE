@@ -8,8 +8,8 @@ class CreatePermissions < ActiveRecord::Migration
       t.timestamps null: false
     end
     add_foreign_key(:permissions, :grupos, column: 'grupo_id',on_delete: :restrict)
-  
+
   	add_index :permissions, :grupo_id
   end
-    
+
 end

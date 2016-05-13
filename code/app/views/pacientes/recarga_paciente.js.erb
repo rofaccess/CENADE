@@ -8,7 +8,7 @@ $('.paciente_select').select2({
 $('.paciente_select').val("<%=j @paciente.id.to_s %>").trigger("change");
 $('.paciente_data').html("<%= j render params[:root].to_s()+'/paciente_form' %>");
 
-<% if params[:encargado] %>
+<% if params[:encargado]=='true' %>
 	<%if !@paciente.encargado.nil? %>
 		$('.encargado_data').html("<%= j render params[:root].to_s()+'/encargado_form' %>");
 	<%end%>

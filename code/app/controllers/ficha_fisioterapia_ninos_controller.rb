@@ -60,8 +60,8 @@ class FichaFisioterapiaNinosController < ApplicationController
         else
           flash.now[:alert] = "No se ha podido guardar la Ficha"
         end
-        format.html { render action: "edit"}
-        format.js { render action: "edit"}
+        format.html { render "edit"}
+        format.js { render "edit"}
       end
 
     end

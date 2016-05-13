@@ -38,7 +38,7 @@ class FichasNutricionalesAdultosController < ApplicationController
         else
           flash.now[:alert] = "No se ha podido guardar la Ficha"
         end
-        
+
         format.html { render "edit"}
         format.js { render "edit"}
 
@@ -53,17 +53,17 @@ class FichasNutricionalesAdultosController < ApplicationController
   def get_fichas
     @search = FichaNutricionalAdulto.search(params[:q])
     @nutri_adultos = @search.result.order('nro_ficha').page(params[:page])
-  end 
+  end
 
   def update
-    
+
   	respond_to do |format|
       if @nutri_adulto.update_attributes(nutri_adulto_params)
 	        flash.now[:notice] = 'Ficha actualizada exitosamente'
     		format.html {render 'show'}
     	    format.js { render "show"}
       else
-        
+
         if @nutri_adulto.errors.full_messages.any?
           flash.now[:alert] = @nutri_adulto.errors.full_messages.first
         else
@@ -76,11 +76,11 @@ class FichasNutricionalesAdultosController < ApplicationController
   end
 
   def show
-    
+
   end
 
    def print_ficha
-    @nutri_adulto = FichaNutricionalAdulto.find params[:ficha_id]   
+    @nutri_adulto = FichaNutricionalAdulto.find params[:ficha_id]
 
     respond_to do |format|
       format.pdf do
@@ -98,9 +98,9 @@ class FichasNutricionalesAdultosController < ApplicationController
 
   #busca el paciente seleccionado en la base de datos
   def get_paciente
-    @paciente= Paciente.find(params[:id])    
+    @paciente= Paciente.find(params[:id])
   end
- 
+
   #metodo creado para el filtro
   def buscar
     get_fichas
@@ -115,11 +115,11 @@ class FichasNutricionalesAdultosController < ApplicationController
 
   def set_ficha_nutri_adulto
   	@nutri_adulto= FichaNutricionalAdulto.find(params[:id])
-    @paciente= Paciente.find(@nutri_adulto.paciente_id) 
+    @paciente= Paciente.find(@nutri_adulto.paciente_id)
   end
 
   def nutri_adulto_params
-  	params.require(:ficha_nutricional_adulto).permit(:area_id, :paciente_id, :doctor_id, :fecha, :nro_ficha, 
+  	params.require(:ficha_nutricional_adulto).permit(:area_id, :paciente_id, :doctor_id, :fecha, :nro_ficha,
   		:obesidad, :dbt, :hta, :cardiopatias, :actuales)
   end
 end

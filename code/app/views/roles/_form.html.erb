@@ -1,53 +1,53 @@
-<div class= "form-content">  
+<div class= "form-content">
   <div class="page-title">
-    <%=@role.id.nil? ? 'Nuevo Rol' : 'Editar Rol'%> 
+    <%=@role.id.nil? ? 'Nuevo Rol' : 'Editar Rol'%>
 
     	<div class="tool">
-      	<%= link_to '<i class="fa fa-list"></i> '.html_safe, roles_path %> 
+      	<%= link_to '<i class="fa fa-list"></i> '.html_safe, roles_path %>
     	</div>
-  	</div>  
+  	</div>
 
 
    <%= form_for @role,html: {class: 'nuevo-rol small-form'},:multipart => true do |role|%>
-   
+
      <%= hidden_field_tag :role_id, @role.id %>
      <h4>Rol</h4>
     <hr>
         <div class="row">
-            <%= FormBuilder::text_field_v(role, :name, 
-                                      input_class: 'required name uniqueRoleName nameMinLength', 
+            <%= FormBuilder::text_field_v(role, :name,
+                                      input_class: 'required name uniqueRoleName nameMinLength',
                                       max_length: Domain::ROL,
                                       autofocus: true,
                                       col_class: 'col-md-12',
                                       label_text: '* Descripcion') %>
-           
+
       	</div>
     		</br></br>
-        	
+
         	<div class="row">
            	<div class="col-md-12 form-group">
 
-           	<%= role.label :nombre, '* Permisos' %> 
+           	<%= role.label :nombre, '* Permisos' %>
            	<%= role.select(:permission_ids, grouped_options_for_select(Permission.agruparRoPermission, @role.permissions.collect {|p| p.id}),{},{class: "multiple_select form-control select2", multiple: true, required: true})%>
-             
+
         		</div>
-         </div> 
+         </div>
          </br>
-      <div class="form-button">     
+      <div class="form-button">
         <%= role.submit 'Guardar', class: 'btn btn-custom'%>
       </div>
-    
-   <% end %>        
+
+   <% end %>
 </div>
 
 <script type="text/javascript">
-    <% if !flash.notice.blank? %> 
-      var n = noty({text: '<%=notice%>', type: 'success'});   
+    <% if !flash.notice.blank? %>
+      var n = noty({text: '<%=notice%>', type: 'success'});
     <% end %>
-    
-    <% if !flash.alert.blank?%> 
+
+    <% if !flash.alert.blank?%>
       var n = noty({text: '<%=alert%>', type: 'error'});
     <% end %>
   rolesUI.initScript("<%= roles_check_name_path %>");
-</script>    
-      
+</script>
+

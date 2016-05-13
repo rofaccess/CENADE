@@ -1,17 +1,17 @@
 <% @submenu_layout = 'layouts/submenu_configuracion' %>
 <% @sidebar_layout = 'layouts/sidebar_perfil_usuario' %>
-<div class= "form-content">  
+<div class= "form-content">
   <div class="page-title">
-    Perfil de Usuario      
+    Perfil de Usuario
   </div>
 
   <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:multipart => true, :method => :put,class: 'medium-form' }) do |f| %>
-  
+
     <h4>Datos de Usuario</h4><hr>
     <div class="row">
-      <%= FormBuilder::text_field_v(f, :username, 
-                                        input_class: 'required', 
-                                        max_length: Domain::USERNAME, 
+      <%= FormBuilder::text_field_v(f, :username,
+                                        input_class: 'required',
+                                        max_length: Domain::USERNAME,
                                         autofocus: true,
                                         col_class: 'col-md-6',
                                         label_text: '* Usuario') %>
@@ -23,17 +23,17 @@
     </div>
 
     <div class="row">
-      <%= FormBuilder::text_field_v(f, :password, 
-                                        input_class: 'required clear', 
+      <%= FormBuilder::text_field_v(f, :password,
+                                        input_class: 'required clear',
                                         max_length: Domain::CONTRASEÑA,
                                         col_class: 'col-md-6',
                                         label_text: '* Contraseña') %>
 
-      <%= FormBuilder::text_field_v(f, :password_confirmation, 
-                                        input_class: 'required clear', 
+      <%= FormBuilder::text_field_v(f, :password_confirmation,
+                                        input_class: 'required clear',
                                         max_length: Domain::CONTRASEÑA,
                                         col_class: 'col-md-6',
-                                        label_text: '* Confirmar Contraseña') %>        
+                                        label_text: '* Confirmar Contraseña') %>
     </div>
     <h4>Datos de Contacto</h4><hr>
     <div class="row">
@@ -54,8 +54,8 @@
           <input class="form-control required clear usuario-email" placeholder=""  maxlength="50" type="text"  >
       </div>
     </div>
-    
-    <div class="form-button">   
+
+    <div class="form-button">
       <%= f.submit 'Guardar cambios', class: 'btn btn-custom'%>
     </div>
   <% end %>
