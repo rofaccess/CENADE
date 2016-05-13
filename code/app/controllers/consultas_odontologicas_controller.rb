@@ -3,10 +3,15 @@ class ConsultasOdontologicasController < ApplicationController
   before_action :set_consulta, only: [:show, :edit, :update]
 	#load_and_authorize_resource
   before_action :set_submenu, only: [:edit, :update, :show, :index, :new]
+  before_action :set_Titulo, only: [:show, :create, :update, :edit, :new, :print_ficha]
   respond_to :html, :js
 
   def set_submenu
    @submenu_layout = 'layouts/submenu_fichas_consultas'
+  end
+
+  def set_Titulo
+    @titulos_largos= TituloLargo.all
   end
 
   def index
