@@ -6,7 +6,7 @@ class RolesController < ApplicationController
 
   def set_submenu
    @submenu_layout = 'layouts/submenu_configuracion'
-  end 
+  end
 
   def index
   	get_roles
@@ -25,12 +25,12 @@ class RolesController < ApplicationController
   	respond_to do |format|
       if @role.save
       	@role.permission_ids = params[:role][:permission_ids]
-        
+
         format.html { redirect_to roles_path, flash: {notice: "El rol #{@role.name} fue creado"}}
       else
-       
+
         flash.now[:alert] = "Ha ocurrido un problema al tratar de guardar el rol"
-        format.html { render action: "new"}
+        format.html { render "new"}
       end
     end
   end
@@ -39,18 +39,18 @@ class RolesController < ApplicationController
   end
 
   def update
-  
+
     respond_to do |format|
       if @role.update_attributes(role_params)
       	@role.permission_ids = params[:role][:permission_ids]
-        
+
         format.html { redirect_to role_path, notice: 'Rol actualizado correctamente'}
       else
-        
+
         flash.now[:alert] = "Ha ocurrido un problema al tratar de guardar el rol"
-        format.html { render action: "edit"}
+        format.html { render "edit"}
       end
-      
+
     end
   end
    def destroy
@@ -62,9 +62,9 @@ class RolesController < ApplicationController
   end
   def check_name
       role = Role.find_by_name(params[:name])
-      
-      render json: (role.nil? || role.id == params[:id].to_i) ? true : "Ya existe el Rol especificado".to_json     
-  end 
+
+      render json: (role.nil? || role.id == params[:id].to_i) ? true : "Ya existe el Rol especificado".to_json
+  end
   def get_roles
     @search = Role.ransack(params[:q])
     @roles= @search.result.page(params[:page])

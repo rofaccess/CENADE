@@ -4,22 +4,22 @@
   <title>CENADE</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  
+
   <%= csrf_meta_tags %>
 
   <%= favicon_link_tag 'favicon.png' %>
 </head>
-<body>	
+<body>
 
-	<% if user_signed_in? %> 
+	<% if user_signed_in? %>
 		<%= render "layouts/menu" %>
 
-		<% unless @submenu_layout == nil %>    
+		<% unless @submenu_layout == nil %>
 			<%= render @submenu_layout %>
 		<% else %>
-			<div class="line"></div>	
+			<div class="line"></div>
 		<% end %>
-		
+
 		<div id="flash_messages">
 			<!-- <%= render 'layouts/messages'%> -->
 		</div>
@@ -27,19 +27,19 @@
 		<%= render 'layouts/modal' %>
 
 	<% end %>
-	
-	<% unless @sidebar_layout == nil %>    	
-	
-		<div id="wrapper">         
-			
-			<%= render @sidebar_layout %>        
-	        
+
+	<% unless @sidebar_layout == nil %>
+
+		<div id="wrapper">
+
+			<%= render @sidebar_layout %>
+
 	        <div id="page-content-wrapper">
-	            
+
 	            <div id="principal-content">
-	            	<%= yield %>  
-	            </div>  
-	                          
+	            	<%= yield %>
+	            </div>
+
 	        </div>
 	    </div>
 
@@ -47,8 +47,8 @@
 
 	    <div id="principal-content">
 			<%= yield %>
-		</div>	
-	
+		</div>
+
 	<% end %>
 
 </body>

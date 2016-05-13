@@ -1,18 +1,18 @@
-<div class="page-title page-title-sin-submenu">    
+<div class="page-title page-title-sin-submenu">
   Turnos
 
   <div class="tool">
     <%= search_form_for @search, class: 'buscador', remote: true do |f| %>
-    <div class="input-group"> 
+    <div class="input-group">
      <%= f.search_field :paciente_persona_nombre_or_area_nombre_cont, placeholder: "Buscar por Área, o Paciente", class: "form-control", autofocus: true%>
      <span class="fa fa-search"></span>
-     <div class="input-group-btn"> 
+     <div class="input-group-btn">
       <a href="#"><i class="fa fa-search-plus" id= "show-advanced-search" data-toggle="tooltip" title="Búsqueda Avanzada"></i></a>
-      <%= link_to '<i class="fa fa-plus-square"data-toggle="tooltip" title="Nuevo Turno"></i> '.html_safe, new_turno_path, remote: true %>          
-      <%= link_to '<i class="fa fa-print" data-toggle="tooltip" title="Imprimir Lsta de Turnos"></i> '.html_safe, turnos_print_turnos_path(:format => :pdf), target: '_blank' %>    
+      <%= link_to '<i class="fa fa-plus-square"data-toggle="tooltip" title="Nuevo Turno"></i> '.html_safe, new_turno_path, remote: true %>
+      <%= link_to '<i class="fa fa-print" data-toggle="tooltip" title="Imprimir Lsta de Turnos"></i> '.html_safe, turnos_print_turnos_path(:format => :pdf), target: '_blank' %>
 
       <%=link_to '<i class="fa fa-print" data-toggle="tooltip" data-placement="bottom" title="Imprimir Lsta de Turnos"></i>'.html_safe, turnos_print_turnos_path(format: 'pdf'), class: 'hide', id: 'imprimir-link', target: '_blank', data: {url: turnos_print_turnos_path(format: 'pdf')} %>
-    </div> 
+    </div>
   </div>
   <% end %>
 </div>
@@ -47,11 +47,11 @@
 </div>
 
 <div id="list">
- <%= render 'list' %>
-</div> 
+ <%= render 'list', turnos: @turnos %>
+</div>
 
   <div id="list-paginate">
    <%= paginate @turnos, remote: true %>
-  </div>  
+  </div>
 </div>
 

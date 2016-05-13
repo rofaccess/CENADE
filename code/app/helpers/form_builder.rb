@@ -23,24 +23,24 @@ module FormBuilder
   def self.text_field_h(f, field, option)
       html = ""
       html << "<div class='form-group'>"
-        html << f.label(field, "#{option.key?(:label_text) ? option[:label_text] : ''}", 
+        html << f.label(field, "#{option.key?(:label_text) ? option[:label_text] : ''}",
                                class: "control-label #{option.key?(:label_class) ? option[:label_class] : 'col-md-2'}")
 
         html << "<div class='#{option.key?(:field_class) ? option[:field_class] : 'col-md-10'}'>"
-          
-          html << f.text_field(field, class: "form-control #{option.key?(:input_class) ? option[:input_class] : ''}", 
-                                      value: "#{option.key?(:input_value) ? option[:input_value] : ''}", 
-                                      placeholder: "#{option.key?(:placeholder) ? option[:placeholder] : ''}", 
-                                      disabled: option.key?(:disabled) ? option[:disabled] : false, 
-                                      readonly: option.key?(:readonly) ? option[:readonly] : false, 
-                                      maxLength: "#{option.key?(:max_length) ? option[:max_length] : '150'}", 
+
+          html << f.text_field(field, class: "form-control #{option.key?(:input_class) ? option[:input_class] : ''}",
+                                      value: "#{option.key?(:input_value) ? option[:input_value] : ''}",
+                                      placeholder: "#{option.key?(:placeholder) ? option[:placeholder] : ''}",
+                                      disabled: option.key?(:disabled) ? option[:disabled] : false,
+                                      readonly: option.key?(:readonly) ? option[:readonly] : false,
+                                      maxLength: "#{option.key?(:max_length) ? option[:max_length] : '150'}",
                                       autofocus: option.key?(:autofocus) ? option[:autofocus] : false)
         html << "</div>"
-       
+
         if option.key?(:btn_mas)
           html << "<div class='col-md-2'><a href='#{option[:btn_mas]}' data-remote='true' data-url='' class='btn btn-default btn-block'><i class='glyphicon glyphicon-plus'></i></a></div>"
         end
-       
+
         if option.key?(:btn_menos)
           html << "<div class='col-md-2'><a href='#' onclick='#{option[:onclick]}' class='btn btn-default btn-block #{option[:btn_menos]}'><i class='glyphicon glyphicon-minus'></i></a></div>"
         end
@@ -53,15 +53,15 @@ module FormBuilder
   def self.password_field(f, field, option)
     html = ""
     html << "<div class='form-group #{option.key?(:col_class) ? option[:col_class] : ''}'>"
-      html << f.label(field, "#{option.key?(:label_text) ? option[:label_text] : ''}", 
+      html << f.label(field, "#{option.key?(:label_text) ? option[:label_text] : ''}",
                               class: "control-label #{option.key?(:label_class) ? option[:label_class] : 'titulos-campos'}")
 
       html << "<div class='#{option.key?(:field_class) ? option[:field_class] : ''}'>"
-        html << f.password_field(field, class: "form-control #{option.key?(:input_class) ? option[:input_class] : ''}", 
-                                        placeholder: "#{option.key?(:placeholder) ? option[:placeholder] : ''}", 
-                                        disabled: option.key?(:disabled) ? option[:disabled] : false, 
-                                        readonly: option.key?(:readonly) ? option[:readonly] : false, 
-                                        maxLength: "#{option.key?(:max_length) ? option[:max_length] : '150'}", 
+        html << f.password_field(field, class: "form-control #{option.key?(:input_class) ? option[:input_class] : ''}",
+                                        placeholder: "#{option.key?(:placeholder) ? option[:placeholder] : ''}",
+                                        disabled: option.key?(:disabled) ? option[:disabled] : false,
+                                        readonly: option.key?(:readonly) ? option[:readonly] : false,
+                                        maxLength: "#{option.key?(:max_length) ? option[:max_length] : '150'}",
                                         minLength: "#{option.key?(:min_length) ? option[:min_length] : '3'}")
       html << "</div>"
     html << "</div>"
@@ -75,26 +75,26 @@ module FormBuilder
   # Nota: btn_menos no admisible
   # La diferencia con text_field_h es que el input no esta contenido en un div aqui
   # Se pone un if para el input_value, porque de algún modo los formularios de edicion no muestran
-  # nada si no se hace así cuando se usa fields_for 
+  # nada si no se hace así cuando se usa fields_for
   def self.text_field_v(f, field, option)
     html = ""
       html << "<div class='form-group #{option.key?(:col_class) ? option[:col_class] : ''}'>"
-        html << f.label(field,"#{option.key?(:label_text) ? option[:label_text] : ''}", 
+        html << f.label(field,"#{option.key?(:label_text) ? option[:label_text] : ''}",
                               class: "control-label #{option.key?(:label_class) ? option[:label_class] : ''}")
         if option.key?(:input_value)
           html << f.text_field(field, class: "form-control #{option.key?(:input_class) ? option[:input_class] : ''}",
-                                      value: "#{option.key?(:input_value) ? option[:input_value] : ''}", 
-                                      placeholder: "#{option.key?(:placeholder) ? option[:placeholder] : ''}", 
-                                      disabled: option.key?(:disabled) ? option[:disabled] : false, 
-                                      readonly: option.key?(:readonly) ? option[:readonly] : false, 
-                                      maxLength: "#{option.key?(:max_length) ? option[:max_length] : '150'}", 
+                                      value: "#{option.key?(:input_value) ? option[:input_value] : ''}",
+                                      placeholder: "#{option.key?(:placeholder) ? option[:placeholder] : ''}",
+                                      disabled: option.key?(:disabled) ? option[:disabled] : false,
+                                      readonly: option.key?(:readonly) ? option[:readonly] : false,
+                                      maxLength: "#{option.key?(:max_length) ? option[:max_length] : '150'}",
                                       autofocus: option.key?(:autofocus) ? option[:autofocus] : false)
         else
           html << f.text_field(field, class: "form-control #{option.key?(:input_class) ? option[:input_class] : ''}",
-                                      placeholder: "#{option.key?(:placeholder) ? option[:placeholder] : ''}", 
-                                      disabled: option.key?(:disabled) ? option[:disabled] : false, 
-                                      readonly: option.key?(:readonly) ? option[:readonly] : false, 
-                                      maxLength: "#{option.key?(:max_length) ? option[:max_length] : '150'}", 
+                                      placeholder: "#{option.key?(:placeholder) ? option[:placeholder] : ''}",
+                                      disabled: option.key?(:disabled) ? option[:disabled] : false,
+                                      readonly: option.key?(:readonly) ? option[:readonly] : false,
+                                      maxLength: "#{option.key?(:max_length) ? option[:max_length] : '150'}",
                                       autofocus: option.key?(:autofocus) ? option[:autofocus] : false)
         end
         if option.key?(:btn_mas)
@@ -102,7 +102,7 @@ module FormBuilder
         end
       html << "</div>"
     html.html_safe
-  end    
+  end
 
   # Permite sleccionar los datos de un modelo especificado
   # Opciones extra a los anteriores
@@ -178,7 +178,7 @@ module FormBuilder
 
     html.html_safe
   end
-  
+
   # Permite establecer tus propios valores en el select Ej.: Pendiente, Pagado, etc.
   def self.select_h(f, field, collection, option)
     html = ""
@@ -223,7 +223,7 @@ module FormBuilder
       html << label_tag(field, option.key?(:label_text) ? option[:label_text] : nil,
                                  class: "control-label #{option.key?(:label_class) ? option[:label_class] : ''}")
       html << "<div class='#{option.key?(:field_class) ? option[:field_class] : ''}'>"
-        html << select_tag(field, options_for_select(collection, 
+        html << select_tag(field, options_for_select(collection,
                            option.key?(:selected) ? option[:selected] : nil),
                            {multiple: option.key?(:multiple) ? option[:multiple] : false,
                             prompt: option.key?(:prompt) ? option[:prompt] : '',
@@ -258,15 +258,15 @@ module FormBuilder
     html << "<div class='form-group'>"
       html << "<div class='input-group'>"
         html << f.search_field(field, class: 'form-control',autofocus: true, placeholder: "#{option.key?(:placeholder) ? option[:placeholder] : ''}")
-      
-        #html << "<div class='input-group-addon'>"          
+
+        #html << "<div class='input-group-addon'>"
             html << "<span class='fa fa-search'>"
             html << "</span>"
         #html << "</div>"
       html << "</div>"
     html << "</div>"
 
-    html.html_safe   
+    html.html_safe
   end
 end
 

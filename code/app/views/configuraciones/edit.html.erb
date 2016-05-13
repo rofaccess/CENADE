@@ -1,9 +1,9 @@
 
 <% @submenu_layout = 'layouts/submenu_configuracion' %>
 <% @sidebar_layout = 'layouts/sidebar_configuracion' %>
-<div class= "form-content" style="padding-bottom: 40px;">  
+<div class= "form-content" style="padding-bottom: 40px;">
   <div class="page-title" style = "left:200px;">
-    Configuración del Sistema      
+    Configuración del Sistema
   </div>
 	<%= form_for @configuracion, html: {class: 'nueva-conf'} do |configuracion|%>
 
@@ -11,22 +11,22 @@
 	    <div class="row">
 	    <div class="col-md-8">
 	    	<div class=" row nomb-empresa">
-	    		<%= FormBuilder::text_field_v(configuracion, :empresa_nombre, 
-										                    input_class: 'required minLength3', 
+	    		<%= FormBuilder::text_field_v(configuracion, :empresa_nombre,
+										                    input_class: 'required minLength3',
 										              		max_length: Domain::EMPRESA_NOMBRE,
 										                    autofocus: true,
 										                    col_class: 'col-md-5',
 										                    label_text: '* Nombre' ) %>
 
-				<%= FormBuilder::text_field_v(configuracion, :empresa_web,    
-										                    max_length: Domain::EMPRESA_WEB, 
+				<%= FormBuilder::text_field_v(configuracion, :empresa_web,
+										                    max_length: Domain::EMPRESA_WEB,
 										                    autofocus: false,
 										                    col_class: 'col-md-7',
 										                    label_text: 'Sitio web') %>
 	    	</div>
 	    	<div>
-	    		<%= FormBuilder::text_field_v(configuracion, :empresa_direccion, 
-										                    input_class: 'required', 
+	    		<%= FormBuilder::text_field_v(configuracion, :empresa_direccion,
+										                    input_class: 'required',
 										                    max_length: Domain::DIRECCION,
 										                    autofocus: false,
 										                    col_class: 'col-md-15',
@@ -44,21 +44,21 @@
 		</div>
 		<div class="row">
 
-		    
-		    <%= FormBuilder::text_field_v(configuracion, :empresa_email, 
-								                    input_class: 'emailCheck', 
-								                    max_length: Domain::EMAIL, 
+
+		    <%= FormBuilder::text_field_v(configuracion, :empresa_email,
+								                    input_class: 'emailCheck',
+								                    max_length: Domain::EMAIL,
 								                    autofocus: false,
 								                    col_class: 'col-md-6',
 								                    label_text: 'Email') %>
 
-		    <%= FormBuilder::text_field_v(configuracion, :empresa_tel, 
-								                    input_class: 'telCheck', 
-								                    max_length: Domain::TELEFONO, 
+		    <%= FormBuilder::text_field_v(configuracion, :empresa_tel,
+								                    input_class: 'telCheck',
+								                    max_length: Domain::TELEFONO,
 								                    autofocus: false,
 								                    col_class: 'col-md-4',
 								                    label_text: 'Telefono') %>
-	        	
+
 
 	    </div>
 	    <div class="row">
@@ -66,38 +66,38 @@
 	    	<h6 class="col-md-6">Horario de Atención T. Tarde   </h6>
 	    	<div class="row">
 	    		<div class="col-md-12">
-						<%= FormBuilder::text_field_v(configuracion, :hora_inicio_mañana,	
+						<%= FormBuilder::text_field_v(configuracion, :hora_inicio_mañana,
 																	input_class: 'horaCheck',
 																	max_length: Domain::EMPRESA_HORARIO,
 												                    col_class: 'col-md-2',
 												                    label_text: 'Inicio') %>
 
 						<%= FormBuilder::text_field_v(configuracion, :hora_fin_mañana,
-																	input_class: 'horaCheck',	
+																	input_class: 'horaCheck',
 																	max_length: Domain::EMPRESA_HORARIO,
 												                    col_class: 'col-md-2',
 												                    label_text: 'Fin') %>
-									
-					
+
+
 						<%= FormBuilder::text_field_v(configuracion, :hora_inicio_tarde,
-																	input_class: 'horaCheck',		
+																	input_class: 'horaCheck',
 																	max_length: Domain::EMPRESA_HORARIO,
 												                    col_class: 'col-md-2',
 												                    label_text: 'Inicio') %>
 
 						<%= FormBuilder::text_field_v(configuracion, :hora_fin_tarde,
-																	input_class: 'horaCheck',	
+																	input_class: 'horaCheck',
 																	max_length: Domain::EMPRESA_HORARIO,
 												                    col_class: 'col-md-2',
 												                    label_text: 'Fin') %>
-				
-						<%= FormBuilder::text_field_v(configuracion, :dias_atencion,	
+
+						<%= FormBuilder::text_field_v(configuracion, :dias_atencion,
 																	max_length: Domain::DIAS_DE_ATENCION,
 												                    col_class: 'col-md-4',
 												                    label_text: 'Días') %>
 				</div>
 			</div>
-		</div>	
+		</div>
 		<h4>Administración</h4><hr>
 		<div class="row">
 			<div class="col-md-4 form-group">
@@ -123,11 +123,11 @@
 				<label class="control-label">* Empleado</label>
 				<input class="form-control usuario-nombre" disabled="disabled" value="" id="usuario_admin2">
 			</div>
-			<div class="form-button" style="margin-top: 24px;">   
+			<div class="form-button" style="margin-top: 24px;">
 	      		<%= configuracion.submit 'Guardar cambios', class: 'btn btn-custom'%>
 	   		 </div>
-		</div>	                    
-		
+		</div>
+
 	<%end%>
 </div>
 <script type="text/javascript">
@@ -137,26 +137,26 @@
 		$("#usuario_admin2").val(nombre);
 		$("#usuario_id").select2().on("select2:select",function(){
 			$(this).valid(); //Para que valide cada vez que se selecciona otro item del select
-			
+
 			id = $(this).val();
 			$("#user_empleado_id").val(id);
 			var nombre= $("#option-nombre-"+id).val() + " " + $("#option-apellido-"+id).val();
 			if(nombre!="undefined undefined"){
 				$("#usuario_admin2").val(nombre);
-								
+
 			}else{
 				$("#usuario_admin2").val("");
 			}
 
 			$("#usuario_admin").val(id);
-	
+
 		});
 	});
 
-	<% if !flash.notice.blank? %>	
-		var n = noty({text: '<%=notice%>', type: 'success'});		
+	<% if !flash.notice.blank? %>
+		var n = noty({text: '<%=notice%>', type: 'success'});
 	<% end %>
-	<% if !flash.alert.blank?%>	
+	<% if !flash.alert.blank?%>
 		var n = noty({text: '<%=alert%>', type: 'error'});
 	<% end %>
 

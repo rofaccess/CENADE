@@ -1,7 +1,7 @@
 class TurnosController < ApplicationController
- 
+
   before_action :set_turno, only: [:show, :edit, :update, :destroy]
-  respond_to :html, :js 
+  respond_to :html, :js
 
   def index
   	 get_turnos
@@ -9,7 +9,7 @@ class TurnosController < ApplicationController
 
   def new
   	@turno= Turno.new
-  
+
   end
   def create
   	@turno = Turno.new(turno_params)
@@ -36,12 +36,12 @@ class TurnosController < ApplicationController
 
         format.html { redirect_to turno_path, notice: 'Turno actualizado exitosamente'}
       else
-        
+
         flash.now[:alert] = @turno.errors.full_messages.first
-        format.html { render action: "edit"}
-        format.js { render action: "edit"}
+        format.html { render "edit"}
+        format.js { render "edit"}
       end
-      
+
     end
   end
 
@@ -69,7 +69,7 @@ class TurnosController < ApplicationController
   end
 
   def print_turnos
-      
+
       @turnos = Turno.all
 
       respond_to do |format|
@@ -80,24 +80,24 @@ class TurnosController < ApplicationController
           end
         end
     end
-  #Chequea si el paciente ya no tiene un turno en la fecha y área 
+  #Chequea si el paciente ya no tiene un turno en la fecha y área
    def check_paciente
      turno= Turno.find_by(paciente_id: self.paciente_id, fecha_consulta: self.fecha_consulta, area_id: self.area_id)
 
-      render json: (turno.nil? || turno.id == params[:id].to_i) ? true : "El paciente ya tiene un turno para el área y fecha".to_json       
-    end 
+      render json: (turno.nil? || turno.id == params[:id].to_i) ? true : "El paciente ya tiene un turno para el área y fecha".to_json
+    end
 
   #obtiene el paciente
    def get_paciente
     @paciente= Paciente.find(params[:id])
-      
+
   end
 
   def update_profesional
     @area= Area.find(params[:id])
     render update_profesional, format: :js
   end
-  
+
   #Cambie el estado de pendiente a cancelado
   def cambiar_estado
 
@@ -113,10 +113,10 @@ class TurnosController < ApplicationController
     index
     render 'index'
 
-    end 
+    end
     def get_turnos
       @search = Turno.ransack(params[:q])
-      
+
       @turnos= @search.result.page(params[:page])
     end
 

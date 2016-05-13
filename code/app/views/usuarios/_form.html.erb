@@ -1,35 +1,35 @@
-<div class= "form-content">  
+<div class= "form-content">
   	<div class="page-title">
-    	<%=@usuario.id.nil? ? 'Nuevo Usuario' : 'Editar Usuario'%> 
+    	<%=@usuario.id.nil? ? 'Nuevo Usuario' : 'Editar Usuario'%>
     	<% form_url = @usuario.id.nil? ? usuarios_path : usuarios_path+"/#{@usuario.id}" %>
 
     	<div class="tool">
-      	<%= link_to '<i class="fa fa-list"></i> '.html_safe, usuarios_path %> 
+      	<%= link_to '<i class="fa fa-list"></i> '.html_safe, usuarios_path %>
     	</div>
-  	</div>  	
-	
+  	</div>
+
 	<%= form_for @usuario, url: form_url, html: {class:'small-form form-user'} do |usuario| %>
-		
-		<% if @usuario.id.nil? %> 
+
+		<% if @usuario.id.nil? %>
 		<div class="row">
 			<div class="col-md-3">
 			    <label class="label-title">Empleado</label>
 			</div>
-			
+
 			<div class="col-md-9 form-group">
 				<select class ="form-control required select2" id="empleado_id" name="empleado_id">
 			       <option value="">Seleccione un empleado </option>
 					<%@empleados.each do |empleado|%>
 						<option value="<%= empleado.id%>">
-						    <%=empleado.persona.nombre%> <%=empleado.persona.apellido%> <%=empleado.persona.ci %>
+						    <%=empleado.persona_nombre%> <%=empleado.persona_apellido%> <%=empleado.persona_ci %>
 						</option>
 					<%end%>
 				</select>
 				<%@empleados.each do |empleado|%>
 					<div class="hidden">
-						<input type="hidden" id="option-nombre-<%= empleado.id %>" value="<%= empleado.persona.nombre %>"/>
-						<input type="hidden" id="option-apellido-<%= empleado.id %>" value="<%= empleado.persona.apellido %>"/>
-						<input type="hidden" id="option-email-<%= empleado.id %>" value= "<%= empleado.persona.email %>"/>
+						<input type="hidden" id="option-nombre-<%= empleado.id %>" value="<%= empleado.persona_nombre %>"/>
+						<input type="hidden" id="option-apellido-<%= empleado.id %>" value="<%= empleado.persona_apellido %>"/>
+						<input type="hidden" id="option-email-<%= empleado.id %>" value= "<%= empleado.persona_email %>"/>
 						<input type="hidden" id="option-cargo-<%= empleado.id %>" value="<%= empleado.cargo %>"/>
 						</div>
 				<%end%>
@@ -40,38 +40,38 @@
 		<% end %>
 
 		<hr>
-		
+
 		<div class="row">
 
 		 	<%= hidden_field_tag :usuario_id, @usuario.id %>
 
 			<div class="form-group col-md-6">
 				<label class="control-label">Nombre</label>
-				<input class="form-control usuario-nombre " disabled="disabled" value="<%= @usuario.id.nil? ? '' : @usuario.empleado.persona.nombre %>">
+				<input class="form-control usuario-nombre " disabled="disabled" value="<%= @usuario.id.nil? ? '' : @usuario.empleado_persona_nombre %>">
 			</div>
 
 			<div class="form-group col-md-6">
 				<label class="control-label">Apellido</label>
-				<input class="form-control usuario-apellido" disabled="disabled" value="<%= @usuario.id.nil? ? '' : @usuario.empleado.persona.apellido %>">
+				<input class="form-control usuario-apellido" disabled="disabled" value="<%= @usuario.id.nil? ? '' : @usuario.empleado_persona_apellido %>">
 			</div>
 
 			<div class="form-group col-md-6">
 				<label class="control-label">Cargo</label>
-				<input class="form-control usuario-cargo" disabled="disabled" value="<%= @usuario.id.nil? ? '' : @usuario.empleado.cargo %>">
+				<input class="form-control usuario-cargo" disabled="disabled" value="<%= @usuario.id.nil? ? '' : @usuario.empleado_cargo %>">
 			</div>
 
 			<div class="form-group col-md-6">
 				<label class="control-label">Email</label>
-				<input class="form-control usuario-email" disabled="disabled" value="<%= @usuario.id.nil? ? '' : @usuario.empleado.persona.email %>">
+				<input class="form-control usuario-email" disabled="disabled" value="<%= @usuario.id.nil? ? '' : @usuario.empleado_persona_email %>">
 			</div>
 		</div>
-		
+
 		<h4>Datos de Usuario</h4><hr>
-		
+
 		<div class="row">
-			<%= FormBuilder::text_field_v(usuario, :username, 
-								                        input_class: 'required uniqueUsuarioUsername username nameMinLength', 
-								                        max_length: Domain::USERNAME, 
+			<%= FormBuilder::text_field_v(usuario, :username,
+								                        input_class: 'required uniqueUsuarioUsername username nameMinLength',
+								                        max_length: Domain::USERNAME,
 								                        col_class: 'col-md-6',
 								                        label_text: '* Nombre Usuario',
 								                        label_class: 'error') %>
@@ -85,12 +85,12 @@
 						<%=role.name%>
 					</option>
 				<%end%>
-			</select>					                        
+			</select>
 		</div>
 
-			<%= usuario.hidden_field :empleado_id%>																	
+			<%= usuario.hidden_field :empleado_id%>
 		</div>
-		
+
 		<% if not @usuario.id.nil? %>
 		<div class="row">
 			<div class="checkbox col-md-6">
@@ -98,7 +98,7 @@
 					<%= check_box_tag 'reset', true, false, class: 'checkbox-password'  %>
 
 							Resetear Contraseña
-							<%= usuario.hidden_field :pass_reset, value: false, class: 'password-reset'%>						
+							<%= usuario.hidden_field :pass_reset, value: false, class: 'password-reset'%>
 				</label>
 			</div>
 		</div>
@@ -110,7 +110,7 @@
 
 	<%end%>
 </div>
-	
+
 <script type="text/javascript">
 	$(document).ready(function(){
 		$("#empleado_id").select2().on("select2:select",function(){
@@ -122,13 +122,13 @@
 			$(".usuario-apellido").val($("#option-apellido-"+id).val());
 			$(".usuario-cargo").val($("#option-cargo-"+id).val());
 			$(".usuario-email").val($("#option-email-"+id).val());
-			
+
 		});
 	});
-	<% if !flash.alert.blank?%> 
+	<% if !flash.alert.blank?%>
 		var n = noty({text: '<%=alert%>', type: 'error'});
-	<% end %>	
-		
+	<% end %>
+
 	usuariosUI.initScript("<%= usuarios_check_username_path %>");
 
 	<% if not @usuario.id.nil? %>

@@ -270,7 +270,7 @@ Devise.setup do |config|
   # Should the password expire (e.g 3.months)
   # config.expire_password_after = false
 
-  # Need 1 char of A-Z, a-z and 0-9        
+  # Need 1 char of A-Z, a-z and 0-9
   #config.password_regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])/
 
   # How many passwords to keep in archive
