@@ -9,7 +9,7 @@
       <th></th>
     </tr>
   </thead>
-  <% if @consultas.blank? %>
+  <% if consultas.blank? %>
     <tfoot>
       <tr>
         <th colspan="8" scope="col">No se encontraron coincidencias </th>
@@ -17,17 +17,17 @@
     </tfoot>
    <% end %>
   <tbody>
-    <% @consultas.each do |consulta| %>
+    <% consultas.each do |consulta| %>
     <tr>
       <td><%=consulta.fecha.strftime("%d/%m/%Y")%></td>
       <td ><%=consulta.paciente.persona.nombre %> <%=consulta.paciente.persona.apellido%></td>
       <td ><%=consulta.area.nombre %></td>
       <td ><%=consulta.doctor.persona.nombre %> <%=consulta.doctor.persona.apellido %></td>
-   
+
       <td class = "action">
-        
-        <%= link_to '<i class="fa fa-eye fa-lg" data-toggle="tooltip" data-placement="bottom" title="Ver Consulta"></i> '.html_safe, consulta_path(consulta), remote: true%>     
-        <%= link_to '<i class="fa fa-edit fa-lg" data-toggle="tooltip" data-placement="bottom" title="Editar Consulta"></i> '.html_safe, edit_consulta_path(consulta), remote: true%>        
+
+        <%= link_to '<i class="fa fa-eye fa-lg" data-toggle="tooltip" data-placement="bottom" title="Ver Consulta"></i> '.html_safe, consulta_path(consulta), remote: true%>
+        <%= link_to '<i class="fa fa-edit fa-lg" data-toggle="tooltip" data-placement="bottom" title="Editar Consulta"></i> '.html_safe, edit_consulta_path(consulta), remote: true%>
 
       </td>
     </tr>
@@ -35,12 +35,12 @@
   </tbody>
 </table>
 
-<script type="text/javascript"> 
-      
-      <% if !flash.notice.blank? %> 
-        var n = noty({text: '<%=notice%>', type: 'success'});   
+<script type="text/javascript">
+
+      <% if !flash.notice.blank? %>
+        var n = noty({text: '<%=notice%>', type: 'success'});
       <% end %>
-      <% if !flash.alert.blank?%> 
+      <% if !flash.alert.blank?%>
         var n = noty({text: '<%=alert%>', type: 'error'});
       <% end %>
 

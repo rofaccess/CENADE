@@ -1,16 +1,16 @@
 
-  <div class="page-title">    
+  <div class="page-title page-title-con-sidebar">
     Consultas
 
     <div class="tool">
-      <%= search_form_for @search, class: 'buscador', remote: true do |f| %>
-        <div class="input-group"> 
-          <%= f.search_field :paciente_persona_nombre_or_paciente_persona_apellido_or_area_nombre_cont, placeholder: " Buscar por Paciente o Área ", class: "form-control", autofocus: true%>
+      <%= search_form_for @search,url: consultas_path(area_id: params[:area_id]), class: 'buscador', remote: true do |f| %>
+        <div class="input-group">
+          <%= f.search_field :paciente_persona_nombre_or_paciente_persona_apellido_or_paciente_persona_ci_cont, placeholder: "Nombre, Apellido o CI", class: "form-control", autofocus: true%>
           <span class="fa fa-search"></span>
-          <div class="input-group-btn"> 
+          <div class="input-group-btn">
             <a href="#"><i class="fa fa-search-plus" aria-hidden="true" id= "show" data-toggle="tooltip" data-placement="bottom" title="Filtrar"></i></a>
-            <%= link_to '<i class="fa fa-plus-square" aria-hidden="true" id= "show" data-toggle="tooltip" data-placement="bottom" title="Nueva Consulta"></i> '.html_safe, new_consulta_path, remote: true %>    
-          </div> 
+            <%= link_to '<i class="fa fa-plus-square" aria-hidden="true" id= "show" data-toggle="tooltip" data-placement="bottom" title="Nueva Consulta"></i> '.html_safe, new_consulta_path(area_id: params[:area_id]), remote: true %>
+          </div>
         </div>
       <% end %>
     </div>
@@ -19,32 +19,18 @@
 
     <div id="advanced-search" class="to-hide">
       <div class="row" >
-       <%= search_form_for @search, url: search_consultas_path, method: :post, remote: true, class: 'form-filtros' do |f| %>
+       <%= search_form_for @search, url: search_consultas_path(area_id: params[:area_id]), method: :post, remote: true, class: 'form-filtros' do |f| %>
           <div class="row">
 
-            <%= FormBuilder::text_field_v(f, :paciente_persona_nombre_or_paciente_persona_apellido_cont, 
-                                              {col_class: 'col-md-3', 
-                                                label_text: 'Paciente', 
-                                                input_class: ''})%>
+            <%= FormBuilder::text_field_v(f, :paciente_persona_nombre_or_paciente_persona_apellido_or_paciente_persona_ci_cont, {col_class: 'col-md-3', label_text: 'Paciente', input_class: '',  placeholder: "Nombre, Apellido o CI"})%>
 
-            <%= FormBuilder::select_v(f, :area_nombre_cont, 
-                                        Area.all.collect { |a| [a.nombre, a.nombre] }, 
-                                        {col_class: 'col-md-3', 
-                                        label_text: 'Área'}) %>
-           
-            <%= FormBuilder::text_field_v(f, :fecha_gteq, 
-                                              {col_class: 'col-md-2', 
-                                              label_text: 'Desde',    
-                                              input_class: 'date',
-                                              placeholder: "Fecha",
-                                              max_length: Domain::FECHA})%>
-            <%= FormBuilder::text_field_v(f, :fecha_lteq, 
-                                            {col_class: 'col-md-2', 
-                                              label_text: 'Hasta', 
-                                              input_class: 'date',
-                                              placeholder: "Fecha",
-                                              max_length: Domain::FECHA})%>
-        
+            <%= FormBuilder::text_field_v(f, :doctor_persona_nombre_or_doctor_persona_apellido_cont, {col_class: 'col-md-3', label_text: 'Prof. de la Salud', input_class: '', placeholder: "Nombre o Apellido"})%>
+
+            <%= FormBuilder::text_field_v(f, :fecha_gteq, {col_class: 'col-md-2', label_text: 'Desde', input_class: 'datepicker',max_length: Domain::FECHA})%>
+
+            <%= FormBuilder::text_field_v(f, :fecha_lteq, {col_class: 'col-md-2', label_text: 'Hasta', input_class: 'datepicker',max_length: Domain::FECHA})%>
+
+
 
           <div class= "input-group pull-right" style = 'margin-top: 25px;'>
              <%= f.submit 'Filtrar', class: 'btn btn-custom '%>
@@ -56,20 +42,20 @@
   </div>
 
   <div id="list">
-     <%= render 'list' %>
-  </div> 
+     <%= render 'list', consultas: @consultas %>
+  </div>
 
     <div id="list-paginate">
      <%= paginate @consultas, remote: true %>
-    </div>  
+    </div>
   </div>
 
-<script type="text/javascript"> 
+<script type="text/javascript">
  consultasUI.initScript();
- <% if !flash.notice.blank? %>  
-    var n = noty({text: '<%=notice%>', type: 'success'});   
+ <% if !flash.notice.blank? %>
+    var n = noty({text: '<%=notice%>', type: 'success'});
   <% end %>
-  <% if !flash.alert.blank?%> 
+  <% if !flash.alert.blank?%>
     var n = noty({text: '<%=alert%>', type: 'error'});
   <% end %>
 

@@ -5,7 +5,7 @@ class Consulta < ActiveRecord::Base
  	#asociaciones
  	belongs_to :doctor, :foreign_key => :profesional_salud_id
  	belongs_to :user
- 	belongs_to :paciente
+ 	belongs_to :paciente,:foreign_key => :paciente_id
  	belongs_to :area
 
  	#validaciones

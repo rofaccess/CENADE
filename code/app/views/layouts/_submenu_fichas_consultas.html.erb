@@ -23,8 +23,8 @@
          <li class="<%= current_submenu([welcome_index_atencion_profesional_path])%>">
             <%=link_to 'Atención Profesional', welcome_index_atencion_profesional_path %>
           </li>
-           <li class="<%= current_submenu([consultas_path])%>">
-            <%= link_to "Consultas", consultas_path %>
+           <li class="<%= current_submenu([consultas_path(area_id: 1), consultas_nutricionales_pediatricas_path])%>">
+            <%= link_to "Consultas", consultas_path(area_id: 1) %>
           </li>
 
         </ul>

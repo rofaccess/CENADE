@@ -2,11 +2,16 @@ class ConsultasNutricionalesPediatricasController < ApplicationController
 
   before_action :set_consulta, only: [:show, :edit, :update]
 	#load_and_authorize_resource
+  before_action :set_sidebar, only: [:edit, :new, :show, :index]
   before_action :set_submenu, only: [:edit, :update, :show, :index, :new, :create]
   respond_to :html, :js
 
   def set_submenu
    @submenu_layout = 'layouts/submenu_fichas_consultas'
+  end
+
+  def set_sidebar
+    @sidebar_layout = 'layouts/sidebar_consultas'
   end
 
   def index

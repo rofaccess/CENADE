@@ -1,9 +1,9 @@
-<h4 align= "center">Consulta de <%= @consulta.paciente.persona.nombre %> <%= @consulta.paciente.persona.							apellido %> en la Fecha <%= @consulta.fecha.strftime('%d/%m/%Y') %></h4>
+<h4 align= "center">Consulta de <%= @consulta.paciente_persona_full_name %> en la Fecha <%= @consulta.fecha.strftime('%d/%m/%Y') %></h4>
 
 <div class = "form-content">
 	<div class = "form-font"></br>
 
-		<label class="control-label">Área</label> 
+		<label class="control-label">Área</label>
 		<input class="form-control" value="<%=@consulta.area.nombre %>">
 
 		</br></br>
