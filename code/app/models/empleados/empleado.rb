@@ -2,7 +2,7 @@ class Empleado < ActiveRecord::Base
  	paginates_per 20
  	acts_as_paranoid
  	after_destroy :destroy_persona, :destroy_user
-    
+
  	has_one :user
  	belongs_to :persona
   belongs_to :area
@@ -17,13 +17,13 @@ class Empleado < ActiveRecord::Base
 
     # Al borrar el empleado se borra su usuario del sistema
     def destroy_user
-    	if !user.blank?	
+    	if !user.blank?
       		user.destroy
-      	end	
+      	end
     end
 
-  # Law of Demeter 
-	delegate :full_name, :nombre, :apellido, :ci,:ruc, :edad, :sexo, :nacionalidad, 
+  # Law of Demeter
+	delegate :full_name, :nombre, :apellido, :ci,:ruc, :edad, :sexo, :nacionalidad,
            :fecha_nacimiento, :profesion, :telefono, :direccion, :fecha_ingreso,
            :estado_civil_descripcion,:estado_civil_id, :email,
            to: :persona, prefix: true, allow_nil: true

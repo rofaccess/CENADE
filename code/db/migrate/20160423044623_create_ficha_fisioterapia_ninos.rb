@@ -12,12 +12,12 @@ class CreateFichaFisioterapiaNinos < ActiveRecord::Migration
       t.string :antecedentes_familiares,default: '' ,limit: 250,   null: true
       t.string :condicion_general      ,default: '' ,limit: 500,   null: true
       t.date :fecha                    , null: false
-      t.integer :nro_ficha             
+      t.integer :nro_ficha
       t.timestamps null: false
-    end 
+    end
 
     add_foreign_key(:ficha_fisioterapia_ninos, :pacientes, column: 'paciente_id', on_delete: :restrict)
-    add_foreign_key(:ficha_fisioterapia_ninos, :areas, column: 'area_id', on_delete: :restrict)  
+    add_foreign_key(:ficha_fisioterapia_ninos, :areas, column: 'area_id', on_delete: :restrict)
 
     add_index :ficha_fisioterapia_ninos, :paciente_id
     add_index :ficha_fisioterapia_ninos, :doctor_id

@@ -27,11 +27,11 @@ class EmpleadosController < ApplicationController
 		respond_to do |format|
 			if @empleado.save
 				set_submenu
-			    flash.now[:notice] = "Se ha guardado el empleado #{@empleado.persona.nombre} #{@empleado.persona.apellido}."
+			    flash.now[:notice] = "Se ha guardado el empleado #{@empleado.persona_full_name}."
 			    format.html {render 'show'}
 			else
 				set_submenu
-				flash.now[:alert] = "No se ha podido guardar el empleado #{@empleado.persona.nombre} #{@empleado.persona.apellido}."
+				flash.now[:alert] = "No se ha podido guardar el empleado #{@empleado.persona_full_name}."
        			format.html { render "new"}
 			end
 		end
@@ -52,9 +52,9 @@ class EmpleadosController < ApplicationController
 	      		format.html { redirect_to empleados_path, flash: {alert: "No puedes eliminar tu propio registro de empleado"}}
 
 			elsif @empleado.destroy
-				format.html { redirect_to empleados_path, flash: {notice: "Se ha eliminado el empleado #{@empleado.persona.nombre} #{@empleado.persona.apellido}."}}
+				format.html { redirect_to empleados_path, flash: {notice: "Se ha eliminado el empleado #{@empleado.persona_full_name}."}}
 			else
-			   	format.html { redirect_to empleados_path, flash: {alert: "No se ha podido eliminar el empleado #{@empleado.persona.nombre} #{@empleado.persona.apellido}."}}
+			   	format.html { redirect_to empleados_path, flash: {alert: "No se ha podido eliminar el empleado #{@empleado.persona_full_name}."}}
 			end
 		end
 	end

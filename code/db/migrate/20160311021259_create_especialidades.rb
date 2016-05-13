@@ -6,7 +6,7 @@ class CreateEspecialidades < ActiveRecord::Migration
     	t.timestamps
 
     end
-    
+
     add_index :especialidades, :descripcion, unique: true
   end
 end

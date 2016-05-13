@@ -1,48 +1,48 @@
-<div class= "form-content">  
+<div class= "form-content">
   <div class="page-title">
-    Rol <%=@role.name %> 
+    Rol <%=@role.name %>
 
       <div class="tool">
         <%= link_to '<i class="fa fa-list-ul"></i> '.html_safe, roles_path%>
-        <%= link_to '<i class="fa fa-plus-square"></i> '.html_safe, new_role_path%><%= link_to '<i class="fa fa-edit"></i> '.html_safe, edit_role_path(@role.id)%> 
-        <%= link_to '<i class="fa fa-trash-o"></i> '.html_safe, role_path(@role), method: 'delete', data: {confirm: "¿Desea eliminar el rol #{@role.name}?"}%>            
+        <%= link_to '<i class="fa fa-plus-square"></i> '.html_safe, new_role_path%><%= link_to '<i class="fa fa-edit"></i> '.html_safe, edit_role_path(@role.id)%>
+        <%= link_to '<i class="fa fa-trash-o"></i> '.html_safe, role_path(@role), method: 'delete', data: {confirm: "¿Desea eliminar el rol #{@role.name}?"}%>
       </div>
-    </div>  
+    </div>
 
     <%= form_for @role,html: {class: 'nuevo-rol small-form'},:multipart => true do |role|%>
     <h4>Rol</h4>
     <hr>
       <div class="row">
-         <%= FormBuilder::text_field_v(role, :name, 
-                                      input_class: 'required', 
+         <%= FormBuilder::text_field_v(role, :name,
+                                      input_class: 'required',
                                       max_length: Domain::ROL,
                                       autofocus: true,
                                       disabled: true,
                                       col_class: 'col-md-12',
                                       label_text: '* Descripcion') %>
-           
+
       </div>
       </br></br>
       <div class="row">
         	<div class="col-md-12">
 
-         	<%= role.label :nombre, '* Permisos' %> 
+         	<%= role.label :nombre, '* Permisos' %>
            	<%= role.select(:permission_ids, Permission.all.collect { |permission| [permission.nombre, permission.id] },{},{class: "multiple_select form-control", multiple: true, required: true, disabled: true})%>
       	</div>
       </div>
-   <% end %>        
+   <% end %>
 </div>
 
 <script type="text/javascript">
-  
-    <% if !flash.notice.blank? %> 
-      var n = noty({text: '<%=notice%>', type: 'success'});   
+
+    <% if !flash.notice.blank? %>
+      var n = noty({text: '<%=notice%>', type: 'success'});
     <% end %>
-    
-    <% if !flash.alert.blank?%> 
+
+    <% if !flash.alert.blank?%>
       var n = noty({text: '<%=alert%>', type: 'error'});
     <% end %>
-  
+
   rolesUI.initScript();
-</script>    
-      
+</script>
+

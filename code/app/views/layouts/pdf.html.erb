@@ -8,8 +8,8 @@
     <title> CENADE </title>
   </head>
   <body>
-    <%= render 'layouts/pdf_header.html.erb'%>
-    </div>   
+    <%= render 'layouts/pdf_header.html.erb', configuracion_general: @configuracion_general%>
+    </div>
     <div id="content">
       <%= yield %>
     </div>

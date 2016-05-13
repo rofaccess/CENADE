@@ -21,17 +21,17 @@ class FichaFisioterapiaNino < ActiveRecord::Base
 		self.area_id= area
 	end
 
-	def validate_paciente 
+	def validate_paciente
 		paciente= FichaFisioterapiaNino.where("paciente_id = ?", self.paciente_id)
 		if !paciente.empty?
 			errors.add(:base, "El paciente ya posee una Ficha en el Fisioterapia Niño")
 		end
 	end
 
-	delegate :persona_nombre, :persona_apellido, :persona_full_name, 
+	delegate :persona_nombre, :persona_apellido, :persona_full_name,
 			 :persona_edad,:persona_sexo, :persona_ci, :persona_nacionalidad,
 			 :persona_fecha_nacimiento,:persona_telefono, :persona_direccion,
-			 :fecha_ingreso, 
+			 :fecha_ingreso,
 			 to: :paciente, prefix: true, allow_nil: true
 
 	delegate :persona_nombre, :persona_apellido, :persona_full_name, :abr_profesion, to: :doctor, prefix: true, allow_nil: true

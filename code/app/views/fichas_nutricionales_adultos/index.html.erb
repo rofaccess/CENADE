@@ -1,16 +1,16 @@
-<div class="page-title page-title-con-sidebar">  
+<div class="page-title page-title-con-sidebar">
 
    Fichas Nutricionales Adultos
-      
+
    <div class="tool">
       <%= search_form_for @search, url: fichas_nutricionales_adultos_path, class: 'buscador', remote: true do |f| %>
-         <div class="input-group"> 
+         <div class="input-group">
             <%= f.search_field :paciente_persona_nombre_or_paciente_persona_apellido_or_paciente_persona_ci_cont, placeholder: "Buscar por Nombre, Apellido o CI de Paciente", class: "form-control", autofocus: true%>
             <span class="fa fa-search"></span>
-            <div class="input-group-btn"> 
+            <div class="input-group-btn">
             <a href="#"><i class="fa fa-search-plus" id= "show-advanced-search" data-toggle="tooltip" title="Búsqueda Avanzada"></i></a>
-            <%= link_to '<i class="fa fa-plus-square" id= "show" data-toggle="tooltip" title="Nueva Ficha"></i> '.html_safe, new_ficha_nutricional_adulto_path, remote: true %>          
-          </div> 
+            <%= link_to '<i class="fa fa-plus-square" id= "show" data-toggle="tooltip" title="Nueva Ficha"></i> '.html_safe, new_ficha_nutricional_adulto_path, remote: true %>
+          </div>
         </div>
       <% end %>
   </div>
@@ -18,7 +18,7 @@
 
 
 <div class= "content2">
-  	
+
  <div id="advanced-search" style = 'display:none;' class="advanced-search-con-sidebar">
   <div class="row">
       <%= search_form_for @search, url: search_fichas_nutricionales_adultos_path, method: :post, remote: true, class: 'form-filtros' do |f| %>
@@ -27,11 +27,11 @@
           <%= FormBuilder::text_field_v(f, :paciente_persona_nombre_or_paciente_persona_apellido_or_paciente_persona_ci_cont, {col_class: 'col-md-3', label_text: 'Paciente', input_class: '',  placeholder: "Nombre, Apellido o CI"})%>
 
           <%= FormBuilder::text_field_v(f, :doctor_persona_nombre_or_doctor_persona_apellido_cont, {col_class: 'col-md-3', label_text: 'Prof. de la Salud', input_class: '', placeholder: "Nombre o Apellido"})%>
-          
+
           <%= FormBuilder::text_field_v(f, :nro_ficha_eq, {col_class: 'col-md-1', label_text: 'Ficha', input_class: '', placeholder: "#"})%>
 
           <%= FormBuilder::text_field_v(f, :fecha_eq, {col_class: 'col-md-2', label_text: 'Fecha', input_class: 'datepicker',max_length: Domain::FECHA})%>
-        
+
          <div class= "input-group pull-right" style = 'margin-top: 25px;'>
             <%= f.submit 'Filtrar', class: 'btn btn-custom '%>
             <%= f.submit 'Limpiar Campos', type: 'reset', class: 'btn btn-link'%>
@@ -43,11 +43,11 @@
   <div id="list" class="list-con-sidebar">
 
     <%= render 'list' %>
-  </div> 
+  </div>
 
   <div id="list-paginate" class="list-paginate-con-sidebar">
     <%= paginate @nutri_adultos, remote: true %>
-  </div>  
+  </div>
 </div>
 
 

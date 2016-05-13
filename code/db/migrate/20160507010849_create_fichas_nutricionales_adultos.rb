@@ -5,7 +5,7 @@ class CreateFichasNutricionalesAdultos < ActiveRecord::Migration
       t.integer :area_id          , null: false
       t.integer :doctor_id        , null: false
       t.date :fecha               , null: false
-      t.integer :nro_ficha        
+      t.integer :nro_ficha
       t.integer :nro_hijos        ,limit: Domain::NUM_HIJOS,       null: true
       t.string :obesidad          ,limit: Domain::DESC50,       null: true
       t.string :dbt               ,limit: Domain::DESC50,       null: true
@@ -17,5 +17,10 @@ class CreateFichasNutricionalesAdultos < ActiveRecord::Migration
     end
     add_foreign_key(:fichas_nutricionales_adultos, :pacientes, column: 'paciente_id', on_delete: :restrict)
     add_foreign_key(:fichas_nutricionales_adultos, :areas, column: 'area_id', on_delete: :restrict)
+
+    add_index :fichas_nutricionales_adultos, :paciente_id
+    add_index :fichas_nutricionales_adultos, :doctor_id
+    add_index :fichas_nutricionales_adultos, :area_id
+
   end
 end

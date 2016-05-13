@@ -37,7 +37,7 @@ Rails.application.routes.draw do
 
   get 'fichas_nutricionales_adultos/check_paciente_has_ficha' => 'fichas_nutricionales_adultos#check_paciente_has_ficha'
   get 'fichas_nutricionales_adultos/print_ficha'=>'fichas_nutricionales_adultos#print_ficha'
-  resources :fichas_nutricionales_adultos do
+  resources :fichas_nutricionales_adultos, except: [:destroy] do
     collection do
       match 'buscar' => 'fichas_nutricionales_adultos#buscar', via: [:get, :post], as: :search
       get 'get_paciente' => 'fichas_nutricionales_adultos#get_paciente'
@@ -92,7 +92,7 @@ Rails.application.routes.draw do
 
   get 'ficha_fisioterapia_ninos/check_paciente_id' => 'ficha_fisioterapia_ninos#check_paciente_id'
   get 'ficha_fisioterapia_ninos/print_ficha' => 'ficha_fisioterapia_ninos#print_ficha'
-  resources :ficha_fisioterapia_ninos do
+  resources :ficha_fisioterapia_ninos, except: [:destroy] do
     collection do
       match 'buscar' => 'ficha_fisioterapia_ninos#buscar', via: [:get, :post], as: :search
       get'get_paciente' => 'ficha_fisioterapia_ninos#get_paciente'

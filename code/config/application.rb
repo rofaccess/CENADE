@@ -13,7 +13,7 @@ module Code
     # -- all .rb files in that directory are automatically loaded.
 
     config.autoload_paths += %W(#{config.root}/lib)
-    
+
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
     config.time_zone = 'America/Asuncion'
@@ -27,6 +27,9 @@ module Code
 
     # Ubicacion del modelo STI
     config.autoload_paths += %W(#{config.root}/app/models/empleados)
+
+    # //- Protect mass assignment requerido por rbp y no me funcionó
+    #config.active_record.whitelist_attributes = true
 
   end
 end

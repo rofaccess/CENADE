@@ -1,5 +1,5 @@
 class Configuracion < ActiveRecord::Base
-	
+
   mount_uploader :empresa_logo, EmpresaLogoUploader
   validates :empresa_nombre, presence: true
   validates :empresa_nombre, length: {maximum: Domain::EMPRESA_NOMBRE, minimum: 3}

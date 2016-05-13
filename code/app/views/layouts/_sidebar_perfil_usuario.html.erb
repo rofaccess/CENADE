@@ -1,24 +1,24 @@
 <div id="sidebar-wrapper"style="background-color: white">
     <ul class="sidebar-nav" >
     	<div class="profile-photo ">
-		    	<%if current_user.profile_foto.blank? %>		    		
+		    	<%if current_user.profile_foto.blank? %>
 		    		<%=image_tag("sinUsuario", :width => 150, :height => 150) %>
 		    	<% else %>
-		    		<%= image_tag(current_user.profile_foto_url.to_s, :width => 150, :height => 150) %>    		
+		    		<%= image_tag(current_user.profile_foto_url.to_s, :width => 150, :height => 150) %>
 		        <% end %><br>
       	</div>
-      	
+
       	<div class="profile-photo">
 			<label ><%=current_user.username%></label>
-		</div>	
+		</div>
 
       	<div class="label-profile">
       		<div style="overflow-x: auto; width: 200px; overflow-y: hide;">
-      			<%= @persona.direccion %><br>
-      		</div> 
-	      <%= @persona.email %><br>
+      			<%= current_user.empleado_persona_direccion %><br>
+      		</div>
+	      <%= current_user.empleado_persona_email %><br>
 	      <br>
-	      <%= @persona.telefono %>   	
+	      <%= current_user.empleado_persona_telefono %>
       	</div>
     </ul>
 </div>
