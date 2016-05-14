@@ -23,10 +23,13 @@
   <div class="row">
       <%= search_form_for @search, url: search_consultas_nutricionales_pediatricas_path, method: :post, remote: true, class: 'form-filtros' do |f| %>
          <div class="row">
+          <div class="col-md-5">
 
-          <%= FormBuilder::text_field_v(f, :paciente_persona_nombre_or_paciente_persona_apellido_or_paciente_persona_ci_cont, {col_class: 'col-md-3', label_text: 'Paciente', input_class: '',  placeholder: "Nombre, Apellido o CI"})%>
+              <%= FormBuilder::text_field_v(f, :paciente_persona_nombre_or_paciente_persona_apellido_or_paciente_persona_ci_cont, {col_class: 'col-md-6', label_text: 'Paciente', input_class: '',  placeholder: "Nombre Apellido o CI"})%>
 
-          <%= FormBuilder::text_field_v(f, :doctor_persona_nombre_or_doctor_persona_apellido_cont, {col_class: 'col-md-3', label_text: 'Prof. de la Salud', input_class: '', placeholder: "Nombre o Apellido"})%>
+              <%= FormBuilder::text_field_v(f, :doctor_persona_nombre_or_doctor_persona_apellido_cont, {col_class: 'col-md-6', label_text: 'Prof. de la Salud', input_class: '', placeholder: "Nombre o Apellido"})%>
+
+            </div>
 
           <%= FormBuilder::text_field_v(f, :fecha_gteq, {col_class: 'col-md-2', label_text: 'Desde', input_class: 'datepicker',max_length: Domain::FECHA})%>
 
@@ -45,7 +48,7 @@
     <%= render 'list', consultas: @consultas %>
   </div>
 
-  <div id="list-paginate" class="">
+  <div id="list-paginate" class="list-paginate-con-sidebar">
     <%= paginate @consultas, remote: true %>
   </div>
 </div>

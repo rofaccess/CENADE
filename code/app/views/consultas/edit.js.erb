@@ -1,4 +1,3 @@
 
-$("#principal-content").html('<%= j render 'form',consulta: @consulta, area: @area, doctores: @doctores,paciente: @consulta.paciente, formats: 'html' %>');
-$('.paciente_data').html("<%= j render 'paciente_form', paciente: @consulta.paciente %>");
+$("#principal-content").html('<%= j render 'form' , consulta: @consulta, paciente: @consulta.paciente, doctores: @doctores, area: @consulta.area, from_ficha: false, formats: 'html' %>');
 

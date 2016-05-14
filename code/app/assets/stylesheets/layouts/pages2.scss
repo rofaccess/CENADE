@@ -59,12 +59,12 @@
 		margin-top: 75px;
 
 		#advanced-search{
-			margin-left: auto;
+
 			margin-right: auto;
 			background: #EFEFEF;
 			width: 90%;
 			height: 100px;
-			padding: 20px 50px 0px 50px; //Top Right Bottom Left
+			padding: 20px 40px 0px 50px; //Top Right Bottom Left
 			border: solid;
 			border-color: #CCCCCC;
 			border-width: 1px;
@@ -73,11 +73,11 @@
 
 		// Cuando se tiene el sidebar hay que agregar la clase advanced-search-con-sidebar al div de busqueda avanzada
 		div.advanced-search-con-sidebar{
-			width: 100% !important;
+			width: 95% !important;
 		}
 
 		#list {
-			margin-left: auto;
+
 			margin-right: auto;
 			background: white;
 			width: 90%;
@@ -89,7 +89,7 @@
 
 		// Cuando se tiene el sidebar hay que agregar la clase list-con-sidebar al div de lista
 		div.list-con-sidebar{
-			width: 100% !important;
+			width: 95% !important;
 		}
 
 		#list-paginate{
@@ -174,7 +174,7 @@
 		form.form-ficha2{
 			width: 100%;
 		}
-		form.nueva-consulta{
+		form.form-consulta{
 			width: 93%;
 		}
 
