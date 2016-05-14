@@ -36,22 +36,24 @@ class ConsultasOdontologicasController < ApplicationController
   end
 
   def create
-  	@consulta = ConsultaOdontologica.new(consulta_params)
-  	 respond_to do |format|
+    respond_to do |format|
+
+      @consulta = ConsultaOdontologica.new(consulta_params)
       if @consulta.save
-        flash.now[:notice] = 'Consulta registrada exitosamente'
-		format.html {render 'show'}
+
+        flash.now[:notice] = "Se ha guardado la consulta de #{@consulta.paciente.persona.nombre}."
+        format.html {render 'show'}
         format.js { render "show"}
       else
         if @consulta.errors.full_messages.any?
-          flash.now[:alert] = @consulta.errors.full_messages.first
+            flash.now[:alert] = @consulta.errors.full_messages.first
         else
-          flash.now[:alert] = "No se ha podido guardar la Consulta"
+            flash.now[:alert] = "No se ha podido guardar la Consulta."
         end
+        @paciente= @consulta.paciente
 
-        format.html { render "edit"}
+        format.html { render action: "new"}
         format.js { render "edit"}
-
       end
     end
   end

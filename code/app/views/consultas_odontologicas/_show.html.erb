@@ -55,6 +55,23 @@
           <%= consult.input :hemorragias, label: titulos_largos.find(7).titulo, wrapper_html: { class: 'col-md-6'}, input_html: {disabled: true} %>
           <%= consult.input :enfermedad_cardiovascular, label: titulos_largos.find(9).titulo, wrapper_html: { class: 'col-md-6'}, input_html: {disabled: true} %>
       </div>
+      <h5>Presenta algunas de éstas enfermedades?</h5>
+      <div class ="row">
+        <%=consult.input :diabetes, as: :boolean, wrapper_html: { class: 'col-md-2'},input_html:{ :checked => "checked" }%>
+        <%=consult.input :tuberculosis, as: :boolean, wrapper_html: { class: 'col-md-3'}, input_html:{ :checked => "checked" }%>
+        <%=consult.input :hepatitis, as: :boolean, wrapper_html: { class: 'col-md-3'}, input_html:{ checked: false }%>
+        <%=consult.input :artritis, as: :boolean,wrapper_html: { class: 'col-md-2'}, input_html:{ checked: false }%>
+        <%=consult.input :fumador, as: :boolean,wrapper_html: { class: 'col-md-2'}, input_html:{ checked: false}%>
+
+      </div><br>
+      <div class="row">
+
+        <%=consult.input :enfermedades_sanguineas, as: :boolean,label:'Enfermedades sanguíneas', wrapper_html: { class: 'col-md-3'}, input_html:{ checked: false }%>
+        <%=consult.input :enfermedades_neurologicas, as: :boolean,label:'Enfermedades neurológicas', wrapper_html: { class: 'col-md-3'}, input_html:{ checked: false }%>
+        <%=consult.input :enfermedades_renales, as: :boolean, wrapper_html: { class: 'col-md-3'}, input_html:{ :checked => "checked" }%>
+        <%=consult.input :enfermedades_venereas, as: :boolean,label:'Enfermedades venéreas',wrapper_html: { class: 'col-md-3'}, input_html:{ checked: false}%>
+
+      </div>
       <div class ="row">
           <%= consult.input :problema_tratamiento, label: titulos_largos.find(8).titulo, wrapper_html: { class: 'col-md-12'}, input_html: {disabled: true} %>
       </div>
@@ -97,9 +114,6 @@
       </div>
       <div class="row">
         <%= consult.input :tratamiento,as: :text ,label: 'Tratamiento', wrapper_html: { class: 'col-md-12'},input_html: {disabled: true} %>
-      </div>
-      <div class="form-button">
-        <%= consult.submit 'Guardar', class: 'btn btn-custom'%>
       </div>
     <% end %>
   </div>
