@@ -1,4 +1,3 @@
-
 <table class= "table table-condensed">
   <thead>
     <tr>
@@ -8,7 +7,7 @@
       <th>Direccion</th>
       <th class="col-md-2">Telefono</th>
       <th class="col-md-2">Fec. de Ingreso</th>
-      <th>¿Tiene Historial?</th>
+      <th>Fichas</th>
       <th></th>
     </tr>
   </thead>
@@ -29,14 +28,14 @@
         <td><%=paciente.persona_telefono %></td>
         <td><%=Formatter.format_date(paciente.fecha_ingreso) %></td>
         <td>
-          <% if paciente.ficha_fisioterapeutica_adulto.blank? && paciente.ficha_fisioterapia_nino.blank? %>
-            -
-          <% else %>
-            Si
+          <% unless paciente.ficha_fisioterapia_nino.blank? %>
+            Pediátrica <br>
+          <% end %>
+          <% unless paciente.ficha_fisioterapeutica_adulto.blank? %>
+            Adulto
           <% end %>
         </td>
         <td class = "action">
-
           <%= link_to '<i class="fa fa-eye fa-lg" data-toggle="tooltip" title="Ver Historial Clínico"></i> '.html_safe, historial_fisioterapeutico_path(paciente), remote: true%>
         </td>
       </tr>

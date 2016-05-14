@@ -19,18 +19,11 @@ class HistorialesFisioterapeuticosController < ApplicationController
 
   # Obtiene los pacientes con fichas de Fisioterapia Pediátrica y/o Adulto
   def get_pacientes
-
     @search = Paciente.ransack(params[:q])
-    @pacientes_adultos = @search.result
-                        .includes(:ficha_fisioterapeutica_adulto)
-                        .joins(:ficha_fisioterapeutica_adulto)
-
-
-    @pacientes_ninos =  @search.result
-                        .includes(:ficha_fisioterapia_nino)
-                        .joins(:ficha_fisioterapia_nino)
-
-    @pacientes = @pacientes_adultos + @pacientes_ninos
-
-    end
+    @pacientes = @search.result
+                        .includes(:persona) # para que order por nombre de persona funcione
+                        .joins('LEFT OUTER JOIN fichas_fisioterapeuticas_adultos ON pacientes.id = fichas_fisioterapeuticas_adultos.paciente_id LEFT OUTER JOIN ficha_fisioterapia_ninos ON pacientes.id = ficha_fisioterapia_ninos.paciente_id')
+                        .where('pacientes.id = fichas_fisioterapeuticas_adultos.paciente_id OR pacientes.id = ficha_fisioterapia_ninos.paciente_id')
+                        .order('personas.nombre')
+  end
 end
