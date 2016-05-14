@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :historiales_fisioterapeuticos, only: [:index, :show]
+
   get 'fichas_clinicos/check_paciente_has_ficha' => 'fichas_clinicos#check_paciente_has_ficha'
   get 'fichas_clinicos/print_ficha' => 'fichas_clinicos#print_ficha'
   resources :fichas_clinicos do
