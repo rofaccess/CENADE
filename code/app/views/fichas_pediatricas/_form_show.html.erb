@@ -13,10 +13,10 @@
 	</div>
 
 </div>
+<div class="content">
+<div class="form-content">
 
-<div class="form-content2">
-
-	<%= simple_form_for ficha, html: {class: 'form-ficha2'}, remote: true do |fich|%>
+	<%= simple_form_for ficha, html: {class: 'form-ficha'}, remote: true do |fich|%>
 
 
 	<h4 class="titulo-ficha">FICHA DE PEDIATRÍA</h4>
@@ -44,6 +44,7 @@
     <%=render 'consultas/consultas_tabs', consultas: consultas%>
 
 	<% end %>
+</div>
 </div>
 
 <script type="text/javascript">

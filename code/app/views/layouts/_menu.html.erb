@@ -48,11 +48,8 @@
           <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
               <div>
-                  <%if current_user.profile_foto.blank? %>
-                    <%=image_tag("sinUsuario", class:"menu-profile") %>
-                  <% else %>
-                    <%= image_tag(current_user.profile_foto_url.to_s, class:"menu-profile") %>
-                    <% end %><br>
+                <%=image_tag(current_user.profile_foto.blank? ? "sinUsuario" : current_user.profile_foto_url.to_s, class:"menu-profile") %>
+                <br>
               </div>
               <sec:username/>
             </a>

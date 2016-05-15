@@ -6,7 +6,7 @@
       </div>
 </div>
 <div class="content content-sin-submenu content-70">
-<div class="form-content2">
+<div class="form-content">
     <%= form_for paciente, html: {class: 'form-paciente form-sin-submenu'} do |pacient|%>
     	<!-- Se debe pasar paciente del form al render, o sino dirá que paciente no existe y en el partial se lo necesita -->
     	<%= render 'form_fields', pacient: pacient, paciente: paciente %>

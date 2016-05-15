@@ -12,7 +12,8 @@
 
   </div>
 </div>
-	<div class="form-content2">
+<div class="content">
+	<div class="form-content">
 		<%= simple_form_for consulta, html: {class: 'nueva-consulta'} do |consult|%>
 			<%= hidden_field_tag :consulta_id, consulta.id, class: 'consulta-id'%>
 
@@ -120,6 +121,7 @@
 		<% end %>
 
 	</div>
+</div>
 <script type="text/javascript">
 
 	consultasNutriPediatricasUI.initScript();

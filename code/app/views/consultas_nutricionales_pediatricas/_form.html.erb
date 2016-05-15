@@ -6,7 +6,8 @@
 		</div>
 
 	</div>
-	<div class="form-content2">
+<div class="content">
+	<div class="form-content">
 		<%= simple_form_for consulta, html: {class: 'nueva-consulta'} do |consult|%>
 			<%= hidden_field_tag :consulta_id, consulta.id, class: 'consulta-id'%>
 
@@ -113,12 +114,13 @@
 				<%= consult.input :diagnostico, as: :text, label: 'Diagnóstico', wrapper_html: { class: 'col-md-12'},input_html: { maxLength: Domain::DESC250, :rows => 3} %>
 			</div>
 			<div class="form-button">
-				<%= consult.submit 'Guardar', class: 'btn btn-custom'%>
+				<%= consult.submit 'Guardar', class: 'btn btn-custom',data: {disable_with: "Guardando..."}%>
 			</div>
 
 		<% end %>
 
 	</div>
+</div>
 <script type="text/javascript">
 
 	consultasNutriPediatricasUI.initScript();

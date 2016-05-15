@@ -6,7 +6,7 @@
 </div>
 
 <div class="content content-70">
-<div class= "form-content2">
+<div class= "form-content">
   <%= hidden_field_tag :usuario_id, current_user.id %>
 
   <%= form_for current_user, url: {action: "update"}, html: {method: "put",class:' form-perfil medium-form'} do |f| %>

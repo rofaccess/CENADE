@@ -1,3 +1,4 @@
+/* Este archivo define el aspecto del contenedor, listado, paginacion, linea azul que reemplaza al submenu */
 body{
 	background: #EAF0F3;
 	padding-top: 30px;//- Hace que el contenido del body inicie cuando termina el menú principal
@@ -94,3 +95,13 @@ div.content-sin-submenu{
 	border-bottom-color: #CCCCCC;
 	z-index: 1030;
 }
+
+/* Si el texto es muy largo, esta clase lo corta
+ * Usado para cortar direcciones muy largas en los listados por ejemplo
+ */
+ //- Actualmente da un error de css, si se habilita el sistema no funciona
+ /*
+.crop {
+	word-break: break-all;
+}​
+*/

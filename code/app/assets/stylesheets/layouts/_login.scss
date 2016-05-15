@@ -1,10 +1,10 @@
-    
+/* Este archivo define el aspecto de la interfaz de inicio de sesión */
     body  {
       .form-signin{
         margin-top: 100px;
         //background-color: #eee;
       }
-      
+
     }
 
     .form-signin {
@@ -31,10 +31,10 @@
         margin-bottom: 20px;
         font-weight: bold;
       }
-      
+
       > h2 > span {
        font-size: 60px;
-      } 
+      }
     }
 
     p {
@@ -57,6 +57,6 @@
   }
 
   .input-error{
-    border-color:#DD4B39; 
+    border-color:#DD4B39;
     border-width: 1px;
   }

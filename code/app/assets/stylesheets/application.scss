@@ -48,6 +48,7 @@ $has-error-color: #dd4b39;
 @import "components/devise-flash-messages";
 @import "components/page-title";
 @import "components/tabs";
+@import "components/modal";
 
 //layout
 @import "layouts/login";
@@ -57,7 +58,8 @@ $has-error-color: #dd4b39;
 @import "layouts/forms";
 
 @import "layouts/pages";
-@import "layouts/pages2";
 
 //modules
 @import "modules/configuraciones";
+@import "modules/empleados";
+@import "modules/usuarios";

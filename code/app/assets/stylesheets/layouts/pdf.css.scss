@@ -1,3 +1,5 @@
+/* Este archivo define el aspecto de los pdf */
+
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "bootstrap/variables";
@@ -21,7 +23,7 @@ $border-line-color: #EEEEEE;
 		padding-bottom: 0px;
 		color: $page-title-color;
 	}
-	
+
 	h6{
 		text-align: center;
 		color: $page-subtitle-color;
@@ -29,11 +31,11 @@ $border-line-color: #EEEEEE;
 }
 
 .border-input{
-	
+
 		border:1px;
 		//border-style: solid;
 		border-color: #DCDCDC;
-	  	
+
 	}
 /*
 #content {
@@ -52,7 +54,7 @@ $border-line-color: #EEEEEE;
 			hr {
 				margin-top: 5px;
 				color: #999999;
-			}	
+			}
 }*/
 
 .form-control{
@@ -72,7 +74,7 @@ h4{
 		margin-bottom: 20px;
 		color: $page-title-color;
 	}
-	
+
 	&.title{
 		text-align: center;
 		margin-bottom: 20px;
@@ -96,7 +98,7 @@ hr {
 		word-break: break-all;
 	}
 
-	.data-bordered{		
+	.data-bordered{
 		border: solid;
 		border-width: 1px;
 		min-height: 50px;
@@ -116,7 +118,7 @@ hr {
 	page-break-before: always;
 }
 
-//Si el texto es muy largo, esta clase lo corta 
+//Si el texto es muy largo, esta clase lo corta
 .crop {
 	word-break: break-all;
 }​

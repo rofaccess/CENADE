@@ -4,7 +4,7 @@
 
 /* Define el aspecto de los formularios */
 
-.form-content2{
+.form-content{
   background: white;
   padding: 30px 50px 30px 50px; //Top Right Bottom Left
 
@@ -27,6 +27,7 @@
       color: #999999;
     }
 
+    //tamaño y forma de los label encima de los input
     .row{
       .form-group{
          label{
@@ -35,6 +36,7 @@
         }
       }
     }
+    //ubica a la derecha el boton guardar de los formularios
     .form-button{
       text-align: right;
     }

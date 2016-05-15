@@ -11,7 +11,7 @@ var fichasPediatricasUI = (function(){
 	     	pacientesUI.getPaciente({element: '.select-paciente', root: 'compartido/fic_cli_neu_ped'});
 
 			/* Valida el formulario antes de enviarlo */
-			$('.form-ficha2').validate();
+			$('.form-ficha').validate();
 		}
 	};
 }());

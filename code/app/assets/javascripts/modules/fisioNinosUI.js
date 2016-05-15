@@ -125,7 +125,7 @@ var fisioNinosUI = (function(){
                     e.preventDefault();
                 });
             });*/
-		  	$('.nueva-ficha').validate();
+		  	$('.form-ficha').validate();
 		}
 	};
 }());

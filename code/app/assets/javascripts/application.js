@@ -46,10 +46,10 @@
 
 /* Nota: La línea anterior carga todos los script, asi que en teoría, no es necesario ćargar el contenido de los modules */
 
-APP = {      
-    
-    /* Inicializa el evento para actualizar el listado de los index a medida que se tipea en el buscador 
-       .buscador : es la clase del elemento (input) que se usa como buscador 
+APP = {
+
+    /* Inicializa el evento para actualizar el listado de los index a medida que se tipea en el buscador
+       .buscador : es la clase del elemento (input) que se usa como buscador
        #list     : es el id del elemento (div) que contiene la lista del index sobre el que se mostrará un icono de cargando
     */
     initBuscador: function(){
@@ -58,8 +58,8 @@ APP = {
 				$("#list").LoadingOverlay("show", {
     				image       : "",
     				fontawesome : "fa fa-refresh fa-spin"
-				});				
-				
+				});
+
 				setTimeout(function(){},5000); //Quitar esto en producción
 
 				$('.buscador').submit();
@@ -70,7 +70,7 @@ APP = {
 
     /* Inicializa el evento para mostrar y esconder la búsqueda avanzada presente en algunos index
        #show-advanced-search: es el id del elmento que actúa botón para mostrar y esconder la busqueda avanzada
-       #advanced-search     : es el id del elemento (div) que contiene los campos de búsqueda avanzada 
+       #advanced-search     : es el id del elemento (div) que contiene los campos de búsqueda avanzada
     */
     initAdvancedSearch: function(){
         var show=true;
@@ -93,37 +93,37 @@ APP = {
         $("#sidebar-toggle").click(function(e) {
             e.preventDefault();
             $("#wrapper").toggleClass("toggled");
-        });   
-    },     
+        });
+    },
 
     /* Inicia el datepicker
        .datepicker: es la clase del elemento (input) que desplegará el datepicker
     */
     initDatepicker: function(){
-        
+
         $('.datepicker').datepicker({
             format: "dd/mm/yyyy",
             language: "es",
             autoclose: true,
-            orientation: "bottom", 
-            todayHighlight: true,   
-            todayBtn: true,        
+            orientation: "bottom",
+            todayHighlight: true,
+            todayBtn: true,
             }).on('change', function() {
                 /* Sin lo siguiente, no desaparecen los mensajes de error la primera vez que se selecciona una fecha */
-                $(this).valid(); 
+                $(this).valid();
             });
 
         /* Solo permite escribir números y barras en el elemento especificado*/
-        $('.datepicker').inputmask('Regex', { regex: "[0-9\/]+" }); 
+        $('.datepicker').inputmask('Regex', { regex: "[0-9\/]+" });
         /* Muestra dd/mm/aa en el placeholder */
         $('.datepicker').attr('placeholder', 'dd/mm/aaaa');
-    }, 
+    },
 
     /* Inicia el inputmask para el campo que debe recibir solo números
        .number-only: es la clase del elemento (input) que sólo permitirá números
     */
     initNumberOnly: function(){
-        $('.number-only').inputmask('Regex', { regex: "[0-9]+" }); 
+        $('.number-only').inputmask('Regex', { regex: "[0-9]+" });
     },
 
     /* Inicia el inputmask para el campo que debe recibir solo números de teléfono
@@ -137,13 +137,13 @@ APP = {
        .ruc-only: es la clase del elemento (input) que sólo permitirá ruc
     */
     initRucOnly: function(){
-        $('.ruc-only').inputmask('Regex', { regex: "[0-9\-a-z]+" }); 
+        $('.ruc-only').inputmask('Regex', { regex: "[0-9\-a-z]+" });
     },
 
     /* Retorna la fecha del sistema en formato 'dd/mm/aa' */
     systemDate: function(){
         var today = new Date();
-                    
+
         var day = today.getDate();
         var month = today.getMonth()+1;
         var year = today.getFullYear();
@@ -151,7 +151,7 @@ APP = {
         if(day<10) day = '0'+ day;
         if(month < 10) month = '0' + month;
 
-        return day+'/'+month+'/'+year; 
+        return day+'/'+month+'/'+year;
     },
 
     /*
@@ -162,10 +162,10 @@ APP = {
             edad: el id o clase del objeto jquery (input) donde se mostrará la edad
         }
     */
-    initCalculateAge: function(options){         
-        $(options.fecha_nacimiento).on('change', function(){           
+    initCalculateAge: function(options){
+        $(options.fecha_nacimiento).on('change', function(){
             var today = new Date();
-            
+
             var day = parseInt(today.getDate());
             var month = parseInt(today.getMonth())+1;
             var year = parseInt(today.getFullYear());
@@ -194,31 +194,31 @@ APP = {
                     $(options.edad).val(age);
                 }else{
                     $(options.edad).val('');
-                }           
+                }
             }else{
                 $(options.edad).val('');
-            }            
-        });        
+            }
+        });
     },
 
     /*
         Compara dos strings de fechas con el formato 'dd/mm/aaaa'
         Retorna true si el primero es mayor o igual al segundo caso contrario false
     */
-    //- Se puede usar para implementar la validación de nuevo turno, que la fecha de consulta sea mayor o igual a la fecha de expedicion del turno   
-    compareDate: function(date1, date2){                     
+    //- Se puede usar para implementar la validación de nuevo turno, que la fecha de consulta sea mayor o igual a la fecha de expedicion del turno
+    compareDate: function(date1, date2){
         var d1 = date1.split('/');
         var day1 = parseInt(d1[0]);
         var month1 = parseInt(d1[1]);
-        var year1 = parseInt(d1[2]);               
-        
+        var year1 = parseInt(d1[2]);
+
         var d2 = date2.split('/');
         var day2 = parseInt(d2[0]);
         var month2 = parseInt(d2[1]);
-        var year2 = parseInt(d2[2]); 
-        
-        if (year1 > year2){           
-            return true;                 
+        var year2 = parseInt(d2[2]);
+
+        if (year1 > year2){
+            return true;
         }else if(year1==year2){
             if(month1 > month2){
                 return true;
@@ -231,12 +231,12 @@ APP = {
 
             }else{
                 return false;
-            }        
+            }
         }else{
             return false;
-        } 
+        }
     },
-        
+
     /*
         Inicializa el select2
         Recibe un objeto con:
@@ -245,21 +245,21 @@ APP = {
             placeholder: El texto que se verá en el placeholder del select
         }
     */
-    initSelect2: function(options) {        
+    initSelect2: function(options) {
         $(options.element).select2({
             placeholder: options.placeholder
         });
-            
+
         /* Valida cuando se elige otro item del select2 */
-        
+
         $(options.element).on("change", function(){
-            $(this).valid();            
-        });    
+            $(this).valid();
+        });
     },
 
     /* Ejecuta las funciones especificadas*/
-    init: function() {        
-		APP.initBuscador();        
+    init: function() {
+		APP.initBuscador();
         APP.initAdvancedSearch();
         APP.initDatepicker();
         //APP.initSidebarToogle(); //- Tal vez se use
