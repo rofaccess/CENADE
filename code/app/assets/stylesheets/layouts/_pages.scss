@@ -37,6 +37,12 @@ div.content-60{
 div.content-50{
 	width: 50%;
 }
+/* Específico para los form y show de consulta, si no se quiere que su ancho sea del 100%
+ * Debe agregarse junto a la clase .content
+ */
+div.content-consulta{
+	width: 80%;
+}
 
 // Cuando no se tiene submenu hay que agregar la siguiente clase, junto a .content
 div.content-sin-submenu{

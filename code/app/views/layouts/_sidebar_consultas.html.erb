@@ -19,8 +19,8 @@
             <%=link_to 'Fonoaudiología', consultas_path(area_id: 3) %>
         </li>
 
-        <li>
-            <a href="#">Neurología</a>
+        <li class="<%= current_sidebar([consultas_path(area_id: 4,)])%>">
+            <%=link_to 'Neurología', consultas_path(area_id: 4) %>
         </li>
 
         <li class="<%= current_sidebar([consultas_path(area_id: 5, type: 'Adulto')])%>">
