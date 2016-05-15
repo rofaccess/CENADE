@@ -1,21 +1,26 @@
-<div class="form-content">
-  <div class="page-title">
-    Consulta de <%=consulta.paciente_persona_full_name%>
+<div class="page-title page-title-con-sidebar">
+  Consulta de <%=consulta.paciente_persona_full_name%>
 
-    <div class="tool">
-      <%= link_to '<i class="fa fa-list"></i> '.html_safe, consultas_path %>
-      <%= link_to '<i class="fa fa-plus-square"></i> '.html_safe, new_consulta_path, remote: true%>
+  <div class="tool">
+    <%= link_to '<i class="fa fa-list data-toggle="tooltip" title="Lista de Consultas"></i> '.html_safe, consultas_path(area_id: area.id) %>
 
-      <%= link_to '<i class="fa fa-edit"></i> '.html_safe, edit_consulta_path(consulta.id), remote:true%>
-      <%= link_to '<i class="fa fa-print"></i> '.html_safe, consultas_print_consulta_path(consulta_id: consulta.id, :format => :pdf), target: '_blank'%>
+    <%= link_to '<i class="fa fa-plus-square" data-toggle="tooltip" title="Nueva Consulta"></i> '.html_safe, new_consulta_path(area_id: consulta.area_id), remote: true %>
 
-    </div>
+    <%= link_to '<i class="fa fa-edit" data-toggle="tooltip" title="Editar Consulta"></i> '.html_safe, edit_consulta_path(consulta), remote:true%>
+
+     <%= link_to '<i class="fa fa-print" data-toggle="tooltip" title="Imprimir Consulta"></i> '.html_safe, consultas_print_consulta_path(consulta_id: consulta.id, :format => :pdf), target: '_blank'%>
+
   </div>
-    <%= form_for consulta, html: {class: 'nueva-consulta', style: "width: 80%; margin-left: 140px;", :multipart => true }, remote: true do |consult|%>
+</div>
 
+  <div class="form-content2">
+    <%= form_for consulta, html: {class: 'form-consulta', :multipart => true }, remote: true do |consult|%>
+      <h4 class="titulo-ficha">Consulta en <%= area.nombre%></h4></br>
       <div class="row">
         <div class="col-md-9">
+
           <h4><%= consult.label :doctor_id, 'Profesional de la Salud: ' %> <%= consulta.doctor_persona_full_name%> </h4>
+
         </div>
         <div class="col-md-3">
             <h4><%= consult.label :fecha, 'Fecha: ' %> <%=Formatter.format_date(consulta.fecha)%> </h4>
@@ -25,6 +30,7 @@
       <div id="paciente-data">
         <%= render 'form_paciente', paciente: consulta.paciente %>
       </div>
+
 
       <h4>Datos de Consulta</h4>
       <hr>

@@ -15,6 +15,15 @@ body{
 	padding-top: 90px;
 }
 
+/* Las definiciones content-xx estblece el ancho del contenido de las páginas
+ *	1. Establece el ancho que tendrá el formulario de búsqueda avanzada y el listado de los index
+ *	2. Establece el ancho de los formularios
+ *	Nota: Para darle un trato especial a un grupo de formularios que tendrán el mismo ancho.
+ *	ej: para las fichas se puede establecer un content-ficha para facilitar cambiar el ancho
+ *	una vez en el css y cambiaran para todas las fichas que tendrán la clase content-ficha
+ *	junto a la clase content.
+ */
+
 //Cuando se quiere que un content tenga un ancho de 70% se debe agregar esta clase junto a .content
 div.content-70{
 	width: 70%;

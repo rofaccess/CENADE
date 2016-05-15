@@ -20,6 +20,7 @@
     <% consultas.each do |consulta| %>
     <tr>
       <td><%=consulta.fecha.strftime("%d/%m/%Y")%></td>
+
       <td ><%=consulta.paciente_persona_full_name %></td>
       <td ><%=consulta.area_nombre %></td>
       <td ><%=consulta.doctor_persona_full_name %></td>

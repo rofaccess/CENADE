@@ -1,6 +1,8 @@
 class ConsultasController < ApplicationController
 	before_action :set_consulta, only: [:show, :edit, :update]
 	#load_and_authorize_resource
+  before_action :set_sidebar, only: [:edit, :new, :show, :index]
+
   before_action :set_submenu, only: [:edit, :update, :show, :index, :new]
 
   respond_to :html, :js
@@ -9,12 +11,18 @@ class ConsultasController < ApplicationController
    @submenu_layout = 'layouts/submenu_fichas_consultas'
   end
 
+  def set_sidebar
+    @sidebar_layout = 'layouts/sidebar_consultas'
+  end
+
   def index
   	get_consultas
   end
 
   def new
   	@consulta= Consulta.new
+    @area= Area.find(params[:area_id])
+    get_doctores
     @paciente= Paciente.new
   end
 
@@ -23,6 +31,7 @@ class ConsultasController < ApplicationController
 
 		@consulta = Consulta.new(consulta_params)
 		if @consulta.save
+
 			flash.now[:notice] = "Se ha guardado la consulta de #{@consulta.paciente_persona_full_name}."
 			format.html {render 'show'}
       format.js { render "show"}
@@ -34,13 +43,14 @@ class ConsultasController < ApplicationController
       end
       @paciente= @consulta.paciente
 			format.html { render "new"}
-      format.js { render "edit"}
+      format.js { render "new"}
 		end
 	end
   end
 
   def edit
-    @paciente= @consulta.paciente
+    @area= @consulta.area
+    get_doctores
   end
 
   def update
@@ -67,10 +77,13 @@ class ConsultasController < ApplicationController
 
   end
 
+  def get_doctores
+    @doctores = Doctor.where(area_id: @area.id)
+  end
+
   #obtiene el paciente
    def get_paciente
     @paciente= Paciente.find(params[:id])
-
   end
 
   #recarga la lista de profesionales segun el area
@@ -80,27 +93,30 @@ class ConsultasController < ApplicationController
 
   end
 
+
   def set_consulta
   	@consulta = Consulta.find(params[:id])
   end
 
   def get_consultas
-      @search = Consulta.ransack(params[:q])
 
-      @consultas= @search.result.page(params[:page])
-    end
+    @search = Consulta.where(area_id: params[:area_id]).ransack(params[:q])
+    @consultas= @search.result.page(params[:page])
+
+  end
 
   #autocompleta campos como area y paciente si se llama a nuevo desde alguna ficha
   def consulta_from_ficha
      @paciente= Paciente.find(params[:paciente])
+     @area= Area.find(params[:area_id])
+     get_doctores
      new
 
   end
 
   #Busca las Consultas segun los datos puestos para filtrar
   def buscar
-    @search = Consulta.search(params[:q])
-    @consultas = @search.result.page(params[:page])
+    get_consultas
     render 'index'
   end
 
@@ -123,7 +139,7 @@ class ConsultasController < ApplicationController
     end
 
   def consulta_params
-      params.require(:consulta).permit(:paciente_id, :area_id, :doctor_id, :fecha,
+    params.require(:consulta).permit(:paciente_id, :area_id, :doctor_id, :fecha,
       									:motivo_consulta, :evaluacion, :tratamiento, :observaciones)
   end
 end

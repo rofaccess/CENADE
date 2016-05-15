@@ -1,4 +1,0 @@
-$('.select-doctor').html("<%= escape_javascript(options_for_select(Hash[Empleado.where(type: 'Doctor', area_id:@area.id).map{|a| [a.abr_profesion+" "+a.persona_full_name+ "-"+a.area.nombre, a.id]}]).insert(0, 'Seleccione un Profesional')) %>");
-//$('.select-doctor').select2('destroy'); //- Esta línea creo que es innecesaria
-APP.initSelect2({element: '.select-doctor', placeholder: 'Seleccione un Profesional'});
-$('.select-doctor').valid();//- No deberia ser necesario, pero lo es

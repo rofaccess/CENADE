@@ -1,5 +1,5 @@
 class FichaFisioterapeuticaAdulto < ActiveRecord::Base
-	paginates_per 1
+	paginates_per 20
 
 	# Autoincrementa el numero de ficha
 	protokoll :nro_ficha, pattern: '#'

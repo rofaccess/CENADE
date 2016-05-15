@@ -1,48 +1,41 @@
-  <div class="page-title">
-    Consultas
+<div class="page-title page-title-con-sidebar">
+  Consultas
 
     <div class="tool">
-      <%= search_form_for @search, class: 'buscador', remote: true do |f| %>
+      <%= search_form_for @search,url: consultas_path(area_id: params[:area_id]), class: 'buscador', remote: true do |f| %>
       <div class="input-group">
-        <%= f.search_field :paciente_persona_nombre_or_paciente_persona_apellido_or_area_nombre_cont, placeholder: " Buscar por Paciente o Área ", class: "form-control", autofocus: true%>
+       <%= f.search_field :paciente_persona_nombre_or_paciente_persona_apellido_or_paciente_persona_ci_cont, placeholder: "Nombre, Apellido o CI", class: "form-control", autofocus: true%>
         <span class="fa fa-search"></span>
         <div class="input-group-btn">
           <a href="#"><i class="fa fa-search-plus" aria-hidden="true" id= "show-advanced-search" data-toggle="tooltip" data-placement="bottom" title="Búsqueda Avanzada"></i></a>
-          <%= link_to '<i class="fa fa-plus-square" aria-hidden="true" id= "show" data-toggle="tooltip" data-placement="bottom" title="Nueva Consulta"></i> '.html_safe, new_consulta_path, remote: true %>
+          <%= link_to '<i class="fa fa-plus-square" aria-hidden="true" id= "show" data-toggle="tooltip" data-placement="bottom" title="Nueva Consulta"></i> '.html_safe, new_consulta_path(area_id: params[:area_id]), remote: true %>
+
         </div>
       </div>
       <% end %>
     </div>
   </div>
-  <div class="content">
+  <div class= "content">
+
     <div id="advanced-search">
       <div class="row" >
-       <%= search_form_for @search, url: search_consultas_path, method: :post, remote: true, class: 'form-filtros' do |f| %>
-       <div class="row">
+       <%= search_form_for @search, url: search_consultas_path(area_id: params[:area_id]), method: :post, remote: true, class: 'form-filtros' do |f| %>
+          <div class="row">
+            <div class="col-md-5">
 
-        <%= FormBuilder::text_field_v(f, :paciente_persona_nombre_or_paciente_persona_apellido_cont,
-          {col_class: 'col-md-3',
-            label_text: 'Paciente',
-            input_class: ''})%>
+              <%= FormBuilder::text_field_v(f, :paciente_persona_nombre_or_paciente_persona_apellido_or_paciente_persona_ci_cont, {col_class: 'col-md-6', label_text: 'Paciente', input_class: '',  placeholder: "Nombre Apellido o CI"})%>
 
-        <%= FormBuilder::select_v(f, :area_nombre_cont,
-          Area.all.collect { |a| [a.nombre, a.nombre] },
-          {col_class: 'col-md-2',
-            label_text: 'Área'}) %>
+              <%= FormBuilder::text_field_v(f, :doctor_persona_nombre_or_doctor_persona_apellido_cont, {col_class: 'col-md-6', label_text: 'Prof. de la Salud', input_class: '', placeholder: "Nombre o Apellido"})%>
 
-        <%= FormBuilder::text_field_v(f, :fecha_gteq,
-          {col_class: 'col-md-2',
-            label_text: 'Desde',
-            input_class: 'datepicker',
-            max_length: Domain::FECHA})%>
-        <%= FormBuilder::text_field_v(f, :fecha_lteq,
-          {col_class: 'col-md-2',
-            label_text: 'Hasta',
-            input_class: 'datepicker',
-            max_length: Domain::FECHA})%>
+            </div>
+            <%= FormBuilder::text_field_v(f, :fecha_gteq, {col_class: 'col-md-2', label_text: 'Desde', input_class: 'datepicker',max_length: Domain::FECHA})%>
+
+            <%= FormBuilder::text_field_v(f, :fecha_lteq, {col_class: 'col-md-2', label_text: 'Hasta', input_class: 'datepicker',max_length: Domain::FECHA})%>
+
             <div class= "advanced-search-buttons">
              <%= f.submit 'Filtrar', class: 'btn btn-custom '%>
              <%= f.submit 'Limpiar Campos', type: 'reset', class: 'btn btn-link'%>
+
            </div>
          </div>
          <% end %>
