@@ -1,9 +1,12 @@
 <% @submenu_layout = 'layouts/submenu_configuracion' %>
 <% @sidebar_layout = 'layouts/sidebar_perfil_usuario'%>
-<div class= "form-content">
-  <div class="page-title" style = "left:200px;">
+
+<div class="page-title page-title-con-sidebar">
     Perfil de Usuario
-  </div>
+</div>
+
+<div class="content content-70">
+<div class= "form-content2">
   <%= hidden_field_tag :usuario_id, current_user.id %>
 
   <%= form_for current_user, url: {action: "update"}, html: {method: "put",class:' form-perfil medium-form'} do |f| %>
@@ -20,7 +23,7 @@
           <%= image_tag(current_user.profile_foto_url.to_s, class: "border-img") %>
           <div class="uploader_button">
           <%= f.file_field :profile_foto, class:"file_uploader" %>
-          <label class="font-img" style="padding-left: 41px">+Agregar Imagen </label>
+          <label class="font-img">+Agregar Imagen </label>
           </div>
       </div></br>
     </div>
@@ -58,9 +61,10 @@
     </div>
 
     <div class="form-button">
-      <%= f.submit 'Guardar cambios', class: 'btn btn-custom'%>
+      <%= f.submit 'Guardar cambios', class: 'btn btn-custom', data: {disable_with: "Guardando..."}%>
     </div>
   <% end %>
+</div>
 </div>
 <script type="text/javascript">
 

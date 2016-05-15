@@ -88,7 +88,7 @@ class UsuariosController < ApplicationController
 	    else
 	      flash.alert = "No se ha podido eliminar el usuario #{@usuario.username}."
 	    end
-
+       set_submenu
 	    if request.xhr?
   			# Do the ajax stuff
   			update_list

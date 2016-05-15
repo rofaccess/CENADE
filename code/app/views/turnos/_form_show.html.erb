@@ -1,6 +1,4 @@
-<div class= "col-md-10 col-md-offset-1">
-<div class="form-content">
-  <div class="page-title page-title-sin-submenu">
+<div class="page-title page-title-sin-submenu">
     Turno N° <%= @turno.turno%>
 
     <div class="tool">
@@ -13,8 +11,11 @@
 
       <%= link_to '<i class="fa fa-print"></i> '.html_safe, new_turno_path, target: '_blank'%>
     </div>
-  </div>
-    <%= form_for @turno, html: {class: 'nuevo-turno form-sin-submenu'}, remote: true do |turno|%>
+</div>
+<div class= "content content-sin-submenu content-60">
+<div class="form-content2">
+
+    <%= form_for @turno, html: {class: 'nuevo-turno'}, remote: true do |turno|%>
 
       <h4>Datos Personales</h4>
       <hr>
@@ -144,7 +145,7 @@
 
    </div>
   </div>
-</div>
+
 <script type="text/javascript">
 
   <% if !flash.notice.blank? %>

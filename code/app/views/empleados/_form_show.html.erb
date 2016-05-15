@@ -1,5 +1,4 @@
-<div class="form-content">
-	<div class="page-title">
+<div class="page-title">
 		Empleado
 
 		<div class="tool">
@@ -13,7 +12,10 @@
 			<% end %>
 			<%= link_to '<i class="fa fa-print"></i> '.html_safe, empleados_print_empleado_path(empleado_id: empleado.id, :format => :pdf), target: '_blank'%>
 		</div>
-	</div>
+</div>
+<div class="content content-70">
+<div class="form-content2">
+
 
 	<%= form_for empleado, html: {class: 'form-empleado'}  do |emplead|%>
 		<h4>Datos Personales</h4>
@@ -125,10 +127,8 @@
 			</div>
 
 	<% end %>
-
-
 </div>
-
+</div>
 <script type="text/javascript">
 	<% if !flash.notice.blank? %>
 		var n = noty({text: '<%=notice%>', type: 'success'});

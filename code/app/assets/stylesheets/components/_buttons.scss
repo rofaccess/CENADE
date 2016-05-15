@@ -1,0 +1,85 @@
+
+/* Define el aspecto de los botones comunes */
+.btn-custom {
+
+   background-color: $common-color;
+   border: none;
+   color: white;
+
+   &:hover,
+   &:focus {
+      color: white;
+      text-decoration: none;
+      background-color: $hover-btn-custom-color;
+   }
+
+   &:active,
+   &.active {
+      outline: 0;
+      background-image: none;
+      @include box-shadow(inset 0 3px 5px rgba(0,0,0,.125));
+   }
+}
+
+/* Define el aspecto de los botones (ver, editar, eliminar, etc.) presentes en
+ * cada registro de la tabla mostrada en los index
+ */
+td.action {
+   width: 90px;
+
+   a {
+      color: #999999;
+      text-decoration: none; //Quita el subrayado de los link
+      i.fa-trash-o {
+         &:hover,
+         &:focus {
+            color: $hover-icon-trash-color;
+
+         }
+      }
+      i.fa-times {
+         &:hover,
+         &:focus {
+            color: $hover-icon-trash-color;
+
+         }
+      }
+
+      i.fa-edit, i.fa-eye, i.fa-plus-square-o {
+         &:hover,
+         &:focus {
+            color: $common-color;
+         }
+      }
+   }
+}
+
+/* Para que el boton + se ubique al lado del select en los form de las fichas*/
+.btn-add{
+   margin-top: 25px;
+   width: 35px;
+   margin-right: 37px;
+}
+
+/* Aspectos de los botones de tipo eliminar */
+//- No se usa
+.btn-danger {
+   background-color: #E41F25;
+   border: none;
+   margin-bottom: 20px;
+   color: white;
+
+   &:hover,
+   &:focus {
+      color: white;
+      text-decoration: none;
+      background-color: #D01715;
+   }
+
+   &:active,
+   &.active {
+      outline: 0;
+      background-image: none;
+      @include box-shadow(inset 0 3px 5px rgba(0,0,0,.125));
+   }
+}

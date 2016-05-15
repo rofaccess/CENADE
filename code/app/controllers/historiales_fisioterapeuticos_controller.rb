@@ -25,5 +25,16 @@ class HistorialesFisioterapeuticosController < ApplicationController
                         .joins('LEFT OUTER JOIN fichas_fisioterapeuticas_adultos ON pacientes.id = fichas_fisioterapeuticas_adultos.paciente_id LEFT OUTER JOIN ficha_fisioterapia_ninos ON pacientes.id = ficha_fisioterapia_ninos.paciente_id')
                         .where('pacientes.id = fichas_fisioterapeuticas_adultos.paciente_id OR pacientes.id = ficha_fisioterapia_ninos.paciente_id')
                         .order('personas.nombre')
+                        .page(params[:page]) # Usa paginates_per del modelo paciente
+  end
+
+  # Para el historial se requiere, los datos del paciente, sus fichas y consultas
+  # en el área de Fisioterapia
+  def set_historial
+    @paciente  = Paciente.find(params[:id])
+    @ficha_ped = @paciente.ficha_fisioterapia_ninos
+    @ficha_ad  = @paciente.fichas_fisioterapeuticas_adultos
+    area       = Area.find_by_nombre('Fisioterapia')
+    @consultas = Consulta.where(area_id: area.id, paciente_id: @paciente.id).order(fecha: :desc)
   end
 end

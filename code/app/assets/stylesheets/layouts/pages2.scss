@@ -1,179 +1,87 @@
+body{
+	background: #EAF0F3;
+	padding-top: 30px;//- Hace que el contenido del body inicie cuando termina el menú principal
+}
 
+/* Define como se ven los contenedores */
+/* El contenedor de #advanced-search y de .list-content */
+.content{
+	//El ancho que ocupa .content dentro de #principal-content
+	width: 95%;
+	//Las siguientes dos líneas permiten centrar el .content dentro de #principal-content
+	margin-left: auto;
+	margin-right: auto;
+	//Define el espacio visible entre la barra de .page-title y el contenido de .content
+	padding-top: 90px;
+}
 
+//Cuando se quiere que un content tenga un ancho de 70% se debe agregar esta clase junto a .content
+div.content-70{
+	width: 70%;
+}
 
-// Por ahora esto sirve para fichas fisioterapia adulto y el index de turnos
+div.content-60{
+	width: 60%;
+}
 
-// me refiero a todo el contenido desde aqui
+div.content-50{
+	width: 50%;
+}
 
-/* Define lo referente al aspecto del título de página Ej.: Turnos, y los iconos listar, editar, eliminar, etc.
-   que se encuentran a la derecha de ese título 
-*/
-#principal-content {
-	.page-title {
-		//Posición fija
-		position: fixed;
-		right: 0;
-		left: 0;
-		top: 55px;		
-		z-index: 1030;
+// Cuando no se tiene submenu hay que agregar la siguiente clase, junto a .content
+div.content-sin-submenu{
+	padding-top: 75px;
+}
 
-		background-color: #FEFEFE;		
-		border-bottom: solid;
-		border-color: #CCCCCC;
-		font-size: 24px;
-		height: 50px;
-		font-weight: bold;
-		padding-top: 7px;
-		padding-left: 50px;
-		padding-right: 20px;
-
-		a {							
-			margin-left: 13px;
-			color: #999999;
-			font-size: 26px;
-			text-decoration: none;
-			i.fa-plus-square, i.fa-search-plus, i.fa-print, i.fa-list,i.fa-list-ul, i.fa-trash-o, i.fa-edit {
-				&:hover,
-				&:focus {
-					color: #24C1C1;
-				}	
-			}				
-		}			
-
-	}
-	
-	// Cuando se tiene el sidebar hay que agregar la clase page-title-con-sidebar al div de titulo de página
-	div.page-title-con-sidebar{
-		margin-left: 200px;
-	}
-	
-	// Cuando no se tiene submenu hay que agregar la siguiente clase, junto a page-title
-	div.page-title-sin-submenu{
-		top: 40px;
+/* Define el aspecto del contenedor del listado (#list) y de la paginación (#list-paginate) */
+.list-content{
+	padding: 30px 30px 5px 30px; //Top Right Bottom Left
+	background-color: white;
+	//Muestra la paginación a la derecha
+	#list-paginate{
+		text-align: right;
 	}
 }
 
-/* Define lo referente al contenido principal de los index */
-#principal-content {	
-	.content2{
-		margin-top: 75px;
-
-		#advanced-search{
-			margin-left: auto;
-			margin-right: auto;
-			background: #EFEFEF;
-			width: 90%;		
-			height: 100px;	
-			padding: 20px 50px 0px 50px; //Top Right Bottom Left
-			border: solid;
-			border-color: #CCCCCC;
-			border-width: 1px;
-			margin-bottom: 20px;
-		}
-		
-		// Cuando se tiene el sidebar hay que agregar la clase advanced-search-con-sidebar al div de busqueda avanzada
-		div.advanced-search-con-sidebar{
-			width: 100% !important;
-		}
-
-		#list {
-			margin-left: auto;
-			margin-right: auto;
-			background: white;
-			width: 90%;
-			padding-left: 50px; //sola linea
-			padding-right: 50px;
-			padding-top: 50px;
-			padding-bottom: 1px;
-		}
-		
-		// Cuando se tiene el sidebar hay que agregar la clase list-con-sidebar al div de lista
-		div.list-con-sidebar{
-			width: 100% !important;
-		}
-
-		#list-paginate{
-			text-align: right;
-			margin-left: auto;
-			margin-right: auto;
-			background: white;
-			width: 90%;
-			padding-left: 50px;
-			padding-right: 50px; 
-		}
-
-		// Cuando se tiene el sidebar hay que agregar la clase list-paginate-con-sidebar al div de paginación
-		div.list-paginate-con-sidebar{
-			width: 100% !important;
+/*  Establece los colores para la paginación */
+.pagination{
+	.active{
+		a {
+			background-color: $common-color;
+			border-color: $common-color;
+			&,
+			&:hover,
+			&:focus {
+				z-index: 2;
+				color: white;
+				background-color: $common-color;
+				border-color: $common-color;
+				cursor: default;
+			}
 		}
 	}
-}	
 
-/* Define el aspecto de los formularios */
-#principal-content{
-	.form-content2{
-		margin-top: 75px;
-
-		form{			
-			width: 70%;
-			background: white;
-			margin-left: auto;
-			margin-right: auto;
-			padding: 50px;
-			padding-top: 30px;
-			padding-bottom: 30px;
-
-			h4 {
-				font-weight: bold;
-				color: #999999;
+	li {
+		a {
+			color: #999999;
+			&:hover,
+			&:focus {
+				background-color: $pagination-hover-bg;
+				color: $common-color;
 			}
-			h5{
-				font-weight: bold;
-			}
-
-			h4.titulo-ficha{
-				text-align: center;
-				margin-bottom: 20px;
-			}
-
-			hr {
-				margin-top: 5px;
-				color: #999999;
-			}
-
-			.row{
-				.form-group{
-					label{
-						font-size: 14px;
-						font-weight: bold;
-					}
-				}				
-
-				div.select.text-error{
-					span.text-error{
-						position: relative;
-						padding-left:20px;
-						top:45px;
-					}
-					span.select2-container{
-						position: relative;
-						top:-14px;
-					}
-
-				}
-
-			}		
-			
-
-			.form-button{
-				text-align: right;
-			}
-			
 		}
-
-		form.form-ficha2{
-			width: 100%;
-		}
-
 	}
-}	
+}
+
+/* La linea celeste que se ve debajo del menú cuando no se tiene submenu */
+.line{
+	top: 30px;
+	height: 10px;
+	position: fixed;
+	right: 0;
+	left: 0;
+	background: #24C1C1;
+	border-bottom:solid;
+	border-bottom-color: #CCCCCC;
+	z-index: 1030;
+}

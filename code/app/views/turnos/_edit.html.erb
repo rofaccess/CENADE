@@ -1,14 +1,15 @@
-<div class= "col-md-10 col-md-offset-1">
-  <div class="form-content">
-    <div class="page-title page-title-sin-submenu">
+<div class="page-title page-title-sin-submenu">
       <%=@turno_nuevo.nil? ? ('Editar Turno N°' + @turno.turno.to_s) : 'Nuevo Turno'%>
 
       <div class="tool">
         <%= link_to '<i class="fa fa-list"></i> '.html_safe, turnos_path %>
       </div>
     </div>
+<div class= "content content-sin-submenu content-60">
+ <div class="form-content2">
 
-    <%= form_for @turno, html: {class: 'nuevo-turno form-sin-submenu'}, remote: true do |turno|%>
+
+    <%= form_for @turno, html: {class: 'nuevo-turno'}, remote: true do |turno|%>
 
       <h4>Datos Personales</h4>
       <hr>
@@ -130,7 +131,7 @@
        </div>
       <%end%>
        <div class="form-button">
-        <%= turno.submit 'Guardar', class: 'btn btn-custom'%>
+        <%= turno.submit 'Guardar', class: 'btn btn-custom',data: {disable_with: "Guardando..."}%>
       </div>
 
     <% end %>

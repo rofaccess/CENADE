@@ -1,17 +1,19 @@
-<div class= "form-content">
-  	<div class="page-title">
-    	Usuario
-    	<% form_url = @usuario.id.nil? ? usuarios_path : usuarios_path+"/#{@usuario.id}" %>
+<div class="page-title">
+      Usuario
+      <% form_url = @usuario.id.nil? ? usuarios_path : usuarios_path+"/#{@usuario.id}" %>
 
-    	<div class="tool">
-      	<%= link_to '<i class="fa fa-list"></i> '.html_safe, usuarios_path %>
+      <div class="tool">
+         <%= link_to '<i class="fa fa-list"></i> '.html_safe, usuarios_path %>
         <%= link_to '<i class="fa fa-plus-square"></i> '.html_safe, new_usuario_path%>
-			<% unless current_user.id == @usuario.id || @usuario.id == Configuracion.first.usuario_admin %>
-		        <%= link_to '<i class="fa fa-edit"></i> '.html_safe, edit_usuario_path(@usuario.id)%>
-		        <%= link_to '<i class="fa fa-trash-o"></i> '.html_safe, usuario_path(@usuario), method: 'delete', data: {confirm: "¿Desea eliminar el usuario #{@usuario.username}?"}%>
-		    <%end%>
-    	</div>
-  	</div>
+         <% unless current_user.id == @usuario.id || @usuario.id == Configuracion.first.usuario_admin %>
+              <%= link_to '<i class="fa fa-edit"></i> '.html_safe, edit_usuario_path(@usuario.id)%>
+              <%= link_to '<i class="fa fa-trash-o"></i> '.html_safe, usuario_path(@usuario), method: 'delete', data: {confirm: "¿Desea eliminar el usuario #{@usuario.username}?"}%>
+          <%end%>
+      </div>
+   </div>
+<div class="content content-50">
+<div class= "form-content2">
+
 
 	<%= form_for @usuario, url: form_url, html: {class:'small-form'} do |usuario| %>
 		<h4>Empleado</h4>
@@ -59,6 +61,7 @@
 		</div>
 
 	<%end%>
+</div>
 </div>
 <script type="text/javascript">
 

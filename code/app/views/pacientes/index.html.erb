@@ -1,5 +1,4 @@
-<div class="content">
-	<div class="page-title page-title-sin-submenu">
+<div class="page-title page-title-sin-submenu">
 		Pacientes
 
 		<div class="tool">
@@ -15,13 +14,15 @@
 			<% end %>
 		</div>
 	</div>
-
-	<div id="list" class="list-sin-submenu">
+<div class="content content-sin-submenu">
+	<div class="list-content">
+	<div id="list">
 		<%= render 'list', pacientes: @pacientes %>
 	</div>
 
 	<div id="list-paginate">
 		<%= paginate @pacientes, remote: true %>
+	</div>
 	</div>
 </div>
 

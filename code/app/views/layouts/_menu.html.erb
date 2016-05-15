@@ -3,14 +3,8 @@
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
 
-       <% img= Configuracion.first.empresa_logo %>
-       <% if !img.url.nil? %>
-          <%= image_tag(img, size: "50x70", class:'img-polaroid img-', class: "navbar-brand") %>
-        <%else%>
-           <div class="navbar-brand"> CENADE </div>
-        <%end%>
-
-
+        <% img= Configuracion.first.empresa_logo %>
+        <%= image_tag(img.url.nil? ? 'logo-cenade.png' : img, size: "50x70", class:'img-polaroid img-', class: "navbar-brand") %>
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->

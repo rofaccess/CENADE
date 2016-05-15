@@ -14,14 +14,15 @@
 	</div>
 </div>
 
-<div class= "content2">
-
-	<div id="list" class="list-con-sidebar">
+<div class= "content">
+<div class="list-content">
+	<div id="list">
 		<%= render 'list', pacientes: @pacientes %>
 	</div>
 
-	<div id="list-paginate" class="list-paginate-con-sidebar">
-
+	<div id="list-paginate" >
+		<%= paginate @pacientes, remote: true %>
 	</div>
+</div>
 </div>
 

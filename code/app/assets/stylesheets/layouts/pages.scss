@@ -1,13 +1,10 @@
-$common-color: #24C1C1;
 
 /* Si el texto es muy largo, esta clase lo corta */
 .crop {
 	word-break: break-all;
 }​
 
-.checkbox {
-
-}
+.checkbox {}
 /* Lo anterior se necesita para que lo siguiente funcione. Porque? */
 .form-empleado{
 	.row{
@@ -15,29 +12,6 @@ $common-color: #24C1C1;
 			padding-top: 20px;
 		}
 	}
-}
-.well {
-
-	background-color : #EFEFEF;
-}
-
-.label-profile{
-	text-align:center;
-}
-.profile-photo{
-	text-align:center;
-	background-color: #f3f3f3;
-	padding-top:30%;
-	margin-top: -20%;
-
-	img{
-		border-radius:50%;
-	}
-}
-
-/* Evita que se puedan redimensionar horizontalmente los text area */
-textarea {
-    max-width: 100%;
 }
 
 .titulos-campos{
@@ -62,107 +36,6 @@ label.label-title {
 	font-size: 20px;
 }
 
-.show-empleado{
-	cursor: pointer;
-}
-
-
-td.action {
-	width: 90px;
-
-	a {
-		color: #999999;
-		text-decoration: none; //Quita el subrayado de los link
-		i.fa-trash-o {
-			&:hover,
-			&:focus {
-				color: #FF1414;
-
-			}
-		}
-		i.fa-times {
-			&:hover,
-			&:focus {
-				color: #FF1414;
-
-			}
-		}
-
-		i.fa-edit, i.fa-eye, i.fa-plus-square-o {
-			&:hover,
-			&:focus {
-				color: #24C1C1;
-			}
-		}
-	}
-}
-
-.btn-custom {
-
-	background-color: #24C1C1;
-	border: none;
-	color: white;
-
-	&:hover,
-	&:focus {
-		color: white;
-		text-decoration: none;
-		background-color: #24C199;
-	}
-
-	&:active,
-	&.active {
-		outline: 0;
-		background-image: none;
-		@include box-shadow(inset 0 3px 5px rgba(0,0,0,.125));
-	}
-}
-
-/*Style para tabs de consultas*/
-
-.tabscontent > div {
-            padding: 20px;
-            border-left: 1px solid #ddd;
-            border-right: 1px solid #ddd;
-            border-bottom: 1px solid #ddd;
-        }
-        .tabscontent + a {
-            display: inline-block;
-            margin-top: 20px;
-        }
-        .nav-tabs li.active a {
-            pointer-events: none;
-        }
-
-/* Para que el boton + se ubique al lado del select */
-.btn-add{
-	margin-top: 25px;
-	width: 35px;
-	margin-right: 37px;
-}
-
-.btn-danger {
-
-	background-color: #E41F25;
-	border: none;
-	margin-bottom: 20px;
-	color: white;
-
-	&:hover,
-	&:focus {
-		color: white;
-		text-decoration: none;
-		background-color: #D01715;
-	}
-
-	&:active,
-	&.active {
-		outline: 0;
-		background-image: none;
-		@include box-shadow(inset 0 3px 5px rgba(0,0,0,.125));
-	}
-}
-
 .modal-body {
 	h5 {
 		font-weight: bold;
@@ -176,42 +49,11 @@ td.action {
 	font-weight: bold;
 }
 
-body{
-	background: #EAF0F3;
-	padding-top: 30px;
-}
 
-/*
-.alert {
-
-		padding: 8px 35px 8px 14px;
-		-webkit-border-radius: 4px;
-		-moz-border-radius: 4px;
-		border-radius: 4px;
-		font-size: 12px;
-
-	}
-*/
-.align-left {
-	text-align: center;
-}
-
-/* La linea celeste que se ve debajo del menú cuando no se tiene submenu */
-.line{
-	top: 30px;
-	height: 10px;
-	position: fixed;
-	right: 0;
-	left: 0;
-	background: #24C1C1;
-	border-bottom:solid;
-	border-bottom-color: #CCCCCC;
-	z-index: 1030;
-}
 
 #principal-content {
 
-	.content, .form-content{
+	.form-content{
 
 		.page-title {
 			//Posición fija
@@ -261,35 +103,6 @@ body{
 		}
 	}
 
-
-	.content{
-		#list {
-			margin-left: auto;
-			margin-right: auto;
-			background: white;
-			width: 90%;
-			margin-top: 105px;
-			padding-left: 50px;
-			padding-right: 50px;
-			padding-top: 50px;
-			padding-bottom: 1px;
-		}
-
-		div.list-sin-submenu{
-			margin-top: 90px !important;
-		}
-
-		#list-paginate{
-			text-align: right;
-			margin-left: auto;
-			margin-right: auto;
-			background: white;
-			width: 90%;
-			padding-left: 50px;
-			padding-right: 50px;
-		}
-	}
-
 	.form-content{
 
 		.page-title > .tool {
@@ -324,7 +137,7 @@ body{
 						font-weight: bold;
 					}
 				}
-
+				/*
 				.nomb-empresa{
 					margin-left:-15px;
 				}
@@ -340,42 +153,11 @@ body{
 						top:-14px;
 					}
 
-				}
+				}*/
 
 			}
 
-			.border-img{
-				position: relative;
-				left:30%;
-				border:dotted;
-				border-color:#d9d9d9;
-				width:80px;
-				height:80px;
-			}
-			.font-img{
-				color:#24C1C1;
-				font-weight: normal;
-				padding-left:36%;
-				text-align:center;
-			}
 
-			.uploader_button{
-				position: relative;
-				overflow: hidden;
-				margin: 10px;
-
-				.file_uploader {
-					position: absolute;
-					top: 0;
-					right: 0;
-					margin: 0;
-					padding: 0;
-					font-size: 20px;
-					cursor: pointer;
-					opacity: 0;
-					filter: alpha(opacity=0);
-				}
-			}
 
 
 			.form-button{
@@ -408,74 +190,8 @@ body{
 	}
 }
 
-/* Establece parte del aspecto y posición de los botones presentes junto al page-title  */
-.tool {
-	float: right;
-	width: 40%;
-	font-size: 14px;
-	text-align: right;
-
-	/* Establece como se ve el input de búsqueda presente en los index junto al page-title */
-	form {
-		.input-group {
-			.form-control{
-				border-radius: 5px;
-				color: #999999;
-			}
-
-			.fa-search {
-				float: right;
-				margin-right: 6px;
-				margin-top: -27px;
-				position: relative;
-				z-index: 1000;
-				color: #D9D9D9;
-				font-size: 15pt;
-			}
-
-
-		}
-	}
-}
-
-/*  Establece los colores para la paginación */
-.pagination{
-	.active{
-		a {
-			background-color: #24C1C1;
-			border-color: #24C1C1;
-			&,
-			&:hover,
-			&:focus {
-				z-index: 2;
-				color: white;
-				background-color: #24C1C1;
-				border-color: #24C1C1;
-				cursor: default;
-			}
-		}
-	}
-
-	li {
-		a {
-			color: #999999;
-			&:hover,
-			&:focus {
-				background-color: $pagination-hover-bg;
-				color: #24C1C1;
-			}
-		}
-	}
-}
-
-/* Establece el color del input donde se tiene el foco */
-.form-control:focus{
-	border-color: $common-color;
-	//box-shadow: 0 1px 1px $common-color; //Da un efecto de recuadro
-}
-
-
 /* Esto es especifico para el modal de turnos */
+/*
 form{
 	h4 {
 		font-weight: bold;
@@ -495,4 +211,4 @@ form{
 			}
 		}
 	}
-}
+}*/
