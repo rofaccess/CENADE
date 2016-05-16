@@ -1,9 +1,10 @@
 class CreateConsultasNutricionalesPediatricas < ActiveRecord::Migration
   def change
     create_table :consultas_nutricionales_pediatricas do |t|
-      t.integer :paciente_id              , null: false
+      #t.integer :paciente_id              , null: false
       t.integer :area_id                  , null: false
       t.integer :doctor_id                , null: false
+      t.integer :ficha_nutri_ped_id       , null: false
       t.date :fecha                       , null: false
       t.string :sosten_cefalico           ,limit: Domain::DESC100,       null: true
       t.string :sento                     ,limit: Domain::TIEMPO,       null: true
@@ -40,9 +41,11 @@ class CreateConsultasNutricionalesPediatricas < ActiveRecord::Migration
 
       t.timestamps null: false
     end
-    add_foreign_key(:consultas_nutricionales_pediatricas, :pacientes, column: 'paciente_id', on_delete: :restrict)
+    #add_foreign_key(:consultas_nutricionales_pediatricas, :pacientes, column: 'paciente_id', on_delete: :restrict)
     add_foreign_key(:consultas_nutricionales_pediatricas, :areas, column: 'area_id', on_delete: :restrict)
-    add_index :consultas_nutricionales_pediatricas, :paciente_id
+    add_foreign_key(:consultas_nutricionales_pediatricas, :fichas_nutricionales_pediatricas, column: 'ficha_nutri_ped_id', on_delete: :restrict)
+    #add_index :consultas_nutricionales_pediatricas, :paciente_id
     add_index :consultas_nutricionales_pediatricas, :area_id
+    add_index :consultas_nutricionales_pediatricas, :ficha_nutri_ped_id
   end
 end

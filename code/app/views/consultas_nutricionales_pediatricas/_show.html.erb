@@ -115,7 +115,7 @@
 				<%= consult.input :diagnostico, as: :text, label: 'Diagnóstico', wrapper_html: { class: 'col-md-12'},input_html: { disabled: true, :rows => 3} %>
 			</div>
 			<div class="form-button">
-				<%= link_to "Agregar Control", consultas_consulta_from_ficha_path(area: consulta.area_id, paciente: consulta.paciente_id, profesional: consulta.doctor_id), class: "btn btn-custom", remote: true %>
+				<%= link_to "Agregar Control", new_control_path(area_id: consulta.area_id, paciente: consulta.paciente_id), class: "btn btn-custom", remote: true %>
 			</div>
 
 		<% end %>
