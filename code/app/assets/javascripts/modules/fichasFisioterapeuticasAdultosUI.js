@@ -15,7 +15,7 @@ var fichasFisioterapeuticasAdultosUI = (function(){
 
 
 			/* Valida el formulario antes de enviarlo */
-			$('.form-ficha2').validate();
+			$('.form-ficha').validate();
 		}
 	};
 }());

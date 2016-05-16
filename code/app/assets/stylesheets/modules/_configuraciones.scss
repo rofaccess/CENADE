@@ -1,0 +1,47 @@
+/* Estilo especifico para configuracion del sistema y perfil de usuario */
+.label-profile{
+   text-align:center;
+}
+.profile-photo{
+   text-align:center;
+   background-color: #f3f3f3;
+   padding-top:30%;
+   margin-top: -20%;
+
+   img{
+      border-radius:50%;
+   }
+}
+
+.border-img{
+   position: relative;
+   left:30%;
+   border:dotted;
+   border-color:#d9d9d9;
+   width:80px;
+   height:80px;
+}
+
+.font-img{
+   color:#24C1C1;
+   font-weight: normal;
+   padding-left:75px;
+}
+
+.uploader_button{
+   position: relative;
+   overflow: hidden;
+   margin: 10px;
+
+   .file_uploader {
+      position: absolute;
+      top: 0;
+      right: 0;
+      margin: 0;
+      padding: 0;
+      font-size: 20px;
+      cursor: pointer;
+      opacity: 0;
+      filter: alpha(opacity=0);
+   }
+}

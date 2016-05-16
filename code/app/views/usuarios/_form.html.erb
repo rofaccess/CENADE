@@ -1,5 +1,4 @@
-<div class= "form-content">
-  	<div class="page-title">
+<div class="page-title">
     	<%=@usuario.id.nil? ? 'Nuevo Usuario' : 'Editar Usuario'%>
     	<% form_url = @usuario.id.nil? ? usuarios_path : usuarios_path+"/#{@usuario.id}" %>
 
@@ -7,8 +6,11 @@
       	<%= link_to '<i class="fa fa-list"></i> '.html_safe, usuarios_path %>
     	</div>
   	</div>
+<div class="content content-50">
+<div class= "form-content">
 
-	<%= form_for @usuario, url: form_url, html: {class:'small-form form-user'} do |usuario| %>
+
+	<%= form_for @usuario, url: form_url, html: {class:'form-user'} do |usuario| %>
 
 		<% if @usuario.id.nil? %>
 		<div class="row">
@@ -105,10 +107,11 @@
 		<% end %>
 
 		<div class="form-button">
-			<%= usuario.submit 'Guardar', class: 'btn btn-custom', disabled: false%>
+			<%= usuario.submit 'Guardar', class: 'btn btn-custom', data: {disable_with: "Guardando..."}%>
 		</div>
 
 	<%end%>
+</div>
 </div>
 
 <script type="text/javascript">

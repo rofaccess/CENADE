@@ -1,6 +1,4 @@
-<div class= "col-md-10 col-md-offset-1">
-  <div class="form-content">
-    <div class="page-title page-title-sin-submenu">
+<div class="page-title page-title-sin-submenu">
       <%=@turno.id.nil? ? 'Nuevo Turno' : 'Editar Turno'%>
 
       <div class="tool">
@@ -8,8 +6,10 @@
       </div>
 
     </div>
-<body>
-    <%= form_for @turno, html: {class: 'nuevo-turno form-sin-submenu', :multipart => true }, remote: true do |turno|%>
+<div class="content content-sin-submenu content-60">
+  <div class="form-content">
+
+    <%= form_for @turno, html: {class: 'nuevo-turno', :multipart => true }, remote: true do |turno|%>
 
       <h4>Datos Personales</h4>
       <hr>
@@ -133,7 +133,7 @@
        </div>
 
       <div class="form-button">
-        <%= turno.submit 'Guardar', class: 'btn btn-custom'%>
+        <%= turno.submit 'Guardar', class: 'btn btn-custom',data: {disable_with: "Guardando..."}%>
       </div>
 
     <% end %>

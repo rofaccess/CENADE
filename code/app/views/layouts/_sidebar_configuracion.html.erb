@@ -1,23 +1,18 @@
 <div id="sidebar-wrapper"style="background-color: white">
     <ul class="sidebar-nav" >
     	<div class="profile-photo ">
-		    	<%if @configuracion_general.empresa_logo.blank? %>
-		    		<%=image_tag("paisaje", :width => 150, :height => 150) %>
-		    	<% else %>
-		    		<%= image_tag(@configuracion_general.empresa_logo_url.to_s, :width => 150, :height => 150) %>
-		        <% end %><br>
-      	</div>
+		    <%=image_tag(@configuracion_general.empresa_logo.blank? ? "paisaje": @configuracion_general.empresa_logo_url.to_s, :width => 150, :height => 150) %>
+      </div>
 
-      	<div class="profile-photo">
-			<label><%=@configuracion_general.empresa_nombre%></label>
-		</div><br>
-      	<div class="label-profile">
-      	<div style="overflow-x: auto; width: 200px; overflow-y: hide; padding-bottom: 49px;">
-      		<%=@configuracion_general.empresa_direccion%>
-      	</div>
+      <div class="profile-photo">
+  			<label><%=@configuracion_general.empresa_nombre%></label>
+  		</div>
+      <br>
+      <div class="label-profile">
+        <%=@configuracion_general.empresa_direccion%><br><br>
       	<%=@configuracion_general.empresa_email %><br>
       	<%=@configuracion_general.empresa_tel %><br>
       	<%=@configuracion_general.empresa_web%><br>
-      	</div>
+      </div>
     </ul>
 </div>

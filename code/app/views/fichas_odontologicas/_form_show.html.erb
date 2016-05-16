@@ -13,8 +13,9 @@
 	</div>
 
 </div>
-<div class="form-content2">
-	<%= simple_form_for ficha, html: {class: 'form-ficha2'}, remote: true do |f|%>
+<div class="content">
+<div class="form-content">
+	<%= simple_form_for ficha, html: {class: 'form-ficha'}, remote: true do |f|%>
 
 		<h4 class="titulo-ficha">FICHA DE ODONTOLOGÍA</h4>
 
@@ -30,6 +31,7 @@
 			<%= f.input :tel_tutor, label: 'Teléfono del Tutor', wrapper_html: { class: 'col-md-6'}, input_html: { disabled: true} %>
 		</div>
 	<%end%>
+</div>
 </div>
 <script type="text/javascript">
 	<% if !flash.notice.blank? %>

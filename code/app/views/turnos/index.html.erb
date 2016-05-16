@@ -18,40 +18,39 @@
 </div>
 
 </div>
-<div class= "content2">
 
-  <div id="advanced-search" style="display: none;">
-    <div class="row" >
+<div class="content content-sin-submenu">
+  <div id="advanced-search">
      <%= search_form_for @search, url: search_turnos_path, method: :post, remote: true, class: 'form-filtros' do |f| %>
-      <div class="row">
-          <%= FormBuilder::text_field_v(f, :paciente_persona_nombre_or_paciente_persona_apellido_cont, {col_class: 'col-md-3', label_text: 'Paciente', input_class: '',max_length: Domain::NOMBRE})%>
+     <div class="row">
+      <%= FormBuilder::text_field_v(f, :paciente_persona_nombre_or_paciente_persona_apellido_cont, {col_class: 'col-md-3', label_text: 'Paciente', input_class: '',max_length: Domain::NOMBRE})%>
 
-          <!-- <%= FormBuilder::text_field_v(f, :estado_cont, {col_class: 'col-md-2', label_text: 'Estado Turno', input_class: '',max_length: Domain::NOMBRE})%> -->
+      <!-- <%= FormBuilder::text_field_v(f, :estado_cont, {col_class: 'col-md-2', label_text: 'Estado Turno', input_class: '',max_length: Domain::NOMBRE})%> -->
 
-          <%= FormBuilder::select_v(f, :estado_cont, ['Pendiente','Cancelado','Atendido'], {col_class: 'col-md-2', label_text: 'Estado Turno'}) %>
+      <%= FormBuilder::select_v(f, :estado_cont, ['Pendiente','Cancelado','Atendido'], {col_class: 'col-md-2', label_text: 'Estado Turno'}) %>
 
 
-          <!--  <%= FormBuilder::text_field_v(f, :area_nombre_cont, {col_class: 'col-md-3', label_text: 'Área', input_class: '',max_length: Domain::AREA})%> -->
+      <!--  <%= FormBuilder::text_field_v(f, :area_nombre_cont, {col_class: 'col-md-3', label_text: 'Área', input_class: '',max_length: Domain::AREA})%> -->
 
-          <%= FormBuilder::select_v(f, :area_nombre_cont, Area.all.collect { |a| [a.nombre, a.nombre] }, {col_class: 'col-md-3', label_text: 'Área'}) %>
+      <%= FormBuilder::select_v(f, :area_nombre_cont, Area.all.collect { |a| [a.nombre, a.nombre] }, {col_class: 'col-md-2', label_text: 'Área'}) %>
 
-          <%= FormBuilder::text_field_v(f, :fecha_consulta_eq, {col_class: 'col-md-2', label_text: 'Fecha consulta', input_class: 'date',max_length: Domain::FECHA})%>
+      <%= FormBuilder::text_field_v(f, :fecha_consulta_eq, {col_class: 'col-md-2', label_text: 'Fecha consulta', input_class: 'datepicker',max_length: Domain::FECHA})%>
 
-        <div class= "input-group pull-right" style = 'margin-top: 25px;'>
-         <%= f.submit 'Filtrar', class: 'btn btn-custom '%>
-         <%= f.submit 'Limpiar Campos', type: 'reset', class: 'btn btn-link'%>
-       </div>
+      <div class= "advanced-search-buttons">
+       <%= f.submit 'Filtrar', class: 'btn btn-custom '%>
+       <%= f.submit 'Limpiar Campos', type: 'reset', class: 'btn btn-link'%>
+     </div>
    </div>
    <% end %>
+</div>
+
+<div class= "list-content">
+  <div id="list">
+   <%= render 'list', turnos: @turnos %>
+ </div>
+
+ <div id="list-paginate">
+   <%= paginate @turnos, remote: true %>
  </div>
 </div>
-
-<div id="list">
- <%= render 'list', turnos: @turnos %>
 </div>
-
-  <div id="list-paginate">
-   <%= paginate @turnos, remote: true %>
-  </div>
-</div>
-

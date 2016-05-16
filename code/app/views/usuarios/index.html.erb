@@ -1,5 +1,4 @@
-<div class="content">
-	<div class="page-title">
+<div class="page-title">
 		Usuarios
 
 		<div class="tool">
@@ -14,6 +13,8 @@
 			<% end %>
 		</div>
 	</div>
+<div class="content">
+<div class="list-content">
 
 	<div id="list">
 		<%= render 'list' %>
@@ -22,4 +23,5 @@
 	<div id="list-paginate">
 		<%= paginate @usuarios, remote: true %>
 	</div>
+</div>
 </div>

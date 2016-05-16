@@ -13,39 +13,36 @@
 		</div>
 		<% end %>
 	</div>
-
 </div>
 
-<div class= "content2">
+<div class="content">
+<div id="advanced-search">
+		<%= search_form_for @search, url: search_fichas_fisioterapeuticas_adultos_path, method: :post, remote: true, class: 'form-filtros' do |f| %>
+		<div class="row">
 
-	<div id="advanced-search" style = 'display:none;' class="advanced-search-con-sidebar">
-		<div class="row" >
-			<%= search_form_for @search, url: search_fichas_fisioterapeuticas_adultos_path, method: :post, remote: true, class: 'form-filtros' do |f| %>
-			<div class="row">
+			<%= FormBuilder::text_field_v(f, :paciente_persona_nombre_or_paciente_persona_apellido_or_paciente_persona_ci_cont, {col_class: 'col-md-3', label_text: 'Paciente', input_class: '',  placeholder: "Nombre, Apellido o CI"})%>
 
-				<%= FormBuilder::text_field_v(f, :paciente_persona_nombre_or_paciente_persona_apellido_or_paciente_persona_ci_cont, {col_class: 'col-md-3', label_text: 'Paciente', input_class: '',  placeholder: "Nombre, Apellido o CI"})%>
+			<%= FormBuilder::text_field_v(f, :doctor_persona_nombre_or_doctor_persona_apellido_cont, {col_class: 'col-md-3', label_text: 'Prof. de la Salud', input_class: '', placeholder: "Nombre o Apellido"})%>
 
-				<%= FormBuilder::text_field_v(f, :doctor_persona_nombre_or_doctor_persona_apellido_cont, {col_class: 'col-md-3', label_text: 'Prof. de la Salud', input_class: '', placeholder: "Nombre o Apellido"})%>
+			<%= FormBuilder::text_field_v(f, :nro_ficha_eq, {col_class: 'col-md-1', label_text: 'Ficha', input_class: ''})%>
 
-				<%= FormBuilder::text_field_v(f, :nro_ficha_eq, {col_class: 'col-md-1', label_text: 'Ficha', input_class: ''})%>
+			<%= FormBuilder::text_field_v(f, :fecha_eq, {col_class: 'col-md-2', label_text: 'Fecha', input_class: 'datepicker',max_length: Domain::FECHA})%>
 
-				<%= FormBuilder::text_field_v(f, :fecha_eq, {col_class: 'col-md-2', label_text: 'Fecha', input_class: 'datepicker',max_length: Domain::FECHA})%>
-
-				<div class= "input-group pull-right" style = 'margin-top: 25px;'>
-					<%= f.submit 'Filtrar', class: 'btn btn-custom '%>
-					<%= f.submit 'Limpiar Campos', type: 'reset', class: 'btn btn-link'%>
-				</div>
+			<div class="advanced-search-buttons">
+				<%= f.submit 'Filtrar', class: 'btn btn-custom '%>
+				<%= f.submit 'Limpiar Campos', type: 'reset', class: 'btn btn-link'%>
 			</div>
-			<% end %>
 		</div>
-	</div>
+		<% end %>
+</div>
 
-	<div id="list" class="list-con-sidebar">
+<div class= "list-content">
+	<div id="list">
 		<%= render 'list', fichas: @fichas %>
 	</div>
 
-	<div id="list-paginate" class="list-paginate-con-sidebar">
+	<div id="list-paginate">
 		<%= paginate @fichas, remote: true %>
 	</div>
 </div>
-
+</div>

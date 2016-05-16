@@ -1,4 +1,13 @@
 Rails.application.routes.draw do
+
+  resources :historiales_fisioterapeuticos, only: [:index, :show]
+
+  resources :controles, :except => [:destroy] do
+    collection do
+      match 'buscar' => 'controles#buscar', via: [:get, :post], as: :search
+    end
+  end
+
   get 'fichas_clinicos/check_paciente_has_ficha' => 'fichas_clinicos#check_paciente_has_ficha'
   get 'fichas_clinicos/print_ficha' => 'fichas_clinicos#print_ficha'
   resources :fichas_clinicos do

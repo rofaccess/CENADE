@@ -1,12 +1,4 @@
-/*!
- * Start Bootstrap - Simple Sidebar HTML Template (http://startbootstrap.com)
- * Code licensed under the Apache License v2.0.
- * For details, see http://www.apache.org/licenses/LICENSE-2.0.
- */
-
- ////Nota, esto es un vendor, por lo que debería ir en vendors, y solo las partes que
- ////que se customizó deben ir aqui, por convensión, arreglar esto
-
+/* Reescribe el simple sidebar */
 
 /* Toggle Styles */
 
@@ -35,7 +27,7 @@
     width: 0;
     height: 100%;
     margin-left: -250px;
-    overflow-y: auto; 
+    overflow-y: auto;
     background: #F7F7F7;
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
@@ -44,13 +36,13 @@
 }
 
 #wrapper.toggled #sidebar-wrapper {
-    width: 200px;   
+    width: 200px;
 }
 
 #page-content-wrapper {
     width: 100%;
     position: absolute;
-    padding: 15px; 
+    padding: 15px;
 }
 
 #wrapper.toggled #page-content-wrapper {
@@ -85,18 +77,18 @@
     padding: 0;
     list-style: none;
 }
- 
+
 .sidebar-nav li {
     text-indent: 20px;
-    line-height: 40px;  
+    line-height: 40px;
     border-bottom: solid;
-    border-bottom-color: #CCCCCC; 
+    border-bottom-color: #CCCCCC;
 }
 
 .sidebar-nav li a {
     display: block;
     text-decoration: none;
-    color: #98A4AE;   
+    color: #98A4AE;
 }
 
 .sidebar-nav li a:hover {
@@ -134,7 +126,7 @@
 
 @media(min-width:768px) {
     #wrapper {
-        padding-left: 250px;
+        padding-left: 200px;//250px
     }
 
     #wrapper.toggled {
@@ -150,8 +142,8 @@
     }
 
     #page-content-wrapper {
-        padding: 20px;
-        position: relative;        
+        padding: 0px;//20px
+        position: relative;
     }
 
     #wrapper.toggled #page-content-wrapper {
