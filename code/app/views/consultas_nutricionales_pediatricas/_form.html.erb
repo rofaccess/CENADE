@@ -16,12 +16,11 @@ agrega la clase content-consulta junto a content en el div de abajo (content-con
 			<h4 class="titulo-ficha">Consulta en Nutrición Pediátrica</h4>
 
 			<div class="row">
-				<%= consult.input :area_id, as: :string, label: '* Área', wrapper_html: { class: 'col-md-2' }, input_html: {disabled: true, value: area.nombre} %>
 
-				<%= consult.input :paciente_id, collection: Paciente.all.collect { |a| [a.persona_full_name, a.id] }, label: '* Paciente', wrapper_html: {class: 'col-md-3' },input_html: { class: 'required select-paciente select2 paciente-id', disabled: paciente.id.nil? ? false : true} %>
+				<%= consult.input :paciente_id, collection: Paciente.all.collect { |a| [a.persona_full_name, a.id] }, label: '* Paciente', wrapper_html: {class: 'col-md-4' },input_html: { class: 'required select-paciente select2 paciente-id', disabled: paciente.id.nil? ? false : true} %>
 
 
-				<%= consult.input :doctor_id, collection: doctores.collect { |a| [a.abr_profesion+" "+a.persona_full_name, a.id] }, label: '* Profesional de la Salud', wrapper_html: { class: 'col-md-4' }, input_html:   { class: 'required select-doctor select2'} %>
+				<%= consult.input :doctor_id, collection: doctores.collect { |a| [a.abr_profesion+" "+a.persona_full_name, a.id] }, label: '* Profesional de la Salud', wrapper_html: { class: 'col-md-5' }, input_html:   { class: 'required select-doctor select2'} %>
 
 				<%= consult.input :fecha, as: :string, label: '* Fecha', wrapper_html: { class: 'col-md-3'}, input_html: { class: 'datepicker required', maxLength: Domain::FECHA, value:Formatter.format_date(consulta.fecha)} %>
 			</div>

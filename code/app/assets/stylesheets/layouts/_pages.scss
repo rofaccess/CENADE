@@ -58,6 +58,14 @@ div.content-sin-submenu{
 		text-align: right;
 	}
 }
+.list-content-control{
+	padding: 0px 30px 5px 30px; //Top Right Bottom Left
+	background-color: white;
+	//Muestra la paginación a la derecha
+	#list-paginate{
+		text-align: right;
+	}
+}
 
 /*  Establece los colores para la paginación */
 .pagination{

@@ -129,14 +129,18 @@ ActiveRecord::Schema.define(version: 20160514052140) do
 
   create_table "controles", force: :cascade do |t|
     t.integer  "consulta_nutricional_pediatrica_id"
-    t.integer  "paciente_id"
-    t.integer  "doctor_id"
-    t.date     "fecha"
-    t.string   "tratamiento"
-    t.string   "observaciones"
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
+    t.integer  "doctor_id",                                                   null: false
+    t.integer  "area_id",                                                     null: false
+    t.integer  "paciente_id",                                                 null: false
+    t.date     "fecha",                                                       null: false
+    t.string   "tratamiento",                        limit: 300, default: ""
+    t.string   "observaciones",                      limit: 300, default: ""
+    t.datetime "created_at",                                                  null: false
+    t.datetime "updated_at",                                                  null: false
   end
+
+  add_index "controles", ["area_id"], name: "index_controles_on_area_id", using: :btree
+  add_index "controles", ["paciente_id"], name: "index_controles_on_paciente_id", using: :btree
 
   create_table "custom_auto_increments", force: :cascade do |t|
     t.string   "counter_model_name"
@@ -153,7 +157,6 @@ ActiveRecord::Schema.define(version: 20160514052140) do
     t.string   "type",          limit: 15,  default: "", null: false
     t.string   "cargo",         limit: 100, default: "", null: false
     t.string   "abr_profesion", limit: 5,   default: ""
-    t.string   "costo",         limit: 7,   default: ""
     t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -758,6 +761,9 @@ ActiveRecord::Schema.define(version: 20160514052140) do
   add_foreign_key "consultas", "pacientes", on_delete: :cascade
   add_foreign_key "consultas_nutricionales_pediatricas", "areas", on_delete: :restrict
   add_foreign_key "consultas_nutricionales_pediatricas", "pacientes", on_delete: :restrict
+  add_foreign_key "controles", "areas", on_delete: :restrict
+  add_foreign_key "controles", "consultas_nutricionales_pediatricas", on_delete: :restrict
+  add_foreign_key "controles", "pacientes", on_delete: :restrict
   add_foreign_key "empleados", "areas", on_delete: :restrict
   add_foreign_key "empleados", "personas", on_delete: :restrict
   add_foreign_key "fechas", "horarios", on_delete: :restrict

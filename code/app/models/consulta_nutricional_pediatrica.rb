@@ -8,6 +8,7 @@ class ConsultaNutricionalPediatrica < ActiveRecord::Base
  	belongs_to :paciente
  	belongs_to :area
  	belongs_to :ficha_nutricional_pediatrica
+ 	has_many :controles
 
  	#carga id area antes de guardar la consulta
  	before_create :cargar_area_id
