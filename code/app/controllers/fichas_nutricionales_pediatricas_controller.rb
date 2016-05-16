@@ -3,6 +3,7 @@ class FichasNutricionalesPediatricasController < ApplicationController
   before_action :set_submenu, only: [:edit, :new, :show, :index, :create, :update]
   before_action :set_sidebar, only: [:edit, :new, :show, :index, :create, :update]
   before_action :set_ficha_nutri_pediatrica, only: [:show, :edit, :update]
+  before_action :set_consulta, only: [:show, :edit]
   before_action :set_Titulo, only: [:show, :create, :update, :edit, :new, :print_ficha]
 
   def set_submenu
@@ -32,6 +33,7 @@ class FichasNutricionalesPediatricasController < ApplicationController
   def create
   	@nutri_pediatrica = FichaNutricionalPediatrica.new(nutri_pediatrica_params)
     #@paciente= @nutri_pediatrica.paciente
+    set_consulta
   	 respond_to do |format|
       if @nutri_pediatrica.save
         flash.now[:notice] = 'Ficha registrada exitosamente'
@@ -120,11 +122,15 @@ class FichasNutricionalesPediatricasController < ApplicationController
 
   def set_ficha_nutri_pediatrica
   	@nutri_pediatrica= FichaNutricionalPediatrica.find(params[:id])
-    @paciente= Paciente.find(@nutri_pediatrica.paciente_id)
+    @paciente= Paciente.find(@nutri_pediatrica.ficha_nutricional_pediatrica.paciente_id)
+  end
+
+  def set_consulta
+    @consultas= ConsultaNutricionalPediatrica.where(ficha_nutri_ped_id: @nutri_pediatrica.id).limit(9).order(id: :desc)
   end
 
   def nutri_pediatrica_params
-  	params.require(:ficha_nutricional_pediatrica).permit(:area_id, :paciente_id, :profesional_salud_id, :fecha, :nro_ficha,
+  	params.require(:ficha_nutricional_pediatrica).permit(:area_id,:paciente_id, :profesional_salud_id, :fecha, :nro_ficha,
   		 :problema_embarazo,:control_prenatal,:alimentacion_embarazo,:otros_datos,:parto_vaginal_cesarea, :termino_pretermino,
   		 :lugar_parto,:como_fue_parto, :peso_nacimiento, :asfixia_lloro, :tomo_pecho, :alimentacion_complementaria)
   end

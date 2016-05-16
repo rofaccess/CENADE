@@ -84,9 +84,9 @@ ActiveRecord::Schema.define(version: 20160514052140) do
   add_index "consultas", ["paciente_id"], name: "index_consultas_on_paciente_id", using: :btree
 
   create_table "consultas_nutricionales_pediatricas", force: :cascade do |t|
-    t.integer  "paciente_id",                         null: false
     t.integer  "area_id",                             null: false
     t.integer  "doctor_id",                           null: false
+    t.integer  "ficha_nutri_ped_id",                  null: false
     t.date     "fecha",                               null: false
     t.string   "sosten_cefalico",         limit: 100
     t.string   "sento",                   limit: 7
@@ -125,7 +125,7 @@ ActiveRecord::Schema.define(version: 20160514052140) do
   end
 
   add_index "consultas_nutricionales_pediatricas", ["area_id"], name: "index_consultas_nutricionales_pediatricas_on_area_id", using: :btree
-  add_index "consultas_nutricionales_pediatricas", ["paciente_id"], name: "index_consultas_nutricionales_pediatricas_on_paciente_id", using: :btree
+  add_index "consultas_nutricionales_pediatricas", ["ficha_nutri_ped_id"], name: "index_consultas_nutricionales_pediatricas_on_ficha_nutri_ped_id", using: :btree
 
   create_table "controles", force: :cascade do |t|
     t.integer  "consulta_nutricional_pediatrica_id"
@@ -760,7 +760,7 @@ ActiveRecord::Schema.define(version: 20160514052140) do
   add_foreign_key "consultas", "empleados", column: "doctor_id", on_delete: :restrict
   add_foreign_key "consultas", "pacientes", on_delete: :cascade
   add_foreign_key "consultas_nutricionales_pediatricas", "areas", on_delete: :restrict
-  add_foreign_key "consultas_nutricionales_pediatricas", "pacientes", on_delete: :restrict
+  add_foreign_key "consultas_nutricionales_pediatricas", "fichas_nutricionales_pediatricas", column: "ficha_nutri_ped_id", on_delete: :restrict
   add_foreign_key "controles", "areas", on_delete: :restrict
   add_foreign_key "controles", "consultas_nutricionales_pediatricas", on_delete: :restrict
   add_foreign_key "controles", "pacientes", on_delete: :restrict

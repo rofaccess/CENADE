@@ -7,7 +7,7 @@ class ConsultaNutricionalPediatrica < ActiveRecord::Base
  	belongs_to :user
  	belongs_to :paciente
  	belongs_to :area
- 	belongs_to :ficha_nutricional_pediatrica
+ 	belongs_to :ficha_nutricional_pediatrica, :foreign_key => :ficha_nutri_ped_id
  	has_many :controles
 
  	#carga id area antes de guardar la consulta
