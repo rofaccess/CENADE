@@ -1,5 +1,4 @@
-<div class="content">
-	<div class="page-title">
+<div class="page-title">
 		Empleados
 
 		<div class="tool">
@@ -17,7 +16,8 @@
 			<% end %>
 		</div>
 	</div>
-
+<div class="content">
+<div class="list-content">
 	<div id="list">
 		<%= render 'list', empleados: @empleados %>
 	</div>
@@ -26,7 +26,7 @@
 		<%= paginate @empleados, remote: true %>
 	</div>
 </div>
-
+</div>
 <script type="text/javascript">
 	<% if !flash.notice.blank? %>
 		var n = noty({text: '<%=notice%>', type: 'success'});

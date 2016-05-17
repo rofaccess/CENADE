@@ -13,10 +13,10 @@
 	</div>
 
 </div>
+<div class="content">
+<div class="form-content">
 
-<div class="form-content2">
-
-	<%= simple_form_for ficha, html: {class: 'form-ficha2'}, remote: true do |fich|%>
+	<%= simple_form_for ficha, html: {class: 'form-ficha'}, remote: true do |fich|%>
 
 
 	<h4 class="titulo-ficha">FICHA DE PEDIATRÍA</h4>
@@ -37,13 +37,14 @@
          <h4>Consultas</h4>
       </div>
       <div class="col-md-2">
-         <%= link_to "Agregar Consulta", consultas_consulta_from_ficha_path(area: ficha.area_id, paciente: ficha.paciente_id, profesional: ficha.doctor_id), class: "btn btn-custom", remote: true %>
+         <%= link_to "Agregar Consulta", consultas_consulta_from_ficha_path(area_id: ficha.area_id, paciente: ficha.paciente_id, profesional: ficha.doctor_id), class: "btn btn-custom", remote: true %>
       </div>
     </div>
     <hr>
     <%=render 'consultas/consultas_tabs', consultas: consultas%>
 
 	<% end %>
+</div>
 </div>
 
 <script type="text/javascript">

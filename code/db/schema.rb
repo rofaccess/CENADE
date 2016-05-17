@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160511214336) do
+ActiveRecord::Schema.define(version: 20160514052140) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -84,9 +84,9 @@ ActiveRecord::Schema.define(version: 20160511214336) do
   add_index "consultas", ["paciente_id"], name: "index_consultas_on_paciente_id", using: :btree
 
   create_table "consultas_nutricionales_pediatricas", force: :cascade do |t|
-    t.integer  "paciente_id",                         null: false
     t.integer  "area_id",                             null: false
     t.integer  "doctor_id",                           null: false
+    t.integer  "ficha_nutri_ped_id",                  null: false
     t.date     "fecha",                               null: false
     t.string   "sosten_cefalico",         limit: 100
     t.string   "sento",                   limit: 7
@@ -125,7 +125,22 @@ ActiveRecord::Schema.define(version: 20160511214336) do
   end
 
   add_index "consultas_nutricionales_pediatricas", ["area_id"], name: "index_consultas_nutricionales_pediatricas_on_area_id", using: :btree
-  add_index "consultas_nutricionales_pediatricas", ["paciente_id"], name: "index_consultas_nutricionales_pediatricas_on_paciente_id", using: :btree
+  add_index "consultas_nutricionales_pediatricas", ["ficha_nutri_ped_id"], name: "index_consultas_nutricionales_pediatricas_on_ficha_nutri_ped_id", using: :btree
+
+  create_table "controles", force: :cascade do |t|
+    t.integer  "consulta_nutricional_pediatrica_id"
+    t.integer  "doctor_id",                                                   null: false
+    t.integer  "area_id",                                                     null: false
+    t.integer  "paciente_id",                                                 null: false
+    t.date     "fecha",                                                       null: false
+    t.string   "tratamiento",                        limit: 300, default: ""
+    t.string   "observaciones",                      limit: 300, default: ""
+    t.datetime "created_at",                                                  null: false
+    t.datetime "updated_at",                                                  null: false
+  end
+
+  add_index "controles", ["area_id"], name: "index_controles_on_area_id", using: :btree
+  add_index "controles", ["paciente_id"], name: "index_controles_on_paciente_id", using: :btree
 
   create_table "custom_auto_increments", force: :cascade do |t|
     t.string   "counter_model_name"
@@ -142,7 +157,6 @@ ActiveRecord::Schema.define(version: 20160511214336) do
     t.string   "type",          limit: 15,  default: "", null: false
     t.string   "cargo",         limit: 100, default: "", null: false
     t.string   "abr_profesion", limit: 5,   default: ""
-    t.string   "costo",         limit: 7,   default: ""
     t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -746,7 +760,10 @@ ActiveRecord::Schema.define(version: 20160511214336) do
   add_foreign_key "consultas", "empleados", column: "doctor_id", on_delete: :restrict
   add_foreign_key "consultas", "pacientes", on_delete: :cascade
   add_foreign_key "consultas_nutricionales_pediatricas", "areas", on_delete: :restrict
-  add_foreign_key "consultas_nutricionales_pediatricas", "pacientes", on_delete: :restrict
+  add_foreign_key "consultas_nutricionales_pediatricas", "fichas_nutricionales_pediatricas", column: "ficha_nutri_ped_id", on_delete: :restrict
+  add_foreign_key "controles", "areas", on_delete: :restrict
+  add_foreign_key "controles", "consultas_nutricionales_pediatricas", on_delete: :restrict
+  add_foreign_key "controles", "pacientes", on_delete: :restrict
   add_foreign_key "empleados", "areas", on_delete: :restrict
   add_foreign_key "empleados", "personas", on_delete: :restrict
   add_foreign_key "fechas", "horarios", on_delete: :restrict

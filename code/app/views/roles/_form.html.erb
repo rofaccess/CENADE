@@ -1,14 +1,13 @@
-<div class= "form-content">
-  <div class="page-title">
+<div class="page-title">
     <%=@role.id.nil? ? 'Nuevo Rol' : 'Editar Rol'%>
 
-    	<div class="tool">
-      	<%= link_to '<i class="fa fa-list"></i> '.html_safe, roles_path %>
-    	</div>
-  	</div>
-
-
-   <%= form_for @role,html: {class: 'nuevo-rol small-form'},:multipart => true do |role|%>
+      <div class="tool">
+        <%= link_to '<i class="fa fa-list"></i> '.html_safe, roles_path %>
+      </div>
+</div>
+<div class="content content-50">
+<div class= "form-content">
+   <%= form_for @role,html: {class: 'nuevo-rol'},:multipart => true do |role|%>
 
      <%= hidden_field_tag :role_id, @role.id %>
      <h4>Rol</h4>
@@ -34,12 +33,12 @@
          </div>
          </br>
       <div class="form-button">
-        <%= role.submit 'Guardar', class: 'btn btn-custom'%>
+        <%= role.submit 'Guardar', class: 'btn btn-custom', data: {disable_with: "Guardando..."}%>
       </div>
 
    <% end %>
 </div>
-
+</div>
 <script type="text/javascript">
     <% if !flash.notice.blank? %>
       var n = noty({text: '<%=notice%>', type: 'success'});

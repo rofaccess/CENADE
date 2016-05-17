@@ -7,9 +7,9 @@
 
 </div>
 
-<div class="form-content2">
+<div class="form-content">
 
-	<%= simple_form_for @ficha, html: {class: 'form-ficha2'}, remote: true do |ficha|%>
+	<%= simple_form_for @ficha, html: {class: 'form-ficha'}, remote: true do |ficha|%>
 
 
 	<h4 class="titulo-ficha">TEST SELECT 2</h4>
@@ -55,6 +55,6 @@
 
 	pacientesUI.initBuscarPaciente('.select-paciente');
 
-	$('.form-ficha2').validate();
+	$('.form-ficha').validate();
 
 </script>

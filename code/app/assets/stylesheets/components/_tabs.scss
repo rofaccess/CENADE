@@ -1,0 +1,14 @@
+/*Style para tabs de consultas*/
+.tabscontent > div {
+    padding: 20px;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+.tabscontent + a {
+    display: inline-block;
+    margin-top: 20px;
+}
+.nav-tabs li.active a {
+    pointer-events: none;
+}

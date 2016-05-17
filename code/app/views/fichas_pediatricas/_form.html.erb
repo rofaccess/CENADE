@@ -6,10 +6,10 @@
 	</div>
 
 </div>
+<div class="content">
+<div class="form-content">
 
-<div class="form-content2">
-
-	<%= simple_form_for ficha, html: {class: 'form-ficha2'} do |fich|%>
+	<%= simple_form_for ficha, html: {class: 'form-ficha'} do |fich|%>
 	<%= hidden_field_tag :ficha_id, ficha.id, class: 'ficha-id'%>
 
 	<h4 class="titulo-ficha">FICHA DE PEDIATRÍA</h4>
@@ -35,10 +35,11 @@
 	<%= render 'compartido/fic_cli_neu_ped/form_fields', fich: fich %>
 
 	<div class="form-button">
-		<%= fich.submit 'Guardar', class: 'btn btn-custom'%>
+		<%= fich.submit 'Guardar', class: 'btn btn-custom',data: {disable_with: "Guardando..."}%>
 	</div>
 
 	<% end %>
+</div>
 </div>
 
 <script type="text/javascript">

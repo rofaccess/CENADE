@@ -14,6 +14,7 @@ class Doctor < Empleado
  	has_many :fichas_neurologicas
  	has_many :fichas_pediatricas
 
+ 	has_many :controles
  	has_many :consultas
  	has_many :consultas_nutricionales_pediatricas
 

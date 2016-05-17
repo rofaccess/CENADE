@@ -9,8 +9,9 @@
   </div>
 
 </div>
-  <div class="form-content2">
-    <%= simple_form_for @nutri_adulto, html: {class: 'form-ficha2'} do |ficha|%>
+<div class="content">
+  <div class="form-content">
+    <%= simple_form_for @nutri_adulto, html: {class: 'form-ficha'} do |ficha|%>
     <%= hidden_field_tag :ficha_id, @nutri_adulto.id, class: 'ficha-id'%>
 
     <h4 class="titulo-ficha">FICHA NUTRICIONAL ADULTO</h4>
@@ -29,8 +30,8 @@
     <h4>II- Antecedentes</h4>
     <hr>
     <div class="row col-md-12">
-      <h3>Familiares:</h3>
-    </div>
+      <h5>Familiares:</h5>
+    </div></br>
 
       <div class="row">
       <%= ficha.input :obesidad, label: 'Obesidad'  , wrapper_html: { class: 'col-md-3'}, input_html: {disabled: true} %>
@@ -46,7 +47,7 @@
 
 
   <% end %>
-
+</div>
 </div>
 
 

@@ -1,0 +1,46 @@
+<div id="sidebar-wrapper">
+    <ul class="sidebar-nav">
+        <li class="sidebar-brand">
+        </li>
+
+        <li class="<%= current_sidebar([consultas_path(area_id: 1)])%>">
+            <%=link_to 'Clínico', consultas_path(area_id: 1) %>
+        </li>
+
+        <li class="<%= current_sidebar([consultas_path(area_id: 2, type: 'Adulto')])%>">
+            <%=link_to 'Fisioterapia Adulto', consultas_path(area_id: 2, type: 'Adulto') %>
+        </li>
+
+         <li class="<%= current_sidebar([consultas_path(area_id: 2, type: 'Pediátrica')])%>">
+            <%=link_to 'Fisioterapia Pediátrica', consultas_path(area_id: 2, type: 'Pediátrica')%>
+        </li>
+
+        <li class="<%= current_sidebar([consultas_path(area_id: 3)])%>">
+            <%=link_to 'Fonoaudiología', consultas_path(area_id: 3) %>
+        </li>
+
+        <li class="<%= current_sidebar([consultas_path(area_id: 4,)])%>">
+            <%=link_to 'Neurología', consultas_path(area_id: 4) %>
+        </li>
+
+        <li class="<%= current_sidebar([consultas_path(area_id: 5, type: 'Adulto')])%>">
+            <%=link_to 'Nutricional Adulto', consultas_path(area_id: 5, type: 'Adulto') %>
+        </li>
+
+        <li class="<%= current_sidebar([consultas_nutricionales_pediatricas_path])%>">
+            <%=link_to 'Nutricional Pediátrica', consultas_nutricionales_pediatricas_path %>
+        </li>
+
+        <li class="<%= current_sidebar([consultas_path(area_id: 6)])%>">
+            <%=link_to 'Odontología', consultas_path(area_id: 6)%>
+        </li>
+
+         <li class="<%= current_sidebar([consultas_path(area_id:7)])%>">
+            <%=link_to 'Pediatría', consultas_path(area_id: 7) %>
+        </li>
+
+        <li class="<%= current_sidebar([consultas_path(area_id:9)])%>">
+            <%=link_to 'Psicopedagogía', consultas_path(area_id:9) %>
+        </li>
+    </ul>
+</div>

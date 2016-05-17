@@ -4,8 +4,9 @@
       <%= link_to '<i class="fa fa-list" data-toggle="tooltip" title="Lista de Fichas"></i> '.html_safe, fichas_nutricionales_adultos_path %>
     </div>
   </div>
-  <div class="form-content2">
-    <%= simple_form_for @nutri_adulto, html: {class: 'form-ficha2'} do |ficha|%>
+  <div class="content">
+  <div class="form-content">
+    <%= simple_form_for @nutri_adulto, html: {class: 'form-ficha'} do |ficha|%>
     <%= hidden_field_tag :ficha_id, @nutri_adulto.id, class: 'ficha-id'%>
 
     <h4 class="titulo-ficha">FICHA NUTRICIONAL ADULTO</h4>
@@ -49,11 +50,11 @@
     </div>
 
     <div class="form-button">
-      <%= ficha.submit 'Guardar', class: 'btn btn-custom'%>
+      <%= ficha.submit 'Guardar', class: 'btn btn-custom',data: {disable_with: "Guardando..."}%>
     </div>
 
   <% end %>
-
+</div>
 </div>
 
 

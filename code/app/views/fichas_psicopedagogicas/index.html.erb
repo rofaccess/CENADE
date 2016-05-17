@@ -16,10 +16,9 @@
 
 </div>
 
-<div class= "content2">
+<div class= "content">
 
-  <div id="advanced-search" style = 'display:none;' class="advanced-search-con-sidebar">
-    <div class="row" >
+  <div id="advanced-search">
       <%= search_form_for @search, url: search_fichas_psicopedagogicas_path, method: :post, remote: true, class: 'form-filtros' do |f| %>
       <div class="row">
 
@@ -31,20 +30,21 @@
 
         <%= FormBuilder::text_field_v(f, :fecha_eq, {col_class: 'col-md-2', label_text: 'Fecha', input_class: 'datepicker',max_length: Domain::FECHA})%>
 
-        <div class= "input-group pull-right" style = 'margin-top: 25px;'>
+        <div class= "advanced-search-buttons">
           <%= f.submit 'Filtrar', class: 'btn btn-custom '%>
           <%= f.submit 'Limpiar Campos', type: 'reset', class: 'btn btn-link'%>
         </div>
       </div>
       <% end %>
-    </div>
   </div>
-  <div id="list" class="list-con-sidebar">
+  <div class="list-content">
+  <div id="list">
     <%= render 'list', fichas: @fichas %>
   </div>
 
-  <div id="list-paginate" class="list-paginate-con-sidebar">
+  <div id="list-paginate">
     <%= paginate @fichas, remote: true %>
+  </div>
   </div>
 </div>
 

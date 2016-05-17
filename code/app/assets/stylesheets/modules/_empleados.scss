@@ -1,0 +1,11 @@
+/* Estilo especifico para el form de empleado */
+
+.checkbox {}
+/* Lo anterior se necesita para que lo siguiente funcione. Porque? */
+.form-empleado{
+   .row{
+      .checkbox{
+         padding-top: 20px;
+      }
+   }
+}

@@ -3,14 +3,8 @@
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
 
-       <% img= Configuracion.first.empresa_logo %>
-       <% if !img.url.nil? %>
-          <%= image_tag(img, size: "50x70", class:'img-polaroid img-', class: "navbar-brand") %>
-        <%else%>
-           <div class="navbar-brand"> CENADE </div>
-        <%end%>
-
-
+        <% img= Configuracion.first.empresa_logo %>
+        <%= image_tag(img.url.nil? ? 'logo-cenade.png' : img, size: "50x70", class:'img-polaroid img-', class: "navbar-brand") %>
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
@@ -26,7 +20,7 @@
             <%= link_to '<span class="fa fa-user" aria-hidden="true"></span>  Pacientes'.html_safe, pacientes_path %>
           </li>
 
-          <li class="<%= current_menu([welcome_index_fichas_path, fichas_fisioterapeuticas_adultos_path,ficha_fisioterapia_ninos_path, fichas_fonoaudiologicas_path,welcome_index_atencion_profesional_path, fichas_nutricionales_pediatricas_path, fichas_psicopedagogicas_path, fichas_pediatricas_path,fichas_odontologicas_path,fichas_neurologicas_path,fichas_clinicos_path,consultas_path])%>">
+          <li class="<%= current_menu([welcome_index_fichas_path, fichas_fisioterapeuticas_adultos_path,ficha_fisioterapia_ninos_path, fichas_fonoaudiologicas_path,welcome_index_atencion_profesional_path, fichas_nutricionales_pediatricas_path, fichas_psicopedagogicas_path, fichas_pediatricas_path,fichas_odontologicas_path,fichas_neurologicas_path,fichas_clinicos_path,consultas_path, historiales_fisioterapeuticos_path])%>">
             <%= link_to '<span class="fa fa-list-alt" aria-hidden="true"></span>  Fichas y Consultas'.html_safe, welcome_index_fichas_path %>
           </li>
 
@@ -54,11 +48,8 @@
           <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
               <div>
-                  <%if current_user.profile_foto.blank? %>
-                    <%=image_tag("sinUsuario", class:"menu-profile") %>
-                  <% else %>
-                    <%= image_tag(current_user.profile_foto_url.to_s, class:"menu-profile") %>
-                    <% end %><br>
+                <%=image_tag(current_user.profile_foto.blank? ? "sinUsuario" : current_user.profile_foto_url.to_s, class:"menu-profile") %>
+                <br>
               </div>
               <sec:username/>
             </a>

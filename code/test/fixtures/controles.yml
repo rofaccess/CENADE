@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  consulta_nutricional_pediatrica_id: 1
+  paciente_id: 1
+  doctor_id: 1
+  fecha: 2016-05-14
+  tratamiento: MyString
+  observaciones: MyString
+
+two:
+  consulta_nutricional_pediatrica_id: 1
+  paciente_id: 1
+  doctor_id: 1
+  fecha: 2016-05-14
+  tratamiento: MyString
+  observaciones: MyString

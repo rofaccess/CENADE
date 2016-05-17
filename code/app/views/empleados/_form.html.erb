@@ -1,11 +1,12 @@
-<div class="form-content">
-	<div class="page-title">
+<div class="page-title">
 		<%=empleado.id.nil? ? 'Nuevo Empleado' : 'Editar Empleado'%>
 
 		<div class="tool">
 			<%= link_to '<i class="fa fa-list"></i> '.html_safe, empleados_path %>
 		</div>
 	</div>
+<div class="content content-70">
+<div class="form-content">
 
 	<%= form_for empleado, html: {class: 'form-empleado'} do |emplead|%>
 
@@ -130,14 +131,12 @@
 		</div>
 
 		<div class="form-button">
-			<%= emplead.submit 'Guardar', class: 'btn btn-custom'%>
+			<%= emplead.submit 'Guardar', class: 'btn btn-custom',data: {disable_with: "Guardando..."}%>
 		</div>
 
 	<% end %>
-
-
 </div>
-
+</div>
 <script type="text/javascript">
 	empleadosUI.initScript();
 	<% if !flash.notice.blank? %>

@@ -1,27 +1,27 @@
-
-  <div class="form-content">
-    <div class="page-title">
+  <div class="page-title page-title-con-sidebar">
       <%=consulta.id.nil? ? 'Nueva Consulta' : 'Editar Consulta'%>
 
       <div class="tool">
-        <%= link_to '<i class="fa fa-list" data-toggle="tooltip" data-placement="bottom" title="Lista de Consultas"></i> '.html_safe, consultas_path %>
+        <%= link_to '<i class="fa fa-list" data-toggle="tooltip" data-placement="bottom" title="Lista de Consultas"></i> '.html_safe, consultas_path(area_id: area.id) %>
       </div>
 
     </div>
+    <!-- Hola Leslie, Si queres que el ancho del form de consultas tenga un ancho más pequeño agrega la clase content-consulta junto a content en el div de abajo (content-consulta esta definido en pages.scss alli podes cambiarle el width)   -->
+  <div class="content">
+  <div class="form-content">
+    <%= simple_form_for consulta, html: {class: 'form-consulta', :multipart => true }, remote: true do |consult|%>
 
-    <%= simple_form_for consulta, html: {class: 'form-consulta', style: "width: 80%; margin-left: 140px;", :multipart => true }, remote: true do |consult|%>
+      <h4 class="titulo-ficha">Consulta en <%= area.nombre%></h4></br>
+      <%= consult.hidden_field(:area_id, :value => area.id) %>
       <div class="row">
+
         <!-- Si el form se renderiza desde la ficha, para agregar una consulta, paciente y area aparecen desactivados, con estos hidden_field se asegura que se envién sus respectivos id -->
         <% if from_ficha %>
           <%= consult.hidden_field :paciente_id%>
-          <%= consult.hidden_field :area_id%>
         <% end %>
-        <%= consult.input :paciente_id, collection: Paciente.all.collect { |a| [a.persona_full_name, a.id] }, label: '* Paciente', wrapper_html: { class: 'col-md-3' }, input_html: { class: 'required select-paciente select2 paciente-id', disabled: consulta.paciente_id.nil? ? false : true} %>
+        <%= consult.input :paciente_id, collection: Paciente.all.collect { |a| [a.persona_full_name, a.id] }, label: '* Paciente', wrapper_html: { class: 'col-md-4' }, input_html: { class: 'required select-paciente select2 paciente-id', disabled: consulta.paciente_id.nil? ? false : true} %>
 
-        <%= consult.input :area_id, collection: Area.all.collect { |a| [a.nombre, a.id] }, label: '* Área', wrapper_html: { class: 'col-md-3'}, input_html: { class: 'required select-area select2', disabled: consulta.paciente_id.nil? ? false : true} %>
-
-
-        <%= consult.input :doctor_id, collection: Doctor.all.collect { |a| [a.abr_profesion+" "+a.persona_full_name+"-"+ a.area.nombre, a.id] }, label: '* Prof. de la Salud', wrapper_html: { class: 'col-md-3' }, input_html:  { class: 'required select-doctor select2'} %>
+        <%= consult.input :doctor_id, collection: doctores.collect { |a| [a.abr_profesion+" "+a.persona_full_name+"-"+ a.area.nombre, a.id] }, label: '* Prof. de la Salud', wrapper_html: { class: 'col-md-5' }, input_html:  { class: 'required select-doctor select2'} %>
 
         <%= consult.input :fecha, as: :string, label: '* Fecha', wrapper_html: { class: 'col-md-3'}, input_html: { class: 'datepicker dateLessSystemDate required', maxLength: Domain::FECHA, value:Formatter.format_date(consulta.fecha)} %>
 
@@ -34,6 +34,7 @@
       <h4>Datos de Consulta</h4>
       <hr>
       <div class="row">
+
         <%= consult.input :motivo_consulta, as: :text, label: 'Motivo de Consulta', wrapper_html: { class: 'col-md-12'}, input_html: { maxLength: Domain::DESC300, class: 'biglength', rows: "2"} %>
       </div>
 
@@ -48,14 +49,15 @@
       </div>
 
       <div class="form-button">
-        <%= consult.submit 'Guardar', class: 'btn btn-custom'%>
+        <%= consult.submit 'Guardar', class: 'btn btn-custom',data: {disable_with: "Guardando..."}%>
       </div>
 
     <% end %>
   </div>
-
+</div>
 
 <script type="text/javascript">
+
   consultasUI.initScript();
 
   <% if !flash.notice.blank? %>

@@ -1,6 +1,4 @@
-
-  <div class="form-content form-ficha">
-    <div class="page-title page-title-ficha">
+ <div class="page-title page-title-con-sidebar">
       Ficha de <%= @fisio_nino.paciente.persona.nombre%> <%= @fisio_nino.paciente.persona.apellido%>
 
     <div class="tool">
@@ -12,6 +10,9 @@
       <%= link_to '<i class="fa fa-print"></i> '.html_safe, ficha_fisioterapia_ninos_print_ficha_path(ficha_id: @fisio_nino.id, :format => :pdf), target: '_blank'%>
     </div>
   </div>
+  <div class="content">
+  <div class="form-content">
+
     <%= form_for @fisio_nino, html: {class: 'form-ficha', :multipart => true }, remote: true do |ficha|%>
       <h4 align="center">FICHA FISIOTERAPIA PEDIÁTRICA</h4></br>
       <div class="row">
@@ -205,11 +206,12 @@
     </div>
     </br>
     <div class="row">
-      <div class="col-md-10">
+      <div class="col-md-8">
          <h4>Consultas</h4>
       </div>
-      <div class="col-md-2">
-         <%= link_to "Agregar Consulta", consultas_consulta_from_ficha_path(area: @fisio_nino.area_id, paciente: @fisio_nino.paciente_id, profesional: @fisio_nino.doctor_id), class: "btn btn-custom", remote: true %>
+      <div class="col-md-4">
+         <%= link_to "Agregar Consulta", consultas_consulta_from_ficha_path(area_id: @fisio_nino.area_id, paciente: @fisio_nino.paciente_id, profesional: @fisio_nino.doctor_id), class: "btn btn-custom", remote: true %>
+          <%= link_to 'Ver Historial Clínico', historial_fisioterapeutico_path(@fisio_nino.paciente_id), class: "btn btn-custom  pull-right", remote: true%>
       </div>
     </div>
     <hr>
@@ -219,7 +221,7 @@
 
 
   </div>
-
+</div>
 <script type="text/javascript">
 
   consultasUI.initConsultasTab();

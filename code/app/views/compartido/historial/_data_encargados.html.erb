@@ -1,0 +1,31 @@
+<% if encargados.nil? %>
+   <div class="panel-heading-only">II - DATOS DE LOS PADRES Y/O ENCARGADO (No tiene)</div>
+<% else %>
+<div class="panel panel-default panel-historial panel-folding">
+   <div class="panel-heading">II - DATOS DE LOS PADRES Y/O ENCARGADO</div>
+   <div class="panel-body">
+      <div class="row">
+         <%= data('Nombre(s) y Apellido(s) del Padre', encargados.padre_nombre,'col-md-10') %>
+         <%= data('Edad', encargados.padre_edad,'col-md-2') %>
+      </div>
+      <div class="row">
+      <%= data('Profesión Actual y/o Anterior',encargados.padre_prof_act_ant,'col-md-12') %>
+      </div>
+      <div class="row top-border">
+         <%= data('Nombre(s) y Apellido(s) de la Madre', encargados.madre_nombre,'col-md-8') %>
+         <%= data('Edad', encargados.madre_edad,'col-md-2') %>
+         <%= data('Hijos', encargados.madre_num_hijos,'col-md-2') %>
+      </div>
+      <div class="row">
+         <%= data('Profesión Actual y/o Anterior',encargados.madre_prof_act_ant,'col-md-12') %>
+      </div>
+      <div class="row top-border">
+         <%= data('Nombre(s) y Apellido(s) del Tutor o Encargado', encargados.encargado_nombre,'col-md-10') %>
+         <%= data('Edad', encargados.encargado_edad,'col-md-2') %>
+      </div>
+      <div class="row">
+      <%= data('Profesión Actual y/o Anterior',encargados.encargado_prof_act_ant,'col-md-12') %>
+      </div>
+   </div>
+</div>
+<% end %>

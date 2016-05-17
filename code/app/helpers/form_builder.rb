@@ -54,7 +54,7 @@ module FormBuilder
     html = ""
     html << "<div class='form-group #{option.key?(:col_class) ? option[:col_class] : ''}'>"
       html << f.label(field, "#{option.key?(:label_text) ? option[:label_text] : ''}",
-                              class: "control-label #{option.key?(:label_class) ? option[:label_class] : 'titulos-campos'}")
+                              class: "control-label #{option.key?(:label_class) ? option[:label_class] : ''}")
 
       html << "<div class='#{option.key?(:field_class) ? option[:field_class] : ''}'>"
         html << f.password_field(field, class: "form-control #{option.key?(:input_class) ? option[:input_class] : ''}",

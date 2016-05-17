@@ -21,6 +21,8 @@ class Paciente < ActiveRecord::Base
 	has_one :ficha_pediatrica
 
 	has_many :consultas
+	has_many :consultas_nutricionales_pediatricas
+	has_many :controles
 
 	# Permiten guardar persona y encargado en el formulario de paciente
 	accepts_nested_attributes_for :persona

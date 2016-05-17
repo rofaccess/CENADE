@@ -13,8 +13,9 @@
   </div>
 
 </div>
-  <div class="form-content2">
-    <%= simple_form_for nutri_pediatrica, html: {class: 'form-ficha2'} do |ficha|%>
+<div class="content">
+  <div class="form-content">
+    <%= simple_form_for nutri_pediatrica, html: {class: 'form-ficha'} do |ficha|%>
 
 
     <h4 class="titulo-ficha">FICHA NUTRICIONAL PEDIÁTRICA</h4>
@@ -66,14 +67,25 @@
       <%= ficha.input :alimentacion_complementaria, label: titulos_largos.find(6).titulo, wrapper_html: { class: 'col-md-8'}, input_html: {disabled: true} %>
 
     </div>
+    <div class="row">
+      <div class="col-md-10">
+         <h4>Consultas</h4>
+      </div>
+      <div class="col-md-2">
+         <%= link_to "Agregar Consulta", consultas_nutricionales_pediatricas_from_ficha_path(ficha: nutri_pediatrica.id), class: "btn btn-custom", remote: true %>
+      </div>
+    </div>
+    <hr>
+    <%=render 'consultas_nutricionales_pediatricas/consultas_tabs', consultas: consultas%>
 
   <% end %>
-
+</div>
 </div>
 
 <script type="text/javascript">
 
   fichasNutriPediatricasUI.initScript();
+  consultasUI.initConsultasTab();
   <% if !flash.notice.blank? %>
     var n = noty({text: '<%=notice%>', type: 'success'});
   <% end %>

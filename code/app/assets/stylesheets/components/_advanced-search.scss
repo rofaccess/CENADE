@@ -1,0 +1,16 @@
+/* Define el aspecto del formulario de búsqueda avanzada */
+#advanced-search{
+   display: none;
+   background: #EFEFEF;
+   height: 100px;
+   padding: 20px 50px 0px 50px; //Top Right Bottom Left
+   border: solid;
+   border-color: #CCCCCC;
+   border-width: 1px;
+   margin-bottom: 20px;
+   //Posición de los botones de filtrado y limpiar campos
+   .advanced-search-buttons{
+      margin-top: 25px;
+      text-align: right;
+   }
+}

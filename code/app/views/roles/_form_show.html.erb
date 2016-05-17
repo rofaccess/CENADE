@@ -1,15 +1,15 @@
-<div class= "form-content">
-  <div class="page-title">
+<div class="page-title">
     Rol <%=@role.name %>
 
       <div class="tool">
-        <%= link_to '<i class="fa fa-list-ul"></i> '.html_safe, roles_path%>
+        <%= link_to '<i class="fa fa-list"></i> '.html_safe, roles_path%>
         <%= link_to '<i class="fa fa-plus-square"></i> '.html_safe, new_role_path%><%= link_to '<i class="fa fa-edit"></i> '.html_safe, edit_role_path(@role.id)%>
         <%= link_to '<i class="fa fa-trash-o"></i> '.html_safe, role_path(@role), method: 'delete', data: {confirm: "¿Desea eliminar el rol #{@role.name}?"}%>
       </div>
-    </div>
-
-    <%= form_for @role,html: {class: 'nuevo-rol small-form'},:multipart => true do |role|%>
+</div>
+<div class="content content-50">
+<div class= "form-content">
+    <%= form_for @role,html: {class: 'nuevo-rol'},:multipart => true do |role|%>
     <h4>Rol</h4>
     <hr>
       <div class="row">
@@ -32,7 +32,7 @@
       </div>
    <% end %>
 </div>
-
+</div>
 <script type="text/javascript">
 
     <% if !flash.notice.blank? %>

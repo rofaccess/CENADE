@@ -1,0 +1,37 @@
+<div class="page-title page-title-con-sidebar">
+  Control de <%=control.paciente_persona_full_name%>
+
+  <div class="tool">
+
+    <%= link_to '<i class="fa fa-plus-square" data-toggle="tooltip" title="Nuevo Control"></i> '.html_safe, new_control_path(paciente: paciente.id, area_id: control.area.id), remote: true %>
+
+    <%= link_to '<i class="fa fa-edit" data-toggle="tooltip" title="Editar Control"></i> '.html_safe, edit_control_path(control), remote:true%>
+
+  </div>
+</div>
+<div class="content content-consulta"%>
+  <div class="form-content">
+    <%= simple_form_for control, html: {class: 'form-controol'}, remote: true do |cont|%>
+
+      <h4 align= "center">Control de <%= paciente.persona_full_name%></h4></br>
+      <div class="row">
+          <h4 class="col-md-9"><strong>Profesional de la Salud: </strong> <%= control.doctor_abr_profesion+' '+control.doctor_persona_full_name%> </h4>
+
+          <h4 class="col-md-3"><strong> Fecha: </strong> <%= Formatter.format_date(control.fecha)%> </h4>
+        </div>
+
+      <h4>Datos de Control</h4>
+      <hr>
+
+      <div class="row">
+
+        <%= cont.input :tratamiento, as: :text, label: 'Tratamiento', wrapper_html: { class: 'col-md-12'}, input_html: { disabled: true, rows: "3"} %>
+      </div>
+
+      <div class="row">
+         <%= cont.input :observaciones, as: :text, label: 'Observaciones', wrapper_html: { class: 'col-md-12'}, input_html: { disabled: true, rows: "2"} %>
+      </div>
+
+    <% end %>
+  </div>
+</div>

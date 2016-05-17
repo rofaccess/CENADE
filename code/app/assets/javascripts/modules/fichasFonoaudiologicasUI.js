@@ -1,8 +1,8 @@
 var fichasFonoaudiologicasUI = (function(){
-  return {    
+  return {
 
-    initScript: function(){ 
-      
+    initScript: function(){
+
       /* Script globales */
         APP.initDatepicker();
         APP.initSelect2({element: '.select-paciente', placeholder: 'Seleccione un Paciente'})
@@ -12,10 +12,10 @@ var fichasFonoaudiologicasUI = (function(){
         //empleadosUI.initBuscarDoctor('.select-doctor');
 
         pacientesUI.getPaciente({element: '.select-paciente', root: 'fichas_fonoaudiologicas'});
-        
-        
+
+
       /* Valida el formulario antes de enviarlo */
-      $('.form-ficha2').validate(); 
+      $('.form-ficha').validate();
     }
   };
-}()); 
+}());

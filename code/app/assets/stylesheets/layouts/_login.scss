@@ -1,10 +1,10 @@
-    
+/* Este archivo define el aspecto de la interfaz de inicio de sesión */
     body  {
       .form-signin{
         margin-top: 100px;
         //background-color: #eee;
       }
-      
+
     }
 
     .form-signin {
@@ -20,6 +20,7 @@
       font-family: arial;
       font-size: 12pt;
 
+      //- ya no se usa
       #username-error, #password-error {
         padding-bottom: 30px;
         margin-left: 43px;
@@ -31,10 +32,10 @@
         margin-bottom: 20px;
         font-weight: bold;
       }
-      
+
       > h2 > span {
        font-size: 60px;
-      } 
+      }
     }
 
     p {
@@ -52,11 +53,12 @@
     }
 
   /* Los siguientes dos son para error de validación*/
+  //- ya no se usa
   .text-error {
     color: #DD4B39;
   }
 
   .input-error{
-    border-color:#DD4B39; 
+    border-color:#DD4B39;
     border-width: 1px;
   }
