@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  get 'historiales_fisioterapeuticos/print' => 'historiales_fisioterapeuticos#print'
   resources :historiales_fisioterapeuticos, only: [:index, :show]
 
   resources :controles, :except => [:destroy] do

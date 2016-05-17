@@ -37,6 +37,7 @@
         </td>
         <td class = "action">
           <%= link_to '<i class="fa fa-eye fa-lg" data-toggle="tooltip" title="Ver Historial Clínico"></i> '.html_safe, historial_fisioterapeutico_path(paciente), remote: true%>
+          <%= link_to '<i class="fa fa-print fa-lg"></i> '.html_safe, historiales_fisioterapeuticos_print_path(id: paciente.id, :format => :pdf), target: '_blank'%>
         </td>
       </tr>
     <% end %>

@@ -1,9 +1,9 @@
 /* Este archivo define el aspecto de los pdf */
-
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "bootstrap/variables";
 @import "bootstrap/mixins";
+@import "modules/historiales.scss";
 
 @include make-grid(sm);
 @include make-grid(md);
@@ -14,9 +14,9 @@ $page-subtitle-color: black;
 $hr-color: #999999;
 $title-color: #999999;
 $border-line-color: #EEEEEE;
+$panel-border-color: #999999;
 
 #header {
-
 	h1 {
 		text-align: center;
 		margin-bottom: 0px;
@@ -31,31 +31,10 @@ $border-line-color: #EEEEEE;
 }
 
 .border-input{
-
-		border:1px;
-		//border-style: solid;
-		border-color: #DCDCDC;
-
-	}
-/*
-#content {
-	h5 {
-		font-weight: bold;
-		color: #999999;
-		text-align: center;
-	}
-
-	h6 {
-				font-weight: bold;
-				color: #999999;
-				font-size: 15px;
-			}
-
-			hr {
-				margin-top: 5px;
-				color: #999999;
-			}
-}*/
+	border:1px;
+	//border-style: solid;
+	border-color: #DCDCDC;
+}
 
 .form-control{
 	margin-bottom: 10px;
@@ -64,7 +43,6 @@ $border-line-color: #EEEEEE;
 .form-font{
 	font-size: 19px;
 }
-
 
 h4{
 	color: $title-color;
@@ -80,7 +58,6 @@ h4{
 		margin-bottom: 20px;
 		color: $page-title-color;
 	}
-
 }
 
 hr {
@@ -123,16 +100,38 @@ hr {
 	word-break: break-all;
 }​
 
-/*
-thead { display: table-header-group; }
-tfoot { display: table-row-group; }
-tr { page-break-inside: avoid; }
-*/
-
 /* Para que wkhtmltopdf 0.12.3 el head de las tablas en cada página se vea bien
    Supuestamente asegura que los registros no se vean mitad y mitad entre páginas
    En la versión 0.9.9 ni se ve el thead a partir de la segunda página
  */
 table, tr, td, th, tbody, thead, tfoot {
     page-break-inside: avoid;
+}
+
+/* Estilo de impresión para el historial */
+
+// Evita que los panel-heading y form-group (el label y el dato) se vean mitad y mitad entre páginas
+div.panel-heading, div.form-group{
+    page-break-inside: avoid;
+}
+
+// Aspecto del titulo principal
+.historial-title{
+  font-size: 16px;
+}
+
+// Define el heading de un panel
+.panel-heading-only{
+  font-size: 14px;
+  padding: 5px 10px;
+  border: 1px solid $panel-border-color;
+}
+
+// Aspecto de los paneles usados
+.panel-historial{
+   border: 1px solid $panel-border-color;
+   .panel-heading{
+   	padding: 5px 10px;
+      font-size: 14px;
+   }
 }
