@@ -2,53 +2,44 @@
   <div class="page-title page-title-con-sidebar">
     Controles
     <div class="tool">
-      <%= search_form_for @search,url: controles_path(area_id: params[:area_id]), class: 'buscador', remote: true do |f| %>
-        <div class="input-group">
-          <%= f.search_field :paciente_persona_nombre_or_paciente_persona_apellido_or_paciente_persona_ci_cont, placeholder: "Nombre, Apellido o CI", class: "form-control", autofocus: true%>
-          <span class="fa fa-search"></span>
           <div class="input-group-btn">
             <a href="#"><i class="fa fa-search-plus" aria-hidden="true" id= "show-advanced-search" data-toggle="tooltip" data-placement="bottom" title="Filtrar"></i></a>
-            <%= link_to '<i class="fa fa-plus-square" aria-hidden="true" id= "show" data-toggle="tooltip" data-placement="bottom" title="Nuevo Control"></i> '.html_safe, new_control_path(area_id: params[:area_id]), remote: true %>
+            <%= link_to '<i class="fa fa-plus-square" aria-hidden="true" id= "show" data-toggle="tooltip" data-placement="bottom" title="Nuevo Control"></i> '.html_safe, new_control_path(area_id: params[:area_id], paciente: params[:paciente]), remote: true %>
           </div>
         </div>
-      <% end %>
     </div>
-  </div>
-  <div class= "content2">
+  <div class= "content content-consulta">
 
-    <div id="advanced-search" style = 'display:none;' class="advanced-search-con-sidebar">
-      <div class="row" >
-       <%= search_form_for @search, url: search_consultas_path(area_id: params[:area_id]), method: :post, remote: true, class: 'form-filtros' do |f| %>
+    <div id="advanced-search">
+       <%= search_form_for @search, url: search_controles_path(area_id: params[:area_id], paciente: params[:paciente]), method: :post, remote: true, class: 'form-filtros' do |f| %>
           <div class="row">
-            <div class="col-md-5">
 
-              <%= FormBuilder::text_field_v(f, :paciente_persona_nombre_or_paciente_persona_apellido_or_paciente_persona_ci_cont, {col_class: 'col-md-6', label_text: 'Paciente', input_class: '',  placeholder: "Nombre Apellido o CI"})%>
+            <%= FormBuilder::text_field_v(f, :doctor_persona_nombre_or_doctor_persona_apellido_cont, {col_class: 'col-md-5', label_text: 'Prof. de la Salud', input_class: '', placeholder: "Nombre o Apellido"})%>
 
-              <%= FormBuilder::text_field_v(f, :doctor_persona_nombre_or_doctor_persona_apellido_cont, {col_class: 'col-md-6', label_text: 'Prof. de la Salud', input_class: '', placeholder: "Nombre o Apellido"})%>
-
-            </div>
             <%= FormBuilder::text_field_v(f, :fecha_gteq, {col_class: 'col-md-2', label_text: 'Desde', input_class: 'datepicker',max_length: Domain::FECHA})%>
 
             <%= FormBuilder::text_field_v(f, :fecha_lteq, {col_class: 'col-md-2', label_text: 'Hasta', input_class: 'datepicker',max_length: Domain::FECHA})%>
 
-
-          <div class= "input-group pull-right" style = 'margin-top: 25px;'>
+            <div class= "advanced-search-buttons">
              <%= f.submit 'Filtrar', class: 'btn btn-custom '%>
              <%= f.submit 'Limpiar Campos', type: 'reset', class: 'btn btn-link'%>
-          </div>
-        </div>
-      <% end %>
-    </div></br>
-  </div>
 
-  <div id="list" class="list-con-sidebar">
-     <%= render 'list', consultas: @consultas %>
-  </div>
+           </div>
+         </div>
+         <% end %>
+     </div>
+     <div class= "list-content">
 
-    <div id="list-paginate" class="list-paginate-con-sidebar">
-     <%= paginate @consultas, remote: true %>
-    </div>
-  </div>
+      <div id="list">
+       <%= render 'list', controles: @controles %>
+     </div>
+
+     <div id="list-paginate">
+       <%= paginate @controles, remote: true %>
+     </div>
+   </div>
+ </div>
+
 
 <script type="text/javascript">
  consultasUI.initScript();

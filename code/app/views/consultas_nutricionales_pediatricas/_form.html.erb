@@ -6,8 +6,7 @@
 		</div>
 
 	</div>
-<!-- Hola Leslie, Si queres que el ancho del form de consultas tenga un ancho más pequeño
-agrega la clase content-consulta junto a content en el div de abajo (content-consulta esta definido en pages.scss alli podes cambiarle el width)	 -->
+
 <div class="content">
 	<div class="form-content">
 		<%= simple_form_for consulta, html: {class: 'nueva-consulta'} do |consult|%>
@@ -17,7 +16,7 @@ agrega la clase content-consulta junto a content en el div de abajo (content-con
 
 			<div class="row">
 
-				<%= consult.input :ficha_nutricional_pediatrica_id, collection: FichaNutricionalPediatrica.all.collect { |a| [a.paciente_persona_full_name, a.id] }, label: '* Paciente', wrapper_html: {class: 'col-md-4' },input_html: { class: 'required select-paciente select2 paciente-id', disabled: paciente.id.nil? ? false : true} %>
+				<%= consult.input :ficha_nutri_ped_id, collection: FichaNutricionalPediatrica.all.collect { |a| [a.paciente_persona_full_name, a.id] }, label: '* Paciente', wrapper_html: {class: 'col-md-4' },input_html: { class: 'required select-paciente select2 paciente-id', disabled: paciente.id.nil? ? false : true} %>
 
 
 				<%= consult.input :doctor_id, collection: doctores.collect { |a| [a.abr_profesion+" "+a.persona_full_name, a.id] }, label: '* Profesional de la Salud', wrapper_html: { class: 'col-md-5' }, input_html:   { class: 'required select-doctor select2'} %>

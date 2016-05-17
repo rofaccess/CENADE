@@ -1,7 +1,12 @@
+<div id= "principal-content-control">
   <div class="page-title page-title-con-sidebar">
       <%=control.id.nil? ? 'Nuevo Control' : 'Editar Control'%>
 
-    </div>
+      <div class="tool">
+        <%= link_to '<i class="fa fa-list" data-toggle="tooltip" data-placement="bottom" title="Lista de Controles"></i> '.html_safe, controles_path(area_id: area.id, paciente: paciente.id), remote: true%>
+      </div>
+
+  </div>
 <div class="content content-consulta"%>
   <div class="form-content">
     <%= simple_form_for control, html: {class: 'form-controol'}, remote: true do |cont|%>
@@ -12,7 +17,7 @@
       <%= cont.hidden_field(:area_id, :value => area.id) %>
       <div class="row">
 
-        <%= cont.input :doctor_id, collection: doctores.collect { |a| [a.abr_profesion+" "+a.persona_full_name+"-"+ a.area.nombre, a.id] }, label: '* Prof. de la Salud', wrapper_html: { class: 'col-md-8' }, input_html:  { class: 'required select-doctor select2'} %>
+        <%= cont.input :doctor_id, collection: doctores.collect { |a| [a.abr_profesion+" "+a.persona_full_name, a.id] }, label: '* Prof. de la Salud', wrapper_html: { class: 'col-md-8' }, input_html:  { class: 'required select-doctor select2'} %>
 
         <%= cont.input :fecha, as: :string, label: '* Fecha', wrapper_html: { class: 'col-md-4'}, input_html: { class: 'datepicker dateLessSystemDate required', maxLength: Domain::FECHA, value:Formatter.format_date(control.fecha)} %>
 
@@ -36,12 +41,12 @@
 
     <% end %>
   </div>
+ </div>
 </div>
-
 <div class= "content content-consulta">
 
     <div id="advanced-search">
-       <%= search_form_for @search, url: search_controles_path(area_id: area.id, paciente: paciente.id), method: :post, remote: true, class: 'form-filtros' do |f| %>
+       <%= search_form_for @search, url: search_controles_path(area_id: params[:area_id], paciente: params[:paciente]), method: :post, remote: true, class: 'form-filtros' do |f| %>
           <div class="row">
 
             <%= FormBuilder::text_field_v(f, :doctor_persona_nombre_or_doctor_persona_apellido_cont, {col_class: 'col-md-5', label_text: 'Prof. de la Salud', input_class: '', placeholder: "Nombre o Apellido"})%>
@@ -69,6 +74,7 @@
      </div>
    </div>
  </div>
+
 
 
 <script type="text/javascript">

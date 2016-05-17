@@ -4,6 +4,7 @@ class ControlesController < ApplicationController
   #before_action :set_sidebar, only: [:edit, :new, :show, :index]
 
   before_action :set_submenu, only: [:edit, :update, :show, :index, :new]
+  before_action :set_doctores, only: [:edit]
 
   respond_to :html, :js
 
@@ -43,7 +44,7 @@ class ControlesController < ApplicationController
   end
 
   def edit
-    get_doctores
+    set_doctores
     get_controles
   end
 
@@ -68,12 +69,16 @@ class ControlesController < ApplicationController
   end
 
   def show
-
+    get_controles
   end
 
   def get_doctores
   	@paciente= Paciente.find(params[:paciente])
     @doctores = Doctor.where(area_id: @area.id)
+  end
+
+  def set_doctores
+    @doctores = Doctor.where(area_id: @control.area.id)
   end
 
   #obtiene el paciente
@@ -91,6 +96,7 @@ class ControlesController < ApplicationController
     @controles= @search.result.page(params[:page])
 
   end
+
 
   #Busca las Controles segun los datos puestos para filtrar
   def buscar
