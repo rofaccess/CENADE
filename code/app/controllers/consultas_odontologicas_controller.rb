@@ -21,7 +21,7 @@ class ConsultasOdontologicasController < ApplicationController
 
   def set_consulta
     @consulta= ConsultaOdontologica.find(params[:id])
-    @paciente= Paciente.find(@consulta.paciente_id)
+    @paciente= @consulta.ficha_odontologica.paciente
   end
 
   def index
@@ -35,27 +35,24 @@ class ConsultasOdontologicasController < ApplicationController
   	get_doctores_odontologia
   end
 
-  def create
+    def create
     respond_to do |format|
-
-      @consulta = ConsultaOdontologica.new(consulta_params)
-      if @consulta.save
-
-        flash.now[:notice] = "Se ha guardado la consulta de #{@consulta.paciente.persona.nombre}."
-        format.html {render 'show'}
-        format.js { render "show"}
+    @consulta = ConsultaOdontologica.new(consulta_params)
+    if @consulta.save
+      flash.now[:notice] = "Se ha guardado la consulta de #{@consulta.paciente_persona_full_name}."
+      format.html {render 'show'}
+      format.js { render "show"}
+    else
+      if @consulta.errors.full_messages.any?
+          flash.now[:alert] = @consulta.errors.full_messages.first
       else
-        if @consulta.errors.full_messages.any?
-            flash.now[:alert] = @consulta.errors.full_messages.first
-        else
-            flash.now[:alert] = "No se ha podido guardar la Consulta."
-        end
-        @paciente= @consulta.paciente
-
-        format.html { render action: "new"}
-        format.js { render "edit"}
+          flash.now[:alert] = "No se ha podido guardar la Consulta."
       end
+      @paciente= @consulta.paciente
+      format.html { render "new"}
+      format.js { render "new"}
     end
+  end
   end
 
   def edit
@@ -116,7 +113,7 @@ class ConsultasOdontologicasController < ApplicationController
 
   #busca el paciente seleccionado en la base de datos
   def get_paciente
-    @paciente= Paciente.find(params[:id])
+    @paciente= FichaOdontologica.find(params[:id]).paciente
   end
 
   #metodo creado para el filtro
@@ -132,10 +129,10 @@ class ConsultasOdontologicasController < ApplicationController
   end
 
   def consulta_params
-  	params.require(:consulta_odontologica).permit(:area_id, :paciente_id, :doctor_id, :fecha,
+  	params.require(:consulta_odontologica).permit(:area_id, :paciente_id, :doctor_id,:ficha_odontologica_id, :fecha,
       :motivo_consulta, :observaciones,:servicio_cenade,:medicacion_actual, :anestesico,:penicilina, :otros_medicamentos,
       :hemorragias,:problema_tratamiento,:enfermedad_cardiovascular,:diabetes,:hepatitis,:enfermedades_renales,:artritis,
-      :tuberculosis,:enfermedades_venereas,:enfermedades_sanguineas,:fumador,:enfemedades_neurologicas,:menstruacion,
+      :tuberculosis,:enfermedades_venereas,:enfermedades_sanguineas,:fumador,:enfermedades_neurologicas,:menstruacion,
       :embarazada,:tiene_hijos,:cantidad_hijos,:amamanta,:hospitalizado,:causa_hospitalizado,:ecg,:tac,:rx,:laboratorios,:otros_examenes,:tratamiento)
   end
 end

@@ -9,7 +9,7 @@ class FichaOdontologica < ActiveRecord::Base
   belongs_to :paciente
   belongs_to :doctor, :foreign_key => :doctor_id
   before_create :cargar_area_id
-  has_many :consulta_odontologica
+  has_many :consultas_odontologicas
 
 
 

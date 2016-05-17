@@ -1,0 +1,108 @@
+<% if consultas.size == 0 %>
+    <strong>No se encontraron consultas</strong>
+<% end %>
+
+<ul class="nav nav-tabs">
+    <% consultas.each do |c| %>
+        <li><a href="#tab-<%= c.id%>"><%= c.fecha.strftime("%d/%m/%Y")%></a></li>
+    <%end%>
+</ul>
+
+<div class="tabscontent">
+    <% consultas.each do |consulta| %>
+        <div id="tab-<%= consulta.id%>">
+            <%= simple_fields_for :consulta do |consult| %>
+                <div class="row">
+              <h4 class="col-md-9"><strong>Profesional de la Salud: </strong> <%= consulta.doctor_abr_profesion+' '+consulta.doctor_persona_full_name%> </h4>
+
+              <h4 class="col-md-3"><strong> Fecha de Consulta: </strong> <%= Formatter.format_date(consulta.fecha)%> </h4>
+            </div>
+              <div class="row">
+                <%= consult.input :motivo_consulta, as: :text, label: 'Motivo de Consulta', wrapper_html: { class: 'col-md-12'}, input_html: { disabled: true} %>
+              </div>
+
+              <div class="row">
+                 <%= consult.input :observaciones, as: :text, label: 'Observaciones', wrapper_html: { class: 'col-md-12'}, input_html: { disabled: true} %>
+              </div>
+
+              <div class="row">
+                <%= consult.input :servicio_cenade, as: :text, label: 'Servicio que utiliza en el CENADE', wrapper_html: { class: 'col-md-6'}, input_html: { disabled: true} %>
+
+                <%= consult.input :medicacion_actual, as: :text, label: 'Medicacion Actual', wrapper_html: { class: 'col-md-6'}, input_html: { disabled: true} %>
+              </div>
+              <h5>Es alérgico o ha reaccionado de manera adversa a:?</h5>
+              <div class="row">
+                <%= consult.input :anestesico, as: :string, label: 'Anestésico local', wrapper_html: { class: 'col-md-4'}, input_html: {disabled: true} %>
+
+                <%= consult.input :penicilina, as: :string, label:'Penicilina', wrapper_html: { class: 'col-md-4'}, input_html: { disabled: true} %>
+
+                 <%= consult.input :otros_medicamentos, as: :string, label:'Otros medicamentos', wrapper_html: { class: 'col-md-4'}, input_html: { disabled: true} %>
+              </div>
+              <div class ="row">
+                  <%= consult.input :hemorragias, label: titulos_largos.find(7).titulo, wrapper_html: { class: 'col-md-6'}, input_html: { disabled: true} %>
+                  <%= consult.input :enfermedad_cardiovascular, label: titulos_largos.find(9).titulo, wrapper_html: { class: 'col-md-6'}, input_html: { disabled: true} %>
+              </div>
+              <h5>Presenta algunas de éstas enfermedades?</h5>
+              <div class ="row">
+                <%=consult.input :diabetes, as: :boolean, wrapper_html: { class: 'col-md-2'},input_html:{ checked:false }%>
+                <%=consult.input :tuberculosis, as: :boolean, wrapper_html: { class: 'col-md-3'}, input_html:{checked: false }%>
+                <%=consult.input :hepatitis, as: :boolean, wrapper_html: { class: 'col-md-3'}, input_html:{ checked: false }%>
+                <%=consult.input :artritis, as: :boolean,wrapper_html: { class: 'col-md-2'}, input_html:{ checked: false }%>
+                <%=consult.input :fumador, as: :boolean,wrapper_html: { class: 'col-md-2'}, input_html:{ checked: false}%>
+
+              </div><br>
+              <div class="row">
+
+                <%=consult.input :enfermedades_sanguineas, as: :boolean,label:'Enfermedades sanguíneas', wrapper_html: { class: 'col-md-3'}, input_html:{ checked: false }%>
+                <%=consult.input :enfermedades_neurologicas, as: :boolean,label:'Enfermedades neurológicas', wrapper_html: { class: 'col-md-3'}, input_html:{ checked: false }%>
+                <%=consult.input :enfermedades_renales, as: :boolean, wrapper_html: { class: 'col-md-3'}, input_html:{ checked: false}%>
+                <%=consult.input :enfermedades_venereas, as: :boolean,label:'Enfermedades venéreas',wrapper_html: { class: 'col-md-3'}, input_html:{ checked: false}%>
+
+              </div>
+              <div class ="row">
+                  <%= consult.input :problema_tratamiento, label: titulos_largos.find(8).titulo, wrapper_html: { class: 'col-md-12'}, input_html: { disabled: true} %>
+              </div>
+
+              <div class ="row">
+                <%= consult.input :menstruacion, as: :string, label:'Paciente femenino: menstruación:', wrapper_html: { class: 'col-md-12'}, input_html: { disabled: true} %>
+              </div>
+              <div class ="row">
+                <%= consult.input :embarazada, as: :string, label:'Está Embarazada?', wrapper_html: { class: 'col-md-12'}, input_html: { disabled: true} %>
+              </div>
+              <div class="row">
+                <%= consult.input :tiene_hijos, as: :string, label: 'Tiene hijos?', wrapper_html: { class: 'col-md-4'}, input_html: { disabled: true} %>
+
+                <%= consult.input :cantidad_hijos, as: :string, label:'cuantos:', wrapper_html: { class: 'col-md-4'}, input_html: { disabled: true} %>
+
+                 <%= consult.input :amamanta, as: :string, label:'amamanta?', wrapper_html: { class: 'col-md-4'}, input_html: { disabled: true} %>
+              </div>
+              <div class ="row">
+                <%= consult.input :hospitalizado, as: :string, label: titulos_largos.find(10).titulo, wrapper_html: { class: 'col-md-4'}, input_html: { disabled: true} %>
+
+                <%= consult.input :causa_hospitalizado, as: :string, label:'Causa', wrapper_html: { class: 'col-md-8'}, input_html: { disabled: true} %>
+              </div>
+
+              <h4>Exámenes Complementarios</h4><hr>
+
+              <div class="row">
+                <%= consult.input :ecg, label: 'ECG', wrapper_html: { class: 'col-md-12'},input_html: { disabled: true} %>
+              </div>
+              <div class="row">
+                <%= consult.input :tac, label: 'TAC', wrapper_html: { class: 'col-md-12'},input_html: { disabled: true} %>
+              </div>
+              <div class="row">
+                <%= consult.input :rx, label: 'RX', wrapper_html: { class: 'col-md-12'},input_html: { disabled: true} %>
+              </div>
+              <div class="row">
+                <%= consult.input :laboratorios, label: 'Laboratorios', wrapper_html: { class: 'col-md-12'},input_html: { disabled: true} %>
+              </div>
+              <div class="row">
+                <%= consult.input :otros_examenes, label: 'Otros Exámenes', wrapper_html: { class: 'col-md-12'},input_html: {disabled: true} %>
+              </div>
+              <div class="row">
+                <%= consult.input :tratamiento,as: :text ,label: 'Tratamiento', wrapper_html: { class: 'col-md-12'},input_html: { disabled: true} %>
+              </div>
+      <%end%>
+    </div>
+    <%end%>
+</div>

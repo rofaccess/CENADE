@@ -5,7 +5,7 @@ class ConsultaOdontologica < ActiveRecord::Base
   belongs_to :area
   belongs_to :paciente
   belongs_to :doctor, :foreign_key => :doctor_id
-  belongs_to :ficha_odontologica
+  belongs_to :ficha_odontologica, :foreign_key => :ficha_odontologica_id
 
   #carga id area antes de guardar la consulta
   before_create :cargar_area_id

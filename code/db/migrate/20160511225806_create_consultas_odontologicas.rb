@@ -1,9 +1,9 @@
 class CreateConsultasOdontologicas < ActiveRecord::Migration
   def change
     create_table :consultas_odontologicas do |t|
-      t.integer :paciente_id                    ,null:false
       t.integer :area_id                        ,null:false
       t.integer :doctor_id                      ,null:false
+      t.integer :ficha_odontologica_id          ,null:false
       t.date    :fecha                          ,null:false
 
       t.string :motivo_consulta                ,limit: Domain::DESC250,  null: true
@@ -24,7 +24,7 @@ class CreateConsultasOdontologicas < ActiveRecord::Migration
       t.string :enfermedades_venereas          ,limit: Domain::DESC50,   null: true
       t.string :enfermedades_sanguineas        ,limit: Domain::DESC50,   null: true
       t.string :fumador                        ,limit: Domain::DESC50,   null: true
-      t.string :enfemedades_neurologicas       ,limit: Domain::DESC50,   null: true
+      t.string :enfermedades_neurologicas      ,limit: Domain::DESC50,   null: true
       t.string :menstruacion                   ,limit: Domain::DESC50,   null: true
       t.string :embarazada                     ,limit: Domain::DESC50,   null: true
       t.string :tiene_hijos                    ,limit: Domain::DESC50,   null: true
@@ -41,11 +41,9 @@ class CreateConsultasOdontologicas < ActiveRecord::Migration
 
       t.timestamps null: false
     end
-      add_foreign_key(:consultas_odontologicas, :pacientes, column: 'paciente_id', on_delete: :restrict)
       add_foreign_key(:consultas_odontologicas, :areas, column: 'area_id', on_delete: :restrict)
 
-    add_index :consultas_odontologicas, :paciente_id
-    add_index :consultas_odontologicas, :doctor_id
-    add_index :consultas_odontologicas, :area_id
+      add_index :consultas_odontologicas, :doctor_id
+      add_index :consultas_odontologicas, :area_id
   end
 end
