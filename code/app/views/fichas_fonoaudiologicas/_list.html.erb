@@ -26,7 +26,7 @@
 
           <%= link_to '<i class="fa fa-eye fa-lg" data-toggle="tooltip" title="Ver Ficha"></i> '.html_safe, ficha_fonoaudiologica_path(ficha), remote: true  %>
           <%= link_to '<i class="fa fa-edit fa-lg" data-toggle="tooltip" title="Editar Ficha"></i> '.html_safe,edit_ficha_fonoaudiologica_path(ficha), remote: true  %>
-          <%= link_to '<i class="fa fa-plus-square-o fa-lg" data-toggle="tooltip" title="Nueva Consulta"></i>'.html_safe, consultas_consulta_from_ficha_path(area: ficha.area_id, paciente: ficha.paciente_id, profesional: ficha.doctor_id), remote: true %>
+          <%= link_to '<i class="fa fa-plus-square-o fa-lg" data-toggle="tooltip" title="Nueva Consulta"></i>'.html_safe, consultas_consulta_from_ficha_path(area_id: ficha.area_id, paciente: ficha.paciente_id, profesional: ficha.doctor_id), remote: true %>
 
         </td>
       </tr>
