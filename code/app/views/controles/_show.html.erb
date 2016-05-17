@@ -2,7 +2,7 @@
   Control de <%=control.paciente_persona_full_name%>
 
   <div class="tool">
-     <%= link_to '<i class="fa fa-list" data-toggle="tooltip" data-placement="bottom" title="Lista de Controles"></i> '.html_safe, controles_path(area_id: area.id, paciente: paciente.id), remote:true%>
+
     <%= link_to '<i class="fa fa-plus-square" data-toggle="tooltip" title="Nuevo Control"></i> '.html_safe, new_control_path(paciente: paciente.id, area_id: control.area.id), remote: true %>
 
     <%= link_to '<i class="fa fa-edit" data-toggle="tooltip" title="Editar Control"></i> '.html_safe, edit_control_path(control), remote:true%>

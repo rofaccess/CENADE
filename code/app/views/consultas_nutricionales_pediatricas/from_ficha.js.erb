@@ -1,0 +1,8 @@
+
+$("#principal-content").html('<%= j render 'form',from_ficha: true, ficha: params[:ficha], consulta: @consulta, paciente: @paciente, doctores: @doctores, area: @area, formats: 'html' %>');
+
+$('.select-paciente').val("<%=j params[:ficha].to_s %>").trigger("change");//Establece como seleccionado un paciente especificado
+$('.select-paciente').attr("disabled","true");//Bloquea el select de paciente
+
+$('#consulta_ficha_id').val("<%=j params[:ficha].to_s %>");//Setea un hidden field con el id de paciente
+

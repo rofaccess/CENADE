@@ -1,1 +1,4 @@
 $("#principal-content-control").html('<%= j render 'show', area: @control.area, control: @control, controles: @controles, paciente: @control.paciente, formats: 'html' %>');
+$("#list").html('<%= j render 'list', controles: @controles, format: 'html'%>');
+
+$("#list-paginate").html('<%= j paginate(@controles, remote: true)%>');

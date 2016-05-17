@@ -17,7 +17,9 @@
 			<div class="row">
 
 				<%= consult.input :ficha_nutri_ped_id, collection: FichaNutricionalPediatrica.all.collect { |a| [a.paciente_persona_full_name, a.id] }, label: '* Paciente', wrapper_html: {class: 'col-md-4' },input_html: { class: 'required select-paciente select2 paciente-id', disabled: paciente.id.nil? ? false : true} %>
-
+				<% if from_ficha %>
+		          <%= consult.hidden_field :ficha_nutri_ped_id, :value => ficha%>
+		        <% end %>
 
 				<%= consult.input :doctor_id, collection: doctores.collect { |a| [a.abr_profesion+" "+a.persona_full_name, a.id] }, label: '* Profesional de la Salud', wrapper_html: { class: 'col-md-5' }, input_html:   { class: 'required select-doctor select2'} %>
 

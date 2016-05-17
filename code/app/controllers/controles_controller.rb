@@ -5,7 +5,7 @@ class ControlesController < ApplicationController
 
   before_action :set_submenu, only: [:edit, :update, :show, :index, :new]
   before_action :set_doctores, only: [:edit]
-
+  before_action :set_controles, only: [:show]
   respond_to :html, :js
 
   def set_submenu
@@ -27,9 +27,8 @@ class ControlesController < ApplicationController
   	respond_to do |format|
 		if @control.save
 
-			flash.now[:notice] = "Se ha guardado el control de #{@control.paciente_persona_full_name}."
-			format.html {render 'show'}
-      		format.js { render "show"}
+			#flash.now[:notice] = "Se ha guardado el control de #{@control.paciente_persona_full_name}."
+			format.html { redirect_to control_path(@control), notice: 'Control registrado exitosamente'}
 
 		else
 	      if @control.errors.full_messages.any?
@@ -51,9 +50,8 @@ class ControlesController < ApplicationController
   def update
   	respond_to do |format|
    		if @control.update(control_params)
-   			flash.now[:notice] = "Se ha actualizado el control de #{@control.paciente_persona_full_name}."
-   			format.html {render 'show'}
-        	format.js { render "show"}
+   			#flash.now[:notice] = "Se ha actualizado el control de #{@control.paciente_persona_full_name}."
+   			format.html { redirect_to control_path(@control), notice: 'Control actualizado exitosamente'}
    		else
         if @control.errors.full_messages.any?
           flash.now[:alert] = @control.errors.full_messages.first
@@ -69,7 +67,7 @@ class ControlesController < ApplicationController
   end
 
   def show
-    get_controles
+
   end
 
   def get_doctores
@@ -88,6 +86,13 @@ class ControlesController < ApplicationController
 
   def set_control
   	@control = Control.find(params[:id])
+  end
+
+  def set_controles
+
+    @search = Control.where(area_id: @control.area_id, paciente_id: @control.paciente_id).ransack(params[:q])
+    @controles= @search.result.page(params[:page])
+
   end
 
   def get_controles
