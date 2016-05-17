@@ -1,0 +1,45 @@
+<div class="page-title page-title-con-sidebar">
+      <%=control.id.nil? ? 'Nuevo Control' : 'Editar Control'%>
+
+      <div class="tool">
+         <% if !control.id.nil? %>
+          <%= link_to '<i class="fa fa-plus-square" data-toggle="tooltip" title="Nuevo Control"></i> '.html_safe, new_control_path(paciente: paciente.id, area_id: area.id), remote: true %>
+         <%end%>
+      </div>
+
+  </div>
+<div class="content content-consulta"%>
+  <div class="form-content">
+    <%= simple_form_for control, html: {class: 'form-controol'}, remote: true do |cont|%>
+
+      <h4 align= "center">Control de <%= paciente.persona_full_name%></h4></br>
+
+      <%= cont.hidden_field(:paciente_id, :value => paciente.id) %>
+      <%= cont.hidden_field(:area_id, :value => area.id) %>
+      <div class="row">
+
+        <%= cont.input :doctor_id, collection: doctores.collect { |a| [a.abr_profesion+" "+a.persona_full_name, a.id] }, label: '* Prof. de la Salud', wrapper_html: { class: 'col-md-8' }, input_html:  { class: 'required select-doctor select2'} %>
+
+        <%= cont.input :fecha, as: :string, label: '* Fecha', wrapper_html: { class: 'col-md-4'}, input_html: { class: 'datepicker dateLessSystemDate required', maxLength: Domain::FECHA, value:Formatter.format_date(control.fecha)} %>
+
+      </div>
+
+      <h4>Datos de Control</h4>
+      <hr>
+
+      <div class="row">
+
+        <%= cont.input :tratamiento, as: :text, label: 'Tratamiento', wrapper_html: { class: 'col-md-12'}, input_html: { maxLength: Domain::DESC300, rows: "3"} %>
+      </div>
+
+      <div class="row">
+         <%= cont.input :observaciones, as: :text, label: 'Observaciones', wrapper_html: { class: 'col-md-12'}, input_html: { maxLength: Domain::DESC300, rows: "2"} %>
+      </div>
+
+      <div class="form-button">
+        <%= cont.submit 'Guardar', class: 'btn btn-custom'%>
+      </div>
+
+    <% end %>
+  </div>
+ </div>

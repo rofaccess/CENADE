@@ -4,6 +4,9 @@ class ConsultasNutricionalesPediatricasController < ApplicationController
 	#load_and_authorize_resource
   before_action :set_sidebar, only: [:edit, :new, :show, :index, :create, :update]
   before_action :set_submenu, only: [:edit, :update, :show, :index, :new, :create]
+  before_action :set_controles, only: [:show, :edit]
+  before_action :set_paciente, only: [:from_ficha]
+
   respond_to :html, :js
 
   def set_submenu
@@ -30,9 +33,7 @@ class ConsultasNutricionalesPediatricasController < ApplicationController
     #@paciente= @nutri_pediatrica.paciente
   	 respond_to do |format|
       if @consulta.save
-        flash.now[:notice] = 'Consulta registrada exitosamente'
-		format.html {render 'show'}
-        format.js { render "show"}
+		    format.html { redirect_to consulta_nutricional_pediatrica_path(@consulta), notice: 'Consulta registrada exitosamente'}
       else
         if @consulta.errors.full_messages.any?
           flash.now[:alert] = @consulta.errors.full_messages.first
@@ -50,14 +51,21 @@ class ConsultasNutricionalesPediatricasController < ApplicationController
   def edit
     get_doctores_nutricion
   end
+  #paciente para la llamada remota desde la ficha
+  def set_paciente
+     @paciente= FichaNutricionalPediatrica.find(params[:ficha]).paciente
+  end
+  #autocompleta campos como area y paciente si se llama a nuevo desde alguna ficha
+  def from_ficha
+     new
+  end
 
   def update
 
   	respond_to do |format|
       if @consulta.update_attributes(consulta_params)
-	        flash.now[:notice] = 'Consulta actualizada exitosamente'
-    		format.html {render 'show'}
-    	    format.js { render "show"}
+	        #flash.now[:notice] = 'Consulta actualizada exitosamente'
+    		  format.html { redirect_to consulta_nutricional_pediatrica_path(@consulta), notice: 'Consulta actualizada exitosamente'}
       else
 
         if @consulta.errors.full_messages.any?
@@ -92,6 +100,7 @@ class ConsultasNutricionalesPediatricasController < ApplicationController
     @consultas = @search.result.page(params[:page])
   end
 
+  #obtiene los doctores de nutrición
   def get_doctores_nutricion
 	@area = Area.find_by_nombre('Nutrición')
 	@doctores = Doctor.where(area_id: @area.id)
@@ -99,13 +108,17 @@ class ConsultasNutricionalesPediatricasController < ApplicationController
 
   #busca el paciente seleccionado en la base de datos
   def get_paciente
-    @paciente= Paciente.find(params[:id])
+    @paciente= FichaNutricionalPediatrica.find(params[:id]).paciente
   end
 
   #metodo creado para el filtro
   def buscar
     get_consultas
     render 'index'
+  end
+  #controles donde el area es nutricion y el paciente especificado
+  def set_controles
+    @controles= Control.where(area_id: @consulta.area_id, paciente_id: @consulta.ficha_nutricional_pediatrica.paciente).limit(9).order(id: :desc)
   end
 
   def check_paciente_has_ficha
@@ -116,11 +129,11 @@ class ConsultasNutricionalesPediatricasController < ApplicationController
 
   def set_consulta
   	@consulta= ConsultaNutricionalPediatrica.find(params[:id])
-    @paciente= Paciente.find(@consulta.paciente_id)
+    @paciente= @consulta.ficha_nutricional_pediatrica.paciente
   end
 
   def consulta_params
-  	params.require(:consulta_nutricional_pediatrica).permit(:area_id, :paciente_id, :doctor_id, :fecha, :sosten_cefalico,
+  	params.require(:consulta_nutricional_pediatrica).permit(:area_id,:ficha_nutri_ped_id, :paciente_id, :doctor_id, :fecha, :sosten_cefalico,
   		 :sento, :paro,:camino, :sigue_luz, :rie_llora, :busca_sonido, :emite_sonido, :habilidades, :mastica_deglute, :otros, :desayuno, :media_manana, :almuerzo,
   		 :merienda, :cena, :cargo_quien, :diarrea, :vomitos, :fiebre, :constipacion, :orina, :sudor, :problemas_respiratorios,
   		 :distension_abdominal, :otros2, :diagnostico, :peso, :talla, :pc, :imc, :cm)
