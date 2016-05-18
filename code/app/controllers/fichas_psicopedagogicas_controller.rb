@@ -2,6 +2,7 @@ class FichasPsicopedagogicasController < ApplicationController
 	before_action :set_submenu, only: [:edit, :new, :show, :index]
 	before_action :set_sidebar, only: [:edit, :new, :show, :index]
 	before_action :set_ficha, only: [:show, :edit, :update, :destroy]
+	before_action :set_consulta, only: [:show, :edit]
 
 	def set_submenu
   		@submenu_layout = 'layouts/submenu_fichas_consultas'
@@ -14,6 +15,10 @@ class FichasPsicopedagogicasController < ApplicationController
   	def set_ficha
 	  	@ficha= FichaPsicopedagogica.find(params[:id])
 	  	@paciente = Paciente.find(@ficha.paciente_id)
+  	end
+
+  	def set_consulta
+   	    @consultas= Consulta.where(area_id: @ficha.area_id, paciente_id: @ficha.paciente_id).limit(9).order(id: :desc)
   	end
 
 	def new

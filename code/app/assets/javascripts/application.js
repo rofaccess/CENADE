@@ -257,6 +257,16 @@ APP = {
         });
     },
 
+    /* Incializa el evento para mostrar y esconder el cuerpo de un panel al hacer
+     * doble click sobre cualquier parte del panel
+     * .panel-folding: es la clase que deberá tener el div que actua como panel
+     */
+    initPanelFolding: function(){
+        $(".panel-folding").dblclick(function(){
+            $(".panel-body", this).toggle();
+        });
+    },
+
     /* Ejecuta las funciones especificadas*/
     init: function() {
 		APP.initBuscador();
