@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  get 'historiales_fisioterapeuticos/print' => 'historiales_fisioterapeuticos#print'
   resources :historiales_fisioterapeuticos, only: [:index, :show]
 
   resources :controles, :except => [:destroy] do
@@ -28,6 +29,7 @@ Rails.application.routes.draw do
 
   get 'consultas_nutricionales_pediatricas/check_paciente_has_ficha' => 'consultas_nutricionales_pediatricas#check_paciente_has_ficha'
   get 'consultas_nutricionales_pediatricas/print_consulta'=>'consultas_nutricionales_pediatricas#print_consulta'
+  get 'consultas_nutricionales_pediatricas/from_ficha' => 'consultas_nutricionales_pediatricas#from_ficha'
   resources :consultas_nutricionales_pediatricas, :except => [:destroy] do
     collection do
       match 'buscar' => 'consultas_nutricionales_pediatricas#buscar', via: [:get, :post], as: :search

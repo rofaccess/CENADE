@@ -1,5 +1,5 @@
 <div class="page-title page-title-con-sidebar">
-  Consulta de <%=consulta.paciente_persona_full_name%>
+  Consulta de <%=paciente.persona_full_name%>
 
   <div class="tool">
     <%= link_to '<i class="fa fa-list data-toggle="tooltip" title="Lista de Consultas"></i> '.html_safe, consultas_nutricionales_pediatricas_path %>
@@ -114,9 +114,16 @@
 			<div class="row">
 				<%= consult.input :diagnostico, as: :text, label: 'Diagnóstico', wrapper_html: { class: 'col-md-12'},input_html: { disabled: true, :rows => 3} %>
 			</div>
-			<div class="form-button">
-				<%= link_to "Agregar Control", new_control_path(area_id: consulta.area_id, paciente: consulta.paciente_id), class: "btn btn-custom", remote: true %>
-			</div>
+			<div class="row">
+	     		 <div class="col-md-10">
+	        	 <h4>Controles</h4>
+	      		</div>
+	      		<div class="col-md-2">
+	         		<%= link_to "Agregar Control", new_control_path(area_id: consulta.area_id, paciente: paciente.id), class: "btn btn-custom", remote: true %>
+	      		</div>
+    		</div>
+    		<hr>
+    		<%=render 'controles/controles_tabs', controles: controles, paciente: paciente%>
 
 		<% end %>
 
@@ -125,6 +132,7 @@
 <script type="text/javascript">
 
 	consultasNutriPediatricasUI.initScript();
+	consultasUI.initConsultasTab();
 
 	<% if !flash.notice.blank? %>
 		var n = noty({text: '<%=notice%>', type: 'success'});

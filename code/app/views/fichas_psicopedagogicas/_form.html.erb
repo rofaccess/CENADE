@@ -12,7 +12,7 @@
 	<%= simple_form_for ficha, html: {class: 'form-ficha'} do |f|%>
 	<%= hidden_field_tag :ficha_id, ficha.id, class: 'ficha-id'%>
 
-	<h4 class="titulo-ficha">FICHA PSICOPEDAGOGIA</h4>
+	<h4 class="titulo-ficha">FICHA PSICOPEDAGOGÍA</h4>
 	<div class="row">
 
 		<%= f.input :paciente_id, collection: Paciente.all.collect { |a| [a.persona_full_name, a.id] }, label: '* Paciente', wrapper_html: { class: paciente.id.nil? ? 'col-md-4' : 'col-md-5' }, input_html: { class: 'required select-paciente select2 uniquePacienteFicha paciente-id', disabled: paciente.id.nil? ? false : true} %>

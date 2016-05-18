@@ -122,7 +122,7 @@ class FichasNutricionalesPediatricasController < ApplicationController
 
   def set_ficha_nutri_pediatrica
   	@nutri_pediatrica= FichaNutricionalPediatrica.find(params[:id])
-    @paciente= Paciente.find(@nutri_pediatrica.ficha_nutricional_pediatrica.paciente_id)
+    @paciente= Paciente.find(@nutri_pediatrica.paciente_id)
   end
 
   def set_consulta

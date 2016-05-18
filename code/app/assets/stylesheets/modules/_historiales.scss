@@ -1,0 +1,63 @@
+/* Este archivo define el aspecto de los show de historial */
+$data-border-color: #CCCCCC;
+$panel-border-color: #999999;
+
+.historial-content{
+   background: white;
+   padding: 30px 20px 30px 20px; //Top Right Bottom Left
+}
+
+.historial-title{
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333333;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/* Aspecto de los paneles usados en el show de historial */
+.panel-historial{
+   border: 1px solid $panel-border-color;
+   .panel-heading{
+      font-weight: bold;
+      font-size: 18px;
+      border-bottom: 1px solid $panel-border-color;
+   }
+}
+
+/* Define el heading de un panel */
+.panel-heading-only{
+  font-weight: bold;
+  font-size: 18px;
+  color: #333333;
+  background-color: #f5f5f5;
+  padding: 10px 15px;
+  border: 1px solid $panel-border-color;
+  border-top-right-radius: 3px;
+  border-top-left-radius: 3px;
+  margin-bottom: 20px;
+}
+
+/* Define el aspecto de los datos mostrados en el show de historial */
+// Muestra el borde inferior, una linea debajo del dato mostrado
+.bottom-border{
+   border-bottom: 1px solid $data-border-color;
+   min-height: 22px;
+   word-break: break-all;
+}
+
+// Muestra todos los bordes, encuadra el dato mostrado
+.all-border{
+   border: 1px solid $data-border-color;
+   border-radius: 3px;
+   padding-left: 5px;
+   padding-right: 5px;
+   word-break: break-all;
+   min-height: 22px;
+}
+
+/* Muestra el borde superior */
+.top-border{
+   border-top: 1px solid $panel-border-color;
+   padding-top: 5px;
+}
