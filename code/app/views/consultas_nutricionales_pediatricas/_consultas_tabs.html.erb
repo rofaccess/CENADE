@@ -21,87 +21,87 @@
             <h4>II- Encargado</h4>
             <hr>
             <div class="row">
-                <%= consult.input :encargado, label: 'Nombres y Apellidos', wrapper_html: { class: 'col-md-12'},input_html: {disabled: true} %>
+                <%= consult.input :encargado, label: 'Nombres y Apellidos', wrapper_html: { class: 'col-md-12'},input_html: {disabled: true, value: consulta.encargado} %>
             </div>
 
             <h4>III- Valoración del desarrollo</h4>
             <hr>
             <div class="row">
-                <%= consult.input :sosten_cefalico, label: 'Sostén Cefálico', wrapper_html: { class: 'col-md-12'},input_html: {disabled: true} %>
+                <%= consult.input :sosten_cefalico, label: 'Sostén Cefálico', wrapper_html: { class: 'col-md-12'},input_html: {disabled: true, value: consulta.sosten_cefalico} %>
             </div>
             <div class="row">
-                <%= consult.input :sento, label: 'Se sentó a los:', wrapper_html: { class: 'col-md-4'},input_html: {disabled: true} %>
-                <%= consult.input :paro, label: 'Se paró a los:', wrapper_html: { class: 'col-md-4'},input_html: {disabled: true} %>
-                <%= consult.input :camino, label: 'Caminó a los:', wrapper_html: { class: 'col-md-4'},input_html: {disabled: true} %>
+                <%= consult.input :sento, label: 'Se sentó a los:', wrapper_html: { class: 'col-md-4'},input_html: {disabled: true, value: consulta.sento} %>
+                <%= consult.input :paro, label: 'Se paró a los:', wrapper_html: { class: 'col-md-4'},input_html: {disabled: true, value: consulta.paro} %>
+                <%= consult.input :camino, label: 'Caminó a los:', wrapper_html: { class: 'col-md-4'},input_html: {disabled: true, value: consulta.camino} %>
             </div>
             <div class="row">
-                <%= consult.input :busca_sonido, label: 'Busca Sonido?', wrapper_html: { class: 'col-md-4'},input_html: {disabled: true} %>
-                <%= consult.input :emite_sonido, label: 'Emite Sonido?:', wrapper_html: { class: 'col-md-4'},input_html: {disabled: true} %>
-                <%= consult.input :rie_llora, label: 'Rie - Llora?:', wrapper_html: { class: 'col-md-4'},input_html: {disabled: true} %>
+                <%= consult.input :busca_sonido, label: 'Busca Sonido?', wrapper_html: { class: 'col-md-4'},input_html: {disabled: true, value: consulta.busca_sonido} %>
+                <%= consult.input :emite_sonido, label: 'Emite Sonido?:', wrapper_html: { class: 'col-md-4'},input_html: {disabled: true, value: consulta.emite_sonido} %>
+                <%= consult.input :rie_llora, label: 'Rie - Llora?:', wrapper_html: { class: 'col-md-4'},input_html: {disabled: true, value: consulta.rie_llora} %>
             </div>
             <div class="row">
-                <%= consult.input :sigue_luz, label: 'Sigue la luz u objetos coloridos?', wrapper_html: { class: 'col-md-5'},input_html: { disabled: true} %>
-                <%= consult.input :mastica_deglute, label: 'Mastica - Deglute?:', wrapper_html: { class: 'col-md-7'},input_html: {disabled: true} %>
+                <%= consult.input :sigue_luz, label: 'Sigue la luz u objetos coloridos?', wrapper_html: { class: 'col-md-5'},input_html: { disabled: true, value: consulta.sigue_luz} %>
+                <%= consult.input :mastica_deglute, label: 'Mastica - Deglute?:', wrapper_html: { class: 'col-md-7'},input_html: {disabled: true, value: consulta.mastica_deglute} %>
             </div>
             <div class="row">
-                <%= consult.input :habilidades, label: 'Habilidades presentes y/o ausentes para la edad', wrapper_html: { class: 'col-md-12'},input_html: {disabled: true} %>
+                <%= consult.input :habilidades, label: 'Habilidades presentes y/o ausentes para la edad', wrapper_html: { class: 'col-md-12'},input_html: {disabled: true, value: consulta.habilidades} %>
             </div>
             <div class="row">
-                <%= consult.input :otros, as: :text, label: 'Otros', wrapper_html: { class: 'col-md-12'},input_html: {disabled: true} %>
+                <%= consult.input :otros, as: :text, label: 'Otros', wrapper_html: { class: 'col-md-12'},input_html: {disabled: true, value: consulta.otros} %>
             </div>
             <h4>IV- Alimentación Actual</h4>
             <hr>
             <div class="row">
-                <%= consult.input :desayuno, label: 'Desayuno:', wrapper_html: { class: 'col-md-12'},input_html: {disabled: true} %>
+                <%= consult.input :desayuno, label: 'Desayuno:', wrapper_html: { class: 'col-md-12'},input_html: {disabled: true, value: consulta.desayuno} %>
             </div>
             <div class="row">
-                <%= consult.input :media_manana, label: 'Media mañana', wrapper_html: { class: 'col-md-12'},input_html: {disabled: true} %>
+                <%= consult.input :media_manana, label: 'Media mañana', wrapper_html: { class: 'col-md-12'},input_html: {disabled: true, value: consulta.media_manana} %>
             </div>
             <div class="row">
-                <%= consult.input :almuerzo, label: 'Almuerzo', wrapper_html: { class: 'col-md-12'},input_html: {disabled: true} %>
+                <%= consult.input :almuerzo, label: 'Almuerzo', wrapper_html: { class: 'col-md-12'},input_html: {disabled: true, value: consulta.almuerzo} %>
             </div>
             <div class="row">
-                <%= consult.input :merienda, label: 'Merienda', wrapper_html: { class: 'col-md-12'},input_html: {disabled: true} %>
+                <%= consult.input :merienda, label: 'Merienda', wrapper_html: { class: 'col-md-12'},input_html: {disabled: true, value: consulta.merienda} %>
             </div>
             <div class="row">
-                <%= consult.input :cena, label: 'Cena', wrapper_html: { class: 'col-md-12'},input_html: { disabled: true} %>
+                <%= consult.input :cena, label: 'Cena', wrapper_html: { class: 'col-md-12'},input_html: { disabled: true, value: consulta.cena} %>
             </div>
 
             <h4>V- Signos y/o Síntomas</h4>
             <hr>
             <div class="row">
-                <%= consult.input :diarrea, label: 'Diarrea', wrapper_html: { class: 'col-md-4'},input_html: {disabled: true} %>
-                <%= consult.input :vomitos, label: 'Vómitos', wrapper_html: { class: 'col-md-4'},input_html: {disabled: true} %>
-                <%= consult.input :fiebre, label: 'Fiebre', wrapper_html: { class: 'col-md-4'},input_html: {disabled: true} %>
+                <%= consult.input :diarrea, label: 'Diarrea', wrapper_html: { class: 'col-md-4'},input_html: {disabled: true, value: consulta.diarrea} %>
+                <%= consult.input :vomitos, label: 'Vómitos', wrapper_html: { class: 'col-md-4'},input_html: {disabled: true, value: consulta.vomitos} %>
+                <%= consult.input :fiebre, label: 'Fiebre', wrapper_html: { class: 'col-md-4'},input_html: {disabled: true, value: consulta.fiebre} %>
             </div>
             <div class="row">
-                <%= consult.input :problemas_respiratorios, label: 'Problemas Respiratorios', wrapper_html: { class: 'col-md-6'},input_html: {disabled: true} %>
-                <%= consult.input :distension_abdominal, label: 'Distención abdominal', wrapper_html: { class: 'col-md-6'},input_html: { disabled: true} %>
+                <%= consult.input :problemas_respiratorios, label: 'Problemas Respiratorios', wrapper_html: { class: 'col-md-6'},input_html: {disabled: true, value: consulta.problemas_respiratorios} %>
+                <%= consult.input :distension_abdominal, label: 'Distención abdominal', wrapper_html: { class: 'col-md-6'},input_html: { disabled: true, value: consulta.distension_abdominal} %>
             </div>
             <div class="row">
-                <%= consult.input :constipacion, label: 'Constipación', wrapper_html: { class: 'col-md-4'},input_html: {disabled: true} %>
-                <%= consult.input :orina, label: 'Orina', wrapper_html: { class: 'col-md-4'},input_html: {disabled: true} %>
-                <%= consult.input :sudor, label: 'Sudor', wrapper_html: { class: 'col-md-4'},input_html: { disabled: true} %>
+                <%= consult.input :constipacion, label: 'Constipación', wrapper_html: { class: 'col-md-4'},input_html: {disabled: true, value: consulta.constipacion} %>
+                <%= consult.input :orina, label: 'Orina', wrapper_html: { class: 'col-md-4'},input_html: {disabled: true, value: consulta.orina} %>
+                <%= consult.input :sudor, label: 'Sudor', wrapper_html: { class: 'col-md-4'},input_html: { disabled: true, value: consulta.sudor} %>
             </div>
             <div class="row">
-                <%= consult.input :otros2, label: 'Otros', wrapper_html: { class: 'col-md-12'},input_html: {disabled: true} %>
+                <%= consult.input :otros2, label: 'Otros', wrapper_html: { class: 'col-md-12'},input_html: {disabled: true, value: consulta.otros2} %>
             </div>
             <h4>VI- Datos Antropométricos</h4>
             <hr>
             <div class="row">
-                <%= consult.input :talla, label: 'Talla:', wrapper_html: { class: 'col-md-6'},input_html: {disabled: true} %>
-                <%= consult.input :peso, label: 'Peso:', wrapper_html: { class: 'col-md-6'},input_html: { disabled: true} %>
+                <%= consult.input :talla, label: 'Talla:', wrapper_html: { class: 'col-md-6'},input_html: {disabled: true, value: consulta.talla} %>
+                <%= consult.input :peso, label: 'Peso:', wrapper_html: { class: 'col-md-6'},input_html: { disabled: true, value: consulta.peso} %>
 
             </div>
             <div class="row">
-                <%= consult.input :pc, label: 'PC:', wrapper_html: { class: 'col-md-4'},input_html: { disabled: true} %>
-                <%= consult.input :imc, label: 'IMC:', wrapper_html: { class: 'col-md-4'},input_html: { disabled: true} %>
-                <%= consult.input :cm, label: 'CM:', wrapper_html: { class: 'col-md-4'},input_html: { disabled: true} %>
+                <%= consult.input :pc, label: 'PC:', wrapper_html: { class: 'col-md-4'},input_html: { disabled: true, value: consulta.pc} %>
+                <%= consult.input :imc, label: 'IMC:', wrapper_html: { class: 'col-md-4'},input_html: { disabled: true, value: consulta.imc} %>
+                <%= consult.input :cm, label: 'CM:', wrapper_html: { class: 'col-md-4'},input_html: { disabled: true, value: consulta.cm} %>
             </div>
             <h4>VII- Diagnóstico Médico</h4>
             <hr>
             <div class="row">
-                <%= consult.input :diagnostico, as: :text, label: 'Diagnóstico', wrapper_html: { class: 'col-md-12'},input_html: { disabled: true, :rows => 3} %>
+                <%= consult.input :diagnostico, as: :text, label: 'Diagnóstico', wrapper_html: { class: 'col-md-12'},input_html: { disabled: true,value: consulta.diagnostico, :rows => 3} %>
             </div>
 
             <%end%>
