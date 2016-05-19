@@ -1,0 +1,2 @@
+module ConsultasNutricionalesAdultosHelper
+end

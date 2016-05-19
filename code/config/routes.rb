@@ -1,5 +1,14 @@
 Rails.application.routes.draw do
 
+  get 'consultas_nutricionales_adultos/print_consulta'=>'consultas_nutricionales_adultos#print_consulta'
+  get 'consultas_nutricionales_adultos/from_ficha' => 'consultas_nutricionales_adultos#from_ficha'
+  resources :consultas_nutricionales_adultos, :except => [:destroy] do
+    collection do
+      match 'buscar' => 'consultas_nutricionales_adultos#buscar', via: [:get, :post], as: :search
+      get 'get_paciente' => 'consultas_nutricionales_adultos#get_paciente'
+    end
+  end
+
   get 'historiales_fisioterapeuticos/print' => 'historiales_fisioterapeuticos#print'
   resources :historiales_fisioterapeuticos, only: [:index, :show]
 
