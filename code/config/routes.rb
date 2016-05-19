@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  get 'historiales_fonoaudiologicos/print' => 'historiales_fonoaudiologicos#print'
+  resources :historiales_fonoaudiologicos, only: [:index, :show]
+
+  get 'historiales_psicopedagogicos/print' => 'historiales_psicopedagogicos#print'
+  resources :historiales_psicopedagogicos, only: [:index, :show]
 
   get 'historiales_fisioterapeuticos/print' => 'historiales_fisioterapeuticos#print'
   resources :historiales_fisioterapeuticos, only: [:index, :show]

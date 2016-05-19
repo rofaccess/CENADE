@@ -125,6 +125,7 @@ div.panel-heading, div.form-group{
   font-size: 14px;
   padding: 5px 10px;
   border: 1px solid $panel-border-color;
+  background-color: inherit; //Quita el color de fondo para renderizar más rápido
 }
 
 // Aspecto de los paneles usados
@@ -133,5 +134,9 @@ div.panel-heading, div.form-group{
    .panel-heading{
    	padding: 5px 10px;
       font-size: 14px;
+      background-color: inherit; //Quita el color de fondo para renderizar más rápido
+   }
+   .panel-body{
+      background-color: inherit;//Quita el color de fondo para renderizar más rápido
    }
 }

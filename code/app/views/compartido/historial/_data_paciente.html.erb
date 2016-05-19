@@ -2,29 +2,29 @@
    <div class="panel-heading">I - DATOS DEL/LA PACIENTE</div>
    <div class="panel-body">
       <div class="row">
-         <%= data('Nombre(s) y Apellido(s)', paciente.persona_full_name,'col-md-9') %>
-         <%= data('CI', paciente.persona_ci,'col-md-3') %>
+         <%= data_h('Nombre(s) y Apellido(s)', paciente.persona_full_name,'col-md-9') %>
+         <%= data_h('CI', paciente.persona_ci,'col-md-3') %>
       </div>
       <div class="row">
-         <%= data('Fecha de Nacimiento', date(paciente.persona_fecha_nacimiento),'col-md-3') %>
-         <%= data('Edad', paciente.persona_edad,'col-md-2') %>
-         <%= data('Sexo', paciente.persona_sexo,'col-md-4') %>
-         <%= data('Estado Civil', paciente.persona_estado_civil_descripcion,'col-md-3') %>
+         <%= data_h('Fecha de Nacimiento', date(paciente.persona_fecha_nacimiento),'col-md-3') %>
+         <%= data_h('Edad', paciente.persona_edad,'col-md-2') %>
+         <%= data_h('Sexo', paciente.persona_sexo,'col-md-4') %>
+         <%= data_h('Estado Civil', paciente.persona_estado_civil_descripcion,'col-md-3') %>
       </div>
       <div class="row">
-         <%= data('Nacionalidad', paciente.persona_nacionalidad,'col-md-3') %>
-         <%= data('Lugar de Nacimiento', paciente.lugar_nacimiento,'col-md-6') %>
-         <%= data('Fecha de Ingreso', date(paciente.fecha_ingreso),'col-md-3') %>
+         <%= data_h('Nacionalidad', paciente.persona_nacionalidad,'col-md-3') %>
+         <%= data_h('Lugar de Nacimiento', paciente.lugar_nacimiento,'col-md-6') %>
+         <%= data_h('Fecha de Ingreso', date(paciente.fecha_ingreso),'col-md-3') %>
       </div>
       <div class="row top-border">
-         <%= data('Dirección', paciente.persona_direccion,'col-md-12') %>
-         <%= data('Teléfono', paciente.persona_telefono,'col-md-4') %>
-         <%= data('Email', paciente.persona_email,'col-md-8') %>
+         <%= data_h('Dirección', paciente.persona_direccion,'col-md-12') %>
+         <%= data_h('Teléfono', paciente.persona_telefono,'col-md-4') %>
+         <%= data_h('Email', paciente.persona_email,'col-md-8') %>
       </div>
 
       <div class="row top-border">
-         <%= data('Profesión', paciente.profesion,'col-md-5') %>
-         <%= data('Lugar de Trabajo', paciente.lugar_trabajo,'col-md-7') %>
+         <%= data_h('Profesión', paciente.profesion,'col-md-5') %>
+         <%= data_h('Lugar de Trabajo', paciente.lugar_trabajo,'col-md-7') %>
       </div>
    </div>
 </div>

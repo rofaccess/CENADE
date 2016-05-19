@@ -110,9 +110,9 @@
 .sidebar-nav > .sidebar-brand {
     height: 50px;
     font-size: 16px;
-    line-height: 45px;
+    //line-height: 45px;//centra verticalmente
     color: #98A4AE;
-    padding-left: 50px;
+    font-weight: bold;
 }
 
 .sidebar-nav > .sidebar-brand a {
