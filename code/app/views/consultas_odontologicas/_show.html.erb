@@ -1,5 +1,5 @@
 <div class="page-title page-title-con-sidebar">
-  Consulta de <%=consulta.paciente_persona_full_name%>
+  Consulta de <%=paciente.persona_full_name%>
 
   <div class="tool">
     <%= link_to '<i class="fa fa-list data-toggle="tooltip" title="Lista de Consultas"></i> '.html_safe, consultas_odontologicas_path %>
@@ -58,19 +58,19 @@
       </div>
       <h5>Presenta algunas de éstas enfermedades?</h5>
       <div class ="row">
-        <%=consult.input :diabetes, as: :boolean, wrapper_html: { class: 'col-md-2'},input_html:{ checked: false }%>
-        <%=consult.input :tuberculosis, as: :boolean, wrapper_html: { class: 'col-md-3'}, input_html:{checked: false }%>
-        <%=consult.input :hepatitis, as: :boolean, wrapper_html: { class: 'col-md-3'}, input_html:{ checked: false }%>
-        <%=consult.input :artritis, as: :boolean,wrapper_html: { class: 'col-md-2'}, input_html:{ checked: false }%>
-        <%=consult.input :fumador, as: :boolean,wrapper_html: { class: 'col-md-2'}, input_html:{ checked: false}%>
+        <%=consult.input :diabetes, as: :boolean, wrapper_html: { class: 'col-md-2'},input_html:{ disabled: true }%>
+        <%=consult.input :tuberculosis, as: :boolean, wrapper_html: { class: 'col-md-3'}, input_html:{disabled: true }%>
+        <%=consult.input :hepatitis, as: :boolean, wrapper_html: { class: 'col-md-3'}, input_html:{ disabled: true }%>
+        <%=consult.input :artritis, as: :boolean,wrapper_html: { class: 'col-md-2'}, input_html:{ disabled: true }%>
+        <%=consult.input :fumador, as: :boolean,wrapper_html: { class: 'col-md-2'}, input_html:{ disabled: true}%>
 
       </div><br>
       <div class="row">
 
-        <%=consult.input :enfermedades_sanguineas, as: :boolean,label:'Enfermedades sanguíneas', wrapper_html: { class: 'col-md-3'}, input_html:{ checked: false }%>
-        <%=consult.input :enfermedades_neurologicas, as: :boolean,label:'Enfermedades neurológicas', wrapper_html: { class: 'col-md-3'}, input_html:{ checked: false }%>
-        <%=consult.input :enfermedades_renales, as: :boolean, wrapper_html: { class: 'col-md-3'}, input_html:{ checked: false }%>
-        <%=consult.input :enfermedades_venereas, as: :boolean,label:'Enfermedades venéreas',wrapper_html: { class: 'col-md-3'},disabled: false, input_html:{}%>
+        <%=consult.input :enfermedades_sanguineas, as: :boolean,label:'Enfermedades sanguíneas', wrapper_html: { class: 'col-md-3'}, input_html:{ disabled: true }%>
+        <%=consult.input :enfermedades_neurologicas, as: :boolean,label:'Enfermedades neurológicas', wrapper_html: { class: 'col-md-3'}, input_html:{ disabled: true }%>
+        <%=consult.input :enfermedades_renales, as: :boolean, wrapper_html: { class: 'col-md-3'}, input_html:{ disabled: true }%>
+        <%=consult.input :enfermedades_venereas, as: :boolean,label:'Enfermedades venéreas',wrapper_html: { class: 'col-md-3'},disabled: false, input_html:{disabled: true}%>
 
       </div>
       <div class ="row">

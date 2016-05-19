@@ -35,7 +35,7 @@
          <h4>Consultas</h4>
       </div>
       <div class="col-md-2">
-         <%= link_to "Agregar Consulta", new_consulta_odontologica_path(ficha: ficha.id), class: "btn btn-custom", remote: true %>
+         <%= link_to "Agregar Consulta", consultas_odontologicas_from_ficha_path(ficha: ficha.id), class: "btn btn-custom", remote: true %>
       </div>
     </div>
     <hr>
@@ -44,6 +44,8 @@
 </div>
 </div>
 <script type="text/javascript">
+	fichasOdontologicasUI.initScript();
+	consultasUI.initConsultasTab();
 	<% if !flash.notice.blank? %>
 		var n = noty({text: '<%=notice%>', type: 'success'});
 	<% end %>

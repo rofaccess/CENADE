@@ -42,6 +42,7 @@ class CreateConsultasOdontologicas < ActiveRecord::Migration
       t.timestamps null: false
     end
       add_foreign_key(:consultas_odontologicas, :areas, column: 'area_id', on_delete: :restrict)
+      add_foreign_key(:consultas_odontologicas, :fichas_odontologicas, column: 'ficha_odontologica_id', on_delete: :restrict)
 
       add_index :consultas_odontologicas, :doctor_id
       add_index :consultas_odontologicas, :area_id

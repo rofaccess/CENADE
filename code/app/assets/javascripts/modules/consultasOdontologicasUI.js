@@ -1,5 +1,23 @@
 var consultasOdontologicasUI = (function(){
   return {
+    getPaciente: function(options){
+      $(options.element).on("change", function(){
+        $.ajax({
+
+                  url: "/consultas_nutricionales_pediatricas/get_paciente",
+                  type: 'get',
+                  data: {
+                    id : $(this).val(),
+                    root: options.root
+                  },
+                  success: function(resp){
+
+                  }
+
+                });
+      });
+    },
+
 
     initScript: function(){
 
@@ -12,7 +30,7 @@ var consultasOdontologicasUI = (function(){
         //pacientesUI.initBuscarPaciente('.select-paciente');
         //empleadosUI.initBuscarDoctor('.select-doctor');
 
-        pacientesUI.getPaciente({element: '.select-paciente', root: 'consultas_odontologicas'});
+        consultasOdontologicasUI.getPaciente({element: '.select-paciente', root: 'consultas_odontologicas'});
 
       /* Valida el formulario antes de enviarlo */
       $('.nueva-consulta').validate();

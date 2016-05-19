@@ -4,7 +4,8 @@ class ConsultasOdontologicasController < ApplicationController
 	#load_and_authorize_resource
   before_action :set_sidebar, only: [:edit, :new, :show, :index]
   before_action :set_submenu, only: [:edit, :update, :show, :index, :new]
-  before_action :set_Titulo, only: [:show, :create, :update, :edit, :new, :print_ficha]
+  before_action :set_Titulo, only: [:show, :create, :update, :edit, :new, :print_ficha,:from_ficha]
+  before_action :set_paciente, only: [:from_ficha]
   respond_to :html, :js
 
   def set_submenu
@@ -35,24 +36,24 @@ class ConsultasOdontologicasController < ApplicationController
   	get_doctores_odontologia
   end
 
-    def create
-    respond_to do |format|
+   def create
     @consulta = ConsultaOdontologica.new(consulta_params)
-    if @consulta.save
-      flash.now[:notice] = "Se ha guardado la consulta de #{@consulta.paciente_persona_full_name}."
-      format.html {render 'show'}
-      format.js { render "show"}
-    else
-      if @consulta.errors.full_messages.any?
-          flash.now[:alert] = @consulta.errors.full_messages.first
+    #@paciente= @nutri_pediatrica.paciente
+     respond_to do |format|
+      if @consulta.save
+        format.html { redirect_to consulta_odontologica_path(@consulta), notice: 'Consulta registrada exitosamente'}
       else
-          flash.now[:alert] = "No se ha podido guardar la Consulta."
+        if @consulta.errors.full_messages.any?
+          flash.now[:alert] = @consulta.errors.full_messages.first
+        else
+          flash.now[:alert] = "No se ha podido guardar la Consulta"
+        end
+
+        format.html { render "edit"}
+        format.js { render "edit"}
+
       end
-      @paciente= @consulta.paciente
-      format.html { render "new"}
-      format.js { render "new"}
     end
-  end
   end
 
   def edit
@@ -61,11 +62,9 @@ class ConsultasOdontologicasController < ApplicationController
 
   def update
 
-  	respond_to do |format|
+    respond_to do |format|
       if @consulta.update_attributes(consulta_params)
-	        flash.now[:notice] = 'Consulta actualizada exitosamente'
-    		format.html {render 'show'}
-    	    format.js { render "show"}
+          format.html { redirect_to consulta_odontologica_path(@consulta), notice: 'Consulta actualizada exitosamente'}
       else
 
         if @consulta.errors.full_messages.any?
@@ -89,7 +88,7 @@ class ConsultasOdontologicasController < ApplicationController
     respond_to do |format|
       format.pdf do
         render :pdf => "Consulta",
-        :template => "consultas_odontologicas/print_ficha.pdf.erb",
+        :template => "consultas_odontologicas/print_consulta.pdf.erb",
         :layout => "pdf.html"
       end
     end
@@ -114,6 +113,15 @@ class ConsultasOdontologicasController < ApplicationController
   #busca el paciente seleccionado en la base de datos
   def get_paciente
     @paciente= FichaOdontologica.find(params[:id]).paciente
+  end
+
+    #paciente para la llamada remota desde la ficha
+  def set_paciente
+     @paciente= FichaOdontologica.find(params[:ficha]).paciente
+  end
+  #autocompleta campos como area y paciente si se llama a nuevo desde alguna ficha
+  def from_ficha
+     new
   end
 
   #metodo creado para el filtro

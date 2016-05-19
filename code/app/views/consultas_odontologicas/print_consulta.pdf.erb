@@ -5,29 +5,29 @@
 <div class="row">
 	<div class="form-group col-md-8">
 		<label class="control-label">Nombres y Apellidos:</label>
-		<div class="data"> <%=@consulta.paciente_persona_full_name%> </div>
+		<div class="data"> <%=@consulta.ficha_odontologica.paciente_persona_full_name%> </div>
 	</div>
 
 	<div class="form-group col-md-3">
 		<label class="control-label">Fecha de nac.:</label>
-		<div class="data"> <%=Formatter.format_date(@consulta.paciente_persona_fecha_nacimiento)%> </div>
+		<div class="data"> <%=Formatter.format_date(@consulta.ficha_odontologica.paciente_persona_fecha_nacimiento)%> </div>
 	</div>
 
 	<div class="form-group col-md-1">
 		<label class="control-label">Edad:</label>
-		<div class="data"> <%=@consulta.paciente_persona_edad%> </div>
+		<div class="data"> <%=@consulta.ficha_odontologica.paciente_persona_edad%> </div>
 	</div>
 </div>
 <div class="row">
 
 	<div class="form-group col-md-3">
 		<label class="control-label">Tel.:</label>
-		<div class="data"> <%=@consulta.paciente_persona_telefono%> </div>
+		<div class="data"> <%=@consulta.ficha_odontologica.paciente_persona_telefono%> </div>
 	</div>
 
 	<div class="form-group col-md-9">
 		<label class="control-label">Dirección:</label>
-		<div class="data"> <%=@consulta.paciente_persona_direccion%> </div>
+		<div class="data"> <%=@consulta.ficha_odontologica.paciente_persona_direccion%> </div>
 	</div>
 </div>
 </br>

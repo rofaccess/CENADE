@@ -18,7 +18,7 @@ class FichasOdontologicasController < ApplicationController
   	end
 
   	def set_consulta
-   	 @consultas= ConsultaOdontologica.where(area_id: @ficha.area_id, paciente_id: @ficha.paciente_id).limit(9).order(id: :desc)
+   	 @consultas= ConsultaOdontologica.where(ficha_odontologica_id: @ficha_id).limit(9).order(id: :desc)
  	end
 
 	def new

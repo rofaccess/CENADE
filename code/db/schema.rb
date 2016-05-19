@@ -806,6 +806,7 @@ ActiveRecord::Schema.define(version: 20160514052140) do
   add_foreign_key "consultas_nutricionales_pediatricas", "areas", on_delete: :restrict
   add_foreign_key "consultas_nutricionales_pediatricas", "fichas_nutricionales_pediatricas", column: "ficha_nutri_ped_id", on_delete: :restrict
   add_foreign_key "consultas_odontologicas", "areas", on_delete: :restrict
+  add_foreign_key "consultas_odontologicas", "fichas_odontologicas", on_delete: :restrict
   add_foreign_key "controles", "areas", on_delete: :restrict
   add_foreign_key "controles", "consultas_nutricionales_pediatricas", on_delete: :restrict
   add_foreign_key "controles", "pacientes", on_delete: :restrict

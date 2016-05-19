@@ -13,9 +13,9 @@
         <div id="tab-<%= consulta.id%>">
             <%= simple_fields_for :consulta do |consult| %>
                 <div class="row">
-              <h4 class="col-md-9"><strong>Profesional de la Salud: </strong> <%= consulta.doctor_abr_profesion+' '+consulta.doctor_persona_full_name%> </h4>
+              <h4 class="col-md-8"><strong>Profesional de la Salud: </strong> <%= consulta.doctor_abr_profesion+' '+consulta.doctor_persona_full_name%> </h4>
 
-              <h4 class="col-md-3"><strong> Fecha de Consulta: </strong> <%= Formatter.format_date(consulta.fecha)%> </h4>
+              <h4 class="col-md-4"><strong> Fecha de Consulta: </strong> <%= Formatter.format_date(consulta.fecha)%> </h4>
             </div>
               <div class="row">
                 <%= consult.input :motivo_consulta, as: :text, label: 'Motivo de Consulta', wrapper_html: { class: 'col-md-12'}, input_html: { disabled: true} %>

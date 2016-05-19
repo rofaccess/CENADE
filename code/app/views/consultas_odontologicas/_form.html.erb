@@ -16,6 +16,9 @@
       <div class="row">
 
         <%= consult.input :ficha_odontologica_id, collection: FichaOdontologica.all.collect { |a| [a.paciente_persona_full_name, a.id] }, label: '* Paciente', wrapper_html: {class: 'col-md-4' },input_html: { class: 'required select-paciente select2 paciente-id', disabled: paciente.id.nil? ? false : true} %>
+        <% if from_ficha %>
+              <%= consult.hidden_field :ficha_odontologica_id, :value => ficha%>
+        <% end %>
 
 
         <%= consult.input :doctor_id, collection: doctores.collect { |a| [a.abr_profesion+" "+a.persona_full_name, a.id] }, label: '* Profesional de la Salud', wrapper_html: { class: 'col-md-5' }, input_html:   { class: 'required select-doctor select2'} %>
@@ -57,19 +60,19 @@
       </div>
       <h5>Presenta algunas de éstas enfermedades?</h5>
       <div class ="row">
-        <%=consult.input :diabetes, as: :boolean, wrapper_html: { class: 'col-md-2'},input_html:{ checked:false }%>
-        <%=consult.input :tuberculosis, as: :boolean, wrapper_html: { class: 'col-md-3'}, input_html:{checked: false }%>
-        <%=consult.input :hepatitis, as: :boolean, wrapper_html: { class: 'col-md-3'}, input_html:{ checked: false }%>
-        <%=consult.input :artritis, as: :boolean,wrapper_html: { class: 'col-md-2'}, input_html:{ checked: false }%>
-        <%=consult.input :fumador, as: :boolean,wrapper_html: { class: 'col-md-2'}, input_html:{ checked: false}%>
+        <%=consult.input :diabetes, as: :boolean, wrapper_html: { class: 'col-md-2'},input_html:{ }%>
+        <%=consult.input :tuberculosis, as: :boolean, wrapper_html: { class: 'col-md-3'}, input_html:{ }%>
+        <%=consult.input :hepatitis, as: :boolean, wrapper_html: { class: 'col-md-3'}, input_html:{  }%>
+        <%=consult.input :artritis, as: :boolean,wrapper_html: { class: 'col-md-2'}, input_html:{ }%>
+        <%=consult.input :fumador, as: :boolean,wrapper_html: { class: 'col-md-2'}, input_html:{ }%>
 
       </div><br>
       <div class="row">
 
-        <%=consult.input :enfermedades_sanguineas, as: :boolean,label:'Enfermedades sanguíneas', wrapper_html: { class: 'col-md-3'}, input_html:{ checked: false }%>
-        <%=consult.input :enfermedades_neurologicas, as: :boolean,label:'Enfermedades neurológicas', wrapper_html: { class: 'col-md-3'}, input_html:{ checked: false }%>
-        <%=consult.input :enfermedades_renales, as: :boolean, wrapper_html: { class: 'col-md-3'}, input_html:{ checked: false}%>
-        <%=consult.input :enfermedades_venereas, as: :boolean,label:'Enfermedades venéreas',wrapper_html: { class: 'col-md-3'}, input_html:{ checked: false}%>
+        <%=consult.input :enfermedades_sanguineas, as: :boolean,label:'Enfermedades sanguíneas', wrapper_html: { class: 'col-md-3'}, input_html:{  }%>
+        <%=consult.input :enfermedades_neurologicas, as: :boolean,label:'Enfermedades neurológicas', wrapper_html: { class: 'col-md-3'}, input_html:{  }%>
+        <%=consult.input :enfermedades_renales, as: :boolean, wrapper_html: { class: 'col-md-3'}, input_html:{ }%>
+        <%=consult.input :enfermedades_venereas, as: :boolean,label:'Enfermedades venéreas',wrapper_html: { class: 'col-md-3'}, input_html:{}%>
 
       </div>
       <div class ="row">
@@ -116,7 +119,7 @@
         <%= consult.input :tratamiento,as: :text ,label: 'Tratamiento', wrapper_html: { class: 'col-md-12'},input_html: { maxLength: Domain::DESC250} %>
       </div>
       <div class="form-button">
-        <%= consult.submit 'Guardar', class: 'btn btn-custom'%>
+        <%= consult.submit 'Guardar', class: 'btn btn-custom',data: {disable_with: "Guardando..."}%>
       </div>
     <% end %>
   </div>
