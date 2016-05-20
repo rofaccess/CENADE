@@ -10,7 +10,7 @@
     </tr>
   </thead>
 
-  <% if @nutri_adultos.blank? %>
+  <% if nutri_adultos.blank? %>
     <tfoot>
       <tr>
         <th colspan="8" scope="col">No se encontraron coincidencias </th>
@@ -19,7 +19,7 @@
   <% end %>
 
   <tbody>
-    <% @nutri_adultos.each do |ficha| %>
+    <% nutri_adultos.each do |ficha| %>
     <tr>
       <td ><%=ficha.nro_ficha %></td>
       <td ><%=ficha.fecha.strftime("%d/%m/%Y") %></td>

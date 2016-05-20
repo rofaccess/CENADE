@@ -1,3 +1,3 @@
-$("#list").html('<%= j render partial: 'list', format: 'html'%>');
+$("#list").html('<%= j render partial: 'list',nutri_adultos: @nutri_adultos, format: 'html'%>');
 
 $("#list-paginate").html('<%= j paginate(@nutri_adultos, remote: true)%>');

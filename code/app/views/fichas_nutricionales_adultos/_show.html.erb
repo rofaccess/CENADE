@@ -1,24 +1,24 @@
 <div class="page-title page-title-con-sidebar">
-  Ficha de <%= @nutri_adulto.paciente_persona_full_name%>
+  Ficha de <%= nutri_adulto.paciente_persona_full_name%>
 
   <div class="tool">
     <%= link_to '<i class="fa fa-list data-toggle="tooltip" title="Lista de Fichas"></i> '.html_safe, fichas_nutricionales_adultos_path %>
     <%= link_to '<i class="fa fa-plus-square" data-toggle="tooltip" title="Nueva Ficha"></i> '.html_safe, new_ficha_nutricional_adulto_path, remote: true %>
-    <%= link_to '<i class="fa fa-edit" data-toggle="tooltip" title="Editar Ficha"></i> '.html_safe, edit_ficha_nutricional_adulto_path(@nutri_adulto), remote:true%>
-    <%= link_to '<i class="fa fa-print" data-toggle="tooltip" title="Imprimir Ficha"></i> '.html_safe, fichas_nutricionales_adultos_print_ficha_path(ficha_id: @nutri_adulto.id, :format => :pdf), target: '_blank'%>
+    <%= link_to '<i class="fa fa-edit" data-toggle="tooltip" title="Editar Ficha"></i> '.html_safe, edit_ficha_nutricional_adulto_path(nutri_adulto), remote:true%>
+    <%= link_to '<i class="fa fa-print" data-toggle="tooltip" title="Imprimir Ficha"></i> '.html_safe, fichas_nutricionales_adultos_print_ficha_path(ficha_id: nutri_adulto.id, :format => :pdf), target: '_blank'%>
   </div>
 
 </div>
 <div class="content">
   <div class="form-content">
     <%= simple_form_for @nutri_adulto, html: {class: 'form-ficha'} do |ficha|%>
-    <%= hidden_field_tag :ficha_id, @nutri_adulto.id, class: 'ficha-id'%>
+    <%= hidden_field_tag :ficha_id, nutri_adulto.id, class: 'ficha-id'%>
 
     <h4 class="titulo-ficha">FICHA NUTRICIONAL ADULTO</h4>
     <div class="row">
-      <h4 class="col-md-9"><strong>Profesional de la Salud: </strong> <%= @nutri_adulto.doctor.abr_profesion+' '+@nutri_adulto.doctor.persona_full_name%> </h4>
+      <h4 class="col-md-9"><strong>Profesional de la Salud: </strong> <%= nutri_adulto.doctor.abr_profesion+' '+nutri_adulto.doctor.persona_full_name%> </h4>
 
-      <h4 class="col-md-3"><strong> Fecha: </strong> <%= Formatter.format_date(@nutri_adulto.fecha)%> </h4>
+      <h4 class="col-md-3"><strong> Fecha: </strong> <%= Formatter.format_date(nutri_adulto.fecha)%> </h4>
     </div>
 
     <%= render 'form_paciente' %>
@@ -44,6 +44,17 @@
       <%= ficha.input :actuales, as: :text, label: 'Actuales del Paciente:' , wrapper_html: { class: 'col-md-12'}, input_html: {disabled: true} %>
 
     </div>
+    <div class="row">
+      <div class="col-md-10">
+         <h4>Consultas</h4>
+      </div>
+      <div class="col-md-2">
+         <%= link_to "Agregar Consulta", consultas_nutricionales_adultos_from_ficha_path(ficha: nutri_adulto.id), class: "btn btn-custom", remote: true %>
+      </div>
+    </div>
+    <hr>
+    <%=render 'consultas_nutricionales_pediatricas/consultas_tabs', consultas: consultas%>
+
 
 
   <% end %>

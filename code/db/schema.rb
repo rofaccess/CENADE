@@ -104,25 +104,48 @@ ActiveRecord::Schema.define(version: 20160519040322) do
     t.string   "suplementos",                 limit: 50
     t.string   "apetito",                     limit: 10
     t.string   "factores_apetito",            limit: 150
-    t.string   "alergia_intolerancia",        limit: 100
+    t.string   "alergia_intolerancia",        limit: 150
     t.string   "cae_cabello",                 limit: 10
-    t.string   "estado_bucal",                limit: 150
+    t.string   "estado_bucal",                limit: 250
     t.string   "orina_bien",                  limit: 50
-    t.string   "ir_cuerpo",                   limit: 10
-    t.string   "actividades_fisicas",         limit: 10
+    t.string   "ir_cuerpo",                   limit: 50
+    t.boolean  "actividades_fisicas"
     t.string   "tipo",                        limit: 100
-    t.string   "hs_act_fisicas",              limit: 10
+    t.string   "hs_act_fisicas",              limit: 50
     t.string   "frecuencia",                  limit: 50
     t.string   "actividad_laboral",           limit: 150
     t.string   "horas_laborales",             limit: 50
-    t.string   "vive_con",                    limit: 50
+    t.string   "vive_con",                    limit: 100
     t.string   "quien_prepara",               limit: 50
-    t.string   "que_elementos",               limit: 100
-    t.string   "toma_agua",                   limit: 50
-    t.string   "mastica_deglute",             limit: 100
-    t.string   "hora_acuesta",                limit: 150
+    t.string   "que_elementos",               limit: 150
+    t.string   "toma_agua",                   limit: 100
+    t.string   "mastica_deglute",             limit: 50
+    t.string   "dificultad_beber",            limit: 100
+    t.string   "hora_acuesta",                limit: 10
+    t.string   "hora_levanta",                limit: 10
+    t.string   "duerme_bien",                 limit: 50
     t.string   "habilidades",                 limit: 150
-    t.string   "tratamientos_cenade",         limit: 100
+    t.string   "tratamientos_cenade",         limit: 150
+    t.string   "alim_desayuno",               limit: 200
+    t.string   "alim_media",                  limit: 200
+    t.string   "alim_almuerzo",               limit: 200
+    t.string   "alim_merienda",               limit: 200
+    t.string   "alim_cena",                   limit: 200
+    t.string   "cant_desayuno",               limit: 50
+    t.string   "cant_media",                  limit: 50
+    t.string   "cant_almuerzo",               limit: 50
+    t.string   "cant_merienda",               limit: 50
+    t.string   "cant_cena",                   limit: 50
+    t.string   "modo_desayuno",               limit: 250
+    t.string   "modo_media",                  limit: 250
+    t.string   "modo_almuerzo",               limit: 250
+    t.string   "modo_merienda",               limit: 250
+    t.string   "modo_cena",                   limit: 250
+    t.string   "lugar_desayuno",              limit: 250
+    t.string   "lugar_media",                 limit: 250
+    t.string   "lugar_almuerzo",              limit: 250
+    t.string   "lugar_merienda",              limit: 250
+    t.string   "lugar_cena",                  limit: 250
     t.string   "indicaciones",                limit: 250
     t.datetime "created_at",                              null: false
     t.datetime "updated_at",                              null: false

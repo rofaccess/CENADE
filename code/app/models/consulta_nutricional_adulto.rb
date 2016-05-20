@@ -6,7 +6,7 @@ class ConsultaNutricionalAdulto < ActiveRecord::Base
 
  	belongs_to :user
 
- 	belongs_to :ficha_nutricional_adulto , :foreign_key => :ficha_id
+ 	belongs_to :ficha_nutricional_adulto , :foreign_key => :ficha_nutricional_adulto_id
 
  	has_many :controles
 

@@ -23,8 +23,8 @@
             <%=link_to 'Neurología', consultas_path(area_id: 4) %>
         </li>
 
-        <li class="<%= current_sidebar([consultas_path(area_id: 5, type: 'Adulto')])%>">
-            <%=link_to 'Nutricional Adulto', consultas_path(area_id: 5, type: 'Adulto') %>
+        <li class="<%= current_sidebar([consultas_nutricionales_adultos_path])%>">
+            <%=link_to 'Nutricional Adulto', consultas_nutricionales_adultos_path %>
         </li>
 
         <li class="<%= current_sidebar([consultas_nutricionales_pediatricas_path])%>">

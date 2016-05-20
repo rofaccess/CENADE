@@ -16,8 +16,8 @@
       <div class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
 
-          <li class="<%= current_submenu([welcome_index_fichas_path, fichas_fisioterapeuticas_adultos_path, ficha_fisioterapia_ninos_path, fichas_fonoaudiologicas_path, fichas_nutricionales_pediatricas_path, fichas_psicopedagogicas_path, fichas_pediatricas_path, fichas_odontologicas_path,fichas_neurologicas_path,fichas_clinicos_path])%>">
-            <%=link_to 'Fichas', welcome_index_fichas_path %>
+          <li class="<%= current_submenu([fichas_clinicos_path, fichas_fisioterapeuticas_adultos_path, ficha_fisioterapia_ninos_path, fichas_fonoaudiologicas_path, fichas_nutricionales_pediatricas_path, fichas_nutricionales_adultos_path, fichas_psicopedagogicas_path, fichas_pediatricas_path, fichas_odontologicas_path,fichas_neurologicas_path,fichas_clinicos_path])%>">
+            <%=link_to 'Fichas', fichas_clinicos_path %>
           </li>
 
          <li class="<%= current_submenu([welcome_index_atencion_profesional_path])%>">
@@ -28,7 +28,7 @@
           <!-- <li class="<%= current_submenu([consultas_path])%>">
             <%= link_to "Consultas", consultas_path %> -->
 
-           <li class="<%= current_submenu([consultas_path(area_id: 1), consultas_nutricionales_pediatricas_path])%>">
+           <li class="<%= current_submenu([consultas_path(area_id: 1), consultas_nutricionales_pediatricas_path, consultas_nutricionales_adultos_path])%>">
             <%= link_to "Consultas", consultas_path(area_id: 1) %>
 
           </li>

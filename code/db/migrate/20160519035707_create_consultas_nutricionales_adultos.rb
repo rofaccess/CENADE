@@ -22,26 +22,50 @@ class CreateConsultasNutricionalesAdultos < ActiveRecord::Migration
       t.string :suplementos                     ,limit: Domain::DESC50,    null: true
       t.string :apetito                         ,limit: Domain::DESC10,    null: true
       t.string :factores_apetito                ,limit: Domain::DESC150,   null: true
-      t.string :alergia_intolerancia            ,limit: Domain::DESC100,   null: true
+      t.string :alergia_intolerancia            ,limit: Domain::DESC150,   null: true
       t.string :cae_cabello                     ,limit: Domain::DESC10,   null: true
-      t.string :estado_bucal                    ,limit: Domain::DESC150,   null: true
+      t.string :estado_bucal                    ,limit: Domain::DESC250,   null: true
       t.string :orina_bien                      ,limit: Domain::DESC50,   null: true
-      t.string :ir_cuerpo                       ,limit: Domain::DESC10,   null: true
-      t.string :actividades_fisicas             ,limit: Domain::DESC10,   null: true
+      t.string :ir_cuerpo                       ,limit: Domain::DESC50,   null: true
+      t.boolean :actividades_fisicas
       t.string :tipo                            ,limit: Domain::DESC100,   null: true
-      t.string :hs_act_fisicas                  ,limit: Domain::DESC10,   null: true
+      t.string :hs_act_fisicas                  ,limit: Domain::DESC50,   null: true
       t.string :frecuencia                      ,limit: Domain::DESC50,   null: true
       t.string :actividad_laboral               ,limit: Domain::DESC150,   null: true
       t.string :horas_laborales                 ,limit: Domain::DESC50,   null: true
-      t.string :vive_con                        ,limit: Domain::DESC50,   null: true
+      t.string :vive_con                        ,limit: Domain::DESC100,   null: true
       t.string :quien_prepara                   ,limit: Domain::DESC50,   null: true
-      t.string :que_elementos                   ,limit: Domain::DESC100,   null: true
-      t.string :toma_agua                       ,limit: Domain::DESC50,   null: true
-      t.string :mastica_deglute                 ,limit: Domain::DESC100,   null: true
-      t.string :hora_acuesta                    ,limit: Domain::DESC150,   null: true
+      t.string :que_elementos                   ,limit: Domain::DESC150,   null: true
+      t.string :toma_agua                       ,limit: Domain::DESC100,   null: true
+      t.string :mastica_deglute                 ,limit: Domain::DESC50,   null: true
+      t.string :dificultad_beber                ,limit: Domain::DESC100,   null: true
+      t.string :hora_acuesta                    ,limit: Domain::DESC10,   null: true
+      t.string :hora_levanta                    ,limit: Domain::DESC10,   null: true
+      t.string :duerme_bien                     ,limit: Domain::DESC50,   null: true
       t.string :habilidades                     ,limit: Domain::DESC150,   null: true
-      t.string :tratamientos_cenade             ,limit: Domain::DESC100,   null: true
+      t.string :tratamientos_cenade             ,limit: Domain::DESC150,   null: true
+      t.string :alim_desayuno                   ,limit: Domain::DESC200,   null: true
+      t.string :alim_media                      ,limit: Domain::DESC200,   null: true
+      t.string :alim_almuerzo                   ,limit: Domain::DESC200,   null: true
+      t.string :alim_merienda                   ,limit: Domain::DESC200,   null: true
+      t.string :alim_cena                       ,limit: Domain::DESC200,   null: true
+      t.string :cant_desayuno                   ,limit: Domain::DESC50,   null: true
+      t.string :cant_media                      ,limit: Domain::DESC50,   null: true
+      t.string :cant_almuerzo                   ,limit: Domain::DESC50,   null: true
+      t.string :cant_merienda                   ,limit: Domain::DESC50,   null: true
+      t.string :cant_cena                       ,limit: Domain::DESC50,   null: true
+      t.string :modo_desayuno                   ,limit: Domain::DESC250,   null: true
+      t.string :modo_media                      ,limit: Domain::DESC250,   null: true
+      t.string :modo_almuerzo                   ,limit: Domain::DESC250,   null: true
+      t.string :modo_merienda                   ,limit: Domain::DESC250,   null: true
+      t.string :modo_cena                       ,limit: Domain::DESC250,   null: true
+      t.string :lugar_desayuno                  ,limit: Domain::DESC250,   null: true
+      t.string :lugar_media                     ,limit: Domain::DESC250,   null: true
+      t.string :lugar_almuerzo                  ,limit: Domain::DESC250,   null: true
+      t.string :lugar_merienda                  ,limit: Domain::DESC250,   null: true
+      t.string :lugar_cena                      ,limit: Domain::DESC250,   null: true
       t.string :indicaciones                    ,limit: Domain::DESC250,   null: true
+
 
       t.timestamps null: false
     end

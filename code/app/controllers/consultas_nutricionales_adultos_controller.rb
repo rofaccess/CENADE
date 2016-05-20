@@ -25,7 +25,6 @@ class ConsultasNutricionalesAdultosController < ApplicationController
   	@consulta= ConsultaNutricionalAdulto.new
     # Para renderizar un formulario vacio de datos del paciente
     @paciente = Paciente.new
-    @consulta.build_recuento
   	get_doctores_nutricion
   end
 
@@ -37,13 +36,11 @@ class ConsultasNutricionalesAdultosController < ApplicationController
 		    format.html { redirect_to consulta_nutricional_adulto_path(@consulta), notice: 'Consulta registrada exitosamente'}
       else
         if @consulta.errors.full_messages.any?
-          flash.now[:alert] = @consulta.errors.full_messages.first
+          format.html { redirect_to consulta_nutricional_pediatrica_path(@consulta), notice: @consulta.errors.full_messages.first}
         else
-          flash.now[:alert] = "No se ha podido guardar la Consulta"
-        end
 
-        format.html { render "edit"}
-        format.js { render "edit"}
+          format.html { redirect_to consulta_nutricional_pediatrica_path(@consulta), notice: "No se ha podido guardar la Consulta"}
+        end
 
       end
     end
@@ -68,14 +65,12 @@ class ConsultasNutricionalesAdultosController < ApplicationController
 	        #flash.now[:notice] = 'Consulta actualizada exitosamente'
     		  format.html { redirect_to consulta_nutricional_adulto_path(@consulta), notice: 'Consulta actualizada exitosamente'}
       else
-
         if @consulta.errors.full_messages.any?
-          flash.now[:alert] = @consulta.errors.full_messages.first
+          format.html { redirect_to consulta_nutricional_pediatrica_path(@consulta), notice: @consulta.errors.full_messages.first}
         else
-          flash.now[:alert] = "No se ha podido guardar la Consulta"
+
+          format.html { redirect_to consulta_nutricional_pediatrica_path(@consulta), notice: "No se ha podido guardar la Consulta"}
         end
-        format.html { render "edit"}
-        format.js { render "edit"}
       end
     end
   end
@@ -119,7 +114,7 @@ class ConsultasNutricionalesAdultosController < ApplicationController
   end
   #controles donde el area es nutricion y el paciente especificado
   def set_controles
-    @controles= Control.where(area_id: @consulta.area_id, paciente_id: @consulta.ficha_nutricional_adulto.paciente).limit(9).order(id: :desc)
+    @controles= Control.where(area_id: @consulta.ficha_nutricional_adulto.area_id, paciente_id: @consulta.ficha_nutricional_adulto.paciente).limit(9).order(id: :desc)
   end
 
   def check_paciente_has_ficha
@@ -139,9 +134,10 @@ class ConsultasNutricionalesAdultosController < ApplicationController
   		:cir_muneca, :circ_brazo, :circ_cintura, :imc, :evaluacion, :medicamentos, :suplementos, :apetito,
   		:factores_apetito, :alergia_intolerancia, :cae_cabello, :estado_bucal, :orina_bien, :ir_cuerpo,
   		:actividades_fisicas, :tipo, :hs_act_fisicas, :frecuencia, :actividad_laboral, :horas_laborales,
-  		:vive_con, :quien_prepara, :que_elementos, :toma_agua, :mastica_deglute, :hora_acuesta, :habilidades,
-  		:tratamientos_cenade, :indicaciones, recuento_attributes: [:id, :consulta_nutricional_adulto_id,
-  			:comidas_turnos, :hora, :alimentos, :cantidad, :modo_preparacion, :lugar_consumo]))
+  		:vive_con, :quien_prepara, :que_elementos, :toma_agua, :mastica_deglute, :dificultad_beber, :hora_acuesta,
+      :hora_levanta, :duerme_bien, :habilidades, :tratamientos_cenade, :alim_desayuno, :alim_media, :alim_almuerzo,
+      :alim_merienda, :alim_cena, :cant_desayuno, :cant_media, :cant_almuerzo, :cant_merienda, :cant_cena,
+      :modo_desayuno, :modo_media, :modo_almuerzo, :modo_merienda, :modo_cena, :lugar_desayuno, :lugar_media, :lugar_almuerzo, :lugar_merienda, :lugar_cena, :indicaciones)
   end
 end
 
