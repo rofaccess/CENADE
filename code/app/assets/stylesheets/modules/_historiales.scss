@@ -23,13 +23,24 @@ $panel-background-color: #F5F5F5;
    border: 1px solid $panel-border-color;
    border-radius: 4px;
    margin-bottom: 20px;
-   .panel-heading{
+    .panel-heading{
       font-weight: bold;
       font-size: 18px;
       border-bottom: 1px solid $panel-border-color;
       background-color: $panel-background-color;
       color: #333333;
-   }
+    }
+    .panel-body{
+      h4{
+        color: gray;
+        font-size: 16px;
+      }
+      hr {
+        color: #333333;
+        margin-top: 5px;
+        margin-bottom: 10px;
+      }
+    }
 }
 
 /* Define el aspecto de los datos mostrados en el show de historial */

@@ -2,6 +2,7 @@
    <%= h_panel_head('IV - FICHA PEDIÁTRICA (No tiene)') %>
 <% else %>
 <%= h_panel('IV - FICHA PEDIÁTRICA')%>
+   <div class="row">
       <%= h_data('Control Prenatal', ficha_ped.control_embarazo,'col-md-9') %>
       <%= h_data('Edad Gestacional', ficha_ped.edad_gestacional,'col-md-3') %>
 
@@ -12,5 +13,6 @@
       <%= h_data('Antecedentes Familiares', ficha_ped.antecedentes_familiares,'col-md-12') %>
 
       <%= h_data_text('Condiciones Generales del Recién Nacido', ficha_ped.condicion_general,'col-md-12') %>
+   </div>
 <%= h_panel_end %>
 <% end %>

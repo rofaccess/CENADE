@@ -2,6 +2,7 @@
    <%= h_panel_head('IV - FICHA ADULTO (No tiene)') %>
 <% else %>
 <%= h_panel('IV - FICHA ADULTO')%>
+   <div class="row">
       <%= h_data('Encargado', ficha_ad.encargado,'col-md-12') %>
 
       <%= h_data_text('Medicamentos', ficha_ad.medicamentos,'col-md-12') %>
@@ -11,5 +12,6 @@
       <%= h_data_text('Antecedente Hereditario', ficha_ad.antecedente_hereditario,'col-md-12') %>
 
       <%= h_data_text('Condición General del Paciente', ficha_ad.condicion_paciente,'col-md-12') %>
+   </div>
 <%= h_panel_end %>
 <% end %>

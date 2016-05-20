@@ -2,9 +2,9 @@
    <%= h_panel_head('III - FICHA (No tiene)') %>
 <% else %>
    <%= h_panel('III - FICHA') %>
-
-      <%= h_data('Grado que Cursa', ficha.escolaridad,'col-md-4') %>
-      <%= h_data('Escuela', ficha.escuela,'col-md-8') %>
-
+      <div class="row">
+         <%= h_data('Grado que Cursa', ficha.escolaridad,'col-md-4') %>
+         <%= h_data('Escuela', ficha.escuela,'col-md-8') %>
+      </div>
    <%= h_panel_end %>
 <% end %>
