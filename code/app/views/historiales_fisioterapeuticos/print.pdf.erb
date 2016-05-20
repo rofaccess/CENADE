@@ -1,7 +1,9 @@
 <h4 class="historial-title">HISTORIAL DE FISIOTERAPIA</h4>
+<%= panel_head_h('II - DATOS DE LOS PADRES Y/O ENCARGADO') %>
+<%= panel_h('I - DATOS DEL/LA PACIENTE')%>
+   <%= render 'compartido/historial/data_paciente.html', paciente:   @paciente %>
+<%= panel_end_h %>
 
-<%= render 'compartido/historial/data_paciente.html', paciente:   @paciente %>
-<%= render 'compartido/historial/data_encargados.html', encargados: @paciente.encargado %>
-<%= render 'data_ficha_ped.html', ficha_ped:  @ficha_ped %>
-<%= render 'data_ficha_ad.html', ficha_ad:   @ficha_ad %>
-<%= render 'compartido/historial/data_consultas.html', consultas:  @consultas, num: 'V' %>
+ <%= render 'data_ficha_ped.html', ficha_ped:  @ficha_ped %>
+      <%= render 'data_ficha_ad.html', ficha_ad:   @ficha_ad %>
+      <%= render 'compartido/historial/data_consultas.html', consultas:  @consultas, num: 'V'%>

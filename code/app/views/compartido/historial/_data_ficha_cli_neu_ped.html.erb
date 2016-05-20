@@ -1,0 +1,20 @@
+<% if ficha.nil? %>
+   <div class="panel-heading-only">III - FICHA (No tiene)</div>
+<% else %>
+<div class="panel panel-default panel-historial panel-folding">
+   <div class="panel-heading">III - FICHA</div>
+   <div class="panel-body">
+     <div class="row">
+         <%= fich.input :p, label: 'P', wrapper_html: { class: 'col-md-2'}, input_html: { maxLength: Domain::DESC10} %>
+
+         <%= fich.input :a, label: 'A', wrapper_html: { class: 'col-md-2'}, input_html: { maxLength: Domain::DESC10} %>
+
+         <%= fich.input :pc1, label: 'PC', wrapper_html: { class: 'col-md-2'}, input_html: { maxLength: Domain::DESC10} %>
+
+         <%= fich.input :pt1, label: 'PT', wrapper_html: { class: 'col-md-2'}, input_html: { maxLength: Domain::DESC10} %>
+
+         <%= fich.input :pa, label: 'PA', wrapper_html: { class: 'col-md-2'}, input_html: { maxLength: Domain::DESC10} %>
+      </div>
+   </div>
+</div>
+<% end %>

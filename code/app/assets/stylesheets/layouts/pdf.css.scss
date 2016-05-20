@@ -120,23 +120,14 @@ div.panel-heading, div.form-group{
   font-size: 16px;
 }
 
-// Define el heading de un panel
-.panel-heading-only{
-  font-size: 14px;
-  padding: 5px 10px;
-  border: 1px solid $panel-border-color;
-  background-color: inherit; //Quita el color de fondo para renderizar más rápido
-}
-
 // Aspecto de los paneles usados
 .panel-historial{
-   border: 1px solid $panel-border-color;
+   //background-color: inherit;// Permite renderizar más rápido
+   //border-radius: 4px;
+   //-webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+   //box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
    .panel-heading{
    	padding: 5px 10px;
       font-size: 14px;
-      background-color: inherit; //Quita el color de fondo para renderizar más rápido
-   }
-   .panel-body{
-      background-color: inherit;//Quita el color de fondo para renderizar más rápido
    }
 }

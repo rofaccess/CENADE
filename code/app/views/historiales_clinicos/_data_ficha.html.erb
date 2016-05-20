@@ -1,0 +1,12 @@
+<% if ficha.nil? %>
+   <div class="panel-heading-only">III - FICHA (No tiene)</div>
+<% else %>
+<div class="panel panel-default panel-historial panel-folding">
+   <div class="panel-heading">III - FICHA</div>
+   <div class="panel-body">
+      <%= data_h('Grado que Cursa', ficha.escolaridad,'col-md-4') %>
+
+     <%= data_h('Escuela', ficha.escuela,'col-md-8') %>
+   </div>
+</div>
+<% end %>

@@ -1,4 +1,27 @@
-module DataHelper
+module HistorialHelper
+   def panel_h(panel_title)
+      html = ""
+      html << "<div class='panel panel-default panel-historial panel-folding'>"
+         html << "<div class='panel-heading'> #{panel_title} </div>"
+         html << "<div class='panel-body'>"
+      html.html_safe
+   end
+
+   def panel_head_h(panel_title)
+      html = ""
+         html << "<div class='panel panel-default panel-historial'>"
+            html << "<div class='panel-heading'>#{panel_title} (No tiene)</div>"
+         html << "</div>"
+      html.html_safe
+   end
+
+   def panel_end_h()
+      html = ""
+         html << "</div>"
+         html << "</div>"
+      html.html_safe
+   end
+
    # La h se refiere a que es exlusivo para el show e imprimir de historial clínico
 
    # Para los datos que tal vez tengan un borde inferior, todos o ningun borde

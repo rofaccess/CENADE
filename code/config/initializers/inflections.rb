@@ -49,6 +49,9 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
 	inflect.irregular 'historial_fisioterapeutico', 'historiales_fisioterapeuticos'
 	inflect.irregular 'historial_psicopedagogico', 'historiales_psicopedagogicos'
 	inflect.irregular 'historial_fonoaudiologico', 'historiales_fonoaudiologicos'
+	inflect.irregular 'historial_clinico', 'historiales_clinicos'
+	inflect.irregular 'historial_neurologico', 'historiales_neurologicos'
+	inflect.irregular 'historial_pediatrico', 'historiales_pediatricos'
 
 	inflect.irregular 'control', 'controles'
 end
