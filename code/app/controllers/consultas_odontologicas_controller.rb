@@ -25,6 +25,15 @@ class ConsultasOdontologicasController < ApplicationController
     @paciente= @consulta.ficha_odontologica.paciente
   end
 
+  #paciente para la llamada remota desde la ficha
+  def set_paciente
+     @paciente= FichaOdontologica.find(params[:ficha]).paciente
+  end
+  #autocompleta campos como area y paciente si se llama a nuevo desde alguna ficha
+  def from_ficha
+     new
+  end
+
   def index
   	get_consultas
   end
@@ -115,25 +124,10 @@ class ConsultasOdontologicasController < ApplicationController
     @paciente= FichaOdontologica.find(params[:id]).paciente
   end
 
-    #paciente para la llamada remota desde la ficha
-  def set_paciente
-     @paciente= FichaOdontologica.find(params[:ficha]).paciente
-  end
-  #autocompleta campos como area y paciente si se llama a nuevo desde alguna ficha
-  def from_ficha
-     new
-  end
-
   #metodo creado para el filtro
   def buscar
     get_consultas
     render 'index'
-  end
-
-
-  def set_ficha_odontologica
-  	@consulta= ConsultaOdontologica.find(params[:id])
-    @paciente= Paciente.find(@consulta.paciente_id)
   end
 
   def consulta_params

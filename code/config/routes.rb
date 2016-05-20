@@ -27,6 +27,16 @@ Rails.application.routes.draw do
     end
   end
 
+  get 'consultas_odontologicas/check_paciente_has_ficha' => 'consultas_odontologicas#check_paciente_has_ficha'
+  get 'consultas_odontologicas/print_consulta'=>'consultas_odontologicas#print_consulta'
+  get 'consultas_odontologicas/from_ficha' => 'consultas_odontologicas#from_ficha'
+  resources :consultas_odontologicas, :except => [:destroy] do
+    collection do
+      match 'buscar' =>'consultas_odontologicas#buscar', via: [:get, :post], as: :search
+      get 'get_paciente'=>'consultas_odontologicas#get_paciente'
+    end
+  end
+
   get 'consultas_nutricionales_pediatricas/check_paciente_has_ficha' => 'consultas_nutricionales_pediatricas#check_paciente_has_ficha'
   get 'consultas_nutricionales_pediatricas/print_consulta'=>'consultas_nutricionales_pediatricas#print_consulta'
   get 'consultas_nutricionales_pediatricas/from_ficha' => 'consultas_nutricionales_pediatricas#from_ficha'
@@ -119,15 +129,6 @@ Rails.application.routes.draw do
     end
   end
 
-  get 'consultas_odontologicas/check_paciente_has_ficha' => 'consultas_odontologicas#check_paciente_has_ficha'
-  get 'consultas_odontologicas/print_consulta'=>'consultas_odontologicas#print_consulta'
-  get 'consultas_odontologicas/from_ficha' => 'consultas_odontologicas#from_ficha'
-  resources :consultas_odontologicas do
-    collection do
-      match 'buscar' =>'consultas_odontologicas#buscar', via: [:get, :post], as: :search
-      get 'get_paciente'=>'consultas_odontologicas#get_paciente'
-    end
-  end
 
   get 'pacientes/new_modal' => 'pacientes#new_modal'
   post 'pacientes/recarga_paciente2' => 'pacientes#recarga_paciente2'

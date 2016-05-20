@@ -4,7 +4,7 @@ var consultasOdontologicasUI = (function(){
       $(options.element).on("change", function(){
         $.ajax({
 
-                  url: "/consultas_nutricionales_pediatricas/get_paciente",
+                  url: "/consultas_odontologicas/get_paciente",
                   type: 'get',
                   data: {
                     id : $(this).val(),
