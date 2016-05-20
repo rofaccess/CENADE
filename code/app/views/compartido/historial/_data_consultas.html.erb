@@ -1,26 +1,22 @@
 <% if consultas.blank? %>
-   <div class="panel-heading-only">V - CONSULTAS (No tiene)</div>
+   <%= h_panel_head("#{num} - CONSULTAS (No tiene)") %>
 <% else %>
-<div class="panel-heading-only">V - CONSULTAS</div>
+   <%= h_panel_head("#{num} - CONSULTAS") %>
+   <% i = consultas.size %>
 
-<% consultas.each do |consulta| %>
-   <div class="panel panel-default panel-historial panel-folding">
-      <div class="panel-heading">
-         <%= consulta.doctor_abr_profesion%>
-         <%= consulta.doctor_persona_full_name%>
-         <label class="pull-right"><%= date(consulta.fecha)%></label>
-      </div>
-      <div class="panel-body">
-         <%= data_text('Motivo de Consulta', consulta.motivo_consulta,'col-md-12') %>
+   <% consultas.each do |consulta| %>
+      <%= h_panel("#{consulta.doctor_full_name} <label class='pull-right'>Consulta Nº #{i} - #{date(consulta.fecha)}</label>")%>
+         <div class="row">
+            <%= h_data_text('Motivo de Consulta', consulta.motivo_consulta,'col-md-12') %>
 
-         <%= data_text('Evaluación', consulta.evaluacion,'col-md-6') %>
-         <%= data_text('Tratamiento', consulta.tratamiento,'col-md-6') %>
+            <%= h_data_text('Evaluación', consulta.evaluacion,'col-md-6') %>
+            <%= h_data_text('Tratamiento', consulta.tratamiento,'col-md-6') %>
 
-         <%= data_text('Observaciones', consulta.observaciones,'col-md-12') %>
-
-      </div>
-   </div>
-<% end %>
+            <%= h_data_text('Observaciones', consulta.observaciones,'col-md-12') %>
+         </div>
+      <%= h_panel_end %>
+      <% i = i - 1 %>
+   <% end %>
 <% end %>
 
 

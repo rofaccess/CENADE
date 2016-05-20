@@ -1,6 +1,7 @@
 /* Este archivo define el aspecto de los show de historial */
 $data-border-color: #CCCCCC;
 $panel-border-color: #999999;
+$panel-background-color: #F5F5F5;
 
 .historial-content{
    background: white;
@@ -15,27 +16,31 @@ $panel-border-color: #999999;
   font-weight: bold;
 }
 
-/* Aspecto de los paneles usados en el show de historial */
+/* Aspecto de los paneles usados en el show de historial
+   Esta es una versión propia, no se usa el panel de bootstrap porque relantiza la impresión del pdf
+*/
 .panel-historial{
    border: 1px solid $panel-border-color;
-   .panel-heading{
+   border-radius: 4px;
+   margin-bottom: 20px;
+    .panel-heading{
       font-weight: bold;
       font-size: 18px;
       border-bottom: 1px solid $panel-border-color;
-   }
-}
-
-/* Define el heading de un panel */
-.panel-heading-only{
-  font-weight: bold;
-  font-size: 18px;
-  color: #333333;
-  background-color: #f5f5f5;
-  padding: 10px 15px;
-  border: 1px solid $panel-border-color;
-  border-top-right-radius: 3px;
-  border-top-left-radius: 3px;
-  margin-bottom: 20px;
+      background-color: $panel-background-color;
+      color: #333333;
+    }
+    .panel-body{
+      h4{
+        color: gray;
+        font-size: 16px;
+      }
+      hr {
+        color: #333333;
+        margin-top: 5px;
+        margin-bottom: 10px;
+      }
+    }
 }
 
 /* Define el aspecto de los datos mostrados en el show de historial */

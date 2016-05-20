@@ -1,4 +1,18 @@
 Rails.application.routes.draw do
+  get 'historiales_clinicos/print' => 'historiales_clinicos#print'
+  resources :historiales_clinicos, only: [:index, :show]
+
+  get 'historiales_neurologicos/print' => 'historiales_neurologicos#print'
+  resources :historiales_neurologicos, only: [:index, :show]
+
+  get 'historiales_pediatricos/print' => 'historiales_pediatricos#print'
+  resources :historiales_pediatricos, only: [:index, :show]
+
+  get 'historiales_fonoaudiologicos/print' => 'historiales_fonoaudiologicos#print'
+  resources :historiales_fonoaudiologicos, only: [:index, :show]
+
+  get 'historiales_psicopedagogicos/print' => 'historiales_psicopedagogicos#print'
+  resources :historiales_psicopedagogicos, only: [:index, :show]
 
   get 'historiales_fisioterapeuticos/print' => 'historiales_fisioterapeuticos#print'
   resources :historiales_fisioterapeuticos, only: [:index, :show]

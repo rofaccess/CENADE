@@ -1,0 +1,28 @@
+<div class="page-title page-title-con-sidebar">
+   Historiales de Psicopedagogía
+
+   <div class="tool">
+      <%= search_form_for @search, url: historiales_psicopedagogicos_path, class: 'buscador', remote: true do |f| %>
+      <div class="input-group">
+         <%= f.search_field :persona_nombre_or_persona_apellido_or_persona_ci_cont, placeholder: "Buscar por Nombre, Apellido o CI de Paciente", class: "form-control", autofocus: true%>
+         <span class="fa fa-search"></span>
+         <div class="input-group-btn">
+            <a></a>
+         </div>
+      </div>
+      <% end %>
+   </div>
+</div>
+
+<div class= "content">
+<div class="list-content">
+   <div id="list">
+      <%= render 'list', pacientes: @pacientes %>
+   </div>
+
+   <div id="list-paginate" >
+      <%= paginate @pacientes, remote: true %>
+   </div>
+</div>
+</div>
+
