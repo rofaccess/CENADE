@@ -1,13 +1,13 @@
 <div class="page-title page-title-con-sidebar">
    Historial Clínico
    <div class="tool">
-      <%= link_to '<i class="fa fa-list" data-toggle="tooltip" title="Lista de Historiales"></i>'.html_safe, historiales_clinicos_path %>
-      <%= link_to '<i class="fa fa-print"></i> '.html_safe, historiales_clinicos_print_path(id: paciente.id, :format => :pdf), target: '_blank'%>
+      <%= link_to '<i class="fa fa-list" data-toggle="tooltip" title="Lista de Historiales"></i>'.html_safe, historiales_neurologicos_path %>
+      <%= link_to '<i class="fa fa-print"></i> '.html_safe, historiales_neurologicos_print_path(id: paciente.id, :format => :pdf), target: '_blank'%>
    </div>
 </div>
 <div class="content content-historial">
    <div class="historial-content">
-      <h4 class="historial-title">CLÍNICO</h4>
+      <h4 class="historial-title">NEUROLOGÍA</h4>
 
       <%= render 'compartido/historial/data_paciente', paciente:   paciente %>
       <%= render 'compartido/historial/data_encargados', encargados: paciente.encargado %>

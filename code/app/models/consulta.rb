@@ -25,4 +25,6 @@ class Consulta < ActiveRecord::Base
 
 	delegate :nombre, to: :area, prefix: true, allow_nil: true
 
+   delegate :full_name, to: :doctor, prefix: true, allow_nil: true
+
 end

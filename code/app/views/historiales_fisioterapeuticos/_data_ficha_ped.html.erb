@@ -1,19 +1,16 @@
 <% if ficha_ped.nil? %>
-   <div class="panel-heading-only">III - FICHA PEDIÁTRICA (No tiene)</div>
+   <%= h_panel_head('IV - FICHA PEDIÁTRICA (No tiene)') %>
 <% else %>
-<div class="panel panel-default panel-historial panel-folding">
-   <div class="panel-heading">III - FICHA PEDIÁTRICA</div>
-   <div class="panel-body">
-      <%= data_h('Control Prenatal', ficha_ped.control_embarazo,'col-md-9') %>
-      <%= data_h('Edad Gestacional', ficha_ped.edad_gestacional,'col-md-3') %>
+<%= h_panel('IV - FICHA PEDIÁTRICA')%>
+      <%= h_data('Control Prenatal', ficha_ped.control_embarazo,'col-md-9') %>
+      <%= h_data('Edad Gestacional', ficha_ped.edad_gestacional,'col-md-3') %>
 
-      <%= data_h('Tipo de Parto', ficha_ped.tipo_parto,'col-md-6') %>
-      <%= data_h('Peso al Nacer', ficha_ped.peso_nacer,'col-md-3') %>
-      <%= data_h('APGAR', ficha_ped.apgar,'col-md-3') %>
+      <%= h_data('Tipo de Parto', ficha_ped.tipo_parto,'col-md-6') %>
+      <%= h_data('Peso al Nacer', ficha_ped.peso_nacer,'col-md-3') %>
+      <%= h_data('APGAR', ficha_ped.apgar,'col-md-3') %>
 
-      <%= data_h('Antecedentes Familiares', ficha_ped.antecedentes_familiares,'col-md-12') %>
+      <%= h_data('Antecedentes Familiares', ficha_ped.antecedentes_familiares,'col-md-12') %>
 
-      <%= data_text_h('Condiciones Generales del Recién Nacido', ficha_ped.condicion_general,'col-md-12') %>
-   </div>
-</div>
+      <%= h_data_text('Condiciones Generales del Recién Nacido', ficha_ped.condicion_general,'col-md-12') %>
+<%= h_panel_end %>
 <% end %>

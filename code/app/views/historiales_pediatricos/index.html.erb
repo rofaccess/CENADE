@@ -1,8 +1,8 @@
 <div class="page-title page-title-con-sidebar">
-   Historiales de Clínico
+   Historiales Clínicos
 
    <div class="tool">
-      <%= search_form_for @search, url: historiales_clinicos_path, class: 'buscador', remote: true do |f| %>
+      <%= search_form_for @search, url: historiales_pediatricos_path, class: 'buscador', remote: true do |f| %>
       <div class="input-group">
          <%= f.search_field :persona_nombre_or_persona_apellido_or_persona_ci_cont, placeholder: "Buscar por Nombre, Apellido o CI de Paciente", class: "form-control", autofocus: true%>
          <span class="fa fa-search"></span>

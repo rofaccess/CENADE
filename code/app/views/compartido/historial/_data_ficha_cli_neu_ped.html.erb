@@ -1,20 +1,15 @@
 <% if ficha.nil? %>
-   <div class="panel-heading-only">III - FICHA (No tiene)</div>
+   <%= h_panel_head('III - FICHA (No tiene)') %>
 <% else %>
-<div class="panel panel-default panel-historial panel-folding">
-   <div class="panel-heading">III - FICHA</div>
-   <div class="panel-body">
-     <div class="row">
-         <%= fich.input :p, label: 'P', wrapper_html: { class: 'col-md-2'}, input_html: { maxLength: Domain::DESC10} %>
+   <%= h_panel('III - FICHA') %>
 
-         <%= fich.input :a, label: 'A', wrapper_html: { class: 'col-md-2'}, input_html: { maxLength: Domain::DESC10} %>
+      <%= h_data('P', ficha.p,'col-md-2') %>
+      <%= h_data('A', ficha.a,'col-md-2') %>
+      <%= h_data('PC', ficha.pc1,'col-md-2') %>
+      <%= h_data('PT', ficha.pt1,'col-md-2') %>
+      <%= h_data('PA', ficha.pa,'col-md-2') %>
 
-         <%= fich.input :pc1, label: 'PC', wrapper_html: { class: 'col-md-2'}, input_html: { maxLength: Domain::DESC10} %>
-
-         <%= fich.input :pt1, label: 'PT', wrapper_html: { class: 'col-md-2'}, input_html: { maxLength: Domain::DESC10} %>
-
-         <%= fich.input :pa, label: 'PA', wrapper_html: { class: 'col-md-2'}, input_html: { maxLength: Domain::DESC10} %>
-      </div>
-   </div>
-</div>
+   <%= h_panel_end %>
 <% end %>
+
+

@@ -3,7 +3,7 @@
 @import "bootstrap";
 @import "bootstrap/variables";
 @import "bootstrap/mixins";
-@import "modules/historiales.scss";
+@import "modules/historiales";
 
 @include make-grid(sm);
 @include make-grid(md);
@@ -120,14 +120,11 @@ div.panel-heading, div.form-group{
   font-size: 16px;
 }
 
-// Aspecto de los paneles usados
+// Se modifica un poco el aspecto del panel al imprimir en pdf
 .panel-historial{
-   //background-color: inherit;// Permite renderizar más rápido
-   //border-radius: 4px;
-   //-webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
-   //box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
    .panel-heading{
    	padding: 5px 10px;
       font-size: 14px;
+      background-color: inherit;// Permite renderizar un poco más rápido el pdf
    }
 }
