@@ -11,7 +11,7 @@
 </div>
 <div class="content">
   <div class="form-content">
-    <%= simple_form_for @nutri_adulto, html: {class: 'form-ficha'} do |ficha|%>
+    <%= simple_form_for nutri_adulto, html: {class: 'form-ficha'} do |ficha|%>
     <%= hidden_field_tag :ficha_id, nutri_adulto.id, class: 'ficha-id'%>
 
     <h4 class="titulo-ficha">FICHA NUTRICIONAL ADULTO</h4>
@@ -21,27 +21,25 @@
       <h4 class="col-md-3"><strong> Fecha: </strong> <%= Formatter.format_date(nutri_adulto.fecha)%> </h4>
     </div>
 
-    <%= render 'form_paciente' %>
+    <%= render 'form_paciente', paciente: paciente %>
 
     <div class="row">
       <%= ficha.input :nro_hijos, label: 'N° Hijos'  , wrapper_html: { class: 'col-md-2'}, input_html: { disabled: true} %>
     </div>
 
     <h4>II- Antecedentes</h4>
-    <hr>
-    <div class="row col-md-12">
-      <h5>Familiares:</h5>
-    </div></br>
+    <hr></br>
+     <h4>Familiares</h4>
 
       <div class="row">
       <%= ficha.input :obesidad, label: 'Obesidad'  , wrapper_html: { class: 'col-md-3'}, input_html: {disabled: true} %>
       <%= ficha.input :dbt, label: 'DBT'  , wrapper_html: { class: 'col-md-3'}, input_html: { disabled: true} %>
       <%= ficha.input :hta, label: 'HTA'  , wrapper_html: { class: 'col-md-3'}, input_html: { disabled: true} %>
       <%= ficha.input :cardiopatias, label: 'Cardiopatías'  , wrapper_html: { class: 'col-md-3'}, input_html: { disabled: true} %>
-    </div>
-
+    </div></br>
+    <h4>Del Paciente</h4>
     <div class="row">
-      <%= ficha.input :actuales, as: :text, label: 'Actuales del Paciente:' , wrapper_html: { class: 'col-md-12'}, input_html: {disabled: true} %>
+      <%= ficha.input :actuales, as: :text, label: 'Actuales:' , wrapper_html: { class: 'col-md-12'}, input_html: {disabled: true} %>
 
     </div>
     <div class="row">
@@ -53,7 +51,7 @@
       </div>
     </div>
     <hr>
-    <%=render 'consultas_nutricionales_pediatricas/consultas_tabs', consultas: consultas%>
+    <%=render 'consultas_nutricionales_adultos/consultas_tabs', consultas: consultas%>
 
 
 
@@ -64,8 +62,8 @@
 
 <script type="text/javascript">
 
-
-
+  fichasNutriAdultosUI.initScript();
+  consultasUI.initConsultasTab();
   <% if !flash.notice.blank? %>
     var n = noty({text: '<%=notice%>', type: 'success'});
   <% end %>
