@@ -74,16 +74,20 @@
 				<%= consult.input :orina_bien, label: 'Orina bien ?', wrapper_html: { class: 'col-md-3'},input_html: { disabled: true} %>
 				<%= consult.input :ir_cuerpo, label: 'Va bien de cuerpo ?', wrapper_html: { class: 'col-md-9'},input_html: { disabled: true} %>
 			</div>
-			<div class="row">
-				<%= consult.input :actividades_fisicas, label: 'Realiza actividades físicas?', as: :boolean, checked_value: true, unchecked_value: false %>
-			</div>
-			<div class="hidden_actividades">
+			<% if consulta.actividades_fisicas %>
+				<div class="row">
+					<%= consult.input :actividades_fisicas, as: :string, label: 'Realiza actividades físicas?', wrapper_html: { class: 'col-md-4'}, input_html: { disabled: true, value: 'Sí'} %>
+				</div>
 				<div class="row">
 					<%= consult.input :tipo, label: 'Tipos', wrapper_html: { class: 'col-md-5'},input_html: {disabled: true} %>
 					<%= consult.input :hs_act_fisicas, label: 'Horas', wrapper_html: { class: 'col-md-3'},input_html: {disabled: true} %>
 					<%= consult.input :frecuencia, label: 'Frecuencias', wrapper_html: { class: 'col-md-4'},input_html: {disabled: true} %>
 				</div>
-			</div>
+			<%else%>
+				<div class="row">
+					<%= consult.input :actividades_fisicas, as: :string, label: 'Realiza actividades físicas?',wrapper_html: { class: 'col-md-4'}, input_html: { disabled: true, value: 'No'} %>
+				</div>
+			<%end%>
 			<div class="row">
 				<%= consult.input :actividad_laboral, label: 'Actividad Laboral:', wrapper_html: { class: 'col-md-9'},input_html: {disabled: true} %>
 				<%= consult.input :horas_laborales, label: 'Horas', wrapper_html: { class: 'col-md-3'},input_html: {disabled: true} %>
