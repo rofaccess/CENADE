@@ -4,7 +4,7 @@ class ConsultasOdontologicasController < ApplicationController
 	#load_and_authorize_resource
   before_action :set_sidebar, only: [:edit, :new, :show, :index]
   before_action :set_submenu, only: [:edit, :update, :show, :index, :new]
-  before_action :set_Titulo, only: [:show, :create, :update, :edit, :new, :print_ficha,:from_ficha]
+  before_action :set_Titulo, only: [:show, :create, :update, :edit, :new, :print_consulta,:from_ficha]
   before_action :set_paciente, only: [:from_ficha]
   respond_to :html, :js
 
@@ -47,7 +47,6 @@ class ConsultasOdontologicasController < ApplicationController
 
    def create
     @consulta = ConsultaOdontologica.new(consulta_params)
-    #@paciente= @nutri_pediatrica.paciente
      respond_to do |format|
       if @consulta.save
         format.html { redirect_to consulta_odontologica_path(@consulta), notice: 'Consulta registrada exitosamente'}
@@ -91,7 +90,7 @@ class ConsultasOdontologicasController < ApplicationController
 
   end
 
-   def print_ficha
+   def print_consulta
     @consulta = ConsultaOdontologica.find params[:consulta_id]
 
     respond_to do |format|

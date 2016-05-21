@@ -23,7 +23,7 @@
 
         <%= consult.input :doctor_id, collection: doctores.collect { |a| [a.abr_profesion+" "+a.persona_full_name, a.id] }, label: '* Profesional de la Salud', wrapper_html: { class: 'col-md-5' }, input_html:   { class: 'required select-doctor select2'} %>
 
-        <%= consult.input :fecha, as: :string, label: '* Fecha', wrapper_html: { class: 'col-md-3'}, input_html: { class: 'datepicker required', maxLength: Domain::FECHA, value:Formatter.format_date(consulta.fecha)} %>
+        <%= consult.input :fecha, as: :string, label: '* Fecha', wrapper_html: { class: 'col-md-3'}, input_html: { class: 'datepicker required dateLessSystemDate', maxLength: Domain::FECHA, value:Formatter.format_date(consulta.fecha)} %>
       </div>
 
       <div id="paciente-data">
@@ -33,7 +33,7 @@
       <h4>Datos de Consulta</h4>
       <hr>
       <div class="row">
-        <%= consult.input :motivo_consulta, as: :text, label: 'Motivo de Consulta', wrapper_html: { class: 'col-md-12'}, input_html: { maxLength: Domain::DESC250, class: 'biglength', rows: "2"} %>
+        <%= consult.input :motivo_consulta, as: :text, label: 'Motivo de Consulta', wrapper_html: { class: 'col-md-12'}, input_html: { maxLength: Domain::DESC250, class: 'longString', rows: "2"} %>
       </div>
 
       <div class="row">
@@ -41,9 +41,9 @@
       </div>
 
       <div class="row">
-        <%= consult.input :servicio_cenade, as: :text, label: 'Servicio que utiliza en el CENADE', wrapper_html: { class: 'col-md-6'}, input_html: { maxLength: Domain::DESC300, class: 'biglength', rows: "2"} %>
+        <%= consult.input :servicio_cenade, as: :text, label: 'Servicio que utiliza en el CENADE', wrapper_html: { class: 'col-md-6'}, input_html: { maxLength: Domain::DESC250, class: 'longString', rows: "2"} %>
 
-        <%= consult.input :medicacion_actual, as: :text, label: 'Medicacion Actual', wrapper_html: { class: 'col-md-6'}, input_html: { maxLength: Domain::DESC250, class: 'maxlengthBig2', rows: "2"} %>
+        <%= consult.input :medicacion_actual, as: :text, label: 'Medicacion Actual', wrapper_html: { class: 'col-md-6'}, input_html: { maxLength: Domain::DESC250, class: 'longString', rows: "2"} %>
       </div>
       <h5>Es alérgico o ha reaccionado de manera adversa a:?</h5>
       <div class="row">
@@ -116,7 +116,7 @@
         <%= consult.input :otros_examenes, label: 'Otros Exámenes', wrapper_html: { class: 'col-md-12'},input_html: { maxLength: Domain::DESC50} %>
       </div>
       <div class="row">
-        <%= consult.input :tratamiento,as: :text ,label: 'Tratamiento', wrapper_html: { class: 'col-md-12'},input_html: { maxLength: Domain::DESC250} %>
+        <%= consult.input :tratamiento,as: :text ,label: 'Tratamiento', wrapper_html: { class: 'col-md-12'},input_html: { maxLength: Domain::DESC250,class:'longString', rows: "3"} %>
       </div>
       <div class="form-button">
         <%= consult.submit 'Guardar', class: 'btn btn-custom',data: {disable_with: "Guardando..."}%>

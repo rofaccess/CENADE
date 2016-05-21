@@ -3,6 +3,11 @@ class FichasOdontologicasController < ApplicationController
 	before_action :set_sidebar, only: [:edit, :new, :show, :index]
 	before_action :set_ficha, only: [:show, :edit, :update]
 	before_action :set_consulta, only: [:show, :edit]
+	before_action :set_Titulo, only: [:show, :create, :update, :edit, :new, :print_ficha]
+
+	def set_Titulo
+   	 @titulos_largos= TituloLargo.all
+  	end
 
 	def set_submenu
   		@submenu_layout = 'layouts/submenu_fichas_consultas'
@@ -18,7 +23,7 @@ class FichasOdontologicasController < ApplicationController
   	end
 
   	def set_consulta
-   	 @consultas= ConsultaOdontologica.where(ficha_odontologica_id: @ficha_id).limit(9).order(id: :desc)
+   	 @consultas= ConsultaOdontologica.where(ficha_odontologica_id: @ficha.id).limit(9).order(id: :desc)
  	end
 
 	def new
