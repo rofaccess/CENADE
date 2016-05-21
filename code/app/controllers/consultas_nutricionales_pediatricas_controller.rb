@@ -85,7 +85,13 @@ class ConsultasNutricionalesPediatricasController < ApplicationController
       format.pdf do
         render :pdf => "Consulta",
         :template => "consultas_nutricionales_pediatricas/print_consulta.pdf.erb",
-        :layout => "pdf.html"
+        :layout => "pdf.html",
+        title:      'Consulta Nutricional Pediátrica',
+          footer: {
+          center: '[page] de [topage]',
+          right:  "#{Formatter.format_datetime(Time.now)}",
+          left:   "CI Nº: #{@consulta.ficha_nutricional_pediatrica.paciente_persona_ci}"
+      }
       end
     end
   end

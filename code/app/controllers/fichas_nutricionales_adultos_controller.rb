@@ -2,8 +2,8 @@ class FichasNutricionalesAdultosController < ApplicationController
 
   before_action :set_submenu, only: [:edit, :new, :show, :index, :create, :update]
   before_action :set_sidebar, only: [:edit, :new, :show, :index, :create, :update]
-  before_action :set_consulta, only: [:show, :edit]
-  before_action :set_ficha_nutri_adulto, only: [:show, :edit, :update]
+  #before_action :set_consulta, only: [:show, :edit]
+  before_action :set_ficha_nutri_adulto, only: [:show, :edit]
 
   def set_submenu
   	@submenu_layout = 'layouts/submenu_fichas_consultas'
@@ -80,7 +80,13 @@ class FichasNutricionalesAdultosController < ApplicationController
       format.pdf do
         render :pdf => "Ficha",
         :template => "fichas_nutricionales_adultos/print_ficha.pdf.erb",
-        :layout => "pdf.html"
+        :layout => "pdf.html",
+        title:      'Ficha Nutricional Adulto ',
+          footer: {
+          center: '[page] de [topage]',
+          right:  "#{Formatter.format_datetime(Time.now)}",
+          left:   "CI Nº: #{@nutri_adulto.paciente_persona_ci}"
+      }
       end
     end
   end
@@ -96,7 +102,7 @@ class FichasNutricionalesAdultosController < ApplicationController
   end
 
   def set_consulta
-    @consultas= ConsultaNutricionalAdulto.where(ficha_nutricional_adulto_id: @nutri_adulto.id).limit(9).order(id: :desc)
+    @consultas= ConsultaNutricionalAdulto.where(ficha_id: @nutri_adulto.id).limit(9).order(id: :desc)
   end
 
   #metodo creado para el filtro
@@ -114,6 +120,7 @@ class FichasNutricionalesAdultosController < ApplicationController
   def set_ficha_nutri_adulto
   	@nutri_adulto= FichaNutricionalAdulto.find(params[:id])
     @paciente= @nutri_adulto.paciente
+    @consultas= ConsultaNutricionalAdulto.where(ficha_nutricional_adulto_id: @nutri_adulto.id).limit(9).order(id: :desc)
   end
 
   def nutri_adulto_params

@@ -99,7 +99,7 @@
 				<%= consult.input :toma_agua, label: 'Cuántos litros de agua bebe?', wrapper_html: { class: 'col-md-12'},input_html: {disabled: true} %>
 			</div>
 			<div class="row">
-				<%= consult.input :mastica_deglute, label: 'Matica - Deglute', wrapper_html: { class: 'col-md-4'},input_html: { disabled: true} %>
+				<%= consult.input :mastica_deglute, label: 'Mastica - Deglute', wrapper_html: { class: 'col-md-4'},input_html: { disabled: true} %>
 				<%= consult.input :dificultad_beber, label: 'Dificultad para beber o absorber?', wrapper_html: { class: 'col-md-8'},input_html: {disabled: true} %>
 			</div>
 			<div class="row">
@@ -193,10 +193,17 @@
 			<div class="row">
 				<%= consult.input :indicaciones, as: :text, label: 'VIII- Indicaciones', wrapper_html: { class: 'col-md-12'},input_html: {disabled: true, :rows => 3} %>
 			</div>
+			<div class="row">
+	     		 <div class="col-md-10">
+	        	 <h4>Controles</h4>
+	      		</div>
+	      		<div class="col-md-2">
+	         		<%= link_to "Agregar Control", new_control_path(area_id: consulta.ficha_nutricional_adulto.area_id, paciente: paciente.id), class: "btn btn-custom", remote: true %>
+	      		</div>
+    		</div>
+    		<hr>
+    		<%=render 'controles/controles_tabs', controles: controles, paciente: paciente%>
 
-			<div class="form-button">
-				<%= consult.submit 'Guardar', class: 'btn btn-custom',data: {disable_with: "Guardando..."}%>
-			</div>
 
 		<% end %>
 
@@ -205,6 +212,8 @@
 <script type="text/javascript">
 
 	consultasNutriAdultosUI.initScript();
+	consultasUI.initConsultasTab();
+
 
 	<% if !flash.notice.blank? %>
 		var n = noty({text: '<%=notice%>', type: 'success'});

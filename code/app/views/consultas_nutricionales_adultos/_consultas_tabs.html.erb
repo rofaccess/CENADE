@@ -18,10 +18,6 @@
 			      <h4 class="col-md-3"><strong> Fecha: </strong> <%= Formatter.format_date(consulta.fecha)%> </h4>
 			    </div>
 
-				<div id="paciente-data">
-					<%= render 'form_paciente', paciente: paciente%>
-				</div></br>
-
 				<h4>II- Datos de la Consulta</h4>
 				<hr>
 				<div class="row">
@@ -92,7 +88,7 @@
 					<%= consult.input :toma_agua, label: 'Cuántos litros de agua bebe?', wrapper_html: { class: 'col-md-12'},input_html: {disabled: true, value: consulta.toma_agua} %>
 				</div>
 				<div class="row">
-					<%= consult.input :mastica_deglute, label: 'Matica - Deglute', wrapper_html: { class: 'col-md-4'},input_html: { disabled: true, value: consulta.mastica_deglute} %>
+					<%= consult.input :mastica_deglute, label: 'Mastica - Deglute', wrapper_html: { class: 'col-md-4'},input_html: { disabled: true, value: consulta.mastica_deglute} %>
 					<%= consult.input :dificultad_beber, label: 'Dificultad para beber o absorber?', wrapper_html: { class: 'col-md-8'},input_html: {disabled: true, value: consulta.dificultad_beber} %>
 				</div>
 				<div class="row">

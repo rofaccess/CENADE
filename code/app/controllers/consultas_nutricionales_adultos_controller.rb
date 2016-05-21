@@ -86,7 +86,13 @@ class ConsultasNutricionalesAdultosController < ApplicationController
       format.pdf do
         render :pdf => "Consulta",
         :template => "consultas_nutricionales_adultos/print_consulta.pdf.erb",
-        :layout => "pdf.html"
+        :layout => "pdf.html",
+        title:      'Consulta Nutricional Adulto',
+          footer: {
+          center: '[page] de [topage]',
+          right:  "#{Formatter.format_datetime(Time.now)}",
+          left:   "CI Nº: #{@consulta.ficha_nutricional_adulto.paciente_persona_ci}"
+      }
       end
     end
   end
@@ -114,7 +120,7 @@ class ConsultasNutricionalesAdultosController < ApplicationController
   end
   #controles donde el area es nutricion y el paciente especificado
   def set_controles
-    @controles= Control.where(area_id: @consulta.ficha_nutricional_adulto.area_id, paciente_id: @consulta.ficha_nutricional_adulto.paciente).limit(9).order(id: :desc)
+    @controles= Control.where(area_id: @consulta.ficha_nutricional_adulto.area_id, paciente_id: @consulta.ficha_nutricional_adulto.paciente_id).limit(9).order(id: :desc)
   end
 
   def check_paciente_has_ficha

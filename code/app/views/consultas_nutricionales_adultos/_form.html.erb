@@ -18,6 +18,10 @@
 
 				<%= consult.input :ficha_nutricional_adulto_id, collection: FichaNutricionalAdulto.all.collect { |a| [a.paciente_persona_full_name, a.id] }, label: '* Paciente', wrapper_html: {class: 'col-md-4' },input_html: { class: 'required select-paciente select2 paciente-id', disabled: paciente.id.nil? ? false : true} %>
 
+				<% if from_ficha %>
+		          <%= consult.hidden_field :ficha_nutricional_adulto_id, :value => ficha%>
+		        <% end %>
+
 				<%= consult.input :doctor_id, collection: doctores.collect { |a| [a.abr_profesion+" "+a.persona_full_name, a.id] }, label: '* Profesional de la Salud', wrapper_html: { class: 'col-md-5' }, input_html:   { class: 'required select-doctor select2'} %>
 
 				<%= consult.input :fecha, as: :string, label: '* Fecha', wrapper_html: { class: 'col-md-3'}, input_html: { class: 'datepicker required', maxLength: Domain::FECHA, value:Formatter.format_date(consulta.fecha)} %>
@@ -59,23 +63,23 @@
 				<%= consult.input :suplementos, label: 'Toma suplementos vitaminicos/minerales?:', wrapper_html: { class: 'col-md-7'},input_html: { maxLength: Domain::DESC50} %>
 			</div>
 			<div class="row">
-				<%= consult.input :apetito, label: 'Su apetito es:', wrapper_html: { class: 'col-md-3'},input_html: { maxLength: Domain::DESC10} %>
+				<%= consult.input :apetito, label: 'Su apetito es:', wrapper_html: { class: 'col-md-3'}, collection: [ "Bueno", "Regular", "Malo"] %>
 				<%= consult.input :factores_apetito, label: 'Factores que afectan el apetito:', wrapper_html: { class: 'col-md-9'},input_html: { maxLength: Domain::DESC150} %>
 			</div>
 			<div class="row">
 				<%= consult.input :alergia_intolerancia, label: 'Tiene alergia o intolerancia a algún alimento?', wrapper_html: { class: 'col-md-12'},input_html: { maxLength: Domain::DESC150} %>
 			</div>
 			<div class="row">
-				<%= consult.input :estado_bucal, as: :text, label: 'Estado bucal (dientes, lengua, paladar)', wrapper_html: { class: 'col-md-12'},input_html: {:rows => 2, maxLength: Domain::DESC250} %>
+				<%= consult.input :estado_bucal, as: :text, label: 'Estado bucal (dientes, lengua, paladar)', wrapper_html: { class: ' col-md-12'},input_html: {:rows => 2, maxLength: Domain::DESC250} %>
 			</div>
 			<div class="row">
 				<%= consult.input :orina_bien, label: 'Orina bien ?', wrapper_html: { class: 'col-md-3'},input_html: { maxLength: Domain::DESC50} %>
 				<%= consult.input :ir_cuerpo, label: 'Va bien de cuerpo ?', wrapper_html: { class: 'col-md-9'},input_html: { maxLength: Domain::DESC50} %>
 			</div>
 			<div class="row">
-				<%= consult.input :actividades_fisicas, label: 'Realiza actividades físicas?', as: :boolean, checked_value: true, unchecked_value: false %>
+				<%= consult.input :actividades_fisicas, label: 'Realiza actividades físicas', collection: [['Sí', true] ,['No', false]], wrapper_html: { class: ' col-md-12 show-actividad'}, as: :radio_buttons, item_label_class: "radio-inline" %>
 			</div>
-			<div class="hidden_actividades">
+			<div class="hide_actividades">
 				<div class="row">
 					<%= consult.input :tipo, label: 'Tipos', wrapper_html: { class: 'col-md-5'},input_html: { maxLength: Domain::DESC100} %>
 					<%= consult.input :hs_act_fisicas, label: 'Horas', wrapper_html: { class: 'col-md-3'},input_html: { maxLength: Domain::DESC10} %>
@@ -97,7 +101,7 @@
 				<%= consult.input :toma_agua, label: 'Cuántos litros de agua bebe?', wrapper_html: { class: 'col-md-12'},input_html: { maxLength: Domain::DESC100} %>
 			</div>
 			<div class="row">
-				<%= consult.input :mastica_deglute, label: 'Matica - Deglute', wrapper_html: { class: 'col-md-4'},input_html: { maxLength: Domain::DESC50} %>
+				<%= consult.input :mastica_deglute, label: 'Mastica - Deglute', wrapper_html: { class: 'col-md-4'},input_html: { maxLength: Domain::DESC50} %>
 				<%= consult.input :dificultad_beber, label: 'Dificultad para beber o absorber?', wrapper_html: { class: 'col-md-8'},input_html: { maxLength: Domain::DESC100} %>
 			</div>
 			<div class="row">
