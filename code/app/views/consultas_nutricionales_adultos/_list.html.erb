@@ -19,13 +19,13 @@
     <% consultas.each do |consulta| %>
     <tr>
       <td><%=consulta.fecha.strftime("%d/%m/%Y")%></td>
-      <td ><%=consulta.ficha_nutricional_pediatrica.paciente_persona_full_name %></td>
+      <td ><%=consulta.ficha_nutricional_adulto.paciente_persona_full_name %></td>
       <td ><%=consulta.doctor.persona_full_name %></td>
 
       <td class = "action">
 
-        <%= link_to '<i class="fa fa-eye fa-lg" data-toggle="tooltip" data-placement="bottom" title="Ver Consulta"></i> '.html_safe, consulta_nutricional_pediatrica_path(consulta), remote: true%>
-        <%= link_to '<i class="fa fa-edit fa-lg" data-toggle="tooltip" data-placement="bottom" title="Editar Consulta"></i> '.html_safe, edit_consulta_nutricional_pediatrica_path(consulta), remote: true%>
+        <%= link_to '<i class="fa fa-eye fa-lg" data-toggle="tooltip" data-placement="bottom" title="Ver Consulta"></i> '.html_safe, consulta_nutricional_adulto_path(consulta), remote: true%>
+        <%= link_to '<i class="fa fa-edit fa-lg" data-toggle="tooltip" data-placement="bottom" title="Editar Consulta"></i> '.html_safe, edit_consulta_nutricional_adulto_path(consulta), remote: true%>
 
       </td>
     </tr>

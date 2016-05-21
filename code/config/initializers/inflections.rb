@@ -43,6 +43,7 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
 	inflect.irregular 'ficha_neurologica', 'fichas_neurologicas'
 	inflect.irregular 'ficha_clinico', 'fichas_clinicos'
 	inflect.irregular 'consulta_nutricional_pediatrica', 'consultas_nutricionales_pediatricas'
+	inflect.irregular 'consulta_nutricional_adulto', 'consultas_nutricionales_adultos'
 	inflect.irregular 'ficha_nutricional_pediatrica', 'fichas_nutricionales_pediatricas'
 	inflect.irregular 'ficha_odontologica','fichas_odontologicas'
 
@@ -54,4 +55,5 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
 	inflect.irregular 'historial_pediatrico', 'historiales_pediatricos'
 
 	inflect.irregular 'control', 'controles'
+	inflect.irregular 'recuento', 'recuentos'
 end

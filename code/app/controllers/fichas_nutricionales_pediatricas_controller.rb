@@ -93,7 +93,13 @@ class FichasNutricionalesPediatricasController < ApplicationController
       format.pdf do
         render :pdf => "Ficha",
         :template => "fichas_nutricionales_pediatricas/print_ficha.pdf.erb",
-        :layout => "pdf.html"
+        :layout => "pdf.html",
+        title:      'Ficha Nutricional Pediátrica',
+          footer: {
+          center: '[page] de [topage]',
+          right:  "#{Formatter.format_datetime(Time.now)}",
+          left:   "CI Nº: #{@nutri_pediatrica.paciente_persona_ci}"
+      }
       end
     end
   end

@@ -1,0 +1,85 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  ficha_nutricional_adulto_id: 
+  doctor_id: 
+  area_id: 
+  fecha: 
+  motivo_consulta: 
+  actuales: 
+  peso_actual.string,: MyString
+  peso_ideal: 
+  peso_deseable: 
+  talla: 
+  biotipo: 
+  cir_muneca: 
+  circ_brazo: 
+  circ_cintura: 
+  imc: 
+  evaluacion: 
+  medicamentos: 
+  suplementos: 
+  apetito: 
+  factores_apetito: 
+  alergia_intolerancia: 
+  cae_cabello: 
+  estado_bucal: 
+  orina_bien: 
+  ir_cuerpo: 
+  actividades_fisicas: 
+  tipo: 
+  hs_act_fisicas: 
+  frecuencia: 
+  actividad_laboral: 
+  horas_laborales: 
+  vive_con: 
+  quien_prepara: 
+  que_elementos: 
+  toma_agua: 
+  mastica_deglute: 
+  hora_acuesta: 
+  habilidades: 
+  tratamientos_cenade: 
+  indicaciones: MyString
+
+two:
+  ficha_nutricional_adulto_id: 
+  doctor_id: 
+  area_id: 
+  fecha: 
+  motivo_consulta: 
+  actuales: 
+  peso_actual.string,: MyString
+  peso_ideal: 
+  peso_deseable: 
+  talla: 
+  biotipo: 
+  cir_muneca: 
+  circ_brazo: 
+  circ_cintura: 
+  imc: 
+  evaluacion: 
+  medicamentos: 
+  suplementos: 
+  apetito: 
+  factores_apetito: 
+  alergia_intolerancia: 
+  cae_cabello: 
+  estado_bucal: 
+  orina_bien: 
+  ir_cuerpo: 
+  actividades_fisicas: 
+  tipo: 
+  hs_act_fisicas: 
+  frecuencia: 
+  actividad_laboral: 
+  horas_laborales: 
+  vive_con: 
+  quien_prepara: 
+  que_elementos: 
+  toma_agua: 
+  mastica_deglute: 
+  hora_acuesta: 
+  habilidades: 
+  tratamientos_cenade: 
+  indicaciones: MyString

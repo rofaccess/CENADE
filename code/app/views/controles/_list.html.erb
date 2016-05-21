@@ -3,7 +3,7 @@
   <thead>
     <tr>
       <th>Fecha de Control</th>
-      <th>Paciente</th>
+
       <th>Profesional</th>
       <th></th>
     </tr>
@@ -19,7 +19,7 @@
     <% controles.each do |control| %>
     <tr>
       <td><%=control.fecha.strftime("%d/%m/%Y")%></td>
-      <td ><%=control.paciente_persona_full_name %></td>
+
       <td ><%=control.doctor.persona_full_name %></td>
 
       <td class = "action">

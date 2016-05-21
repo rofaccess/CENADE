@@ -10,7 +10,7 @@
   </div>
 <div class="content content-consulta"%>
   <div class="form-content">
-    <%= simple_form_for control, html: {class: 'form-controol'}, remote: true do |cont|%>
+    <%= simple_form_for control, html: {class: 'form-controles'}, remote: true do |cont|%>
 
       <h4 align= "center">Control de <%= paciente.persona_full_name%></h4></br>
 
@@ -43,3 +43,16 @@
     <% end %>
   </div>
  </div>
+
+<script type="text/javascript">
+
+  controlesUI.initScript();
+
+  <% if !flash.notice.blank? %>
+    var n = noty({text: '<%=notice%>', type: 'success'});
+  <% end %>
+
+  <% if !flash.alert.blank?%>
+    var n = noty({text: '<%=alert%>', type: 'error'});
+  <% end %>
+</script>

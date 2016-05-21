@@ -2,7 +2,8 @@ class FichasNutricionalesAdultosController < ApplicationController
 
   before_action :set_submenu, only: [:edit, :new, :show, :index, :create, :update]
   before_action :set_sidebar, only: [:edit, :new, :show, :index, :create, :update]
-  before_action :set_ficha_nutri_adulto, only: [:show, :edit, :update]
+  #before_action :set_consulta, only: [:show, :edit]
+  before_action :set_ficha_nutri_adulto, only: [:show, :edit]
 
   def set_submenu
   	@submenu_layout = 'layouts/submenu_fichas_consultas'
@@ -26,21 +27,17 @@ class FichasNutricionalesAdultosController < ApplicationController
 
   def create
   	@nutri_adulto = FichaNutricionalAdulto.new(nutri_adulto_params)
-    @paciente= @nutri_adulto.paciente
+    #@paciente= @nutri_adulto.paciente
   	 respond_to do |format|
       if @nutri_adulto.save
-        flash.now[:notice] = 'Ficha registrada exitosamente'
-		format.html {render 'show'}
-        format.js { render "show"}
+		    format.html { redirect_to ficha_nutricional_adulto_path(@nutri_adulto), notice: 'Ficha registrada exitosamente'}
       else
         if @nutri_adulto.errors.full_messages.any?
-          flash.now[:alert] = @nutri_adulto.errors.full_messages.first
+          format.html { redirect_to ficha_nutricional_pediatrica_path(@nutri_adulto), notice: @nutri_adulto.errors.full_messages.first}
         else
-          flash.now[:alert] = "No se ha podido guardar la Ficha"
-        end
 
-        format.html { render "edit"}
-        format.js { render "edit"}
+          format.html { redirect_to ficha_nutricional_pediatrica_path(@nutri_adulto), notice: "No se ha podido guardar la Ficha"}
+        end
 
       end
     end
@@ -59,18 +56,15 @@ class FichasNutricionalesAdultosController < ApplicationController
 
   	respond_to do |format|
       if @nutri_adulto.update_attributes(nutri_adulto_params)
-	        flash.now[:notice] = 'Ficha actualizada exitosamente'
-    		format.html {render 'show'}
-    	    format.js { render "show"}
+    		  format.html { redirect_to ficha_nutricional_adulto_path(@nutri_adulto), notice: 'Ficha actualizada exitosamente'}
       else
 
         if @nutri_adulto.errors.full_messages.any?
-          flash.now[:alert] = @nutri_adulto.errors.full_messages.first
+          format.html { redirect_to ficha_nutricional_pediatrica_path(@nutri_adulto), notice: @nutri_adulto.errors.full_messages.first}
         else
-          flash.now[:alert] = "No se ha podido guardar la Ficha"
+
+          format.html { redirect_to ficha_nutricional_pediatrica_path(@nutri_adulto), notice: "No se ha podido guardar la Ficha"}
         end
-        format.html { render "edit"}
-        format.js { render "edit"}
       end
     end
   end
@@ -86,7 +80,13 @@ class FichasNutricionalesAdultosController < ApplicationController
       format.pdf do
         render :pdf => "Ficha",
         :template => "fichas_nutricionales_adultos/print_ficha.pdf.erb",
-        :layout => "pdf.html"
+        :layout => "pdf.html",
+        title:      'Ficha Nutricional Adulto ',
+          footer: {
+          center: '[page] de [topage]',
+          right:  "#{Formatter.format_datetime(Time.now)}",
+          left:   "CI Nº: #{@nutri_adulto.paciente_persona_ci}"
+      }
       end
     end
   end
@@ -99,6 +99,10 @@ class FichasNutricionalesAdultosController < ApplicationController
   #busca el paciente seleccionado en la base de datos
   def get_paciente
     @paciente= Paciente.find(params[:id])
+  end
+
+  def set_consulta
+    @consultas= ConsultaNutricionalAdulto.where(ficha_id: @nutri_adulto.id).limit(9).order(id: :desc)
   end
 
   #metodo creado para el filtro
@@ -115,7 +119,8 @@ class FichasNutricionalesAdultosController < ApplicationController
 
   def set_ficha_nutri_adulto
   	@nutri_adulto= FichaNutricionalAdulto.find(params[:id])
-    @paciente= Paciente.find(@nutri_adulto.paciente_id)
+    @paciente= @nutri_adulto.paciente
+    @consultas= ConsultaNutricionalAdulto.where(ficha_nutricional_adulto_id: @nutri_adulto.id).limit(9).order(id: :desc)
   end
 
   def nutri_adulto_params

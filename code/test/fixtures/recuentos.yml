@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  consulta_nutricional_adulto_id: 
+  comidas_turnos: 
+  hora: 
+  alimentos: 
+  cantidad: 
+  lugar_consumo: MyString
+
+two:
+  consulta_nutricional_adulto_id: 
+  comidas_turnos: 
+  hora: 
+  alimentos: 
+  cantidad: 
+  lugar_consumo: MyString
