@@ -47,19 +47,19 @@
               </div>
               <h5>Presenta algunas de éstas enfermedades?</h5>
               <div class ="row">
-                <%=consult.input :diabetes, as: :boolean, wrapper_html: { class: 'col-md-2'},input_html:{disabled: true, value: consulta.diabetes }%>
-                <%=consult.input :tuberculosis, as: :boolean, wrapper_html: { class: 'col-md-3'}, input_html:{disabled: true, value: consulta.tuberculosis}%>
-                <%=consult.input :hepatitis, as: :boolean, wrapper_html: { class: 'col-md-3'}, input_html:{ disabled: true, value: consulta.hepatitis}%>
-                <%=consult.input :artritis, as: :boolean,wrapper_html: { class: 'col-md-2'}, input_html:{ disabled: true, value: consulta.artritis }%>
-                <%=consult.input :fumador, as: :boolean,wrapper_html: { class: 'col-md-2'}, input_html:{ disabled: true, value: consulta.fumador}%>
+                <%=consult.input :diabetes, as: :boolean, wrapper_html: { class: 'col-md-2'},input_html:{disabled: true, checked: consulta.diabetes=='1' ? 'checked' : 'unchecked'}%>
+                <%=consult.input :tuberculosis, as: :boolean, wrapper_html: { class: 'col-md-3'}, input_html:{disabled: true, checked: consulta.tuberculosis=='1' ? 'checked' : 'unchecked'}%>
+                <%=consult.input :hepatitis, as: :boolean, wrapper_html: { class: 'col-md-3'}, input_html:{ disabled: true, checked: consulta.hepatitis=='1' ? 'checked' : 'unchecked'}%>
+                <%=consult.input :artritis, as: :boolean,wrapper_html: { class: 'col-md-2'}, input_html:{ disabled: true, checked: consulta.artritis=='1' ? 'checked' : 'unchecked' }%>
+                <%=consult.input :fumador, as: :boolean,wrapper_html: { class: 'col-md-2'}, input_html:{ disabled: true, checked: consulta.fumador=='1' ? 'checked' : 'unchecked'}%>
 
               </div><br>
               <div class="row">
 
-                <%=consult.input :enfermedades_sanguineas, as: :boolean,label:'Enfermedades sanguíneas', wrapper_html: { class: 'col-md-3'}, input_html:{ disabled: true, value: consulta.enfermedades_sanguineas }%>
-                <%=consult.input :enfermedades_neurologicas, as: :boolean,label:'Enfermedades neurológicas', wrapper_html: { class: 'col-md-3'}, input_html:{ disabled: true, value: consulta.enfermedades_neurologicas }%>
-                <%=consult.input :enfermedades_renales, as: :boolean, wrapper_html: { class: 'col-md-3'}, input_html:{ disabled: true, value: consulta.enfermedades_renales}%>
-                <%=consult.input :enfermedades_venereas, as: :boolean,label:'Enfermedades venéreas',wrapper_html: { class: 'col-md-3'}, input_html:{disabled: true, value: consulta.enfermedades_venereas}%>
+                <%=consult.input :enfermedades_sanguineas, as: :boolean,label:'Enfermedades sanguíneas', wrapper_html: { class: 'col-md-3'}, input_html:{ disabled: true, checked: consulta.enfermedades_sanguineas=='1' ? 'checked' : 'unchecked' }%>
+                <%=consult.input :enfermedades_neurologicas, as: :boolean,label:'Enfermedades neurológicas', wrapper_html: { class: 'col-md-3'}, input_html:{ disabled: true, checked: consulta.enfermedades_neurologicas=='1' ? 'checked' : 'unchecked' }%>
+                <%=consult.input :enfermedades_renales, as: :boolean,label: 'Enfermedades Renales',wrapper_html: { class: 'col-md-3'}, input_html:{ disabled: true, checked: consulta.enfermedades_renales=='1' ? 'checked' : 'unchecked'}%>
+                <%=consult.input :enfermedades_venereas, as: :boolean,label:'Enfermedades venéreas',wrapper_html: { class: 'col-md-3'}, input_html:{disabled: true, checked: consulta.enfermedades_venereas=='1' ? 'checked' : 'unchecked'}%>
 
               </div>
               <div class ="row">
@@ -103,7 +103,7 @@
                 <%= consult.input :otros_examenes, label: 'Otros Exámenes', wrapper_html: { class: 'col-md-12'},input_html: {disabled: true, value: consulta.otros_examenes}, required: false %>
               </div>
               <div class="row">
-                <%= consult.input :tratamiento,as: :text ,label: 'Tratamiento', wrapper_html: { class: 'col-md-12'},input_html: { disabled: true, value: consulta.tratamiento} , required: false%>
+                <%= consult.input :tratamiento,as: :text ,label: 'Tratamiento', wrapper_html: { class: 'col-md-12'},input_html: { disabled: true, rows: "4", value: consulta.tratamiento} , required: false%>
               </div>
       <%end%>
     </div>

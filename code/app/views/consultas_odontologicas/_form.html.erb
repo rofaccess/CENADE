@@ -45,7 +45,7 @@
 
         <%= consult.input :medicacion_actual, as: :text, label: 'Medicacion Actual', wrapper_html: { class: 'col-md-6'}, input_html: { maxLength: Domain::DESC250, class: 'longString', rows: "2"} %>
       </div>
-      <h5>Es alérgico o ha reaccionado de manera adversa a:?</h5>
+      <h5>Es alérgico o ha reaccionado de manera adversa a ?</h5>
       <div class="row">
         <%= consult.input :anestesico, as: :string, label: 'Anestésico local', wrapper_html: { class: 'col-md-4'}, input_html: { maxLength: Domain::DESC50} %>
 
@@ -58,7 +58,7 @@
 
           <%= consult.input :enfermedad_cardiovascular, label: titulos_largos.find(9).titulo, wrapper_html: { class: 'col-md-6'}, input_html: { maxLength: Domain::DESC50} %>
       </div>
-      <h5>Presenta algunas de éstas enfermedades?</h5>
+      <h5>Presenta algunas de éstas enfermedades ?</h5>
       <div class ="row">
         <%=consult.input :diabetes, as: :boolean, wrapper_html: { class: 'col-md-2'},input_html:{ }%>
         <%=consult.input :tuberculosis, as: :boolean, wrapper_html: { class: 'col-md-3'}, input_html:{ }%>
@@ -116,7 +116,7 @@
         <%= consult.input :otros_examenes, label: 'Otros Exámenes', wrapper_html: { class: 'col-md-12'},input_html: { maxLength: Domain::DESC50} %>
       </div>
       <div class="row">
-        <%= consult.input :tratamiento,as: :text ,label: 'Tratamiento', wrapper_html: { class: 'col-md-12'},input_html: { maxLength: Domain::DESC250,class:'longString', rows: "3"} %>
+        <%= consult.input :tratamiento,as: :text ,label: 'Tratamiento', wrapper_html: { class: 'col-md-12'},input_html: { maxLength: Domain::DESC250,class:'longString', rows: "4"} %>
       </div>
       <div class="form-button">
         <%= consult.submit 'Guardar', class: 'btn btn-custom',data: {disable_with: "Guardando..."}%>

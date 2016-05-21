@@ -69,8 +69,8 @@
 
         <%=consult.input :enfermedades_sanguineas, as: :boolean,label:'Enfermedades sanguíneas', wrapper_html: { class: 'col-md-3'}, input_html:{ disabled: true }%>
         <%=consult.input :enfermedades_neurologicas, as: :boolean,label:'Enfermedades neurológicas', wrapper_html: { class: 'col-md-3'}, input_html:{ disabled: true }%>
-        <%=consult.input :enfermedades_renales, as: :boolean, wrapper_html: { class: 'col-md-3'}, input_html:{ disabled: true }%>
-        <%=consult.input :enfermedades_venereas, as: :boolean,label:'Enfermedades venéreas',wrapper_html: { class: 'col-md-3'},disabled: false, input_html:{disabled: true}%>
+        <%=consult.input :enfermedades_renales, as: :boolean,label:'Enfermedades Renales', wrapper_html: { class: 'col-md-3'}, input_html:{ disabled: true }%>
+        <%=consult.input :enfermedades_venereas, as: :boolean,label:'Enfermedades venéreas',wrapper_html: { class: 'col-md-3'},input_html:{disabled: true}%>
 
       </div>
       <div class ="row">
@@ -114,7 +114,7 @@
         <%= consult.input :otros_examenes, label: 'Otros Exámenes', wrapper_html: { class: 'col-md-12'},input_html: {disabled: true}%>
       </div>
       <div class="row">
-        <%= consult.input :tratamiento,as: :text ,label: 'Tratamiento', wrapper_html: { class: 'col-md-12'},input_html: {disabled: true} %>
+        <%= consult.input :tratamiento,as: :text ,label: 'Tratamiento', wrapper_html: { class: 'col-md-12'},input_html: {disabled: true, rows: "4"} %>
       </div>
     <% end %>
   </div>

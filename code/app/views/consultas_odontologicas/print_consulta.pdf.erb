@@ -54,7 +54,7 @@
 		<div class="data-bordered"> <%=@consulta.medicacion_actual%> </div>
 	</div>
 </div>
-<label class="control-label">Es alérgico o ha reaccionado de manera adversa a:?</label></br>
+<label class="control-label">Es alérgico o ha reaccionado de manera adversa a ?</label></br></br>
 <div class="row">
 	<div class="form-group col-md-4">
 		<label class="control-label">Anestésico Local</label>
@@ -79,7 +79,7 @@
 		<div class="data"> <%=@consulta.enfermedad_cardiovascular%> </div>
 	</div>
 </div>
-<label class="control-label">Presenta algunas de éstas enfermedades?</label></br>
+<label class="control-label">Presenta algunas de éstas enfermedades ?</label></br></br>
 
 <div class="row">
 	<%=checkbox('Diabetes',@consulta.diabetes, 'col-md-2')%>
@@ -90,10 +90,10 @@
 
 </div>
 <div class="row">
-	<%=checkbox('Diabetes',@consulta.enfermedades_sanguineas, 'col-md-2')%>
-	<%=checkbox('Tuberculosis',@consulta.enfermedades_neurologicas, 'col-md-2')%>
-	<%=checkbox('Hepatitis',@consulta.enfermedades_renales, 'col-md-2')%>
-	<%=checkbox('Artritis',@consulta.enfermedades_renales, 'col-md-2')%>
+	<%=checkbox('Enfermedades Sanguíneas',@consulta.enfermedades_sanguineas, 'col-md-2')%>
+	<%=checkbox('Enfermedades Neurológicas',@consulta.enfermedades_neurologicas, 'col-md-2')%>
+	<%=checkbox('Enfermedades Renales',@consulta.enfermedades_renales, 'col-md-2')%>
+	<%=checkbox('Enfermedades Venéreas',@consulta.enfermedades_venereas, 'col-md-2')%>
 </div>
 <div class="row">
 	<div class="form-group col-md-12">
@@ -112,7 +112,7 @@
 		<label class="control-label">Está Embarazada?</label>
 		<div class="data"> <%=@consulta.embarazada%> </div>
 	</div>
-</div></br>
+</div></br></br>
 <div class="row">
 	<div class="form-group col-md-4">
 		<label class="control-label">Tiene hijos?</label>
@@ -168,7 +168,7 @@
 
 <div class="row">
 	<div class="form-group col-md-12">
-		<label class="control-label">Otros examenes</label>
+		<label class="control-label">Otros exámenes</label>
 		<div class="data"> <%=@consulta.otros_examenes%> </div>
 	</div>
 </div></br>
