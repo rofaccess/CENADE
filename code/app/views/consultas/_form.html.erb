@@ -34,7 +34,6 @@
       <h4>Datos de Consulta</h4>
       <hr>
       <div class="row">
-
         <%= consult.input :motivo_consulta, as: :text, label: 'Motivo de Consulta', wrapper_html: { class: 'col-md-12'}, input_html: { maxLength: Domain::DESC300, class: 'biglength', rows: "2"} %>
       </div>
 
@@ -47,7 +46,6 @@
       <div class="row">
          <%= consult.input :observaciones, as: :text, label: 'Observaciones', wrapper_html: { class: 'col-md-12'}, input_html: { maxLength: Domain::DESC250, class: 'longString', rows: "2"} %>
       </div>
-
       <div class="form-button">
         <%= consult.submit 'Guardar', class: 'btn btn-custom',data: {disable_with: "Guardando..."}%>
       </div>

@@ -36,14 +36,11 @@ class ConsultasNutricionalesPediatricasController < ApplicationController
 		    format.html { redirect_to consulta_nutricional_pediatrica_path(@consulta), notice: 'Consulta registrada exitosamente'}
       else
         if @consulta.errors.full_messages.any?
-          flash.now[:alert] = @consulta.errors.full_messages.first
+          format.html { redirect_to consulta_nutricional_pediatrica_path(@consulta), notice: @consulta.errors.full_messages.first}
         else
-          flash.now[:alert] = "No se ha podido guardar la Consulta"
+
+          format.html { redirect_to consulta_nutricional_pediatrica_path(@consulta), notice: "No se ha podido guardar la Consulta"}
         end
-
-        format.html { render "edit"}
-        format.js { render "edit"}
-
       end
     end
   end
@@ -69,12 +66,10 @@ class ConsultasNutricionalesPediatricasController < ApplicationController
       else
 
         if @consulta.errors.full_messages.any?
-          flash.now[:alert] = @consulta.errors.full_messages.first
+          format.html { redirect_to consulta_nutricional_pediatrica_path(@consulta), notice: @consulta.errors.full_messages.first}
         else
-          flash.now[:alert] = "No se ha podido guardar la Consulta"
+          format.html { redirect_to consulta_nutricional_pediatrica_path(@consulta), notice: "No se ha podido guardar la Consulta"}
         end
-        format.html { render "edit"}
-        format.js { render "edit"}
       end
     end
   end
@@ -90,7 +85,13 @@ class ConsultasNutricionalesPediatricasController < ApplicationController
       format.pdf do
         render :pdf => "Consulta",
         :template => "consultas_nutricionales_pediatricas/print_consulta.pdf.erb",
-        :layout => "pdf.html"
+        :layout => "pdf.html",
+        title:      'Consulta Nutricional Pediátrica',
+          footer: {
+          center: '[page] de [topage]',
+          right:  "#{Formatter.format_datetime(Time.now)}",
+          left:   "CI Nº: #{@consulta.ficha_nutricional_pediatrica.paciente_persona_ci}"
+      }
       end
     end
   end
@@ -118,7 +119,7 @@ class ConsultasNutricionalesPediatricasController < ApplicationController
   end
   #controles donde el area es nutricion y el paciente especificado
   def set_controles
-    @controles= Control.where(area_id: @consulta.area_id, paciente_id: @consulta.ficha_nutricional_pediatrica.paciente).limit(9).order(id: :desc)
+    @controles= Control.where(area_id: @consulta.area_id, paciente_id: @consulta.ficha_nutricional_pediatrica.paciente_id).limit(9).order(id: :desc)
   end
 
   def check_paciente_has_ficha

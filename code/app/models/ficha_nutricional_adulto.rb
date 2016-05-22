@@ -8,7 +8,7 @@ class FichaNutricionalAdulto < ActiveRecord::Base
  	belongs_to :doctor, :foreign_key => :doctor_id
  	belongs_to :paciente
  	belongs_to :area
-
+ 	has_many :consultas_nutricionales_adultos
 
  	before_create :cargar_area_id
 

@@ -2,7 +2,6 @@ class ConsultasController < ApplicationController
 	before_action :set_consulta, only: [:show, :edit, :update]
 	#load_and_authorize_resource
   before_action :set_sidebar, only: [:edit, :new, :show, :index]
-
   before_action :set_submenu, only: [:edit, :update, :show, :index, :new]
 
   respond_to :html, :js
@@ -31,7 +30,6 @@ class ConsultasController < ApplicationController
 
 		@consulta = Consulta.new(consulta_params)
 		if @consulta.save
-
 			flash.now[:notice] = "Se ha guardado la consulta de #{@consulta.paciente_persona_full_name}."
 			format.html {render 'show'}
       format.js { render "show"}
@@ -65,7 +63,6 @@ class ConsultasController < ApplicationController
         else
           flash.now[:alert] = "No se ha podido actualizar la Consulta."
         end
-
    			format.html { render "edit"}
         format.js { render "edit"}
    		end
@@ -93,13 +90,11 @@ class ConsultasController < ApplicationController
 
   end
 
-
   def set_consulta
   	@consulta = Consulta.find(params[:id])
   end
 
   def get_consultas
-
     @search = Consulta.where(area_id: params[:area_id]).ransack(params[:q])
     @consultas= @search.result.page(params[:page])
 

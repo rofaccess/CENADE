@@ -3,8 +3,8 @@ class FichasNutricionalesPediatricasController < ApplicationController
   before_action :set_submenu, only: [:edit, :new, :show, :index, :create, :update]
   before_action :set_sidebar, only: [:edit, :new, :show, :index, :create, :update]
   before_action :set_ficha_nutri_pediatrica, only: [:show, :edit, :update]
-  before_action :set_consulta, only: [:show, :edit]
   before_action :set_Titulo, only: [:show, :create, :update, :edit, :new, :print_ficha]
+  before_action :set_consulta, only: [:show, :edit]
 
   def set_submenu
   	@submenu_layout = 'layouts/submenu_fichas_consultas'
@@ -93,7 +93,13 @@ class FichasNutricionalesPediatricasController < ApplicationController
       format.pdf do
         render :pdf => "Ficha",
         :template => "fichas_nutricionales_pediatricas/print_ficha.pdf.erb",
-        :layout => "pdf.html"
+        :layout => "pdf.html",
+        title:      'Ficha Nutricional Pediátrica',
+          footer: {
+          center: '[page] de [topage]',
+          right:  "#{Formatter.format_datetime(Time.now)}",
+          left:   "CI Nº: #{@nutri_pediatrica.paciente_persona_ci}"
+      }
       end
     end
   end

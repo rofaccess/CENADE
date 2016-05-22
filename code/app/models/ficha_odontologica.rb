@@ -7,8 +7,12 @@ class FichaOdontologica < ActiveRecord::Base
 
   #asociaciones
   belongs_to :paciente
+  belongs_to :area
   belongs_to :doctor, :foreign_key => :doctor_id
+  has_many :consultas_odontologicas
+
   before_create :cargar_area_id
+
 
 
   	def cargar_area_id

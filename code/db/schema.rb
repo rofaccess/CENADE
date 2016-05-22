@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160514052140) do
+ActiveRecord::Schema.define(version: 20160519040322) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -83,6 +83,77 @@ ActiveRecord::Schema.define(version: 20160514052140) do
   add_index "consultas", ["doctor_id"], name: "index_consultas_on_doctor_id", using: :btree
   add_index "consultas", ["paciente_id"], name: "index_consultas_on_paciente_id", using: :btree
 
+  create_table "consultas_nutricionales_adultos", force: :cascade do |t|
+    t.integer  "ficha_nutricional_adulto_id",             null: false
+    t.integer  "doctor_id",                               null: false
+    t.date     "fecha",                                   null: false
+    t.string   "motivo_consulta",             limit: 250
+    t.string   "actuales",                    limit: 200
+    t.string   "dx",                          limit: 250
+    t.string   "peso_actual",                 limit: 10
+    t.string   "peso_ideal",                  limit: 10
+    t.string   "peso_deseable",               limit: 10
+    t.string   "talla",                       limit: 10
+    t.string   "biotipo",                     limit: 50
+    t.string   "cir_muneca",                  limit: 50
+    t.string   "circ_brazo",                  limit: 50
+    t.string   "circ_cintura",                limit: 50
+    t.string   "imc",                         limit: 50
+    t.string   "evaluacion",                  limit: 250
+    t.string   "medicamentos",                limit: 100
+    t.string   "suplementos",                 limit: 50
+    t.string   "apetito",                     limit: 10
+    t.string   "factores_apetito",            limit: 150
+    t.string   "alergia_intolerancia",        limit: 150
+    t.string   "cae_cabello",                 limit: 10
+    t.string   "estado_bucal",                limit: 250
+    t.string   "orina_bien",                  limit: 50
+    t.string   "ir_cuerpo",                   limit: 50
+    t.boolean  "actividades_fisicas"
+    t.string   "tipo",                        limit: 100
+    t.string   "hs_act_fisicas",              limit: 50
+    t.string   "frecuencia",                  limit: 50
+    t.string   "actividad_laboral",           limit: 150
+    t.string   "horas_laborales",             limit: 50
+    t.string   "vive_con",                    limit: 100
+    t.string   "quien_prepara",               limit: 50
+    t.string   "que_elementos",               limit: 150
+    t.string   "toma_agua",                   limit: 100
+    t.string   "mastica_deglute",             limit: 50
+    t.string   "dificultad_beber",            limit: 100
+    t.string   "hora_acuesta",                limit: 10
+    t.string   "hora_levanta",                limit: 10
+    t.string   "duerme_bien",                 limit: 50
+    t.string   "habilidades",                 limit: 150
+    t.string   "tratamientos_cenade",         limit: 150
+    t.string   "alim_desayuno",               limit: 200
+    t.string   "alim_media",                  limit: 200
+    t.string   "alim_almuerzo",               limit: 200
+    t.string   "alim_merienda",               limit: 200
+    t.string   "alim_cena",                   limit: 200
+    t.string   "cant_desayuno",               limit: 50
+    t.string   "cant_media",                  limit: 50
+    t.string   "cant_almuerzo",               limit: 50
+    t.string   "cant_merienda",               limit: 50
+    t.string   "cant_cena",                   limit: 50
+    t.string   "modo_desayuno",               limit: 250
+    t.string   "modo_media",                  limit: 250
+    t.string   "modo_almuerzo",               limit: 250
+    t.string   "modo_merienda",               limit: 250
+    t.string   "modo_cena",                   limit: 250
+    t.string   "lugar_desayuno",              limit: 250
+    t.string   "lugar_media",                 limit: 250
+    t.string   "lugar_almuerzo",              limit: 250
+    t.string   "lugar_merienda",              limit: 250
+    t.string   "lugar_cena",                  limit: 250
+    t.string   "indicaciones",                limit: 250
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
+  end
+
+  add_index "consultas_nutricionales_adultos", ["doctor_id"], name: "index_consultas_nutricionales_adultos_on_doctor_id", using: :btree
+  add_index "consultas_nutricionales_adultos", ["ficha_nutricional_adulto_id"], name: "ficha_id", using: :btree
+
   create_table "consultas_nutricionales_pediatricas", force: :cascade do |t|
     t.integer  "area_id",                             null: false
     t.integer  "doctor_id",                           null: false
@@ -126,6 +197,50 @@ ActiveRecord::Schema.define(version: 20160514052140) do
 
   add_index "consultas_nutricionales_pediatricas", ["area_id"], name: "index_consultas_nutricionales_pediatricas_on_area_id", using: :btree
   add_index "consultas_nutricionales_pediatricas", ["ficha_nutri_ped_id"], name: "index_consultas_nutricionales_pediatricas_on_ficha_nutri_ped_id", using: :btree
+
+  create_table "consultas_odontologicas", force: :cascade do |t|
+    t.integer  "area_id",                               null: false
+    t.integer  "doctor_id",                             null: false
+    t.integer  "ficha_odontologica_id",                 null: false
+    t.date     "fecha",                                 null: false
+    t.string   "motivo_consulta",           limit: 250
+    t.string   "observaciones",             limit: 250
+    t.string   "servicio_cenade",           limit: 250
+    t.string   "medicacion_actual",         limit: 250
+    t.string   "anestesico",                limit: 50
+    t.string   "penicilina",                limit: 50
+    t.string   "otros_medicamentos",        limit: 50
+    t.string   "hemorragias",               limit: 250
+    t.string   "problema_tratamiento",      limit: 250
+    t.string   "enfermedad_cardiovascular", limit: 250
+    t.string   "diabetes",                  limit: 50
+    t.string   "hepatitis",                 limit: 50
+    t.string   "enfermedades_renales",      limit: 50
+    t.string   "artritis",                  limit: 50
+    t.string   "tuberculosis",              limit: 50
+    t.string   "enfermedades_venereas",     limit: 50
+    t.string   "enfermedades_sanguineas",   limit: 50
+    t.string   "fumador",                   limit: 50
+    t.string   "enfermedades_neurologicas", limit: 50
+    t.string   "menstruacion",              limit: 50
+    t.string   "embarazada",                limit: 50
+    t.string   "tiene_hijos",               limit: 50
+    t.string   "cantidad_hijos",            limit: 2
+    t.string   "amamanta",                  limit: 50
+    t.string   "hospitalizado",             limit: 50
+    t.string   "causa_hospitalizado",       limit: 50
+    t.string   "ecg",                       limit: 50
+    t.string   "tac",                       limit: 50
+    t.string   "rx",                        limit: 50
+    t.string   "laboratorios",              limit: 50
+    t.string   "otros_examenes",            limit: 50
+    t.string   "tratamiento",               limit: 250
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+  end
+
+  add_index "consultas_odontologicas", ["area_id"], name: "index_consultas_odontologicas_on_area_id", using: :btree
+  add_index "consultas_odontologicas", ["ficha_odontologica_id"], name: "index_consultas_odontologicas_on_ficha_odontologica_id", using: :btree
 
   create_table "controles", force: :cascade do |t|
     t.integer  "consulta_nutricional_pediatrica_id"
@@ -686,6 +801,20 @@ ActiveRecord::Schema.define(version: 20160514052140) do
   add_index "personas", ["deleted_at"], name: "index_personas_on_deleted_at", unique: true, using: :btree
   add_index "personas", ["estado_civil_id"], name: "index_personas_on_estado_civil_id", using: :btree
 
+  create_table "recuentos", force: :cascade do |t|
+    t.integer  "consulta_nutricional_adulto_id",             null: false
+    t.string   "comidas_turnos",                 limit: 50
+    t.string   "hora",                           limit: 10
+    t.string   "alimentos",                      limit: 250
+    t.integer  "cantidad"
+    t.string   "modo_preparacion",               limit: 500
+    t.string   "lugar_consumo",                  limit: 200
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
+  end
+
+  add_index "recuentos", ["consulta_nutricional_adulto_id"], name: "consulta_id", using: :btree
+
   create_table "roles", force: :cascade do |t|
     t.string   "name"
     t.integer  "resource_id"
@@ -761,6 +890,8 @@ ActiveRecord::Schema.define(version: 20160514052140) do
   add_foreign_key "consultas", "pacientes", on_delete: :cascade
   add_foreign_key "consultas_nutricionales_pediatricas", "areas", on_delete: :restrict
   add_foreign_key "consultas_nutricionales_pediatricas", "fichas_nutricionales_pediatricas", column: "ficha_nutri_ped_id", on_delete: :restrict
+  add_foreign_key "consultas_odontologicas", "areas", on_delete: :restrict
+  add_foreign_key "consultas_odontologicas", "fichas_odontologicas", on_delete: :restrict
   add_foreign_key "controles", "areas", on_delete: :restrict
   add_foreign_key "controles", "consultas_nutricionales_pediatricas", on_delete: :restrict
   add_foreign_key "controles", "pacientes", on_delete: :restrict
