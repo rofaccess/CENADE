@@ -198,6 +198,50 @@ ActiveRecord::Schema.define(version: 20160519040322) do
   add_index "consultas_nutricionales_pediatricas", ["area_id"], name: "index_consultas_nutricionales_pediatricas_on_area_id", using: :btree
   add_index "consultas_nutricionales_pediatricas", ["ficha_nutri_ped_id"], name: "index_consultas_nutricionales_pediatricas_on_ficha_nutri_ped_id", using: :btree
 
+  create_table "consultas_odontologicas", force: :cascade do |t|
+    t.integer  "area_id",                               null: false
+    t.integer  "doctor_id",                             null: false
+    t.integer  "ficha_odontologica_id",                 null: false
+    t.date     "fecha",                                 null: false
+    t.string   "motivo_consulta",           limit: 250
+    t.string   "observaciones",             limit: 250
+    t.string   "servicio_cenade",           limit: 250
+    t.string   "medicacion_actual",         limit: 250
+    t.string   "anestesico",                limit: 50
+    t.string   "penicilina",                limit: 50
+    t.string   "otros_medicamentos",        limit: 50
+    t.string   "hemorragias",               limit: 250
+    t.string   "problema_tratamiento",      limit: 250
+    t.string   "enfermedad_cardiovascular", limit: 250
+    t.string   "diabetes",                  limit: 50
+    t.string   "hepatitis",                 limit: 50
+    t.string   "enfermedades_renales",      limit: 50
+    t.string   "artritis",                  limit: 50
+    t.string   "tuberculosis",              limit: 50
+    t.string   "enfermedades_venereas",     limit: 50
+    t.string   "enfermedades_sanguineas",   limit: 50
+    t.string   "fumador",                   limit: 50
+    t.string   "enfermedades_neurologicas", limit: 50
+    t.string   "menstruacion",              limit: 50
+    t.string   "embarazada",                limit: 50
+    t.string   "tiene_hijos",               limit: 50
+    t.string   "cantidad_hijos",            limit: 2
+    t.string   "amamanta",                  limit: 50
+    t.string   "hospitalizado",             limit: 50
+    t.string   "causa_hospitalizado",       limit: 50
+    t.string   "ecg",                       limit: 50
+    t.string   "tac",                       limit: 50
+    t.string   "rx",                        limit: 50
+    t.string   "laboratorios",              limit: 50
+    t.string   "otros_examenes",            limit: 50
+    t.string   "tratamiento",               limit: 250
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+  end
+
+  add_index "consultas_odontologicas", ["area_id"], name: "index_consultas_odontologicas_on_area_id", using: :btree
+  add_index "consultas_odontologicas", ["doctor_id"], name: "index_consultas_odontologicas_on_doctor_id", using: :btree
+
   create_table "controles", force: :cascade do |t|
     t.integer  "consulta_nutricional_pediatrica_id"
     t.integer  "doctor_id",                                                   null: false
@@ -846,6 +890,8 @@ ActiveRecord::Schema.define(version: 20160519040322) do
   add_foreign_key "consultas", "pacientes", on_delete: :cascade
   add_foreign_key "consultas_nutricionales_pediatricas", "areas", on_delete: :restrict
   add_foreign_key "consultas_nutricionales_pediatricas", "fichas_nutricionales_pediatricas", column: "ficha_nutri_ped_id", on_delete: :restrict
+  add_foreign_key "consultas_odontologicas", "areas", on_delete: :restrict
+  add_foreign_key "consultas_odontologicas", "fichas_odontologicas", on_delete: :restrict
   add_foreign_key "controles", "areas", on_delete: :restrict
   add_foreign_key "controles", "consultas_nutricionales_pediatricas", on_delete: :restrict
   add_foreign_key "controles", "pacientes", on_delete: :restrict
