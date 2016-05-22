@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class FichasPsicopedagogicaTest < ActiveSupport::TestCase
+class ConsultaOdontologicaTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

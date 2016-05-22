@@ -46,7 +46,7 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
 	inflect.irregular 'consulta_nutricional_adulto', 'consultas_nutricionales_adultos'
 	inflect.irregular 'ficha_nutricional_pediatrica', 'fichas_nutricionales_pediatricas'
 	inflect.irregular 'ficha_odontologica','fichas_odontologicas'
-
+	inflect.irregular 'consulta_odontologica','consultas_odontologicas'
 	inflect.irregular 'historial_fisioterapeutico', 'historiales_fisioterapeuticos'
 	inflect.irregular 'historial_psicopedagogico', 'historiales_psicopedagogicos'
 	inflect.irregular 'historial_fonoaudiologico', 'historiales_fonoaudiologicos'

@@ -20,17 +20,14 @@
         <div class="col-md-9">
 
           <h4><%= consult.label :doctor_id, 'Profesional de la Salud: ' %> <%= consulta.doctor_persona_full_name%> </h4>
-
         </div>
         <div class="col-md-3">
             <h4><%= consult.label :fecha, 'Fecha: ' %> <%=Formatter.format_date(consulta.fecha)%> </h4>
         </div>
       </div></br>
-
       <div id="paciente-data">
         <%= render 'form_paciente', paciente: consulta.paciente %>
       </div>
-
 
       <h4>Datos de Consulta</h4>
       <hr>

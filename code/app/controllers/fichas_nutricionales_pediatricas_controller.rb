@@ -3,8 +3,8 @@ class FichasNutricionalesPediatricasController < ApplicationController
   before_action :set_submenu, only: [:edit, :new, :show, :index, :create, :update]
   before_action :set_sidebar, only: [:edit, :new, :show, :index, :create, :update]
   before_action :set_ficha_nutri_pediatrica, only: [:show, :edit, :update]
-  before_action :set_consulta, only: [:show, :edit]
   before_action :set_Titulo, only: [:show, :create, :update, :edit, :new, :print_ficha]
+  before_action :set_consulta, only: [:show, :edit]
 
   def set_submenu
   	@submenu_layout = 'layouts/submenu_fichas_consultas'

@@ -14,26 +14,38 @@
 
 </div>
 <div class="content">
-<div class="form-content">
-	<%= simple_form_for ficha, html: {class: 'form-ficha'}, remote: true do |f|%>
+	<div class="form-content">
+		<%= simple_form_for ficha, html: {class: 'form-ficha'}, remote: true do |f|%>
 
-		<h4 class="titulo-ficha">FICHA DE ODONTOLOGÍA</h4>
+			<h4 class="titulo-ficha">FICHA DE ODONTOLOGÍA</h4>
 
-		<div class="row">
-			<h4 class="col-md-9"><strong>Profesional de la Salud: </strong> <%= ficha.doctor.abr_profesion+' '+ficha.doctor.persona_full_name%> </h4>
-	  		<h4 class="col-md-3"><strong> Fecha: </strong> <%= Formatter.format_date(ficha.fecha)%> </h4>
-	  	</div>
-		<%= render 'form_paciente', paciente: paciente %>
-		<h4>Datos de la Ficha</h4>
-		<hr>
-		<div class="row">
-			<%= f.input :nombre_tutor, label: 'Nombre de Tutor', wrapper_html: { class: 'col-md-6'}, input_html: { disabled: true} %>
-			<%= f.input :tel_tutor, label: 'Teléfono del Tutor', wrapper_html: { class: 'col-md-6'}, input_html: { disabled: true} %>
-		</div>
-	<%end%>
-</div>
+			<div class="row">
+				<h4 class="col-md-9"><strong>Profesional de la Salud: </strong> <%= ficha.doctor.abr_profesion+' '+ficha.doctor.persona_full_name%> </h4>
+		  		<h4 class="col-md-3"><strong> Fecha: </strong> <%= Formatter.format_date(ficha.fecha)%> </h4>
+		  	</div>
+			<%= render 'form_paciente', paciente: paciente %>
+			<h4>Datos de la Ficha</h4>
+			<hr>
+			<div class="row">
+				<%= f.input :nombre_tutor, label: 'Nombre de Tutor', wrapper_html: { class: 'col-md-6'}, input_html: { disabled: true} %>
+				<%= f.input :tel_tutor, label: 'Teléfono del Tutor', wrapper_html: { class: 'col-md-6'}, input_html: { disabled: true} %>
+			</div>
+			<div class="row">
+		      <div class="col-md-10">
+		         <h4>Consultas</h4>
+		      </div>
+		      <div class="col-md-2">
+		         <%= link_to "Agregar Consulta", consultas_odontologicas_from_ficha_path(ficha: ficha.id), class: "btn btn-custom", remote: true %>
+		      </div>
+	    	</div>
+	    	<hr>
+	    	<%=render 'consultas_odontologicas/consultas_tabs', consultas: consultas,titulos_largos:titulos_largos%>
+		<%end%>
+	</div>
 </div>
 <script type="text/javascript">
+	fichasOdontologicasUI.initScript();
+	consultasUI.initConsultasTab();
 	<% if !flash.notice.blank? %>
 		var n = noty({text: '<%=notice%>', type: 'success'});
 	<% end %>

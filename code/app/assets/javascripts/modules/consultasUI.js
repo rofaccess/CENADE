@@ -1,6 +1,7 @@
 var consultasUI = (function(){
   return {
 
+
     /* Inicia la funcionalidad de los tabs en el show de las fichas */
     initConsultasTab: function(){
       var tabs;

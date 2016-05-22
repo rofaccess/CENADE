@@ -1,0 +1,181 @@
+<h4 class="ficha-title">CONSULTA ODONTOLOGÍA</h4>
+
+<h4>Datos Personales</h4>
+<hr>
+<div class="row">
+	<div class="form-group col-md-8">
+		<label class="control-label">Nombres y Apellidos:</label>
+		<div class="data"> <%=@consulta.ficha_odontologica.paciente_persona_full_name%> </div>
+	</div>
+
+	<div class="form-group col-md-3">
+		<label class="control-label">Fecha de nac.:</label>
+		<div class="data"> <%=Formatter.format_date(@consulta.ficha_odontologica.paciente_persona_fecha_nacimiento)%> </div>
+	</div>
+
+	<div class="form-group col-md-1">
+		<label class="control-label">Edad:</label>
+		<div class="data"> <%=@consulta.ficha_odontologica.paciente_persona_edad%> </div>
+	</div>
+</div>
+<div class="row">
+
+	<div class="form-group col-md-3">
+		<label class="control-label">Tel.:</label>
+		<div class="data"> <%=@consulta.ficha_odontologica.paciente_persona_telefono%> </div>
+	</div>
+
+	<div class="form-group col-md-9">
+		<label class="control-label">Dirección:</label>
+		<div class="data"> <%=@consulta.ficha_odontologica.paciente_persona_direccion%> </div>
+	</div>
+</div>
+</br>
+<h4>Datos de Consulta</h4>
+<div class="row">
+	<div class="form-group col-md-12">
+		<label class="control-label">Motivo de Consulta</label>
+		<div class="data-bordered"> <%=@consulta.motivo_consulta%> </div>
+	</div>
+</div></br>
+<div class="row">
+	<div class="form-group col-md-12">
+		<label class="control-label">Observaciones</label>
+		<div class="data-bordered"> <%=@consulta.observaciones%> </div>
+	</div>
+</div></br>
+<div class="row">
+	<div class="form-group col-md-6">
+		<label class="control-label">Servicio que utiliza en el CENADE</label>
+		<div class="data-bordered"> <%=@consulta.servicio_cenade%> </div>
+	</div>
+	<div class="form-group col-md-6">
+		<label class="control-label">Medicación Actual</label>
+		<div class="data-bordered"> <%=@consulta.medicacion_actual%> </div>
+	</div>
+</div>
+<label class="control-label">Es alérgico o ha reaccionado de manera adversa a ?</label></br></br>
+<div class="row">
+	<div class="form-group col-md-4">
+		<label class="control-label">Anestésico Local</label>
+		<div class="data"> <%=@consulta.anestesico%> </div>
+	</div>
+	<div class="form-group col-md-4">
+		<label class="control-label">Penicilina</label>
+		<div class="data"> <%=@consulta.penicilina%> </div>
+	</div>
+	<div class="form-group col-md-4">
+		<label class="control-label">Otros medicamentos</label>
+		<div class="data"> <%=@consulta.otros_medicamentos%> </div>
+	</div>
+</div>
+<div class="row">
+	<div class="form-group col-md-6">
+		<label class="control-label"><%=@titulos_largos.find(7).titulo%></label>
+		<div class="data"> <%=@consulta.hemorragias%> </div>
+	</div>
+	<div class="form-group col-md-6">
+		<label class="control-label"><%= @titulos_largos.find(9).titulo%></label>
+		<div class="data"> <%=@consulta.enfermedad_cardiovascular%> </div>
+	</div>
+</div>
+<label class="control-label">Presenta algunas de éstas enfermedades ?</label></br></br>
+
+<div class="row">
+	<%=checkbox('Diabetes',@consulta.diabetes, 'col-md-2')%>
+	<%=checkbox('Tuberculosis',@consulta.tuberculosis, 'col-md-2')%>
+	<%=checkbox('Hepatitis',@consulta.hepatitis, 'col-md-2')%>
+	<%=checkbox('Artritis',@consulta.artritis, 'col-md-2')%>
+	<%=checkbox('Fumador',@consulta.fumador, 'col-md-2')%>
+
+</div>
+<div class="row">
+	<%=checkbox('Enfermedades Sanguíneas',@consulta.enfermedades_sanguineas, 'col-md-2')%>
+	<%=checkbox('Enfermedades Neurológicas',@consulta.enfermedades_neurologicas, 'col-md-2')%>
+	<%=checkbox('Enfermedades Renales',@consulta.enfermedades_renales, 'col-md-2')%>
+	<%=checkbox('Enfermedades Venéreas',@consulta.enfermedades_venereas, 'col-md-2')%>
+</div>
+<div class="row">
+	<div class="form-group col-md-12">
+		<label class="control-label"><%=@titulos_largos.find(8).titulo%></label>
+		<div class="data"> <%=@consulta.problema_tratamiento%> </div>
+	</div>
+</div></br>
+<div class="row">
+	<div class="form-group col-md-12">
+		<label class="control-label">Paciente femenino: menstruación:</label>
+		<div class="data"> <%=@consulta.menstruacion%> </div>
+	</div>
+</div></br>
+<div class="row">
+	<div class="form-group col-md-12">
+		<label class="control-label">Está Embarazada?</label>
+		<div class="data"> <%=@consulta.embarazada%> </div>
+	</div>
+</div></br></br>
+<div class="row">
+	<div class="form-group col-md-4">
+		<label class="control-label">Tiene hijos?</label>
+		<div class="data"> <%=@consulta.tiene_hijos%> </div>
+	</div>
+	<div class="form-group col-md-4">
+		<label class="control-label">cuantos:</label>
+		<div class="data"> <%=@consulta.cantidad_hijos%> </div>
+	</div>
+	<div class="form-group col-md-4">
+		<label class="control-label">amamanta?</label>
+		<div class="data"> <%=@consulta.amamanta%> </div>
+	</div>
+</div>
+<div class="row">
+	<div class="form-group col-md-4">
+		<label class="control-label"><%=@titulos_largos.find(10).titulo%></label>
+		<div class="data"> <%=@consulta.hospitalizado%> </div>
+	</div>
+	<div class="form-group col-md-8">
+		<label class="control-label">Causa</label>
+		<div class="data"> <%=@consulta.causa_hospitalizado%> </div>
+	</div>
+</div></br>
+<h4>Exámenes Complementarios</h4><hr>
+<div class="row">
+	<div class="form-group col-md-12">
+		<label class="control-label">ECG</label>
+		<div class="data"> <%=@consulta.ecg%> </div>
+	</div>
+</div></br>
+
+<div class="row">
+	<div class="form-group col-md-12">
+		<label class="control-label">TAC</label>
+		<div class="data"> <%=@consulta.tac%> </div>
+	</div>
+</div></br>
+
+<div class="row">
+	<div class="form-group col-md-12">
+		<label class="control-label">RX</label>
+		<div class="data"> <%=@consulta.rx%> </div>
+	</div>
+</div></br>
+
+<div class="row">
+	<div class="form-group col-md-12">
+		<label class="control-label">Laboratorios</label>
+		<div class="data"> <%=@consulta.laboratorios%> </div>
+	</div>
+</div></br>
+
+<div class="row">
+	<div class="form-group col-md-12">
+		<label class="control-label">Otros exámenes</label>
+		<div class="data"> <%=@consulta.otros_examenes%> </div>
+	</div>
+</div></br>
+
+<div class="row">
+	<div class="form-group col-md-12">
+		<label class="control-label">Tratamiento</label>
+		<div class="data-bordered"> <%=@consulta.tratamiento%> </div>
+	</div>
+</div>

@@ -240,7 +240,7 @@ ActiveRecord::Schema.define(version: 20160519040322) do
   end
 
   add_index "consultas_odontologicas", ["area_id"], name: "index_consultas_odontologicas_on_area_id", using: :btree
-  add_index "consultas_odontologicas", ["doctor_id"], name: "index_consultas_odontologicas_on_doctor_id", using: :btree
+  add_index "consultas_odontologicas", ["ficha_odontologica_id"], name: "index_consultas_odontologicas_on_ficha_odontologica_id", using: :btree
 
   create_table "controles", force: :cascade do |t|
     t.integer  "consulta_nutricional_pediatrica_id"
