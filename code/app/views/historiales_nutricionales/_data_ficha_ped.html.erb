@@ -1,0 +1,51 @@
+<% if ficha_ped.nil? %>
+   <%= h_panel_head('III - FICHA PEDIÁTRICA (No tiene)') %>
+<% else %>
+   <%= h_panel('III - FICHA PEDIÁTRICA') %>
+      <div class="row">
+         <%= h_data('Profesional de la Salud', ficha_ped.doctor_full_name,'col-md-9') %>
+         <%= h_data('Fecha', date(ficha_ped.fecha),'col-md-3') %>
+      </div>
+
+      <h4>I - Antecedentes Prenatal</h4>
+      <hr>
+      <div class="row">
+         <%= h_data_text('¿Tuvo algún problema en el embarazo?', ficha_ped.problema_embarazo,'col-md-12') %>
+      </div>
+      <div class="row">
+         <%= h_data('¿Realizó controles prenatales?¿Cuántos?', ficha_ped.control_prenatal,'col-md-12') %>
+      </div>
+      <div class="row">
+         <%= h_data_text('¿Cómo fué su alimentación durante el embarazo?¿Tomó vitaminas/minerales?', ficha_ped.alimentacion_embarazo,'col-md-12') %>
+      </div>
+      <div class="row">
+         <%= h_data('Otros datos', ficha_ped.otros_datos,'col-md-12') %>
+      </div>
+
+      <h4>II - Antecedentes del Parto</h4>
+      <hr>
+      <div class="row">
+         <%= h_data('¿Tuvo parto vaginal o cesárea?', ficha_ped.parto_vaginal_cesarea,'col-md-6') %>
+         <%= h_data('¿Fue de término o pretermino?', ficha_ped.termino_pretermino,'col-md-6') %>
+      </div>
+      <div class="row">
+         <%= h_data('Lugar del Parto', ficha_ped.lugar_parto,'col-md-7') %>
+         <%= h_data('¿Cómo fue el parto?', ficha_ped.como_fue_parto,'col-md-5') %>
+      </div>
+
+      <h4>III - Antecedentes Postnatal</h4>
+      <hr>
+
+      <div class="row">
+         <%= h_data_text('¿Tuvo asfixia postnatal?¿Lloró enseguida el bebé?¿Estuvo internado después del nacimiento?', ficha_ped.asfixia_lloro,'col-md-12') %>
+      </div>
+      <div class="row">
+         <%= h_data_text('¿Tomó pecho materno?¿Cuánto tiempo tomo solo pecho materno?¿Qué clase de leche tomó?', ficha_ped.tomo_pecho,'col-md-12') %>
+      </div>
+      <div class="row">
+         <%= h_data('Peso de nacimiento', ficha_ped.peso_nacimiento,'col-md-4') %>
+         <%= h_data('¿Cuando inició la alimentación complementaria?', ficha_ped.alimentacion_complementaria,'col-md-8') %>
+      </div>
+
+   <%= h_panel_end %>
+<% end %>

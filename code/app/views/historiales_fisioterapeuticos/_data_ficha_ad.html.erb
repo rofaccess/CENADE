@@ -3,6 +3,10 @@
 <% else %>
 <%= h_panel('IV - FICHA ADULTO')%>
    <div class="row">
+         <%= h_data('Profesional de la Salud', ficha_ad.doctor_full_name,'col-md-9') %>
+         <%= h_data('Fecha', date(ficha_ad.fecha),'col-md-3') %>
+      </div>
+   <div class="row">
       <%= h_data('Encargado', ficha_ad.encargado,'col-md-12') %>
 
       <%= h_data_text('Medicamentos', ficha_ad.medicamentos,'col-md-12') %>
