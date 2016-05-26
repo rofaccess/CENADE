@@ -11,10 +11,13 @@
 
       <%= render 'compartido/historial/data_paciente', paciente:   paciente %>
       <%= render 'compartido/historial/data_encargados', encargados: paciente.encargado %>
+
       <%= render 'data_ficha_ped', ficha_ped:  ficha_ped %>
+      <%= render 'data_consultas_ped', consultas_ped: consultas_ped, num: 'IV'%>
+
       <%= render 'data_ficha_ad', ficha_ad:   ficha_ad %>
-      <%= render 'data_consultas_ad', consultas_ad: consultas_ad, num: 'V'%>
-      <%= render 'data_consultas_ped', consultas_ped: consultas_ped, num: 'VI'%>
+      <%= render 'data_consultas_ad', consultas_ad: consultas_ad, num: 'VI'%>
+
    </div>
 <div>
 

@@ -1,0 +1,99 @@
+<% if consultas_ped.blank? %>
+   <%= h_panel_head("#{num} - CONSULTAS PEDIÁTRICAS (No tiene)") %>
+<% else %>
+   <%= h_panel_head("#{num} - CONSULTAS PEDIÁTRICAS") %>
+   <% i = consultas_ped.size %>
+
+   <% consultas_ped.each do |consulta| %>
+      <%= h_panel("#{consulta.doctor_full_name} <label class='pull-right'>Consulta Nº #{i} - #{date(consulta.fecha)}</label>")%>
+
+         <h4>I - Encargado</h4>
+         <hr>
+         <div class="row">
+            <%= h_data('Encargado', consulta.encargado,'col-md-12') %>
+         </div>
+
+         <h4>II - Valoración del Desarrollo</h4>
+         <hr>
+         <div class="row">
+            <%= h_data('Sostén Cefálico', consulta.sosten_cefalico,'col-md-12') %>
+         </div>
+         <div class="row">
+            <%= h_data('Se sentó a los', consulta.sento,'col-md-4') %>
+            <%= h_data('Se paró a los', consulta.paro,'col-md-4') %>
+            <%= h_data('Caminó a los', consulta.camino,'col-md-4') %>
+         </div>
+         <div class="row">
+            <%= h_data('¿Busca Sonido?', consulta.busca_sonido,'col-md-4') %>
+            <%= h_data('¿Emite Sonido?', consulta.emite_sonido,'col-md-4') %>
+            <%= h_data('¿Rie - Llora?', consulta.rie_llora,'col-md-4') %>
+         </div>
+         <div class="row">
+            <%= h_data('¿Sigue la luz u objetos coloridos?', consulta.sigue_luz,'col-md-5') %>
+            <%= h_data('¿Mastica - Deglute?', consulta.mastica_deglute,'col-md-7') %>
+         </div>
+         <div class="row">
+            <%= h_data('Habilidades presentes y/o ausentes para la edad', consulta.habilidades,'col-md-12') %>
+         </div>
+         <div class="row">
+            <%= h_data_text('Otros', consulta.otros,'col-md-12') %>
+         </div>
+
+         <h4>III - Alimentación Actual</h4>
+         <hr>
+         <div class="row">
+            <%= h_data('Desayuno', consulta.desayuno,'col-md-12') %>
+         </div>
+         <div class="row">
+            <%= h_data('Media Mañana', consulta.media_manana,'col-md-12') %>
+         </div>
+         <div class="row">
+            <%= h_data('Almuerzo', consulta.almuerzo,'col-md-12') %>
+         </div>
+         <div class="row">
+            <%= h_data('Merienda', consulta.merienda,'col-md-12') %>
+         </div>
+         <div class="row">
+            <%= h_data('Cena', consulta.cena,'col-md-12') %>
+         </div>
+
+         <h4>IV - Signos y/o Síntomas</h4>
+         <hr>
+         <div class="row">
+            <%= h_data('Diarrea', consulta.diarrea,'col-md-4') %>
+            <%= h_data('Vómitos', consulta.vomitos,'col-md-4') %>
+            <%= h_data('Fiebre', consulta.fiebre,'col-md-4') %>
+         </div>
+         <div class="row">
+            <%= h_data('Problemas Respiratorios', consulta.problemas_respiratorios,'col-md-6') %>
+            <%= h_data('Distención abdominal', consulta.distension_abdominal,'col-md-6') %>
+         </div>
+         <div class="row">
+            <%= h_data('Constipación', consulta.constipacion,'col-md-4') %>
+            <%= h_data('Orina', consulta.orina,'col-md-4') %>
+            <%= h_data('Sudor', consulta.sudor,'col-md-4') %>
+         </div>
+         <div class="row">
+            <%= h_data('Otros', consulta.otros2,'col-md-12') %>
+         </div>
+         <h4>V - Datos Antropométricos</h4>
+         <hr>
+         <div class="row">
+            <%= h_data('Talla', consulta.talla,'col-md-6') %>
+            <%= h_data('Peso', consulta.peso,'col-md-6') %>
+         </div>
+         <div class="row">
+            <%= h_data('PC', consulta.pc,'col-md-4') %>
+            <%= h_data('IMC', consulta.imc,'col-md-4') %>
+            <%= h_data('CM', consulta.cm,'col-md-4') %>
+         </div>
+
+         <h4>VI - Diagnóstico Médico</h4>
+         <hr>
+          <div class="row">
+            <%= h_data_text('Diagnóstico', consulta.diagnostico,'col-md-12') %>
+         </div>
+      <%= h_panel_end %>
+      <% i = i - 1 %>
+   <% end %>
+<% end %>
