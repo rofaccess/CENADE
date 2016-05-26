@@ -10,8 +10,15 @@
           <th></th>
         </tr>
       </thead>
+      <% if usuarios.blank? %>
+        <tfoot>
+          <tr>
+            <th colspan="8" scope="col">No se encontraron coincidencias </th>
+          </tr>
+        </tfoot>
+     <% end %>
       <tbody>
-        <% @usuarios.each do |usuario| %>
+        <% usuarios.each do |usuario| %>
           <tr>
             <td class="show-usuario"><%=usuario.username%></td>
             <td class="show-usuario"><%=usuario.empleado.persona.nombre%></td>
