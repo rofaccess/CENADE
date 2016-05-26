@@ -1,7 +1,7 @@
-<% if @paciente.encargado.nil? %>
+<% if encargados.nil? %>
    <%= h_panel_head('II - DATOS DE LOS PADRES Y/O ENCARGADO (No tiene)') %>
 <% else %>
-   <%= h_panel('II - DATOS DE LOS PADRES Y/O ENCARGADO')%>
+   <%= h_panel('II - DATOS DE LOS PADRES Y/O ENCARGADO', 'level-1')%>
 
       <div class="row">
          <%= h_data('Nombre(s) y Apellido(s) del Padre', encargados.padre_nombre,'col-md-10') %>

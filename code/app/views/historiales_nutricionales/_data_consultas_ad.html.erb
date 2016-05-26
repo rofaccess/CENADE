@@ -1,11 +1,11 @@
 <% if consultas_ad.blank? %>
    <%= h_panel_head("#{num} - CONSULTAS ADULTO (No tiene)") %>
 <% else %>
-   <%= h_panel_head("#{num} - CONSULTAS ADULTO") %>
+   <%= h_panel("#{num} - CONSULTAS ADULTO",'level-1') %>
    <% i = consultas_ad.size %>
 
    <% consultas_ad.each do |consulta| %>
-      <%= h_panel("#{consulta.doctor_full_name} <label class='pull-right'>Consulta Nº #{i} - #{date(consulta.fecha)}</label>")%>
+      <%= h_panel("#{consulta.doctor_full_name} <div class='pull-right'>Consulta Nº #{i} - #{date(consulta.fecha)}</div>",'level-2')%>
 
          <h4>I - Datos de la Consulta</h4>
          <hr>
@@ -156,4 +156,5 @@
       <%= h_panel_end %>
       <% i = i - 1 %>
    <% end %>
+   <%= h_panel_end %>
 <% end %>

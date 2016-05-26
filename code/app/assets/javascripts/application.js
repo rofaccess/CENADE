@@ -259,10 +259,19 @@ APP = {
 
     /* Incializa el evento para mostrar y esconder el cuerpo de un panel al hacer
      * doble click sobre cualquier parte del panel
-     * .panel-folding: es la clase que deberá tener el div que actua como panel
+     * .panel-folding-level-x: es la clase que deberá tener el div que actua como panel
      */
     initPanelFolding: function(){
-        $(".panel-folding").dblclick(function(){
+        $('body').on('dblclick', '.panel-folding-level-3', function(){
+            $(".panel-body", this).toggle();
+            $('.panel-folding-level-1').preventDefault();
+            $('.panel-folding-level-2').preventDefault();
+        });
+        $('body').on('dblclick', '.panel-folding-level-2', function(){
+            $(".panel-body", this).toggle();
+            $('.panel-folding-level-1').preventDefault();
+        });
+        $('body').on('dblclick', '.panel-folding-level-1', function(){
             $(".panel-body", this).toggle();
         });
     },

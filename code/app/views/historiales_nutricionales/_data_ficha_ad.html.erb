@@ -1,7 +1,7 @@
 <% if ficha_ad.nil? %>
    <%= h_panel_head('V - FICHA ADULTO (No tiene)') %>
 <% else %>
-   <%= h_panel('V - FICHA ADULTO') %>
+   <%= h_panel('V - FICHA ADULTO','level-1') %>
       <div class="row">
          <%= h_data('Profesional de la Salud', ficha_ad.doctor_full_name,'col-md-9') %>
          <%= h_data('Fecha', date(ficha_ad.fecha),'col-md-3') %>

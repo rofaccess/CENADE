@@ -1,7 +1,7 @@
 <% if ficha_ped.nil? %>
    <%= h_panel_head('III - FICHA PEDIÁTRICA (No tiene)') %>
 <% else %>
-   <%= h_panel('III - FICHA PEDIÁTRICA') %>
+   <%= h_panel('III - FICHA PEDIÁTRICA','level-1') %>
       <div class="row">
          <%= h_data('Profesional de la Salud', ficha_ped.doctor_full_name,'col-md-9') %>
          <%= h_data('Fecha', date(ficha_ped.fecha),'col-md-3') %>

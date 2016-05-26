@@ -38,6 +38,8 @@ class HistorialesNutricionalesController < ApplicationController
     @ficha_ad  = @paciente.ficha_nutricional_adulto
     @consultas_ped = ConsultaNutricionalPediatrica.where(ficha_nutri_ped_id: @ficha_ped.blank? ? nil : @ficha_ped.id).order(fecha: :desc)
     @consultas_ad  = ConsultaNutricionalAdulto.where(ficha_nutricional_adulto_id: @ficha_ad.blank? ? nil : @ficha_ad.id).order(fecha: :desc)
+    area           = Area.find_by_nombre('Nutrición')
+    @controles     = Control.where(area_id: area.id,paciente_id: @paciente.id).order(fecha: :desc)
   end
 
   def print
