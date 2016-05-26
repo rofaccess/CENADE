@@ -41,6 +41,11 @@ class Turno < ActiveRecord::Base
     end
   end
 
+  def obtener_cantidad
+    turnos= Turnos.where("area_id = ? and doctor_id = ? and fecha_consulta =  ?", self.area_id, self.doctor_id, self.fecha_consulta).count
+    return turnos
+  end
+
   def coincidencia_area
     if !(self.area_id == Empleado.where("id = ?", self.doctor_id).first.area_id)
       errors.add(:base, "El Doctor no atiende en el Área de #{self.area.nombre}")

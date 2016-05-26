@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'reportes_estadisticos/index'
+
+  get 'reportes_estadisticos/print' => 'reportes_estadisticos#print'
+
   get 'historiales_clinicos/print' => 'historiales_clinicos#print'
   resources :historiales_clinicos, only: [:index, :show]
 

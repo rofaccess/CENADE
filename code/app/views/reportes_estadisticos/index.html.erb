@@ -1,0 +1,37 @@
+<div class="page-title page-title-sin-submenu">
+		Reporte Estadístico
+
+		<div class="tool">
+			<%= search_form_for @search, class: 'buscador', remote: true do |f| %>
+			<div class="input-group">
+				<%= f.search_field :area_nombre_or_fecha_consulta_cont, placeholder: Buscar por Área o Fecha, class: "form-control", autofocus: true%>
+				<span class="fa fa-search"></span>
+				<div class="input-group-btn">
+
+					<%= link_to '<i class="fa fa-print"></i> '.html_safe, reportes_estadisticos_print_path(:format => :pdf), target: '_blank'%>
+				</div>
+			</div>
+			<% end %>
+		</div>
+	</div>
+<div class="content content-sin-submenu">
+	<div class="list-content">
+	<div id="list">
+		<%= render 'list', turnos: @turnos%>
+	</div>
+
+	<div id="list-paginate">
+		<%= paginate @turnos, remote: true %>
+	</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	<% if !flash.notice.blank? %>
+		var n = noty({text: '<%=notice%>', type: 'success'});
+	<% end %>
+	<% if !flash.alert.blank?%>
+		var n = noty({text: '<%=alert%>', type: 'error'});
+	<% end %>
+
+</script>

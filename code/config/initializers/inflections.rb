@@ -53,6 +53,7 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
 	inflect.irregular 'historial_clinico', 'historiales_clinicos'
 	inflect.irregular 'historial_neurologico', 'historiales_neurologicos'
 	inflect.irregular 'historial_pediatrico', 'historiales_pediatricos'
+	inflect.irregular 'reporte_estadistico', 'reportes_estadisticos'
 
 	inflect.irregular 'control', 'controles'
 	inflect.irregular 'recuento', 'recuentos'
