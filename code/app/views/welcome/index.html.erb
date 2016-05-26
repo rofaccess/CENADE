@@ -5,6 +5,6 @@
    <div class="welcome-content">
       <%=image_tag(@configuracion_general.empresa_logo.blank? ? "logo-cenade": @configuracion_general.empresa_logo_url.to_s, :width => 200, :height => 200) %>
 
-      <h1>BIENVENIDO</h1>
+      <h1>Bienvenido <%=current_user.empleado_persona_full_name.split(" ").first%></h1>
    </div>
 </div>

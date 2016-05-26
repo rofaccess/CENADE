@@ -25,7 +25,7 @@ module ApplicationHelper
   			checked = ''
   		end
   		html =""
-  			html <<"<div class = 'form-group col-md-2'>"
+  			html <<"<div class = 'form-group #{width}'>"
   			html <<"<div class = 'checkbox'>"
   				html<< "<label><input type='checkbox'#{checked}>#{label}</label>"
   		html <<"</div>"
