@@ -1,0 +1,28 @@
+<div class="page-title page-title-con-sidebar">
+   Historial Clínico
+   <div class="tool">
+      <%= link_to '<i class="fa fa-list" data-toggle="tooltip" title="Lista de Historiales"></i>'.html_safe, historiales_nutricionales_path %>
+      <%= link_to '<i class="fa fa-print"></i> '.html_safe, historiales_nutricionales_print_path(id: paciente.id, :format => :pdf), target: '_blank'%>
+   </div>
+</div>
+<div class="content content-historial">
+   <div class="historial-content">
+      <h4 class="historial-title">NUTRICIÓN</h4>
+
+      <%= render 'compartido/historial/data_paciente', paciente:   paciente %>
+      <%= render 'compartido/historial/data_encargados', encargados: paciente.encargado %>
+
+      <%= render 'data_ficha_ped', ficha_ped:  ficha_ped %>
+      <%= render 'data_consultas_ped', consultas_ped: consultas_ped, num: 'IV'%>
+
+      <%= render 'data_ficha_ad', ficha_ad:   ficha_ad %>
+      <%= render 'data_consultas_ad', consultas_ad: consultas_ad, num: 'VI'%>
+
+      <%= render 'data_controles', controles: controles%>
+
+   </div>
+<div>
+
+<script type="text/javascript">
+   APP.initPanelFolding();
+</script>

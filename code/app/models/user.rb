@@ -29,7 +29,7 @@ class User < ActiveRecord::Base
 
   # Law of Demeter
   delegate :persona_nombre, :persona_apellido, :persona_full_name,
-           :persona_email,:persona_telefono,:persona_direccion,:cargo,
+           :persona_email,:persona_telefono,:persona_direccion,:cargo,:type,
            to: :empleado, prefix: true, allow_nil: true
 
 end

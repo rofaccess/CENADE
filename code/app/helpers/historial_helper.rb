@@ -2,10 +2,10 @@ module HistorialHelper
    # Nota: La h se refiere a que es exlusivo para el show e imprimir de historial clínico
 
    # Define un panel reutilizable para los historiales
-   def h_panel(panel_title)
+   def h_panel(panel_title, level)
       html = ""
-      html << "<div class='panel-historial panel-folding'>"
-         html << "<div class='panel-heading'> #{panel_title} </div>"
+      html << "<div class='panel-historial panel-folding-#{level}'>"
+         html << "<div class='panel-heading'><span class='fa fa-caret-right'></span> #{panel_title} </div>"
          html << "<div class='panel-body'>"
       html.html_safe
    end
@@ -14,7 +14,7 @@ module HistorialHelper
    def h_panel_head(panel_title)
       html = ""
          html << "<div class='panel-historial'>"
-            html << "<div class='panel-heading'>#{panel_title}</div>"
+            html << "<div class='panel-heading panel-empty'>#{panel_title}</div>"
          html << "</div>"
       html.html_safe
    end

@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'historiales_odontologicos/print' => 'historiales_odontologicos#print'
+  resources :historiales_odontologicos, only: [:index, :show]
+
+  get 'historiales_nutricionales/print' => 'historiales_nutricionales#print'
+  resources :historiales_nutricionales, only: [:index, :show]
+
   get 'historiales_clinicos/print' => 'historiales_clinicos#print'
   resources :historiales_clinicos, only: [:index, :show]
 
@@ -199,6 +205,8 @@ Rails.application.routes.draw do
   get "perfil_usuarios/edit"
   put "perfil_usuarios/update"
   get "welcome/index_configuracion"
+  get "welcome/index_historial"
+  get "welcome/index_consultas"
   get "welcome/index_fichas"
   get "welcome/index_atencion_profesional"
   get "welcome/index_personal"
