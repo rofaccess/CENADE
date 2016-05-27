@@ -42,7 +42,7 @@ class Turno < ActiveRecord::Base
   end
 
   def obtener_cantidad
-    turnos= Turnos.where("area_id = ? and doctor_id = ? and fecha_consulta =  ?", self.area_id, self.doctor_id, self.fecha_consulta).count
+    turnos= Turno.where("area_id = ? and doctor_id = ? and fecha_consulta =  ?", self.area_id, self.doctor_id, self.fecha_consulta).count
     return turnos
   end
 

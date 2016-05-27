@@ -4,7 +4,15 @@ class ReportesEstadisticosController < ApplicationController
   end
 
   def get_turnos
-    @search = Turnos.search(params[:q])
+    @search = Turno.search(params[:q])
     @turnos = @search.result.page(params[:page])
+  end
+
+   def por_mes
+   	get_turnos
+  end
+
+   def por_ano
+   	get_turnos
   end
 end
