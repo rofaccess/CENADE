@@ -116,27 +116,26 @@ var turnosUI = (function(){
 
 			turnosUI.datatableControl();
 
+			APP.initDatepicker();
+
 			$(".nuevo-turno").validate();
 
 			$('.costo').inputmask('Regex', { regex: "[0-9\.]+" });
 
 
-
-	        $('.datepicker').datepicker({
-		        format: "dd/mm/yyyy",
-		        language: "es",
-		        autoclose: true,
-		        orientation: "bottom"
-		        }).on('change', function() {
-        			$(this).valid();
-		      	});
 		      $('.datepicker2').datepicker({
 		        format: "dd/mm/yyyy",
 		        language: "es",
-		        autoclose: true
+		        autoclose: true,
+		        todayHighlight: true,
+                todayBtn: true,
 		        }).on('change', function() {
         			$(this).valid();
 		      	});
+				/* Solo permite escribir números y barras en el elemento especificado*/
+		        $('.datepicker2').inputmask('Regex', { regex: "[0-9\/]+" });
+		        /* Muestra dd/mm/aa en el placeholder */
+		        $('.datepicker2').attr('placeholder', 'dd/mm/aaaa');
 
 		}
 	};
