@@ -1,5 +1,5 @@
 $('#principal-content').html('<%= j render 'show', ficha: @ficha, paciente: @paciente, consultas: @consultas, formats: 'html'%>');
 <% if !@paciente.encargado.nil? %>
-	$('.encargado_data').html("<%= j render 'encargado_form'%>");
+	$('.encargado_data').html("<%= j render 'encargado_form', ficha: @ficha, paciente: @paciente, consultas: @consultas%>");
 <%end%>
 
