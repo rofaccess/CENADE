@@ -1,0 +1,13 @@
+#datepicker-inline{
+    padding: 5px;
+   .datepicker{
+      border-radius: 4px;
+      font-size: 11px;
+      background-color: white;
+   }
+}
+
+.datepicker table tr td, .datepicker table tr th {
+   width: auto;
+   height: auto;
+}

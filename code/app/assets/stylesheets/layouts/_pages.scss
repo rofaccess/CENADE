@@ -58,6 +58,11 @@ div.content-sin-submenu{
 	padding-top: 75px;
 }
 
+// Cuando no se tiene page-title hay que agregar la siguiente clase, junto a .content
+div.content-sin-page-title{
+   padding-top: 40px;
+}
+
 /* Define el aspecto del contenedor del listado (#list) y de la paginación (#list-paginate) */
 .list-content{
 	padding: 30px 30px 5px 30px; //Top Right Bottom Left

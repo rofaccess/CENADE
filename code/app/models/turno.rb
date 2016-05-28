@@ -7,6 +7,7 @@ class Turno < ActiveRecord::Base
 	belongs_to :paciente
 	belongs_to :area
   belongs_to :doctor
+  belongs_to :turno
 
 
   #Validaciones

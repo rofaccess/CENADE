@@ -56,6 +56,7 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
 	inflect.irregular 'historial_pediatrico', 'historiales_pediatricos'
 	inflect.irregular 'historial_nutricional', 'historiales_nutricionales'
 	inflect.irregular 'historial_odontologico', 'historiales_odontologicos'
+	inflect.irregular 'atencion_profesional', 'atenciones_profesionales'
 
 	inflect.irregular 'control', 'controles'
 	inflect.irregular 'recuento', 'recuentos'

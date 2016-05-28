@@ -1,18 +1,23 @@
 <div id="sidebar-wrapper">
-<ul class="sidebar-nav">
-                <li class="sidebar-brand">
+    <ul class="sidebar-nav">
+        <div id="datepicker-inline">
+            <div id="datepicker-inline" class="datepicker" data-date="12/03/2012">
+                <%= hidden_field_tag :fecha, class: 'fecha'%>
+            </div>
+        </div>
+        <li class="sidebar-brand"> Pacientes  </li>
 
-                        Pacientes
-
-                </li>
-                <li>
-                    <a href="#">Jose Perez</a>
-                </li>
-                <li>
-                    <a href="#">Maria Delvalle</a>
-                </li>
-                <li>
-                    <a href="#">Liz Duarte</a>
-                </li>
-            </ul>
+        <% @pacientes.each do |paciente| %>
+            <li class="<%= current_sidebar([])%>">
+                <%=link_to paciente.persona_full_name, atencion_profesional_path(paciente) %>
+            </li>
+        <% end %>
+    </ul>
 </div>
+<script>
+    $('.datepicker').on("changeDate", function() {
+        $('.fecha').val(
+            $('.datepicker').datepicker('getFormattedDate');
+        );
+    });
+</script>
