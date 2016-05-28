@@ -1,10 +1,11 @@
 class CreateReportesEstadisticos < ActiveRecord::Migration
   def change
     create_table :reportes_estadisticos do |t|
-      t.string :area_id				,null:false
-      t.string :mes					,limit: Domain::DESC10,	  null:false
-      t.integer :anho				,limit: Domain::ANHO,	  null:false
-      t.integer :doctor_id			,null:false
+      t.integer :area_id			,null:false
+      t.string :mes					  ,limit: Domain::DESC10,	  null:false
+      t.integer :anho				  ,limit: Domain::ANHO,	  null:false
+      t.integer :doctor_id		,null:false
+      t.integer :cantidad
 
       t.timestamps null: false
     end

@@ -1,8 +1,7 @@
 
-<table id="table-reporte" class= "table table-condensed">
+<table id="table-reporte-anho" class= "table table-condensed">
   <thead>
     <tr class="active">
-      <th>Mes</th>
       <th>Profesional de la Salud</th>
       <th>Cantidad Atentidos</th>
       <th>Año</th>
@@ -19,7 +18,6 @@
   <tbody>
     <% reportes.each do |reporte| %>
     <tr>
-      <td><%=reporte.mes%></td>
       <td ><%=reporte.doctor.persona_full_name %> </td>
       <td ><%=reporte.cantidad%></td>
       <td><%=reporte.anho%></td>

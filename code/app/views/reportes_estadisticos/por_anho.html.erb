@@ -1,10 +1,10 @@
 <div class="page-title page-title-sin-submenu page-title-con-sidebar">
-		Reporte Estadístico por Mes
+		Reporte Estadístico por Año
 
 		<div class="tool">
 			<%= search_form_for @search, class: 'buscador', remote: true do |f| %>
 			<div class="input-group">
-				<%= f.search_field :area_nombre_or_mes_cont, placeholder: "Buscar por Área o Mes", class: "form-control", autofocus: true%>
+				<%= f.search_field :area_nombre_or_anho_cont, placeholder: "Buscar por Área o Mes", class: "form-control", autofocus: true%>
 				<span class="fa fa-search"></span>
 				<div class="input-group-btn">
 					<a href="#"><i class="fa fa-search-plus" aria-hidden="true" id= "show-advanced-search" data-toggle="tooltip" data-placement="bottom" title="Búsqueda Avanzada"></i></a>
@@ -22,9 +22,9 @@
 
 				<%= FormBuilder::text_field_v(f, :doctor_persona_nombre_or_doctor_persona_apellido_cont, {col_class: 'col-md-3', label_text: 'Prof. de la Salud', input_class: '', placeholder: "Nombre o Apellido"})%>
 
-				<%= FormBuilder::text_field_v(f, :mes_cont, {col_class: 'col-md-3', label_text: 'Mes', input_class: 'datepickerMes',max_length: Domain::FECHA})%>
+				<%= FormBuilder::text_field_v(f, :anho_gteq, {col_class: 'col-md-3', label_text: 'Desde', input_class: 'datepickerAnho',placeholder: "Año",max_length: Domain::FECHA})%>
 
-            	<%= FormBuilder::text_field_v(f, :anho_eq, {col_class: 'col-md-3', label_text: 'Año', input_class: 'datepickerAnho',max_length: Domain::FECHA})%>
+            	<%= FormBuilder::text_field_v(f, :anho_lteq, {col_class: 'col-md-3', label_text: 'Hasta', input_class: 'datepickerAnho', placeholder: "Año", max_length: Domain::FECHA})%>
 
 				<div class= "advanced-search-buttons">
 					<%= f.submit 'Filtrar', class: 'btn btn-custom '%>
@@ -35,7 +35,7 @@
 	</div>
 	<div class="list-content">
 		<div id="list">
-			<%= render 'list', reportes: @reportes%>
+			<%= render 'list_anho', reportes: @reportes%>
 		</div>
 
 		<div id="list-paginate">

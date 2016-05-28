@@ -16,6 +16,7 @@ class Turno < ActiveRecord::Base
 
   #cargas automaticas
   before_create :actualizar_estado
+  after_create :actualizar_reporte
   #before_create :actualizar_turno
 
 
@@ -29,6 +30,19 @@ class Turno < ActiveRecord::Base
   #    end
   #  end
 
+  #MODIFICA ESTE METODO CUANDO SE IMPLEMENTA ATENCION PROFESIONAL#
+  def actualizar_reporte
+    #if (self.estado == 'atendido')
+      #mes= self.strftime('%b')
+      #anho= self.strftime('%Y')
+      #reporte= ReporteEstadistico.find_or_create_by(area_id: self.area_id, doctor_id: self.area_id, mes: mes, anho: anho)
+      #cant= reporte.cantidad
+      #if (cant.nil?)
+        #reporte.update_attribute(:cantidad, 1)
+      #else
+        #reporte.update_attribute(:cantidad, cant + 1)
+      #end
+  end
 
   def actualizar_estado
     self.estado = 'pendiente'

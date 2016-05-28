@@ -815,23 +815,18 @@ ActiveRecord::Schema.define(version: 20160527060755) do
 
   add_index "recuentos", ["consulta_nutricional_adulto_id"], name: "consulta_id", using: :btree
 
-  create_table "reportes", force: :cascade do |t|
-    t.string   "area_id"
-    t.string   "mes"
-    t.integer  "anho"
-    t.integer  "doctor_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table "reportes_estadisticos", force: :cascade do |t|
+    t.integer  "area_id",               null: false
+    t.string   "mes",        limit: 10, null: false
+    t.integer  "anho",                  null: false
+    t.integer  "doctor_id",             null: false
+    t.integer  "cantidad"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
   end
 
-  create_table "reportes_estadisticos", force: :cascade do |t|
-    t.string   "area_id"
-    t.string   "mes"
-    t.integer  "anho"
-    t.integer  "doctor_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+  add_index "reportes_estadisticos", ["area_id"], name: "index_reportes_estadisticos_on_area_id", using: :btree
+  add_index "reportes_estadisticos", ["doctor_id"], name: "index_reportes_estadisticos_on_doctor_id", using: :btree
 
   create_table "roles", force: :cascade do |t|
     t.string   "name"
@@ -943,6 +938,7 @@ ActiveRecord::Schema.define(version: 20160527060755) do
   add_foreign_key "permissions_roles", "permissions"
   add_foreign_key "permissions_roles", "roles"
   add_foreign_key "personas", "estados_civiles", on_delete: :restrict
+  add_foreign_key "reportes_estadisticos", "areas", on_delete: :restrict
   add_foreign_key "turnos", "areas", on_delete: :restrict
   add_foreign_key "turnos", "empleados", column: "doctor_id", on_delete: :restrict
   add_foreign_key "turnos", "pacientes", on_delete: :restrict
