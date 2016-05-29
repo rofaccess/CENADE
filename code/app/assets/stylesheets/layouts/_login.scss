@@ -19,6 +19,9 @@
       color: gray;
       font-family: arial;
       font-size: 12pt;
+      .alert{
+        margin-bottom: 10px;
+      }
 
       //- ya no se usa
       #username-error, #password-error {

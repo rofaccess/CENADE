@@ -1,13 +1,17 @@
 #datepicker-inline{
-    padding: 5px;
-   .datepicker{
+   margin: 5px 5px;
+   padding: 3px 17px 3px 17px;
+   .datepicker-inline{
       border-radius: 4px;
-      font-size: 11px;
+      font-size: 13px;
       background-color: white;
+      width: 185px;
+      box-shadow: 0 1px 1px black;
+   }
+
+   .datepicker-inline table tr td, .datepicker table tr th {
+      width: auto;
+      height: auto;
    }
 }
 
-.datepicker table tr td, .datepicker table tr th {
-   width: auto;
-   height: auto;
-}

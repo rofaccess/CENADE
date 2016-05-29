@@ -1,0 +1,4 @@
+//- $('#message-content').html("<%= j render 'message', pacientes: @pacientes, es_doctor: @es_doctor %>");
+$('#pacientes-content').html("<%= j render 'list_pacientes', pacientes: @pacientes, es_doctor: @es_doctor %>");
+empleadosUI.initBuscarDoctor('#doctor_id',false);
+APP.initMessageClose();

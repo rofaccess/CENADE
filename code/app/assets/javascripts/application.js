@@ -101,7 +101,7 @@ APP = {
     */
     initDatepicker: function(){
 
-        $('.datepicker').datepicker({
+        $('input.datepicker').datepicker({
             format: "dd/mm/yyyy",
             language: "es",
             autoclose: true,
@@ -276,11 +276,21 @@ APP = {
         });
     },
 
+    /* Incializa el evento para cerrar un mensaje mostrado con el helper
+     * message definido en application_helper
+     */
+    initMessageClose: function(){
+        $('.close-message').click(function(){
+            $(this).closest('.message').fadeOut();
+        });
+    },
+
     /* Ejecuta las funciones especificadas*/
     init: function() {
 		APP.initBuscador();
         APP.initAdvancedSearch();
         APP.initDatepicker();
+        APP.initMessageClose();
         //APP.initSidebarToogle(); //- Tal vez se use
     }
 };

@@ -11,31 +11,35 @@ class AtencionesProfesionalesController < ApplicationController
   end
 
   def index
-    @es_doctor = es_doctor
-    if @es_doctor
-      get_pacientes
-    else
-
-    end
+    get_pacientes
   end
 
   def show
   end
 
-  # Obtiene los pacientes que tienen turno con el doctor logueado
-  # en la fecha especificada
+  # Obtiene los pacientes que tienen turno en cierta fecha
   def get_pacientes
-    doctor_id = current_user.empleado_id
+    empleado = current_user.empleado
+    doctor_id = empleado.id
+    fecha_consulta = Date.today
+    @es_doctor = es_doctor(empleado)
+
+    unless params[:fecha_consulta].blank?
+      date = params[:fecha_consulta]
+      fecha_consulta = Date.parse(date).strftime('%Y/%m/%d')
+      unless params[:doctor_id].blank?
+        doctor_id = params[:doctor_id]
+      end
+    end
+
     @pacientes = Paciente.joins(:turnos)
-                         .where(turnos: {doctor_id: doctor_id, fecha_consulta: Date.today})
-                         #.joins('LEFT OUTER JOIN turnos ON pacientes.id = turnos.paciente_id')
-                         #.where('pacientes.id = turnos.paciente_id OR turnos.doctor_id = 16')
-                         #.where("turnos.doctor_id = '#{doctor_id}'")
-                         #.order('turnos.fecha')
+                         .where(turnos: {doctor_id: doctor_id, fecha_consulta: fecha_consulta})
+                         .order('turnos.fecha_consulta')
   end
 
-  def es_doctor
-    tipo = current_user.empleado_type
+  # Devuelve true si el empleado es de tipo doctor, caso contrario false
+  def es_doctor(empleado)
+    tipo = empleado.type
     if tipo == 'Doctor'
       true
     else

@@ -1,0 +1,18 @@
+<% unless pacientes.blank? %>
+   <li class="sidebar-brand">
+      Pacientes
+   </li>
+   <% i=1 %>
+   <% pacientes.each do |paciente| %>
+      <li class="<%= current_sidebar([])%>">
+         <%=link_to "#{i}. #{paciente.persona_full_name}", atencion_profesional_path(paciente) %>
+      </li>
+      <% i=i+1 %>
+   <% end %>
+<% else %>
+   <% if es_doctor %>
+      <%= message('No se encontraron resultados','warning') %>
+   <% else %>
+      <%= message('No se encontraron resultados o no seleccionaste un profesional','warning') %>
+   <% end %>
+<% end %>
