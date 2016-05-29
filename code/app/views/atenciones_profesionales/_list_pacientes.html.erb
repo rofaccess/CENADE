@@ -1,11 +1,15 @@
-<% unless pacientes.blank? %>
+<% unless turnos.blank? %>
    <li class="sidebar-brand">
       Pacientes
    </li>
    <% i=1 %>
-   <% pacientes.each do |paciente| %>
+   <% turnos.each do |turno| %>
       <li class="<%= current_sidebar([])%>">
-         <%=link_to "#{i}. #{paciente.persona_full_name}", atencion_profesional_path(paciente) %>
+         <% if turno.estado == "atendido" %>
+            <%=link_to "#{i}. #{turno.paciente.persona_full_name} <span class='fa fa-check-square-o icon-atendido' data-toggle='tooltip' title='Atendido'></span>".html_safe, atencion_profesional_path(turno) %>
+      <% else %>
+            <%=link_to "#{i}. #{turno.paciente.persona_full_name} <span class='fa fa-check-square-o icon-pendiente' data-toggle='tooltip' title='Setear como Atendido'></span>".html_safe, atencion_profesional_path(turno) %>
+      <% end %>
       </li>
       <% i=i+1 %>
    <% end %>

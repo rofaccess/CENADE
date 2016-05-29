@@ -5,3 +5,16 @@
 .select-doctor-sidebar{
    margin-top: 5px;
 }
+
+.icon-atendido{
+   color: #23C069;
+   float: right;
+}
+
+.icon-pendiente{
+   color: #CCC;
+   float: right;
+   &:hover{
+      color: #23C069;
+   }
+}

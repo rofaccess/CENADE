@@ -11,14 +11,17 @@ class AtencionesProfesionalesController < ApplicationController
   end
 
   def index
-    get_pacientes
+    get_turnos
   end
 
   def show
   end
 
-  # Obtiene los pacientes que tienen turno en cierta fecha
-  def get_pacientes
+  # Obtiene los turnos en cierta fecha que no hayan sido cancelados
+  # Si el usuario que accede a atención profesional es de tipo doctor, se obtendrán los turnos con el
+  # caso contrario, se permitirá seleccionar un doctor para seleccionar los turnos que se tienen con el
+  # Solo se obtienen los turnos pendientes y atendidos
+  def get_turnos
     empleado = current_user.empleado
     doctor_id = empleado.id
     fecha_consulta = Date.today
@@ -31,10 +34,9 @@ class AtencionesProfesionalesController < ApplicationController
         doctor_id = params[:doctor_id]
       end
     end
-
-    @pacientes = Paciente.joins(:turnos)
-                         .where(turnos: {doctor_id: doctor_id, fecha_consulta: fecha_consulta})
-                         .order('turnos.fecha_consulta')
+    @turnos = Turno.where(doctor_id: doctor_id, fecha_consulta: fecha_consulta)
+                   .where.not(turnos: {estado: 'cancelado'})
+                   .order('turnos.fecha_consulta')
   end
 
   # Devuelve true si el empleado es de tipo doctor, caso contrario false

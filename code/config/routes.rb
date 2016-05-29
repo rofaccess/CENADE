@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  get 'atenciones_profesionales/get_pacientes' => 'atenciones_profesionales#get_pacientes'
+  get 'atenciones_profesionales/get_turnos' => 'atenciones_profesionales#get_turnos'
   resources :atenciones_profesionales, only: [:index, :show]
 
   get 'historiales_odontologicos/print' => 'historiales_odontologicos#print'
