@@ -2,9 +2,10 @@
    <li class="sidebar-brand">
       Pacientes
    </li>
+
    <% i=1 %>
    <% at_prof[:turnos].each do |turno| %>
-      <li class="<%= current_sidebar([])%>">
+      <li class="item-paciente">
          <% if turno.estado == "atendido" %>
             <%=link_to "#{i}. #{turno.paciente.persona_full_name} <span class='fa fa-check-square-o icon-atendido' data-toggle='tooltip' title='Atendido'></span>".html_safe, atencion_profesional_path(turno), remote: true %>
          <% else %>
@@ -20,3 +21,6 @@
       <%= message('No se encontraron resultados o no seleccionaste un profesional','warning') %>
    <% end %>
 <% end %>
+<script type="text/javascript">
+   atencionesProfesionalesUI.initCurrentSidebar();
+</script>

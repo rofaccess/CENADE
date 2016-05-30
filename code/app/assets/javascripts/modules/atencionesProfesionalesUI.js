@@ -1,5 +1,13 @@
 var atencionesProfesionalesUI = (function(){
   return {
+    /* Inicia el evento, que permitirá marcar como activo, al paciente seleccionado en el sidebar */
+    initCurrentSidebar: function(){
+      $('.item-paciente').click(function(){
+        $('.item-paciente').removeClass('active');
+        $(this).addClass('active');
+      })
+    },
+
     initScript: function(){
       initDatepickerInline();
       initGetTurnos();

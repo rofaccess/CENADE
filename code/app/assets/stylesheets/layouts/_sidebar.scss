@@ -54,7 +54,7 @@
 /* Esto esta definido para que se marque como seleccionado un item del sidebar
    el css original no lo marca como activo */
 .sidebar-nav{
- > .active > a {
+  li.active > a {
       &,
       &:hover,
       &:focus {
@@ -115,18 +115,6 @@
     font-weight: bold;
 }
 
-.sidebar-brand {
-    padding-left: 10px;
-    font-size: 16px;
-    color: #98A4AE;
-    font-weight: bold;
-}
-
-.sidebar-brand-aux {
-    height: 50px;
-    border: none !important;
-}
-
 .sidebar-nav > .sidebar-brand a {
     color: #999999;
 }
@@ -134,6 +122,21 @@
 .sidebar-nav > .sidebar-brand a:hover {
     color: #fff;
     background: none;
+}
+
+/* Estilo del sidebar  brand de atencion profesional */
+.sidebar-nav{
+   .sidebar-brand {
+    padding-left: 10px;
+    font-size: 16px;
+    color: #98A4AE;
+    font-weight: bold;
+   }
+
+   .sidebar-brand-aux {
+       height: 50px;
+       border: none !important;
+   }
 }
 
 @media(min-width:768px) {

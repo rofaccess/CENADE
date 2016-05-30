@@ -1,6 +1,7 @@
 class AtencionesProfesionalesController < ApplicationController
   before_action :set_submenu, only: [:show, :index ]
   before_action :set_sidebar, only: [:show, :index]
+  before_action :get_turnos, only: [:show, :index]
 
   def set_submenu
     @submenu_layout = 'layouts/submenu_fichas_consultas'
@@ -11,7 +12,6 @@ class AtencionesProfesionalesController < ApplicationController
   end
 
   def index
-    get_turnos
   end
 
   def show
@@ -20,15 +20,13 @@ class AtencionesProfesionalesController < ApplicationController
 
     case area
     when "Clínico"
-      get_datos_clinico
-      @data_partial = 'datos_clinico'
+      get_data_clinico
     when "Fisioterapia"
-      get_datos_fisioterapia
-      @data_partial = 'datos_fisioterapia'
+      get_data_fisioterapia
     when "Fonoaudiología"
     when "Neurología"
     when "Nutrición"
-      get_datos_nutricion
+      get_data_nutricion
     when "Odontología"
     when "Pediatría"
     when "Psicología"
@@ -37,15 +35,13 @@ class AtencionesProfesionalesController < ApplicationController
     end
   end
 
-  def get_datos_clinico
-    @datos = 'CLINICO'
+  def get_data_clinico
   end
 
-  def get_datos_fisioterapia
-    @datos = 'FISIOTERAPIA'
+  def get_data_fisioterapia
   end
 
-  def get_datos_nutricion
+  def get_data_nutricion
     paciente  = @turno.paciente
     ficha_ped = paciente.ficha_nutricional_pediatrica
     ficha_ad  = paciente.ficha_nutricional_adulto
@@ -53,7 +49,7 @@ class AtencionesProfesionalesController < ApplicationController
     consultas_ad  = ConsultaNutricionalAdulto.where(ficha_nutricional_adulto_id: ficha_ad.blank? ? nil : ficha_ad.id).order(fecha: :desc)
     controles     = Control.where(area_id: @turno.area_id,paciente_id: paciente.id).order(fecha: :desc)
 
-    @datos = {paciente: paciente, ficha_ped: ficha_ped, data_partial: 'datos_nutricion'}
+    @data = {paciente: paciente, ficha_ped: ficha_ped, data_partial: 'data_nutricion'}
   end
 
   def setEstadoTurnoToAtendido

@@ -262,16 +262,16 @@ APP = {
      * .panel-folding-level-x: es la clase que deberá tener el div que actua como panel
      */
     initPanelFolding: function(){
-        $('body').on('dblclick', '.panel-folding-level-3', function(){
+        $('body').on('click', '.panel-folding-level-3', function(){
             $(".panel-body", this).toggle();
             $('.panel-folding-level-1').preventDefault();
             $('.panel-folding-level-2').preventDefault();
         });
-        $('body').on('dblclick', '.panel-folding-level-2', function(){
+        $('body').on('click', '.panel-folding-level-2', function(){
             $(".panel-body", this).toggle();
             $('.panel-folding-level-1').preventDefault();
         });
-        $('body').on('dblclick', '.panel-folding-level-1', function(){
+        $('body').on('click', '.panel-folding-level-1', function(){
             $(".panel-body", this).toggle();
         });
     },

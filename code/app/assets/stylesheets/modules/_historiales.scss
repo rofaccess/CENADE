@@ -23,6 +23,7 @@ $panel-background-color: #EFEFEF;
    border: 1px solid $panel-border-color;
    border-radius: 4px;
    margin-bottom: 20px;
+   cursor: pointer;
     .panel-heading{
       border-bottom: 1px solid $panel-border-color;
       background-color: $panel-background-color;
@@ -33,6 +34,7 @@ $panel-background-color: #EFEFEF;
 
     .panel-empty{
       background-color: $panel-border-color;
+      cursor: auto;
     }
 
     .panel-body{
