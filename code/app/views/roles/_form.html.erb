@@ -2,7 +2,7 @@
     <%=role.id.nil? ? 'Nuevo Rol' : 'Editar Rol'%>
 
       <div class="tool">
-        <%= link_to '<i class="fa fa-list"></i> '.html_safe, roles_path %>
+        <%= link_to '<i class="fa fa-list" data-toggle="tooltip" title="Lista de Roles"></i> '.html_safe, roles_path %>
       </div>
 </div>
 <div class="content content-50">

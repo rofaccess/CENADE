@@ -1,7 +1,4 @@
 class PerfilUsuariosController < ApplicationController
-
-
-
 	def edit
 		@persona = Persona.find(Empleado.find(current_user.empleado_id).persona_id)
 	end
