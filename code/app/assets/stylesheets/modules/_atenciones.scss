@@ -9,11 +9,13 @@
 .icon-atendido{
    color: #23C069;
    float: right;
+   font-size: 20px;
 }
 
 .icon-pendiente{
    color: #CCC;
    float: right;
+   font-size: 20px;
    &:hover{
       color: #23C069;
    }

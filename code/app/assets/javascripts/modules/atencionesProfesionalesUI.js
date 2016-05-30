@@ -2,8 +2,10 @@ var atencionesProfesionalesUI = (function(){
   return {
     initScript: function(){
       initDatepickerInline();
-      getTurnos();
+      initGetTurnos();
       empleadosUI.initBuscarDoctor('#doctor_id',false);
+
+      initSetEstadoTurnoToAtendido();
 
       $('#sidebar-wrapper').perfectScrollbar();
     }
@@ -17,20 +19,14 @@ var atencionesProfesionalesUI = (function(){
 */
 function initDatepickerInline(){
   $('#datepicker-inline').datepicker({
-        language: "es",
-    });
-
-  $('#datepicker-inline').on("changeDate", function() {
-    $('#fecha_consulta').val(
-      $('#datepicker-inline').datepicker('getFormattedDate')
-    );
+    language: "es",
   });
 }
 
 /* Cuando se selecciona otra fecha en el datepicker del sidebar
    , se realiza la petición para traer los turnos
 */
-function getTurnos(){
+function initGetTurnos(){
   $('#datepicker-inline').on("changeDate", function(){
       getTurnosAjax();
   });
@@ -49,4 +45,25 @@ function getTurnosAjax(){
         doctor_id: $('#doctor_id').val()
       },
     });
+}
+
+/**/
+function initSetEstadoTurnoToAtendido(){
+  $('.icon-pendiente').click(function(e){
+    paciente = $(this).attr('paciente');
+    var confirm = window.confirm("¿Desea establecer al paciente "+paciente+" como atendido?");
+    if (confirm){
+      $.ajax({
+        url: 'atenciones_profesionales/setEstadoTurnoToAtendido',
+        type: 'post',
+        dataType: 'script',
+        data: {
+          turno_id: $(this).attr('turno-id'),
+          fecha_consulta : $('#datepicker-inline').datepicker('getFormattedDate'),
+          doctor_id: $('#doctor_id').val()
+        }
+      });
+    }
+    e.preventDefault();
+   });
 }

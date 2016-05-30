@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  post 'atenciones_profesionales/setEstadoTurnoToAtendido' => 'atenciones_profesionales#setEstadoTurnoToAtendido'
   get 'atenciones_profesionales/get_turnos' => 'atenciones_profesionales#get_turnos'
   resources :atenciones_profesionales, only: [:index, :show]
 

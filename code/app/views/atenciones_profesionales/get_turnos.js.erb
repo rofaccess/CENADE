@@ -1,4 +1,9 @@
-//- $('#message-content').html("<%= j render 'message', turnos: @turnos, es_doctor: @es_doctor %>");
-$('#pacientes-content').html("<%= j render 'list_pacientes', turnos: @turnos, es_doctor: @es_doctor %>");
-empleadosUI.initBuscarDoctor('#doctor_id',false);
-APP.initMessageClose();
+<% if !flash.notice.blank? %>
+   $('#pacientes-content').html("<%= j render 'list_pacientes', turnos: @turnos, es_doctor: @es_doctor %>");
+   var n = noty({text: '<%=notice%>', type: 'success'});
+<% elsif !flash.alert.blank?%>
+   var n = noty({text: '<%=alert%>', type: 'error'});
+<% else%>
+   $('#pacientes-content').html("<%= j render 'list_pacientes', turnos: @turnos, es_doctor: @es_doctor %>");
+<% end %>
+initSetEstadoTurnoToAtendido();

@@ -17,6 +17,19 @@ class AtencionesProfesionalesController < ApplicationController
   def show
   end
 
+  def setEstadoTurnoToAtendido
+    turno = Turno.find(params[:turno_id])
+    if turno.update_attribute(:estado, 'atendido')
+      flash.now[:notice] = "El paciente #{turno.paciente.persona_full_name} ha sido atendido."
+      get_turnos
+      render 'get_turnos'
+    else
+      flash.now[:alert] = "Ocurrio un error."
+      get_turnos
+      render 'get_turnos'
+    end
+  end
+
   # Obtiene los turnos en cierta fecha que no hayan sido cancelados
   # Si el usuario que accede a atención profesional es de tipo doctor, se obtendrán los turnos con el
   # caso contrario, se permitirá seleccionar un doctor para seleccionar los turnos que se tienen con el

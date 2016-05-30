@@ -7,9 +7,9 @@
       <li class="<%= current_sidebar([])%>">
          <% if turno.estado == "atendido" %>
             <%=link_to "#{i}. #{turno.paciente.persona_full_name} <span class='fa fa-check-square-o icon-atendido' data-toggle='tooltip' title='Atendido'></span>".html_safe, atencion_profesional_path(turno) %>
-      <% else %>
-            <%=link_to "#{i}. #{turno.paciente.persona_full_name} <span class='fa fa-check-square-o icon-pendiente' data-toggle='tooltip' title='Setear como Atendido'></span>".html_safe, atencion_profesional_path(turno) %>
-      <% end %>
+         <% else %>
+            <%=link_to "#{i}. #{turno.paciente.persona_full_name} <span class='fa fa-check-square-o icon-pendiente' data-toggle='tooltip' title='Setear como Atendido' turno-id=#{turno.id}  paciente='#{turno.paciente.persona_full_name}'></span>".html_safe, atencion_profesional_path(turno) %>
+         <% end %>
       </li>
       <% i=i+1 %>
    <% end %>

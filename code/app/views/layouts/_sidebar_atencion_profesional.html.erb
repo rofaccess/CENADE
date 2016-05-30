@@ -1,17 +1,17 @@
 <div id="sidebar-wrapper">
     <ul class="sidebar-nav">
         <div id="message-content">
-            <%= render 'message', es_doctor: @es_doctor, turnos: @turnos %>
+            <%= render 'message', es_doctor: es_doctor, turnos: turnos %>
         </div>
 
-        <%unless @es_doctor%>
+        <%unless es_doctor%>
             <div class="select-doctor-sidebar"><%= select_tag :doctor_id, collection: []%></div>
         <%end%>
 
         <div id="datepicker-inline" data-date="<%=date(Date.today)%>"></div>
 
         <div id="pacientes-content">
-            <%= render 'list_pacientes', es_doctor: @es_doctor, turnos: @turnos %>
+            <%= render 'list_pacientes', es_doctor: es_doctor, turnos: turnos %>
         </div>
         <br>
         <!-- Sin lo siguiente, el scroll no muestra todo el contenido -->
