@@ -15,6 +15,45 @@ class AtencionesProfesionalesController < ApplicationController
   end
 
   def show
+    @turno = Turno.find(params[:id])
+    area = @turno.area_nombre
+
+    case area
+    when "Clínico"
+      get_datos_clinico
+      @data_partial = 'datos_clinico'
+    when "Fisioterapia"
+      get_datos_fisioterapia
+      @data_partial = 'datos_fisioterapia'
+    when "Fonoaudiología"
+    when "Neurología"
+    when "Nutrición"
+      get_datos_nutricion
+    when "Odontología"
+    when "Pediatría"
+    when "Psicología"
+    when "Psicología"
+    else
+    end
+  end
+
+  def get_datos_clinico
+    @datos = 'CLINICO'
+  end
+
+  def get_datos_fisioterapia
+    @datos = 'FISIOTERAPIA'
+  end
+
+  def get_datos_nutricion
+    paciente  = @turno.paciente
+    ficha_ped = paciente.ficha_nutricional_pediatrica
+    ficha_ad  = paciente.ficha_nutricional_adulto
+    consultas_ped = ConsultaNutricionalPediatrica.where(ficha_nutri_ped_id: ficha_ped.blank? ? nil : ficha_ped.id).order(fecha: :desc)
+    consultas_ad  = ConsultaNutricionalAdulto.where(ficha_nutricional_adulto_id: ficha_ad.blank? ? nil : ficha_ad.id).order(fecha: :desc)
+    controles     = Control.where(area_id: @turno.area_id,paciente_id: paciente.id).order(fecha: :desc)
+
+    @datos = {paciente: paciente, ficha_ped: ficha_ped, data_partial: 'datos_nutricion'}
   end
 
   def setEstadoTurnoToAtendido
@@ -38,7 +77,7 @@ class AtencionesProfesionalesController < ApplicationController
     empleado = current_user.empleado
     doctor_id = empleado.id
     fecha_consulta = Date.today
-    @es_doctor = es_doctor(empleado)
+    es_doctor = es_doctor(empleado)
 
     unless params[:fecha_consulta].blank?
       date = params[:fecha_consulta]
@@ -47,9 +86,11 @@ class AtencionesProfesionalesController < ApplicationController
         doctor_id = params[:doctor_id]
       end
     end
-    @turnos = Turno.where(doctor_id: doctor_id, fecha_consulta: fecha_consulta)
+    turnos = Turno.where(doctor_id: doctor_id, fecha_consulta: fecha_consulta)
                    .where.not(turnos: {estado: 'cancelado'})
                    .order('turnos.fecha_consulta')
+
+    @at_prof = {es_doctor: es_doctor, turnos: turnos}
   end
 
   # Devuelve true si el empleado es de tipo doctor, caso contrario false

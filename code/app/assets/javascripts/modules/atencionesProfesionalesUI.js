@@ -47,7 +47,7 @@ function getTurnosAjax(){
     });
 }
 
-/**/
+/* Inicia el evento, que permitirá setear el turno de un paciente como atendido */
 function initSetEstadoTurnoToAtendido(){
   $('.icon-pendiente').click(function(e){
     paciente = $(this).attr('paciente');
