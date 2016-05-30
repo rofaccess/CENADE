@@ -2,7 +2,7 @@ class Turno < ActiveRecord::Base
 
 	paginates_per 20
   # Autoincrementa el numero de turno
-  protokoll :turno, pattern: '#'
+  #protokoll :turno, pattern: '#'
 
 	belongs_to :paciente
 	belongs_to :area
@@ -17,18 +17,18 @@ class Turno < ActiveRecord::Base
   #cargas automaticas
   before_create :actualizar_estado
   after_create :actualizar_reporte
-  #before_create :actualizar_turno
+  before_create :actualizar_turno
 
 
-	#def actualizar_turno
-  #   turnoo = Turno.where("fecha_consulta = ? and area_id= ? and doctor_id= ?", self.fecha_consulta, self.area_id, self.doctor_id).order(:turno)
-  #    if turnoo.empty?
-  #      self.turno = 1
-  #    else
-  #      nro_turno = turnoo.last.turno
-  #      self.turno = nro_turno+1
-  #    end
-  #  end
+	def actualizar_turno
+     turnoo = Turno.where("fecha_consulta = ? and area_id= ? and doctor_id= ?", self.fecha_consulta, self.area_id, self.doctor_id).order(:turno)
+      if turnoo.empty?
+        self.turno = 1
+      else
+        nro_turno = turnoo.last.turno
+        self.turno = nro_turno+1
+      end
+    end
 
   #MODIFICA ESTE METODO CUANDO SE IMPLEMENTA ATENCION PROFESIONAL#
   def actualizar_reporte

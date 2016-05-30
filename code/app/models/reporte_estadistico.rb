@@ -8,10 +8,4 @@ class ReporteEstadistico < ActiveRecord::Base
  	 delegate :persona_nombre, :persona_apellido, :persona_full_name, :abr_profesion, to: :doctor, prefix: true, allow_nil: true
 
 
-
- 	 def obtener_cantidad
-    turnos= Turno.where("area_id = ? and doctor_id = ? and fecha_consulta =  ?", self.area_id, self.doctor_id, self.fecha_consulta).count
-    return turnos
-  end
-
 end

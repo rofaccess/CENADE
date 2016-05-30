@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'reportes_estadisticos/index'
   get 'reportes_estadisticos/por_mes' => 'reportes_estadisticos#por_mes'
   get 'reportes_estadisticos/por_anho' => 'reportes_estadisticos#por_anho'
   resources :reportes_estadisticos, only: [:index] do

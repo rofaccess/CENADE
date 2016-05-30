@@ -1,6 +1,13 @@
 var reportesUI = (function(){
 	return {
 
+		datepickerSpecialControl: function(){
+			$('.datepickerYear').datepicker( {
+			    format: ' yyyy',
+			    viewMode: 'years',
+			    minViewMode: 'years'
+			  });
+			},
 		datatableControl: function(){
 
 	    	$('#table-reportee').dataTable( {
@@ -32,6 +39,7 @@ var reportesUI = (function(){
 		initScript: function(){
 
 			/* Script globales */
+			reportesUI.datepickerSpecialControl();
 			reportesUI.datatableControl();
 	     	APP.initDatepicker();
 

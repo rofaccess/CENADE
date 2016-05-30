@@ -1,6 +1,6 @@
 class ReportesEstadisticosController < ApplicationController
 
-  before_action :set_sidebar, only: [:index, :por_mes, :por_ano]
+  before_action :set_sidebar, only: [:index, :por_mes, :por_anho]
 
   def index
   	get_reportes
@@ -15,8 +15,7 @@ class ReportesEstadisticosController < ApplicationController
   end
 
   def por_anho
-    @search = ReporteEstadistico.group(:area_id).search(params[:q])
-    @reportes= @search.result.page(params[:page])
+    get_reportes
   end
 
   def get_turnos
@@ -25,7 +24,8 @@ class ReportesEstadisticosController < ApplicationController
   end
 
   def get_reportes
-    @search = ReporteEstadistico.search(params[:q])
+    @reporte = ReporteEstadistico.select("area_id, doctor_id, SUM(cantidad) as cantidad_por_anho, anho").group("area_id, doctor_id, anho")
+    @search= @reporte.search(params[:q])
     @reportes= @search.result.page(params[:page])
   end
 end

@@ -104,11 +104,11 @@ class TurnosController < ApplicationController
     @turno= Turno.find(params[:id])
     if (@turno.estado== 'pendiente')
 
-      @turno.update_attribute(:estado, "cancelado")
-      flash.now[:notice] = "Turno N° #{@turno.turno} cancelado"
+      @turno.update_attribute(:estado, params[:nuevo_estado])
+      flash.now[:notice] = "Turno N° #{@turno.turno} params[:nuevo_estado]"
 
     else
-      flash.now[:alert] = "Turno N° #{@turno.turno} no se puede cancelar"
+      flash.now[:alert] = "Turno N° #{@turno.turno} no puede cambiar de estado"
     end
     index
     render 'index'
@@ -116,7 +116,7 @@ class TurnosController < ApplicationController
     end
     def get_turnos
       @search = Turno.ransack(params[:q])
-
+      @search.sorts = ['turno asc', 'area_id desc'] if @search.sorts.empty?
       @turnos= @search.result.page(params[:page])
     end
 
