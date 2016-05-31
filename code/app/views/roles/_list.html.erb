@@ -19,9 +19,9 @@
 
       <td class = "action">
 
-        <%= link_to '<i class="fa fa-eye fa-lg"></i> '.html_safe, role_path(role)%>
-        <%= link_to '<i class="fa fa-edit fa-lg"></i> '.html_safe, edit_role_path(role)%>
-        <%= link_to '<i class="fa fa-trash-o fa-lg"></i>'.html_safe, role_path(role), method: 'delete', data: {confirm: "¿Desea eliminar el rol #{role.name}?"}%>
+        <%= link_to '<i class="fa fa-eye fa-lg" data-toggle="tooltip" title="Ver Rol"></i> '.html_safe, role_path(role)%>
+        <%= link_to '<i class="fa fa-edit fa-lg" data-toggle="tooltip" title="Editar Rol"></i> '.html_safe, edit_role_path(role)%>
+        <%= link_to '<i class="fa fa-trash-o fa-lg" data-toggle="tooltip" title="Eliminar Rol"></i>'.html_safe, role_path(role), method: 'delete', data: {confirm: "¿Desea eliminar el rol #{role.name}?"}%>
 
       </td>
     </tr>

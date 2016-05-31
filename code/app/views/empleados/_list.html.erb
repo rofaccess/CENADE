@@ -34,12 +34,12 @@
 
       <td class = "action">
 
-        <%= link_to '<i class="fa fa-eye fa-lg"></i> '.html_safe, empleado_path(empleado), remote: true%>
+        <%= link_to '<i class="fa fa-eye fa-lg" data-toggle="tooltip" title="Ver Empleado"></i> '.html_safe, empleado_path(empleado), remote: true%>
 
-        <%= link_to '<i class="fa fa-edit fa-lg"></i> '.html_safe, edit_empleado_path(empleado), remote: true%>
+        <%= link_to '<i class="fa fa-edit fa-lg" data-toggle="tooltip" title="Editar Empleado"></i> '.html_safe, edit_empleado_path(empleado), remote: true%>
 
         <% unless current_user.empleado_id == empleado.id %>
-          <%= link_to '<i class="fa fa-trash-o fa-lg"></i>'.html_safe, empleado_path(empleado), method: 'delete', data: {confirm: "¿Desea eliminar al empleado #{empleado.persona_full_name}?"}%>
+          <%= link_to '<i class="fa fa-trash-o fa-lg" data-toggle="tooltip" title="Eliminar Empleado"></i>'.html_safe, empleado_path(empleado), method: 'delete', data: {confirm: "¿Desea eliminar al empleado #{empleado.persona_full_name}?"}%>
         <%end%>
       </td>
     </tr>
