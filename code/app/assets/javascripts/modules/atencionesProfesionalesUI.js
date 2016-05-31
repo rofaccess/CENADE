@@ -14,6 +14,7 @@ var atencionesProfesionalesUI = (function(){
       empleadosUI.initBuscarDoctor('#doctor_id',false);
 
       initSetEstadoTurnoToAtendido();
+      APP.initPanelFolding();
 
       $('#sidebar-wrapper').perfectScrollbar();
     }

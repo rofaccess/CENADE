@@ -49,7 +49,8 @@ class AtencionesProfesionalesController < ApplicationController
     consultas_ad  = ConsultaNutricionalAdulto.where(ficha_nutricional_adulto_id: ficha_ad.blank? ? nil : ficha_ad.id).order(fecha: :desc)
     controles     = Control.where(area_id: @turno.area_id,paciente_id: paciente.id).order(fecha: :desc)
 
-    @data = {paciente: paciente, ficha_ped: ficha_ped, data_partial: 'data_nutricion'}
+    @data = {paciente: paciente, ficha_ped: ficha_ped, ficha_ad: ficha_ad,consultas_ped: consultas_ped,
+             controles: controles, consultas_ad: consultas_ad, partial: '/nutricion/show'}
   end
 
   def setEstadoTurnoToAtendido

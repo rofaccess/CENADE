@@ -1,7 +1,7 @@
 <% if encargados.nil? %>
-   <%= h_panel_head('II - DATOS DE LOS PADRES Y/O ENCARGADO (No tiene)') %>
+   <%= panel_head('II - DATOS DE LOS PADRES Y/O ENCARGADO (No tiene)') %>
 <% else %>
-   <%= h_panel('II - DATOS DE LOS PADRES Y/O ENCARGADO', 'level-1')%>
+   <%= panel_begin('II - DATOS DE LOS PADRES Y/O ENCARGADO')%>
 
       <div class="row">
          <%= h_data('Nombre(s) y Apellido(s) del Padre', encargados.padre_nombre,'col-md-10') %>
@@ -25,5 +25,5 @@
       <div class="row">
          <%= h_data('Profesión Actual y/o Anterior',encargados.encargado_prof_act_ant,'col-md-12') %>
       </div>
-   <%= h_panel_end %>
+   <%= panel_end %>
 <% end %>

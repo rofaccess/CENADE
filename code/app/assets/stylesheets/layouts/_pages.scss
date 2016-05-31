@@ -1,4 +1,7 @@
 /* Este archivo define el aspecto del contenedor, listado, paginacion, linea azul que reemplaza al submenu */
+
+$data-border-color: #AAAAAA;
+
 body{
 	background: #EAF0F3;
 	padding-top: 30px;//- Hace que el contenido del body inicie cuando termina el menú principal
@@ -133,3 +136,27 @@ div.content-sin-page-title{
 	word-break: break-all;
 }​
 */
+
+/* Define el aspecto de los datos mostrados en algunos show */
+// Muestra el borde inferior, una linea debajo del dato mostrado
+.bottom-border{
+   border-bottom: 1px solid $data-border-color;
+   min-height: 22px;
+   word-break: break-all;
+}
+
+// Muestra todos los bordes, encuadra el dato mostrado
+.all-border{
+   border: 1px solid $data-border-color;
+   border-radius: 3px;
+   padding-left: 5px;
+   padding-right: 5px;
+   word-break: break-all;
+   min-height: 22px;
+}
+
+/* Muestra el borde superior */
+.top-border{
+   border-top: 1px solid $data-border-color;
+   padding-top: 5px;
+}

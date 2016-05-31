@@ -1,0 +1,109 @@
+<ul class="nav nav-tabs">
+    <% consultas_ped.each do |c| %>
+        <li><a href="#consulta-pediatrica-<%= c.id%>"><%= date(c.fecha)%></a></li>
+    <%end%>
+</ul>
+
+<div class="tabscontent">
+    <% consultas_ped.each do |consulta| %>
+        <div id="consulta-pediatrica-<%= consulta.id%>">
+           <div class="row">
+               <%= data('Profesional de la Salud', consulta.doctor_full_name,'col-md-9') %>
+               <%= data('Fecha', date(consulta.fecha),'col-md-3') %>
+            </div>
+
+            <div class="row">
+                <%= data('I - Encargado', consulta.encargado,'col-md-12') %>
+            </div>
+
+            <ul class="nav nav-tabs">
+                <li><a href="#valoracion_desarrollo">II - Valoración del Desarrollo</a></li>
+                <li><a href="#alimentacion_actual">III - Alimentación Actual</a></li>
+                <li><a href="#signos_sintomas">IV - Signos y/o Síntomas</a></li>
+                <li><a href="#datos_antropometricos">V - Datos Antropométricos</a></li>
+            </ul>
+            <div class="tabscontent">
+                <div id="valoracion_desarrollo">
+                    <div class="row">
+                        <%= data('Sostén Cefálico', consulta.sosten_cefalico,'col-md-12') %>
+                     </div>
+                     <div class="row">
+                        <%= data('Se sentó a los', consulta.sento,'col-md-4') %>
+                        <%= data('Se paró a los', consulta.paro,'col-md-4') %>
+                        <%= data('Caminó a los', consulta.camino,'col-md-4') %>
+                     </div>
+                     <div class="row">
+                        <%= data('¿Busca Sonido?', consulta.busca_sonido,'col-md-4') %>
+                        <%= data('¿Emite Sonido?', consulta.emite_sonido,'col-md-4') %>
+                        <%= data('¿Rie - Llora?', consulta.rie_llora,'col-md-4') %>
+                     </div>
+                     <div class="row">
+                        <%= data('¿Sigue la luz u objetos coloridos?', consulta.sigue_luz,'col-md-5') %>
+                        <%= data('¿Mastica - Deglute?', consulta.mastica_deglute,'col-md-7') %>
+                     </div>
+                     <div class="row">
+                        <%= data('Habilidades presentes y/o ausentes para la edad', consulta.habilidades,'col-md-12') %>
+                     </div>
+                     <div class="row">
+                        <%= data_text('Otros', consulta.otros,'col-md-12') %>
+                     </div>
+                </div>
+
+                <div id="alimentacion_actual">
+                    <div class="row">
+                        <%= data('Desayuno', consulta.desayuno,'col-md-12') %>
+                     </div>
+                     <div class="row">
+                        <%= data('Media Mañana', consulta.media_manana,'col-md-12') %>
+                     </div>
+                     <div class="row">
+                        <%= data('Almuerzo', consulta.almuerzo,'col-md-12') %>
+                     </div>
+                     <div class="row">
+                        <%= data('Merienda', consulta.merienda,'col-md-12') %>
+                     </div>
+                     <div class="row">
+                        <%= data('Cena', consulta.cena,'col-md-12') %>
+                     </div>
+                </div>
+
+                <div id="signos_sintomas">
+                    <div class="row">
+                        <%= data('Diarrea', consulta.diarrea,'col-md-4') %>
+                        <%= data('Vómitos', consulta.vomitos,'col-md-4') %>
+                        <%= data('Fiebre', consulta.fiebre,'col-md-4') %>
+                     </div>
+                     <div class="row">
+                        <%= data('Problemas Respiratorios', consulta.problemas_respiratorios,'col-md-6') %>
+                        <%= data('Distención abdominal', consulta.distension_abdominal,'col-md-6') %>
+                     </div>
+                     <div class="row">
+                        <%= data('Constipación', consulta.constipacion,'col-md-4') %>
+                        <%= data('Orina', consulta.orina,'col-md-4') %>
+                        <%= data('Sudor', consulta.sudor,'col-md-4') %>
+                     </div>
+                     <div class="row">
+                        <%= data('Otros', consulta.otros2,'col-md-12') %>
+                     </div>
+                </div>
+
+                <div id="datos_antropometricos">
+                    <div class="row">
+                        <%= data('Talla', consulta.talla,'col-md-6') %>
+                        <%= data('Peso', consulta.peso,'col-md-6') %>
+                     </div>
+                     <div class="row">
+                        <%= data('PC', consulta.pc,'col-md-4') %>
+                        <%= data('IMC', consulta.imc,'col-md-4') %>
+                        <%= data('CM', consulta.cm,'col-md-4') %>
+                     </div>
+                </div>
+            </div>
+
+            <br>
+            <div class="row">
+                <%= data_text('VI - Diagnóstico', consulta.diagnostico,'col-md-12') %>
+            </div>
+        </div>
+    <%end%>
+</div>

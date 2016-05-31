@@ -1,7 +1,7 @@
 <% if ficha_ped.nil? %>
-   <%= h_panel_head('IV - FICHA PEDIÁTRICA (No tiene)') %>
+   <%= panel_head('IV - FICHA PEDIÁTRICA (No tiene)') %>
 <% else %>
-<%= h_panel('IV - FICHA PEDIÁTRICA','level-1')%>
+<%= panel_begin('IV - FICHA PEDIÁTRICA')%>
    <div class="row">
          <%= h_data('Profesional de la Salud', ficha_ped.doctor_full_name,'col-md-9') %>
          <%= h_data('Fecha', date(ficha_ped.fecha),'col-md-3') %>
@@ -18,5 +18,5 @@
 
       <%= h_data_text('Condiciones Generales del Recién Nacido', ficha_ped.condicion_general,'col-md-12') %>
    </div>
-<%= h_panel_end %>
+<%= panel_end %>
 <% end %>
