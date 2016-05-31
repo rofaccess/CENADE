@@ -20,7 +20,7 @@
             <%= link_to '<span class="fa fa-user" aria-hidden="true"></span>  Pacientes'.html_safe, pacientes_path %>
           </li>
 
-          <li class="<%= current_menu([welcome_index_fichas_path, welcome_index_consultas_path,welcome_index_historial_path,fichas_fisioterapeuticas_adultos_path,ficha_fisioterapia_ninos_path, fichas_fonoaudiologicas_path,welcome_index_atencion_profesional_path, fichas_nutricionales_pediatricas_path, fichas_psicopedagogicas_path, fichas_pediatricas_path,fichas_odontologicas_path,fichas_neurologicas_path,fichas_clinicos_path,consultas_path, historiales_fisioterapeuticos_path, historiales_fonoaudiologicos_path,historiales_psicopedagogicos_path, historiales_clinicos_path,historiales_neurologicos_path,historiales_pediatricos_path,historiales_odontologicos_path,historiales_nutricionales_path])%>">
+          <li class="<%= current_menu([welcome_index_fichas_path, welcome_index_consultas_path,welcome_index_historial_path,fichas_fisioterapeuticas_adultos_path,ficha_fisioterapia_ninos_path, fichas_fonoaudiologicas_path,fichas_nutricionales_pediatricas_path, fichas_psicopedagogicas_path, fichas_pediatricas_path,fichas_odontologicas_path,fichas_neurologicas_path,fichas_clinicos_path,consultas_path, historiales_fisioterapeuticos_path, historiales_fonoaudiologicos_path,historiales_psicopedagogicos_path, historiales_clinicos_path,historiales_neurologicos_path,historiales_pediatricos_path,historiales_odontologicos_path,historiales_nutricionales_path, atenciones_profesionales_path])%>">
             <%= link_to '<span class="fa fa-list-alt" aria-hidden="true"></span>  Fichas y Consultas'.html_safe, welcome_index_fichas_path %>
           </li>
 
@@ -28,8 +28,8 @@
             <%= link_to '<span class="fa fa-users" aria-hidden="true"></span>  Personal'.html_safe, empleados_path  %>
           </li>
 
-          <li class="<%= current_menu([welcome_index_reportes_path])%>">
-            <%= link_to '<span class="fa fa-bar-chart" aria-hidden="true"></span>  Reportes'.html_safe, welcome_index_reportes_path  %>
+          <li class="<%= current_menu([reportes_estadisticos_path])%>">
+            <%= link_to '<span class="fa fa-bar-chart" aria-hidden="true"></span>  Reportes'.html_safe, reportes_estadisticos_path  %>
           </li>
 
           <li class="<%= current_menu([welcome_index_configuracion_path, usuarios_path, edit_configuracion_path(Configuracion.first),configuracion_path(Configuracion.first), roles_path, perfil_usuarios_edit_path])%>">

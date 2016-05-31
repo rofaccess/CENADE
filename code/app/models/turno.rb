@@ -2,11 +2,12 @@ class Turno < ActiveRecord::Base
 
 	paginates_per 20
   # Autoincrementa el numero de turno
-  protokoll :turno, pattern: '#'
+  #protokoll :turno, pattern: '#'
 
 	belongs_to :paciente
 	belongs_to :area
   belongs_to :doctor
+  belongs_to :turno
 
 
   #Validaciones
@@ -16,19 +17,33 @@ class Turno < ActiveRecord::Base
 
   #cargas automaticas
   before_create :actualizar_estado
-  #before_create :actualizar_turno
+  after_create :actualizar_reporte
+  before_create :actualizar_turno
 
 
-	#def actualizar_turno
-  #   turnoo = Turno.where("fecha_consulta = ? and area_id= ? and doctor_id= ?", self.fecha_consulta, self.area_id, self.doctor_id).order(:turno)
-  #    if turnoo.empty?
-  #      self.turno = 1
-  #    else
-  #      nro_turno = turnoo.last.turno
-  #      self.turno = nro_turno+1
-  #    end
-  #  end
+	def actualizar_turno
+     turnoo = Turno.where("fecha_consulta = ? and area_id= ? and doctor_id= ?", self.fecha_consulta, self.area_id, self.doctor_id).order(:turno)
+      if turnoo.empty?
+        self.turno = 1
+      else
+        nro_turno = turnoo.last.turno
+        self.turno = nro_turno+1
+      end
+    end
 
+  #MODIFICA ESTE METODO CUANDO SE IMPLEMENTA ATENCION PROFESIONAL#
+  def actualizar_reporte
+    #if (self.estado == 'atendido')
+      #mes= self.strftime('%b')
+      #anho= self.strftime('%Y')
+      #reporte= ReporteEstadistico.find_or_create_by(area_id: self.area_id, doctor_id: self.area_id, mes: mes, anho: anho)
+      #cant= reporte.cantidad
+      #if (cant.nil?)
+        #reporte.update_attribute(:cantidad, 1)
+      #else
+        #reporte.update_attribute(:cantidad, cant + 1)
+      #end
+  end
 
   def actualizar_estado
     self.estado = 'pendiente'
@@ -39,6 +54,11 @@ class Turno < ActiveRecord::Base
 
       errors.add(:base, "Fecha de consulta no válida ")
     end
+  end
+
+  def obtener_cantidad
+    turnos= Turno.where("area_id = ? and doctor_id = ? and fecha_consulta =  ?", self.area_id, self.doctor_id, self.fecha_consulta).count
+    return turnos
   end
 
   def coincidencia_area

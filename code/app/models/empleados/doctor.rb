@@ -18,6 +18,8 @@ class Doctor < Empleado
  	has_many :consultas
  	has_many :consultas_nutricionales_pediatricas
 
+ 	has_many :reportes_estadisticos
+
  	# Retorna el nombre y apellido del doctor, usado en /doctores/buscar
 	def full_name
   		"#{abr_profesion} #{persona_nombre} #{persona_apellido}"

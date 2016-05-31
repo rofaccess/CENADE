@@ -1,0 +1,68 @@
+<div class="content content-sin-page-title">
+   <div class="atencion-content">
+      <h1 class="atencion-title">NUTRICIÓN</h1>
+
+      <%= render 'atenciones_profesionales/data_paciente', paciente: data[:paciente] %>
+
+      <% if data[:ficha_ad].blank? && data[:ficha_ped].blank? %>
+         <%= panel_head('Fichas (No tiene)') %>
+      <% else %>
+         <%= panel_begin('Fichas') %>
+            <ul class="nav nav-tabs">
+                <% unless data[:ficha_ped].blank? %>
+                  <li><a href="#pediatrica">Pediátrica</a></li>
+                <% else %>
+                  <li><a class="tab-head-empty">Pediátrica (No tiene)</a></li>
+                <% end %>
+                <% unless data[:ficha_ad].blank? %>
+                  <li><a href="#adulto">Adulto</a></li>
+                <% else %>
+                  <li class="tab-head-empty"><a href>Adulto (No tiene)</a></li>
+                <% end %>
+            </ul>
+
+            <div class="tabscontent">
+              <% unless data[:ficha_ped].blank? %>
+                <div id="pediatrica">
+                    <%= render 'atenciones_profesionales/nutricion/data_ficha_ped', ficha_ped: data[:ficha_ped] %>
+
+                    <% if data[:consultas_ped].blank?%>
+                       <%= panel_head('Consulta Pediátrica (No tiene)') %>
+                    <% else %>
+                       <%= panel_begin('Consulta Pediátrica') %>
+                          <%= render 'atenciones_profesionales/nutricion/data_consultas_ped', consultas_ped: data[:consultas_ped] %>
+                       <%= panel_end %>
+                    <% end %>
+                </div>
+              <% end %>
+              <% unless data[:ficha_ad].blank? %>
+                <div id="adulto">
+                    <%= render 'atenciones_profesionales/nutricion/data_ficha_ad', ficha_ad: data[:ficha_ad] %>
+
+                    <% if data[:consultas_ad].blank?%>
+                       <%= panel_head('Consulta Adulto (No tiene)') %>
+                    <% else %>
+                       <%= panel_begin('Consulta Adulto') %>
+                          <%= render 'atenciones_profesionales/nutricion/data_consultas_ad', consultas_ad: data[:consultas_ad] %>
+                       <%= panel_end %>
+                    <% end %>
+                </div>
+              <% end %>
+            </div>
+         <%= panel_end %>
+      <% end %>
+
+      <% if data[:controles].blank? %>
+         <%= panel_head('Controles (No tiene)') %>
+      <% else %>
+         <%= panel_begin('Controles') %>
+            <%= render 'atenciones_profesionales/nutricion/data_controles', controles: data[:controles] %>
+         <%= panel_end %>
+      <% end %>
+   </div>
+</div>
+
+<script type="text/javascript">
+   $('.tabscontent').tabbedContent();
+   APP.initPanelFolding();
+</script>

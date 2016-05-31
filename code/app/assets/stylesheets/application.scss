@@ -31,6 +31,7 @@
 @import "vendors/bootstrap-datepicker3";
 @import "vendors/select2-bootstrap";
 @import "vendors/simple-sidebar.css";
+@import "vendors/perfect-scrollbar.min.css";
 
 //MIXINS
 // color muy común en toda la aplicación
@@ -45,8 +46,10 @@ $has-error-color: #dd4b39;
 //components
 @import "components/advanced-search";
 @import "components/buttons";
-@import "components/devise-flash-messages";
+@import "components/datepicker";
+@import "components/alert-messages";
 @import "components/page-title";
+@import "components/panel";
 @import "components/tabs";
 @import "components/modal";
 
@@ -61,6 +64,7 @@ $has-error-color: #dd4b39;
 @import "layouts/pages";
 
 //modules
+@import "modules/atenciones";
 @import "modules/configuraciones";
 @import "modules/empleados";
 @import "modules/historiales";

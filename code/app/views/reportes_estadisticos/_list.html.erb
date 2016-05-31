@@ -1,0 +1,44 @@
+
+<table id="table-reporte" class= "table table-condensed">
+  <thead>
+    <tr class="active">
+      <th>Mes</th>
+      <th>Profesional de la Salud</th>
+      <th>Cantidad Atentidos</th>
+      <th>Año</th>
+      <th>Area</th>
+    </tr>
+  </thead>
+  <% if reportes.blank? %>
+    <tfoot>
+      <tr>
+        <th colspan="8" scope="col">No se encontraron coincidencias </th>
+      </tr>
+    </tfoot>
+   <% end %>
+  <tbody>
+    <% reportes.each do |reporte| %>
+    <tr>
+      <td><%=reporte.mes%></td>
+      <td ><%=reporte.doctor.persona_full_name %> </td>
+      <td ><%=reporte.cantidad%></td>
+      <td><%=reporte.anho%></td>
+      <td><%=reporte.area_nombre%></td>
+
+
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<script type="text/javascript">
+
+      reportesUI.initScript();
+      <% if !flash.notice.blank? %>
+        var n = noty({text: '<%=notice%>', type: 'success'});
+      <% end %>
+      <% if !flash.alert.blank?%>
+        var n = noty({text: '<%=alert%>', type: 'error'});
+      <% end %>
+
+</script>

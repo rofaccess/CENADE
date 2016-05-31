@@ -2,8 +2,10 @@
 
 var empleadosUI = (function(){
 	return {
-		/* Inicia el buscador del select2 en el element dado, para buscar doctores */
-		initBuscarDoctor: function(element) {
+		/* Inicia el buscador del select2 en el element dado, para buscar doctores
+		 * validate true o false, si true se valida  o sino no se valida
+		 */
+		initBuscarDoctor: function(element,validate) {
 			$(element).select2({
 				ajax: {
 					url: '/doctores/buscar',
@@ -20,8 +22,8 @@ var empleadosUI = (function(){
 	                		results: $.map( data.items, function(doctor, i) {
 	                			return {
 	                				id       : doctor.id,
-	                				text     : doctor.persona_full_name,
-	                				full_name: doctor.persona_full_name,
+	                				text     : doctor.full_name,
+	                				full_name: doctor.full_name,
 	                				area     : doctor.area_nombre }
 	                			})
 	                	};
@@ -29,18 +31,19 @@ var empleadosUI = (function(){
 
 	                cache: true
 	            },
-	            placeholder: "Buscar por Nom., Ap. o Área",
-	  			allowClear: true,    		    //Muestra un icono x para limpiar la opción seleccionada
+	            placeholder: "Buscar Profesional",
+	  			//allowClear: true,    		    //Muestra un icono x para limpiar la opción seleccionada
 	            minimumInputLength: 2,			//Obliga a escribir un mímimo de dos caracteres antes de realizar la búsqueda
 	  			templateResult: formatDoctor,   //formatDoctor es una función definida más abajo
 	  			escapeMarkup: function (markup) { return markup; }
-
 	  		});
 
 			/* Valida cuando se elige otro doctor en el element (select) dado */
-	  		$(element).on("change", function(){
-				$(this).valid();
-			});
+	  		if (validate) {
+	  			$(element).on("change", function(){
+					$(this).valid();
+				});
+	  		}
 		},
 
 		/* Muestra el area si es doctor (Profesional de Salud) */
