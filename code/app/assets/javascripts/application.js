@@ -41,8 +41,9 @@
 //= require modules/configuracionesUI
 //= require modules/usuariosUI
 //= require modules/rolesUI
+//= require modules/atencionesProfesionalesUI
 
-//= require_tree .
+
 
 /* Nota: La línea anterior carga todos los script, asi que en teoría, no es necesario ćargar el contenido de los modules */
 
@@ -278,16 +279,7 @@ APP = {
 
     /* Inicia la funcionalidad de los tabs*/
     initTabs: function(){
-        var tabs;
-        jQuery(function($) {
-        tabs = $('.tabscontent').tabbedContent({loop: true}).data('api');
-            // Next and prev actions
-            $('.controls a').on('click', function(e) {
-                var action = $(this).attr('href').replace('#', '');
-                tabs[action]();
-                e.preventDefault();
-            });
-        });
+        $('.tabscontent').tabbedContent();
     },
 
     /* Ejecuta las funciones especificadas*/
