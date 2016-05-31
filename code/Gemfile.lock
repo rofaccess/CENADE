@@ -138,6 +138,7 @@ GEM
       activerecord (>= 3.0)
     protokoll (1.0.3)
       rails (>= 4.0)
+    puma (3.4.0)
     rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -283,6 +284,7 @@ DEPENDENCIES
   paranoia (~> 2.0)
   pg
   protokoll
+  puma
   rails (= 4.2.0)
   rails_12factor
   rails_best_practices
