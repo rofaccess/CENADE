@@ -30,9 +30,9 @@
 
       <td class = "action">
 
-        <%= link_to '<i class="fa fa-eye fa-lg"></i> '.html_safe, paciente_path(paciente), remote: true%>
-        <%= link_to '<i class="fa fa-edit fa-lg"></i> '.html_safe, edit_paciente_path(paciente), remote: true%>
-        <%= link_to '<i class="fa fa-trash-o fa-lg"></i>'.html_safe, paciente_path(paciente), method: 'delete', data: {confirm: "¿Desea eliminar al paciente #{paciente.persona_full_name}?"}%>
+        <%= link_to '<i class="fa fa-eye fa-lg" data-toggle="tooltip" title="Ver Paciente"></i> '.html_safe, paciente_path(paciente), remote: true%>
+        <%= link_to '<i class="fa fa-edit fa-lg" data-toggle="tooltip" title="Editar Paciente"></i> '.html_safe, edit_paciente_path(paciente), remote: true%>
+        <%= link_to '<i class="fa fa-trash-o fa-lg" data-toggle="tooltip" title="Eliminar Paciente"></i>'.html_safe, paciente_path(paciente), method: 'delete', data: {confirm: "¿Desea eliminar al paciente #{paciente.persona_full_name}?"}%>
 
       </td>
     </tr>

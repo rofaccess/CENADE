@@ -14,24 +14,24 @@
 }
 
 .border-img{
-   position: relative;
-   left:30%;
    border:dotted;
    border-color:#d9d9d9;
    width:80px;
    height:80px;
 }
 
+.align-center{
+   text-align: center;
+}
+
 .font-img{
    color:#24C1C1;
    font-weight: normal;
-   padding-left:75px;
 }
 
 .uploader_button{
    position: relative;
    overflow: hidden;
-   margin: 10px;
 
    .file_uploader {
       position: absolute;

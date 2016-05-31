@@ -27,8 +27,7 @@
 	<% unless @sidebar_layout == nil %>
 
 		<div id="wrapper">
-
-			<%= render @sidebar_layout, at_prof: @at_prof %>
+			<%= render @sidebar_layout, configuracion_general: @configuracion_general, at_prof: @at_prof %>
 
 	        <div id="page-content-wrapper">
 

@@ -2,14 +2,14 @@
 		Paciente
 
 		<div class="tool">
-			<%= link_to '<i class="fa fa-list"></i> '.html_safe, pacientes_path %>
-			<%= link_to '<i class="fa fa-plus-square"></i> '.html_safe, new_paciente_path, remote: true%>
+			<%= link_to '<i class="fa fa-list" data-toggle="tooltip" title="Lista de Pacientes"></i> '.html_safe, pacientes_path %>
+			<%= link_to '<i class="fa fa-plus-square" data-toggle="tooltip" title="Nuevo Paciente"></i> '.html_safe, new_paciente_path, remote: true%>
 
-			<%= link_to '<i class="fa fa-edit"></i> '.html_safe, edit_paciente_path(paciente.id), remote: true %>
+			<%= link_to '<i class="fa fa-edit" data-toggle="tooltip" title="Editar Paciente"></i> '.html_safe, edit_paciente_path(paciente.id), remote: true %>
 
-			<%= link_to '<i class="fa fa-trash-o"></i>'.html_safe, paciente_path(paciente), method: 'delete', data: {confirm: "¿Desea eliminar al paciente #{paciente.persona_full_name}?"}%>
+			<%= link_to '<i class="fa fa-trash-o" data-toggle="tooltip" title="Eliminar Paciente"></i>'.html_safe, paciente_path(paciente), method: 'delete', data: {confirm: "¿Desea eliminar al paciente #{paciente.persona_full_name}?"}%>
 
-			<%= link_to '<i class="fa fa-print"></i> '.html_safe, pacientes_print_paciente_path(paciente_id: paciente.id, :format => :pdf), target: '_blank'%>
+			<%= link_to '<i class="fa fa-print" data-toggle="tooltip" title="Imprimir Paciente"></i> '.html_safe, pacientes_print_paciente_path(paciente_id: paciente.id, :format => :pdf), target: '_blank'%>
 		</div>
 </div>
 <div class="content content-sin-submenu content-70">

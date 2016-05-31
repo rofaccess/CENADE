@@ -10,7 +10,7 @@
       <h4 class="historial-title">CLÍNICO</h4>
 
       <%= render 'compartido/historial/data_paciente', paciente:   paciente %>
-      <%= render 'compartido/historial/data_encargados', encargados: paciente.encargado %>
+      <%= render 'compartido/historial/data_encargados', encargados: paciente.encargado,paciente:   paciente %>
       <%= render 'compartido/historial/data_ficha_cli_neu_ped', ficha:  ficha %>
       <%= render 'compartido/historial/data_consultas', consultas:  consultas, num: 'IV' %>
    </div>

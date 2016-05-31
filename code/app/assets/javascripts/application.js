@@ -11,7 +11,6 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery.ui.datepicker
 //= require bootstrap-sprockets
 //= require jquery_ujs
 
@@ -20,32 +19,22 @@
 //= require plugins/jquery-validate-setup.js
 //= require plugins/jquery-inputmask.js
 //= require plugins/jquery-inputmask-regex-extensions.js
-//= require plugins/select2/select2.full.min.js
-//= require plugins/select2/i18n/es.js
+//= require plugins/select2.full.min.js
+
 //= require plugins/jquery.dataTables.js
 //= require plugins/loading-overlay-min.js
-//= require plugins/bootstrap-datepicker/bootstrap-datepicker.js
-//= require plugins/bootstrap-datepicker/bootstrap-datepicker.min.js
-//= require plugins/bootstrap-datepicker/bootstrap-datepicker.es.min.js
+//= require plugins/bootstrap-datepicker.min.js
 
-//= require plugins/noty/jquery.noty
-//= require plugins/noty/packaged/jquery.noty.packaged
+//= require plugins/noty/packaged/jquery.noty.packaged.min.js
 //= require plugins/noty/layouts/topCenter
-//= require plugins/noty/themes/default
 //= require plugins/tabbedcontent.min.js
+//= require plugins/perfect-scrollbar.jquery.min.js
 
 //= require languages/jquery-validate-messages-es.js
-//= require languages/jquery-ui-datepicker-es.js
+//= require languages/select2-es.js
+//= require languages/bootstrap-datepicker.es.min.js
 
-//= require modules/empleadosUI
-//= require modules/configuracionesUI
-//= require modules/usuariosUI
-//= require modules/rolesUI
-//= require modules/atencionesProfesionalesUI
-
-
-
-/* Nota: La línea anterior carga todos los script, asi que en teoría, no es necesario ćargar el contenido de los modules */
+//= require_tree ./modules
 
 APP = {
 
