@@ -276,6 +276,11 @@ APP = {
         });
     },
 
+    /* Inicia la funcionalidad de los tabs*/
+    initTabs: function(){
+        $('.tabscontent').tabbedContent();
+    },
+
     /* Ejecuta las funciones especificadas*/
     init: function() {
 		APP.initBuscador();
