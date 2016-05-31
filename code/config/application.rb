@@ -30,6 +30,6 @@ module Code
 
     # //- Protect mass assignment requerido por rbp y no me funcionó
     #config.active_record.whitelist_attributes = true
-
+    config.assets.enabled = true
   end
 end
