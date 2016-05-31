@@ -278,7 +278,16 @@ APP = {
 
     /* Inicia la funcionalidad de los tabs*/
     initTabs: function(){
-        $('.tabscontent').tabbedContent();
+        var tabs;
+        jQuery(function($) {
+        tabs = $('.tabscontent').tabbedContent({loop: true}).data('api');
+            // Next and prev actions
+            $('.controls a').on('click', function(e) {
+                var action = $(this).attr('href').replace('#', '');
+                tabs[action]();
+                e.preventDefault();
+            });
+        });
     },
 
     /* Ejecuta las funciones especificadas*/
