@@ -125,7 +125,7 @@
       </div>
       <div class="row" id="factura" style="display:none">
         <%= FormBuilder::text_field_v(turno, :nro_factura,
-                                      input_class: '',
+                                      input_class: 'required',
                                       max_length: Domain::NRO_FACTURA,
                                       label_text: '* N° de Factura',
                                       col_class: 'col-md-6')%>

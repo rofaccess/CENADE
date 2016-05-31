@@ -1,0 +1,36 @@
+
+<table id="table-reporte-anho" class= "table table-condensed">
+  <thead>
+    <tr class="active">
+      <th>Profesional de la Salud</th>
+      <th>Cantidad Atentidos</th>
+      <th>Año</th>
+      <th>Area</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% reportes.each do |reporte| %>
+    <tr>
+      <td ><%=reporte.doctor.persona_full_name %> </td>
+      <td ><%=reporte.cantidad_por_anho%></td>
+      <td><%=reporte.anho%></td>
+      <td><%=reporte.area_nombre%></td>
+
+
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<script type="text/javascript">
+
+      reportesUI.initScript();
+      <% if !flash.notice.blank? %>
+        var n = noty({text: '<%=notice%>', type: 'success'});
+      <% end %>
+      <% if !flash.alert.blank?%>
+        var n = noty({text: '<%=alert%>', type: 'error'});
+      <% end %>
+
+</script>

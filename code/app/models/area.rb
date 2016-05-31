@@ -8,4 +8,5 @@ class Area < ActiveRecord::Base
 	has_many :fichas_fonoaudiologicas
 	has_many :fichas_nutricionales_pediatricas
 	has_many :fichas_nutricionales_adultos
+	has_many :reportes_estadisticos
 end

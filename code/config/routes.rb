@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  get 'reportes_estadisticos/por_mes' => 'reportes_estadisticos#por_mes'
+  get 'reportes_estadisticos/por_anho' => 'reportes_estadisticos#por_anho'
+  get 'reportes_estadisticos/print' => 'reportes_estadisticos#print'
+  resources :reportes_estadisticos, only: [:index] do
+    collection do
+      match 'buscar' => 'reportes_estadisticos#buscar', via: [:get, :post], as: :search
+    end
+  end
 
   post 'atenciones_profesionales/setEstadoTurnoToAtendido' => 'atenciones_profesionales#setEstadoTurnoToAtendido'
   get 'atenciones_profesionales/get_turnos' => 'atenciones_profesionales#get_turnos'

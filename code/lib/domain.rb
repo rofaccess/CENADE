@@ -10,7 +10,7 @@ module Domain
 	ESTADO_CIVIL = 15
 	NACIONALIDAD = 20
 	LUGAR_NACIMIENTO = 100
-
+	ANHO = 3
 	# Datos de Contacto
 	DIRECCION    = 125
 	TELEFONO     = 50

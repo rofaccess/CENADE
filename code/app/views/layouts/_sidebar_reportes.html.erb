@@ -2,17 +2,13 @@
 <ul class="sidebar-nav">
                 <li class="sidebar-brand">
 
-                        Seleccione
+                </li>
 
+                <li class="<%= current_sidebar([reportes_estadisticos_path])%>">
+                    <%=link_to 'Mes', reportes_estadisticos_path %>
                 </li>
-                <li>
-                    <a href="#">Día</a>
-                </li>
-                <li>
-                    <a href="#">Mes</a>
-                </li>
-                <li>
-                    <a href="#">Año</a>
+                <li class="<%= current_sidebar([reportes_estadisticos_por_anho_path])%>">
+                    <%=link_to 'Año', reportes_estadisticos_por_anho_path %>
                 </li>
             </ul>
 </div>
