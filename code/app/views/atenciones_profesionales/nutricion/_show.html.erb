@@ -3,6 +3,7 @@
       <h1 class="atencion-title">NUTRICIÓN</h1>
 
       <%= render 'atenciones_profesionales/data_paciente', paciente: data[:paciente] %>
+      <%= render 'atenciones_profesionales/test_tab'%>
 
       <% if data[:ficha_ad].blank? && data[:ficha_ped].blank? %>
          <%= panel_head('Fichas (No tiene)') %>

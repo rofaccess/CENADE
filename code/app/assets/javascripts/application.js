@@ -58,6 +58,15 @@ APP = {
 		});
     },
 
+    /* Inicializa el la función LoadingOverlay sobre el elemento cuyo clase o id es pasado como parámetro */
+    initLoadingOverlay: function(element){
+        $(element).LoadingOverlay("show", {
+            image       : "",
+            fontawesome : "fa fa-refresh fa-spin"
+        });
+        setTimeout(function(){},15000); //Quitar esto en producción
+    },
+
     /* Inicializa el evento para mostrar y esconder la búsqueda avanzada presente en algunos index
        #show-advanced-search: es el id del elmento que actúa botón para mostrar y esconder la busqueda avanzada
        #advanced-search     : es el id del elemento (div) que contiene los campos de búsqueda avanzada

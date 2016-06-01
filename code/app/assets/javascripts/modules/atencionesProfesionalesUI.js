@@ -3,6 +3,7 @@ var atencionesProfesionalesUI = (function(){
     /* Inicia el evento, que permitirá marcar como activo, al paciente seleccionado en el sidebar */
     initCurrentSidebar: function(){
       $('.item-paciente').click(function(){
+        APP.initLoadingOverlay(".atencion-content,.atencion-title, .fichas-consultas-content");
         $('.item-paciente').removeClass('active');
         $(this).addClass('active');
       })
@@ -37,9 +38,11 @@ function initDatepickerInline(){
 */
 function initGetTurnos(){
   $('#datepicker-inline').on("changeDate", function(){
+      APP.initLoadingOverlay("#pacientes-content");
       getTurnosAjax();
   });
   $('#doctor_id').on("change", function(){
+      APP.initLoadingOverlay("#pacientes-content");
       getTurnosAjax();
   });
 }
@@ -52,13 +55,15 @@ function getTurnosAjax(){
       data: {
         fecha_consulta : $('#datepicker-inline').datepicker('getFormattedDate'),
         doctor_id: $('#doctor_id').val()
-      },
+      }
     });
 }
 
 /* Inicia el evento, que permitirá setear el turno de un paciente como atendido */
 function initSetEstadoTurnoToAtendido(){
   $('.icon-pendiente').click(function(e){
+    APP.initLoadingOverlay("#pacientes-content");
+
     paciente = $(this).attr('paciente');
     var confirm = window.confirm("¿Desea establecer al paciente "+paciente+" como atendido?");
     if (confirm){
@@ -72,7 +77,7 @@ function initSetEstadoTurnoToAtendido(){
           doctor_id: $('#doctor_id').val()
         }
       });
-    }
+    }else $("#pacientes-content").LoadingOverlay("hide", true);
     e.preventDefault();
    });
 }
