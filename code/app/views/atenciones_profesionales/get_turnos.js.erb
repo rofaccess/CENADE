@@ -7,3 +7,4 @@
    $('#pacientes-content').html("<%= j render 'list_pacientes', at_prof: @at_prof %>");
 <% end %>
 initSetEstadoTurnoToAtendido();
+$("#pacientes-content").LoadingOverlay("hide", true);
