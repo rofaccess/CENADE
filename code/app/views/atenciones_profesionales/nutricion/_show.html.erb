@@ -12,7 +12,7 @@
               <% unless data[:ficha_ped].blank? %>
                   <%=tab_head('pediatrica','Pediátrica',true)%>
                 <% else %>
-                  <li><a class="tab-head-empty">Pediátrica (No tiene)</a></li>
+                  <li class="tab-head-empty"><a>Pediátrica (No tiene)</a></li>
                 <% end %>
                 <% unless data[:ficha_ad].blank? %>
                   <%=tab_head('adulto','Adulto',data[:ficha_ped].blank? ? true : false)%>
@@ -29,7 +29,7 @@
                 <%=tab_end%>
               <% end %>
               <% unless data[:ficha_ad].blank? %>
-                <%=tab_body('adulto',false)%>
+                <%=tab_body('adulto',data[:ficha_ped].blank? ? true : false)%>
                     <%= render 'atenciones_profesionales/nutricion/data_ficha_ad', ficha_ad: data[:ficha_ad] %>
                     <% if data[:consultas_ad].blank?%>
                        <%= panel_head('Consulta Adulto (No tiene)') %>
