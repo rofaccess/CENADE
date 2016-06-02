@@ -1,14 +1,15 @@
 <div id="sidebar-wrapper" class="wrapper-line">
-<ul class="sidebar-nav">
-                <li class="sidebar-brand">
+    <ul class="sidebar-nav">
+			<div >
+			    <%=image_tag('graphs.png', :width => 200, :height => 250) %>
+	      </div>
 
-                </li>
-
-                <li class="<%= current_sidebar([reportes_estadisticos_path])%>">
-                    <%=link_to 'Mes', reportes_estadisticos_path %>
+                <li class="<%= current_sidebar([reportes_estadisticos_por_mes_path])%>">
+                    <%=link_to 'Mes', reportes_estadisticos_por_mes_path %>
                 </li>
                 <li class="<%= current_sidebar([reportes_estadisticos_por_anho_path])%>">
                     <%=link_to 'Año', reportes_estadisticos_por_anho_path %>
                 </li>
+
             </ul>
 </div>

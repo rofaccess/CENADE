@@ -818,6 +818,7 @@ ActiveRecord::Schema.define(version: 20160527060755) do
   create_table "reportes_estadisticos", force: :cascade do |t|
     t.integer  "area_id",               null: false
     t.string   "mes",        limit: 10, null: false
+    t.integer  "cant_pend"
     t.integer  "anho",                  null: false
     t.integer  "doctor_id",             null: false
     t.integer  "cantidad"

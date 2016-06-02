@@ -39,6 +39,20 @@ es:
         restrict_dependent_destroy:
           has_one: No se puede eliminar el registro porque existe un %{record} dependiente
           has_many: No se puede eliminar el registro porque existen %{record} dependientes
+
+  January: "Enero"
+  February: "Febrero"
+  March: "Marzo"
+  April: "Abril"
+  May: "Mayo"
+  June: "Junio"
+  July: "Julio"
+  August: "Agosto"
+  September: "Septiembre"
+  October: "Octubre"
+  November: "Noviembre"
+  December: "Diciembre"
+
   date:
     abbr_day_names:
     - dom
