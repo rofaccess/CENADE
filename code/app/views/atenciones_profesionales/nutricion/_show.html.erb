@@ -3,51 +3,42 @@
       <h1 class="atencion-title">NUTRICIÓN</h1>
 
       <%= render 'atenciones_profesionales/data_paciente', paciente: data[:paciente] %>
-      <%= render 'atenciones_profesionales/test_tab'%>
 
       <% if data[:ficha_ad].blank? && data[:ficha_ped].blank? %>
          <%= panel_head('Fichas (No tiene)') %>
       <% else %>
          <%= panel_begin('Fichas') %>
             <ul class="nav nav-tabs">
-                <% unless data[:ficha_ped].blank? %>
-                  <li><a href="#pediatrica">Pediátrica</a></li>
+              <% unless data[:ficha_ped].blank? %>
+                  <%=tab_head('pediatrica','Pediátrica',true)%>
                 <% else %>
-                  <li><a class="tab-head-empty">Pediátrica (No tiene)</a></li>
+                  <li class="tab-head-empty"><a>Pediátrica (No tiene)</a></li>
                 <% end %>
                 <% unless data[:ficha_ad].blank? %>
-                  <li><a href="#adulto">Adulto</a></li>
+                  <%=tab_head('adulto','Adulto',data[:ficha_ped].blank? ? true : false)%>
                 <% else %>
-                  <li class="tab-head-empty"><a href>Adulto (No tiene)</a></li>
+                  <li class="tab-head-empty"><a>Adulto (No tiene)</a></li>
                 <% end %>
             </ul>
 
-            <div class="tabscontent">
+            <div class="tab-content">
               <% unless data[:ficha_ped].blank? %>
-                <div id="pediatrica">
-                    <%= render 'atenciones_profesionales/nutricion/data_ficha_ped', ficha_ped: data[:ficha_ped] %>
-
-                    <% if data[:consultas_ped].blank?%>
-                       <%= panel_head('Consulta Pediátrica (No tiene)') %>
-                    <% else %>
-                       <%= panel_begin('Consulta Pediátrica') %>
-                          <%= render 'atenciones_profesionales/nutricion/data_consultas_ped', consultas_ped: data[:consultas_ped] %>
-                       <%= panel_end %>
-                    <% end %>
-                </div>
+                <%=tab_body('pediatrica',true)%>
+                  <%= render 'atenciones_profesionales/nutricion/data_ficha_ped', ficha_ped: data[:ficha_ped] %>
+                  <%= render 'atenciones_profesionales/nutricion/data_consultas_ped', consultas_ped: data[:consultas_ped] %>
+                <%=tab_end%>
               <% end %>
               <% unless data[:ficha_ad].blank? %>
-                <div id="adulto">
+                <%=tab_body('adulto',data[:ficha_ped].blank? ? true : false)%>
                     <%= render 'atenciones_profesionales/nutricion/data_ficha_ad', ficha_ad: data[:ficha_ad] %>
-
                     <% if data[:consultas_ad].blank?%>
                        <%= panel_head('Consulta Adulto (No tiene)') %>
                     <% else %>
                        <%= panel_begin('Consulta Adulto') %>
-                          <%= render 'atenciones_profesionales/nutricion/data_consultas_ad', consultas_ad: data[:consultas_ad] %>
+                        <%= render 'atenciones_profesionales/nutricion/data_consultas_ad', consultas_ad: data[:consultas_ad] %>
                        <%= panel_end %>
                     <% end %>
-                </div>
+                <%=tab_end%>
               <% end %>
             </div>
          <%= panel_end %>
@@ -64,6 +55,6 @@
 </div>
 
 <script type="text/javascript">
-  APP.initPanelFolding();
-  APP.initTabs();
+  $('.tabscontent').tabbedContent();
 </script>
+

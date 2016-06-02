@@ -50,8 +50,6 @@ APP = {
     				fontawesome : "fa fa-refresh fa-spin"
 				});
 
-				setTimeout(function(){},5000); //Quitar esto en producción
-
 				$('.buscador').submit();
 			}, 500);
 			$("#list").LoadingOverlay("hide", true);
@@ -64,7 +62,6 @@ APP = {
             image       : "",
             fontawesome : "fa fa-refresh fa-spin"
         });
-        setTimeout(function(){},15000); //Quitar esto en producción
     },
 
     /* Inicializa el evento para mostrar y esconder la búsqueda avanzada presente en algunos index
@@ -273,11 +270,6 @@ APP = {
         $('.close-message').click(function(){
             $(this).closest('.message').fadeOut();
         });
-    },
-
-    /* Inicia la funcionalidad de los tabs*/
-    initTabs: function(){
-        $('.tabscontent').tabbedContent();
     },
 
     /* Ejecuta las funciones especificadas*/
