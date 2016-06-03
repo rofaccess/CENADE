@@ -94,6 +94,10 @@ $.validator.addClassRules({
 	horaCheck:{
 		hora:true
 	},
+	positiveNumber:{
+		positiveNumber:true
+	},
+
 	biglength: {
 		maxlength: 300
 	},
@@ -126,6 +130,9 @@ $.validator.addMethod("telCheck",function(value,element){
 $.validator.addMethod("hora", function(value, element){
   return value.length == 0 || /^[0-9]{2}:[0-9]{2}$/i.test(value);},
   "Formato hh:mm");
+
+$.validator.addMethod("positiveNumber", function (value, element){
+	 return Number(value) >= 0;}, 'Escriba un Nro. mayor o igual a cero');
 
 $.validator.addMethod("dateLessSystemDate", function(value, element) {
   return this.optional(element) || checkDateLessSystemDate(value);

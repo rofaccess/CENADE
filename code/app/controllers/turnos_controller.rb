@@ -105,7 +105,7 @@ class TurnosController < ApplicationController
     if (@turno.estado== 'pendiente')
 
       @turno.update_attribute(:estado, params[:nuevo_estado])
-      flash.now[:notice] = "Turno N° #{@turno.turno} params[:nuevo_estado]"
+      flash.now[:notice] = "Turno N° #{@turno.turno} "+ params[:nuevo_estado]
 
     else
       flash.now[:alert] = "Turno N° #{@turno.turno} no puede cambiar de estado"
