@@ -15,11 +15,18 @@ $panel-background-color: #EFEFEF;
       padding: 5px 10px;
       font-size: 16px;
       cursor: pointer;
+      &:hover{
+        color: $common-color;
+      }
     }
 
     .panel-empty{
       background-color: #CCC;
       cursor: auto;
+      color: #666666;
+      &:hover{
+        color: #666666;
+      }
     }
 
     .panel-body{

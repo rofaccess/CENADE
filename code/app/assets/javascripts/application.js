@@ -253,8 +253,13 @@ APP = {
         });
     },
 
+    /* Inicializa el la función tabbedContent sobre el elemento cuyo clase o id es pasado como parámetro */
+    initTabs: function(element){
+        $(element).tabbedContent();
+    },
+
     /* Incializa el evento para mostrar y esconder el cuerpo de un panel al hacer
-     * click sobre cualquier parte del panel
+     * click sobre la cabecera del panel
      * .panel-folding: es la clase que deberá tener el div que actua como panel
      */
     initPanelFolding: function(){
