@@ -1,0 +1,33 @@
+
+<table id="table-reporte-anho" class= "table table-condensed">
+  <thead>
+    <tr class="active">
+      <th>Profesional de la Salud</th>
+      <th>Cupo Límite</th>
+      <th>Cantidad Atentidos</th>
+      <th>Año</th>
+      <th>Area</th>
+    </tr>
+  </thead>
+  <% if @reportes.blank? %>
+    <tfoot>
+      <tr>
+        <th colspan="8" scope="col">No se encontraron coincidencias </th>
+      </tr>
+    </tfoot>
+   <% end %>
+  <tbody>
+    <% @reportes.each do |reporte| %>
+    <tr>
+      <td ><%=reporte.doctor_persona_full_name %> </td>
+      <td ><%=reporte.cantidad_por_aten%></td>
+      <td ><%=reporte.cantidad_por_anho.nil? ? '0' : reporte.cantidad_por_anho%></td>
+      <td><%=reporte.anho%></td>
+      <td><%=reporte.area_nombre%></td>
+
+
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+

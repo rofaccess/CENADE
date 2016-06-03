@@ -14,6 +14,21 @@
       text-align: right;
    }
 }
+#advanced-search2{
+
+   background: #EFEFEF;
+   height: 100px;
+   padding: 20px 50px 0px 50px; //Top Right Bottom Left
+   border: solid;
+   border-color: #CCCCCC;
+   border-width: 1px;
+   margin-bottom: 20px;
+   //Posición de los botones de filtrado y limpiar campos
+   .advanced-search-buttons{
+      margin-top: 25px;
+      text-align: right;
+   }
+}
 #advanced-special{
    background: #EFEFEF;
    height: 100px;

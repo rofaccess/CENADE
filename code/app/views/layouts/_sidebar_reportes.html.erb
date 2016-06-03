@@ -1,8 +1,13 @@
 <div id="sidebar-wrapper" class="wrapper-line">
     <ul class="sidebar-nav">
 			<div >
-			    <%=image_tag('graphs.png', :width => 200, :height => 250) %>
+			    <%=image_tag('graphs.png', :width => 200, :height => 300) %>
 	      </div>
+                <li class="sidebar-brand">
+
+                        Reportes por:
+
+                </li>
 
                 <li class="<%= current_sidebar([reportes_estadisticos_por_mes_path])%>">
                     <%=link_to 'Mes', reportes_estadisticos_por_mes_path %>

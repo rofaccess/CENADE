@@ -27,7 +27,7 @@
       <%= render 'form_paciente', paciente: paciente%>
     </div>
     <div class="row">
-      <%= ficha.input :nro_hijos, label: 'N° Hijos'  , wrapper_html: { class: 'col-md-2 number-only'}, input_html: { maxLength: Domain::NUM_HIJOS} %>
+      <%= ficha.input :nro_hijos, label: 'N° Hijos'  , wrapper_html: { class: 'col-md-2'}, input_html: { maxLength: Domain::NUM_HIJOS, class: "positiveNumber number-only"} %>
     </div>
 
 
