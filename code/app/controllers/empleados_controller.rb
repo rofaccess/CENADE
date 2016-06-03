@@ -18,12 +18,17 @@ class EmpleadosController < ApplicationController
     	@empleado.build_persona
   	end
 
+  	#Setea un empleado  Funcionario o Doctor dependiendo de si tiene o no area
+  	def set_empleado_per_type(empleado_params)
+  		if empleado_params[:area_id].blank?
+  			Funcionario.new(empleado_params)
+  		else
+  			Doctor.new(empleado_params)
+  		end
+    end
+
   	def create
-	  	if empleado_params[:area_id].blank?
-		   	@empleado = Funcionario.new(empleado_params)
-		else
-		   	@empleado = Doctor.new(empleado_params)
-		end
+	  	@empleado = set_empleado_per_type(empleado_params)
 		respond_to do |format|
 			if @empleado.save
 				set_submenu
