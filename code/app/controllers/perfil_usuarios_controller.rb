@@ -18,7 +18,6 @@ class PerfilUsuariosController < ApplicationController
 	    		redirect_to perfil_usuarios_edit_path, alert: "No se ha podido actualizar el usuario #{@usuario.username}."
 	    	end
 
-
 	end
 
 	def usuario_params

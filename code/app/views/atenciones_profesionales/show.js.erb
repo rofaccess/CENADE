@@ -1,5 +1,7 @@
 $('#principal-content').html("<%= j render 'atenciones_profesionales'+@data[:partial], data: @data %>");
 
+$(".atencion-content,.atencion-title,.fichas-consultas-content").LoadingOverlay("hide", true);
 APP.initPanelFolding();
-$(".atencion-content,.atencion-title, .fichas-consultas-content").LoadingOverlay("hide", true);
+APP.initTabs('.tabs-content');
+
 

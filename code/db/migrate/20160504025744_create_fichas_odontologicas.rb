@@ -15,8 +15,8 @@ class CreateFichasOdontologicas < ActiveRecord::Migration
       t.timestamps null: false
     end
 
-    add_foreign_key(:fichas_odontologicas, :areas, column: 'area_id', column: 'area_id', on_delete: :restrict)
-    add_foreign_key(:fichas_odontologicas, :pacientes, column: 'paciente_id', column: 'paciente_id', on_delete: :restrict)
+    add_foreign_key(:fichas_odontologicas, :areas, column: 'area_id', on_delete: :restrict)
+    add_foreign_key(:fichas_odontologicas, :pacientes, column: 'paciente_id', on_delete: :restrict)
 
     add_index :fichas_odontologicas, :paciente_id
     add_index :fichas_odontologicas, :area_id

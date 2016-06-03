@@ -4,12 +4,12 @@
 </div>
 
 <ul class="nav nav-tabs">
-   <li class="active"><a href="#antecedente-prenatal-<%=ficha_ped.id%>" data-toggle="tab">I - Antecedentes Prenatal</a></li>
-   <li><a href="#antecedente-parto-<%=ficha_ped.id%>" data-toggle="tab">II - Antecedentes del Parto</a></li>
-   <li><a href="#antecedente-postnatal-<%=ficha_ped.id%>" data-toggle="tab">III - Antecedentes Postnatal</a></li>
+   <li><a href="#ant-pre-<%=ficha_ped.id%>">I - Antecedentes Prenatal</a></li>
+   <li><a href="#ant-par-<%=ficha_ped.id%>">II - Antecedentes del Parto</a></li>
+   <li><a href="#ant-pos-<%=ficha_ped.id%>">III - Antecedentes Postnatal</a></li>
 </ul>
-<div class="tab-content">
-   <div id="antecedente-prenatal-<%=ficha_ped.id%>" class="tab-pane fade in active">
+<div class="tabs-content">
+   <div id="ant-pre-<%=ficha_ped.id%>">
       <div class="row">
          <%= data_text('¿Tuvo algún problema en el embarazo?', ficha_ped.problema_embarazo,'col-md-12') %>
       </div>
@@ -23,7 +23,7 @@
          <%= data('Otros datos', ficha_ped.otros_datos,'col-md-12') %>
       </div>
    </div>
-   <div id="antecedente-parto-<%=ficha_ped.id%>" class="tab-pane fade">
+   <div id="ant-par-<%=ficha_ped.id%>">
       <div class="row">
          <%= data('¿Tuvo parto vaginal o cesárea?', ficha_ped.parto_vaginal_cesarea,'col-md-6') %>
          <%= data('¿Fue de término o pretermino?', ficha_ped.termino_pretermino,'col-md-6') %>
@@ -33,7 +33,7 @@
          <%= data('¿Cómo fue el parto?', ficha_ped.como_fue_parto,'col-md-5') %>
       </div>
    </div>
-   <div id="antecedente-postnatal-<%=ficha_ped.id%>" class="tab-pane fade">
+   <div id="ant-pos-<%=ficha_ped.id%>">
       <div class="row">
          <%= data_text('¿Tuvo asfixia postnatal?¿Lloró enseguida el bebé?¿Estuvo internado después del nacimiento?', ficha_ped.asfixia_lloro,'col-md-12') %>
       </div>

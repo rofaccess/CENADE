@@ -3,6 +3,7 @@ class CreateReportesEstadisticos < ActiveRecord::Migration
     create_table :reportes_estadisticos do |t|
       t.integer :area_id			,null:false
       t.string :mes					  ,limit: Domain::DESC10,	  null:false
+      t.integer :cant_pend
       t.integer :anho				  ,limit: Domain::ANHO,	  null:false
       t.integer :doctor_id		,null:false
       t.integer :cantidad
