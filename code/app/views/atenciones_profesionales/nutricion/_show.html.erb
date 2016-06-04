@@ -4,10 +4,10 @@
 
       <%=render 'atenciones_profesionales/data_paciente',paciente: data[:paciente]%>
 
-      <%=render 'atenciones_profesionales/nutricion/show_fichas',ficha_ped: data[:ficha_ped],ficha_ad: data[:ficha_ad]%>
+      <%=render 'atenciones_profesionales/nutricion/show_fichas',ficha_ped: data[:ficha_ped],ficha_ad: data[:ficha_ad],pendiente: data[:pendiente]%>
 
-      <%=render 'atenciones_profesionales/nutricion/show_consultas',consultas_ped: data[:consultas_ped],consultas_ad: data[:consultas_ad]%>
+      <%=render 'atenciones_profesionales/nutricion/show_consultas',consultas_ped: data[:consultas_ped],consultas_ad: data[:consultas_ad],consulta_ped: data[:consulta_ped],consulta_ad: data[:consulta_ad],pendiente: data[:pendiente],doctores: data[:doctores]%>
 
-      <%=render 'atenciones_profesionales/nutricion/data_controles',controles: data[:controles]%>
+      <%=render 'atenciones_profesionales/nutricion/data_controles',controles: data[:controles],control: data[:control],pendiente: data[:pendiente],doctores: data[:doctores]%>
    </div>
 </div>

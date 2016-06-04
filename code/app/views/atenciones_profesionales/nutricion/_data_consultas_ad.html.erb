@@ -1,10 +1,18 @@
 <ul class="nav nav-tabs">
+	<% if pendiente %>
+		<li><a href="#con-ad-new"><span class="fa fa-plus"></span> Nueva Consulta</a></li>
+	<% end %>
 	<% consultas_ad.each do |c| %>
 	<li><a href="#con-adu-<%=c.id%>"><%=date(c.fecha)%></a></li>
 	<% end %>
 </ul>
 
 <div class="tabs-content">
+	<% if pendiente %>
+      <div id="con-ad-new">
+   	   NUEVA CONSULTA ADULTO
+      </div>
+   <% end %>
 	<% consultas_ad.each do |con| %>
 		<div id="con-adu-<%=con.id%>">
 			<div class="row">

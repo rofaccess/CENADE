@@ -12,8 +12,6 @@ var atencionesProfesionalesUI = (function(){
     initScript: function(){
       initDatepickerInline();
       initGetTurnos();
-      empleadosUI.initBuscarDoctor('#doctor_id',false);
-
       initSetEstadoTurnoToAtendido();
       APP.initPanelFolding();
 

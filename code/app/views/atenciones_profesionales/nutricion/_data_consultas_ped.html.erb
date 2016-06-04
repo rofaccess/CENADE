@@ -1,10 +1,18 @@
 <ul class="nav nav-tabs">
+	<% if pendiente %>
+		<li><a href="#con-ped-new"><span class="fa fa-plus"></span> Nueva Consulta</a></li>
+	<% end %>
 	<% consultas_ped.each do |c| %>
 		<li><a href="#con-ped-<%=c.id%>"><%=date(c.fecha)%></a></li>
 	<% end %>
 </ul>
 
 <div class="tabs-content">
+	<% if pendiente %>
+		<div id="con-ped-new">
+			NUEVA CONSULTA PEDIATRICA
+		</div>
+	<% end %>
 	<% consultas_ped.each do |con| %>
 		<div id="con-ped-<%=con.id%>">
 			<div class="row">

@@ -2,6 +2,13 @@
  * Este archivo establece el estilo para los formularios y sus labels, inputs, select, etc.
  */
 
+/* Por algún motivo el select2 no ocupa el 100% de su contenedor
+   Se forza a que ocupe el 100%
+ */
+.select2-container {
+  width: 100% !important;
+}
+
 /* Define el aspecto de los formularios */
 
 .form-content{

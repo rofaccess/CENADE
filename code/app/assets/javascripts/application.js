@@ -243,7 +243,7 @@ APP = {
     */
     initSelect2: function(options) {
         $(options.element).select2({
-            placeholder: options.placeholder
+            placeholder: options.placeholder,
         });
 
         /* Valida cuando se elige otro item del select2 */

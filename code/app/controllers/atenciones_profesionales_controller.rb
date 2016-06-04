@@ -50,7 +50,15 @@ class AtencionesProfesionalesController < ApplicationController
     controles     = Control.where(area_id: @turno.area_id,paciente_id: paciente.id).order(fecha: :desc)
 
     @data = {paciente: paciente, ficha_ped: ficha_ped, ficha_ad: ficha_ad,consultas_ped: consultas_ped,
-             controles: controles, consultas_ad: consultas_ad, partial: '/nutricion/show'}
+             controles: controles, consultas_ad: consultas_ad, partial: '/nutricion/show',
+             pendiente: (@turno.estado=='pendiente') ? true : false,control: Control.new,
+             consulta_ped: ConsultaNutricionalPediatrica.new,consulta_ad: ConsultaNutricionalAdulto.new,
+             doctores: get_doctores_nutricion}
+  end
+
+  def get_doctores_nutricion
+    area = Area.find_by_nombre('Nutrición')
+    doctores = Doctor.where(area_id: area.id)
   end
 
   def setEstadoTurnoToAtendido

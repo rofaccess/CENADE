@@ -3,12 +3,23 @@
 <% else %>
   <%=panel_begin('Controles')%>
     <ul class="nav nav-tabs">
+        <% if pendiente %>
+          <li><a href="#control-new"><span class="fa fa-plus"></span> Nuevo Control</a></li>
+        <% end %>
+
         <% controles.each do |c| %>
             <li><a href="#control-<%=c.id%>"><%= date(c.fecha)%></a></li>
         <% end %>
     </ul>
 
     <div class="tabs-content">
+      <%first_control = controles.first%>
+      <% if pendiente %>
+        <div id="control-new">
+          <%=render 'atenciones_profesionales/nutricion/new_control',control: control, paciente_id: first_control.paciente.id,area_id: first_control.area.id,doctores: doctores%>
+        </div>
+      <% end %>
+
       <% controles.each do |control| %>
         <div id="control-<%= control.id%>">
           <div class="row">
