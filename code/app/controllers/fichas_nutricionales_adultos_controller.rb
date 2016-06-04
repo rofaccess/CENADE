@@ -92,8 +92,8 @@ class FichasNutricionalesAdultosController < ApplicationController
   end
 
   def get_doctores_nutricion
-	@area = Area.find_by_nombre('Nutrición')
-	@doctores = Doctor.where(area_id: @area.id)
+  	@area = Area.find_by_nombre('Nutrición')
+  	@doctores = Doctor.where(area_id: @area.id)
   end
 
   #busca el paciente seleccionado en la base de datos

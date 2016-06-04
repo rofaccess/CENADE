@@ -1,0 +1,160 @@
+<% if consultas_ad.blank? %>
+   <%= panel_head("#{num} - CONSULTAS ADULTO (No tiene)") %>
+<% else %>
+   <%= panel_begin("#{num} - CONSULTAS ADULTO") %>
+   <% i = consultas_ad.size %>
+
+   <% consultas_ad.each do |consulta| %>
+      <%= panel_begin("#{consulta.doctor_full_name} <div class='pull-right'>Consulta Nº #{i} - #{date(consulta.fecha)}</div>")%>
+
+         <h4>I - Datos de la Consulta</h4>
+         <hr>
+         <div class="row">
+            <%= h_data_text('Motivo de consulta', consulta.motivo_consulta,'col-md-12') %>
+         </div>
+
+         <h4>II - Datos Antropométricos</h4>
+         <hr>
+         <div class="row">
+            <%= h_data('Peso actual', consulta.peso_actual,'col-md-4') %>
+            <%= h_data('Peso ideal', consulta.peso_ideal,'col-md-4') %>
+            <%= h_data('Peso deseable', consulta.peso_deseable,'col-md-4') %>
+         </div>
+         <div class="row">
+            <%= h_data('Talla', consulta.talla,'col-md-4') %>
+            <%= h_data('Biotipo', consulta.biotipo,'col-md-4') %>
+            <%= h_data('I.M.C.', consulta.imc,'col-md-4') %>
+         </div>
+         <div class="row">
+            <%= h_data('Circ. muñeca', consulta.cir_muneca,'col-md-4') %>
+            <%= h_data('Circ. brazo', consulta.circ_brazo,'col-md-4') %>
+            <%= h_data('Circ. cintura/cadera', consulta.circ_cintura,'col-md-4') %>
+         </div>
+
+         <h4>III - Anamnesis Alimentaria</h4>
+         <hr>
+         <div class="row">
+            <%= h_data('¿Toma medicamentos?', consulta.medicamentos,'col-md-5') %>
+            <%= h_data('¿Toma suplementos vitaminicos/minerales?', consulta.suplementos,'col-md-7') %>
+         </div>
+         <div class="row">
+            <%= h_data('Su apetito es', consulta.apetito,'col-md-3') %>
+            <%= h_data('Factores que afectan el apetito', consulta.factores_apetito,'col-md-9') %>
+         </div>
+         <div class="row">
+            <%= h_data('¿Tiene alergia o intolerancia a algún alimento?', consulta.alergia_intolerancia,'col-md-12') %>
+         </div>
+         <div class="row">
+            <%= h_data('Estado bucal (dientes, lengua, paladar)', consulta.estado_bucal,'col-md-12') %>
+         </div>
+         <div class="row">
+            <%= h_data('¿Orina bien?', consulta.orina_bien,'col-md-6') %>
+            <%= h_data('¿Va bien de cuerpo?', consulta.ir_cuerpo,'col-md-6') %>
+         </div>
+         <div class="row">
+            <%= h_data('¿Realiza actividades físicas?', consulta.actividades_fisicas? ? 'Si' : 'No','col-md-4') %>
+         </div>
+         <% if consulta.actividades_fisicas %>
+            <div class="row">
+               <%= h_data('Tipos', consulta.tipo,'col-md-5') %>
+               <%= h_data('Horas', consulta.hs_act_fisicas,'col-md-3') %>
+               <%= h_data('Frecuencias', consulta.frecuencia,'col-md-4') %>
+            </div>
+         <% end %>
+         <div class="row">
+            <%= h_data('Actividad Laboral', consulta.actividad_laboral,'col-md-9') %>
+            <%= h_data('Horas', consulta.horas_laborales,'col-md-3') %>
+         </div>
+         <div class="row">
+            <%= h_data('¿Vive con su familia?', consulta.vive_con,'col-md-4') %>
+            <%= h_data('¿Quién prepara los alimentos?', consulta.quien_prepara,'col-md-8') %>
+         </div>
+         <div class="row">
+            <%= h_data('¿Qué elementos cuenta para cocinar?', consulta.que_elementos,'col-md-12') %>
+         </div>
+         <div class="row">
+            <%= h_data('¿Cuántos litros de agua bebe?', consulta.toma_agua,'col-md-12') %>
+         </div>
+         <div class="row">
+            <%= h_data('Mastica - Deglute', consulta.mastica_deglute,'col-md-4') %>
+            <%= h_data('¿Dificultad para beber o absorber?', consulta.dificultad_beber,'col-md-8') %>
+         </div>
+         <div class="row">
+            <%= h_data('¿A qué hora se acuesta?', consulta.hora_acuesta,'col-md-4') %>
+            <%= h_data('¿A qué hora se levanta?', consulta.hora_levanta,'col-md-4') %>
+            <%= h_data('¿Duerme bien?', consulta.duerme_bien,'col-md-4') %>
+         </div>
+         <div class="row">
+            <%= h_data('Habilidades presentes o ausentes', consulta.habilidades,'col-md-12') %>
+         </div>
+         <div class="row">
+            <%= h_data('Tratamientos que realiza dentro del CENADE con otros especialistas', consulta.tratamientos_cenade,'col-md-12') %>
+         </div>
+
+         <h4>IV - Recuento de 24 horas </h4>
+         <hr>
+         <h4>Desayuno</h4>
+         <div class="row">
+            <%= h_data_text('Alimentos consumidos', consulta.alim_desayuno,'col-md-10') %>
+            <%= h_data_text('Cantidad', consulta.cant_desayuno,'col-md-2') %>
+         </div>
+         <div class="row">
+            <%= h_data_text('Modo de preparación', consulta.modo_desayuno,'col-md-7') %>
+            <%= h_data_text('Lugar de consumo', consulta.lugar_desayuno,'col-md-5') %>
+         </div>
+         <h4>Media Mañana</h4>
+         <div class="row">
+            <%= h_data_text('Alimentos consumidos', consulta.alim_media,'col-md-10') %>
+            <%= h_data_text('Cantidad', consulta.cant_media,'col-md-2') %>
+         </div>
+         <div class="row">
+            <%= h_data_text('Modo de preparación', consulta.modo_media,'col-md-7') %>
+            <%= h_data_text('Lugar de consumo', consulta.lugar_media,'col-md-5') %>
+         </div>
+         <h4>Almuerzo</h4>
+         <div class="row">
+            <%= h_data_text('Alimentos consumidos', consulta.alim_almuerzo,'col-md-10') %>
+            <%= h_data_text('Cantidad', consulta.cant_almuerzo,'col-md-2') %>
+         </div>
+         <div class="row">
+            <%= h_data_text('Modo de preparación', consulta.modo_almuerzo,'col-md-7') %>
+            <%= h_data_text('Lugar de consumo', consulta.lugar_almuerzo,'col-md-5') %>
+         </div>
+         <h4>Merienda</h4>
+         <div class="row">
+            <%= h_data_text('Alimentos consumidos', consulta.alim_merienda,'col-md-10') %>
+            <%= h_data_text('Cantidad', consulta.cant_merienda,'col-md-2') %>
+         </div>
+         <div class="row">
+            <%= h_data_text('Modo de preparación', consulta.modo_merienda,'col-md-7') %>
+            <%= h_data_text('Lugar de consumo', consulta.lugar_merienda,'col-md-5') %>
+         </div>
+         <h4>Cena</h4>
+         <div class="row">
+            <%= h_data_text('Alimentos consumidos', consulta.alim_cena,'col-md-10') %>
+            <%= h_data_text('Cantidad', consulta.cant_cena,'col-md-2') %>
+         </div>
+         <div class="row">
+            <%= h_data_text('Modo de preparación', consulta.modo_cena,'col-md-7') %>
+            <%= h_data_text('Lugar de consumo', consulta.lugar_cena,'col-md-5') %>
+         </div>
+         <hr>
+
+         <h4>V - Diagnóstico Médico </h4>
+         <div class="row">
+            <%= h_data_text('', consulta.dx,'col-md-12') %>
+         </div>
+         <h4>VI - Evaluación Nutricional </h4>
+         <div class="row">
+            <%= h_data_text('', consulta.evaluacion,'col-md-12') %>
+         </div>
+         <h4>VII - Indicaciones </h4>
+         <div class="row">
+            <%= h_data_text('', consulta.indicaciones,'col-md-12') %>
+         </div>
+
+      <%= panel_end %>
+      <% i = i - 1 %>
+   <% end %>
+   <%= panel_end %>
+<% end %>

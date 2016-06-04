@@ -1,29 +1,29 @@
  <div class="page-title page-title-con-sidebar">
-      Ficha de <%= @fisio_nino.paciente.persona.nombre%> <%= @fisio_nino.paciente.persona.apellido%>
+      Ficha de <%= fisio_nino.paciente.persona.nombre%> <%= fisio_nino.paciente.persona.apellido%>
 
     <div class="tool">
       <%= link_to '<i class="fa fa-list"></i> '.html_safe, ficha_fisioterapia_ninos_path %>
       <%= link_to '<i class="fa fa-plus-square"></i> '.html_safe, new_ficha_fisioterapia_nino_path, remote: true%>
 
-      <%= link_to '<i class="fa fa-edit"></i> '.html_safe, edit_ficha_fisioterapia_nino_path(@fisio_nino.id), remote:true%>
+      <%= link_to '<i class="fa fa-edit"></i> '.html_safe, edit_ficha_fisioterapia_nino_path(fisio_nino.id), remote:true%>
 
-      <%= link_to '<i class="fa fa-print"></i> '.html_safe, ficha_fisioterapia_ninos_print_ficha_path(ficha_id: @fisio_nino.id, :format => :pdf), target: '_blank'%>
+      <%= link_to '<i class="fa fa-print"></i> '.html_safe, ficha_fisioterapia_ninos_print_ficha_path(ficha_id: fisio_nino.id, :format => :pdf), target: '_blank'%>
     </div>
   </div>
   <div class="content">
   <div class="form-content">
 
-    <%= form_for @fisio_nino, html: {class: 'form-ficha', :multipart => true }, remote: true do |ficha|%>
+    <%= form_for fisio_nino, html: {class: 'form-ficha', :multipart => true }, remote: true do |ficha|%>
       <h4 align="center">FICHA FISIOTERAPIA PEDIÁTRICA</h4></br>
       <div class="row">
         <div class="col-md-9">
 
 
-          <h4><%= ficha.label :doctor_id, 'Profesional de la Salud: ' %> <%= @fisio_nino.doctor.persona.nombre%> <%= @fisio_nino.doctor.persona.apellido%> </h4>
+          <h4><%= ficha.label :doctor_id, 'Profesional de la Salud: ' %> <%= fisio_nino.doctor.persona.nombre%> <%= fisio_nino.doctor.persona.apellido%> </h4>
         </div>
         <div class="col-md-3">
 
-         <h4><%= ficha.label :fecha, 'Fecha: ' %> <%=Formatter.format_date(@fisio_nino.fecha)%> </h4>
+         <h4><%= ficha.label :fecha, 'Fecha: ' %> <%=Formatter.format_date(fisio_nino.fecha)%> </h4>
         </div>
       </div>
     </br>
@@ -38,21 +38,21 @@
                                           input_class: 'paciente-nombre',
                                           col_class: 'col-md-4',
                                           disabled: true,
-                                          input_value: @fisio_nino.paciente.persona.nombre,
+                                          input_value: fisio_nino.paciente.persona.nombre,
                                           label_text: 'Nombres') %>
 
             <%= FormBuilder::text_field_v(ficha, :paciente_id,
                                           input_class: 'paciente-apellido',
                                           col_class: 'col-md-4',
                                           disabled: true,
-                                          input_value: @fisio_nino.paciente.persona.apellido,
+                                          input_value: fisio_nino.paciente.persona.apellido,
                                           label_text: 'Apellidos') %>
 
             <%= FormBuilder::text_field_v(ficha, :paciente_id,
                                           input_class: 'paciente-apellido',
                                           col_class: 'col-md-2',
                                           disabled: true,
-                                          input_value: @fisio_nino.paciente.persona.fecha_nacimiento.strftime("%d/%m/%Y"),
+                                          input_value: fisio_nino.paciente.persona.fecha_nacimiento.strftime("%d/%m/%Y"),
                                           label_text: 'Fecha de nac.') %>
 
             <%= FormBuilder::text_field_v(ficha, :paciente_id,
@@ -60,7 +60,7 @@
 
                                           col_class: 'col-md-2',
                                           disabled: true,
-                                          input_value: @fisio_nino.paciente.persona.edad,
+                                          input_value: fisio_nino.paciente.persona.edad,
                                           label_text: 'Edad') %>
             </div>
             <div class="row">
@@ -68,19 +68,19 @@
                                           input_class: 'clear',
                                           col_class: 'col-md-4',
                                           disabled: true,
-                                          input_value: @fisio_nino.paciente.persona.sexo,
+                                          input_value: fisio_nino.paciente.persona.sexo,
                                           label_text: 'Sexo') %>
               <%= FormBuilder::text_field_v(ficha, :paciente_id,
                                           input_class: 'clear paciente-ci',
                                           col_class: 'col-md-3',
                                           disabled: true,
-                                          input_value: @fisio_nino.paciente.persona.ci,
+                                          input_value: fisio_nino.paciente.persona.ci,
                                           label_text: 'CI') %>
               <%= FormBuilder::text_field_v(ficha, :paciente_id,
                                           input_class: 'clear',
                                           col_class: 'col-md-5',
                                           disabled: true,
-                                          input_value: @fisio_nino.paciente.persona.nacionalidad,
+                                          input_value: fisio_nino.paciente.persona.nacionalidad,
                                           label_text: 'Nacionalidad') %>
 
           </div>
@@ -89,13 +89,13 @@
                                           input_class: 'clear',
                                           col_class: 'col-md-9',
                                           disabled: true,
-                                          input_value: @fisio_nino.paciente.persona.direccion,
+                                          input_value: fisio_nino.paciente.persona.direccion,
                                           label_text: 'Dirección') %>
               <%= FormBuilder::text_field_v(ficha, :paciente_id,
                                           input_class: 'clear paciente-ci',
                                           col_class: 'col-md-3',
                                           disabled: true,
-                                          input_value: @fisio_nino.paciente.persona.telefono,
+                                          input_value: fisio_nino.paciente.persona.telefono,
                                           label_text: 'Teléfono') %>
 
 
@@ -210,8 +210,8 @@
          <h4>Consultas</h4>
       </div>
       <div class="col-md-4">
-         <%= link_to "Agregar Consulta", consultas_consulta_from_ficha_path(area_id: @fisio_nino.area_id, paciente: @fisio_nino.paciente_id, profesional: @fisio_nino.doctor_id), class: "btn btn-custom", remote: true %>
-          <%= link_to 'Ver Historial Clínico', historial_fisioterapeutico_path(@fisio_nino.paciente_id), class: "btn btn-custom  pull-right", remote: true%>
+         <%= link_to "Agregar Consulta", consultas_consulta_from_ficha_path(area_id: fisio_nino.area_id, paciente: fisio_nino.paciente_id, profesional: fisio_nino.doctor_id), class: "btn btn-custom", remote: true %>
+          <%= link_to 'Ver Historial Clínico', historial_fisioterapeutico_path(fisio_nino.paciente_id), class: "btn btn-custom  pull-right", remote: true%>
       </div>
     </div>
     <hr>

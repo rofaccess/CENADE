@@ -2,11 +2,12 @@ class Turno < ActiveRecord::Base
 
 	paginates_per 20
   # Autoincrementa el numero de turno
-  #protokoll :turno, pattern: '#'
+  protokoll :turno, pattern: '#'
 
 	belongs_to :paciente
 	belongs_to :area
   belongs_to :doctor
+  belongs_to :turno
 
 
   #Validaciones
@@ -18,7 +19,7 @@ class Turno < ActiveRecord::Base
   after_create :actualizar_reporte_pend
   before_create :actualizar_estado
   after_update :actualizar_reporte
-  before_create :actualizar_turno
+  #before_create :actualizar_turno
 
 
 	def actualizar_turno

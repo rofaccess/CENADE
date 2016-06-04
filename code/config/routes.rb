@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get 'reportes_estadisticos/por_anho' => 'reportes_estadisticos#por_anho'
   get 'reportes_estadisticos/print_reporte_anuales' => 'reportes_estadisticos#print_reporte_anuales'
   get 'reportes_estadisticos/print_reporte_mensuales' => 'reportes_estadisticos#print_reporte_mensuales'
+
   resources :reportes_estadisticos, only: [:index] do
     collection do
       match 'buscar' => 'reportes_estadisticos#buscar', via: [:get, :post], as: :search
@@ -11,7 +12,15 @@ Rails.application.routes.draw do
     end
   end
 
-  get 'reportes_estadisticos/print' => 'reportes_estadisticos#print'
+  post 'atenciones_profesionales/setEstadoTurnoToAtendido' => 'atenciones_profesionales#setEstadoTurnoToAtendido'
+  get 'atenciones_profesionales/get_turnos' => 'atenciones_profesionales#get_turnos'
+  resources :atenciones_profesionales, only: [:index, :show]
+
+  get 'historiales_odontologicos/print' => 'historiales_odontologicos#print'
+  resources :historiales_odontologicos, only: [:index, :show]
+
+  get 'historiales_nutricionales/print' => 'historiales_nutricionales#print'
+  resources :historiales_nutricionales, only: [:index, :show]
 
   get 'historiales_clinicos/print' => 'historiales_clinicos#print'
   resources :historiales_clinicos, only: [:index, :show]
@@ -213,6 +222,8 @@ Rails.application.routes.draw do
   get "perfil_usuarios/edit"
   put "perfil_usuarios/update"
   get "welcome/index_configuracion"
+  get "welcome/index_historial"
+  get "welcome/index_consultas"
   get "welcome/index_fichas"
   get "welcome/index_atencion_profesional"
   get "welcome/index_personal"

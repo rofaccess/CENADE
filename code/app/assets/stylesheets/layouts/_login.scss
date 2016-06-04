@@ -1,7 +1,7 @@
 /* Este archivo define el aspecto de la interfaz de inicio de sesión */
     body  {
       .form-signin{
-        margin-top: 100px;
+        //margin-top: 100px;
         //background-color: #eee;
       }
 
@@ -19,6 +19,9 @@
       color: gray;
       font-family: arial;
       font-size: 12pt;
+      .alert{
+        margin-bottom: 10px;
+      }
 
       //- ya no se usa
       #username-error, #password-error {

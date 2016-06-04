@@ -7,13 +7,16 @@
             <%=link_to 'Clínico', consultas_path(area_id: 1) %>
         </li>
 
-        <li class="<%= current_sidebar([consultas_path(area_id: 2, type: 'Adulto')])%>">
+        <li class="<%= current_sidebar([consultas_path(area_id: 2)])%>">
+            <%=link_to 'Fisioterapia', consultas_path(area_id: 2) %>
+        </li>
+        <!--<li class="<%= current_sidebar([consultas_path(area_id: 2, type: 'Adulto')])%>">
             <%=link_to 'Fisioterapia Adulto', consultas_path(area_id: 2, type: 'Adulto') %>
         </li>
 
          <li class="<%= current_sidebar([consultas_path(area_id: 2, type: 'Pediátrica')])%>">
             <%=link_to 'Fisioterapia Pediátrica', consultas_path(area_id: 2, type: 'Pediátrica')%>
-        </li>
+        </li> -->
 
         <li class="<%= current_sidebar([consultas_path(area_id: 3)])%>">
             <%=link_to 'Fonoaudiología', consultas_path(area_id: 3) %>

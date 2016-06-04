@@ -1,15 +1,15 @@
 <div class="page-title page-title-sin-submenu">
-      <%=@turno.id.nil? ? 'Nuevo Turno' : 'Editar Turno'%>
+      <%=turno.id.nil? ? 'Nuevo Turno' : 'Editar Turno'%>
 
       <div class="tool">
-        <%= link_to '<i class="fa fa-list" data-toggle="tooltip" data-placement="bottom" title="Lsta de Turnos"></i> '.html_safe, turnos_path %>
+        <%= link_to '<i class="fa fa-list" data-toggle="tooltip" data-placement="bottom" title="Lista de Turnos"></i> '.html_safe, turnos_path %>
       </div>
 
     </div>
 <div class="content content-sin-submenu content-60">
   <div class="form-content">
 
-    <%= form_for @turno, html: {class: 'nuevo-turno', :multipart => true }, remote: true do |turno|%>
+    <%= form_for turno, html: {class: 'nuevo-turno', :multipart => true }, remote: true do |turn|%>
 
       <h4>Datos Personales</h4>
       <hr>
@@ -17,11 +17,11 @@
         <div class="col-md-7 error-especial">
 
 
-          <%= turno.label :paciente_id, '* Paciente' %>
+          <%= turn.label :paciente_id, '* Paciente' %>
           <div class="row">
             <div class="col-md-10 form-group">
 
-            <%= turno.select(:paciente_id, Hash[Paciente.all.map{|a| [a.persona.nombre + " "+ a.persona.apellido, a.id]}],{},{class: "paciente_select form-control select2", required: true,  id: 'paciente_id'})%>
+            <%= turn.select(:paciente_id, Hash[Paciente.all.map{|a| [a.persona.nombre + " "+ a.persona.apellido, a.id]}],{},{class: "paciente_select form-control select2", required: true,  id: 'paciente_id'})%>
           </div>
 
             <%= link_to '<i class="fa fa-plus" data-toggle="tooltip" data-placement="bottom" title="Nuevo Paciente"></i> '.html_safe, pacientes_new_paciente_modal_path(root: 'turnos', encargado: false), class: 'btn btn-custom col-md-1', style: 'height: 30px; width: 40px', remote: true%>
@@ -30,8 +30,8 @@
         </div>
         </div>
 
-        <%= FormBuilder::text_field_v(turno, :fecha_expedicion,
-                                      input_class: 'date datepicker required',
+        <%= FormBuilder::text_field_v(turn, :fecha_expedicion,
+                                      input_class: 'date datepicker required dateLessSystemDate',
                                       max_length: Domain::FECHA,
                                       label_text: '* Fecha Actual',
                                       col_class: 'col-md-5')%>
@@ -40,19 +40,19 @@
 
         <div class ="paciente_data">
           <div class="row">
-            <%= FormBuilder::text_field_v(turno, :paciente_id,
+            <%= FormBuilder::text_field_v(turn, :paciente_id,
                                           input_class: 'paciente-nombre',
                                           col_class: 'col-md-4',
                                           disabled: true,
                                           label_text: 'Nombres') %>
 
-            <%= FormBuilder::text_field_v(turno, :paciente_id,
+            <%= FormBuilder::text_field_v(turn, :paciente_id,
                                           input_class: 'paciente-apellido',
                                           col_class: 'col-md-5',
                                           disabled: true,
                                           label_text: 'Apellidos') %>
 
-            <%= FormBuilder::text_field_v(turno, :paciente_id,
+            <%= FormBuilder::text_field_v(turn, :paciente_id,
                                           input_class: 'clear paciente-ci',
                                           max_length: Domain::CI,
                                           col_class: 'col-md-3',
@@ -60,13 +60,13 @@
                                           label_text: 'CI') %>
             </div>
             <div class="row">
-              <%= FormBuilder::text_field_v(turno, :paciente_id,
+              <%= FormBuilder::text_field_v(turn, :paciente_id,
                                         input_class: 'clear paciente-direccion',
                                         max_length: Domain::DIRECCION,
                                         col_class: 'col-md-8',
                                         disabled: true,
                                         label_text: 'Direccion') %>
-               <%= FormBuilder::text_field_v(turno, :paciente_id,
+               <%= FormBuilder::text_field_v(turn, :paciente_id,
                                         input_class: 'clear paciente-telefono',
                                         max_length: Domain::TELEFONO,
                                         col_class: 'col-md-4',
@@ -82,29 +82,29 @@
     <div class="row">
       <div class="col-md-4 form-group">
 
-        <%= turno.label :area_id, '* Área a consultar' %>
+        <%= turn.label :area_id, '* Área a consultar' %>
 
-        <%= turno.select(:area_id, Area.all.collect { |a| [a.nombre, a.id] },{},{class: "area_select form-control select2", required: true,  id: 'area_id'})%>
+        <%= turn.select(:area_id, Area.all.collect { |a| [a.nombre, a.id] },{},{class: "area_select form-control select2", required: true,  id: 'area_id'})%>
 
       </div>
 
       <div class="col-md-4 form-group">
 
-        <%= turno.label :doctor_id, '* Profesional de la Salud' %>
+        <%= turn.label :doctor_id, '* Profesional de la Salud' %>
 
-        <%= turno.select(:doctor_id, Hash[Empleado.where(type: 'Doctor').map{|a| [a.area.nombre + "-"+ a.persona.nombre + " "+ a.persona.apellido, a.id]}],{},{class: "profesional_select form-control select2", required: true,  id: 'doctor_id'})%>
+        <%= turn.select(:doctor_id, Hash[Empleado.where(type: 'Doctor').map{|a| [a.area.nombre + "-"+ a.persona.nombre + " "+ a.persona.apellido, a.id]}],{},{class: "profesional_select form-control select2", required: true,  id: 'doctor_id'})%>
 
        </div>
 
-       <%= FormBuilder::text_field_v(turno, :fecha_consulta,
-                                      input_class: 'required date datepicker2',
+       <%= FormBuilder::text_field_v(turn, :fecha_consulta,
+                                      input_class: 'required date datepicker2 ',
                                       max_length: Domain::FECHA,
                                       label_text: '* Fecha de Consulta',
                                       col_class: 'col-md-4')%>
     </div>
   </br>
       <div class="row">
-          <%= FormBuilder::text_field_v(turno, :monto,
+          <%= FormBuilder::text_field_v(turn, :monto,
                                       input_class: 'required costo',
                                       max_length: Domain::COSTO,
                                       label_text: '* Costo del servicio',
@@ -112,20 +112,20 @@
 
            <div class="col-md-5">
 
-            <%= turno.label :paga, '* Abonará el monto estipulado?' %>
+            <%= turn.label :paga, '* Abonará el monto estipulado?' %>
 
             <div class="row">
               <%= label :paga, "Si", class: "col-md-1"%>
-              <%= turno.radio_button :paga, true , :value => true, class: "col-md-3 paga si_paga"%>
+              <%= turn.radio_button :paga, true , :value => true, class: "col-md-3 paga si_paga"%>
               <%= label :paga, "No", class: "col-md-2"%>
-              <%= turno.radio_button :paga, false , :checked => true, :value => false, class: "col-md-1 paga no_paga" %>
+              <%= turn.radio_button :paga, false , :checked => true, :value => false, class: "col-md-1 paga no_paga" %>
 
             </div>
         </div>
       </div>
       <div class="row" id="factura" style="display:none">
-        <%= FormBuilder::text_field_v(turno, :nro_factura,
-                                      input_class: 'required',
+        <%= FormBuilder::text_field_v(turn, :nro_factura,
+                                      input_class: '',
                                       max_length: Domain::NRO_FACTURA,
                                       label_text: '* N° de Factura',
                                       col_class: 'col-md-6')%>
@@ -133,7 +133,7 @@
        </div>
 
       <div class="form-button">
-        <%= turno.submit 'Guardar', class: 'btn btn-custom',data: {disable_with: "Guardando..."}%>
+        <%= turn.submit 'Guardar', class: 'btn btn-custom',data: {disable_with: "Guardando..."}%>
       </div>
 
     <% end %>

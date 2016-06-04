@@ -28,8 +28,7 @@ class User < ActiveRecord::Base
   end
 
   # Law of Demeter
-  delegate :persona_nombre, :persona_apellido, :persona_full_name,
-           :persona_email,:persona_telefono,:persona_direccion,:cargo,
+  delegate :persona_nombre, :persona_apellido, :persona_full_name,:persona_email,
+           :persona_telefono,:persona_direccion,:cargo,:type,:area_nombre,:id,
            to: :empleado, prefix: true, allow_nil: true
-
 end

@@ -16,20 +16,20 @@
       <div class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
 
-          <li class="<%= current_submenu([fichas_clinicos_path, fichas_fisioterapeuticas_adultos_path, ficha_fisioterapia_ninos_path, fichas_fonoaudiologicas_path, fichas_nutricionales_pediatricas_path, fichas_nutricionales_adultos_path, fichas_psicopedagogicas_path, fichas_pediatricas_path, fichas_odontologicas_path,fichas_neurologicas_path,fichas_clinicos_path])%>">
-            <%=link_to 'Fichas', fichas_clinicos_path %>
+          <li class="<%= current_submenu([welcome_index_fichas_path,fichas_clinicos_path, fichas_fisioterapeuticas_adultos_path, ficha_fisioterapia_ninos_path, fichas_fonoaudiologicas_path, fichas_nutricionales_pediatricas_path, fichas_nutricionales_adultos_path, fichas_psicopedagogicas_path, fichas_pediatricas_path, fichas_odontologicas_path,fichas_neurologicas_path,fichas_clinicos_path])%>">
+            <%=link_to 'Fichas', welcome_index_fichas_path %>
           </li>
 
-          <li class="<%= current_submenu([welcome_index_atencion_profesional_path])%>">
-            <%=link_to 'Atención Profesional', welcome_index_atencion_profesional_path %>
+           <li class="<%= current_submenu([consultas_path, consultas_nutricionales_pediatricas_path, consultas_nutricionales_adultos_path, consultas_odontologicas_path,welcome_index_consultas_path])%>">
+            <%= link_to "Consultas", welcome_index_consultas_path %>
           </li>
 
-           <li class="<%= current_submenu([consultas_path(area_id: 1), consultas_nutricionales_pediatricas_path, consultas_nutricionales_adultos_path, consultas_odontologicas_path])%>">
-            <%= link_to "Consultas", consultas_path(area_id: 1) %>
+           <li class="<%= current_submenu([atenciones_profesionales_path])%>">
+            <%=link_to 'Atención Profesional', atenciones_profesionales_path %>
           </li>
 
-          <li class="<%= current_submenu([historiales_fisioterapeuticos_path, historiales_fonoaudiologicos_path, historiales_psicopedagogicos_path,historiales_clinicos_path,historiales_neurologicos_path,historiales_pediatricos_path])%>">
-            <%= link_to "Historial Clínico", historiales_clinicos_path %>
+          <li class="<%= current_submenu([historiales_fisioterapeuticos_path, historiales_fonoaudiologicos_path, historiales_psicopedagogicos_path,historiales_clinicos_path,historiales_neurologicos_path,historiales_pediatricos_path,historiales_odontologicos_path,historiales_nutricionales_path,welcome_index_historial_path])%>">
+            <%= link_to "Historial Clínico", welcome_index_historial_path %>
 
           </li>
 

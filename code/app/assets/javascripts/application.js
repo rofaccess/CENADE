@@ -11,7 +11,6 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery.ui.datepicker
 //= require bootstrap-sprockets
 //= require jquery_ujs
 
@@ -20,31 +19,22 @@
 //= require plugins/jquery-validate-setup.js
 //= require plugins/jquery-inputmask.js
 //= require plugins/jquery-inputmask-regex-extensions.js
-//= require plugins/select2/select2.full.min.js
-//= require plugins/select2/i18n/es.js
+//= require plugins/select2.full.min.js
+
 //= require plugins/jquery.dataTables.js
 //= require plugins/loading-overlay-min.js
-//= require plugins/bootstrap-datepicker/bootstrap-datepicker.js
-//= require plugins/bootstrap-datepicker/bootstrap-datepicker.min.js
-//= require plugins/bootstrap-datepicker/bootstrap-datepicker.es.min.js
+//= require plugins/bootstrap-datepicker.min.js
 
-//= require plugins/noty/jquery.noty
-//= require plugins/noty/packaged/jquery.noty.packaged
+//= require plugins/noty/packaged/jquery.noty.packaged.min.js
 //= require plugins/noty/layouts/topCenter
-//= require plugins/noty/themes/default
 //= require plugins/tabbedcontent.min.js
+//= require plugins/perfect-scrollbar.jquery.min.js
 
 //= require languages/jquery-validate-messages-es.js
-//= require languages/jquery-ui-datepicker-es.js
+//= require languages/select2-es.js
+//= require languages/bootstrap-datepicker.es.min.js
 
-//= require modules/empleadosUI
-//= require modules/configuracionesUI
-//= require modules/usuariosUI
-//= require modules/rolesUI
-
-//= require_tree .
-
-/* Nota: La línea anterior carga todos los script, asi que en teoría, no es necesario ćargar el contenido de los modules */
+//= require_tree ./modules
 
 APP = {
 
@@ -60,12 +50,18 @@ APP = {
     				fontawesome : "fa fa-refresh fa-spin"
 				});
 
-				setTimeout(function(){},5000); //Quitar esto en producción
-
 				$('.buscador').submit();
 			}, 500);
 			$("#list").LoadingOverlay("hide", true);
 		});
+    },
+
+    /* Inicializa el la función LoadingOverlay sobre el elemento cuyo clase o id es pasado como parámetro */
+    initLoadingOverlay: function(element){
+        $(element).LoadingOverlay("show", {
+            image       : "",
+            fontawesome : "fa fa-refresh fa-spin"
+        });
     },
 
     /* Inicializa el evento para mostrar y esconder la búsqueda avanzada presente en algunos index
@@ -101,7 +97,7 @@ APP = {
     */
     initDatepicker: function(){
 
-        $('.datepicker').datepicker({
+        $('input.datepicker').datepicker({
             format: "dd/mm/yyyy",
             language: "es",
             autoclose: true,
@@ -257,13 +253,27 @@ APP = {
         });
     },
 
+    /* Inicializa el la función tabbedContent sobre el elemento cuyo clase o id es pasado como parámetro */
+    initTabs: function(element){
+        $(element).tabbedContent();
+    },
+
     /* Incializa el evento para mostrar y esconder el cuerpo de un panel al hacer
-     * doble click sobre cualquier parte del panel
+     * click sobre la cabecera del panel
      * .panel-folding: es la clase que deberá tener el div que actua como panel
      */
     initPanelFolding: function(){
-        $(".panel-folding").dblclick(function(){
-            $(".panel-body", this).toggle();
+        $(".panel-folding > .panel-heading").click(function(){
+            $(this).next('.panel-body').toggle();
+        });
+    },
+
+    /* Incializa el evento para cerrar un mensaje mostrado con el helper
+     * message definido en application_helper
+     */
+    initMessageClose: function(){
+        $('.close-message').click(function(){
+            $(this).closest('.message').fadeOut();
         });
     },
 
@@ -272,6 +282,7 @@ APP = {
 		APP.initBuscador();
         APP.initAdvancedSearch();
         APP.initDatepicker();
+        APP.initMessageClose();
         //APP.initSidebarToogle(); //- Tal vez se use
     }
 };
