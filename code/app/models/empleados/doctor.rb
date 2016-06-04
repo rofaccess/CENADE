@@ -20,10 +20,20 @@ class Doctor < Empleado
 
  	has_many :reportes_estadisticos
 
- 	# Retorna el nombre y apellido del doctor, usado en /doctores/buscar
+ 	# Retorna el titulo, nombre y apellido del doctor
 	def full_name
   		"#{abr_profesion} #{persona_nombre} #{persona_apellido}"
 	end
+
+   def name
+      "#{persona_nombre}"
+   end
+
+   # Retorna los doctores con el área especificada
+   def self.get_all_area(area_nombre)
+      area = Area.find_by_nombre(area_nombre)
+      self.where(area_id: area.id)
+   end
 
 	# Law of Demeter
 	delegate :nombre, :costo, to: :area, prefix: true, allow_nil: true

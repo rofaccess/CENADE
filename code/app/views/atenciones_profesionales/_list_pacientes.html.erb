@@ -1,21 +1,21 @@
-<% unless at_prof[:turnos].blank? %>
+<% unless turnos.blank? %>
    <li class="sidebar-brand">
       Pacientes
    </li>
 
    <% i=1 %>
-   <% at_prof[:turnos].each do |turno| %>
+   <% turnos.each do |turno| %>
       <li class="item-paciente">
-         <% if turno.estado == "atendido" %>
-            <%=link_to "#{i}. #{turno.paciente.persona_full_name} <span class='fa fa-check-square-o icon-atendido' data-toggle='tooltip' title='Atendido'></span>".html_safe, atencion_profesional_path(turno), remote: true %>
-         <% else %>
+         <% if turno.pendiente? %>
             <%=link_to "#{i}. #{turno.paciente.persona_full_name} <span class='fa fa-check-square-o icon-pendiente' data-toggle='tooltip' title='Setear como Atendido' turno-id=#{turno.id}  paciente='#{turno.paciente.persona_full_name}'></span>".html_safe, atencion_profesional_path(turno), remote: true %>
+         <% else %>
+            <%=link_to "#{i}. #{turno.paciente.persona_full_name} <span class='fa fa-check-square-o icon-atendido' data-toggle='tooltip' title='Atendido'></span>".html_safe, atencion_profesional_path(turno), remote: true %>
          <% end %>
       </li>
       <% i=i+1 %>
    <% end %>
 <% else %>
-   <% if at_prof[:es_doctor] %>
+   <% if current_user.es_doctor? %>
       <%= message('No se encontraron resultados','warning') %>
    <% else %>
       <%= message('No se encontraron resultados o no seleccionaste un profesional','warning') %>

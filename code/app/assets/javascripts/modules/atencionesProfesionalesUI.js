@@ -66,7 +66,7 @@ function initSetEstadoTurnoToAtendido(){
     var confirm = window.confirm("¿Desea establecer al paciente "+paciente+" como atendido?");
     if (confirm){
       $.ajax({
-        url: 'atenciones_profesionales/setEstadoTurnoToAtendido',
+        url: 'atencion_profesional/set_estado_turno_to_atendido',
         type: 'post',
         dataType: 'script',
         data: {

@@ -1,0 +1,26 @@
+<!--Renderiza un tab para nueva consulta, si la variable nueva_consulta es true
+    Renderiza los datos de cada consulta adulto dentro de tabs
+ -->
+<ul class="nav nav-tabs">
+	<% if nueva_consulta %>
+		<li><a href="#con-ad-new"><span class="fa fa-plus"></span> Nueva Consulta</a></li>
+	<% end %>
+
+	<% consultas_ad.each do |c| %>
+	<li><a href="#con-adu-<%=c.id%>"><%=date(c.fecha)%></a></li>
+	<% end %>
+</ul>
+
+<div class="tabs-content">
+	<% if nueva_consulta %>
+      <div id="con-ad-new">
+   	   NUEVA CONSULTA ADULTO
+      </div>
+   <% end %>
+
+	<% consultas_ad.each do |consulta_ad| %>
+		<div id="con-adu-<%=con.id%>">
+         <%=render 'atenciones_profesionales/nutricion/data_consulta_ad',consulta_ad: consulta_ad%>
+		</div>
+	<% end %>
+</div>

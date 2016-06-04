@@ -1,0 +1,25 @@
+<!--  Renderiza un tab para nueva consulta, si el turno esta pendiente
+      Renderiza los datos de cada consulta pediátrica dentro de tabs
+ -->
+<ul class="nav nav-tabs">
+	<% if nueva_consulta %>
+		<li><a href="#con-ped-new"><span class="fa fa-plus"></span> Nueva Consulta</a></li>
+	<% end %>
+	<% consultas_ped.each do |c| %>
+		<li><a href="#con-ped-<%=c.id%>"><%=date(c.fecha)%></a></li>
+	<% end %>
+</ul>
+
+<div class="tabs-content">
+	<% if nueva_consulta %>
+		<div id="con-ped-new">
+			NUEVA CONSULTA PEDIATRICA
+		</div>
+	<% end %>
+	<% consultas_ped.each do |consulta_ped| %>
+		<div id="con-ped-<%=consulta_ped.id%>">
+			<%=render 'atenciones_profesionales/nutricion/data_consulta_ped',consulta_ped: consulta_ped%>
+		</div>
+	<% end %>
+</div>
+

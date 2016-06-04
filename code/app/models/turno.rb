@@ -92,6 +92,10 @@ class Turno < ActiveRecord::Base
       end
     end
 
+  def pendiente?
+    self.estado=='pendiente'
+  end
+
     # Law of Demeter
     delegate :nombre, to: :area, prefix: true, allow_nil: true
 

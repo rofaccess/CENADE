@@ -16,9 +16,8 @@ class AtencionesProfesionalesController < ApplicationController
 
   def show
     @turno = Turno.find(params[:id])
-    area = @turno.area_nombre
 
-    case area
+    case @turno.area_nombre
     when "Clínico"
       get_data_clinico
     when "Fisioterapia"
@@ -26,7 +25,8 @@ class AtencionesProfesionalesController < ApplicationController
     when "Fonoaudiología"
     when "Neurología"
     when "Nutrición"
-      get_data_nutricion
+      @partial='/nutricion/show'
+      #get_data_nutricion
     when "Odontología"
     when "Pediatría"
     when "Psicología"
@@ -53,15 +53,15 @@ class AtencionesProfesionalesController < ApplicationController
              controles: controles, consultas_ad: consultas_ad, partial: '/nutricion/show',
              pendiente: (@turno.estado=='pendiente') ? true : false,control: Control.new,
              consulta_ped: ConsultaNutricionalPediatrica.new,consulta_ad: ConsultaNutricionalAdulto.new,
-             doctores: get_doctores_nutricion}
+             doctores: Doctor.all}
   end
 
-  def get_doctores_nutricion
-    area = Area.find_by_nombre('Nutrición')
-    doctores = Doctor.where(area_id: area.id)
+  def create_control
+
+    render 'atenciones_profesionales/nutricion/create_control', format: :js
   end
 
-  def setEstadoTurnoToAtendido
+  def set_estado_turno_to_atendido
     turno = Turno.find(params[:turno_id])
     if turno.update_attribute(:estado, 'atendido')
       flash.now[:notice] = "El paciente #{turno.paciente.persona_full_name} ha sido atendido."
@@ -82,7 +82,6 @@ class AtencionesProfesionalesController < ApplicationController
     empleado = current_user.empleado
     doctor_id = empleado.id
     fecha_consulta = Date.today
-    es_doctor = es_doctor(empleado)
 
     unless params[:fecha_consulta].blank?
       date = params[:fecha_consulta]
@@ -91,20 +90,8 @@ class AtencionesProfesionalesController < ApplicationController
         doctor_id = params[:doctor_id]
       end
     end
-    turnos = Turno.where(doctor_id: doctor_id, fecha_consulta: fecha_consulta)
+    @turnos = Turno.where(doctor_id: doctor_id, fecha_consulta: fecha_consulta)
                    .where.not(turnos: {estado: 'cancelado'})
                    .order('turnos.fecha_consulta')
-
-    @at_prof = {es_doctor: es_doctor, turnos: turnos}
-  end
-
-  # Devuelve true si el empleado es de tipo doctor, caso contrario false
-  def es_doctor(empleado)
-    tipo = empleado.type
-    if tipo == 'Doctor'
-      true
-    else
-      false
-    end
   end
 end

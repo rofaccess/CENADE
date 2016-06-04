@@ -1,0 +1,28 @@
+<!-- Renderiza los datos de las fichas pediatrica y adulto dentro de tabs -->
+<ul class="nav nav-tabs">
+  <% unless ficha_ped.blank? %>
+    <li><a href="#ficha-pediatrica">Pediátrica</a></li>
+  <% else %>
+    <li class="tab-head-empty"><a href>Pediátrica (No tiene)</a></li>
+  <% end %>
+
+  <% unless ficha_ad.blank? %>
+    <li><a href="#ficha-adulto">Adulto</a></li>
+  <% else %>
+    <li class="tab-head-empty"><a href>Adulto (No tiene)</a></li>
+  <% end %>
+</ul>
+
+<div class="tabs-content">
+  <% unless ficha_ped.blank? %>
+    <div id="ficha-pediatrica">
+      <%=render 'atenciones_profesionales/nutricion/data_ficha_ped',ficha_ped: ficha_ped%>
+    </div>
+  <% end %>
+
+  <% unless ficha_ad.blank? %>
+    <div id="ficha-adulto">
+      <%=render 'atenciones_profesionales/nutricion/data_ficha_ad',ficha_ad: ficha_ad%>
+    </div>
+  <% end %>
+</div>
