@@ -1,7 +1,4 @@
 class PerfilUsuariosController < ApplicationController
-
-
-
 	def edit
 		@persona = Persona.find(Empleado.find(current_user.empleado_id).persona_id)
 	end
@@ -20,7 +17,6 @@ class PerfilUsuariosController < ApplicationController
 	    	else
 	    		redirect_to perfil_usuarios_edit_path, alert: "No se ha podido actualizar el usuario #{@usuario.username}."
 	    	end
-
 
 	end
 

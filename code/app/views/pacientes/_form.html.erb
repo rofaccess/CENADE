@@ -2,7 +2,7 @@
       <%=paciente.id.nil? ? 'Nuevo Paciente' : 'Editar Paciente'%>
 
       <div class="tool">
-        <%= link_to '<i class="fa fa-list"></i> '.html_safe, pacientes_path %>
+        <%= link_to '<i class="fa fa-list" data-toggle="tooltip" title="Lista de Pacientes"></i> '.html_safe, pacientes_path %>
       </div>
 </div>
 <div class="content content-sin-submenu content-70">

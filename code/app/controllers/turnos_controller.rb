@@ -76,7 +76,12 @@ class TurnosController < ApplicationController
         format.pdf do
           render :pdf => "Lista de Turnos",
                  :template => "turnos/print_turnos.pdf.erb",
-                 :layout => "pdf.html"
+                 orientation:  'Landscape',
+                 :layout => "pdf.html",
+                 footer: {
+                    center: '[page] de [topage]',
+                    right: "#{Formatter.format_datetime(Time.now)}"
+                  }
           end
         end
     end

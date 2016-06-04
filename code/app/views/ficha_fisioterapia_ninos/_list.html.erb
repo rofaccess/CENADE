@@ -11,7 +11,7 @@
     </tr>
   </thead>
 
-  <% if @fisio_ninos.blank? %>
+  <% if fisio_ninos.blank? %>
     <tfoot>
       <tr>
         <th colspan="8" scope="col">No se encontraron coincidencias </th>
@@ -20,7 +20,7 @@
   <% end %>
 
   <tbody>
-    <% @fisio_ninos.each do |ficha| %>
+    <% fisio_ninos.each do |ficha| %>
     <tr>
       <td ><%=ficha.nro_ficha %></td>
       <td ><%=ficha.fecha.strftime("%d/%m/%Y") %></td>

@@ -1,7 +1,11 @@
 <% if ficha_ad.nil? %>
-   <%= h_panel_head('IV - FICHA ADULTO (No tiene)') %>
+   <%= panel_head('IV - FICHA ADULTO (No tiene)') %>
 <% else %>
-<%= h_panel('IV - FICHA ADULTO')%>
+<%= panel_begin('IV - FICHA ADULTO')%>
+   <div class="row">
+         <%= h_data('Profesional de la Salud', ficha_ad.doctor_full_name,'col-md-9') %>
+         <%= h_data('Fecha', date(ficha_ad.fecha),'col-md-3') %>
+      </div>
    <div class="row">
       <%= h_data('Encargado', ficha_ad.encargado,'col-md-12') %>
 
@@ -13,5 +17,5 @@
 
       <%= h_data_text('Condición General del Paciente', ficha_ad.condicion_paciente,'col-md-12') %>
    </div>
-<%= h_panel_end %>
+<%= panel_end %>
 <% end %>

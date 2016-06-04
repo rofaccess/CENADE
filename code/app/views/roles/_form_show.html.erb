@@ -1,19 +1,19 @@
 <div class="page-title">
-    Rol <%=@role.name %>
+    Rol <%=role.name %>
 
       <div class="tool">
-        <%= link_to '<i class="fa fa-list"></i> '.html_safe, roles_path%>
-        <%= link_to '<i class="fa fa-plus-square"></i> '.html_safe, new_role_path%><%= link_to '<i class="fa fa-edit"></i> '.html_safe, edit_role_path(@role.id)%>
-        <%= link_to '<i class="fa fa-trash-o"></i> '.html_safe, role_path(@role), method: 'delete', data: {confirm: "¿Desea eliminar el rol #{@role.name}?"}%>
+        <%= link_to '<i class="fa fa-list" data-toggle="tooltip" title="Lista de Roles"></i> '.html_safe, roles_path%>
+        <%= link_to '<i class="fa fa-plus-square" data-toggle="tooltip" title="Nuevo Rol"></i> '.html_safe, new_role_path%><%= link_to '<i class="fa fa-edit" data-toggle="tooltip" title="Editar Rol"></i> '.html_safe, edit_role_path(role.id)%>
+        <%= link_to '<i class="fa fa-trash-o" data-toggle="tooltip" title="Eliminar Rol"></i> '.html_safe, role_path(role), method: 'delete', data: {confirm: "¿Desea eliminar el rol #{role.name}?"}%>
       </div>
 </div>
 <div class="content content-50">
 <div class= "form-content">
-    <%= form_for @role,html: {class: 'nuevo-rol'},:multipart => true do |role|%>
+    <%= form_for role,html: {class: 'nuevo-rol'},:multipart => true do |rol|%>
     <h4>Rol</h4>
     <hr>
       <div class="row">
-         <%= FormBuilder::text_field_v(role, :name,
+         <%= FormBuilder::text_field_v(rol, :name,
                                       input_class: 'required',
                                       max_length: Domain::ROL,
                                       autofocus: true,
@@ -26,8 +26,8 @@
       <div class="row">
         	<div class="col-md-12">
 
-         	<%= role.label :nombre, '* Permisos' %>
-           	<%= role.select(:permission_ids, Permission.all.collect { |permission| [permission.nombre, permission.id] },{},{class: "multiple_select form-control", multiple: true, required: true, disabled: true})%>
+         	<%= rol.label :nombre, '* Permisos' %>
+           	<%= rol.select(:permission_ids, Permission.all.collect { |permission| [permission.nombre, permission.id] },{},{class: "multiple_select form-control", multiple: true, required: true, disabled: true})%>
       	</div>
       </div>
    <% end %>

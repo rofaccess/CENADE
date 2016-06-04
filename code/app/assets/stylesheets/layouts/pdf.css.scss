@@ -121,10 +121,14 @@ div.panel-heading, div.form-group{
 }
 
 // Se modifica un poco el aspecto del panel al imprimir en pdf
-.panel-historial{
+.panel-custom{
+   border: 1px solid $panel-border-color;
    .panel-heading{
-   	padding: 5px 10px;
       font-size: 14px;
       background-color: inherit;// Permite renderizar un poco más rápido el pdf
+      color: black;
+   }
+   .panel-body{
+   	display: inherit;
    }
 }

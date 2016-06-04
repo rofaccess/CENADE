@@ -1,7 +1,11 @@
 <% if ficha.nil? %>
-   <%= h_panel_head('III - FICHA (No tiene)') %>
+   <%= panel_head('III - FICHA (No tiene)') %>
 <% else %>
-   <%= h_panel('III - FICHA') %>
+   <%= panel_begin('III - FICHA') %>
+      <div class="row">
+         <%= h_data('Profesional de la Salud', ficha.doctor_full_name,'col-md-9') %>
+         <%= h_data('Fecha', date(ficha.fecha),'col-md-3') %>
+      </div>
       <div class="row">
          <%= h_data('P', ficha.p,'col-md-2') %>
          <%= h_data('A', ficha.a,'col-md-2') %>
@@ -129,7 +133,7 @@
          <%= h_data('Sedentación', ficha.sedentacion,'col-md-4') %>
          <%= h_data('Mancha', ficha.mancha,'col-md-4') %>
       </div>
-   <%= h_panel_end %>
+   <%= panel_end %>
 <% end %>
 
 

@@ -63,18 +63,20 @@ for i in 31..50
 	Paciente.create(persona_id: i, fecha_ingreso: '07/05/1995', lugar_nacimiento: Faker::Address.city, profesion: Faker::Company.profession)
 end
 
-# Turnos
+# Turnos //- No Funciona
+=begin
 for i in 1..25
   Turno.create(paciente_id: Faker::Number.positive(1, 20),
 			  fecha_expedicion: Date.today,
 			  fecha_consulta: Date.today,
 			  area_id: Faker::Number.positive(1, 9),
-			  doctor_id: Faker::Number.positive(16, 30),
-			  estado: 'Pendiente',
+			  doctor_id: Faker::Number.positive(1, 14),
+			  estado: 'pendiente',
 			  monto: Faker::Number.number(6),
 			  paga: true,
-			  turno: i)
+           nro_factura: '1000')
 end
+=end
 
 # Usuario Admin
 admin = User.create(username: 'admin',

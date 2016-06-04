@@ -1,0 +1,13 @@
+<div class="content content-sin-page-title">
+   <div class="atencion-content">
+      <h1 class="atencion-title">NUTRICIÓN</h1>
+
+      <%=render 'atenciones_profesionales/data_paciente',paciente: data[:paciente]%>
+
+      <%=render 'atenciones_profesionales/nutricion/show_fichas',ficha_ped: data[:ficha_ped],ficha_ad: data[:ficha_ad]%>
+
+      <%=render 'atenciones_profesionales/nutricion/show_consultas',consultas_ped: data[:consultas_ped],consultas_ad: data[:consultas_ad]%>
+
+      <%=render 'atenciones_profesionales/nutricion/data_controles',controles: data[:controles]%>
+   </div>
+</div>

@@ -19,7 +19,7 @@
                                         autofocus: true,
                                         col_class: 'col-md-6',
                                         label_text: '* Usuario') %>
-      <div class= 'col-md-6'>
+      <div class= 'col-md-6 align-center'>
           <%= image_tag(current_user.profile_foto_url.to_s, class: "border-img") %>
           <div class="uploader_button">
           <%= f.file_field :profile_foto, class:"file_uploader" %>
