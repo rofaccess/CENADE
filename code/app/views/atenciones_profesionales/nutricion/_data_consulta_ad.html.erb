@@ -1,0 +1,155 @@
+<%id=consulta_ad.id%>
+
+<div class="row">
+   <%= data('Profesional de la Salud', consulta_ad.doctor_full_name,'col-md-9') %>
+   <%= data('Fecha', date(consulta_ad.fecha),'col-md-3') %>
+</div>
+
+<div class="row">
+   <%= data_text('I - Motivo de consulta', consulta_ad.motivo_consulta,'col-md-12') %>
+</div>
+
+<ul class="nav nav-tabs">
+   <li><a href="#con-ad-adu-<%=id%>-dat-ant">II - Datos Antropométricos</a></li>
+   <li><a href="#con-ad-adu-<%=id%>-ana-ali">III - Anamnesis Alimentaria</a></li>
+   <li><a href="#con-ad-adu-<%=id%>-rec">IV - Recuento de 24 horas</a></li>
+</ul>
+
+<div class="tabs-content">
+   <div id="con-ad-adu-<%=id%>-dat-ant">
+      <div class="row">
+         <%= data('Peso actual', consulta_ad.peso_actual,'col-md-4') %>
+         <%= data('Peso ideal', consulta_ad.peso_ideal,'col-md-4') %>
+         <%= data('Peso deseable', consulta_ad.peso_deseable,'col-md-4') %>
+      </div>
+      <div class="row">
+         <%= data('Talla', consulta_ad.talla,'col-md-4') %>
+         <%= data('Biotipo', consulta_ad.biotipo,'col-md-4') %>
+         <%= data('I.M.C.', consulta_ad.imc,'col-md-4') %>
+      </div>
+      <div class="row">
+         <%= data('Circ. muñeca', consulta_ad.cir_muneca,'col-md-4') %>
+         <%= data('Circ. brazo', consulta_ad.circ_brazo,'col-md-4') %>
+         <%= data('Circ. cintura/cadera', consulta_ad.circ_cintura,'col-md-4') %>
+      </div>
+   </div>
+
+   <div id="con-ad-adu-<%=id%>-ana-ali">
+      <div class="row">
+         <%= data('¿Toma medicamentos?', consulta_ad.medicamentos,'col-md-5') %>
+         <%= data('¿Toma suplementos vitaminicos/minerales?', consulta_ad.suplementos,'col-md-7') %>
+      </div>
+      <div class="row">
+         <%= data('Su apetito es', consulta_ad.apetito,'col-md-3') %>
+         <%= data('Factores que afectan el apetito', consulta_ad.factores_apetito,'col-md-9') %>
+      </div>
+      <div class="row">
+         <%= data('¿Tiene alergia o intolerancia a algún alimento?', consulta_ad.alergia_intolerancia,'col-md-12') %>
+      </div>
+      <div class="row">
+         <%= data('Estado bucal (dientes, lengua, paladar)', consulta_ad.estado_bucal,'col-md-12') %>
+      </div>
+      <div class="row">
+         <%= data('¿Orina bien?', consulta_ad.orina_bien,'col-md-6') %>
+         <%= data('¿Va bien de cuerpo?', consulta_ad.ir_cuerpo,'col-md-6') %>
+      </div>
+      <div class="row">
+         <%= data('¿Realiza actividades físicas?', consulta_ad.actividades_fisicas? ? 'Si' : 'No','col-md-4') %>
+      </div>
+      <% if consulta_ad.actividades_fisicas %>
+      <div class="row">
+         <%= data('Tipos', consulta_ad.tipo,'col-md-5') %>
+         <%= data('Horas', consulta_ad.hs_act_fisicas,'col-md-3') %>
+         <%= data('Frecuencias', consulta_ad.frecuencia,'col-md-4') %>
+      </div>
+      <% end %>
+      <div class="row">
+         <%= data('Actividad Laboral', consulta_ad.actividad_laboral,'col-md-9') %>
+         <%= data('Horas', consulta_ad.horas_laborales,'col-md-3') %>
+      </div>
+      <div class="row">
+         <%= data('¿Vive consulta_ad su familia?', consulta_ad.vive_con,'col-md-4') %>
+         <%= data('¿Quién prepara los alimentos?', consulta_ad.quien_prepara,'col-md-8') %>
+      </div>
+      <div class="row">
+         <%= data('¿Qué elementos cuenta para cocinar?', consulta_ad.que_elementos,'col-md-12') %>
+      </div>
+      <div class="row">
+         <%= data('¿Cuántos litros de agua bebe?', consulta_ad.toma_agua,'col-md-12') %>
+      </div>
+      <div class="row">
+         <%= data('Mastica - Deglute', consulta_ad.mastica_deglute,'col-md-4') %>
+         <%= data('¿Dificultad para beber o absorber?', consulta_ad.dificultad_beber,'col-md-8') %>
+      </div>
+      <div class="row">
+         <%= data('¿A qué hora se acuesta?', consulta_ad.hora_acuesta,'col-md-4') %>
+         <%= data('¿A qué hora se levanta?', consulta_ad.hora_levanta,'col-md-4') %>
+         <%= data('¿Duerme bien?', consulta_ad.duerme_bien,'col-md-4') %>
+      </div>
+      <div class="row">
+         <%= data('Habilidades presentes o ausentes', consulta_ad.habilidades,'col-md-12') %>
+      </div>
+      <div class="row">
+         <%= data('Tratamientos que realiza dentro del CENADE consulta_ad otros especialistas', consulta_ad.tratamientos_cenade,'col-md-12') %>
+      </div>
+   </div>
+
+   <div id="con-ad-adu-<%=id%>-rec">
+      <h4>Desayuno</h4>
+      <div class="row">
+         <%= data_text('Alimentos consumidos', consulta_ad.alim_desayuno,'col-md-10') %>
+         <%= data_text('Cantidad', consulta_ad.cant_desayuno,'col-md-2') %>
+      </div>
+      <div class="row">
+         <%= data_text('Modo de preparación', consulta_ad.modo_desayuno,'col-md-7') %>
+         <%= data_text('Lugar de consumo', consulta_ad.lugar_desayuno,'col-md-5') %>
+      </div>
+      <h4>Media Mañana</h4>
+      <div class="row">
+         <%= data_text('Alimentos consumidos', consulta_ad.alim_media,'col-md-10') %>
+         <%= data_text('Cantidad', consulta_ad.cant_media,'col-md-2') %>
+      </div>
+      <div class="row">
+         <%= data_text('Modo de preparación', consulta_ad.modo_media,'col-md-7') %>
+         <%= data_text('Lugar de consumo', consulta_ad.lugar_media,'col-md-5') %>
+      </div>
+      <h4>Almuerzo</h4>
+      <div class="row">
+         <%= data_text('Alimentos consumidos', consulta_ad.alim_almuerzo,'col-md-10') %>
+         <%= data_text('Cantidad', consulta_ad.cant_almuerzo,'col-md-2') %>
+      </div>
+      <div class="row">
+         <%= data_text('Modo de preparación', consulta_ad.modo_almuerzo,'col-md-7') %>
+         <%= data_text('Lugar de consumo', consulta_ad.lugar_almuerzo,'col-md-5') %>
+      </div>
+      <h4>Merienda</h4>
+      <div class="row">
+         <%= data_text('Alimentos consumidos', consulta_ad.alim_merienda,'col-md-10') %>
+         <%= data_text('Cantidad', consulta_ad.cant_merienda,'col-md-2') %>
+      </div>
+      <div class="row">
+         <%= data_text('Modo de preparación', consulta_ad.modo_merienda,'col-md-7') %>
+         <%= data_text('Lugar de consumo', consulta_ad.lugar_merienda,'col-md-5') %>
+      </div>
+      <h4>Cena</h4>
+      <div class="row">
+         <%= data_text('Alimentos consumidos', consulta_ad.alim_cena,'col-md-10') %>
+         <%= data_text('Cantidad', consulta_ad.cant_cena,'col-md-2') %>
+      </div>
+      <div class="row">
+         <%= data_text('Modo de preparación', consulta_ad.modo_cena,'col-md-7') %>
+         <%= data_text('Lugar de consumo', consulta_ad.lugar_cena,'col-md-5') %>
+      </div>
+   </div>
+</div>
+
+<br>
+<div class="row">
+   <%= data_text('V - Diagnóstico Médico', consulta_ad.dx,'col-md-12') %>
+</div>
+<div class="row">
+   <%= data_text('VI - Evaluación Nutricional', consulta_ad.evaluacion,'col-md-12') %>
+</div>
+<div class="row">
+   <%= data_text('VII - Indicaciones', consulta_ad.indicaciones,'col-md-12') %>
+</div>

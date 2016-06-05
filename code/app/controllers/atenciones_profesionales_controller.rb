@@ -16,17 +16,14 @@ class AtencionesProfesionalesController < ApplicationController
 
   def show
     @turno = Turno.find(params[:id])
-    area = @turno.area_nombre
 
-    case area
+    case @turno.area_nombre
     when "Clínico"
-      get_data_clinico
     when "Fisioterapia"
-      get_data_fisioterapia
     when "Fonoaudiología"
     when "Neurología"
     when "Nutrición"
-      get_data_nutricion
+      @partial='/nutricion/show'
     when "Odontología"
     when "Pediatría"
     when "Psicología"
@@ -35,25 +32,63 @@ class AtencionesProfesionalesController < ApplicationController
     end
   end
 
-  def get_data_clinico
+  def create_consulta_ped
+    @consulta_ped = ConsultaNutricionalPediatrica.new(consulta_ped_params)
+
+    if @consulta_ped.save
+      flash.now[:notice] = 'Consulta registrada exitosamente'
+    else
+      flash.now[:alert] = "No se ha podido guardar la consulta."
+    end
+    render 'atenciones_profesionales/nutricion/create_consulta_ped', format: :js
   end
 
-  def get_data_fisioterapia
+  def consulta_ped_params
+    params.require(:consulta_nutricional_pediatrica).permit(:area_id,:ficha_nutri_ped_id, :paciente_id, :doctor_id, :fecha, :encargado, :sosten_cefalico,
+       :sento, :paro,:camino, :sigue_luz, :rie_llora, :busca_sonido, :emite_sonido, :habilidades, :mastica_deglute, :otros, :desayuno, :media_manana, :almuerzo,
+       :merienda, :cena, :cargo_quien, :diarrea, :vomitos, :fiebre, :constipacion, :orina, :sudor, :problemas_respiratorios,
+       :distension_abdominal, :otros2, :diagnostico, :peso, :talla, :pc, :imc, :cm)
   end
 
-  def get_data_nutricion
-    paciente  = @turno.paciente
-    ficha_ped = paciente.ficha_nutricional_pediatrica
-    ficha_ad  = paciente.ficha_nutricional_adulto
-    consultas_ped = ConsultaNutricionalPediatrica.where(ficha_nutri_ped_id: ficha_ped.blank? ? nil : ficha_ped.id).order(fecha: :desc)
-    consultas_ad  = ConsultaNutricionalAdulto.where(ficha_nutricional_adulto_id: ficha_ad.blank? ? nil : ficha_ad.id).order(fecha: :desc)
-    controles     = Control.where(area_id: @turno.area_id,paciente_id: paciente.id).order(fecha: :desc)
+  def create_consulta_ad
+    @consulta_ad = ConsultaNutricionalAdulto.new(consulta_ad_params)
 
-    @data = {paciente: paciente, ficha_ped: ficha_ped, ficha_ad: ficha_ad,consultas_ped: consultas_ped,
-             controles: controles, consultas_ad: consultas_ad, partial: '/nutricion/show'}
+    if @consulta_ad.save
+      flash.now[:notice] = 'Consulta registrada exitosamente'
+    else
+      flash.now[:alert] = "No se ha podido guardar la consulta."
+    end
+    render 'atenciones_profesionales/nutricion/create_consulta_ad', format: :js
   end
 
-  def setEstadoTurnoToAtendido
+  def consulta_ad_params
+    params.require(:consulta_nutricional_adulto).permit(:ficha_nutricional_adulto_id, :doctor_id, :fecha,
+      :motivo_consulta, :actuales, :dx, :peso_actual, :peso_ideal, :peso_deseable, :talla, :biotipo,
+      :cir_muneca, :circ_brazo, :circ_cintura, :imc, :evaluacion, :medicamentos, :suplementos, :apetito,
+      :factores_apetito, :alergia_intolerancia, :cae_cabello, :estado_bucal, :orina_bien, :ir_cuerpo,
+      :actividades_fisicas, :tipo, :hs_act_fisicas, :frecuencia, :actividad_laboral, :horas_laborales,
+      :vive_con, :quien_prepara, :que_elementos, :toma_agua, :mastica_deglute, :dificultad_beber, :hora_acuesta,
+      :hora_levanta, :duerme_bien, :habilidades, :tratamientos_cenade, :alim_desayuno, :alim_media, :alim_almuerzo,
+      :alim_merienda, :alim_cena, :cant_desayuno, :cant_media, :cant_almuerzo, :cant_merienda, :cant_cena,
+      :modo_desayuno, :modo_media, :modo_almuerzo, :modo_merienda, :modo_cena, :lugar_desayuno, :lugar_media, :lugar_almuerzo, :lugar_merienda, :lugar_cena, :indicaciones)
+  end
+
+  def create_control
+    @control = Control.new(control_params)
+
+    if @control.save
+      flash.now[:notice] = 'Control registrado exitosamente'
+    else
+      flash.now[:alert] = "No se ha podido guardar el control."
+    end
+    render 'atenciones_profesionales/nutricion/create_control', format: :js
+  end
+
+  def control_params
+    params.require(:control).permit(:paciente_id, :area_id, :doctor_id, :fecha, :tratamiento, :observaciones)
+  end
+
+  def set_estado_turno_to_atendido
     turno = Turno.find(params[:turno_id])
     if turno.update_attribute(:estado, 'atendido')
       flash.now[:notice] = "El paciente #{turno.paciente.persona_full_name} ha sido atendido."
@@ -74,7 +109,6 @@ class AtencionesProfesionalesController < ApplicationController
     empleado = current_user.empleado
     doctor_id = empleado.id
     fecha_consulta = Date.today
-    es_doctor = es_doctor(empleado)
 
     unless params[:fecha_consulta].blank?
       date = params[:fecha_consulta]
@@ -83,20 +117,8 @@ class AtencionesProfesionalesController < ApplicationController
         doctor_id = params[:doctor_id]
       end
     end
-    turnos = Turno.where(doctor_id: doctor_id, fecha_consulta: fecha_consulta)
+    @turnos = Turno.where(doctor_id: doctor_id, fecha_consulta: fecha_consulta)
                    .where.not(turnos: {estado: 'cancelado'})
                    .order('turnos.fecha_consulta')
-
-    @at_prof = {es_doctor: es_doctor, turnos: turnos}
-  end
-
-  # Devuelve true si el empleado es de tipo doctor, caso contrario false
-  def es_doctor(empleado)
-    tipo = empleado.type
-    if tipo == 'Doctor'
-      true
-    else
-      false
-    end
   end
 end

@@ -1,14 +1,41 @@
+<% ficha_ped = turno.paciente.ficha_nutricional_pediatrica %>
+<% ficha_ad = turno.paciente.ficha_nutricional_adulto %>
+<% consultas_ped = ficha_ped.blank? ? nil : ficha_ped.consultas_nutricionales_pediatricas.order(fecha: :desc).limit(7) %>
+<% consultas_ad = ficha_ad.blank? ? nil : ficha_ad.consultas_nutricionales_adultos.order(fecha: :desc).limit(7) %>
+<% controles = Control.where(area_id: turno.area_id,paciente_id: turno.paciente.id).order(fecha: :desc).limit(7) %>
+
 <div class="content content-sin-page-title">
    <div class="atencion-content">
       <h1 class="atencion-title">NUTRICIÓN</h1>
 
-      <%=render 'atenciones_profesionales/data_paciente',paciente: data[:paciente]%>
+      <%=render 'atenciones_profesionales/data_paciente',paciente: turno.paciente%>
 
-      <%=render 'atenciones_profesionales/nutricion/show_fichas',ficha_ped: data[:ficha_ped],ficha_ad: data[:ficha_ad]%>
+      <!-- Renderiza los tabs para ficha pediátrica y adulto dentro de un panel -->
+      <% if ficha_ped.blank? && ficha_ad.blank? %>
+        <%= panel_head('Fichas (No tiene)') %>
+      <% else %>
+         <%= panel_begin('Fichas') %>
+            <%=render 'atenciones_profesionales/nutricion/tabs_fichas',ficha_ped: ficha_ped,ficha_ad: ficha_ad%>
+         <%= panel_end %>
+      <% end %>
 
-      <%=render 'atenciones_profesionales/nutricion/show_consultas',consultas_ped: data[:consultas_ped],consultas_ad: data[:consultas_ad]%>
+      <!-- Renderiza los tabs para consulta pediátrica y adulto dentro de un panel -->
+      <% if consultas_ped.blank? && consultas_ad.blank? %>
+        <%=panel_head('Consultas (No tiene)')%>
+      <% else %>
+         <%=panel_begin('Consultas')%>
+            <%=render 'atenciones_profesionales/nutricion/tabs_consultas',consultas_ped: consultas_ped,consultas_ad: consultas_ad,turno: turno, ficha_ped_id: ficha_ped.blank? ? '' : ficha_ped.id,ficha_ad_id: ficha_ad.blank? ? '' : ficha_ad.id%>
+         <%=panel_end%>
+      <% end %>
 
-      <%=render 'atenciones_profesionales/nutricion/data_controles',controles: data[:controles]%>
+      <!-- Renderiza los tabs para controles dentro de un panel -->
+      <% if controles.blank? %>
+        <%=panel_head('Controles (No tiene)')%>
+      <% else %>
+        <%=panel_begin('Controles')%>
+            <%=render 'atenciones_profesionales/nutricion/tabs_controles',controles: controles, turno: turno%>
+        <%=panel_end%>
+      <% end %>
    </div>
 </div>
 

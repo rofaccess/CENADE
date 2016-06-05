@@ -27,6 +27,11 @@ class User < ActiveRecord::Base
     end
   end
 
+  # Retorna true si el usuario es un empleado de tipo Doctor, caso contrario false
+  def es_doctor?
+    self.empleado_type=='Doctor'
+  end
+
   # Law of Demeter
   delegate :persona_nombre, :persona_apellido, :persona_full_name,:persona_email,
            :persona_telefono,:persona_direccion,:cargo,:type,:area_nombre,:id,

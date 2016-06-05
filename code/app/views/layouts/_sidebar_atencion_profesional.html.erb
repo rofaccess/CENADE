@@ -1,17 +1,19 @@
 <div id="sidebar-wrapper">
     <ul class="sidebar-nav">
         <div id="message-content">
-            <%= render 'message', es_doctor: at_prof[:es_doctor] %>
+            <%= render 'message'%>
         </div>
 
-        <%unless at_prof[:es_doctor]%>
+        <%unless current_user.es_doctor?%>
             <div class="select-doctor-sidebar"><%= select_tag :doctor_id, collection: []%></div>
+        <%else%>
+            <%= hidden_field_tag(:doctor_id, current_user.empleado.id) %>
         <%end%>
 
         <div id="datepicker-inline" data-date="<%=date(Date.today)%>"></div>
 
         <div id="pacientes-content">
-            <%= render 'list_pacientes', at_prof: at_prof %>
+            <%= render 'list_pacientes', turnos: turnos %>
         </div>
         <br>
         <!-- Sin lo siguiente, el scroll no muestra todo el contenido -->
@@ -20,4 +22,8 @@
 </div>
 <script>
     atencionesProfesionalesUI.initScript();
+
+    <%unless current_user.es_doctor?%>
+        empleadosUI.initBuscarDoctor('#doctor_id',false);
+    <%end%>
 </script>
