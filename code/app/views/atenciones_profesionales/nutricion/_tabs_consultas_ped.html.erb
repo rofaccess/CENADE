@@ -2,7 +2,7 @@
       Renderiza los datos de cada consulta pediátrica dentro de tabs
  -->
 <ul class="nav nav-tabs">
-	<% if nueva_consulta %>
+	<% if turno.pendiente? %>
 		<li><a href="#con-ped-new"><span class="fa fa-plus"></span> Nueva Consulta</a></li>
 	<% end %>
 	<% consultas_ped.each do |c| %>
@@ -11,9 +11,9 @@
 </ul>
 
 <div class="tabs-content">
-	<% if nueva_consulta %>
+	<% if turno.pendiente? %>
 		<div id="con-ped-new">
-			NUEVA CONSULTA PEDIATRICA
+			<%=render 'atenciones_profesionales/nutricion/new_consulta_ped', turno: turno, ficha_ped_id: ficha_ped_id%>
 		</div>
 	<% end %>
 	<% consultas_ped.each do |consulta_ped| %>

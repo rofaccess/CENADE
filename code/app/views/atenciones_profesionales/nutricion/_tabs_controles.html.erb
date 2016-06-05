@@ -2,7 +2,7 @@
     Renderiza los datos de cada control dentro de tabs
 -->
 <ul class="nav nav-tabs">
-  <% if nuevo_control %>
+  <% if turno.pendiente? %>
     <li><a href="#control-new"><span class="fa fa-plus"></span> Nuevo Control</a></li>
   <% end %>
 
@@ -12,10 +12,9 @@
 </ul>
 
 <div class="tabs-content">
-  <%first_control = controles.first%>
-  <% if nuevo_control %>
+  <% if turno.pendiente? %>
     <div id="control-new">
-      <%=render 'atenciones_profesionales/nutricion/new_control', paciente_id: first_control.paciente.id,area_id: first_control.area.id, area_nombre: first_control.area_nombre%>
+      <%=render 'atenciones_profesionales/nutricion/new_control', turno: turno%>
     </div>
   <% end %>
 

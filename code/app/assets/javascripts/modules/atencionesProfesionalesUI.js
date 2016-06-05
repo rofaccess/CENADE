@@ -60,6 +60,7 @@ function getTurnosAjax(){
 /* Inicia el evento, que permitirá setear el turno de un paciente como atendido */
 function initSetEstadoTurnoToAtendido(){
   $('.icon-pendiente').click(function(e){
+    e.preventDefault();
     APP.initLoadingOverlay("#pacientes-content");
 
     paciente = $(this).attr('paciente');
@@ -75,7 +76,9 @@ function initSetEstadoTurnoToAtendido(){
           doctor_id: $('#doctor_id').val()
         }
       });
-    }else $("#pacientes-content").LoadingOverlay("hide", true);
-    e.preventDefault();
+    }else{
+      $("#pacientes-content").LoadingOverlay("hide", true);
+    }
+    return false;
    });
 }

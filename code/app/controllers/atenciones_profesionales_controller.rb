@@ -26,7 +26,6 @@ class AtencionesProfesionalesController < ApplicationController
     when "Neurología"
     when "Nutrición"
       @partial='/nutricion/show'
-      #get_data_nutricion
     when "Odontología"
     when "Pediatría"
     when "Psicología"
@@ -35,30 +34,37 @@ class AtencionesProfesionalesController < ApplicationController
     end
   end
 
-  def get_data_clinico
+  def create_consulta_ped
+    @consulta_ped = ConsultaNutricionalPediatrica.new(consulta_ped_params)
+
+    if @consulta_ped.save
+      flash.now[:notice] = 'Control registrado exitosamente'
+    else
+      flash.now[:alert] = "No se ha podido guardar el control."
+    end
+    render 'atenciones_profesionales/nutricion/create_consulta_ped', format: :js
   end
 
-  def get_data_fisioterapia
-  end
-
-  def get_data_nutricion
-    paciente  = @turno.paciente
-    ficha_ped = paciente.ficha_nutricional_pediatrica
-    ficha_ad  = paciente.ficha_nutricional_adulto
-    consultas_ped = ConsultaNutricionalPediatrica.where(ficha_nutri_ped_id: ficha_ped.blank? ? nil : ficha_ped.id).order(fecha: :desc)
-    consultas_ad  = ConsultaNutricionalAdulto.where(ficha_nutricional_adulto_id: ficha_ad.blank? ? nil : ficha_ad.id).order(fecha: :desc)
-    controles     = Control.where(area_id: @turno.area_id,paciente_id: paciente.id).order(fecha: :desc)
-
-    @data = {paciente: paciente, ficha_ped: ficha_ped, ficha_ad: ficha_ad,consultas_ped: consultas_ped,
-             controles: controles, consultas_ad: consultas_ad, partial: '/nutricion/show',
-             pendiente: (@turno.estado=='pendiente') ? true : false,control: Control.new,
-             consulta_ped: ConsultaNutricionalPediatrica.new,consulta_ad: ConsultaNutricionalAdulto.new,
-             doctores: Doctor.all}
+  def consulta_ped_params
+    params.require(:consulta_nutricional_pediatrica).permit(:area_id,:ficha_nutri_ped_id, :paciente_id, :doctor_id, :fecha, :encargado, :sosten_cefalico,
+       :sento, :paro,:camino, :sigue_luz, :rie_llora, :busca_sonido, :emite_sonido, :habilidades, :mastica_deglute, :otros, :desayuno, :media_manana, :almuerzo,
+       :merienda, :cena, :cargo_quien, :diarrea, :vomitos, :fiebre, :constipacion, :orina, :sudor, :problemas_respiratorios,
+       :distension_abdominal, :otros2, :diagnostico, :peso, :talla, :pc, :imc, :cm)
   end
 
   def create_control
+    @control = Control.new(control_params)
 
+    if @control.save
+      flash.now[:notice] = 'Control registrado exitosamente'
+    else
+      flash.now[:alert] = "No se ha podido guardar el control."
+    end
     render 'atenciones_profesionales/nutricion/create_control', format: :js
+  end
+
+  def control_params
+    params.require(:control).permit(:paciente_id, :area_id, :doctor_id, :fecha, :tratamiento, :observaciones)
   end
 
   def set_estado_turno_to_atendido

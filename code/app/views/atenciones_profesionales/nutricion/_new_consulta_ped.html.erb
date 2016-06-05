@@ -1,0 +1,30 @@
+<%= simple_form_for ConsultaNutricionalPediatrica.new, url: atencion_create_consulta_ped_path , remote: true do |consulta|%>
+  <%= consulta.hidden_field(:ficha_nutri_ped_id, value: ficha_ped_id) %>
+  <%= consulta.hidden_field(:area_id, value: turno.area.id) %>
+  <div class="row">
+    <%unless current_user.es_doctor?%>
+      <%doctores = Doctor.get_all_area(turno.area.nombre).collect {|a| [a.full_name, a.id]}%>
+      <%= consulta.input :doctor_id, collection: doctores, label: '* Prof. de la Salud', wrapper_html: { class: 'col-md-8' }, input_html:  { class: 'required select2'} %>
+    <%else%>
+      <%= data('Profesional de la Salud',current_user.empleado.persona_full_name,'col-md-8') %>
+      <%= hidden_field_tag(:doctor_id, current_user.empleado.id) %>
+    <%end%>
+
+    <%= consulta.input :fecha, as: :string, label: '* Fecha', wrapper_html: { class: 'col-md-4'}, input_html: { class: 'datepicker dateLessSystemDate required', maxLength: Domain::FECHA, value: date(Date.today)} %>
+  </div>
+
+
+
+  <div class="form-button">
+    <%= consulta.submit 'Guardar', class: 'btn btn-custom',data: {disable_with: "Guardando..."}%>
+  </div>
+<% end %>
+
+<script type="text/javascript">
+  <%unless current_user.es_doctor?%>
+    $('#consulta_nutricional_pediatrica_doctor_id').val($('#doctor_id').val());
+    APP.initSelect2({element: '#consulta_nutricional_pediatrica_doctor_id', placeholder: 'Seleccione un Profesional'});
+  <% end %>
+  APP.initDatepicker();
+  $('#new_consulta').validate();
+</script>
