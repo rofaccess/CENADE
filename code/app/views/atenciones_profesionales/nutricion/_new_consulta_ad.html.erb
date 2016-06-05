@@ -62,8 +62,8 @@
         <%= consulta.input :orina_bien, label: '¿Orina bien?', wrapper_html: { class: 'col-md-3'},input_html: { maxLength: Domain::DESC50} %>
         <%= consulta.input :ir_cuerpo, label: '¿Va bien de cuerpo?', wrapper_html: { class: 'col-md-9'},input_html: { maxLength: Domain::DESC50} %>
       </div>
-      <div class="row">
-        <%= consulta.input :actividades_fisicas, label: '¿Realiza actividades físicas?', collection: [['Sí', true] ,['No', false]], wrapper_html: { class: ' col-md-12 show-actividad'}, as: :radio_buttons, item_label_class: "radio-inline" %>
+      <div class="row top-border">
+        <%= consulta.input :actividades_fisicas, label: '¿Realiza actividades físicas?', collection: [['Sí', true] ,['No', false]],checked:['No', false], wrapper_html: { class: ' col-md-12 show-actividad'}, as: :radio_buttons, item_label_class: "radio-inline" %>
       </div>
       <div class="hide_actividades">
         <div class="row">

@@ -25,6 +25,7 @@ class AtencionesProfesionalesController < ApplicationController
     when "Nutrición"
       @partial='/nutricion/show'
     when "Odontología"
+      @partial='/odontologia/show'
     when "Pediatría"
     when "Psicología"
     when "Psicología"

@@ -1,0 +1,28 @@
+<% ficha = turno.paciente.ficha_odontologica %>
+<% consultas = ficha.blank? ? nil : ficha.consultas_odontologicas.order(fecha: :desc).limit(7) %>
+
+<div class="content content-sin-page-title">
+   <div class="atencion-content">
+      <h1 class="atencion-title">ODONTOLOGÍA</h1>
+
+      <%=render 'atenciones_profesionales/data_paciente',paciente: turno.paciente%>
+
+      <!-- Renderiza la ficha dentro de un panel -->
+      <% if ficha.blank? %>
+        <%= panel_head('Ficha de Odontología (No tiene)') %>
+      <% else %>
+         <%= panel_begin('Ficha de Odontología') %>
+            <%=render 'atenciones_profesionales/odontologia/data_ficha',ficha: ficha%>
+         <%= panel_end %>
+      <% end %>
+
+      <!-- Renderiza los tabs para consulta dentro de un panel -->
+      <% if consultas.blank? %>
+        <%=panel_head('Consultas (No tiene)')%>
+      <% else %>
+         <%=panel_begin('Consultas')%>
+            <%=render 'atenciones_profesionales/odontologia/tabs_consultas',consultas: consultas,turno: turno, ficha_id: ficha.blank? ? '' : ficha.id%>
+         <%=panel_end%>
+      <% end %>
+   </div>
+</div>
