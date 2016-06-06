@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     end
   end
 
+  post 'atencion_profesional/create_consulta_odontologica' => 'atenciones_profesionales#create_consulta_odontologica', as: :atencion_create_consulta_odontologica
   post 'atencion_profesional/create_consulta_ped' => 'atenciones_profesionales#create_consulta_ped', as: :atencion_create_consulta_ped
   post 'atencion_profesional/create_consulta_ad' => 'atenciones_profesionales#create_consulta_ad', as: :atencion_create_consulta_ad
   post 'atencion_profesional/create_control' => 'atenciones_profesionales#create_control', as: :atencion_create_control

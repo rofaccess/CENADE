@@ -74,6 +74,25 @@ class AtencionesProfesionalesController < ApplicationController
       :modo_desayuno, :modo_media, :modo_almuerzo, :modo_merienda, :modo_cena, :lugar_desayuno, :lugar_media, :lugar_almuerzo, :lugar_merienda, :lugar_cena, :indicaciones)
   end
 
+  def create_consulta_odontologica
+    @consulta = ConsultaOdontologica.new(consulta_odontologica_params)
+
+    if @consulta.save
+      flash.now[:notice] = 'Consulta registrada exitosamente'
+    else
+      flash.now[:alert] = "No se ha podido guardar la consulta."
+    end
+    render 'atenciones_profesionales/odontologia/create_consulta', format: :js
+  end
+
+  def consulta_odontologica_params
+    params.require(:consulta_odontologica).permit(:area_id, :paciente_id, :doctor_id,:ficha_odontologica_id, :fecha,
+      :motivo_consulta, :observaciones,:servicio_cenade,:medicacion_actual, :anestesico,:penicilina, :otros_medicamentos,
+      :hemorragias,:problema_tratamiento,:enfermedad_cardiovascular,:diabetes,:hepatitis,:enfermedades_renales,:artritis,
+      :tuberculosis,:enfermedades_venereas,:enfermedades_sanguineas,:fumador,:enfermedades_neurologicas,:menstruacion,
+      :embarazada,:tiene_hijos,:cantidad_hijos,:amamanta,:hospitalizado,:causa_hospitalizado,:ecg,:tac,:rx,:laboratorios,:otros_examenes,:tratamiento)
+  end
+
   def create_control
     @control = Control.new(control_params)
 
