@@ -16,33 +16,14 @@ class AtencionesProfesionalesController < ApplicationController
 
   def show
     @turno = Turno.find(params[:id])
-
-    case @turno.area_nombre
-    when "Clínico"
-      @partial='/clinico/show'
-    when "Fisioterapia"
-      @partial='/fisioterapia/show'
-    when "Fonoaudiología"
-      @partial='/fonoaudiologia/show'
-    when "Neurología"
-      @partial='/neurologia/show'
-    when "Nutrición"
-      @partial='/nutricion/show'
-    when "Odontología"
-      @partial='/odontologia/show'
-    when "Pediatría"
-      @partial='/pediatria/show'
-    when "Psicopedagogía"
-      @partial='/psicopedagogia/show'
-    else
-    end
+    @partial=AtencionProfesional.set_show_partial_path(@turno.area_nombre)
   end
 
   def create_consulta
     @consulta = Consulta.new(consulta_params)
 
     if @consulta.save
-      flash.now[:notice] = 'Consulta registrada exitosamente'
+      flash.now[:notice] = 'Consulta registrada exitosamente y paciente atendido'
     else
       flash.now[:alert] = "No se ha podido guardar la consulta."
     end
@@ -59,7 +40,7 @@ class AtencionesProfesionalesController < ApplicationController
     @consulta_ped = ConsultaNutricionalPediatrica.new(consulta_ped_params)
 
     if @consulta_ped.save
-      flash.now[:notice] = 'Consulta registrada exitosamente'
+      flash.now[:notice] = 'Consulta registrada exitosamente y paciente atendido'
     else
       flash.now[:alert] = "No se ha podido guardar la consulta."
     end
@@ -78,7 +59,7 @@ class AtencionesProfesionalesController < ApplicationController
     @consulta_ad = ConsultaNutricionalAdulto.new(consulta_ad_params)
 
     if @consulta_ad.save
-      flash.now[:notice] = 'Consulta registrada exitosamente'
+      flash.now[:notice] = 'Consulta registrada exitosamente y paciente atendido'
     else
       flash.now[:alert] = "No se ha podido guardar la consulta."
     end
@@ -102,7 +83,7 @@ class AtencionesProfesionalesController < ApplicationController
     @consulta = ConsultaOdontologica.new(consulta_odontologica_params)
 
     if @consulta.save
-      flash.now[:notice] = 'Consulta registrada exitosamente'
+      flash.now[:notice] = 'Consulta registrada exitosamente y paciente atendido'
     else
       flash.now[:alert] = "No se ha podido guardar la consulta."
     end
@@ -122,7 +103,7 @@ class AtencionesProfesionalesController < ApplicationController
     @control = Control.new(control_params)
 
     if @control.save
-      flash.now[:notice] = 'Control registrado exitosamente'
+      flash.now[:notice] = 'Control registrado exitosamente y paciente atendido'
     else
       flash.now[:alert] = "No se ha podido guardar el control."
     end

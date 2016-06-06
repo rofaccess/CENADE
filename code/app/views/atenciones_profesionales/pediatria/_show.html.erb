@@ -1,8 +1,8 @@
-<% ficha = turno.paciente.ficha_clinico %>
+<% ficha = turno.paciente.ficha_pediatrica %>
 <% consultas = Consulta.where(area_id: turno.area_id,paciente_id: turno.paciente.id).order(fecha: :desc).limit(7) %>
 <div class="content content-sin-page-title">
    <div class="atencion-content">
-      <h1 class="atencion-title">CLÍNICO</h1>
+      <h1 class="atencion-title">PEDIATRÍA</h1>
 
       <%=render 'atenciones_profesionales/data_paciente',paciente: turno.paciente%>
 

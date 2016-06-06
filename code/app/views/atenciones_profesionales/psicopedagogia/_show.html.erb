@@ -1,8 +1,8 @@
-<% ficha = turno.paciente.ficha_clinico %>
+<% ficha = turno.paciente.ficha_psicopedagogica %>
 <% consultas = Consulta.where(area_id: turno.area_id,paciente_id: turno.paciente.id).order(fecha: :desc).limit(7) %>
 <div class="content content-sin-page-title">
    <div class="atencion-content">
-      <h1 class="atencion-title">CLÍNICO</h1>
+      <h1 class="atencion-title">PSICOPEDAGOGÍA</h1>
 
       <%=render 'atenciones_profesionales/data_paciente',paciente: turno.paciente%>
 
@@ -11,7 +11,7 @@
         <%= panel_head('Ficha (No tiene)') %>
       <% else %>
          <%= panel_begin('Ficha') %>
-            <%=render 'atenciones_profesionales/compartido/data_fic_cli_neu_ped',ficha: ficha%>
+            <%=render 'atenciones_profesionales/psicopedagogia/data_ficha',ficha: ficha%>
          <%= panel_end %>
       <% end %>
 
