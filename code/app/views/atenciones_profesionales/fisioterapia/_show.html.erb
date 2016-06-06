@@ -1,5 +1,29 @@
+<% ficha_ped = turno.paciente.ficha_fisioterapia_nino %>
+<% ficha_ad = turno.paciente.ficha_fisioterapeutica_adulto %>
+<% consultas = Consulta.where(area_id: turno.area_id,paciente_id: turno.paciente.id).order(fecha: :desc).limit(7) %>
+
 <div class="content content-sin-page-title">
-   <div class="fichas-consultas-content">
-      <h1></h1>
+   <div class="atencion-content">
+      <h1 class="atencion-title">ODONTOLOGÍA</h1>
+
+      <%=render 'atenciones_profesionales/data_paciente',paciente: turno.paciente%>
+
+      <!-- Renderiza los tabs para ficha pediátrica y adulto dentro de un panel -->
+      <% if ficha_ped.blank? && ficha_ad.blank? %>
+        <%= panel_head('Fichas (No tiene)') %>
+      <% else %>
+         <%= panel_begin('Fichas') %>
+            <%=render 'atenciones_profesionales/fisioterapia/tabs_fichas',ficha_ped: ficha_ped,ficha_ad: ficha_ad%>
+         <%= panel_end %>
+      <% end %>
+
+      <!-- Renderiza los tabs para consultas dentro de un panel -->
+      <% if consultas.blank? %>
+        <%=panel_head('Consultas (No tiene)')%>
+      <% else %>
+         <%=panel_begin('Consultas')%>
+            <%=render 'atenciones_profesionales/compartido/tabs_consultas',consultas: consultas,turno: turno%>
+         <%=panel_end%>
+      <% end %>
    </div>
 </div>

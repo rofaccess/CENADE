@@ -20,6 +20,7 @@ class AtencionesProfesionalesController < ApplicationController
     case @turno.area_nombre
     when "Clínico"
     when "Fisioterapia"
+      @partial='/fisioterapia/show'
     when "Fonoaudiología"
     when "Neurología"
     when "Nutrición"
@@ -28,9 +29,25 @@ class AtencionesProfesionalesController < ApplicationController
       @partial='/odontologia/show'
     when "Pediatría"
     when "Psicología"
-    when "Psicología"
+    when "Psicopedagogía"
     else
     end
+  end
+
+  def create_consulta
+    @consulta = Consulta.new(consulta_params)
+
+    if @consulta.save
+      flash.now[:notice] = 'Consulta registrada exitosamente'
+    else
+      flash.now[:alert] = "No se ha podido guardar la consulta."
+    end
+    render 'atenciones_profesionales/compartido/create_consulta', format: :js
+  end
+
+  def consulta_params
+    params.require(:consulta).permit(:paciente_id, :area_id, :doctor_id, :fecha,
+                        :motivo_consulta, :evaluacion, :tratamiento, :observaciones)
   end
 
   def create_consulta_ped

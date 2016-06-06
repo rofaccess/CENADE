@@ -9,9 +9,9 @@
 
       <!-- Renderiza la ficha dentro de un panel -->
       <% if ficha.blank? %>
-        <%= panel_head('Ficha de Odontología (No tiene)') %>
+        <%= panel_head('Ficha (No tiene)') %>
       <% else %>
-         <%= panel_begin('Ficha de Odontología') %>
+         <%= panel_begin('Ficha') %>
             <%=render 'atenciones_profesionales/odontologia/data_ficha',ficha: ficha%>
          <%= panel_end %>
       <% end %>
