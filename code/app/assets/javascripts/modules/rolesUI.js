@@ -1,5 +1,5 @@
 var rolesUI = (function(){
-	return {		
+	return {
 		checkNAME: function(checkRoleNameUrl){
 			$.validator.addClassRules({
                 uniqueRoleName: {
@@ -10,7 +10,7 @@ var rolesUI = (function(){
                             name: function() {
                                 return $( ".name" ).val();
                             },
-                            id: function() {
+                            idd: function() {
                                 return $('#role_id').val();
                             }
                         }
@@ -19,11 +19,11 @@ var rolesUI = (function(){
             });
 		},
 
-        init: function(){   
+        init: function(){
             $('body').on('click', '.show-role', function(e){
                 $.get($(this).parents('tr').data('url'), {}, function(){}, 'script');
-            });         
-        },  
+            });
+        },
 		initScript: function(checkRoleNameUrl){
 			rolesUI.checkNAME(checkRoleNameUrl);
             $(".multiple_select").select2({
@@ -39,7 +39,7 @@ var rolesUI = (function(){
 		  	$('.nuevo-rol').validate();
 		}
 	};
-}()); 
+}());
 
 
 $(function(){

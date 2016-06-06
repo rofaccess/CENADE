@@ -53,6 +53,14 @@ es:
   November: "Noviembre"
   December: "Diciembre"
 
+  unauthorized:
+    default: "No ésta autorizado"
+    manage:
+      all: "No está autorizado para %{action} %{subject}."
+      user: "No tiene permitido manejar usuarios"
+    update:
+      project: "No está autorizado para actualizar."
+
   date:
     abbr_day_names:
     - dom

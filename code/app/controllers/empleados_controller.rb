@@ -2,7 +2,7 @@ class EmpleadosController < ApplicationController
 
 	before_action :set_submenu, only: [:index,:new, :show]
 	before_action :set_empleado, only: [:show, :edit, :update, :destroy]
-	#load_and_authorize_resource #Conflicto con check_ci
+	load_and_authorize_resource #Conflicto con check_ci
 	respond_to :html, :js
 
 	def set_submenu
@@ -122,7 +122,7 @@ class EmpleadosController < ApplicationController
     def check_ci
     	persona = Persona.find_by_ci(params[:ci])
 
-	    render json: (persona.nil? || persona.id == params[:id].to_i) ? true : "El número de CI especificado ya existe en el Sistema".to_json
+	    render json: (persona.nil? || persona.id == params[:idd].to_i) ? true : "El número de CI especificado ya existe en el Sistema".to_json
     end
 
   	def empleado_params

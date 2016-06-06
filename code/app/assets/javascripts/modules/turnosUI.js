@@ -11,7 +11,7 @@ var turnosUI = (function(){
                             paciente_id: function() {
                                 return $( "#paciente_id" ).val();
                             },
-                            id: function() {
+                            idd: function() {
                                 return $('.turno-id').val();
                             }
                         }

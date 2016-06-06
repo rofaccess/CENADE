@@ -4,6 +4,7 @@ class FichasNutricionalesAdultosController < ApplicationController
   before_action :set_sidebar, only: [:edit, :new, :show, :index, :create, :update]
   #before_action :set_consulta, only: [:show, :edit]
   before_action :set_ficha_nutri_adulto, only: [:show, :edit , :update]
+  load_and_authorize_resource
 
   def set_submenu
   	@submenu_layout = 'layouts/submenu_fichas_consultas'
@@ -114,7 +115,7 @@ class FichasNutricionalesAdultosController < ApplicationController
   def check_paciente_has_ficha
     ficha = FichaNutricionalAdulto.find_by_paciente_id(params[:paciente_id])
 
-    render json: (ficha.nil? || ficha.id == params[:id].to_i) ? true : "El Paciente ya posee una Ficha".to_json
+    render json: (ficha.nil? || ficha.id == params[:idd].to_i) ? true : "El Paciente ya posee una Ficha".to_json
   end
 
   def set_ficha_nutri_adulto
