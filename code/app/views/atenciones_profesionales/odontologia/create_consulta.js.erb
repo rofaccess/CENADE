@@ -3,6 +3,9 @@
    $('#con-new').html("<%= j render 'atenciones_profesionales/odontologia/data_consulta', consulta: @consulta %>");
    APP.initTabs('.tabs-content');
    var n = noty({text: '<%=notice%>', type: 'success'});
+
+  //Actualiza la lista de pacientes
+  $('#datepicker-inline').trigger("changeDate");
 <% elsif !flash.alert.blank?%>
    var n = noty({text: '<%=alert%>', type: 'error'});
 <% else%>

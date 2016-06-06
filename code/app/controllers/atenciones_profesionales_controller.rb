@@ -19,17 +19,21 @@ class AtencionesProfesionalesController < ApplicationController
 
     case @turno.area_nombre
     when "Clínico"
+      @partial='/clinico/show'
     when "Fisioterapia"
       @partial='/fisioterapia/show'
     when "Fonoaudiología"
+      @partial='/fonoaudiologia/show'
     when "Neurología"
+      @partial='/neurologia/show'
     when "Nutrición"
       @partial='/nutricion/show'
     when "Odontología"
       @partial='/odontologia/show'
     when "Pediatría"
-    when "Psicología"
+      @partial='/pediatria/show'
     when "Psicopedagogía"
+      @partial='/psicopedagogia/show'
     else
     end
   end
@@ -42,6 +46,7 @@ class AtencionesProfesionalesController < ApplicationController
     else
       flash.now[:alert] = "No se ha podido guardar la consulta."
     end
+    Turno.find(params[:turno_id]).atender
     render 'atenciones_profesionales/compartido/create_consulta', format: :js
   end
 
@@ -58,6 +63,7 @@ class AtencionesProfesionalesController < ApplicationController
     else
       flash.now[:alert] = "No se ha podido guardar la consulta."
     end
+    Turno.find(params[:turno_id]).atender
     render 'atenciones_profesionales/nutricion/create_consulta_ped', format: :js
   end
 
@@ -76,6 +82,7 @@ class AtencionesProfesionalesController < ApplicationController
     else
       flash.now[:alert] = "No se ha podido guardar la consulta."
     end
+    Turno.find(params[:turno_id]).atender
     render 'atenciones_profesionales/nutricion/create_consulta_ad', format: :js
   end
 
@@ -99,6 +106,7 @@ class AtencionesProfesionalesController < ApplicationController
     else
       flash.now[:alert] = "No se ha podido guardar la consulta."
     end
+    Turno.find(params[:turno_id]).atender
     render 'atenciones_profesionales/odontologia/create_consulta', format: :js
   end
 
@@ -118,6 +126,7 @@ class AtencionesProfesionalesController < ApplicationController
     else
       flash.now[:alert] = "No se ha podido guardar el control."
     end
+    Turno.find(params[:turno_id]).atender
     render 'atenciones_profesionales/nutricion/create_control', format: :js
   end
 

@@ -97,7 +97,7 @@ class Turno < ActiveRecord::Base
   end
 
   def atender
-    self.estado=='atendido'
+    self.update_attribute(:estado, 'atendido')
   end
 
     # Law of Demeter
