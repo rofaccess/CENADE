@@ -4,6 +4,7 @@ class HistorialesNutricionalesController < ApplicationController
   before_action :set_historial, only: [:show, :print]
   load_and_authorize_resource :class => FichaNutricionalAdulto
 
+
   def set_submenu
     @submenu_layout = 'layouts/submenu_fichas_consultas'
   end

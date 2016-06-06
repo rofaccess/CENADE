@@ -1,0 +1,10 @@
+<% if !flash.notice.blank? %>
+   //Reemplaza el formulario de nueva consulta con la consulta recien creada
+   $('#con-ped-new').html("<%= j render 'atenciones_profesionales/nutricion/data_consulta_ped', consulta_ped: @consulta_ped %>");
+   APP.initTabs('.tabs-content');
+   var n = noty({text: '<%=notice%>', type: 'success'});
+<% elsif !flash.alert.blank?%>
+   var n = noty({text: '<%=alert%>', type: 'error'});
+<% else%>
+
+<% end %>

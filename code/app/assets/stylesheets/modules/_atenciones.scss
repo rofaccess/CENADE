@@ -29,11 +29,13 @@
       background-color: #EFEFEF;
       border: 1px solid #CCC;
       color: #555;
+      height: 34px;
+      padding: 6px 12px;
    }
 
    .control-label{
-          font-weight: normal;
-        }
+      font-weight: normal;
+    }
 
    .panel-custom{
       border: none;
@@ -49,6 +51,9 @@
         }
       }
    }
+   .form-button{
+      //text-align: right;
+   }
 }
 
 .atencion-title{
@@ -58,5 +63,4 @@
   font-size: 20px;
   font-weight: bold;
 }
-
 

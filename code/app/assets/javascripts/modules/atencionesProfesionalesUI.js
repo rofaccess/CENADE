@@ -12,8 +12,6 @@ var atencionesProfesionalesUI = (function(){
     initScript: function(){
       initDatepickerInline();
       initGetTurnos();
-      empleadosUI.initBuscarDoctor('#doctor_id',false);
-
       initSetEstadoTurnoToAtendido();
       APP.initPanelFolding();
 
@@ -62,13 +60,14 @@ function getTurnosAjax(){
 /* Inicia el evento, que permitirá setear el turno de un paciente como atendido */
 function initSetEstadoTurnoToAtendido(){
   $('.icon-pendiente').click(function(e){
+    e.preventDefault();
     APP.initLoadingOverlay("#pacientes-content");
 
     paciente = $(this).attr('paciente');
     var confirm = window.confirm("¿Desea establecer al paciente "+paciente+" como atendido?");
     if (confirm){
       $.ajax({
-        url: 'atenciones_profesionales/setEstadoTurnoToAtendido',
+        url: 'atencion_profesional/set_estado_turno_to_atendido',
         type: 'post',
         dataType: 'script',
         data: {
@@ -77,7 +76,9 @@ function initSetEstadoTurnoToAtendido(){
           doctor_id: $('#doctor_id').val()
         }
       });
-    }else $("#pacientes-content").LoadingOverlay("hide", true);
-    e.preventDefault();
+    }else{
+      $("#pacientes-content").LoadingOverlay("hide", true);
+    }
+    return false;
    });
 }

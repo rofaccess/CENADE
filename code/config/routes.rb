@@ -12,7 +12,10 @@ Rails.application.routes.draw do
     end
   end
 
-  post 'atenciones_profesionales/setEstadoTurnoToAtendido' => 'atenciones_profesionales#setEstadoTurnoToAtendido'
+  post 'atencion_profesional/create_consulta_ped' => 'atenciones_profesionales#create_consulta_ped', as: :atencion_create_consulta_ped
+  post 'atencion_profesional/create_consulta_ad' => 'atenciones_profesionales#create_consulta_ad', as: :atencion_create_consulta_ad
+  post 'atencion_profesional/create_control' => 'atenciones_profesionales#create_control', as: :atencion_create_control
+  post 'atencion_profesional/set_estado_turno_to_atendido' => 'atenciones_profesionales#set_estado_turno_to_atendido'
   get 'atenciones_profesionales/get_turnos' => 'atenciones_profesionales#get_turnos'
   resources :atenciones_profesionales, only: [:index, :show]
 
