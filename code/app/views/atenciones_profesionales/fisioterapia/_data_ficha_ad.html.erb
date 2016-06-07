@@ -1,0 +1,15 @@
+<div class="row">
+ <%= data('Profesional de la Salud', ficha_ad.doctor_full_name,'col-md-9') %>
+ <%= data('Fecha', date(ficha_ad.fecha),'col-md-3') %>
+</div>
+<div class="row">
+  <%= data('Encargado', ficha_ad.encargado,'col-md-12') %>
+
+  <%= data_text('Medicamentos', ficha_ad.medicamentos,'col-md-12') %>
+
+  <%= data_text('Antecedentes de la Enfermedad Actual', ficha_ad.antecedente_actual,'col-md-12') %>
+
+  <%= data_text('Antecedente Hereditario', ficha_ad.antecedente_hereditario,'col-md-12') %>
+
+  <%= data_text('Condición General del Paciente', ficha_ad.condicion_paciente,'col-md-12') %>
+</div>
