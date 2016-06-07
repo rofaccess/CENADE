@@ -2,7 +2,7 @@ class HistorialesNutricionalesController < ApplicationController
   before_action :set_submenu, only: [:show, :index ]
   before_action :set_sidebar, only: [:show, :index]
   before_action :set_historial, only: [:show, :print]
-  load_and_authorize_resource :class => FichaNutricionalAdulto
+  #load_and_authorize_resource :class => FichaNutricionalAdulto
 
 
   def set_submenu

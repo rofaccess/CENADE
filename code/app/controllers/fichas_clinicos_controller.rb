@@ -3,7 +3,8 @@ class FichasClinicosController < ApplicationController
 	before_action :set_sidebar, only: [:edit, :new, :show, :index, :test]
 	before_action :set_ficha, only: [:show, :edit, :update, :destroy]
 	before_action :set_consulta, only: [:show, :edit]
-	load_and_authorize_resource
+	load_and_authorize_resource class: 'FichaClinico'
+	skip_load_resource :only => [:create]
 
 	def set_submenu
 		@submenu_layout = 'layouts/submenu_fichas_consultas'

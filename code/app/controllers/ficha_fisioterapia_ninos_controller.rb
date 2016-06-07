@@ -4,6 +4,7 @@ class FichaFisioterapiaNinosController < ApplicationController
   before_action :set_fisionino, only: [:show, :edit, :update]
   before_action :set_consulta, only: [:show, :edit]
   load_and_authorize_resource
+  skip_load_resource :only => [:create]
 
   def set_submenu
    @submenu_layout = 'layouts/submenu_fichas_consultas'
@@ -81,7 +82,7 @@ class FichaFisioterapiaNinosController < ApplicationController
 
   #busca el paciente seleccionado en la base de datos
   def get_paciente
-    @paciente= Paciente.find(params[:id])
+    @paciente= Paciente.find(params[:idd])
 
   end
 

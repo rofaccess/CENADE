@@ -4,6 +4,7 @@ class FichasFisioterapeuticasAdultosController < ApplicationController
 	before_action :set_ficha, only: [:show, :edit, :update, :destroy]
 	before_action :set_consulta, only: [:show, :edit]
 	load_and_authorize_resource
+	skip_load_resource :only => [:create]
 
 	def set_submenu
 		@submenu_layout = 'layouts/submenu_fichas_consultas'

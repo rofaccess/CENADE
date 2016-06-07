@@ -7,7 +7,7 @@ var consultasNutriPediatricasUI = (function(){
                   url: "/consultas_nutricionales_pediatricas/get_paciente",
                   type: 'get',
                   data: {
-                    id : $(this).val(),
+                    idd : $(this).val(),
                     root: options.root
                   },
                   success: function(resp){

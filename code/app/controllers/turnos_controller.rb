@@ -95,7 +95,7 @@ class TurnosController < ApplicationController
 
   #obtiene el paciente
    def get_paciente
-    @paciente= Paciente.find(params[:id])
+    @paciente= Paciente.find(params[:idd])
 
   end
 

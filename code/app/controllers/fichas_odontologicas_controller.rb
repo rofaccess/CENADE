@@ -5,6 +5,7 @@ class FichasOdontologicasController < ApplicationController
 	before_action :set_consulta, only: [:show, :edit]
 	before_action :set_Titulo, only: [:show, :create, :update, :edit, :new, :print_ficha]
 	load_and_authorize_resource
+	skip_load_resource :only => [:create]
 
 	def set_Titulo
    	 @titulos_largos= TituloLargo.all

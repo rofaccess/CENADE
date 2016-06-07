@@ -35,7 +35,7 @@ var turnosUI = (function(){
 		          url: "/turnos/get_paciente",
 		          type: 'get',
 		          data: {
-		           id : $(this).val()
+		           idd : $(this).val()
 		          },
 		          success: function(resp){
 		              //alert("Data");

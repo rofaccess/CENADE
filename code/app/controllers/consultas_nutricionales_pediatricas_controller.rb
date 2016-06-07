@@ -6,6 +6,7 @@ class ConsultasNutricionalesPediatricasController < ApplicationController
   before_action :set_submenu, only: [:edit, :update, :show, :index, :new, :create]
   before_action :set_controles, only: [:show, :edit]
   before_action :set_paciente, only: [:from_ficha]
+  skip_load_resource :only => [:create]
 
   respond_to :html, :js
 
@@ -109,7 +110,7 @@ class ConsultasNutricionalesPediatricasController < ApplicationController
 
   #busca el paciente seleccionado en la base de datos
   def get_paciente
-    @paciente= FichaNutricionalPediatrica.find(params[:id]).paciente
+    @paciente= FichaNutricionalPediatrica.find(params[:idd]).paciente
   end
 
   #metodo creado para el filtro

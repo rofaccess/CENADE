@@ -6,6 +6,7 @@ class ConsultasOdontologicasController < ApplicationController
   before_action :set_submenu, only: [:edit, :update, :show, :index, :new]
   before_action :set_Titulo, only: [:show, :create, :update, :edit, :new, :print_consulta,:from_ficha]
   before_action :set_paciente, only: [:from_ficha]
+  skip_load_resource :only => [:create]
   respond_to :html, :js
 
   def set_submenu
@@ -120,7 +121,7 @@ class ConsultasOdontologicasController < ApplicationController
 
   #busca el paciente seleccionado en la base de datos
   def get_paciente
-    @paciente= FichaOdontologica.find(params[:id]).paciente
+    @paciente= FichaOdontologica.find(params[:idd]).paciente
   end
 
   #metodo creado para el filtro
