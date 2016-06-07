@@ -1,0 +1,26 @@
+<!--Renderiza un tab para nueva consulta, si el turno esta pendiente
+    Renderiza los datos de cada consulta dentro de tabs
+ -->
+<ul class="nav nav-tabs">
+   <% if turno.pendiente? %>
+      <li><a href="#con-new"><span class="fa fa-plus"></span> Nueva Consulta</a></li>
+   <% end %>
+
+   <% consultas.each do |c| %>
+      <li><a href="#con-<%=c.id%>"><%=date(c.fecha)%></a></li>
+   <% end %>
+</ul>
+
+<div class="tabs-content">
+   <% if turno.pendiente? %>
+      <div id="con-new">
+         <%=render 'atenciones_profesionales/compartido/new_consulta',turno: turno%>
+      </div>
+   <% end %>
+
+   <% consultas.each do |consulta| %>
+      <div id="con-<%=consulta.id%>">
+         <%=render 'atenciones_profesionales/compartido/data_consulta',consulta: consulta%>
+      </div>
+   <% end %>
+</div>

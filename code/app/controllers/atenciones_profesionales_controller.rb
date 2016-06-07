@@ -16,30 +16,35 @@ class AtencionesProfesionalesController < ApplicationController
 
   def show
     @turno = Turno.find(params[:id])
+    @partial=AtencionProfesional.set_show_partial_path(@turno.area_nombre)
+  end
 
-    case @turno.area_nombre
-    when "Clínico"
-    when "Fisioterapia"
-    when "Fonoaudiología"
-    when "Neurología"
-    when "Nutrición"
-      @partial='/nutricion/show'
-    when "Odontología"
-    when "Pediatría"
-    when "Psicología"
-    when "Psicología"
+  def create_consulta
+    @consulta = Consulta.new(consulta_params)
+
+    if @consulta.save
+      flash.now[:notice] = 'Consulta registrada exitosamente y paciente atendido'
     else
+      flash.now[:alert] = "No se ha podido guardar la consulta."
     end
+    Turno.find(params[:turno_id]).atender
+    render 'atenciones_profesionales/compartido/create_consulta', format: :js
+  end
+
+  def consulta_params
+    params.require(:consulta).permit(:paciente_id, :area_id, :doctor_id, :fecha,
+                        :motivo_consulta, :evaluacion, :tratamiento, :observaciones)
   end
 
   def create_consulta_ped
     @consulta_ped = ConsultaNutricionalPediatrica.new(consulta_ped_params)
 
     if @consulta_ped.save
-      flash.now[:notice] = 'Consulta registrada exitosamente'
+      flash.now[:notice] = 'Consulta registrada exitosamente y paciente atendido'
     else
       flash.now[:alert] = "No se ha podido guardar la consulta."
     end
+    Turno.find(params[:turno_id]).atender
     render 'atenciones_profesionales/nutricion/create_consulta_ped', format: :js
   end
 
@@ -54,10 +59,11 @@ class AtencionesProfesionalesController < ApplicationController
     @consulta_ad = ConsultaNutricionalAdulto.new(consulta_ad_params)
 
     if @consulta_ad.save
-      flash.now[:notice] = 'Consulta registrada exitosamente'
+      flash.now[:notice] = 'Consulta registrada exitosamente y paciente atendido'
     else
       flash.now[:alert] = "No se ha podido guardar la consulta."
     end
+    Turno.find(params[:turno_id]).atender
     render 'atenciones_profesionales/nutricion/create_consulta_ad', format: :js
   end
 
@@ -73,14 +79,35 @@ class AtencionesProfesionalesController < ApplicationController
       :modo_desayuno, :modo_media, :modo_almuerzo, :modo_merienda, :modo_cena, :lugar_desayuno, :lugar_media, :lugar_almuerzo, :lugar_merienda, :lugar_cena, :indicaciones)
   end
 
+  def create_consulta_odontologica
+    @consulta = ConsultaOdontologica.new(consulta_odontologica_params)
+
+    if @consulta.save
+      flash.now[:notice] = 'Consulta registrada exitosamente y paciente atendido'
+    else
+      flash.now[:alert] = "No se ha podido guardar la consulta."
+    end
+    Turno.find(params[:turno_id]).atender
+    render 'atenciones_profesionales/odontologia/create_consulta', format: :js
+  end
+
+  def consulta_odontologica_params
+    params.require(:consulta_odontologica).permit(:area_id, :paciente_id, :doctor_id,:ficha_odontologica_id, :fecha,
+      :motivo_consulta, :observaciones,:servicio_cenade,:medicacion_actual, :anestesico,:penicilina, :otros_medicamentos,
+      :hemorragias,:problema_tratamiento,:enfermedad_cardiovascular,:diabetes,:hepatitis,:enfermedades_renales,:artritis,
+      :tuberculosis,:enfermedades_venereas,:enfermedades_sanguineas,:fumador,:enfermedades_neurologicas,:menstruacion,
+      :embarazada,:tiene_hijos,:cantidad_hijos,:amamanta,:hospitalizado,:causa_hospitalizado,:ecg,:tac,:rx,:laboratorios,:otros_examenes,:tratamiento)
+  end
+
   def create_control
     @control = Control.new(control_params)
 
     if @control.save
-      flash.now[:notice] = 'Control registrado exitosamente'
+      flash.now[:notice] = 'Control registrado exitosamente y paciente atendido'
     else
       flash.now[:alert] = "No se ha podido guardar el control."
     end
+    Turno.find(params[:turno_id]).atender
     render 'atenciones_profesionales/nutricion/create_control', format: :js
   end
 

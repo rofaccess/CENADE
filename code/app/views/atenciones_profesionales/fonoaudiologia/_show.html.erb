@@ -1,19 +1,17 @@
-<% ficha_ped = turno.paciente.ficha_fisioterapia_nino %>
-<% ficha_ad = turno.paciente.ficha_fisioterapeutica_adulto %>
+<% ficha = turno.paciente.ficha_fonoaudiologica %>
 <% consultas = Consulta.where(area_id: turno.area_id,paciente_id: turno.paciente.id).order(fecha: :desc).limit(7) %>
-
 <div class="content content-sin-page-title">
    <div class="atencion-content">
-      <h1 class="atencion-title">ODONTOLOGÍA</h1>
+      <h1 class="atencion-title">FONOAUDIOLOGÍA</h1>
 
       <%=render 'atenciones_profesionales/data_paciente',paciente: turno.paciente%>
 
-      <!-- Renderiza los tabs para ficha pediátrica y adulto dentro de un panel -->
-      <% if ficha_ped.blank? && ficha_ad.blank? %>
-        <%= panel_head('Fichas (No tiene)') %>
+      <!-- Renderiza la ficha dentro de un panel -->
+      <% if ficha.blank? %>
+        <%= panel_head('Ficha (No tiene)') %>
       <% else %>
-         <%= panel_begin('Fichas') %>
-            <%=render 'atenciones_profesionales/fisioterapia/tabs_fichas',ficha_ped: ficha_ped,ficha_ad: ficha_ad%>
+         <%= panel_begin('Ficha') %>
+            <%=render 'atenciones_profesionales/fonoaudiologia/data_ficha',ficha: ficha%>
          <%= panel_end %>
       <% end %>
 

@@ -1,10 +1,7 @@
 <% if !flash.notice.blank? %>
    //Reemplaza el formulario de nueva consulta con la consulta recien creada
-   $('#con-ad-new').html("<%= j render 'atenciones_profesionales/nutricion/data_consulta_ad', consulta_ad: @consulta_ad %>");
+   $('#con-new').html("<%= j render 'atenciones_profesionales/compartido/data_consulta', consulta: @consulta %>");
    APP.initTabs('.tabs-content');
-   //Borra los tabs y forms de nueva consulta y control
-   $('#con-ped-new, .con-ped-new').remove();
-   $('#control-new, .control-new').remove();
 
    var n = noty({text: '<%=notice%>', type: 'success'});
 

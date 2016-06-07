@@ -1,8 +1,9 @@
-<% ficha = turno.paciente.ficha_clinico %>
-<% consultas = Consulta.where(area_id: turno.area_id,paciente_id: turno.paciente.id).order(fecha: :desc).limit(7) %>
+<% ficha = turno.paciente.ficha_odontologica %>
+<% consultas = ficha.blank? ? nil : ficha.consultas_odontologicas.order(fecha: :desc).limit(7) %>
+
 <div class="content content-sin-page-title">
    <div class="atencion-content">
-      <h1 class="atencion-title">CLÍNICO</h1>
+      <h1 class="atencion-title">ODONTOLOGÍA</h1>
 
       <%=render 'atenciones_profesionales/data_paciente',paciente: turno.paciente%>
 
@@ -11,16 +12,16 @@
         <%= panel_head('Ficha (No tiene)') %>
       <% else %>
          <%= panel_begin('Ficha') %>
-            <%=render 'atenciones_profesionales/compartido/data_ficha_cli_neu_ped',ficha: ficha%>
+            <%=render 'atenciones_profesionales/odontologia/data_ficha',ficha: ficha%>
          <%= panel_end %>
       <% end %>
 
-      <!-- Renderiza los tabs para consultas dentro de un panel -->
+      <!-- Renderiza los tabs para consulta dentro de un panel -->
       <% if consultas.blank? %>
         <%=panel_head('Consultas (No tiene)')%>
       <% else %>
          <%=panel_begin('Consultas')%>
-            <%=render 'atenciones_profesionales/compartido/tabs_consultas',consultas: consultas,turno: turno%>
+            <%=render 'atenciones_profesionales/odontologia/tabs_consultas',consultas: consultas,turno: turno, ficha_id: ficha.blank? ? '' : ficha.id%>
          <%=panel_end%>
       <% end %>
    </div>
