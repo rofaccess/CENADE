@@ -15,7 +15,7 @@ var fisioNinosUI = (function(){
                             paciente_id: function() {
                                 return $( "#paciente_id" ).val();
                             },
-                            id: function() {
+                            idd: function() {
                                 return $('#ficha_fisioterapia_nino_id').val();
                             }
                         }
@@ -65,7 +65,7 @@ var fisioNinosUI = (function(){
                   url: "/ficha_fisioterapia_ninos/get_paciente",
                   type: 'get',
                   data: {
-                   id : $(this).val()
+                   idd : $(this).val()
                   },
                   success: function(resp){
                       //alert("Data");

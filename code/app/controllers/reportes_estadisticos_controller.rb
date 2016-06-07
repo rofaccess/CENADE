@@ -1,6 +1,7 @@
 class ReportesEstadisticosController < ApplicationController
 
   before_action :set_sidebar, only: [:index, :por_mes, :por_anho]
+  load_and_authorize_resource
 
   def index
   	get_reportes

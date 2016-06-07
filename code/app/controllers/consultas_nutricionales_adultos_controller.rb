@@ -1,11 +1,12 @@
 class ConsultasNutricionalesAdultosController < ApplicationController
 
   before_action :set_consulta, only: [:show, :edit, :update]
-	#load_and_authorize_resource
+	load_and_authorize_resource
   before_action :set_sidebar, only: [:edit, :new, :show, :index, :create, :update]
   before_action :set_submenu, only: [:edit, :update, :show, :index, :new, :create]
   before_action :set_controles, only: [:show, :edit]
   before_action :set_paciente, only: [:from_ficha]
+  skip_load_resource :only => [:create]
 
   respond_to :html, :js
 
@@ -110,7 +111,7 @@ class ConsultasNutricionalesAdultosController < ApplicationController
 
   #busca el paciente seleccionado en la base de datos
   def get_paciente
-    @paciente= FichaNutricionalAdulto.find(params[:id]).paciente
+    @paciente= FichaNutricionalAdulto.find(params[:idd]).paciente
   end
 
   #metodo creado para el filtro
@@ -126,7 +127,7 @@ class ConsultasNutricionalesAdultosController < ApplicationController
   def check_paciente_has_ficha
     ficha = FichaNutricionalAdulto.find_by_paciente_id(params[:paciente_id])
 
-    render json: !(ficha.nil? || ficha.id == params[:id].to_i) ? true : "El Paciente no posee una Ficha aún".to_json
+    render json: !(ficha.nil? || ficha.id == params[:idd].to_i) ? true : "El Paciente no posee una Ficha aún".to_json
   end
 
   def set_consulta

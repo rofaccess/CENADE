@@ -5,6 +5,8 @@ class FichasNutricionalesPediatricasController < ApplicationController
   before_action :set_ficha_nutri_pediatrica, only: [:show, :edit, :update]
   before_action :set_Titulo, only: [:show, :create, :update, :edit, :new, :print_ficha]
   before_action :set_consulta, only: [:show, :edit]
+  load_and_authorize_resource
+  skip_load_resource :only => [:create]
 
   def set_submenu
   	@submenu_layout = 'layouts/submenu_fichas_consultas'
@@ -123,7 +125,7 @@ class FichasNutricionalesPediatricasController < ApplicationController
   def check_paciente_has_ficha
     ficha = FichaNutricionalPediatrica.find_by_paciente_id(params[:paciente_id])
 
-    render json: (ficha.nil? || ficha.id == params[:id].to_i) ? true : "El Paciente ya posee una Ficha".to_json
+    render json: (ficha.nil? || ficha.id == params[:idd].to_i) ? true : "El Paciente ya posee una Ficha".to_json
   end
 
   def set_ficha_nutri_pediatrica

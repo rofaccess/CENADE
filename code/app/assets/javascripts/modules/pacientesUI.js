@@ -113,7 +113,7 @@ var pacientesUI = (function(){
                             paciente_id: function() {
                                 return $( '.paciente-id' ).val();
                             },
-                            id: function() {
+                            idd: function() {
                                 return $('.ficha-id').val();
                             }
                         }

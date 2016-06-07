@@ -4,6 +4,8 @@ class FichasOdontologicasController < ApplicationController
 	before_action :set_ficha, only: [:show, :edit, :update]
 	before_action :set_consulta, only: [:show, :edit]
 	before_action :set_Titulo, only: [:show, :create, :update, :edit, :new, :print_ficha]
+	load_and_authorize_resource
+	skip_load_resource :only => [:create]
 
 	def set_Titulo
    	 @titulos_largos= TituloLargo.all
@@ -96,7 +98,7 @@ class FichasOdontologicasController < ApplicationController
 
   	def check_paciente_has_ficha
   	ficha = FichaOdontologica.find_by_paciente_id(params[:paciente_id])
-  	render json: (ficha.nil? || ficha.id == params[:id].to_i) ? true : "El Paciente ya posee una Ficha".to_json
+  	render json: (ficha.nil? || ficha.id == params[:idd].to_i) ? true : "El Paciente ya posee una Ficha".to_json
  	end
 
 	def get_fichas

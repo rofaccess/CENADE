@@ -1,0 +1,47 @@
+<h4>Datos del Paciente</h4>
+<hr>
+
+<%= simple_fields_for :paciente do |pacient| %>
+    <div class="row">
+    	<%= pacient.input :nombre, as: :string, label: 'Nombres', wrapper_html: { class: 'col-md-4'}, input_html: {value: paciente.persona_nombre, disabled: true}, required: false %>
+
+    	<%= pacient.input :apellido, as: :string, label: 'Apellidos', wrapper_html: { class: 'col-md-4'}, input_html: {value: paciente.persona_apellido, disabled: true}, required: false %>
+
+    	<%= pacient.input :edad, as: :string, wrapper_html: { class: 'col-md-1'}, input_html: {value: paciente.persona_edad, disabled: true}, required: false %>
+
+    	<%= pacient.input :nacionalidad, as: :string, wrapper_html: { class: 'col-md-3'}, input_html: {value: paciente.persona_nacionalidad, disabled: true}, required: false %>
+  	</div>
+  	<div class="row">
+  		<%= pacient.input :ci, as: :string, wrapper_html: { class: 'col-md-2'}, input_html: {value: paciente.persona_ci, disabled: true}, required: false %>
+
+      <%= pacient.input :fecha_nacimiento, as: :string, label: 'Fecha de Nac.', wrapper_html: { class: 'col-md-2'}, input_html: {value: Formatter.format_date(paciente.persona_fecha_nacimiento), disabled: true}, required: false %>
+
+  		<%= pacient.input :sexo, as: :string, wrapper_html: { class: 'col-md-4'}, input_html: {value: paciente.persona_sexo, disabled: true}, required: false %>
+
+      <%= pacient.input :telefono, as: :string, wrapper_html: { class: 'col-md-4'}, input_html: {value: paciente.persona_telefono, disabled: true}, required: false %>
+    </div>
+
+  	<div class="row">
+      <%= pacient.input :direccion, as: :string, label: 'Dirección', wrapper_html: { class: 'col-md-12'}, input_html: {value: paciente.persona_direccion, disabled: true}, required: false %>
+  	</div>
+
+    <h4>Datos de Encargados</h4>
+    <hr>
+
+    <div class="row">
+      <%= pacient.input :padre_nombre, as: :string, label: 'Padre', wrapper_html: { class: 'col-md-6'}, input_html: {value: paciente.encargado_padre_nombre, disabled: true}, required: false %>
+
+      <%= pacient.input :padre_edad, as: :string, label: 'Edad', wrapper_html: { class: 'col-md-1'}, input_html: {value: paciente.encargado_padre_edad, disabled: true}, required: false %>
+
+      <%= pacient.input :padre_prof, as: :string, label: 'Profesión', wrapper_html: { class: 'col-md-5'}, input_html: {value: paciente.encargado_padre_prof_act_ant, disabled: true}, required: false %>
+    </div>
+
+    <div class="row">
+      <%= pacient.input :madre_nombre, as: :string, label: 'Madre', wrapper_html: { class: 'col-md-6'}, input_html: {value: paciente.encargado_madre_nombre, disabled: true}, required: false %>
+
+      <%= pacient.input :madre_edad, as: :string, label: 'Edad', wrapper_html: { class: 'col-md-1'}, input_html: {value: paciente.encargado_madre_edad, disabled: true}, required: false %>
+
+      <%= pacient.input :madre_prof, as: :string, label: 'Profesión', wrapper_html: { class: 'col-md-5'}, input_html: {value: paciente.encargado_madre_prof_act_ant, disabled: true}, required: false %>
+    </div>
+<% end %>
+

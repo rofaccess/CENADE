@@ -2,6 +2,7 @@ class TurnosController < ApplicationController
 
   before_action :set_turno, only: [:show, :edit, :update, :destroy]
   respond_to :html, :js
+  load_and_authorize_resource
 
   def index
   	 get_turnos
@@ -89,12 +90,12 @@ class TurnosController < ApplicationController
    def check_paciente
      turno= Turno.find_by(paciente_id: self.paciente_id, fecha_consulta: self.fecha_consulta, area_id: self.area_id)
 
-      render json: (turno.nil? || turno.id == params[:id].to_i) ? true : "El paciente ya tiene un turno para el área y fecha".to_json
+      render json: (turno.nil? || turno.id == params[:idd].to_i) ? true : "El paciente ya tiene un turno para el área y fecha".to_json
     end
 
   #obtiene el paciente
    def get_paciente
-    @paciente= Paciente.find(params[:id])
+    @paciente= Paciente.find(params[:idd])
 
   end
 

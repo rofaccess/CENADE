@@ -7,7 +7,7 @@ var consultasOdontologicasUI = (function(){
                   url: "/consultas_odontologicas/get_paciente",
                   type: 'get',
                   data: {
-                    id : $(this).val(),
+                    idd : $(this).val(),
                     root: options.root
                   },
                   success: function(resp){

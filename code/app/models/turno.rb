@@ -87,7 +87,7 @@ class Turno < ActiveRecord::Base
 
    def paciente_unico_area_fecha_consulta
       turno= Turno.find_by(paciente_id: self.paciente_id, fecha_consulta: self.fecha_consulta, area_id: self.area_id)
-      if !turno.nil?
+      if !turno.nil? && turno.id != self.id
         errors.add(:base, "El paciente ya posee un turno para el área y la fecha")
       end
     end

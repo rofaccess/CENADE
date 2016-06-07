@@ -7,4 +7,17 @@
 
       <h1>Bienvenido <%=current_user.empleado_persona_full_name.split(" ").first%></h1>
    </div>
+   <% flash.each do |key, value| %>
+
+      <% end %>
 </div>
+
+<script type="text/javascript">
+      <% if !flash.notice.blank? %>
+        var n = noty({text: '<%=notice%>', type: 'success'});
+      <% end %>
+      <% if !flash.alert.blank?%>
+        var n = noty({text: '<%=alert%>', type: 'error'});
+      <% end %>
+
+</script>

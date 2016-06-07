@@ -2,6 +2,7 @@ class HistorialesPsicopedagogicosController < ApplicationController
   before_action :set_submenu, only: [:show, :index ]
   before_action :set_sidebar, only: [:show, :index]
   before_action :set_historial, only: [:show, :print]
+  #load_and_authorize_resource :class => FichaPsicopedagogica
 
   def set_submenu
     @submenu_layout = 'layouts/submenu_fichas_consultas'
