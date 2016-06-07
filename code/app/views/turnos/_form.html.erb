@@ -104,11 +104,7 @@
     </div>
   </br>
       <div class="row">
-          <%= FormBuilder::text_field_v(turn, :monto,
-                                      input_class: 'required costo',
-                                      max_length: Domain::COSTO,
-                                      label_text: '* Costo del servicio',
-                                      col_class: 'col-md-7')%>
+
 
            <div class="col-md-5">
 
@@ -124,10 +120,15 @@
         </div>
       </div>
       <div class="row" id="factura" style="display:none">
+         <%= FormBuilder::text_field_v(turn, :monto,
+                                      input_class: 'required costo',
+                                      max_length: Domain::COSTO,
+                                      label_text: '* Costo del servicio',
+                                      col_class: 'col-md-6')%>
         <%= FormBuilder::text_field_v(turn, :nro_factura,
                                       input_class: '',
                                       max_length: Domain::NRO_FACTURA,
-                                      label_text: '* N° de Factura',
+                                      label_text: 'N° de Factura',
                                       col_class: 'col-md-6')%>
 
        </div>

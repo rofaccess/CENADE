@@ -1,11 +1,12 @@
 class ConsultasOdontologicasController < ApplicationController
 
   before_action :set_consulta, only: [:show, :edit, :update]
-	#load_and_authorize_resource
+	load_and_authorize_resource
   before_action :set_sidebar, only: [:edit, :new, :show, :index]
   before_action :set_submenu, only: [:edit, :update, :show, :index, :new]
   before_action :set_Titulo, only: [:show, :create, :update, :edit, :new, :print_consulta,:from_ficha]
   before_action :set_paciente, only: [:from_ficha]
+  skip_load_resource :only => [:create]
   respond_to :html, :js
 
   def set_submenu
@@ -105,7 +106,7 @@ class ConsultasOdontologicasController < ApplicationController
   def check_paciente_has_ficha
      ficha = FichaOdontologica.find_by_paciente_id(params[:paciente_id])
 
-     render json: !(ficha.nil? || ficha.id == params[:id].to_i) ? true : "El Paciente no posee una Ficha aún".to_json
+     render json: !(ficha.nil? || ficha.id == params[:idd].to_i) ? true : "El Paciente no posee una Ficha aún".to_json
   end
 
   def get_consultas
@@ -120,7 +121,7 @@ class ConsultasOdontologicasController < ApplicationController
 
   #busca el paciente seleccionado en la base de datos
   def get_paciente
-    @paciente= FichaOdontologica.find(params[:id]).paciente
+    @paciente= FichaOdontologica.find(params[:idd]).paciente
   end
 
   #metodo creado para el filtro

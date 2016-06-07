@@ -7,7 +7,7 @@ var consultasNutriAdultosUI = (function(){
                   url: "/consultas_nutricionales_adultos/get_paciente",
                   type: 'get',
                   data: {
-                    id : $(this).val(),
+                    idd : $(this).val(),
                     root: options.root
                   },
                   success: function(resp){

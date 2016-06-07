@@ -1,6 +1,6 @@
 class ConsultasController < ApplicationController
 	before_action :set_consulta, only: [:show, :edit, :update]
-	#load_and_authorize_resource
+	load_and_authorize_resource
   before_action :set_sidebar, only: [:edit, :new, :show, :index]
   before_action :set_submenu, only: [:edit, :update, :show, :index, :new]
 

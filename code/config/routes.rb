@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get 'reportes_estadisticos/por_anho' => 'reportes_estadisticos#por_anho'
   get 'reportes_estadisticos/print_reporte_anuales' => 'reportes_estadisticos#print_reporte_anuales'
   get 'reportes_estadisticos/print_reporte_mensuales' => 'reportes_estadisticos#print_reporte_mensuales'
+
   resources :reportes_estadisticos, only: [:index] do
     collection do
       match 'buscar' => 'reportes_estadisticos#buscar', via: [:get, :post], as: :search

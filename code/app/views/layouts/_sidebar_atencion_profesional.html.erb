@@ -22,7 +22,6 @@
 </div>
 <script>
     atencionesProfesionalesUI.initScript();
-
     <%unless current_user.es_doctor?%>
         empleadosUI.initBuscarDoctor('#doctor_id',false);
     <%end%>

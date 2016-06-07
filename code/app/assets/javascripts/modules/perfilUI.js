@@ -11,14 +11,14 @@ var perfilUI = (function(){
                             username: function() {
                                 return $( ".username" ).val();
                             },
-                            id: function() {
+                            idd: function() {
                                 return $('#usuario_id').val();
                             }
                         }
                     }
                 }
             });
-		},	
+		},
 
 		// Inicia el script en el formulario
 		initScript: function(checkUsuarioUsernameUrl){

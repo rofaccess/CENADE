@@ -1,7 +1,7 @@
 class PacientesController < ApplicationController
 
 	before_action :set_paciente, only: [:show, :edit, :update, :destroy]
-	#load_and_authorize_resource #Conflicto con check_ci
+	load_and_authorize_resource
 	respond_to :html, :js
 
 	def index

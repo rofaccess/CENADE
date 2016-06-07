@@ -6,10 +6,6 @@ $('.paciente_select').select2({
   data: [{ id: "<%=j @paciente.id.to_s %>", text: "<%=@paciente.persona_full_name %> " }]
 });
 $('.paciente_select').val("<%=j @paciente.id.to_s %>").trigger("change");
-$('.paciente_data').html("<%= j render params[:root].to_s()+'/paciente_form' %>");
+$('.paciente_data').html("<%= j render params[:root].to_s()+'/paciente_form', paciente: @paciente %>");
 
-<% if params[:encargado]=='true' %>
-	<%if !@paciente.encargado.nil? %>
-		$('.encargado_data').html("<%= j render params[:root].to_s()+'/encargado_form' %>");
-	<%end%>
-<%end%>
+
