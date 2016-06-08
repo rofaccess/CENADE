@@ -14,24 +14,18 @@
       <% if ficha_ped.blank? && ficha_ad.blank? %>
         <%= panel_head('Fichas (No tiene)') %>
       <% else %>
-         <%= panel_begin('Fichas') %>
-            <%=render 'atenciones_profesionales/nutricion/tabs_fichas',ficha_ped: ficha_ped,ficha_ad: ficha_ad%>
-         <%= panel_end %>
-      <% end %>
+        <%= panel_begin('Fichas') %>
+          <%=render 'atenciones_profesionales/nutricion/tabs_fichas',ficha_ped: ficha_ped,ficha_ad: ficha_ad%>
+        <%= panel_end %>
 
-      <!-- Renderiza los tabs para consulta pediátrica y adulto dentro de un panel -->
-      <% if consultas_ped.blank? && consultas_ad.blank? %>
-        <%=panel_head('Consultas (No tiene)')%>
-      <% else %>
-         <%=panel_begin('Consultas')%>
-            <%=render 'atenciones_profesionales/nutricion/tabs_consultas',consultas_ped: consultas_ped,consultas_ad: consultas_ad,turno: turno, ficha_ped_id: ficha_ped.blank? ? '' : ficha_ped.id,ficha_ad_id: ficha_ad.blank? ? '' : ficha_ad.id%>
-         <%=panel_end%>
+        <!-- Renderiza los tabs para consulta pediátrica y adulto dentro de un panel -->
+        <%=panel_begin('Consultas')%>
+          <%=render 'atenciones_profesionales/nutricion/tabs_consultas',consultas_ped: consultas_ped,consultas_ad: consultas_ad,turno: turno, ficha_ped_id: ficha_ped.blank? ? '' : ficha_ped.id,ficha_ad_id: ficha_ad.blank? ? '' : ficha_ad.id%>
+        <%=panel_end%>
       <% end %>
 
       <!-- Renderiza los tabs para controles dentro de un panel -->
-      <% if controles.blank? %>
-        <%=panel_head('Controles (No tiene)')%>
-      <% else %>
+      <% unless consultas_ped.blank? && consultas_ad.blank? %>
         <%=panel_begin('Controles')%>
             <%=render 'atenciones_profesionales/nutricion/tabs_controles',controles: controles, turno: turno%>
         <%=panel_end%>
