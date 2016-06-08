@@ -13,15 +13,11 @@
          <%= panel_begin('Ficha') %>
             <%=render 'atenciones_profesionales/fonoaudiologia/data_ficha',ficha: ficha%>
          <%= panel_end %>
-      <% end %>
 
-      <!-- Renderiza los tabs para consultas dentro de un panel -->
-      <% if consultas.blank? %>
-        <%=panel_head('Consultas (No tiene)')%>
-      <% else %>
-         <%=panel_begin('Consultas')%>
-            <%=render 'atenciones_profesionales/compartido/tabs_consultas',consultas: consultas,turno: turno%>
-         <%=panel_end%>
+        <!-- Renderiza los tabs para consultas dentro de un panel -->
+        <%=panel_begin('Consultas')%>
+          <%=render 'atenciones_profesionales/compartido/tabs_consultas',consultas: consultas,turno: turno%>
+        <%=panel_end%>
       <% end %>
    </div>
 </div>
