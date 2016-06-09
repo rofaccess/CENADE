@@ -1,11 +1,25 @@
-
 $('#modal-lg').modal('hide');
-$('.paciente_select').html("<%= escape_javascript(options_for_select(Hash[Paciente.all.map{|a| [a.persona_full_name, a.id]}], selected: @paciente.id).insert(0, 'Seleccione un paciente')) %>");
-$('.paciente_select').select2('destroy');
-$('.paciente_select').select2({
-  data: [{ id: "<%=j @paciente.id.to_s %>", text: "<%=@paciente.persona_full_name %> " }]
+
+$('#paciente-data').html("<%= j render params[:root].to_s()+'/form_paciente', paciente: @paciente %>");
+
+//- El .insert(0, 'Seleccione un paciente') no es necesario para el select2 con buscador, para un select común si es necesario
+// Carga el paciente recién guardado en el select y lo setea como seleccionado
+$('.select-paciente').html("<%= j (options_for_select([[@paciente.persona_full_name, @paciente.id]], selected: @paciente.id)) %>");
+
+//Reinicia el select2 y setea paciente recién guardado para que se vea en el select2
+$('.select-paciente').select2({
+  data: [{ id: "<%=@paciente.id.to_s %>", text: "<%=@paciente.persona_full_name %>" }]
 });
-$('.paciente_select').val("<%=j @paciente.id.to_s %>").trigger("change");
-$('.paciente_data').html("<%= j render params[:root].to_s()+'/paciente_form', paciente: @paciente %>");
+
+//Reinicia el select2 buscador de pacientes
+pacientesUI.initBuscarPaciente('.select-paciente');
+
+//- Se usa solo en el select2 común
+// Carga todos los pacientes en el select, y setea el paciente recién guardado como seleccionado
+//$('.select-paciente').html("<%= escape_javascript(options_for_select(Paciente.all.collect {|a| [a.persona_full_name, a.id]}, selected: @paciente.id)) %>");
+//Reinicia el select2 y setea paciente recién guardado para que se vea en el select2
+//$('.select-paciente').select2({
+//  data: [{ id: "<%=@paciente.id.to_s %>", text: "<%=@paciente.persona_full_name %>" }]
+//});
 
 

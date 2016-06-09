@@ -27,38 +27,16 @@ class PacientesController < ApplicationController
 		end
 	end
 
-	def recarga_paciente
-
-		@paciente = Paciente.new(paciente_params)
-		if @paciente.save
-			flash.now[:notice] = "Se ha guardado el paciente #{@paciente.persona_full_name}."
-
-		else
-			flash.now[:alert] = "No se ha podido guardar el paciente #{@paciente.persona_full_name}."
-
-		end
-		render 'recarga_paciente', format: :js
-	end
-
-	def new_paciente_modal
-		@paciente = Paciente.new
-		@paciente.build_persona
-    @paciente.build_encargado
-		render 'new_paciente_modal', format: :js
-	end
-
-  # Por ahora especifico para ficha fisioterapia adulto
-  def recarga_paciente2
+  def recarga_paciente
     @paciente = Paciente.new(paciente_params)
     if @paciente.save
       flash.now[:notice] = "Se ha guardado el paciente #{@paciente.persona_full_name}."
     else
       flash.now[:alert] = "No se ha podido guardar el paciente #{@paciente.persona_full_name}."
     end
-    render 'recarga_paciente2', format: :js
+    render 'recarga_paciente', format: :js
   end
 
-  # Por ahora especifico para ficha fisioterapia adulto
   def new_modal
     @paciente = Paciente.new
     @paciente.build_persona
