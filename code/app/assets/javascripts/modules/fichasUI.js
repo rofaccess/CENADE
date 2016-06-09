@@ -5,7 +5,7 @@ var fichasUI = (function(){
 
       /* Script globales */
         APP.initDatepicker();
-        pacientesUI.initBuscarPaciente('.select-paciente',false);
+        pacientesUI.initBuscarPaciente('.select-paciente');
         APP.initSelect2({element: '.select-doctor', placeholder: 'Seleccione un Profesional'});
 
       /* Valida el formulario antes de enviarlo */
