@@ -86,8 +86,8 @@ class FichasFonoaudiologicasController < ApplicationController
 
   	def check_paciente_has_ficha
   		ficha = FichaFonoaudiologica.find_by_paciente_id(params[:paciente_id])
-  		render json: (ficha.nil? || ficha.id == params[:idd].to_i) ? true : "El Paciente ya posee una Ficha".to_json
-  	end
+      render json: (ficha.nil? || ficha.id == params[:idd].to_i) ? true : "El Paciente ya posee una Ficha".to_json
+    end
 
  	def get_doctores_fonoaudiologia
 		area = Area.find_by_nombre('Fonoaudiología')

@@ -106,7 +106,12 @@ class ConsultasController < ApplicationController
      @area= Area.find(params[:area_id])
      get_doctores
      new
+  end
 
+  # Chequea si el paciente no tiene ficha
+  def check_paciente_has_not_ficha
+    ficha = Consulta.get_ficha(params[:area_nombre], params[:paciente_id])
+    render json: (ficha.nil? || ficha.id == params[:idd].to_i) ? "El Paciente no tiene Ficha".to_json : true
   end
 
   #Busca las Consultas segun los datos puestos para filtrar

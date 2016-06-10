@@ -1,17 +1,5 @@
-
 $("#principal-content").html('<%= j render 'form', consulta: @consulta, paciente: @paciente, area: @area, doctores: @doctores, from_ficha: true, formats: 'html' %>');
 
-$('.select-paciente').val("<%=j params[:paciente].to_s %>").trigger("change");//Establece como seleccionado un paciente especificado
-$('.select-paciente').attr("disabled","true");//Bloquea el select de paciente
 $('#consulta_paciente_id').val("<%=j params[:paciente].to_s %>");//Setea un hidden field con el id de paciente
 
-//$('.select-area').val("<%=j params[:area].to_s %>").trigger("change");//Establece como seleccionado un area especificada
-//$('.select-area').attr("disabled","true");//Bloquea el select de area
-//$('#consulta_area_id').val("<%=j params[:area].to_s %>");//Setea un hidden field con el id del area
 
-//- Establece como seleccionado un profesional especificado
-//- No funciona porque, el recarga paciente de consultasUI, actualiza de nuevo el select
-//- y muestra como seleccionado el primer doctor de la lista
-//$('.select-doctor').val("<%=j params[:profesional].to_s %>").trigger("change");
-
-//$('.select2').attr("style","width: 100%;");//- Sin esto los select se ven ajustados

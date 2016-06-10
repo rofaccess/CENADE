@@ -170,8 +170,9 @@ Rails.application.routes.draw do
       get'get_paciente' => 'ficha_fisioterapia_ninos#get_paciente'
     end
   end
-  get 'consultas/consulta_from_ficha' => 'consultas#consulta_from_ficha'
 
+  get 'consultas/consulta_from_ficha' => 'consultas#consulta_from_ficha'
+  get 'consultas/check_paciente_has_not_ficha' => 'consultas#check_paciente_has_not_ficha'
   get 'consultas/print_consulta' => 'consultas#print_consulta'
   resources :consultas, :except => [:destroy] do
     collection do

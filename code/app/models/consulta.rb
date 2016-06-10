@@ -14,6 +14,31 @@ class Consulta < ActiveRecord::Base
  	validates :motivo_consulta, length: { maximum: Domain::DESC300, message: ' soporta un máximo de 300 caracteres' }
  	validates :observaciones, length: { maximum: Domain::DESC250, message: ' soporta un máximo de 250 caracteres' }
 
+  # Obtiene la ficha del area correspondiente
+  def self.get_ficha(area_nombre, paciente_id)
+    case area_nombre
+    when "Clínico"
+      FichaClinico.find_by_paciente_id(paciente_id)
+    when "Fisioterapia"
+      ficha_ped = FichaFisioterapiaNino.find_by_paciente_id(paciente_id)
+      ficha_ad = FichaFisioterapeuticaAdulto.find_by_paciente_id(paciente_id)
+      if ficha_ped.blank?
+        ficha_ad
+      else
+        ficha_ped
+      end
+    when "Fonoaudiología"
+      FichaFonoaudiologica.find_by_paciente_id(paciente_id)
+    when "Neurología"
+      FichaNeurologica.find_by_paciente_id(paciente_id)
+    when "Pediatría"
+      FichaPediatrica.find_by_paciente_id(paciente_id)
+    when "Psicopedagogía"
+      FichaPsicopedagogica.find_by_paciente_id(paciente_id)
+    else
+    end
+  end
+
  	# Law of Demeter
 	delegate :persona_nombre, :persona_apellido, :persona_estado_civil_descripcion, :persona_full_name,
 			 :persona_edad,:persona_sexo, :persona_ci, :persona_nacionalidad,

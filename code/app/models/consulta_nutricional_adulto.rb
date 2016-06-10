@@ -3,7 +3,7 @@ class ConsultaNutricionalAdulto < ActiveRecord::Base
 
 	#asociaciones
  	belongs_to :doctor, :foreign_key => :doctor_id
-
+  belongs_to :paciente
  	belongs_to :user
 
  	belongs_to :ficha_nutricional_adulto , :foreign_key => :ficha_nutricional_adulto_id
