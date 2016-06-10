@@ -85,7 +85,8 @@
       </div>
       <div class="col-md-4">
          <%= link_to "Agregar Consulta", consultas_consulta_from_ficha_path(area_id: fisio_nino.area_id, paciente: fisio_nino.paciente_id, profesional: fisio_nino.doctor_id), class: "btn btn-custom", remote: true %>
-          <%= link_to 'Ver Historial Clínico', historial_fisioterapeutico_path(fisio_nino.paciente_id), class: "btn btn-custom  pull-right", remote: true%>
+          <%= link_to 'Ver Historial Clínico', historial_fisioterapeutico_path(fisio_nino.paciente_id), class: "btn btn-custom  pull-right",target: '_blank'%>
+
       </div>
     </div>
     <hr>

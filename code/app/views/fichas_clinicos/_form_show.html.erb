@@ -33,11 +33,12 @@
 	<%= render 'compartido/fic_cli_neu_ped/form_show_fields', fich: fich %>
 
 	<div class="row">
-      <div class="col-md-10">
+      <div class="col-md-8">
          <h4>Consultas</h4>
       </div>
-      <div class="col-md-2">
+      <div class="col-md-4">
          <%= link_to "Agregar Consulta", consultas_consulta_from_ficha_path(area_id: ficha.area_id, paciente: ficha.paciente_id, profesional: ficha.doctor_id), class: "btn btn-custom", remote: true %>
+         <%= link_to 'Ver Historial Clínico', historial_clinico_path(ficha.paciente_id), class: "btn btn-custom  pull-right", target: '_blank'%>
       </div>
     </div>
     <hr>

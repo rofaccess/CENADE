@@ -1,9 +1,6 @@
 
 $("#principal-content").html('<%= j render 'form',from_ficha: true, ficha: params[:ficha], consulta: @consulta, paciente: @paciente, doctores: @doctores, area: @area, formats: 'html' %>');
 
-//$('#paciente-data').html("<%= j render 'form_paciente', paciente: @paciente %>");
-
-//- El .insert(0, 'Seleccione un paciente') no es necesario para el select2 con buscador, para un select común si es necesario
 // Carga el paciente recién guardado en el select y lo setea como seleccionado
 $('.select-paciente').html("<%= j (options_for_select([[@paciente.persona_full_name, @paciente.id]], selected: @paciente.id)) %>");
 
@@ -11,8 +8,4 @@ $('.select-paciente').html("<%= j (options_for_select([[@paciente.persona_full_n
 $('.select-paciente').select2({
   data: [{ id: "<%=@paciente.id.to_s %>", text: "<%=@paciente.persona_full_name %>" }]
 });
-
-//$('.select-paciente').val("<%=j params[:ficha].to_s %>").trigger("change");//Establece como seleccionado un paciente especificado
-//$('.select-paciente').attr("disabled","true");//Bloquea el select de paciente
-//$('#consulta_ficha_id').val("<%=j params[:ficha].to_s %>");//Setea un hidden field con el id de paciente
 

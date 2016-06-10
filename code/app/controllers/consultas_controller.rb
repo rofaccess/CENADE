@@ -102,10 +102,11 @@ class ConsultasController < ApplicationController
 
   #autocompleta campos como area y paciente si se llama a nuevo desde alguna ficha
   def consulta_from_ficha
+     @consulta= Consulta.new
      @paciente= Paciente.find(params[:paciente])
      @area= Area.find(params[:area_id])
      get_doctores
-     new
+     #new
   end
 
   # Chequea si el paciente no tiene ficha
