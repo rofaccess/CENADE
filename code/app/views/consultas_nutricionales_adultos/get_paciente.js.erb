@@ -1,1 +1,3 @@
 $('#paciente-data').html("<%= j render params[:root].to_s()+'/form_paciente', paciente: @paciente%>");
+
+$('.ficha-id').val(<%=@paciente.ficha_nutricional_adulto.blank? ? '' : @paciente.ficha_nutricional_adulto.id%>);

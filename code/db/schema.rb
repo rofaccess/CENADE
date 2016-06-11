@@ -86,6 +86,7 @@ ActiveRecord::Schema.define(version: 20160527060755) do
   create_table "consultas_nutricionales_adultos", force: :cascade do |t|
     t.integer  "ficha_nutricional_adulto_id",             null: false
     t.integer  "doctor_id",                               null: false
+    t.integer  "paciente_id",                             null: false
     t.date     "fecha",                                   null: false
     t.string   "motivo_consulta",             limit: 250
     t.string   "actuales",                    limit: 200
@@ -153,8 +154,10 @@ ActiveRecord::Schema.define(version: 20160527060755) do
 
   add_index "consultas_nutricionales_adultos", ["doctor_id"], name: "index_consultas_nutricionales_adultos_on_doctor_id", using: :btree
   add_index "consultas_nutricionales_adultos", ["ficha_nutricional_adulto_id"], name: "ficha_id", using: :btree
+  add_index "consultas_nutricionales_adultos", ["paciente_id"], name: "index_consultas_nutricionales_adultos_on_paciente_id", using: :btree
 
   create_table "consultas_nutricionales_pediatricas", force: :cascade do |t|
+    t.integer  "paciente_id",                         null: false
     t.integer  "area_id",                             null: false
     t.integer  "doctor_id",                           null: false
     t.integer  "ficha_nutri_ped_id",                  null: false
@@ -197,10 +200,12 @@ ActiveRecord::Schema.define(version: 20160527060755) do
 
   add_index "consultas_nutricionales_pediatricas", ["area_id"], name: "index_consultas_nutricionales_pediatricas_on_area_id", using: :btree
   add_index "consultas_nutricionales_pediatricas", ["ficha_nutri_ped_id"], name: "index_consultas_nutricionales_pediatricas_on_ficha_nutri_ped_id", using: :btree
+  add_index "consultas_nutricionales_pediatricas", ["paciente_id"], name: "index_consultas_nutricionales_pediatricas_on_paciente_id", using: :btree
 
   create_table "consultas_odontologicas", force: :cascade do |t|
     t.integer  "area_id",                               null: false
     t.integer  "doctor_id",                             null: false
+    t.integer  "paciente_id",                           null: false
     t.integer  "ficha_odontologica_id",                 null: false
     t.date     "fecha",                                 null: false
     t.string   "motivo_consulta",           limit: 250
@@ -241,6 +246,7 @@ ActiveRecord::Schema.define(version: 20160527060755) do
 
   add_index "consultas_odontologicas", ["area_id"], name: "index_consultas_odontologicas_on_area_id", using: :btree
   add_index "consultas_odontologicas", ["ficha_odontologica_id"], name: "index_consultas_odontologicas_on_ficha_odontologica_id", using: :btree
+  add_index "consultas_odontologicas", ["paciente_id"], name: "index_consultas_odontologicas_on_paciente_id", using: :btree
 
   create_table "controles", force: :cascade do |t|
     t.integer  "consulta_nutricional_pediatrica_id"
@@ -902,10 +908,13 @@ ActiveRecord::Schema.define(version: 20160527060755) do
   add_foreign_key "consultas", "areas", on_delete: :restrict
   add_foreign_key "consultas", "empleados", column: "doctor_id", on_delete: :restrict
   add_foreign_key "consultas", "pacientes", on_delete: :cascade
+  add_foreign_key "consultas_nutricionales_adultos", "pacientes", on_delete: :cascade
   add_foreign_key "consultas_nutricionales_pediatricas", "areas", on_delete: :restrict
   add_foreign_key "consultas_nutricionales_pediatricas", "fichas_nutricionales_pediatricas", column: "ficha_nutri_ped_id", on_delete: :restrict
+  add_foreign_key "consultas_nutricionales_pediatricas", "pacientes", on_delete: :restrict
   add_foreign_key "consultas_odontologicas", "areas", on_delete: :restrict
   add_foreign_key "consultas_odontologicas", "fichas_odontologicas", on_delete: :restrict
+  add_foreign_key "consultas_odontologicas", "pacientes", on_delete: :cascade
   add_foreign_key "controles", "areas", on_delete: :restrict
   add_foreign_key "controles", "consultas_nutricionales_pediatricas", on_delete: :restrict
   add_foreign_key "controles", "pacientes", on_delete: :restrict

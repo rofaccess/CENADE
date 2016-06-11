@@ -10,7 +10,8 @@
 
 <div class="modal-body">
 
-	<%= form_for paciente, url: pacientes_recarga_paciente_path(root: params[:root], encargado: params[:encargado]), html: {class: 'form-paciente form-sin-submenu'},  remote: true do |pacient|%>
+	<%= form_for paciente, url: pacientes_recarga_paciente_path(root: params[:root], encargado: params[:encargado]), html: {class: 'form-paciente'},  remote: true do |pacient|%>
+
     	<!-- Se debe pasar paciente del form al render, o sino dirá que paciente no existe y en el partial se lo necesita -->
     	<%= render 'form_fields', pacient: pacient, paciente: paciente %>
 
@@ -18,6 +19,7 @@
 			<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
 			<%= pacient.submit 'Guardar', class: 'btn btn-custom'%>
 		</div>
+
 	<% end %>
 
 </div>

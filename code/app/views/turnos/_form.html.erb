@@ -21,10 +21,10 @@
           <div class="row">
             <div class="col-md-10 form-group">
 
-            <%= turn.select(:paciente_id, Hash[Paciente.all.map{|a| [a.persona.nombre + " "+ a.persona.apellido, a.id]}],{},{class: "paciente_select form-control select2", required: true,  id: 'paciente_id'})%>
+            <%= turn.select(:paciente_id, [],{},{class: "select-paciente form-control select2", required: true,  id: 'paciente_id'})%>
           </div>
 
-            <%= link_to '<i class="fa fa-plus" data-toggle="tooltip" data-placement="bottom" title="Nuevo Paciente"></i> '.html_safe, pacientes_new_paciente_modal_path(root: 'turnos', encargado: false), class: 'btn btn-custom col-md-1', style: 'height: 30px; width: 40px', remote: true%>
+            <%= link_to '<i class="fa fa-plus" data-toggle="tooltip" data-placement="bottom" title="Nuevo Paciente"></i> '.html_safe, pacientes_new_modal_path(root: 'turnos', encargado: false), class: 'btn btn-custom col-md-1', style: 'height: 30px; width: 40px', remote: true%>
 
 
         </div>
@@ -38,44 +38,10 @@
 
        </div>
 
-        <div class ="paciente_data">
-          <div class="row">
-            <%= FormBuilder::text_field_v(turn, :paciente_id,
-                                          input_class: 'paciente-nombre',
-                                          col_class: 'col-md-4',
-                                          disabled: true,
-                                          label_text: 'Nombres') %>
+       <div id="paciente-data">
+        <%= render 'form_paciente', paciente: Paciente.new %>
+       </div>
 
-            <%= FormBuilder::text_field_v(turn, :paciente_id,
-                                          input_class: 'paciente-apellido',
-                                          col_class: 'col-md-5',
-                                          disabled: true,
-                                          label_text: 'Apellidos') %>
-
-            <%= FormBuilder::text_field_v(turn, :paciente_id,
-                                          input_class: 'clear paciente-ci',
-                                          max_length: Domain::CI,
-                                          col_class: 'col-md-3',
-                                          disabled: true,
-                                          label_text: 'CI') %>
-            </div>
-            <div class="row">
-              <%= FormBuilder::text_field_v(turn, :paciente_id,
-                                        input_class: 'clear paciente-direccion',
-                                        max_length: Domain::DIRECCION,
-                                        col_class: 'col-md-8',
-                                        disabled: true,
-                                        label_text: 'Direccion') %>
-               <%= FormBuilder::text_field_v(turn, :paciente_id,
-                                        input_class: 'clear paciente-telefono',
-                                        max_length: Domain::TELEFONO,
-                                        col_class: 'col-md-4',
-                                        disabled: true,
-                                        label_text: 'Telefono') %>
-          </div>
-
-      </div>
-    </br>
      <h4>Datos Turno</h4>
     <hr>
 

@@ -21,44 +21,13 @@ var turnosUI = (function(){
 		},
 
 		selectControl: function(){
-			$(".paciente_select").select2({
-		        placeholder: "Seleccione un paciente",
-		        language: "es",
-		        theme: "bootstrap"
+      pacientesUI.initBuscarPaciente('.select-paciente');
 
-		       }).on("select2:select",function(){
- 				$(this).valid();
-		        id = $(this).val();
+      pacientesUI.getPaciente({element: '.select-paciente', root: 'turnos'});
 
-		        $.ajax({
+      APP.initSelect2({element: '.profesional_select', placeholder: 'Seleccione un Profesional'});
 
-		          url: "/turnos/get_paciente",
-		          type: 'get',
-		          data: {
-		           idd : $(this).val()
-		          },
-		          success: function(resp){
-		              //alert("Data");
-		           }
-
-		         });
-		      });
-		      $(".profesional_select").select2({
-		        placeholder: "Seleccione un Profesional",
-		        language: "es",
-		        theme: "bootstrap"
-
-		        }).on('change', function () {
-        			$(this).valid();
-        		});
-		    $(".area_select").select2({
-		        placeholder: "Seleccione un Área",
-		        theme: "bootstrap",
-		        language: "es"
-
-		        }).on('change', function () {
-        			$(this).valid();
-        		});
+      APP.initSelect2({element: '.area_select', placeholder: 'Seleccione un Área'});
 
 		},
 

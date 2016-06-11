@@ -32,7 +32,11 @@ class ConsultasOdontologicasController < ApplicationController
   end
   #autocompleta campos como area y paciente si se llama a nuevo desde alguna ficha
   def from_ficha
-     new
+    ficha = FichaOdontologica.find(params[:ficha])
+    @paciente= ficha.paciente
+    @area= Area.find_by_nombre('Odontología')
+    @consulta= ConsultaOdontologica.new
+    get_doctores_odontologia
   end
 
   def index

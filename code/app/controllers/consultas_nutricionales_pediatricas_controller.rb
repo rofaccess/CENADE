@@ -55,7 +55,11 @@ class ConsultasNutricionalesPediatricasController < ApplicationController
   end
   #autocompleta campos como area y paciente si se llama a nuevo desde alguna ficha
   def from_ficha
-     new
+    ficha = FichaNutricionalPediatrica.find(params[:ficha])
+    @paciente= ficha.paciente
+    @area= Area.find_by_nombre('Nutrición')
+    @consulta= ConsultaNutricionalPediatrica.new
+    get_doctores_nutricion
   end
 
   def update

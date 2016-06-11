@@ -10,7 +10,6 @@ class TurnosController < ApplicationController
 
   def new
   	@turno= Turno.new
-
   end
   def create
   	@turno = Turno.new(turno_params)
@@ -22,7 +21,7 @@ class TurnosController < ApplicationController
         flash.now[:alert] = @turno.errors.full_messages.first
         @turno_nuevo= true
         format.html { render "new"}
-        format.js { render "edit"}
+        format.js { render "edit"} # //- Creo que debería ser render 'new'
       end
     end
   end

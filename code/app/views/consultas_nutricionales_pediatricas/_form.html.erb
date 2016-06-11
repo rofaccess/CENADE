@@ -9,19 +9,22 @@
 
 <div class="content">
 	<div class="form-content">
-		<%= simple_form_for consulta, html: {class: 'nueva-consulta'} do |consult|%>
+		<%= simple_form_for consulta, html: {class: 'form-consulta'} do |consult|%>
 			<%= hidden_field_tag :consulta_id, consulta.id, class: 'consulta-id'%>
 
 			<h4 class="titulo-ficha">Consulta en Nutrición Pediátrica</h4>
 
 			<div class="row">
+				<!-- Si el form se renderiza desde la ficha, para agregar una consulta, paciente aparece desactivado, con el hidden_field se asegura que se envíe su id -->
+        <% if from_ficha %>
+          <%= consult.hidden_field :paciente_id, value: paciente.id%>
+        <% end %>
 
-				<%= consult.input :ficha_nutri_ped_id, collection: FichaNutricionalPediatrica.all.collect { |a| [a.paciente_persona_full_name, a.id] }, label: '* Paciente', wrapper_html: {class: 'col-md-4' },input_html: { class: 'required select-paciente select2 paciente-id', disabled: paciente.id.nil? ? false : true} %>
-				<% if from_ficha %>
-		          <%= consult.hidden_field :ficha_nutri_ped_id, :value => ficha%>
-		        <% end %>
+				<%= consult.input :paciente_id, collection: paciente.id.nil? ? [] : [[paciente.persona_full_name,paciente.id]], label: '* Paciente', wrapper_html: { class: 'col-md-4'},input_html:  { class: 'required select-paciente select2 pacienteHasNotFicha paciente-id',disabled: paciente.id.nil? ? false : true} %>
 
-				<%= consult.input :doctor_id, collection: doctores.collect { |a| [a.abr_profesion+" "+a.persona_full_name, a.id] }, label: '* Profesional de la Salud', wrapper_html: { class: 'col-md-5' }, input_html:   { class: 'required select-doctor select2'} %>
+		    <%= consult.hidden_field :ficha_nutri_ped_id, value: from_ficha ? ficha : nil, class: 'ficha-id'%>
+
+				<%= consult.input :doctor_id, collection: doctores.collect { |a| [a.full_name, a.id] }, label: '* Profesional de la Salud', wrapper_html: { class: 'col-md-5' }, input_html:   { class: 'required select-doctor select2'} %>
 
 				<%= consult.input :fecha, as: :string, label: '* Fecha', wrapper_html: { class: 'col-md-3'}, input_html: { class: 'datepicker required', maxLength: Domain::FECHA, value:Formatter.format_date(consulta.fecha)} %>
 			</div>
@@ -125,7 +128,11 @@
 </div>
 <script type="text/javascript">
 
-	consultasNutriPediatricasUI.initScript();
+	consultasUI.initScript();
+
+  pacientesUI.getPaciente({element: '.select-paciente', root: 'consultas_nutricionales_pediatricas'});
+
+  consultasUI.checkPacienteHasNotFicha("<%=consultas_check_paciente_has_not_ficha_path(area_nombre: 'Nutrición Pediatría')%>");
 
 	<% if !flash.notice.blank? %>
 		var n = noty({text: '<%=notice%>', type: 'success'});

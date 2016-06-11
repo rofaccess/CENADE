@@ -18,7 +18,7 @@
           <div class="col-md-7">
             <%= turn.label :paciente_id, '* Paciente' %>
 
-            <%= turn.select(:paciente_id, Hash[Paciente.all.map{|a| [a.persona.nombre + " "+ a.persona.apellido, a.id]}],{},{class: "paciente_select form-control", required: true,  id: 'paciente_id'})%>
+            <%= turn.select(:paciente_id, Hash[Paciente.all.map{|a| [a.persona.nombre + " "+ a.persona.apellido, a.id]}],{},{class: "select-paciente form-control", required: true,  id: 'paciente_id'})%>
         </div>
 
         <%= FormBuilder::text_field_v(turn, :fecha_expedicion,
@@ -30,48 +30,10 @@
 
        </div>
 
-          <div class ="paciente_data">
-          <div class="row">
-            <%= FormBuilder::text_field_v(turn, :paciente_id,
-
-                                          col_class: 'col-md-4',
-                                          disabled: true,
-                                          label_text: 'Nombres',
-                                          input_value: turno.paciente.persona.nombre) %>
-
-            <%= FormBuilder::text_field_v(turn, :paciente_id,
-                                          col_class: 'col-md-5',
-                                          disabled: true,
-                                          label_text: 'Apellidos',
-                                          input_value: turno.paciente.persona.apellido) %>
-
-            <%= FormBuilder::text_field_v(turn, :paciente_id,
-
-                                          max_length: Domain::CI,
-                                          col_class: 'col-md-3',
-                                          disabled: true,
-                                          label_text: 'CI',
-                                          input_value: turno.paciente.persona.ci) %>
-            </div>
-            <div class="row">
-              <%= FormBuilder::text_field_v(turn, :paciente_id,
-
-                                        max_length: Domain::DIRECCION,
-                                        col_class: 'col-md-8',
-                                        disabled: true,
-                                        label_text: 'Direccion',
-                                        input_value: turno.paciente.persona.direccion) %>
-               <%= FormBuilder::text_field_v(turn, :paciente_id,
-
-                                        max_length: Domain::TELEFONO,
-                                        col_class: 'col-md-4',
-                                        disabled: true,
-                                        label_text: 'Telefono',
-                                        input_value: turno.paciente.persona.telefono) %>
-          </div>
-
-
+      <div id="paciente-data">
+        <%= render 'form_paciente', paciente: turno.paciente %>
       </div>
+
     </br>
      <h4>Datos Turno</h4>
     <hr>
