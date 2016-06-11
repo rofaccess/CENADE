@@ -3,7 +3,7 @@ class ConsultasController < ApplicationController
 	load_and_authorize_resource
   before_action :set_sidebar, only: [:edit, :new, :show, :index]
   before_action :set_submenu, only: [:edit, :update, :show, :index, :new]
-
+  skip_load_resource :only => [:create]
   respond_to :html, :js
 
   def set_submenu
@@ -80,7 +80,7 @@ class ConsultasController < ApplicationController
 
   #obtiene el paciente
    def get_paciente
-    @paciente= Paciente.find(params[:id])
+    @paciente= Paciente.find(params[:idd])
   end
 
   #recarga la lista de profesionales segun el area

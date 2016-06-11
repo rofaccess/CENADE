@@ -20,7 +20,7 @@
 
         <%= consult.input :doctor_id, collection: doctores.collect { |a| [a.abr_profesion+" "+a.persona_full_name+"-"+ a.area.nombre, a.id] }, label: '* Prof. de la Salud', wrapper_html: { class: 'col-md-9' }, input_html:  { class: 'required select-doctor select2'} %>
 
-        <%= consult.input :fecha, as: :string, label: '* Fecha', wrapper_html: { class: 'col-md-3'}, input_html: { class: 'datepicker dateLessSystemDate required', maxLength: Domain::FECHA, value:Formatter.format_date(consulta.fecha)} %>
+        <%= consult.input :fecha, as: :string, label: '* Fecha', wrapper_html: { class: 'col-md-3'}, input_html: { class: 'date datepicker dateLessSystemDate required', maxLength: Domain::FECHA, value:Formatter.format_date(consulta.fecha)} %>
 
       </div>
 

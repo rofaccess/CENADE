@@ -104,6 +104,7 @@ APP = {
             orientation: "bottom",
             todayHighlight: true,
             todayBtn: true,
+            startDate: new Date(1900,01,01),
             }).on('change', function() {
                 /* Sin lo siguiente, no desaparecen los mensajes de error la primera vez que se selecciona una fecha */
                 $(this).valid();
@@ -324,7 +325,7 @@ $.noty.defaults = {
         easing: 'swing',
         speed: 500 // opening & closing animation speed
     },
-    timeout: 8000, // delay for closing event. Set false for sticky notifications
+    timeout: 5000, // delay for closing event. Set false for sticky notifications
     force: false, // adds notification to the beginning of queue when set to true
     modal: false,
     maxVisible: 5, // you can set max visible notification for dismissQueue true option
