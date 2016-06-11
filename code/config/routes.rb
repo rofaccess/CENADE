@@ -12,6 +12,8 @@ Rails.application.routes.draw do
     end
   end
 
+  post 'atencion_profesional/create_consulta' => 'atenciones_profesionales#create_consulta', as: :atencion_create_consulta
+  post 'atencion_profesional/create_consulta_odontologica' => 'atenciones_profesionales#create_consulta_odontologica', as: :atencion_create_consulta_odontologica
   post 'atencion_profesional/create_consulta_ped' => 'atenciones_profesionales#create_consulta_ped', as: :atencion_create_consulta_ped
   post 'atencion_profesional/create_consulta_ad' => 'atenciones_profesionales#create_consulta_ad', as: :atencion_create_consulta_ad
   post 'atencion_profesional/create_control' => 'atenciones_profesionales#create_control', as: :atencion_create_control
@@ -168,8 +170,9 @@ Rails.application.routes.draw do
       get'get_paciente' => 'ficha_fisioterapia_ninos#get_paciente'
     end
   end
-  get 'consultas/consulta_from_ficha' => 'consultas#consulta_from_ficha'
 
+  get 'consultas/consulta_from_ficha' => 'consultas#consulta_from_ficha'
+  get 'consultas/check_paciente_has_not_ficha' => 'consultas#check_paciente_has_not_ficha'
   get 'consultas/print_consulta' => 'consultas#print_consulta'
   resources :consultas, :except => [:destroy] do
     collection do

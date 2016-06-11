@@ -3,7 +3,7 @@
  -->
 <ul class="nav nav-tabs">
 	<% if turno.pendiente? %>
-		<li><a href="#con-ped-new"><span class="fa fa-plus"></span> Nueva Consulta</a></li>
+		<li class="con-ped-new"><a href="#con-ped-new"><span class="fa fa-plus"></span> Nueva Consulta</a></li>
 	<% end %>
 	<% consultas_ped.each do |c| %>
 		<li><a href="#con-ped-<%=c.id%>"><%=date(c.fecha)%></a></li>

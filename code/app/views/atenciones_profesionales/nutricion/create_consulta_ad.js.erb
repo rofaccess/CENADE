@@ -2,7 +2,14 @@
    //Reemplaza el formulario de nueva consulta con la consulta recien creada
    $('#con-ad-new').html("<%= j render 'atenciones_profesionales/nutricion/data_consulta_ad', consulta_ad: @consulta_ad %>");
    APP.initTabs('.tabs-content');
+   //Borra los tabs y forms de nueva consulta y control
+   $('#con-ped-new, .con-ped-new').remove();
+   $('#control-new, .control-new').remove();
+
    var n = noty({text: '<%=notice%>', type: 'success'});
+
+  //Actualiza la lista de pacientes
+  $('#datepicker-inline').trigger("changeDate");
 <% elsif !flash.alert.blank?%>
    var n = noty({text: '<%=alert%>', type: 'error'});
 <% else%>

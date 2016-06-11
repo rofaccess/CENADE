@@ -43,11 +43,12 @@
 
     </div>
     <div class="row">
-      <div class="col-md-10">
+      <div class="col-md-8">
          <h4>Consultas</h4>
       </div>
-      <div class="col-md-2">
+      <div class="col-md-4">
          <%= link_to "Agregar Consulta", consultas_nutricionales_adultos_from_ficha_path(ficha: nutri_adulto.id), class: "btn btn-custom", remote: true %>
+         <%= link_to 'Ver Historial Clínico', historial_nutricional_path(nutri_adulto.paciente_id), class: "btn btn-custom  pull-right", target: '_blank'%>
       </div>
     </div>
     <hr>
@@ -61,8 +62,6 @@
 
 
 <script type="text/javascript">
-
-  fichasNutriAdultosUI.initScript();
   consultasUI.initConsultasTab();
   <% if !flash.notice.blank? %>
     var n = noty({text: '<%=notice%>', type: 'success'});

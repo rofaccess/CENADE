@@ -83,8 +83,7 @@ class FichasNeurologicasController < ApplicationController
 
   def check_paciente_has_ficha
   	ficha = FichaNeurologica.find_by_paciente_id(params[:paciente_id])
-
-  	render json: (ficha.nil? || ficha.id == params[:idd].to_i) ? true : "El Paciente ya posee una Ficha".to_json
+    render json: (ficha.nil? || ficha.id == params[:idd].to_i) ? true : "El Paciente ya posee una Ficha".to_json
   end
 
   def get_doctores_neurologia

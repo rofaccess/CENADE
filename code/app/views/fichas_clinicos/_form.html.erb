@@ -14,8 +14,7 @@
 	<h4 class="titulo-ficha">FICHA CLÍNICO</h4>
 
 	<div class="row">
-
-		<%= fich.input :paciente_id, collection: Paciente.all.collect { |a| [a.persona_full_name, a.id] }, label: '* Paciente', wrapper_html: { class: paciente.id.nil? ? 'col-md-4' : 'col-md-5' }, input_html: { class: 'required select-paciente select2 uniquePacienteFicha paciente-id', disabled: paciente.id.nil? ? false : true} %>
+    <%= fich.input :paciente_id, collection: paciente.id.nil? ? [] : [[paciente.persona_full_name,paciente.id]], label: '* Paciente', wrapper_html: { class: paciente.id.nil? ? 'col-md-4' : 'col-md-5'},input_html:  { class: 'required select-paciente select2 uniquePacienteFicha paciente-id',disabled: paciente.id.nil? ? false : true} %>
 
 		<% if paciente.id.nil? %>
 			<%= link_to '<i class="fa fa-plus"></i> '.html_safe, pacientes_new_modal_path(root: 'fichas_clinicos', encargado: false), class: 'btn btn-custom btn-add col-md-1', remote: true %>
@@ -42,9 +41,11 @@
 </div>
 <script type="text/javascript">
 
-	fichasClinicosUI.initScript();
+	fichasUI.initScript();
 
 	pacientesUI.checkPacienteHasFicha("<%=fichas_clinicos_check_paciente_has_ficha_path%>");
+
+  pacientesUI.getPaciente({element: '.select-paciente', root: 'compartido/fic_cli_neu_ped'});
 
 	<% if !flash.notice.blank? %>
 		var n = noty({text: '<%=notice%>', type: 'success'});

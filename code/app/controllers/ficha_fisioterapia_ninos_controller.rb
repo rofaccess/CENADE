@@ -20,6 +20,7 @@ class FichaFisioterapiaNinosController < ApplicationController
 
   def new
   	@fisio_nino= FichaFisioterapiaNino.new
+    @paciente = Paciente.new
   end
 
    def create
@@ -110,6 +111,7 @@ class FichaFisioterapiaNinosController < ApplicationController
     end
   def set_fisionino
   	@fisio_nino= FichaFisioterapiaNino.find(params[:id])
+    @paciente = Paciente.find(@fisio_nino.paciente_id)
   end
   def set_consulta
     @consultas= Consulta.where(area_id: @fisio_nino.area_id, paciente_id: @fisio_nino.paciente_id).limit(9).order(id: :desc)

@@ -96,10 +96,10 @@ class FichasOdontologicasController < ApplicationController
 
   	end
 
-  	def check_paciente_has_ficha
+  def check_paciente_has_ficha
   	ficha = FichaOdontologica.find_by_paciente_id(params[:paciente_id])
   	render json: (ficha.nil? || ficha.id == params[:idd].to_i) ? true : "El Paciente ya posee una Ficha".to_json
- 	end
+  end
 
 	def get_fichas
 	  	@search = FichaOdontologica.search(params[:q])

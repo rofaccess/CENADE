@@ -56,7 +56,11 @@ class ConsultasNutricionalesAdultosController < ApplicationController
   end
   #autocompleta campos como area y paciente si se llama a nuevo desde alguna ficha
   def from_ficha
-     new
+    ficha = FichaNutricionalAdulto.find(params[:ficha])
+    @paciente= ficha.paciente
+    @area= Area.find_by_nombre('Nutrición')
+    @consulta= ConsultaNutricionalAdulto.new
+    get_doctores_nutricion
   end
 
   def update
@@ -136,7 +140,7 @@ class ConsultasNutricionalesAdultosController < ApplicationController
   end
 
   def consulta_params
-  	params.require(:consulta_nutricional_adulto).permit(:ficha_nutricional_adulto_id, :doctor_id, :fecha,
+  	params.require(:consulta_nutricional_adulto).permit(:ficha_nutricional_adulto_id, :doctor_id,:paciente_id, :fecha,
   		:motivo_consulta, :actuales, :dx, :peso_actual, :peso_ideal, :peso_deseable, :talla, :biotipo,
   		:cir_muneca, :circ_brazo, :circ_cintura, :imc, :evaluacion, :medicamentos, :suplementos, :apetito,
   		:factores_apetito, :alergia_intolerancia, :cae_cabello, :estado_bucal, :orina_bien, :ir_cuerpo,

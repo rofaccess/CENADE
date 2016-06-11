@@ -1,0 +1,14 @@
+<% if !flash.notice.blank? %>
+   //Reemplaza el formulario de nueva consulta con la consulta recien creada
+   $('#con-new').html("<%= j render 'atenciones_profesionales/compartido/data_consulta', consulta: @consulta %>");
+   APP.initTabs('.tabs-content');
+
+   var n = noty({text: '<%=notice%>', type: 'success'});
+
+  //Actualiza la lista de pacientes
+  $('#datepicker-inline').trigger("changeDate");
+<% elsif !flash.alert.blank?%>
+   var n = noty({text: '<%=alert%>', type: 'error'});
+<% else%>
+
+<% end %>
