@@ -22,7 +22,7 @@
 
         <%= consult.input :paciente_id, collection: paciente.id.nil? ? [] : [[paciente.persona_full_name,paciente.id]], label: '* Paciente', wrapper_html: { class: 'col-md-4'},input_html:  { class: 'required select-paciente select2 pacienteHasNotFicha paciente-id',disabled: paciente.id.nil? ? false : true} %>
 
-        <%= consult.hidden_field :ficha_odontologica_id, value: from_ficha ? ficha : nil, class: 'ficha-id'%>
+        <%= consult.hidden_field :ficha_odontologica_id, value: from_ficha ? ficha : '', class: 'ficha-id'%>
 
         <%= consult.input :doctor_id, collection: doctores.collect { |a| [a.abr_profesion+" "+a.persona_full_name, a.id] }, label: '* Profesional de la Salud', wrapper_html: { class: 'col-md-5' }, input_html:   { class: 'required select-doctor select2'} %>
 

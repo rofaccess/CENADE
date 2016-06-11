@@ -31,14 +31,10 @@ class Consulta < ActiveRecord::Base
       FichaFonoaudiologica.find_by_paciente_id(paciente_id)
     when "Neurología"
       FichaNeurologica.find_by_paciente_id(paciente_id)
-    when "Nutrición"
-      ficha_ped = FichaNutricionalPediatrica.find_by_paciente_id(paciente_id)
-      ficha_ad = FichaNutricionalAdulto.find_by_paciente_id(paciente_id)
-      if ficha_ped.blank?
-        ficha_ad
-      else
-        ficha_ped
-      end
+    when "Nutrición Adulto"
+        FichaNutricionalAdulto.find_by_paciente_id(paciente_id)
+    when "Nutrición Pediatría"
+      FichaNutricionalPediatrica.find_by_paciente_id(paciente_id)
     when "Odontología"
       FichaOdontologica.find_by_paciente_id(paciente_id)
     when "Pediatría"
@@ -60,6 +56,6 @@ class Consulta < ActiveRecord::Base
 
 	delegate :nombre, to: :area, prefix: true, allow_nil: true
 
-   delegate :full_name, to: :doctor, prefix: true, allow_nil: true
+  delegate :full_name, to: :doctor, prefix: true, allow_nil: true
 
 end

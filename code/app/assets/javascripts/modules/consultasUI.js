@@ -14,12 +14,6 @@ var consultasUI = (function(){
       });
     },
 
-    /*No se usa*/
-    initSetFichaId: function(ficha_id){
-      $('select-paciente').on("change", function(){
-          $('ficha-id').value(ficha_id);
-      });
-    },
     /*
       Verifica si un paciente posee o no una ficha
       .paciente-id        : es la clase del elemento (input) que contiene el id del paciente
@@ -36,9 +30,6 @@ var consultasUI = (function(){
                             paciente_id: function() {
                                 return $( '.paciente-id' ).val();
                             },
-                            idd: function() {
-                                return $('.ficha-id').val();
-                            }
                         }
                     }
                 }
