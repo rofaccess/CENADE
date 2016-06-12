@@ -66,28 +66,20 @@ var turnosUI = (function(){
 		        "paging":   false,
 		        "info":     false,
 		        "searching": false,
+		        "order": [[ 0, "desc" ]],
 		        "columnDefs": [
-		            { "visible": false, "targets": 0 },
-		            { "visible": false, "targets": 7 }
+		            { "visible": false, "targets": 0 }
 	        	],
 		        "drawCallback": function ( settings ) {
 	            var api = this.api();
 	            var rows = api.rows( {page:'current'} ).nodes();
 	            var last=null;
 
+
 	            api.column(0, {page:'current'} ).data().each( function ( group, i ) {
 	                if ( last !== group ) {
 	                    $(rows).eq( i ).before(
-	                        '<tr class="group" bgcolor="#CCCCCC"><td align="center" colspan="7">'+group+'</td></tr>'
-	                    );
-
-	                    last = group;
-	                }
-	            } );
-	            api.column(7, {page:'current'} ).data().each( function ( group, i ) {
-	                if ( last !== group ) {
-	                    $(rows).eq( i ).before(
-	                        '<tr class="group" bgcolor="#EFEFEF"><td align="center" colspan="7">'+"Fecha consulta "+group+'</td></tr>'
+	                        '<tr class="group" bgcolor="#EFEFEF"><td align="center" colspan="7">'+"Turnos para la Fecha  "+group+'</td></tr>'
 	                    );
 
 	                    last = group;

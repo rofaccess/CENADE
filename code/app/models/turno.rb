@@ -20,6 +20,7 @@ class Turno < ActiveRecord::Base
   before_create :actualizar_estado
   after_update :actualizar_reporte
   before_create :actualizar_turno
+  before_create :actualizar_grupo
 
 
 	def actualizar_turno
@@ -98,6 +99,10 @@ class Turno < ActiveRecord::Base
 
   def atender
     self.update_attribute(:estado, 'atendido')
+  end
+
+  def actualizar_grupo
+    self.grupo= self.fecha_consulta.strftime("%d/%m/%Y").to_s + ' en ' + self.area_nombre.humanize.to_s
   end
 
     # Law of Demeter

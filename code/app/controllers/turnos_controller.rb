@@ -127,7 +127,7 @@ class TurnosController < ApplicationController
     end
     def get_turnos
       @search = Turno.ransack(params[:q])
-      @search.sorts = ['turno asc', 'area_id desc'] if @search.sorts.empty?
+      @search.sorts = ['fecha_consulta desc','turno asc'] if @search.sorts.empty?
       @turnos= @search.result.page(params[:page])
     end
 
