@@ -77,8 +77,11 @@
             </div>
         </div>
       </div>
-
+      <% if turno.paga %>
         <div class="row" id="factura" >
+      <% else %>
+        <div class="row" id="factura" style="display:none">
+      <%end%>
           <%= FormBuilder::text_field_v(turn, :monto,
                                       input_class: 'costo',
                                       max_length: Domain::COSTO,

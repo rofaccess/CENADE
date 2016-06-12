@@ -278,6 +278,12 @@ APP = {
         });
     },
 
+
+    /* Envía el q de ransack para que se pueda imprimir solo la lista que se esta filtrando */
+    initImprimir: function(params) {
+      $('#imprimir-link').attr('href', $('#imprimir-link').data('url') + params.replace('amp;',''));
+    },
+
     /* Ejecuta las funciones especificadas*/
     init: function() {
 		APP.initBuscador();
@@ -302,12 +308,6 @@ var delay = (function(){
         timer = setTimeout(callback, ms);
     };
 })();
-
-/* Envía el q de ransack para que se pueda imprimir solo la lista que se esta filtrando */
-//- Actualmente no esta en uso
-function configImprimir (params) {
-  $('#imprimir-link').attr('href', $('#imprimir-link').data('url') + params.replace('amp;',''));
-};
 
 /* CONFIGURACIONES POR DEFECTO PARA VENDORS */
 

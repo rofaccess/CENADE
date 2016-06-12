@@ -114,7 +114,7 @@ class PacientesController < ApplicationController
     end
 
     def print_pacientes
-    	@pacientes = Paciente.all
+    	get_pacientes
 
     	respond_to do |format|
     		format.pdf do
@@ -147,7 +147,10 @@ class PacientesController < ApplicationController
 
     def get_pacientes
     	@search = Paciente.ransack(params[:q])
-    	@pacientes= @search.result.page(params[:page])
+    	@pacientes= @search.result
+                         .includes(:persona)
+                         .order('personas.nombre')
+                         .page(params[:page])
     end
 
     def get_paciente

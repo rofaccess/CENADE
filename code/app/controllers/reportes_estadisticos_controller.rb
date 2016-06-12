@@ -20,7 +20,8 @@ class ReportesEstadisticosController < ApplicationController
   end
 
   def print_reporte_anuales
-      @reportes = ReporteEstadistico.select("reportes_estadisticos.area_id, reportes_estadisticos.doctor_id, SUM(cantidad) as cantidad_por_anho, SUM(cant_pend) as cantidad_por_aten, anho").group("reportes_estadisticos.area_id, reportes_estadisticos.doctor_id, anho")
+      get_reportes
+      #@reportes = ReporteEstadistico.select("reportes_estadisticos.area_id, reportes_estadisticos.doctor_id, SUM(cantidad) as cantidad_por_anho, SUM(cant_pend) as cantidad_por_aten, anho").group("reportes_estadisticos.area_id, reportes_estadisticos.doctor_id, anho")
 
       respond_to do |format|
         format.pdf do
@@ -39,7 +40,8 @@ class ReportesEstadisticosController < ApplicationController
     end
 
   def print_reporte_mensuales
-      @reportes = ReporteEstadistico.all
+      get_reportes_por_mes
+      #@reportes = ReporteEstadistico.all
 
       respond_to do |format|
         format.pdf do

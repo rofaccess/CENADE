@@ -2,8 +2,7 @@
 		Reporte Estadístico por Mes
 
 		<div class="tool">
-
-					<%= link_to '<i class="fa fa-print"></i> '.html_safe, reportes_estadisticos_print_reporte_mensuales_path(:format => :pdf), target: '_blank'%>
+					<%=link_to '<i class="fa fa-print" data-toggle="tooltip" title="Imprimir Reporte Mensual"></i>'.html_safe, '#', id: 'imprimir-link', target: '_blank', data: {url: reportes_estadisticos_print_reporte_mensuales_path(format: 'pdf')}	%>
 
 		</div>
 	</div>

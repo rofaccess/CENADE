@@ -1,5 +1,4 @@
 class Consulta < ActiveRecord::Base
- 	acts_as_paranoid
  	paginates_per 20
 
  	#asociaciones

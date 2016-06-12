@@ -84,10 +84,7 @@ class EmpleadosController < ApplicationController
     end
 
     def print_empleados
-  		# //- También se puede imprimir una lista filtrada, no esta implementado
-  		#@search = Empleado.ransack(params[:q])
-  		#@empleados= @search.result
-  		@empleados = Empleado.all
+  		get_empleados
 
 	    respond_to do |format|
 	      format.pdf do
@@ -110,7 +107,10 @@ class EmpleadosController < ApplicationController
 
     def get_empleados
     	@search = Empleado.ransack(params[:q])
-		@empleados= @search.result.page(params[:page])
+		  @empleados= @search.result
+                         .includes(:persona)
+                         .order('personas.nombre')
+                         .page(params[:page])
     end
 
     def check_ci

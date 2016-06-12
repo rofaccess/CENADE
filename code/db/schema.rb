@@ -862,6 +862,7 @@ ActiveRecord::Schema.define(version: 20160527060755) do
     t.integer  "monto"
     t.boolean  "paga",             null: false
     t.string   "nro_factura"
+    t.string   "grupo"
     t.integer  "turno"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false

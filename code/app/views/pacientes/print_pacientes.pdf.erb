@@ -4,6 +4,7 @@
       <th colspan="8" scope="col"> <h4 class="title">LISTA DE PACIENTES</h4></th>
     </tr>
     <tr>
+      <th>#</th>
       <th>Nombre</th>
       <th>Apellido</th>
       <th>C.I</th>
@@ -20,8 +21,11 @@
     </tfoot>
    <% end %>
   <tbody>
+    <%i=0%>
     <% @pacientes.each do |paciente| %>
+    <%i=i+1%>
     <tr>
+      <td><%=i%></td>
       <td><%=paciente.persona_nombre %></td>
       <td><%=paciente.persona_apellido %></td>
       <td><%=paciente.persona_ci %></td>
