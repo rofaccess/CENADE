@@ -23,7 +23,7 @@
 			       <option value="">Seleccione un empleado </option>
 					<%empleados.each do |empleado|%>
 						<option value="<%= empleado.id%>">
-						    <%=empleado.persona_nombre%> <%=empleado.persona_apellido%> <%=empleado.persona_ci %>
+						    <%=empleado.persona_full_name%>
 						</option>
 					<%end%>
 				</select>

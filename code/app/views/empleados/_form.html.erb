@@ -1,11 +1,11 @@
-<div class="page-title">
+<div class="page-title page-title-sin-submenu">
 		<%=empleado.id.nil? ? 'Nuevo Empleado' : 'Editar Empleado'%>
 
 		<div class="tool">
 			<%= link_to '<i class="fa fa-list" data-toggle="tooltip" title="Lista de Empleados"></i> '.html_safe, empleados_path %>
 		</div>
 	</div>
-<div class="content content-70">
+<div class="content content-sin-submenu content-70">
 <div class="form-content">
 
 	<%= form_for empleado, html: {class: 'form-empleado'} do |emplead|%>

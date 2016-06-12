@@ -1,13 +1,7 @@
 class EmpleadosController < ApplicationController
-
-	before_action :set_submenu, only: [:index,:new, :show]
 	before_action :set_empleado, only: [:show, :edit, :update, :destroy]
-	load_and_authorize_resource #Conflicto con check_ci
+	load_and_authorize_resource
 	respond_to :html, :js
-
-	def set_submenu
-		@submenu_layout = 'layouts/submenu_personal'
-	end
 
 	def index
 		get_empleados

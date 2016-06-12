@@ -46,7 +46,8 @@ class UsuariosController < ApplicationController
 			if @usuario.update(usuario_params.except(:role_id, :pass_reset))
 				UsersRole.where("user_id =?", @usuario.id).update_all({role_id: usuario_params[:role_id]})
 		        flash.now[:notice]= "Se ha actualizado el usuario #{@usuario.empleado.persona.nombre} #{@usuario.empleado.persona.apellido}."
-	    		format.html { render "show"}
+	    		set_submenu
+          format.html { render "show"}
 	    	else
 		        flash.now[:alert]  = "No se ha podido actualizar el usuario #{@usuario.empleado.persona.nombre} #{@usuario.empleado.persona.apellido}."
 		        format.html { render "edit"}
