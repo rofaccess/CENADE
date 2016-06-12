@@ -21,15 +21,38 @@ var turnosUI = (function(){
 		},
 
 		selectControl: function(){
-      pacientesUI.initBuscarPaciente('.select-paciente');
+		      pacientesUI.initBuscarPaciente('.select-paciente');
 
-      pacientesUI.getPaciente({element: '.select-paciente', root: 'turnos'});
+		      pacientesUI.getPaciente({element: '.select-paciente', root: 'turnos'});
 
-      APP.initSelect2({element: '.profesional_select', placeholder: 'Seleccione un Profesional'});
+		      APP.initSelect2({element: '.select_doctor', placeholder: 'Seleccione un Profesional'});
 
-      APP.initSelect2({element: '.area_select', placeholder: 'Seleccione un Área'});
 
-		},
+		      $(".area_select").select2({
+                placeholder: "Seleccione un Área",
+                theme: "bootstrap",
+                language: "es"
+
+                }).on('change', function () {
+                    $(this).valid();
+                    id_area = $(this).val();
+
+                    $.ajax({
+
+                      url: "/turnos/recarga_doctores",
+                      type: 'get',
+                      data: {
+                       id_area : $(this).val()
+                      },
+                      success: function(resp){
+                          //alert("Data");
+                       }
+
+                     });
+                });
+
+
+				},
 
 		mostrarNroFactura: function(){
 			$(".paga").on("change", function(){

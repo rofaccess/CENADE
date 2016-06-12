@@ -103,6 +103,10 @@ class Turno < ActiveRecord::Base
     # Law of Demeter
     delegate :nombre, to: :area, prefix: true, allow_nil: true
 
+
+    delegate :persona_nombre, :persona_apellido, :persona_full_name, :abr_profesion,:full_name, to: :doctor, prefix: true, allow_nil: true
+
+
     delegate :persona_full_name,:persona_ci,:persona_nombre,:persona_apellido,
              :persona_direccion,:persona_telefono, to: :paciente, prefix: true, allow_nil: true
 end

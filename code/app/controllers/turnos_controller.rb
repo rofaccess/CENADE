@@ -98,6 +98,12 @@ class TurnosController < ApplicationController
 
   end
 
+  #recarga la lista de profesionales segun el area
+   def recarga_doctores
+    @area= Area.find(params[:id_area])
+
+  end
+
   def update_profesional
     @area= Area.find(params[:id])
     render update_profesional, format: :js
