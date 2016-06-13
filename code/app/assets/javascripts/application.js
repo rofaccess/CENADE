@@ -104,6 +104,7 @@ APP = {
             orientation: "bottom",
             todayHighlight: true,
             todayBtn: true,
+            startDate: new Date(1900,01,01),
             }).on('change', function() {
                 /* Sin lo siguiente, no desaparecen los mensajes de error la primera vez que se selecciona una fecha */
                 $(this).valid();

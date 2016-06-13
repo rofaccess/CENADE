@@ -28,6 +28,10 @@ var atencionesProfesionalesUI = (function(){
 function initDatepickerInline(){
   $('#datepicker-inline').datepicker({
     language: "es",
+    todayHighlight: true,
+    todayBtn: true,
+    startDate: new Date(1900,01,01),
+    title: 'Fecha de Consulta',
   });
 }
 

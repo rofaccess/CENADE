@@ -2,6 +2,7 @@ class PacientesController < ApplicationController
 
 	before_action :set_paciente, only: [:show, :edit, :update, :destroy]
 	load_and_authorize_resource
+  skip_load_resource :only => [:buscar]
 	respond_to :html, :js
 
 	def index
