@@ -14,17 +14,17 @@
       <h4>Datos Personales</h4>
       <hr>
       <div class="row">
-        <div class="col-md-7 error-especial">
+        <div class="col-xs-7 error-especial">
 
 
           <%= turn.label :paciente_id, '* Paciente' %>
           <div class="row">
-            <div class="col-md-10 form-group">
+            <div class="col-xs-10 form-group">
 
             <%= turn.select(:paciente_id, [],{},{class: "select-paciente form-control select2", required: true,  id: 'paciente_id'})%>
           </div>
 
-            <%= link_to '<i class="fa fa-plus" data-toggle="tooltip" data-placement="bottom" title="Nuevo Paciente"></i> '.html_safe, pacientes_new_modal_path(root: 'turnos', encargado: false), class: 'btn btn-custom col-md-1', style: 'height: 30px; width: 40px', remote: true%>
+            <%= link_to '<i class="fa fa-plus" data-toggle="tooltip" data-placement="bottom" title="Nuevo Paciente"></i> '.html_safe, pacientes_new_modal_path(root: 'turnos', encargado: false), class: 'btn btn-custom col-xs-1', style: 'height: 30px; width: 40px', remote: true%>
 
 
         </div>
@@ -34,7 +34,7 @@
                                       input_class: 'date datepicker required dateLessSystemDate',
                                       max_length: Domain::FECHA,
                                       label_text: '* Fecha Actual',
-                                      col_class: 'col-md-5')%>
+                                      col_class: 'col-xs-5')%>
 
        </div>
 
@@ -46,7 +46,7 @@
     <hr>
 
     <div class="row">
-      <div class="col-md-4 form-group">
+      <div class="col-xs-4 form-group">
 
         <%= turn.label :area_id, '* Área a consultar' %>
 
@@ -54,7 +54,7 @@
 
       </div>
 
-      <div class="col-md-4 form-group">
+      <div class="col-xs-4 form-group">
 
         <%= turn.label :doctor_id, '* Profesional de la Salud' %>
 
@@ -66,21 +66,21 @@
                                       input_class: 'required date datepicker2 ',
                                       max_length: Domain::FECHA,
                                       label_text: '* Fecha de Consulta',
-                                      col_class: 'col-md-4')%>
+                                      col_class: 'col-xs-4')%>
     </div>
   </br>
       <div class="row">
 
 
-           <div class="col-md-5">
+           <div class="col-xs-5">
 
             <%= turn.label :paga, '* Abonará el monto estipulado?' %>
 
             <div class="row">
-              <%= label :paga, "Si", class: "col-md-1"%>
-              <%= turn.radio_button :paga, true , :value => true, class: "col-md-3 paga si_paga"%>
-              <%= label :paga, "No", class: "col-md-2"%>
-              <%= turn.radio_button :paga, false , :checked => true, :value => false, class: "col-md-1 paga no_paga" %>
+              <%= label :paga, "Si", class: "col-xs-1"%>
+              <%= turn.radio_button :paga, true , :value => true, class: "col-xs-3 paga si_paga"%>
+              <%= label :paga, "No", class: "col-xs-2"%>
+              <%= turn.radio_button :paga, false , :checked => true, :value => false, class: "col-xs-1 paga no_paga" %>
 
             </div>
         </div>
@@ -90,12 +90,12 @@
                                       input_class: 'required costo',
                                       max_length: Domain::COSTO,
                                       label_text: '* Costo del servicio',
-                                      col_class: 'col-md-6')%>
+                                      col_class: 'col-xs-6')%>
         <%= FormBuilder::text_field_v(turn, :nro_factura,
                                       input_class: '',
                                       max_length: Domain::NRO_FACTURA,
                                       label_text: 'N° de Factura',
-                                      col_class: 'col-md-6')%>
+                                      col_class: 'col-xs-6')%>
 
        </div>
 

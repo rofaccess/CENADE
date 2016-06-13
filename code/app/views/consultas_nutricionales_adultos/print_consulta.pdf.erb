@@ -3,29 +3,29 @@
 <h4>I- Datos Personales</h4>
 <hr>
 <div class="row">
-	<div class="form-group col-md-8">
+	<div class="form-group col-xs-8">
 		<label class="control-label">Nombre y Apellido:</label>
 		<div class="data"> <%=@consulta.ficha_nutricional_adulto.paciente_persona_full_name%> </div>
 	</div>
 
-	<div class="form-group col-md-3">
+	<div class="form-group col-xs-3">
 		<label class="control-label">Fecha de nac.:</label>
 		<div class="data"> <%=Formatter.format_date(@consulta.ficha_nutricional_adulto.paciente_persona_fecha_nacimiento)%> </div>
 	</div>
 
-	<div class="form-group col-md-1">
+	<div class="form-group col-xs-1">
 		<label class="control-label">Edad:</label>
 		<div class="data"> <%=@consulta.ficha_nutricional_adulto.paciente_persona_edad%> </div>
 	</div>
 </div>
 <div class="row">
 
-	<div class="form-group col-md-3">
+	<div class="form-group col-xs-3">
 		<label class="control-label">Tel.:</label>
 		<div class="data"> <%=@consulta.ficha_nutricional_adulto.paciente_persona_telefono%> </div>
 	</div>
 
-	<div class="form-group col-md-9">
+	<div class="form-group col-xs-9">
 		<label class="control-label">Dirección:</label>
 		<div class="data"> <%=@consulta.ficha_nutricional_adulto.paciente_persona_direccion%> </div>
 	</div>
@@ -34,7 +34,7 @@
 
 <h4>II- Datos de la Consulta</h4>
 <hr>
-<div class="form-group col-md-12">
+<div class="form-group col-xs-12">
 	<label class="control-label">Motivo de Consulta</label>
 	<div class="data-bordered"> <%=@consulta.motivo_consulta%> </div>
 </div></br>
@@ -42,49 +42,49 @@
 <h4>III- Datos Antropométricos</h4>
 <hr>
 <div class="row">
-	<div class="form-group col-md-4">
+	<div class="form-group col-xs-4">
 		<label class="control-label">Peso actual:</label>
 		<div class="data"> <%=@consulta.peso_actual%> </div>
 	</div>
 
-	<div class="form-group col-md-4">
+	<div class="form-group col-xs-4">
 		<label class="control-label">Peso ideal:</label>
 		<div class="data"> <%= @consulta.peso_ideal%> </div>
 	</div>
 
-	<div class="form-group col-md-4">
+	<div class="form-group col-xs-4">
 		<label class="control-label">Peso deseable:</label>
 		<div class="data"> <%=@consulta.peso_deseable%> </div>
 	</div>
 </div>
 <div class="row">
-	<div class="form-group col-md-4">
+	<div class="form-group col-xs-4">
 		<label class="control-label">Talla:</label>
 		<div class="data"> <%=@consulta.talla%> </div>
 	</div>
 
-	<div class="form-group col-md-4">
+	<div class="form-group col-xs-4">
 		<label class="control-label">Biotipo:</label>
 		<div class="data"> <%= @consulta.biotipo%> </div>
 	</div>
 
-	<div class="form-group col-md-4">
+	<div class="form-group col-xs-4">
 		<label class="control-label">I.M.C:</label>
 		<div class="data"> <%=@consulta.imc%> </div>
 	</div>
 </div>
 <div class="row">
-	<div class="form-group col-md-4">
+	<div class="form-group col-xs-4">
 		<label class="control-label">Circ. Muñeca:</label>
 		<div class="data"> <%=@consulta.cir_muneca%> </div>
 	</div>
 
-	<div class="form-group col-md-4">
+	<div class="form-group col-xs-4">
 		<label class="control-label">Circ. Brazo:</label>
 		<div class="data"> <%= @consulta.circ_brazo%> </div>
 	</div>
 
-	<div class="form-group col-md-4">
+	<div class="form-group col-xs-4">
 		<label class="control-label">Circ. Cintura/Cadera:</label>
 		<div class="data"> <%=@consulta.circ_cintura%> </div>
 	</div>
@@ -93,144 +93,144 @@
 <h4>IV- Anamnesis Alimentaria</h4>
 <hr>
 <div class="row">
-	<div class="form-group col-md-5">
+	<div class="form-group col-xs-5">
 		<label class="control-label">Toma medicamentos?</label>
 		<div class="data"> <%=@consulta.medicamentos%> </div>
 	</div>
 
-	<div class="form-group col-md-7">
+	<div class="form-group col-xs-7">
 		<label class="control-label">Toma suplementos vitaminicos/minerales?</label>
 		<div class="data"> <%= @consulta.suplementos%> </div>
 	</div>
 </div>
 <div class="row">
-	<div class="form-group col-md-3">
+	<div class="form-group col-xs-3">
 		<label class="control-label">Su apetito es:</label>
 		<div class="data"> <%=@consulta.apetito%> </div>
 	</div>
 
-	<div class="form-group col-md-9">
+	<div class="form-group col-xs-9">
 		<label class="control-label">Factores que afectan el apetito:</label>
 		<div class="data"> <%= @consulta.factores_apetito%> </div>
 	</div>
 </div>
 <div class="row">
-	<div class="form-group col-md-12">
+	<div class="form-group col-xs-12">
 		<label class="control-label">Tiene alergia o intolerancia a algún alimento?</label>
 		<div class="data"> <%=@consulta.alergia_intolerancia%> </div>
 	</div>
 </div>
 <div class="row">
-	<div class="form-group col-md-12">
+	<div class="form-group col-xs-12">
 		<label class="control-label">Estado bucal (dientes, lengua, paladar)</label>
 		<div class="data-bordered"> <%=@consulta.estado_bucal%> </div>
 	</div>
 </div>
 <div class="row">
-	<div class="form-group col-md-3">
+	<div class="form-group col-xs-3">
 		<label class="control-label">Orina bien ?</label>
 		<div class="data"> <%=@consulta.orina_bien%> </div>
 	</div>
 
-	<div class="form-group col-md-9">
+	<div class="form-group col-xs-9">
 		<label class="control-label">Va bien de cuerpo ?</label>
 		<div class="data"> <%= @consulta.ir_cuerpo%> </div>
 	</div>
 </div>
 <% if @consulta.actividades_fisicas %>
 	<div class="row">
-		<div class="form-group col-md-3">
+		<div class="form-group col-xs-3">
 			<label class="control-label">Realiza actividades físicas?</label>
 			<div class="data">Sí</div>
 		</div>
 	</div>
 
 	<div class="row">
-		<div class="form-group col-md-5">
+		<div class="form-group col-xs-5">
 			<label class="control-label">Tipos</label>
 			<div class="data"><%= @consulta.tipo%> </div>
 		</div>
-		<div class="form-group col-md-3">
+		<div class="form-group col-xs-3">
 			<label class="control-label">Horas</label>
 			<div class="data"><%= @consulta.hs_act_fisicas%> </div>
 		</div>
-		<div class="form-group col-md-4">
+		<div class="form-group col-xs-4">
 			<label class="control-label">Frecuencias</label>
 			<div class="data"><%= @consulta.frecuencia%> </div>
 		</div>
 	</div>
 <%else%>
 	<div class="row">
-		<div class="form-group col-md-3">
+		<div class="form-group col-xs-3">
 			<label class="control-label">Realiza actividades físicas?</label>
 			<div class="data">No</div>
 		</div>
 	</div>
 <%end%>
 <div class="row">
-	<div class="form-group col-md-5">
+	<div class="form-group col-xs-5">
 		<label class="control-label">Actividad Laboral</label>
 		<div class="data"><%= @consulta.actividad_laboral%> </div>
 	</div>
-	<div class="form-group col-md-3">
+	<div class="form-group col-xs-3">
 		<label class="control-label">Horas</label>
 		<div class="data"><%= @consulta.horas_laborales%> </div>
 	</div>
 </div>
 <div class="row">
-	<div class="form-group col-md-4">
+	<div class="form-group col-xs-4">
 		<label class="control-label">Vive con su familia?</label>
 		<div class="data"><%= @consulta.vive_con%> </div>
 	</div>
-	<div class="form-group col-md-8">
+	<div class="form-group col-xs-8">
 		<label class="control-label">Quién prepara los alimentos?</label>
 		<div class="data"><%= @consulta.quien_prepara%> </div>
 	</div>
 </div>
 <div class="row">
-	<div class="form-group col-md-12">
+	<div class="form-group col-xs-12">
 		<label class="control-label">Qué elementos cuenta para cocinar?</label>
 		<div class="data"><%= @consulta.que_elementos%> </div>
 	</div>
 </div>
 <div class="row">
-	<div class="form-group col-md-12">
+	<div class="form-group col-xs-12">
 		<label class="control-label">Cuántos litros de agua bebe?</label>
 		<div class="data"><%= @consulta.toma_agua%> </div>
 	</div>
 </div>
 <div class="row">
-	<div class="form-group col-md-4">
+	<div class="form-group col-xs-4">
 		<label class="control-label">Mastica - Deglute</label>
 		<div class="data"><%= @consulta.mastica_deglute%> </div>
 	</div>
-	<div class="form-group col-md-8">
+	<div class="form-group col-xs-8">
 		<label class="control-label">Dificultad para beber o absorber?</label>
 		<div class="data"><%= @consulta.dificultad_beber%> </div>
 	</div>
 </div>
 <div class="row">
-	<div class="form-group col-md-4">
+	<div class="form-group col-xs-4">
 		<label class="control-label">A qué hora se acuesta?</label>
 		<div class="data"><%= @consulta.hora_acuesta%> </div>
 	</div>
-	<div class="form-group col-md-4">
+	<div class="form-group col-xs-4">
 		<label class="control-label">A qué hora se levanta?</label>
 		<div class="data"><%= @consulta.hora_levanta%> </div>
 	</div>
-	<div class="form-group col-md-4">
+	<div class="form-group col-xs-4">
 		<label class="control-label">Duerme bien?</label>
 		<div class="data"><%= @consulta.duerme_bien%> </div>
 	</div>
 </div>
 <div class="row">
-	<div class="form-group col-md-12">
+	<div class="form-group col-xs-12">
 		<label class="control-label">Habilidades presentes o ausentes:</label>
 		<div class="data"><%= @consulta.habilidades%> </div>
 	</div>
 </div>
 <div class="row">
-	<div class="form-group col-md-12">
+	<div class="form-group col-xs-12">
 		<label class="control-label">Tratamientos que realiza dentro del CENADE con otros especialistas:</label>
 		<div class="data"><%= @consulta.tratamientos_cenade%> </div>
 	</div>
@@ -245,21 +245,21 @@
 			<h4 align= "center">Desayuno</h4>
 			<hr>
 			<div class="row">
-				<div class="form-group col-md-10">
+				<div class="form-group col-xs-10">
 					<label class="control-label">Alimentos Consumido:</label>
 					<div class="data-bordered"><%= @consulta.alim_desayuno%> </div>
 				</div>
-				<div class="form-group col-md-2">
+				<div class="form-group col-xs-2">
 					<label class="control-label">Cantidad:</label>
 					<div class="data-bordered"><%= @consulta.cant_desayuno%> </div>
 				</div>
 			</div>
 			<div class="row">
-				<div class="form-group col-md-7">
+				<div class="form-group col-xs-7">
 					<label class="control-label">Modo de prepación:</label>
 					<div class="data-bordered"><%= @consulta.modo_desayuno%> </div>
 				</div>
-				<div class="form-group col-md-5">
+				<div class="form-group col-xs-5">
 					<label class="control-label">Lugar de consumo:</label>
 					<div class="data-bordered"><%= @consulta.lugar_desayuno%> </div>
 				</div>
@@ -268,21 +268,21 @@
 			<h4 align= "center">Media Mañana</h4>
 			<hr>
 			<div class="row">
-				<div class="form-group col-md-10">
+				<div class="form-group col-xs-10">
 					<label class="control-label">Alimentos Consumido:</label>
 					<div class="data-bordered"><%= @consulta.alim_media%> </div>
 				</div>
-				<div class="form-group col-md-2">
+				<div class="form-group col-xs-2">
 					<label class="control-label">Cantidad:</label>
 					<div class="data-bordered"><%= @consulta.cant_media%> </div>
 				</div>
 			</div>
 			<div class="row">
-				<div class="form-group col-md-7">
+				<div class="form-group col-xs-7">
 					<label class="control-label">Modo de prepación:</label>
 					<div class="data-bordered"><%= @consulta.modo_media%> </div>
 				</div>
-				<div class="form-group col-md-5">
+				<div class="form-group col-xs-5">
 					<label class="control-label">Lugar de consumo:</label>
 					<div class="data-bordered"><%= @consulta.lugar_media%> </div>
 				</div>
@@ -292,21 +292,21 @@
 			<h4 align= "center">Almuerzo</h4>
 			<hr>
 			<div class="row">
-				<div class="form-group col-md-10">
+				<div class="form-group col-xs-10">
 					<label class="control-label">Alimentos Consumido:</label>
 					<div class="data-bordered"><%= @consulta.alim_almuerzo%> </div>
 				</div>
-				<div class="form-group col-md-2">
+				<div class="form-group col-xs-2">
 					<label class="control-label">Cantidad:</label>
 					<div class="data-bordered"><%= @consulta.cant_almuerzo%> </div>
 				</div>
 			</div>
 			<div class="row">
-				<div class="form-group col-md-7">
+				<div class="form-group col-xs-7">
 					<label class="control-label">Modo de prepación:</label>
 					<div class="data-bordered"><%= @consulta.modo_almuerzo%> </div>
 				</div>
-				<div class="form-group col-md-5">
+				<div class="form-group col-xs-5">
 					<label class="control-label">Lugar de consumo:</label>
 					<div class="data-bordered"><%= @consulta.lugar_almuerzo%> </div>
 				</div>
@@ -316,21 +316,21 @@
 			<h4 align= "center">Merienda</h4>
 			<hr>
 			<div class="row">
-				<div class="form-group col-md-10">
+				<div class="form-group col-xs-10">
 					<label class="control-label">Alimentos Consumido:</label>
 					<div class="data-bordered"><%= @consulta.alim_merienda%> </div>
 				</div>
-				<div class="form-group col-md-2">
+				<div class="form-group col-xs-2">
 					<label class="control-label">Cantidad:</label>
 					<div class="data-bordered"><%= @consulta.cant_merienda%> </div>
 				</div>
 			</div>
 			<div class="row">
-				<div class="form-group col-md-7">
+				<div class="form-group col-xs-7">
 					<label class="control-label">Modo de prepación:</label>
 					<div class="data-bordered"><%= @consulta.modo_merienda%> </div>
 				</div>
-				<div class="form-group col-md-5">
+				<div class="form-group col-xs-5">
 					<label class="control-label">Lugar de consumo:</label>
 					<div class="data-bordered"><%= @consulta.lugar_merienda%> </div>
 				</div>
@@ -340,21 +340,21 @@
 			<h4 align= "center">Cena</h4>
 			<hr>
 			<div class="row">
-				<div class="form-group col-md-10">
+				<div class="form-group col-xs-10">
 					<label class="control-label">Alimentos Consumido:</label>
 					<div class="data-bordered"><%= @consulta.alim_cena%> </div>
 				</div>
-				<div class="form-group col-md-2">
+				<div class="form-group col-xs-2">
 					<label class="control-label">Cantidad:</label>
 					<div class="data-bordered"><%= @consulta.cant_cena%> </div>
 				</div>
 			</div>
 			<div class="row">
-				<div class="form-group col-md-7">
+				<div class="form-group col-xs-7">
 					<label class="control-label">Modo de prepación:</label>
 					<div class="data-bordered"><%= @consulta.modo_cena%> </div>
 				</div>
-				<div class="form-group col-md-5">
+				<div class="form-group col-xs-5">
 					<label class="control-label">Lugar de consumo:</label>
 					<div class="data-bordered"><%= @consulta.lugar_cena%> </div>
 				</div>
@@ -366,21 +366,21 @@
 <h4>VI- Diagnóstico Médico</h4>
 <hr>
 <div class="row">
-	<div class="form-group col-md-12">
+	<div class="form-group col-xs-12">
 		<div class="data-bordered"><%= @consulta.dx%> </div>
 	</div>
 </div></br>
 <h4>VII- Evaluación Nutricional</h4>
 <hr>
 <div class="row">
-	<div class="form-group col-md-12">
+	<div class="form-group col-xs-12">
 		<div class="data-bordered"><%= @consulta.evaluacion%> </div>
 	</div>
 </div></br>
 <h4>VIII- Indicaciones</h4>
 <hr>
 <div class="row">
-	<div class="form-group col-md-12">
+	<div class="form-group col-xs-12">
 		<div class="data-bordered"><%= @consulta.indicaciones%> </div>
 	</div>
 </div></br>

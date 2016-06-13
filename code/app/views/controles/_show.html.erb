@@ -15,9 +15,9 @@
 
       <h4 align= "center">Control de <%= paciente.persona_full_name%></h4></br>
       <div class="row">
-          <h4 class="col-md-9"><strong>Profesional de la Salud: </strong> <%= control.doctor_abr_profesion+' '+control.doctor_persona_full_name%> </h4>
+          <h4 class="col-xs-9"><strong>Profesional de la Salud: </strong> <%= control.doctor_abr_profesion+' '+control.doctor_persona_full_name%> </h4>
 
-          <h4 class="col-md-3"><strong> Fecha: </strong> <%= Formatter.format_date(control.fecha)%> </h4>
+          <h4 class="col-xs-3"><strong> Fecha: </strong> <%= Formatter.format_date(control.fecha)%> </h4>
         </div>
 
       <h4>Datos de Control</h4>
@@ -25,11 +25,11 @@
 
       <div class="row">
 
-        <%= cont.input :tratamiento, as: :text, label: 'Tratamiento', wrapper_html: { class: 'col-md-12'}, input_html: { disabled: true, rows: "3"} %>
+        <%= cont.input :tratamiento, as: :text, label: 'Tratamiento', wrapper_html: { class: 'col-xs-12'}, input_html: { disabled: true, rows: "3"} %>
       </div>
 
       <div class="row">
-         <%= cont.input :observaciones, as: :text, label: 'Observaciones', wrapper_html: { class: 'col-md-12'}, input_html: { disabled: true, rows: "2"} %>
+         <%= cont.input :observaciones, as: :text, label: 'Observaciones', wrapper_html: { class: 'col-xs-12'}, input_html: { disabled: true, rows: "2"} %>
       </div>
 
     <% end %>

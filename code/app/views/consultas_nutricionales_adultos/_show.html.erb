@@ -20,9 +20,9 @@
 			<h4 class="titulo-ficha">Consulta en Nutrición Adulto</h4>
 
 		    <div class="row">
-		      <h4 class="col-md-9"><strong>Profesional de la Salud: </strong> <%= consulta.doctor_abr_profesion+' '+consulta.doctor_persona_full_name%> </h4>
+		      <h4 class="col-xs-9"><strong>Profesional de la Salud: </strong> <%= consulta.doctor_abr_profesion+' '+consulta.doctor_persona_full_name%> </h4>
 
-		      <h4 class="col-md-3"><strong> Fecha: </strong> <%= Formatter.format_date(consulta.fecha)%> </h4>
+		      <h4 class="col-xs-3"><strong> Fecha: </strong> <%= Formatter.format_date(consulta.fecha)%> </h4>
 		    </div>
 
 			<div id="paciente-data">
@@ -32,90 +32,90 @@
 			<h4>II- Datos de la Consulta</h4>
 			<hr>
 			<div class="row">
-				<%= consult.input :motivo_consulta, as: :text, label: 'Motivo de Consulta', wrapper_html: { class: 'col-md-12'},input_html: { disabled: true} %>
+				<%= consult.input :motivo_consulta, as: :text, label: 'Motivo de Consulta', wrapper_html: { class: 'col-xs-12'},input_html: { disabled: true} %>
 			</div></br>
 
 			<h4>III- Datos Antropométricos</h4>
 			<hr>
 			<div class="row">
-				<%= consult.input :peso_actual, label: 'Peso Actual:', wrapper_html: { class: 'col-md-4'},input_html: {disabled: true} %>
-				<%= consult.input :peso_ideal, label: 'Peso ideal:', wrapper_html: { class: 'col-md-4'},input_html: {disabled: true} %>
-				<%= consult.input :peso_deseable, label: 'Peso deseable:', wrapper_html: { class: 'col-md-4'},input_html: {disabled: true} %>
+				<%= consult.input :peso_actual, label: 'Peso Actual:', wrapper_html: { class: 'col-xs-4'},input_html: {disabled: true} %>
+				<%= consult.input :peso_ideal, label: 'Peso ideal:', wrapper_html: { class: 'col-xs-4'},input_html: {disabled: true} %>
+				<%= consult.input :peso_deseable, label: 'Peso deseable:', wrapper_html: { class: 'col-xs-4'},input_html: {disabled: true} %>
 			</div>
 			<div class="row">
-				<%= consult.input :talla, label: 'Talla:', wrapper_html: { class: 'col-md-4'},input_html: {disabled: true} %>
-				<%= consult.input :biotipo, label: 'Biotipo:', wrapper_html: { class: 'col-md-4'},input_html: {disabled: true} %>
-				<%= consult.input :imc, label: 'I.M.C:', wrapper_html: { class: 'col-md-4'},input_html: {disabled: true} %>
+				<%= consult.input :talla, label: 'Talla:', wrapper_html: { class: 'col-xs-4'},input_html: {disabled: true} %>
+				<%= consult.input :biotipo, label: 'Biotipo:', wrapper_html: { class: 'col-xs-4'},input_html: {disabled: true} %>
+				<%= consult.input :imc, label: 'I.M.C:', wrapper_html: { class: 'col-xs-4'},input_html: {disabled: true} %>
 			</div>
 
 			<div class="row">
-				<%= consult.input :cir_muneca, label: 'Circ. Muñeca:', wrapper_html: { class: 'col-md-4'},input_html: {disabled: true} %>
-				<%= consult.input :circ_brazo, label: 'Circ. Brazo:', wrapper_html: { class: 'col-md-4'},input_html: {disabled: true} %>
-				<%= consult.input :circ_cintura, label: 'Circ. Cintura/Cadera:', wrapper_html: { class: 'col-md-4'},input_html: {disabled: true} %>
+				<%= consult.input :cir_muneca, label: 'Circ. Muñeca:', wrapper_html: { class: 'col-xs-4'},input_html: {disabled: true} %>
+				<%= consult.input :circ_brazo, label: 'Circ. Brazo:', wrapper_html: { class: 'col-xs-4'},input_html: {disabled: true} %>
+				<%= consult.input :circ_cintura, label: 'Circ. Cintura/Cadera:', wrapper_html: { class: 'col-xs-4'},input_html: {disabled: true} %>
 			</div> </br>
 
 			<h4>IV- Anamnesis Alimentaria</h4>
 			<hr>
 			<div class="row">
-				<%= consult.input :medicamentos, label: 'Toma medicamentos?', wrapper_html: { class: 'col-md-5'},input_html: {disabled: true} %>
-				<%= consult.input :suplementos, label: 'Toma suplementos vitaminicos/minerales?:', wrapper_html: { class: 'col-md-7'},input_html: { disabled: true} %>
+				<%= consult.input :medicamentos, label: 'Toma medicamentos?', wrapper_html: { class: 'col-xs-5'},input_html: {disabled: true} %>
+				<%= consult.input :suplementos, label: 'Toma suplementos vitaminicos/minerales?:', wrapper_html: { class: 'col-xs-7'},input_html: { disabled: true} %>
 			</div>
 			<div class="row">
-				<%= consult.input :apetito, label: 'Su apetito es:', wrapper_html: { class: 'col-md-3'},input_html: {disabled: true} %>
-				<%= consult.input :factores_apetito, label: 'Factores que afectan el apetito:', wrapper_html: { class: 'col-md-9'},input_html: { disabled: true} %>
+				<%= consult.input :apetito, label: 'Su apetito es:', wrapper_html: { class: 'col-xs-3'},input_html: {disabled: true} %>
+				<%= consult.input :factores_apetito, label: 'Factores que afectan el apetito:', wrapper_html: { class: 'col-xs-9'},input_html: { disabled: true} %>
 			</div>
 			<div class="row">
-				<%= consult.input :alergia_intolerancia, label: 'Tiene alergia o intolerancia a algún alimento?', wrapper_html: { class: 'col-md-12'},input_html: { disabled: true} %>
+				<%= consult.input :alergia_intolerancia, label: 'Tiene alergia o intolerancia a algún alimento?', wrapper_html: { class: 'col-xs-12'},input_html: { disabled: true} %>
 			</div>
 			<div class="row">
-				<%= consult.input :estado_bucal, as: :text, label: 'Estado bucal (dientes, lengua, paladar)', wrapper_html: { class: 'col-md-12'},input_html: {:rows => 2, disabled: true} %>
+				<%= consult.input :estado_bucal, as: :text, label: 'Estado bucal (dientes, lengua, paladar)', wrapper_html: { class: 'col-xs-12'},input_html: {:rows => 2, disabled: true} %>
 			</div>
 			<div class="row">
-				<%= consult.input :orina_bien, label: 'Orina bien ?', wrapper_html: { class: 'col-md-3'},input_html: { disabled: true} %>
-				<%= consult.input :ir_cuerpo, label: 'Va bien de cuerpo ?', wrapper_html: { class: 'col-md-9'},input_html: { disabled: true} %>
+				<%= consult.input :orina_bien, label: 'Orina bien ?', wrapper_html: { class: 'col-xs-3'},input_html: { disabled: true} %>
+				<%= consult.input :ir_cuerpo, label: 'Va bien de cuerpo ?', wrapper_html: { class: 'col-xs-9'},input_html: { disabled: true} %>
 			</div>
 			<% if consulta.actividades_fisicas %>
 				<div class="row">
-					<%= consult.input :actividades_fisicas, as: :string, label: 'Realiza actividades físicas?', wrapper_html: { class: 'col-md-4'}, input_html: { disabled: true, value: 'Sí'} %>
+					<%= consult.input :actividades_fisicas, as: :string, label: 'Realiza actividades físicas?', wrapper_html: { class: 'col-xs-4'}, input_html: { disabled: true, value: 'Sí'} %>
 				</div>
 				<div class="row">
-					<%= consult.input :tipo, label: 'Tipos', wrapper_html: { class: 'col-md-5'},input_html: {disabled: true} %>
-					<%= consult.input :hs_act_fisicas, label: 'Horas', wrapper_html: { class: 'col-md-3'},input_html: {disabled: true} %>
-					<%= consult.input :frecuencia, label: 'Frecuencias', wrapper_html: { class: 'col-md-4'},input_html: {disabled: true} %>
+					<%= consult.input :tipo, label: 'Tipos', wrapper_html: { class: 'col-xs-5'},input_html: {disabled: true} %>
+					<%= consult.input :hs_act_fisicas, label: 'Horas', wrapper_html: { class: 'col-xs-3'},input_html: {disabled: true} %>
+					<%= consult.input :frecuencia, label: 'Frecuencias', wrapper_html: { class: 'col-xs-4'},input_html: {disabled: true} %>
 				</div>
 			<%else%>
 				<div class="row">
-					<%= consult.input :actividades_fisicas, as: :string, label: 'Realiza actividades físicas?',wrapper_html: { class: 'col-md-4'}, input_html: { disabled: true, value: 'No'} %>
+					<%= consult.input :actividades_fisicas, as: :string, label: 'Realiza actividades físicas?',wrapper_html: { class: 'col-xs-4'}, input_html: { disabled: true, value: 'No'} %>
 				</div>
 			<%end%>
 			<div class="row">
-				<%= consult.input :actividad_laboral, label: 'Actividad Laboral:', wrapper_html: { class: 'col-md-9'},input_html: {disabled: true} %>
-				<%= consult.input :horas_laborales, label: 'Horas', wrapper_html: { class: 'col-md-3'},input_html: {disabled: true} %>
+				<%= consult.input :actividad_laboral, label: 'Actividad Laboral:', wrapper_html: { class: 'col-xs-9'},input_html: {disabled: true} %>
+				<%= consult.input :horas_laborales, label: 'Horas', wrapper_html: { class: 'col-xs-3'},input_html: {disabled: true} %>
 			</div>
 			<div class="row">
-				<%= consult.input :vive_con, label: 'Vive con su familia?', wrapper_html: { class: 'col-md-4'},input_html: {disabled: true} %>
-				<%= consult.input :quien_prepara, label: 'Quién prepara los alimentos?', wrapper_html: { class: 'col-md-8'},input_html: {disabled: true} %>
+				<%= consult.input :vive_con, label: 'Vive con su familia?', wrapper_html: { class: 'col-xs-4'},input_html: {disabled: true} %>
+				<%= consult.input :quien_prepara, label: 'Quién prepara los alimentos?', wrapper_html: { class: 'col-xs-8'},input_html: {disabled: true} %>
 			</div>
 			<div class="row">
-				<%= consult.input :que_elementos, label: 'Qué elementos cuenta para cocinar?', wrapper_html: { class: 'col-md-12'},input_html: {disabled: true} %>
+				<%= consult.input :que_elementos, label: 'Qué elementos cuenta para cocinar?', wrapper_html: { class: 'col-xs-12'},input_html: {disabled: true} %>
 			</div>
 			<div class="row">
-				<%= consult.input :toma_agua, label: 'Cuántos litros de agua bebe?', wrapper_html: { class: 'col-md-12'},input_html: {disabled: true} %>
+				<%= consult.input :toma_agua, label: 'Cuántos litros de agua bebe?', wrapper_html: { class: 'col-xs-12'},input_html: {disabled: true} %>
 			</div>
 			<div class="row">
-				<%= consult.input :mastica_deglute, label: 'Mastica - Deglute', wrapper_html: { class: 'col-md-4'},input_html: { disabled: true} %>
-				<%= consult.input :dificultad_beber, label: 'Dificultad para beber o absorber?', wrapper_html: { class: 'col-md-8'},input_html: {disabled: true} %>
+				<%= consult.input :mastica_deglute, label: 'Mastica - Deglute', wrapper_html: { class: 'col-xs-4'},input_html: { disabled: true} %>
+				<%= consult.input :dificultad_beber, label: 'Dificultad para beber o absorber?', wrapper_html: { class: 'col-xs-8'},input_html: {disabled: true} %>
 			</div>
 			<div class="row">
-				<%= consult.input :hora_acuesta, label: 'A qué hora se acuesta?', wrapper_html: { class: 'col-md-4'},input_html: {disabled: true} %>
-				<%= consult.input :hora_levanta, label: 'A qué hora se levanta?', wrapper_html: { class: 'col-md-4'},input_html: {disabled: true} %>
-				<%= consult.input :duerme_bien, label: ' Duerme bien?', wrapper_html: { class: 'col-md-4'},input_html: {disabled: true} %>
+				<%= consult.input :hora_acuesta, label: 'A qué hora se acuesta?', wrapper_html: { class: 'col-xs-4'},input_html: {disabled: true} %>
+				<%= consult.input :hora_levanta, label: 'A qué hora se levanta?', wrapper_html: { class: 'col-xs-4'},input_html: {disabled: true} %>
+				<%= consult.input :duerme_bien, label: ' Duerme bien?', wrapper_html: { class: 'col-xs-4'},input_html: {disabled: true} %>
 			</div>
 			<div class="row">
-				<%= consult.input :habilidades, label: 'Habilidades presentes o ausentes:', wrapper_html: { class: 'col-md-12'},input_html: { disabled: true} %>
+				<%= consult.input :habilidades, label: 'Habilidades presentes o ausentes:', wrapper_html: { class: 'col-xs-12'},input_html: { disabled: true} %>
 			</div>
 			<div class="row">
-				<%= consult.input :tratamientos_cenade, label: 'Tratamientos que realiza dentro del CENADE con otros especialistas:', wrapper_html: { class: 'col-md-12'},input_html: { disabled: true} %>
+				<%= consult.input :tratamientos_cenade, label: 'Tratamientos que realiza dentro del CENADE con otros especialistas:', wrapper_html: { class: 'col-xs-12'},input_html: { disabled: true} %>
 			</div></br>
 
 			<h4>V- Recuento de 24 horas. </h4>
@@ -127,81 +127,81 @@
 			  		<h4 align= "center">Desayuno</h4>
 					<hr>
 			  		<div class="row">
-						<%= consult.input :alim_desayuno, as: :text, label: 'Alimentos Consumido', wrapper_html: { class: 'col-md-10'},input_html: {disabled: true, :rows => 2} %>
-						<%= consult.input :cant_desayuno, as: :text, label: 'Cantidad', wrapper_html: { class: 'col-md-2'},input_html: {:rows => 2,  disabled: true} %>
+						<%= consult.input :alim_desayuno, as: :text, label: 'Alimentos Consumido', wrapper_html: { class: 'col-xs-10'},input_html: {disabled: true, :rows => 2} %>
+						<%= consult.input :cant_desayuno, as: :text, label: 'Cantidad', wrapper_html: { class: 'col-xs-2'},input_html: {:rows => 2,  disabled: true} %>
 
 					</div>
 					<div class="row">
-						<%= consult.input :modo_desayuno, as: :text, label: 'Modo de prepación', wrapper_html: { class: 'col-md-7'},input_html: {disabled: true, :rows => 2} %>
-						<%= consult.input :lugar_desayuno, as: :text, label: 'Lugar de consumo', wrapper_html: { class: 'col-md-5'},input_html: {:rows => 2,  disabled: true} %>
+						<%= consult.input :modo_desayuno, as: :text, label: 'Modo de prepación', wrapper_html: { class: 'col-xs-7'},input_html: {disabled: true, :rows => 2} %>
+						<%= consult.input :lugar_desayuno, as: :text, label: 'Lugar de consumo', wrapper_html: { class: 'col-xs-5'},input_html: {:rows => 2,  disabled: true} %>
 
 					</div></br>
 					<h4 align= "center">Media Mañana</h4>
 					<hr>
 					<div class="row">
-						<%= consult.input :alim_media, as: :text, label: 'Alimentos Consumido', wrapper_html: { class: 'col-md-10'},input_html: {disabled: true, :rows => 2} %>
-						<%= consult.input :cant_media, as: :text, label: 'Cantidad', wrapper_html: { class: 'col-md-2'},input_html: {:rows => 2,  disabled: true} %>
+						<%= consult.input :alim_media, as: :text, label: 'Alimentos Consumido', wrapper_html: { class: 'col-xs-10'},input_html: {disabled: true, :rows => 2} %>
+						<%= consult.input :cant_media, as: :text, label: 'Cantidad', wrapper_html: { class: 'col-xs-2'},input_html: {:rows => 2,  disabled: true} %>
 
 					</div>
 					<div class="row">
-						<%= consult.input :modo_media, as: :text, label: 'Modo de prepación', wrapper_html: { class: 'col-md-7'},input_html: {disabled: true, :rows => 2} %>
-						<%= consult.input :lugar_media, as: :text, label: 'Lugar de consumo', wrapper_html: { class: 'col-md-5'},input_html: {:rows => 2,  disabled: true} %>
+						<%= consult.input :modo_media, as: :text, label: 'Modo de prepación', wrapper_html: { class: 'col-xs-7'},input_html: {disabled: true, :rows => 2} %>
+						<%= consult.input :lugar_media, as: :text, label: 'Lugar de consumo', wrapper_html: { class: 'col-xs-5'},input_html: {:rows => 2,  disabled: true} %>
 
 					</div></br>
 					<h4 align= "center">Almuerzo</h4>
 					<hr>
 					<div class="row">
-						<%= consult.input :alim_almuerzo, as: :text, label: 'Alimentos Consumido', wrapper_html: { class: 'col-md-10'},input_html: {disabled: true, :rows => 2} %>
-						<%= consult.input :cant_almuerzo, as: :text, label: 'Cantidad', wrapper_html: { class: 'col-md-2'},input_html: {:rows => 2,  disabled: true} %>
+						<%= consult.input :alim_almuerzo, as: :text, label: 'Alimentos Consumido', wrapper_html: { class: 'col-xs-10'},input_html: {disabled: true, :rows => 2} %>
+						<%= consult.input :cant_almuerzo, as: :text, label: 'Cantidad', wrapper_html: { class: 'col-xs-2'},input_html: {:rows => 2,  disabled: true} %>
 
 					</div>
 					<div class="row">
-						<%= consult.input :modo_almuerzo, as: :text, label: 'Modo de prepación', wrapper_html: { class: 'col-md-7'},input_html: {disabled: true, :rows => 2} %>
-						<%= consult.input :lugar_almuerzo, as: :text, label: 'Lugar de consumo', wrapper_html: { class: 'col-md-5'},input_html: {:rows => 2,  disabled: true} %>
+						<%= consult.input :modo_almuerzo, as: :text, label: 'Modo de prepación', wrapper_html: { class: 'col-xs-7'},input_html: {disabled: true, :rows => 2} %>
+						<%= consult.input :lugar_almuerzo, as: :text, label: 'Lugar de consumo', wrapper_html: { class: 'col-xs-5'},input_html: {:rows => 2,  disabled: true} %>
 
 					</div></br>
 					<h4 align= "center">Merienda</h4>
 					<hr>
 					<div class="row">
-						<%= consult.input :alim_merienda, as: :text, label: 'Alimentos Consumido', wrapper_html: { class: 'col-md-10'},input_html: {disabled: true, :rows => 2} %>
-						<%= consult.input :cant_merienda, as: :text, label: 'Cantidad', wrapper_html: { class: 'col-md-2'},input_html: {:rows => 2,  disabled: true} %>
+						<%= consult.input :alim_merienda, as: :text, label: 'Alimentos Consumido', wrapper_html: { class: 'col-xs-10'},input_html: {disabled: true, :rows => 2} %>
+						<%= consult.input :cant_merienda, as: :text, label: 'Cantidad', wrapper_html: { class: 'col-xs-2'},input_html: {:rows => 2,  disabled: true} %>
 
 					</div>
 					<div class="row">
-						<%= consult.input :modo_merienda, as: :text, label: 'Modo de prepación', wrapper_html: { class: 'col-md-7'},input_html: {disabled: true, :rows => 2} %>
-						<%= consult.input :lugar_merienda, as: :text, label: 'Lugar de consumo', wrapper_html: { class: 'col-md-5'},input_html: {:rows => 2,  disabled: true} %>
+						<%= consult.input :modo_merienda, as: :text, label: 'Modo de prepación', wrapper_html: { class: 'col-xs-7'},input_html: {disabled: true, :rows => 2} %>
+						<%= consult.input :lugar_merienda, as: :text, label: 'Lugar de consumo', wrapper_html: { class: 'col-xs-5'},input_html: {:rows => 2,  disabled: true} %>
 
 					</div></br>
 					<h4 align= "center">Cena</h4>
 					<hr>
 					<div class="row">
-						<%= consult.input :alim_cena, as: :text, label: 'Alimentos Consumido', wrapper_html: { class: 'col-md-10'},input_html: {disabled: true, :rows => 2} %>
-						<%= consult.input :cant_cena, as: :text, label: 'Cantidad', wrapper_html: { class: 'col-md-2'},input_html: {:rows => 2,  disabled: true} %>
+						<%= consult.input :alim_cena, as: :text, label: 'Alimentos Consumido', wrapper_html: { class: 'col-xs-10'},input_html: {disabled: true, :rows => 2} %>
+						<%= consult.input :cant_cena, as: :text, label: 'Cantidad', wrapper_html: { class: 'col-xs-2'},input_html: {:rows => 2,  disabled: true} %>
 
 					</div>
 					<div class="row">
-						<%= consult.input :modo_cena, as: :text, label: 'Modo de prepación', wrapper_html: { class: 'col-md-7'},input_html: {disabled: true, :rows => 2} %>
-						<%= consult.input :lugar_cena, as: :text, label: 'Lugar de consumo', wrapper_html: { class: 'col-md-5'},input_html: {:rows => 2,  disabled: true} %>
+						<%= consult.input :modo_cena, as: :text, label: 'Modo de prepación', wrapper_html: { class: 'col-xs-7'},input_html: {disabled: true, :rows => 2} %>
+						<%= consult.input :lugar_cena, as: :text, label: 'Lugar de consumo', wrapper_html: { class: 'col-xs-5'},input_html: {:rows => 2,  disabled: true} %>
 
 					</div>
  				</div>
 			</div></br>
 
 			<div class="row">
-				<%= consult.input :dx, as: :text, label: 'VI- Diagnóstico Médico', wrapper_html: { class: 'col-md-12'},input_html: { disabled: true, :rows => 2} %>
+				<%= consult.input :dx, as: :text, label: 'VI- Diagnóstico Médico', wrapper_html: { class: 'col-xs-12'},input_html: { disabled: true, :rows => 2} %>
 			</div></br>
 			<div class="row">
-				<%= consult.input :evaluacion, as: :text, label: 'VII- Evaluación Nutricional', wrapper_html: { class: 'col-md-12'},input_html: { disabled: true, :rows => 2} %>
+				<%= consult.input :evaluacion, as: :text, label: 'VII- Evaluación Nutricional', wrapper_html: { class: 'col-xs-12'},input_html: { disabled: true, :rows => 2} %>
 			</div></br>
 
 			<div class="row">
-				<%= consult.input :indicaciones, as: :text, label: 'VIII- Indicaciones', wrapper_html: { class: 'col-md-12'},input_html: {disabled: true, :rows => 3} %>
+				<%= consult.input :indicaciones, as: :text, label: 'VIII- Indicaciones', wrapper_html: { class: 'col-xs-12'},input_html: {disabled: true, :rows => 3} %>
 			</div>
 			<div class="row">
-	     		 <div class="col-md-10">
+	     		 <div class="col-xs-10">
 	        	 <h4>Controles</h4>
 	      		</div>
-	      		<div class="col-md-2">
+	      		<div class="col-xs-2">
 	         		<%= link_to "Agregar Control", new_control_path(area_id: consulta.ficha_nutricional_adulto.area_id, paciente: paciente.id), class: "btn btn-custom", remote: true %>
 	      		</div>
     		</div>

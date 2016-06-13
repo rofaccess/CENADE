@@ -12,12 +12,12 @@
       <% controles.each do |control| %>
         <div id="control-<%= control.id%>">
           <div class="row">
-            <%= data('Profesional de la Salud', control.doctor_full_name,'col-md-9') %>
-            <%= data('Fecha', date(control.fecha),'col-md-3') %>
+            <%= data('Profesional de la Salud', control.doctor_full_name,'col-xs-9') %>
+            <%= data('Fecha', date(control.fecha),'col-xs-3') %>
           </div>
           <div class="row">
-            <%= h_data_text('Tratamiento', control.tratamiento,'col-md-12') %>
-            <%= h_data_text('Observaciones', control.observaciones,'col-md-12') %>
+            <%= h_data_text('Tratamiento', control.tratamiento,'col-xs-12') %>
+            <%= h_data_text('Observaciones', control.observaciones,'col-xs-12') %>
           </div>
         </div>
       <% end %>

@@ -17,14 +17,14 @@
                                       input_class: 'required name uniqueRoleName nameMinLength',
                                       max_length: Domain::ROL,
                                       autofocus: true,
-                                      col_class: 'col-md-12',
+                                      col_class: 'col-xs-12',
                                       label_text: '* Descripcion') %>
 
       	</div>
     		</br></br>
 
         	<div class="row">
-           	<div class="col-md-12 form-group">
+           	<div class="col-xs-12 form-group">
 
            	<%= rol.label :nombre, '* Permisos' %>
            	<%= rol.select(:permission_ids, grouped_options_for_select(Permission.agruparRoPermission, role.permissions.collect {|p| p.id}),{},{class: "multiple_select form-control select2", multiple: true, required: true})%>

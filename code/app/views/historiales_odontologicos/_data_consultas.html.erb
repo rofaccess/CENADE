@@ -8,79 +8,79 @@
       <%= panel_begin("#{consulta.doctor_full_name} <div class='pull-right'>Consulta Nº #{i} - #{date(consulta.fecha)}</div>")%>
 
          <div class="row">
-            <%= h_data_text('Motivo de Consulta', consulta.motivo_consulta,'col-md-12') %>
+            <%= h_data_text('Motivo de Consulta', consulta.motivo_consulta,'col-xs-12') %>
          </div>
          <div class="row">
-            <%= h_data_text('Observaciones', consulta.observaciones,'col-md-12') %>
+            <%= h_data_text('Observaciones', consulta.observaciones,'col-xs-12') %>
          </div>
          <div class="row">
-            <%= h_data_text('Servicio que utiliza en el CENADE', consulta.servicio_cenade,'col-md-6') %>
-            <%= h_data_text('Medicación Actual', consulta.medicacion_actual,'col-md-6') %>
+            <%= h_data_text('Servicio que utiliza en el CENADE', consulta.servicio_cenade,'col-xs-6') %>
+            <%= h_data_text('Medicación Actual', consulta.medicacion_actual,'col-xs-6') %>
          </div>
 
          <h4>¿Es alérgico o ha reaccionado de manera adversa a?</h4>
          <div class="row">
-            <%= h_data('Anestésico Local', consulta.anestesico,'col-md-4') %>
-            <%= h_data('Penicilina', consulta.penicilina,'col-md-4') %>
-            <%= h_data('Otros medicamentos', consulta.otros_medicamentos,'col-md-4') %>
+            <%= h_data('Anestésico Local', consulta.anestesico,'col-xs-4') %>
+            <%= h_data('Penicilina', consulta.penicilina,'col-xs-4') %>
+            <%= h_data('Otros medicamentos', consulta.otros_medicamentos,'col-xs-4') %>
          </div>
          <div class="row top-border">
-            <%= h_data('¿Tuvo hemorragias anormales?', consulta.hemorragias,'col-md-6') %>
-            <%= h_data('¿Sufre de alguna enfermedad cardiovascular?', consulta.enfermedad_cardiovascular,'col-md-6') %>
+            <%= h_data('¿Tuvo hemorragias anormales?', consulta.hemorragias,'col-xs-6') %>
+            <%= h_data('¿Sufre de alguna enfermedad cardiovascular?', consulta.enfermedad_cardiovascular,'col-xs-6') %>
          </div>
          <div class="row top-border"></div>
          <h4>¿Presenta algunas de estas enfermedades?</h4>
          <div class ="row">
-            <%=checkbox('Diabetes',consulta.diabetes, 'col-md-2')%>
-            <%=checkbox('Tuberculosis',consulta.tuberculosis, 'col-md-3')%>
-            <%=checkbox('Hepatitis',consulta.hepatitis, 'col-md-3')%>
-            <%=checkbox('Artritis',consulta.artritis, 'col-md-2')%>
-            <%=checkbox('Fumador',consulta.fumador, 'col-md-2')%>
+            <%=checkbox('Diabetes',consulta.diabetes, 'col-xs-2')%>
+            <%=checkbox('Tuberculosis',consulta.tuberculosis, 'col-xs-3')%>
+            <%=checkbox('Hepatitis',consulta.hepatitis, 'col-xs-3')%>
+            <%=checkbox('Artritis',consulta.artritis, 'col-xs-2')%>
+            <%=checkbox('Fumador',consulta.fumador, 'col-xs-2')%>
          </div>
          <div class ="row">
-            <%=checkbox('Enfermedades sanguíneas',consulta.enfermedades_sanguineas, 'col-md-3')%>
-            <%=checkbox('Enfermedades neurológicas',consulta.enfermedades_neurologicas, 'col-md-3')%>
-            <%=checkbox('Enfermedades renales',consulta.enfermedades_renales, 'col-md-3')%>
-            <%=checkbox('Enfermedades venéreas',consulta.enfermedades_venereas, 'col-md-3')%>
+            <%=checkbox('Enfermedades sanguíneas',consulta.enfermedades_sanguineas, 'col-xs-3')%>
+            <%=checkbox('Enfermedades neurológicas',consulta.enfermedades_neurologicas, 'col-xs-3')%>
+            <%=checkbox('Enfermedades renales',consulta.enfermedades_renales, 'col-xs-3')%>
+            <%=checkbox('Enfermedades venéreas',consulta.enfermedades_venereas, 'col-xs-3')%>
          </div>
          <div class="row top-border">
-            <%= h_data('¿Presentó algún problema serio asociado con el tratamiento odontológico?', consulta.problema_tratamiento,'col-md-12') %>
+            <%= h_data('¿Presentó algún problema serio asociado con el tratamiento odontológico?', consulta.problema_tratamiento,'col-xs-12') %>
          </div>
 
          <div class="row top-border"></div>
          <h4>Paciente femenino</h4>
          <div class="row">
-            <%= h_data('Menstruacion', consulta.menstruacion,'col-md-6') %>
-            <%= h_data('¿Está embarazada?', consulta.menstruacion,'col-md-6') %>
+            <%= h_data('Menstruacion', consulta.menstruacion,'col-xs-6') %>
+            <%= h_data('¿Está embarazada?', consulta.menstruacion,'col-xs-6') %>
          </div>
          <div class="row">
-            <%= h_data('¿Tiene hijos?', consulta.tiene_hijos,'col-md-4') %>
-            <%= h_data('¿Cuantos?', consulta.cantidad_hijos,'col-md-4') %>
-            <%= h_data('¿Amamanta?', consulta.amamanta,'col-md-4') %>
+            <%= h_data('¿Tiene hijos?', consulta.tiene_hijos,'col-xs-4') %>
+            <%= h_data('¿Cuantos?', consulta.cantidad_hijos,'col-xs-4') %>
+            <%= h_data('¿Amamanta?', consulta.amamanta,'col-xs-4') %>
          </div>
          <div class="row top-border">
-            <%= h_data('¿Ha sido hospitalizado alguna vez?', consulta.hospitalizado,'col-md-5') %>
-            <%= h_data('Causa', consulta.causa_hospitalizado,'col-md-7') %>
+            <%= h_data('¿Ha sido hospitalizado alguna vez?', consulta.hospitalizado,'col-xs-5') %>
+            <%= h_data('Causa', consulta.causa_hospitalizado,'col-xs-7') %>
          </div>
 
          <h4>Exámenes complementarios</h4><hr>
          <div class="row">
-            <%= h_data('ECG', consulta.ecg,'col-md-12') %>
+            <%= h_data('ECG', consulta.ecg,'col-xs-12') %>
          </div>
          <div class="row">
-            <%= h_data('TAC', consulta.tac,'col-md-12') %>
+            <%= h_data('TAC', consulta.tac,'col-xs-12') %>
          </div>
          <div class="row">
-            <%= h_data('RX', consulta.rx,'col-md-12') %>
+            <%= h_data('RX', consulta.rx,'col-xs-12') %>
          </div>
          <div class="row">
-            <%= h_data('Laboratorios', consulta.laboratorios,'col-md-12') %>
+            <%= h_data('Laboratorios', consulta.laboratorios,'col-xs-12') %>
          </div>
          <div class="row">
-            <%= h_data('Otros exámenes', consulta.otros_examenes,'col-md-12') %>
+            <%= h_data('Otros exámenes', consulta.otros_examenes,'col-xs-12') %>
          </div>
          <div class="row">
-            <%= h_data_text('Tratamiento', consulta.tratamiento,'col-md-12') %>
+            <%= h_data_text('Tratamiento', consulta.tratamiento,'col-xs-12') %>
          </div>
 
       <%= panel_end %>

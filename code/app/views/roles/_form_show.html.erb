@@ -18,13 +18,13 @@
                                       max_length: Domain::ROL,
                                       autofocus: true,
                                       disabled: true,
-                                      col_class: 'col-md-12',
+                                      col_class: 'col-xs-12',
                                       label_text: '* Descripcion') %>
 
       </div>
       </br></br>
       <div class="row">
-        	<div class="col-md-12">
+        	<div class="col-xs-12">
 
          	<%= rol.label :nombre, '* Permisos' %>
            	<%= rol.select(:permission_ids, Permission.all.collect { |permission| [permission.nombre, permission.id] },{},{class: "multiple_select form-control", multiple: true, required: true, disabled: true})%>

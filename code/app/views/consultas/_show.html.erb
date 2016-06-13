@@ -17,11 +17,11 @@
     <%= form_for consulta, html: {class: 'form-consulta', :multipart => true }, remote: true do |consult|%>
       <h4 class="titulo-ficha">Consulta en <%= area.nombre%></h4></br>
       <div class="row">
-        <div class="col-md-9">
+        <div class="col-xs-9">
 
           <h4><%= consult.label :doctor_id, 'Profesional de la Salud: ' %> <%= consulta.doctor_persona_full_name%> </h4>
         </div>
-        <div class="col-md-3">
+        <div class="col-xs-3">
             <h4><%= consult.label :fecha, 'Fecha: ' %> <%=Formatter.format_date(consulta.fecha)%> </h4>
         </div>
       </div></br>
@@ -32,24 +32,24 @@
       <h4>Datos de Consulta</h4>
       <hr>
       <div class="row">
-        <div class="col-md-12">
+        <div class="col-xs-12">
           <%= consult.label :motivo_consulta, 'Motivo de Consulta' %>
           <%= consult.text_area :motivo_consulta, rows: "2", class: "form-control", disabled: true%>
         </div>
       </div>
     </br>
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-xs-6">
         <%= consult.label :evaluacion, 'Evaluación' %>
         <%= consult.text_area :evaluacion, rows: "5", class: "form-control", disabled: true%>
       </div>
-      <div class="col-md-6">
+      <div class="col-xs-6">
         <%= consult.label :tratamiento, 'Tratamiento' %>
         <%= consult.text_area :tratamiento, rows: "5", class: "form-control", disabled: true%>
       </div>
     </div>
     <div class="row">
-      <div class="col-md-12">
+      <div class="col-xs-12">
         <%= consult.label :observaciones, 'Observaciones' %>
         <%= consult.text_area :observaciones, rows: "2", class: "form-control", disabled: true%>
       </div>

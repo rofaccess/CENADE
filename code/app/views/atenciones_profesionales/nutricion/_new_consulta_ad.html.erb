@@ -5,17 +5,17 @@
   <div class="row">
     <%unless current_user.es_doctor?%>
       <%doctores = Doctor.get_all_area(turno.area_nombre).collect {|a| [a.full_name, a.id]}%>
-      <%= consulta.input :doctor_id, collection: doctores, label: '* Prof. de la Salud', wrapper_html: { class: 'col-md-8' }, input_html:  { class: 'required select2'} %>
+      <%= consulta.input :doctor_id, collection: doctores, label: '* Prof. de la Salud', wrapper_html: { class: 'col-xs-8' }, input_html:  { class: 'required select2'} %>
     <%else%>
-      <%= data('Profesional de la Salud',current_user.empleado.persona_full_name,'col-md-8') %>
+      <%= data('Profesional de la Salud',current_user.empleado.persona_full_name,'col-xs-8') %>
       <%= hidden_field_tag(:doctor_id, current_user.empleado.id) %>
     <%end%>
 
-    <%= consulta.input :fecha, as: :string, label: '* Fecha', wrapper_html: { class: 'col-md-4'}, input_html: { class: 'datepicker dateLessSystemDate required', maxLength: Domain::FECHA, value: date(Date.today)} %>
+    <%= consulta.input :fecha, as: :string, label: '* Fecha', wrapper_html: { class: 'col-xs-4'}, input_html: { class: 'datepicker dateLessSystemDate required', maxLength: Domain::FECHA, value: date(Date.today)} %>
   </div>
 
   <div class="row">
-    <%= consulta.input :motivo_consulta, as: :text, label: 'I - Motivo de Consulta', wrapper_html: { class: 'col-md-12'},input_html: { maxLength: Domain::DESC250} %>
+    <%= consulta.input :motivo_consulta, as: :text, label: 'I - Motivo de Consulta', wrapper_html: { class: 'col-xs-12'},input_html: { maxLength: Domain::DESC250} %>
   </div>
 
   <ul class="nav nav-tabs">
@@ -27,147 +27,147 @@
   <div class="tabs-content">
     <div id="con-adu-new-dat-ant">
       <div class="row">
-        <%= consulta.input :peso_actual, label: 'Peso Actual:', wrapper_html: { class: 'col-md-4'},input_html: { maxLength: Domain::DESC10} %>
-        <%= consulta.input :peso_ideal, label: 'Peso ideal:', wrapper_html: { class: 'col-md-4'},input_html: { maxLength: Domain::DESC10} %>
-        <%= consulta.input :peso_deseable, label: 'Peso deseable:', wrapper_html: { class: 'col-md-4'},input_html: { maxLength: Domain::DESC10} %>
+        <%= consulta.input :peso_actual, label: 'Peso Actual:', wrapper_html: { class: 'col-xs-4'},input_html: { maxLength: Domain::DESC10} %>
+        <%= consulta.input :peso_ideal, label: 'Peso ideal:', wrapper_html: { class: 'col-xs-4'},input_html: { maxLength: Domain::DESC10} %>
+        <%= consulta.input :peso_deseable, label: 'Peso deseable:', wrapper_html: { class: 'col-xs-4'},input_html: { maxLength: Domain::DESC10} %>
       </div>
       <div class="row">
-        <%= consulta.input :talla, label: 'Talla:', wrapper_html: { class: 'col-md-4'},input_html: { maxLength: Domain::DESC10} %>
-        <%= consulta.input :biotipo, label: 'Biotipo:', wrapper_html: { class: 'col-md-4'},input_html: { maxLength: Domain::DESC50} %>
-        <%= consulta.input :imc, label: 'I.M.C:', wrapper_html: { class: 'col-md-4'},input_html: { maxLength: Domain::DESC50} %>
+        <%= consulta.input :talla, label: 'Talla:', wrapper_html: { class: 'col-xs-4'},input_html: { maxLength: Domain::DESC10} %>
+        <%= consulta.input :biotipo, label: 'Biotipo:', wrapper_html: { class: 'col-xs-4'},input_html: { maxLength: Domain::DESC50} %>
+        <%= consulta.input :imc, label: 'I.M.C:', wrapper_html: { class: 'col-xs-4'},input_html: { maxLength: Domain::DESC50} %>
       </div>
 
       <div class="row">
-        <%= consulta.input :cir_muneca, label: 'Circ. Muñeca:', wrapper_html: { class: 'col-md-4'},input_html: { maxLength: Domain::DESC50} %>
-        <%= consulta.input :circ_brazo, label: 'Circ. Brazo:', wrapper_html: { class: 'col-md-4'},input_html: { maxLength: Domain::DESC50} %>
-        <%= consulta.input :circ_cintura, label: 'Circ. Cintura/Cadera:', wrapper_html: { class: 'col-md-4'},input_html: { maxLength: Domain::DESC50} %>
+        <%= consulta.input :cir_muneca, label: 'Circ. Muñeca:', wrapper_html: { class: 'col-xs-4'},input_html: { maxLength: Domain::DESC50} %>
+        <%= consulta.input :circ_brazo, label: 'Circ. Brazo:', wrapper_html: { class: 'col-xs-4'},input_html: { maxLength: Domain::DESC50} %>
+        <%= consulta.input :circ_cintura, label: 'Circ. Cintura/Cadera:', wrapper_html: { class: 'col-xs-4'},input_html: { maxLength: Domain::DESC50} %>
       </div>
     </div>
 
     <div id="con-adu-new-ana-ali">
       <div class="row">
-        <%= consulta.input :medicamentos, label: '¿Toma medicamentos?', wrapper_html: { class: 'col-md-5'},input_html: { maxLength: Domain::DESC100} %>
-        <%= consulta.input :suplementos, label: '¿Toma suplementos vitaminicos/minerales?:', wrapper_html: { class: 'col-md-7'},input_html: { maxLength: Domain::DESC50} %>
+        <%= consulta.input :medicamentos, label: '¿Toma medicamentos?', wrapper_html: { class: 'col-xs-5'},input_html: { maxLength: Domain::DESC100} %>
+        <%= consulta.input :suplementos, label: '¿Toma suplementos vitaminicos/minerales?:', wrapper_html: { class: 'col-xs-7'},input_html: { maxLength: Domain::DESC50} %>
       </div>
       <div class="row">
-        <%= consulta.input :apetito, label: 'Su apetito es', wrapper_html: { class: 'col-md-3'}, collection: [ "Bueno", "Regular", "Malo"] %>
-        <%= consulta.input :factores_apetito, label: 'Factores que afectan el apetito', wrapper_html: { class: 'col-md-9'},input_html: { maxLength: Domain::DESC150} %>
+        <%= consulta.input :apetito, label: 'Su apetito es', wrapper_html: { class: 'col-xs-3'}, collection: [ "Bueno", "Regular", "Malo"] %>
+        <%= consulta.input :factores_apetito, label: 'Factores que afectan el apetito', wrapper_html: { class: 'col-xs-9'},input_html: { maxLength: Domain::DESC150} %>
       </div>
       <div class="row">
-        <%= consulta.input :alergia_intolerancia, label: '¿Tiene alergia o intolerancia a algún alimento?', wrapper_html: { class: 'col-md-12'},input_html: { maxLength: Domain::DESC150} %>
+        <%= consulta.input :alergia_intolerancia, label: '¿Tiene alergia o intolerancia a algún alimento?', wrapper_html: { class: 'col-xs-12'},input_html: { maxLength: Domain::DESC150} %>
       </div>
       <div class="row">
-        <%= consulta.input :estado_bucal, as: :text, label: 'Estado bucal (dientes, lengua, paladar)', wrapper_html: { class: ' col-md-12'},input_html: {:rows => 2, maxLength: Domain::DESC250} %>
+        <%= consulta.input :estado_bucal, as: :text, label: 'Estado bucal (dientes, lengua, paladar)', wrapper_html: { class: ' col-xs-12'},input_html: {:rows => 2, maxLength: Domain::DESC250} %>
       </div>
       <div class="row">
-        <%= consulta.input :orina_bien, label: '¿Orina bien?', wrapper_html: { class: 'col-md-3'},input_html: { maxLength: Domain::DESC50} %>
-        <%= consulta.input :ir_cuerpo, label: '¿Va bien de cuerpo?', wrapper_html: { class: 'col-md-9'},input_html: { maxLength: Domain::DESC50} %>
+        <%= consulta.input :orina_bien, label: '¿Orina bien?', wrapper_html: { class: 'col-xs-3'},input_html: { maxLength: Domain::DESC50} %>
+        <%= consulta.input :ir_cuerpo, label: '¿Va bien de cuerpo?', wrapper_html: { class: 'col-xs-9'},input_html: { maxLength: Domain::DESC50} %>
       </div>
       <div class="row top-border">
-        <%= consulta.input :actividades_fisicas, label: '¿Realiza actividades físicas?', collection: [['Sí', true] ,['No', false]],checked:['No', false], wrapper_html: { class: ' col-md-12 show-actividad'}, as: :radio_buttons, item_label_class: "radio-inline" %>
+        <%= consulta.input :actividades_fisicas, label: '¿Realiza actividades físicas?', collection: [['Sí', true] ,['No', false]],checked:['No', false], wrapper_html: { class: ' col-xs-12 show-actividad'}, as: :radio_buttons, item_label_class: "radio-inline" %>
       </div>
       <div class="hide_actividades">
         <div class="row">
-          <%= consulta.input :tipo, label: 'Tipos', wrapper_html: { class: 'col-md-5'},input_html: { maxLength: Domain::DESC100} %>
-          <%= consulta.input :hs_act_fisicas, label: 'Horas', wrapper_html: { class: 'col-md-3'},input_html: { maxLength: Domain::DESC10} %>
-          <%= consulta.input :frecuencia, label: 'Frecuencias', wrapper_html: { class: 'col-md-4'},input_html: { maxLength: Domain::DESC50} %>
+          <%= consulta.input :tipo, label: 'Tipos', wrapper_html: { class: 'col-xs-5'},input_html: { maxLength: Domain::DESC100} %>
+          <%= consulta.input :hs_act_fisicas, label: 'Horas', wrapper_html: { class: 'col-xs-3'},input_html: { maxLength: Domain::DESC10} %>
+          <%= consulta.input :frecuencia, label: 'Frecuencias', wrapper_html: { class: 'col-xs-4'},input_html: { maxLength: Domain::DESC50} %>
         </div>
       </div>
       <div class="row">
-        <%= consulta.input :actividad_laboral, label: 'Actividad Laboral:', wrapper_html: { class: 'col-md-9'},input_html: { maxLength: Domain::DESC150} %>
-        <%= consulta.input :horas_laborales, label: 'Horas', wrapper_html: { class: 'col-md-3'},input_html: { maxLength: Domain::DESC50} %>
+        <%= consulta.input :actividad_laboral, label: 'Actividad Laboral:', wrapper_html: { class: 'col-xs-9'},input_html: { maxLength: Domain::DESC150} %>
+        <%= consulta.input :horas_laborales, label: 'Horas', wrapper_html: { class: 'col-xs-3'},input_html: { maxLength: Domain::DESC50} %>
       </div>
       <div class="row">
-        <%= consulta.input :vive_con, label: '¿Vive con su familia?', wrapper_html: { class: 'col-md-4'},input_html: { maxLength: Domain::DESC100} %>
-        <%= consulta.input :quien_prepara, label: '¿Quién prepara los alimentos?', wrapper_html: { class: 'col-md-8'},input_html: { maxLength: Domain::DESC50} %>
+        <%= consulta.input :vive_con, label: '¿Vive con su familia?', wrapper_html: { class: 'col-xs-4'},input_html: { maxLength: Domain::DESC100} %>
+        <%= consulta.input :quien_prepara, label: '¿Quién prepara los alimentos?', wrapper_html: { class: 'col-xs-8'},input_html: { maxLength: Domain::DESC50} %>
       </div>
       <div class="row">
-        <%= consulta.input :que_elementos, label: '¿Qué elementos cuenta para cocinar?', wrapper_html: { class: 'col-md-12'},input_html: { maxLength: Domain::DESC150} %>
+        <%= consulta.input :que_elementos, label: '¿Qué elementos cuenta para cocinar?', wrapper_html: { class: 'col-xs-12'},input_html: { maxLength: Domain::DESC150} %>
       </div>
       <div class="row">
-        <%= consulta.input :toma_agua, label: '¿Cuántos litros de agua bebe?', wrapper_html: { class: 'col-md-12'},input_html: { maxLength: Domain::DESC100} %>
+        <%= consulta.input :toma_agua, label: '¿Cuántos litros de agua bebe?', wrapper_html: { class: 'col-xs-12'},input_html: { maxLength: Domain::DESC100} %>
       </div>
       <div class="row">
-        <%= consulta.input :mastica_deglute, label: 'Mastica - Deglute', wrapper_html: { class: 'col-md-4'},input_html: { maxLength: Domain::DESC50} %>
-        <%= consulta.input :dificultad_beber, label: '¿Dificultad para beber o absorber?', wrapper_html: { class: 'col-md-8'},input_html: { maxLength: Domain::DESC100} %>
+        <%= consulta.input :mastica_deglute, label: 'Mastica - Deglute', wrapper_html: { class: 'col-xs-4'},input_html: { maxLength: Domain::DESC50} %>
+        <%= consulta.input :dificultad_beber, label: '¿Dificultad para beber o absorber?', wrapper_html: { class: 'col-xs-8'},input_html: { maxLength: Domain::DESC100} %>
       </div>
       <div class="row">
-        <%= consulta.input :hora_acuesta, label: '¿A qué hora se acuesta?', wrapper_html: { class: 'col-md-4'},input_html: { maxLength: Domain::DESC10} %>
-        <%= consulta.input :hora_levanta, label: '¿A qué hora se levanta?', wrapper_html: { class: 'col-md-4'},input_html: { maxLength: Domain::DESC10} %>
-        <%= consulta.input :duerme_bien, label: '¿Duerme bien?', wrapper_html: { class: 'col-md-4'},input_html: { maxLength: Domain::DESC50} %>
+        <%= consulta.input :hora_acuesta, label: '¿A qué hora se acuesta?', wrapper_html: { class: 'col-xs-4'},input_html: { maxLength: Domain::DESC10} %>
+        <%= consulta.input :hora_levanta, label: '¿A qué hora se levanta?', wrapper_html: { class: 'col-xs-4'},input_html: { maxLength: Domain::DESC10} %>
+        <%= consulta.input :duerme_bien, label: '¿Duerme bien?', wrapper_html: { class: 'col-xs-4'},input_html: { maxLength: Domain::DESC50} %>
       </div>
       <div class="row">
-        <%= consulta.input :habilidades, label: 'Habilidades presentes o ausentes', wrapper_html: { class: 'col-md-12'},input_html: { maxLength: Domain::DESC150} %>
+        <%= consulta.input :habilidades, label: 'Habilidades presentes o ausentes', wrapper_html: { class: 'col-xs-12'},input_html: { maxLength: Domain::DESC150} %>
       </div>
       <div class="row">
-        <%= consulta.input :tratamientos_cenade, label: 'Tratamientos que realiza dentro del CENADE con otros especialistas', wrapper_html: { class: 'col-md-12'},input_html: { maxLength: Domain::DESC150} %>
+        <%= consulta.input :tratamientos_cenade, label: 'Tratamientos que realiza dentro del CENADE con otros especialistas', wrapper_html: { class: 'col-xs-12'},input_html: { maxLength: Domain::DESC150} %>
       </div>
     </div>
 
     <div id="con-adu-new-rec">
       <h4>Desayuno</h4>
       <div class="row">
-        <%= consulta.input :alim_desayuno, as: :text, label: 'Alimentos Consumidos', wrapper_html: { class: 'col-md-10'},input_html: { maxLength: Domain::DESC200, :rows => 2} %>
-        <%= consulta.input :cant_desayuno, as: :text, label: 'Cantidad', wrapper_html: { class: 'col-md-2'},input_html: {:rows => 2,  maxLength: Domain::DESC50} %>
+        <%= consulta.input :alim_desayuno, as: :text, label: 'Alimentos Consumidos', wrapper_html: { class: 'col-xs-10'},input_html: { maxLength: Domain::DESC200, :rows => 2} %>
+        <%= consulta.input :cant_desayuno, as: :text, label: 'Cantidad', wrapper_html: { class: 'col-xs-2'},input_html: {:rows => 2,  maxLength: Domain::DESC50} %>
 
       </div>
       <div class="row">
-        <%= consulta.input :modo_desayuno, as: :text, label: 'Modo de prepación', wrapper_html: { class: 'col-md-7'},input_html: { maxLength: Domain::DESC250, :rows => 2} %>
-        <%= consulta.input :lugar_desayuno, as: :text, label: 'Lugar de consumo', wrapper_html: { class: 'col-md-5'},input_html: {:rows => 2,  maxLength: Domain::DESC250} %>
+        <%= consulta.input :modo_desayuno, as: :text, label: 'Modo de prepación', wrapper_html: { class: 'col-xs-7'},input_html: { maxLength: Domain::DESC250, :rows => 2} %>
+        <%= consulta.input :lugar_desayuno, as: :text, label: 'Lugar de consumo', wrapper_html: { class: 'col-xs-5'},input_html: {:rows => 2,  maxLength: Domain::DESC250} %>
 
       </div>
 
       <h4>Media Mañana</h4>
       <div class="row">
-        <%= consulta.input :alim_media, as: :text, label: 'Alimentos Consumidos', wrapper_html: { class: 'col-md-10'},input_html: { maxLength: Domain::DESC200, :rows => 2} %>
-        <%= consulta.input :cant_media, as: :text, label: 'Cantidad', wrapper_html: { class: 'col-md-2'},input_html: {:rows => 2,  maxLength: Domain::DESC50} %>
+        <%= consulta.input :alim_media, as: :text, label: 'Alimentos Consumidos', wrapper_html: { class: 'col-xs-10'},input_html: { maxLength: Domain::DESC200, :rows => 2} %>
+        <%= consulta.input :cant_media, as: :text, label: 'Cantidad', wrapper_html: { class: 'col-xs-2'},input_html: {:rows => 2,  maxLength: Domain::DESC50} %>
       </div>
       <div class="row">
-        <%= consulta.input :modo_media, as: :text, label: 'Modo de prepación', wrapper_html: { class: 'col-md-7'},input_html: { maxLength: Domain::DESC250, :rows => 2} %>
-        <%= consulta.input :lugar_media, as: :text, label: 'Lugar de consumo', wrapper_html: { class: 'col-md-5'},input_html: {:rows => 2,  maxLength: Domain::DESC250} %>
+        <%= consulta.input :modo_media, as: :text, label: 'Modo de prepación', wrapper_html: { class: 'col-xs-7'},input_html: { maxLength: Domain::DESC250, :rows => 2} %>
+        <%= consulta.input :lugar_media, as: :text, label: 'Lugar de consumo', wrapper_html: { class: 'col-xs-5'},input_html: {:rows => 2,  maxLength: Domain::DESC250} %>
       </div>
 
       <h4>Almuerzo</h4>
       <div class="row">
-        <%= consulta.input :alim_almuerzo, as: :text, label: 'Alimentos Consumidos', wrapper_html: { class: 'col-md-10'},input_html: { maxLength: Domain::DESC200, :rows => 2} %>
-        <%= consulta.input :cant_almuerzo, as: :text, label: 'Cantidad', wrapper_html: { class: 'col-md-2'},input_html: {:rows => 2,  maxLength: Domain::DESC50} %>
+        <%= consulta.input :alim_almuerzo, as: :text, label: 'Alimentos Consumidos', wrapper_html: { class: 'col-xs-10'},input_html: { maxLength: Domain::DESC200, :rows => 2} %>
+        <%= consulta.input :cant_almuerzo, as: :text, label: 'Cantidad', wrapper_html: { class: 'col-xs-2'},input_html: {:rows => 2,  maxLength: Domain::DESC50} %>
       </div>
       <div class="row">
-        <%= consulta.input :modo_almuerzo, as: :text, label: 'Modo de prepación', wrapper_html: { class: 'col-md-7'},input_html: { maxLength: Domain::DESC250, :rows => 2} %>
-        <%= consulta.input :lugar_almuerzo, as: :text, label: 'Lugar de consumo', wrapper_html: { class: 'col-md-5'},input_html: {:rows => 2,  maxLength: Domain::DESC250} %>
+        <%= consulta.input :modo_almuerzo, as: :text, label: 'Modo de prepación', wrapper_html: { class: 'col-xs-7'},input_html: { maxLength: Domain::DESC250, :rows => 2} %>
+        <%= consulta.input :lugar_almuerzo, as: :text, label: 'Lugar de consumo', wrapper_html: { class: 'col-xs-5'},input_html: {:rows => 2,  maxLength: Domain::DESC250} %>
       </div>
 
       <h4>Merienda</h4>
       <div class="row">
-        <%= consulta.input :alim_merienda, as: :text, label: 'Alimentos Consumidos', wrapper_html: { class: 'col-md-10'},input_html: { maxLength: Domain::DESC200, :rows => 2} %>
-        <%= consulta.input :cant_merienda, as: :text, label: 'Cantidad', wrapper_html: { class: 'col-md-2'},input_html: {:rows => 2,  maxLength: Domain::DESC50} %>
+        <%= consulta.input :alim_merienda, as: :text, label: 'Alimentos Consumidos', wrapper_html: { class: 'col-xs-10'},input_html: { maxLength: Domain::DESC200, :rows => 2} %>
+        <%= consulta.input :cant_merienda, as: :text, label: 'Cantidad', wrapper_html: { class: 'col-xs-2'},input_html: {:rows => 2,  maxLength: Domain::DESC50} %>
       </div>
       <div class="row">
-        <%= consulta.input :modo_merienda, as: :text, label: 'Modo de prepación', wrapper_html: { class: 'col-md-7'},input_html: { maxLength: Domain::DESC250, :rows => 2} %>
-        <%= consulta.input :lugar_merienda, as: :text, label: 'Lugar de consumo', wrapper_html: { class: 'col-md-5'},input_html: {:rows => 2,  maxLength: Domain::DESC250} %>
+        <%= consulta.input :modo_merienda, as: :text, label: 'Modo de prepación', wrapper_html: { class: 'col-xs-7'},input_html: { maxLength: Domain::DESC250, :rows => 2} %>
+        <%= consulta.input :lugar_merienda, as: :text, label: 'Lugar de consumo', wrapper_html: { class: 'col-xs-5'},input_html: {:rows => 2,  maxLength: Domain::DESC250} %>
       </div>
 
       <h4>Cena</h4>
       <div class="row">
-        <%= consulta.input :alim_cena, as: :text, label: 'Alimentos Consumidos', wrapper_html: { class: 'col-md-10'},input_html: { maxLength: Domain::DESC200, :rows => 2} %>
-        <%= consulta.input :cant_cena, as: :text, label: 'Cantidad', wrapper_html: { class: 'col-md-2'},input_html: {:rows => 2,  maxLength: Domain::DESC50} %>
+        <%= consulta.input :alim_cena, as: :text, label: 'Alimentos Consumidos', wrapper_html: { class: 'col-xs-10'},input_html: { maxLength: Domain::DESC200, :rows => 2} %>
+        <%= consulta.input :cant_cena, as: :text, label: 'Cantidad', wrapper_html: { class: 'col-xs-2'},input_html: {:rows => 2,  maxLength: Domain::DESC50} %>
 
       </div>
       <div class="row">
-        <%= consulta.input :modo_cena, as: :text, label: 'Modo de prepación', wrapper_html: { class: 'col-md-7'},input_html: { maxLength: Domain::DESC250, :rows => 2} %>
-        <%= consulta.input :lugar_cena, as: :text, label: 'Lugar de consumo', wrapper_html: { class: 'col-md-5'},input_html: {:rows => 2,  maxLength: Domain::DESC250} %>
+        <%= consulta.input :modo_cena, as: :text, label: 'Modo de prepación', wrapper_html: { class: 'col-xs-7'},input_html: { maxLength: Domain::DESC250, :rows => 2} %>
+        <%= consulta.input :lugar_cena, as: :text, label: 'Lugar de consumo', wrapper_html: { class: 'col-xs-5'},input_html: {:rows => 2,  maxLength: Domain::DESC250} %>
       </div>
     </div>
   </div>
   <br>
   <div class="row">
-    <%= consulta.input :dx, as: :text, label: 'V- Diagnóstico Médico', wrapper_html: { class: 'col-md-12'},input_html: { maxLength: Domain::DESC250, :rows => 2} %>
+    <%= consulta.input :dx, as: :text, label: 'V- Diagnóstico Médico', wrapper_html: { class: 'col-xs-12'},input_html: { maxLength: Domain::DESC250, :rows => 2} %>
   </div>
   <div class="row">
-    <%= consulta.input :evaluacion, as: :text, label: 'VI- Evaluación Nutricional', wrapper_html: { class: 'col-md-12'},input_html: { maxLength: Domain::DESC250, :rows => 2} %>
+    <%= consulta.input :evaluacion, as: :text, label: 'VI- Evaluación Nutricional', wrapper_html: { class: 'col-xs-12'},input_html: { maxLength: Domain::DESC250, :rows => 2} %>
   </div>
   <div class="row">
-    <%= consulta.input :indicaciones, as: :text, label: 'VII- Indicaciones', wrapper_html: { class: 'col-md-12'},input_html: { maxLength: Domain::DESC250, :rows => 3} %>
+    <%= consulta.input :indicaciones, as: :text, label: 'VII- Indicaciones', wrapper_html: { class: 'col-xs-12'},input_html: { maxLength: Domain::DESC250, :rows => 3} %>
   </div>
 
   <div class="form-button">

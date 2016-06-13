@@ -14,11 +14,11 @@
        <%= search_form_for @search, url: search_controles_path(area_id: params[:area_id], paciente: params[:paciente]), method: :post, remote: true, class: 'form-filtros' do |f| %>
           <div class="row">
 
-            <%= FormBuilder::text_field_v(f, :doctor_persona_nombre_or_doctor_persona_apellido_cont, {col_class: 'col-md-5', label_text: 'Prof. de la Salud', input_class: '', placeholder: "Nombre o Apellido"})%>
+            <%= FormBuilder::text_field_v(f, :doctor_persona_nombre_or_doctor_persona_apellido_cont, {col_class: 'col-xs-5', label_text: 'Prof. de la Salud', input_class: '', placeholder: "Nombre o Apellido"})%>
 
-            <%= FormBuilder::text_field_v(f, :fecha_gteq, {col_class: 'col-md-2', label_text: 'Desde', input_class: 'datepicker',max_length: Domain::FECHA})%>
+            <%= FormBuilder::text_field_v(f, :fecha_gteq, {col_class: 'col-xs-2', label_text: 'Desde', input_class: 'datepicker',max_length: Domain::FECHA})%>
 
-            <%= FormBuilder::text_field_v(f, :fecha_lteq, {col_class: 'col-md-2', label_text: 'Hasta', input_class: 'datepicker',max_length: Domain::FECHA})%>
+            <%= FormBuilder::text_field_v(f, :fecha_lteq, {col_class: 'col-xs-2', label_text: 'Hasta', input_class: 'datepicker',max_length: Domain::FECHA})%>
 
             <div class= "advanced-search-buttons">
              <%= f.submit 'Filtrar', class: 'btn btn-custom '%>
