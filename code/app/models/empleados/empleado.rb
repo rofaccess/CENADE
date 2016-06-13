@@ -4,7 +4,7 @@ class Empleado < ActiveRecord::Base
  	after_destroy :destroy_persona, :destroy_user
 
  	has_one :user
- 	belongs_to :persona
+ 	belongs_to :persona, -> { with_deleted }
   belongs_to :area
  	accepts_nested_attributes_for :persona
 

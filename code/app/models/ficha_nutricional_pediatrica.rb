@@ -5,8 +5,8 @@ class FichaNutricionalPediatrica < ActiveRecord::Base
 	protokoll :nro_ficha, pattern: '#'
 
  	#asociaciones
- 	belongs_to :doctor, :foreign_key => :profesional_salud_id
- 	belongs_to :paciente
+ 	belongs_to :doctor, -> { with_deleted }, :foreign_key => :profesional_salud_id
+ 	belongs_to :paciente, -> { with_deleted }
  	belongs_to :area
  	has_many :consultas_nutricionales_pediatricas, :foreign_key => :ficha_nutri_ped_id
 

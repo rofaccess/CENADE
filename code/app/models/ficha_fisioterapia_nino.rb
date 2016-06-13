@@ -5,9 +5,9 @@ class FichaFisioterapiaNino < ActiveRecord::Base
 	protokoll :nro_ficha, pattern: '#'
 
 	#asociaciones
-	belongs_to :paciente
+	belongs_to :paciente, -> { with_deleted }
 	belongs_to :area
-	belongs_to :doctor, :foreign_key => :doctor_id
+	belongs_to :doctor, -> { with_deleted }, :foreign_key => :doctor_id
 
 	#validaciones
 	validates :condicion_general , length: { maximum: 500, message: ' soporta un máximo 500 caracteres' }

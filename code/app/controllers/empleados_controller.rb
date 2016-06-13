@@ -25,11 +25,9 @@ class EmpleadosController < ApplicationController
 	  	@empleado = set_empleado_per_type(empleado_params)
 		respond_to do |format|
 			if @empleado.save
-				set_submenu
 			    flash.now[:notice] = "Se ha guardado el empleado #{@empleado.persona_full_name}."
 			    format.html {render 'show'}
 			else
-				set_submenu
 				flash.now[:alert] = "No se ha podido guardar el empleado #{@empleado.persona_full_name}."
        			format.html { render "new"}
 			end

@@ -139,7 +139,7 @@ class PacientesController < ApplicationController
     # Buscador de pacientes
     def buscar
       @search = Paciente.ransack(params[:q])
-      @pacientes= @search.result
+      @pacientes= @search.result.includes(:persona).order('personas.nombre')
       render json: {items: @pacientes.as_json(:only => [:id, :profesion,:lugar_trabajo,:lugar_nacimiento,:fecha_ingreso],
                                               :methods => [:persona_full_name, :persona_ci],
                                             )}

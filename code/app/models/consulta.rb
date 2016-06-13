@@ -2,9 +2,8 @@ class Consulta < ActiveRecord::Base
  	paginates_per 20
 
  	#asociaciones
- 	belongs_to :doctor, :foreign_key => :doctor_id
- 	belongs_to :user
- 	belongs_to :paciente,:foreign_key => :paciente_id
+ 	belongs_to :doctor, -> { with_deleted }, :foreign_key => :doctor_id
+ 	belongs_to :paciente, -> { with_deleted },:foreign_key => :paciente_id
  	belongs_to :area
 
  	#validaciones

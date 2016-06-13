@@ -3,8 +3,8 @@ class ConsultaOdontologica < ActiveRecord::Base
   paginates_per 20
 
   belongs_to :area
-  belongs_to :paciente
-  belongs_to :doctor, :foreign_key => :doctor_id
+  belongs_to :paciente, -> { with_deleted }
+  belongs_to :doctor, -> { with_deleted }, :foreign_key => :doctor_id
   belongs_to :ficha_odontologica, :foreign_key => :ficha_odontologica_id
 
   #carga id area antes de guardar la consulta

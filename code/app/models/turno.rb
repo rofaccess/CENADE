@@ -4,9 +4,9 @@ class Turno < ActiveRecord::Base
   # Autoincrementa el numero de turno
   #protokoll :turno, pattern: '#'
 
-	belongs_to :paciente
+	belongs_to :paciente, -> { with_deleted }
 	belongs_to :area
-  belongs_to :doctor
+  belongs_to :doctor, -> { with_deleted }
   #belongs_to :turno
 
 

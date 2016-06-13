@@ -6,8 +6,8 @@ class Paciente < ActiveRecord::Base
 	after_destroy :destroy_persona, :destroy_encargado
 
 	has_many :turnos
-	belongs_to :persona
-	belongs_to :encargado
+	belongs_to :persona, -> { with_deleted }
+	belongs_to :encargado, -> { with_deleted }
 
 	has_one :ficha_fisioterapia_nino
 	has_one :ficha_fonoaudiologica

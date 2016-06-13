@@ -3,11 +3,9 @@ class DoctoresController < EmpleadosController
  	def update
    respond_to do |format|
       if @empleado.update(empleado_params)
-        set_submenu
         flash.now[:notice] = "Se ha actualizado el empleado #{@empleado.persona_full_name}."
         format.html {render 'show'}
       else
-        set_submenu
         flash.now[:alert] = "No se ha podido actualizar los datos del empleado #{@empleado.persona_full_name}."
         format.html { render "new"}
       end
@@ -21,7 +19,7 @@ class DoctoresController < EmpleadosController
   # Buscador de doctores
   def buscar
     @search = Doctor.ransack(params[:q])
-    @doctores= @search.result
+    @doctores= @search.result.includes(:persona).order('personas.nombre')
     render json: {items: @doctores.as_json(:only => [:id],
                                               :methods => [:full_name, :area_nombre],
                                             )}

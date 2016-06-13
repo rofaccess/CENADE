@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :timeoutable, :lockable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  belongs_to :empleado
+  belongs_to :empleado, -> { with_deleted }
   has_many :consultas
 
   validates :username, length: {maximum: Domain::USERNAME, minimum: 3}
