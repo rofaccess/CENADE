@@ -100,35 +100,38 @@
 				</div>
 			</div>
 		</div>
-		<h4>Administración</h4><hr>
-		<div class="row">
-			<div class="col-md-4 form-group">
-				<label>* Usuario Admin</label>
-				<select class ="form-control required select2 " id="usuario_id" name="usuario_id"  >
-			       <option value="">Nombre de Usuario </option>
+		<% if current_user.id == @configuracion_general.usuario_admin%>
+			<h4>Administración</h4><hr>
+			<div class="row">
+				<div class="col-md-5 form-group">
+					<label>* Usuario Admin</label>
+					<select class ="form-control required select2 " id="usuario_id" name="usuario_id"  >
+				       <option value="">Nombre de Usuario </option>
+						<%@usuarios.each do |usuario|%>
+							<option value="<%= usuario.id%>">
+							    <%=usuario.username%>
+							</option>
+						<%end%>
+					</select>
 					<%@usuarios.each do |usuario|%>
-						<option value="<%= usuario.id%>">
-						    <%=usuario.username%>
-						</option>
+						<div class="hidden">
+							<input type="hidden" id="option-nombre-<%= usuario.id %>" value="<%= usuario.empleado.persona.nombre %>"/>
+							<input type="hidden" id="option-apellido-<%= usuario.id %>" value="<%= usuario.empleado.persona.apellido %>"/>
+							</div>
 					<%end%>
-				</select>
-				<%@usuarios.each do |usuario|%>
-					<div class="hidden">
-						<input type="hidden" id="option-nombre-<%= usuario.id %>" value="<%= usuario.empleado.persona.nombre %>"/>
-						<input type="hidden" id="option-apellido-<%= usuario.id %>" value="<%= usuario.empleado.persona.apellido %>"/>
-						</div>
-				<%end%>
-			</div>
-			<div class="col-md-5">
-				<input type="text" name="configuracion[usuario_admin]" id="usuario_admin" value="<%= @configuracion.usuario_admin %>" class="hidden">
+				</div>
+				<div class="col-md-7">
+					<input type="text" name="configuracion[usuario_admin]" id="usuario_admin" value="<%= @configuracion.usuario_admin %>" class="hidden">
 
-				<label class="control-label">* Empleado</label>
-				<input class="form-control usuario-nombre" disabled="disabled" value="" id="usuario_admin2">
+					<label class="control-label">* Empleado</label>
+					<input class="form-control usuario-nombre" disabled="disabled" value="" id="usuario_admin2">
+				</div>
+
 			</div>
-			<div class="form-button" style="margin-top: 24px;">
+		<%end%>
+		<div class="form-button" style="margin-top: 24px;">
 	      		<%= configuracion.submit 'Guardar cambios', class: 'btn btn-custom', data: {disable_with: "Guardando..."}%>
 	   		 </div>
-		</div>
 
 	<%end%>
 </div>

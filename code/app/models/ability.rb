@@ -6,7 +6,7 @@ class Ability
   def initialize(user)
   	if user
 
-  		if user.roles.first.name == "Administrador"
+  		if user.roles.first.name == "Administrador" || user.id == Configuracion.first.usuario_admin
   			can :manage, :all
   		else
 	      @rol = user.roles.first
