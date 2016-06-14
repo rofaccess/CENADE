@@ -85,12 +85,10 @@ class PacientesController < ApplicationController
     end
 
     def destroy
-    	respond_to do |format|
-    		if @paciente.destroy
-    			format.html { redirect_to pacientes_path, flash: {notice: "Se ha eliminado el paciente #{@paciente.persona_full_name}."}}
-    		else
-    			format.html { redirect_to pacientes_path, flash: {alert: "No se ha podido eliminar el paciente #{@paciente.persona_full_name}."}}
-    		end
+      if @paciente.destroy
+      	redirect_to pacientes_path, notice: t('messages.delete_success', resource: 'el paciente')
+      else
+        redirect_to pacientes_path, alert: t('messages.delete_error', resource: 'el paciente', errors: @paciente.errors.full_messages.to_sentence)
     	end
     end
 

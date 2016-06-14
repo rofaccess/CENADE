@@ -1,7 +1,7 @@
 <div class="page-title page-title-sin-submenu">
       <%=turno_nuevo.nil? ? ('Editar Turno N°' + turno.turno.to_s) : 'Nuevo Turno'%>
 
-      <div class="tool">
+      <div class="tool tool-sin-buscador">
         <%= link_to '<i class="fa fa-list"></i> '.html_safe, turnos_path %>
       </div>
     </div>

@@ -1,7 +1,7 @@
 <div class="page-title">
     Rol <%=role.name %>
 
-      <div class="tool">
+      <div class="tool tool-sin-buscador">
         <%= link_to '<i class="fa fa-list" data-toggle="tooltip" title="Lista de Roles"></i> '.html_safe, roles_path%>
         <%= link_to '<i class="fa fa-plus-square" data-toggle="tooltip" title="Nuevo Rol"></i> '.html_safe, new_role_path%><%= link_to '<i class="fa fa-edit" data-toggle="tooltip" title="Editar Rol"></i> '.html_safe, edit_role_path(role.id)%>
         <%= link_to '<i class="fa fa-trash-o" data-toggle="tooltip" title="Eliminar Rol"></i> '.html_safe, role_path(role), method: 'delete', data: {confirm: "¿Desea eliminar el rol #{role.name}?"}%>

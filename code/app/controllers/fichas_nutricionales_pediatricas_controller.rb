@@ -137,7 +137,7 @@ class FichasNutricionalesPediatricasController < ApplicationController
   end
 
   def nutri_pediatrica_params
-  	params.require(:ficha_nutricional_pediatrica).permit(:area_id,:paciente_id, :profesional_salud_id, :fecha, :nro_ficha,
+  	params.require(:ficha_nutricional_pediatrica).permit(:area_id,:paciente_id, :doctor_id, :fecha, :nro_ficha,
   		 :problema_embarazo,:control_prenatal,:alimentacion_embarazo,:otros_datos,:parto_vaginal_cesarea, :termino_pretermino,
   		 :lugar_parto,:como_fue_parto, :peso_nacimiento, :asfixia_lloro, :tomo_pecho, :alimentacion_complementaria)
   end

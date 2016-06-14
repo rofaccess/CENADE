@@ -8,19 +8,17 @@ class Empleado < ActiveRecord::Base
   belongs_to :area
  	accepts_nested_attributes_for :persona
 
- 	has_one :horario
-
  	# Se elimina el registro de persona al eliminar el empleado
  	def destroy_persona
-      persona.destroy
-    end
+    persona.destroy
+  end
 
-    # Al borrar el empleado se borra su usuario del sistema
-    def destroy_user
-    	if !user.blank?
-      		user.destroy
-      	end
+  # Al borrar el empleado se borra su usuario del sistema
+  def destroy_user
+    if !user.blank?
+      user.destroy
     end
+  end
 
   # Law of Demeter
 	delegate :full_name, :nombre, :apellido, :ci,:ruc, :edad, :sexo, :nacionalidad,

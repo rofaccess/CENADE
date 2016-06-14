@@ -1,7 +1,7 @@
 <div class="page-title page-title-con-sidebar">
   Control de <%=control.paciente_persona_full_name%>
 
-  <div class="tool">
+  <div class="tool tool-sin-buscador">
 
     <%= link_to '<i class="fa fa-plus-square" data-toggle="tooltip" title="Nuevo Control"></i> '.html_safe, new_control_path(paciente: paciente.id, area_id: control.area.id), remote: true %>
 

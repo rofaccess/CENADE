@@ -1,7 +1,7 @@
 <div class="page-title page-title-con-sidebar">
   Consulta de <%=consulta.paciente_persona_full_name%>
 
-  <div class="tool">
+  <div class="tool tool-sin-buscador">
     <%= link_to '<i class="fa fa-list data-toggle="tooltip" title="Lista de Consultas"></i> '.html_safe, consultas_path(area_id: area.id) %>
 
     <%= link_to '<i class="fa fa-plus-square" data-toggle="tooltip" title="Nueva Consulta"></i> '.html_safe, new_consulta_path(area_id: consulta.area_id), remote: true %>

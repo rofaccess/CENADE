@@ -70,8 +70,8 @@ class CreateConsultasNutricionalesAdultos < ActiveRecord::Migration
 
       t.timestamps null: false
     end
-    # ON DELETE CASCADE: Si se borra un paciente se borran todas sus consultas
-    add_foreign_key(:consultas_nutricionales_adultos, :pacientes, column: 'paciente_id', on_delete: :cascade)
+    # ON DELETE RESTRICT: No se permite borrar un paciente relacionado a alguna consulta
+    add_foreign_key(:consultas_nutricionales_adultos, :pacientes, column: 'paciente_id', on_delete: :restrict)
 
     add_index :consultas_nutricionales_adultos, :ficha_nutricional_adulto_id, name: "ficha_id"
     add_index :consultas_nutricionales_adultos, :doctor_id

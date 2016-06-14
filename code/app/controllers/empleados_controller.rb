@@ -43,17 +43,14 @@ class EmpleadosController < ApplicationController
   	def show
   	end
 
-  	def destroy
-		respond_to do |format|
-			if checkCurrentUserEmployee(@empleado)
-	      		format.html { redirect_to empleados_path, flash: {alert: "No puedes eliminar tu propio registro de empleado"}}
-
-			elsif @empleado.destroy
-				format.html { redirect_to empleados_path, flash: {notice: "Se ha eliminado el empleado #{@empleado.persona_full_name}."}}
-			else
-			   	format.html { redirect_to empleados_path, flash: {alert: "No se ha podido eliminar el empleado #{@empleado.persona_full_name}."}}
-			end
-		end
+  def destroy
+		if checkCurrentUserEmployee(@empleado)
+	     redirect_to empleados_path, alert: "No puedes eliminar tu propio registro de empleado"
+		elsif @empleado.destroy
+      redirect_to empleados_path, notice: t('messages.delete_success', resource: 'el empleado')
+    else
+      redirect_to empleados_path, alert: t('messages.delete_error', resource: 'el empleado', errors: @empleado.errors.full_messages.to_sentence)
+    end
 	end
 
   	# Si el registro de empleado que se intenta borrar corresponde al

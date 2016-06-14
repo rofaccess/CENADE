@@ -2,7 +2,7 @@
       Usuario
       <% form_url = usuario.id.nil? ? usuarios_path : usuarios_path+"/#{usuario.id}" %>
 
-      <div class="tool">
+      <div class="tool tool-sin-buscador">
          <%= link_to '<i class="fa fa-list" data-toggle="tooltip" title="Lista de Usuarios"></i> '.html_safe, usuarios_path %>
         <%= link_to '<i class="fa fa-plus-square" data-toggle="tooltip" title="Nuevo Usuario"></i> '.html_safe, new_usuario_path%>
          <% unless current_user.id == usuario.id || usuario.id == Configuracion.first.usuario_admin %>

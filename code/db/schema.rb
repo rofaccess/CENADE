@@ -322,19 +322,6 @@ ActiveRecord::Schema.define(version: 20160527060755) do
 
   add_index "estados_civiles", ["descripcion"], name: "index_estados_civiles_on_descripcion", unique: true, using: :btree
 
-  create_table "fechas", force: :cascade do |t|
-    t.integer  "horario_id",               null: false
-    t.date     "fecha",                    null: false
-    t.time     "turno_manana_hora_inicio"
-    t.time     "turno_manana_hora_fin"
-    t.time     "turno_tarde_hora_inicio"
-    t.time     "turno_tarde_hora_fin"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
-  end
-
-  add_index "fechas", ["horario_id"], name: "index_fechas_on_horario_id", using: :btree
-
   create_table "ficha_fisioterapia_ninos", force: :cascade do |t|
     t.integer  "area_id",                                          null: false
     t.integer  "doctor_id",                                        null: false
@@ -592,7 +579,7 @@ ActiveRecord::Schema.define(version: 20160527060755) do
   create_table "fichas_nutricionales_pediatricas", force: :cascade do |t|
     t.integer  "paciente_id",                             null: false
     t.integer  "area_id",                                 null: false
-    t.integer  "profesional_salud_id",                    null: false
+    t.integer  "doctor_id",                               null: false
     t.integer  "nro_ficha"
     t.date     "fecha",                                   null: false
     t.string   "problema_embarazo",           limit: 250
@@ -612,8 +599,8 @@ ActiveRecord::Schema.define(version: 20160527060755) do
   end
 
   add_index "fichas_nutricionales_pediatricas", ["area_id"], name: "index_fichas_nutricionales_pediatricas_on_area_id", using: :btree
+  add_index "fichas_nutricionales_pediatricas", ["doctor_id"], name: "index_fichas_nutricionales_pediatricas_on_doctor_id", using: :btree
   add_index "fichas_nutricionales_pediatricas", ["paciente_id"], name: "index_fichas_nutricionales_pediatricas_on_paciente_id", using: :btree
-  add_index "fichas_nutricionales_pediatricas", ["profesional_salud_id"], name: "index_fichas_nutricionales_pediatricas_on_profesional_salud_id", using: :btree
 
   create_table "fichas_odontologicas", force: :cascade do |t|
     t.integer  "paciente_id",                          null: false
@@ -741,14 +728,6 @@ ActiveRecord::Schema.define(version: 20160527060755) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-
-  create_table "horarios", force: :cascade do |t|
-    t.integer  "empleado_id", null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "horarios", ["empleado_id"], name: "index_horarios_on_empleado_id", using: :btree
 
   create_table "pacientes", force: :cascade do |t|
     t.integer  "persona_id",                                null: false
@@ -908,20 +887,19 @@ ActiveRecord::Schema.define(version: 20160527060755) do
 
   add_foreign_key "consultas", "areas", on_delete: :restrict
   add_foreign_key "consultas", "empleados", column: "doctor_id", on_delete: :restrict
-  add_foreign_key "consultas", "pacientes", on_delete: :cascade
-  add_foreign_key "consultas_nutricionales_adultos", "pacientes", on_delete: :cascade
+  add_foreign_key "consultas", "pacientes", on_delete: :restrict
+  add_foreign_key "consultas_nutricionales_adultos", "pacientes", on_delete: :restrict
   add_foreign_key "consultas_nutricionales_pediatricas", "areas", on_delete: :restrict
   add_foreign_key "consultas_nutricionales_pediatricas", "fichas_nutricionales_pediatricas", column: "ficha_nutri_ped_id", on_delete: :restrict
   add_foreign_key "consultas_nutricionales_pediatricas", "pacientes", on_delete: :restrict
   add_foreign_key "consultas_odontologicas", "areas", on_delete: :restrict
   add_foreign_key "consultas_odontologicas", "fichas_odontologicas", on_delete: :restrict
-  add_foreign_key "consultas_odontologicas", "pacientes", on_delete: :cascade
+  add_foreign_key "consultas_odontologicas", "pacientes", on_delete: :restrict
   add_foreign_key "controles", "areas", on_delete: :restrict
   add_foreign_key "controles", "consultas_nutricionales_pediatricas", on_delete: :restrict
   add_foreign_key "controles", "pacientes", on_delete: :restrict
   add_foreign_key "empleados", "areas", on_delete: :restrict
   add_foreign_key "empleados", "personas", on_delete: :restrict
-  add_foreign_key "fechas", "horarios", on_delete: :restrict
   add_foreign_key "ficha_fisioterapia_ninos", "areas", on_delete: :restrict
   add_foreign_key "ficha_fisioterapia_ninos", "pacientes", on_delete: :restrict
   add_foreign_key "fichas_clinicos", "areas", on_delete: :restrict
@@ -942,7 +920,6 @@ ActiveRecord::Schema.define(version: 20160527060755) do
   add_foreign_key "fichas_pediatricas", "pacientes", on_delete: :restrict
   add_foreign_key "fichas_psicopedagogicas", "areas", on_delete: :restrict
   add_foreign_key "fichas_psicopedagogicas", "pacientes", on_delete: :restrict
-  add_foreign_key "horarios", "empleados", on_delete: :cascade
   add_foreign_key "pacientes", "encargados", on_delete: :restrict
   add_foreign_key "pacientes", "personas", on_delete: :restrict
   add_foreign_key "permissions", "grupos", on_delete: :restrict

@@ -7,8 +7,6 @@ class Turno < ActiveRecord::Base
 	belongs_to :paciente, -> { with_deleted }
 	belongs_to :area
   belongs_to :doctor, -> { with_deleted }
-  #belongs_to :turno
-
 
   #Validaciones
 	validate :coincidencia_area
