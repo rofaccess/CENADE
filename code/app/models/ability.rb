@@ -16,6 +16,9 @@ class Ability
 
 	          if permission[:grupo_id] == 5
 	          		can :create, Paciente
+	          		can :buscar, Paciente
+	          		can :get_paciente, Paciente
+
 		          	if permission[:nombre] == ("Clínico")
 			    		can :manage, Consulta
 				    end
@@ -49,7 +52,7 @@ class Ability
 
 		        end
 		        if permission[:grupo_id] == 3
-		        	can :create, Paciente
+		        	can [:get_paciente, :buscar, :recarga_paciente, :new_modal, :paciente_params], Paciente
 		        end
 		        can :manage, permission.model.singularize.classify.constantize
 	      end

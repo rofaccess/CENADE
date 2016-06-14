@@ -2,7 +2,7 @@ class PacientesController < ApplicationController
 
 	before_action :set_paciente, only: [:show, :edit, :update, :destroy]
 	load_and_authorize_resource
-  skip_load_resource :only => [:buscar]
+  skip_load_resource :only => [:buscar, :new_modal, :get_pacientes, :recarga_paciente]
 	respond_to :html, :js
 
 	def index
@@ -26,6 +26,7 @@ class PacientesController < ApplicationController
 				format.html { render "new"}
 			end
 		end
+    authorize! :create, @paciente
 	end
 
   def recarga_paciente
@@ -36,6 +37,7 @@ class PacientesController < ApplicationController
       flash.now[:alert] = "No se ha podido guardar el paciente #{@paciente.persona_full_name}."
     end
     render 'recarga_paciente', format: :js
+    authorize! :recarga_paciente, @paciente
   end
 
   def new_modal
