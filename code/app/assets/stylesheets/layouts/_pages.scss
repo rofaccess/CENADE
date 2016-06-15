@@ -161,3 +161,20 @@ div.content-sin-page-title{
    border-top: 1px solid $data-border-color;
    padding-top: 5px;
 }
+
+/* Por algún motivo el dataTable no ocupa el 100% de su contenedor
+  Se forza a que ocupe el 100%
+*/
+.dataTable{
+	width: 100% !important;
+}
+
+/* Por algún motivo el .col-xs-4 tiene fondo, borde, y padding top y bottom
+   Se quita lo mencionado
+*/
+.col-xs-4 {
+  padding-top: 0;
+  padding-bottom: 0;
+  background-color: inherit;
+  border: none;
+}

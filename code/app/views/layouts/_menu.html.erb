@@ -12,7 +12,7 @@
         <ul class="nav navbar-nav">
 
           <li class="<%= current_menu([turnos_path, new_turno_path])%>">
-            <%= link_to '<span class="fa fa-calendar" aria-hidden="true"></span>  Turnos'.html_safe, new_turno_path  %>
+            <%= link_to '<span class="fa fa-calendar" aria-hidden="true"></span>  Turnos'.html_safe, turnos_path  %>
 
           </li>
 
@@ -20,12 +20,12 @@
             <%= link_to '<span class="fa fa-user" aria-hidden="true"></span>  Pacientes'.html_safe, pacientes_path %>
           </li>
 
-          <li class="<%= current_menu([welcome_index_fichas_path, welcome_index_consultas_path,welcome_index_historial_path,fichas_fisioterapeuticas_adultos_path,ficha_fisioterapia_ninos_path, fichas_fonoaudiologicas_path,fichas_nutricionales_pediatricas_path, fichas_psicopedagogicas_path, fichas_pediatricas_path,fichas_odontologicas_path,fichas_neurologicas_path,fichas_clinicos_path,consultas_path, historiales_fisioterapeuticos_path, historiales_fonoaudiologicos_path,historiales_psicopedagogicos_path, historiales_clinicos_path,historiales_neurologicos_path,historiales_pediatricos_path,historiales_odontologicos_path,historiales_nutricionales_path, atenciones_profesionales_path])%>">
+          <li class="<%= current_menu([welcome_index_fichas_path, welcome_index_consultas_path,welcome_index_historial_path,fichas_fisioterapeuticas_adultos_path,ficha_fisioterapia_ninos_path, fichas_fonoaudiologicas_path,fichas_nutricionales_pediatricas_path,fichas_nutricionales_adultos_path, fichas_psicopedagogicas_path, fichas_pediatricas_path,fichas_odontologicas_path,fichas_neurologicas_path,fichas_clinicos_path,consultas_path, historiales_fisioterapeuticos_path, historiales_fonoaudiologicos_path,historiales_psicopedagogicos_path, historiales_clinicos_path,historiales_neurologicos_path,historiales_pediatricos_path,historiales_odontologicos_path,historiales_nutricionales_path, atenciones_profesionales_path])%>">
             <%= link_to '<span class="fa fa-list-alt" aria-hidden="true"></span>  Fichas y Consultas'.html_safe, welcome_index_fichas_path %>
           </li>
 
-          <li class="<%= current_menu([welcome_index_personal_path, empleados_path])%>">
-            <%= link_to '<span class="fa fa-users" aria-hidden="true"></span>  Personal'.html_safe, empleados_path  %>
+          <li class="<%= current_menu([empleados_path])%>">
+            <%= link_to '<span class="fa fa-users" aria-hidden="true"></span>  Empleados'.html_safe, empleados_path  %>
           </li>
 
           <li class="<%= current_menu([reportes_estadisticos_por_mes_path, reportes_estadisticos_por_anho_path])%>">
@@ -33,7 +33,7 @@
           </li>
 
           <li class="<%= current_menu([welcome_index_configuracion_path, usuarios_path, edit_configuracion_path(Configuracion.first),configuracion_path(Configuracion.first), roles_path, perfil_usuarios_edit_path])%>">
-            <%= link_to '<span class="fa fa-gear" aria-hidden="true"></span>  Configuración'.html_safe, edit_configuracion_path(Configuracion.first)  %>
+            <%= link_to '<span class="fa fa-gear" aria-hidden="true"></span>  Configuración'.html_safe, welcome_index_configuracion_path  %>
 
           </li>
 

@@ -1,13 +1,7 @@
 class EmpleadosController < ApplicationController
-
-	before_action :set_submenu, only: [:index,:new, :show]
 	before_action :set_empleado, only: [:show, :edit, :update, :destroy]
-	load_and_authorize_resource #Conflicto con check_ci
+	load_and_authorize_resource
 	respond_to :html, :js
-
-	def set_submenu
-		@submenu_layout = 'layouts/submenu_personal'
-	end
 
 	def index
 		get_empleados
@@ -31,11 +25,9 @@ class EmpleadosController < ApplicationController
 	  	@empleado = set_empleado_per_type(empleado_params)
 		respond_to do |format|
 			if @empleado.save
-				set_submenu
 			    flash.now[:notice] = "Se ha guardado el empleado #{@empleado.persona_full_name}."
 			    format.html {render 'show'}
 			else
-				set_submenu
 				flash.now[:alert] = "No se ha podido guardar el empleado #{@empleado.persona_full_name}."
        			format.html { render "new"}
 			end
@@ -51,17 +43,14 @@ class EmpleadosController < ApplicationController
   	def show
   	end
 
-  	def destroy
-		respond_to do |format|
-			if checkCurrentUserEmployee(@empleado)
-	      		format.html { redirect_to empleados_path, flash: {alert: "No puedes eliminar tu propio registro de empleado"}}
-
-			elsif @empleado.destroy
-				format.html { redirect_to empleados_path, flash: {notice: "Se ha eliminado el empleado #{@empleado.persona_full_name}."}}
-			else
-			   	format.html { redirect_to empleados_path, flash: {alert: "No se ha podido eliminar el empleado #{@empleado.persona_full_name}."}}
-			end
-		end
+  def destroy
+		if checkCurrentUserEmployee(@empleado)
+	     redirect_to empleados_path, alert: "No puedes eliminar tu propio registro de empleado"
+		elsif @empleado.destroy
+      redirect_to empleados_path, notice: t('messages.delete_success', resource: 'el empleado')
+    else
+      redirect_to empleados_path, alert: t('messages.delete_error', resource: 'el empleado', errors: @empleado.errors.full_messages.to_sentence)
+    end
 	end
 
   	# Si el registro de empleado que se intenta borrar corresponde al
@@ -90,10 +79,7 @@ class EmpleadosController < ApplicationController
     end
 
     def print_empleados
-  		# //- También se puede imprimir una lista filtrada, no esta implementado
-  		#@search = Empleado.ransack(params[:q])
-  		#@empleados= @search.result
-  		@empleados = Empleado.all
+  		get_empleados
 
 	    respond_to do |format|
 	      format.pdf do
@@ -116,7 +102,10 @@ class EmpleadosController < ApplicationController
 
     def get_empleados
     	@search = Empleado.ransack(params[:q])
-		@empleados= @search.result.page(params[:page])
+		  @empleados= @search.result
+                         .includes(:persona)
+                         .order('personas.nombre')
+                         .page(params[:page])
     end
 
     def check_ci

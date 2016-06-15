@@ -22,13 +22,13 @@
 			<%= search_form_for @search, url: search_fichas_neurologicas_path, method: :post, remote: true, class: 'form-filtros' do |f| %>
 			<div class="row">
 
-				<%= FormBuilder::text_field_v(f, :paciente_persona_nombre_or_paciente_persona_apellido_or_paciente_persona_ci_cont, {col_class: 'col-md-3', label_text: 'Paciente', input_class: '',  placeholder: "Nombre, Apellido o CI"})%>
+				<%= FormBuilder::text_field_v(f, :paciente_persona_nombre_or_paciente_persona_apellido_or_paciente_persona_ci_cont, {col_class: 'col-xs-3', label_text: 'Paciente', input_class: '',  placeholder: "Nombre, Apellido o CI"})%>
 
-				<%= FormBuilder::text_field_v(f, :doctor_persona_nombre_or_doctor_persona_apellido_cont, {col_class: 'col-md-3', label_text: 'Prof. de la Salud', input_class: '', placeholder: "Nombre o Apellido"})%>
+				<%= FormBuilder::text_field_v(f, :doctor_persona_nombre_or_doctor_persona_apellido_cont, {col_class: 'col-xs-3', label_text: 'Prof. de la Salud', input_class: '', placeholder: "Nombre o Apellido"})%>
 
-				<%= FormBuilder::text_field_v(f, :nro_ficha_eq, {col_class: 'col-md-1', label_text: 'Ficha', input_class: ''})%>
+				<%= FormBuilder::text_field_v(f, :nro_ficha_eq, {col_class: 'col-xs-1', label_text: 'Ficha', input_class: ''})%>
 
-				<%= FormBuilder::text_field_v(f, :fecha_eq, {col_class: 'col-md-2', label_text: 'Fecha', input_class: 'datepicker',max_length: Domain::FECHA})%>
+				<%= FormBuilder::text_field_v(f, :fecha_eq, {col_class: 'col-xs-2', label_text: 'Fecha', input_class: 'datepicker',max_length: Domain::FECHA})%>
 
 				<div class= "advanced-search-buttons">
 					<%= f.submit 'Filtrar', class: 'btn btn-custom '%>

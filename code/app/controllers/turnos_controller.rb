@@ -2,7 +2,8 @@ class TurnosController < ApplicationController
 
   before_action :set_turno, only: [:show, :edit, :update, :destroy]
   respond_to :html, :js
-  load_and_authorize_resource
+  load_and_authorize_resource :turno
+
 
   def index
   	 get_turnos
@@ -69,8 +70,7 @@ class TurnosController < ApplicationController
   end
 
   def print_turnos
-
-      @turnos = Turno.all
+      get_turnos()
 
       respond_to do |format|
         format.pdf do
@@ -95,6 +95,14 @@ class TurnosController < ApplicationController
   #obtiene el paciente
    def get_paciente
     @paciente= Paciente.find(params[:idd])
+
+    authorize! :get_paciente, @paciente
+
+  end
+
+  #recarga la lista de profesionales segun el area
+   def recarga_doctores
+    @area= Area.find(params[:id_area])
 
   end
 
@@ -121,7 +129,7 @@ class TurnosController < ApplicationController
     end
     def get_turnos
       @search = Turno.ransack(params[:q])
-      @search.sorts = ['turno asc', 'area_id desc'] if @search.sorts.empty?
+      @search.sorts = ['fecha_consulta desc','turno asc'] if @search.sorts.empty?
       @turnos= @search.result.page(params[:page])
     end
 

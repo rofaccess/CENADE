@@ -3,9 +3,8 @@ class ConsultaNutricionalPediatrica < ActiveRecord::Base
  	paginates_per 20
 
 	#asociaciones
- 	belongs_to :doctor, :foreign_key => :doctor_id
- 	belongs_to :user
- 	belongs_to :paciente
+ 	belongs_to :doctor, -> { with_deleted }, :foreign_key => :doctor_id
+ 	belongs_to :paciente, -> { with_deleted }
  	belongs_to :area
  	belongs_to :ficha_nutricional_pediatrica, :foreign_key => :ficha_nutri_ped_id
  	has_many :controles

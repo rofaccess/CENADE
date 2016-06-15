@@ -278,6 +278,12 @@ APP = {
         });
     },
 
+
+    /* Envía el q de ransack para que se pueda imprimir solo la lista que se esta filtrando */
+    initImprimir: function(params) {
+      $('#imprimir-link').attr('href', $('#imprimir-link').data('url') + params.replace('amp;',''));
+    },
+
     /* Ejecuta las funciones especificadas*/
     init: function() {
 		APP.initBuscador();
@@ -303,12 +309,6 @@ var delay = (function(){
     };
 })();
 
-/* Envía el q de ransack para que se pueda imprimir solo la lista que se esta filtrando */
-//- Actualmente no esta en uso
-function configImprimir (params) {
-  $('#imprimir-link').attr('href', $('#imprimir-link').data('url') + params.replace('amp;',''));
-};
-
 /* CONFIGURACIONES POR DEFECTO PARA VENDORS */
 
 /* Configura el plugin noty de forma global */
@@ -325,7 +325,7 @@ $.noty.defaults = {
         easing: 'swing',
         speed: 500 // opening & closing animation speed
     },
-    timeout: 5000, // delay for closing event. Set false for sticky notifications
+    timeout: 10000, // delay for closing event. Set false for sticky notifications
     force: false, // adds notification to the beginning of queue when set to true
     modal: false,
     maxVisible: 5, // you can set max visible notification for dismissQueue true option

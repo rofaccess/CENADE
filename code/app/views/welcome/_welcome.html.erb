@@ -1,0 +1,23 @@
+<div class="page-title page-title-sin-submenu">
+</div>
+
+<div class="content content-sin-submenu content-50">
+   <div class="welcome-content">
+      <%=image_tag(@configuracion_general.empresa_logo.blank? ? "logo-cenade": @configuracion_general.empresa_logo_url.to_s, :width => 200, :height => 200) %>
+
+      <h1>Bienvenido <%=current_user.empleado_persona_full_name.split(" ").first%></h1>
+   </div>
+   <% flash.each do |key, value| %>
+
+      <% end %>
+</div>
+
+<script type="text/javascript">
+      <% if !flash.notice.blank? %>
+        var n = noty({text: '<%=notice%>', type: 'success'});
+      <% end %>
+      <% if !flash.alert.blank?%>
+        var n = noty({text: '<%=alert%>', type: 'error'});
+      <% end %>
+
+</script>

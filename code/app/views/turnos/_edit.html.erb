@@ -1,7 +1,7 @@
 <div class="page-title page-title-sin-submenu">
       <%=turno_nuevo.nil? ? ('Editar Turno N°' + turno.turno.to_s) : 'Nuevo Turno'%>
 
-      <div class="tool">
+      <div class="tool tool-sin-buscador">
         <%= link_to '<i class="fa fa-list"></i> '.html_safe, turnos_path %>
       </div>
     </div>
@@ -15,7 +15,7 @@
       <hr>
       <div class="row">
 
-          <div class="col-md-7">
+          <div class="col-xs-7">
             <%= turn.label :paciente_id, '* Paciente' %>
 
             <%= turn.select(:paciente_id, Hash[Paciente.all.map{|a| [a.persona.nombre + " "+ a.persona.apellido, a.id]}],{},{class: "select-paciente form-control", required: true,  id: 'paciente_id'})%>
@@ -25,7 +25,7 @@
                                       input_class: 'date datepicker required dateLessSystemDate',
                                       max_length: Domain::FECHA,
                                       label_text: '* Fecha Actual',
-                                      col_class: 'col-md-5',
+                                      col_class: 'col-xs-5',
                                       input_value: "#{turno.fecha_expedicion.strftime("%d/%m/%Y") unless turno.new_record?}")%>
 
        </div>
@@ -39,7 +39,7 @@
     <hr>
 
     <div class="row">
-      <div class="col-md-4">
+      <div class="col-xs-4">
 
         <%= turn.label :area_id, '* Área a consultar' %>
 
@@ -47,7 +47,7 @@
 
       </div>
 
-      <div class="col-md-4">
+      <div class="col-xs-4">
 
         <%= turn.label :doctor_id, '* Profesional de la Salud' %>
 
@@ -58,37 +58,40 @@
                                       input_class: 'date datepicker2 required',
                                       max_length: Domain::FECHA,
                                       label_text: '* Fecha de Consulta',
-                                      col_class: 'col-md-4',
+                                      col_class: 'col-xs-4',
                                       input_value: "#{turno.fecha_consulta.strftime("%d/%m/%Y") unless turno.new_record?}")%>
     </div>
   </br>
       <div class="row">
 
-           <div class="col-md-5">
+           <div class="col-xs-5">
 
             <%= turn.label :paga, '* Abonará el monto estipulado?' %>
 
             <div class="row">
-              <%= label :paga, "Si", class: "col-md-1"%>
-              <%= turn.radio_button :paga, true , :value => true, class: "col-md-3 paga si_paga"%>
-              <%= label :paga, "No", class: "col-md-2"%>
-              <%= turn.radio_button :paga, false , :value => false, class: "col-md-1 paga no_paga" %>
+              <%= label :paga, "Si", class: "col-xs-1"%>
+              <%= turn.radio_button :paga, true , :value => true, class: "col-xs-3 paga si_paga"%>
+              <%= label :paga, "No", class: "col-xs-2"%>
+              <%= turn.radio_button :paga, false , :value => false, class: "col-xs-1 paga no_paga" %>
 
             </div>
         </div>
       </div>
-
+      <% if turno.paga %>
         <div class="row" id="factura" >
+      <% else %>
+        <div class="row" id="factura" style="display:none">
+      <%end%>
           <%= FormBuilder::text_field_v(turn, :monto,
                                       input_class: 'costo',
                                       max_length: Domain::COSTO,
                                       label_text: 'Costo del servicio',
-                                      col_class: 'col-md-6')%>
+                                      col_class: 'col-xs-6')%>
           <%= FormBuilder::text_field_v(turn, :nro_factura,
                                         input_class: '',
                                         max_length: Domain::NRO_FACTURA,
                                         label_text: 'N° de Factura',
-                                        col_class: 'col-md-6')%>
+                                        col_class: 'col-xs-6')%>
 
        </div>
 

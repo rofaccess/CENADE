@@ -13,10 +13,10 @@
                                         input_class: 'required',
                                         max_length: Domain::USERNAME,
                                         autofocus: true,
-                                        col_class: 'col-md-6',
+                                        col_class: 'col-xs-6',
                                         label_text: '* Usuario') %>
 
-      <div class= 'col-md-6'>
+      <div class= 'col-xs-6'>
           <%= image_tag(current_user.profile_foto_url.to_s, :width => 100, :height => 100) %>
           <%= f.file_field :profile_foto %>
       </div></br>
@@ -26,30 +26,30 @@
       <%= FormBuilder::text_field_v(f, :password,
                                         input_class: 'required clear',
                                         max_length: Domain::CONTRASEÑA,
-                                        col_class: 'col-md-6',
+                                        col_class: 'col-xs-6',
                                         label_text: '* Contraseña') %>
 
       <%= FormBuilder::text_field_v(f, :password_confirmation,
                                         input_class: 'required clear',
                                         max_length: Domain::CONTRASEÑA,
-                                        col_class: 'col-md-6',
+                                        col_class: 'col-xs-6',
                                         label_text: '* Confirmar Contraseña') %>
     </div>
     <h4>Datos de Contacto</h4><hr>
     <div class="row">
-      <div class="form-group col-md-12">
+      <div class="form-group col-xs-12">
           <label class="control-label" for="user_username">* Direccion</label>
           <input class="form-control required clear usuario-apellido" placeholder=""  maxlength="30" type="text" >
       </div>
     </div>
     <div class="row">
 
-      <div class="form-group col-md-5">
+      <div class="form-group col-xs-5">
           <label class="control-label" for="user_username">* Telefono</label>
           <input class="form-control required clear usuario-cargo" placeholder=""  maxlength="100" type="text"  >
       </div>
 
-      <div class="form-group col-md-7">
+      <div class="form-group col-xs-7">
           <label class="control-label" for="user_username">* Email</label>
           <input class="form-control required clear usuario-email" placeholder=""  maxlength="50" type="text"  >
       </div>

@@ -21,15 +21,38 @@ var turnosUI = (function(){
 		},
 
 		selectControl: function(){
-      pacientesUI.initBuscarPaciente('.select-paciente');
+		      pacientesUI.initBuscarPaciente('.select-paciente');
 
-      pacientesUI.getPaciente({element: '.select-paciente', root: 'turnos'});
+		      pacientesUI.getPaciente({element: '.select-paciente', root: 'turnos'});
 
-      APP.initSelect2({element: '.profesional_select', placeholder: 'Seleccione un Profesional'});
+		      APP.initSelect2({element: '.select_doctor', placeholder: 'Seleccione un Profesional'});
 
-      APP.initSelect2({element: '.area_select', placeholder: 'Seleccione un Área'});
 
-		},
+		      $(".area_select").select2({
+                placeholder: "Seleccione un Área",
+                theme: "bootstrap",
+                language: "es"
+
+                }).on('change', function () {
+                    $(this).valid();
+                    id_area = $(this).val();
+
+                    $.ajax({
+
+                      url: "/turnos/recarga_doctores",
+                      type: 'get',
+                      data: {
+                       id_area : $(this).val()
+                      },
+                      success: function(resp){
+                          //alert("Data");
+                       }
+
+                     });
+                });
+
+
+				},
 
 		mostrarNroFactura: function(){
 			$(".paga").on("change", function(){
@@ -43,28 +66,20 @@ var turnosUI = (function(){
 		        "paging":   false,
 		        "info":     false,
 		        "searching": false,
+		        "order": [[ 0, "desc" ]],
 		        "columnDefs": [
-		            { "visible": false, "targets": 0 },
-		            { "visible": false, "targets": 7 }
+		            { "visible": false, "targets": 0 }
 	        	],
 		        "drawCallback": function ( settings ) {
 	            var api = this.api();
 	            var rows = api.rows( {page:'current'} ).nodes();
 	            var last=null;
 
+
 	            api.column(0, {page:'current'} ).data().each( function ( group, i ) {
 	                if ( last !== group ) {
 	                    $(rows).eq( i ).before(
-	                        '<tr class="group" bgcolor="#CCCCCC"><td align="center" colspan="7">'+group+'</td></tr>'
-	                    );
-
-	                    last = group;
-	                }
-	            } );
-	            api.column(7, {page:'current'} ).data().each( function ( group, i ) {
-	                if ( last !== group ) {
-	                    $(rows).eq( i ).before(
-	                        '<tr class="group" bgcolor="#EFEFEF"><td align="center" colspan="7">'+"Fecha consulta "+group+'</td></tr>'
+	                        '<tr class="group" bgcolor="#EFEFEF"><td align="center" colspan="7">'+"Turnos para la Fecha  "+group+'</td></tr>'
 	                    );
 
 	                    last = group;

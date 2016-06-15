@@ -2,13 +2,11 @@ class Turno < ActiveRecord::Base
 
 	paginates_per 20
   # Autoincrementa el numero de turno
-  protokoll :turno, pattern: '#'
+  #protokoll :turno, pattern: '#'
 
-	belongs_to :paciente
+	belongs_to :paciente, -> { with_deleted }
 	belongs_to :area
-  belongs_to :doctor
-  belongs_to :turno
-
+  belongs_to :doctor, -> { with_deleted }
 
   #Validaciones
 	validate :coincidencia_area
@@ -19,7 +17,8 @@ class Turno < ActiveRecord::Base
   after_create :actualizar_reporte_pend
   before_create :actualizar_estado
   after_update :actualizar_reporte
-  #before_create :actualizar_turno
+  before_create :actualizar_turno
+  before_create :actualizar_grupo
 
 
 	def actualizar_turno
@@ -100,8 +99,16 @@ class Turno < ActiveRecord::Base
     self.update_attribute(:estado, 'atendido')
   end
 
+  def actualizar_grupo
+    self.grupo= self.fecha_consulta.strftime("%d/%m/%Y").to_s + ' en ' + self.area_nombre.humanize.to_s
+  end
+
     # Law of Demeter
     delegate :nombre, to: :area, prefix: true, allow_nil: true
+
+
+    delegate :persona_nombre, :persona_apellido, :persona_full_name, :abr_profesion,:full_name, to: :doctor, prefix: true, allow_nil: true
+
 
     delegate :persona_full_name,:persona_ci,:persona_nombre,:persona_apellido,
              :persona_direccion,:persona_telefono, to: :paciente, prefix: true, allow_nil: true

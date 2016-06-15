@@ -22,6 +22,8 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+@import "layouts/non-responsive-bootstrap";
+
 @import "font-awesome-sprockets";
 @import "font-awesome";
 
@@ -59,7 +61,6 @@ $has-error-color: #dd4b39;
 @import "layouts/submenu";
 @import "layouts/sidebar";
 @import "layouts/forms";
-
 @import "layouts/pages";
 
 //modules

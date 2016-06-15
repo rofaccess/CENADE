@@ -44,8 +44,8 @@ class CreateConsultasOdontologicas < ActiveRecord::Migration
     end
       add_foreign_key(:consultas_odontologicas, :areas, column: 'area_id', on_delete: :restrict)
       add_foreign_key(:consultas_odontologicas, :fichas_odontologicas, column: 'ficha_odontologica_id', on_delete: :restrict)
-      # ON DELETE CASCADE: Si se borra un paciente se borran todas sus consultas
-      add_foreign_key(:consultas_odontologicas, :pacientes, column: 'paciente_id', on_delete: :cascade)
+      # ON DELETE RESTRICT: No se permite borrar un paciente relacionada a alguna consulta
+      add_foreign_key(:consultas_odontologicas, :pacientes, column: 'paciente_id', on_delete: :restrict)
 
       add_index :consultas_odontologicas, :area_id
       add_index :consultas_odontologicas, :paciente_id

@@ -2,7 +2,7 @@
       Usuario
       <% form_url = usuario.id.nil? ? usuarios_path : usuarios_path+"/#{usuario.id}" %>
 
-      <div class="tool">
+      <div class="tool tool-sin-buscador">
          <%= link_to '<i class="fa fa-list" data-toggle="tooltip" title="Lista de Usuarios"></i> '.html_safe, usuarios_path %>
         <%= link_to '<i class="fa fa-plus-square" data-toggle="tooltip" title="Nuevo Usuario"></i> '.html_safe, new_usuario_path%>
          <% unless current_user.id == usuario.id || usuario.id == Configuracion.first.usuario_admin %>
@@ -23,22 +23,22 @@
 
 		 	<%= hidden_field_tag :usuario_id, usuario.id %>
 
-			<div class="form-group col-md-6">
+			<div class="form-group col-xs-6">
 				<label class="control-label">Nombre</label>
 				<input class="form-control usuario-nombre" disabled="disabled" value="<%= usuario.id.nil? ? '' : usuario.empleado.persona.nombre %>">
 			</div>
 
-			<div class="form-group col-md-6">
+			<div class="form-group col-xs-6">
 				<label class="control-label">Apellido</label>
 				<input class="form-control usuario-apellido" disabled="disabled" value="<%= usuario.id.nil? ? '' : usuario.empleado.persona.apellido %>">
 			</div>
 
-			<div class="form-group col-md-6">
+			<div class="form-group col-xs-6">
 				<label class="control-label">Cargo</label>
 				<input class="form-control usuario-cargo" disabled="disabled" value="<%= usuario.id.nil? ? '' : usuario.empleado.cargo %>">
 			</div>
 
-			<div class="form-group col-md-6">
+			<div class="form-group col-xs-6">
 				<label class="control-label">Email</label>
 				<input class="form-control usuario-email" disabled="disabled" value="<%= usuario.id.nil? ? '' : usuario.empleado.persona.email %>">
 			</div>
@@ -49,10 +49,10 @@
 		<div class="row">
 			<%= FormBuilder::text_field_v(user, :username,
 														disabled: true,
-								                        col_class: 'col-md-6',
+								                        col_class: 'col-xs-6',
 								                        label_text: '* Nombre Usuario') %>
 
-		<div class="form-group col-md-6">
+		<div class="form-group col-xs-6">
 			<label class="control-label">Rol</label>
 			<input class="form-control " disabled="disabled" value="<%= usuario.get_role %>">
 		</div>

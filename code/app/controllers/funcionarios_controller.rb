@@ -3,11 +3,9 @@ class FuncionariosController < EmpleadosController
  	def update
     respond_to do |format|
       if @empleado.update(empleado_params)
-        set_submenu
         flash.now[:notice] = "Se ha actualizado el empleado #{@empleado.persona_full_name}."
         format.html {render 'show'}
       else
-        set_submenu
         flash.now[:alert] = "No se ha podido actualizar los datos del empleado #{@empleado.persona_full_name}."
         format.html { render "new"}
       end

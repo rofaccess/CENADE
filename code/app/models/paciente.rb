@@ -5,29 +5,31 @@ class Paciente < ActiveRecord::Base
 	# Despues de borrar el registro de paciente, se ejecutan estos métodos
 	after_destroy :destroy_persona, :destroy_encargado
 
-	has_many :turnos
-	belongs_to :persona
-	belongs_to :encargado
+	belongs_to :persona, -> { with_deleted }
+	belongs_to :encargado, -> { with_deleted }
 
-	has_one :ficha_fisioterapia_nino
-	has_one :ficha_fonoaudiologica
-	has_one :ficha_psicopedagogica
-	has_one :ficha_fisioterapeutica_adulto
-	has_one :ficha_odontologica
-	has_one :ficha_nutricional_pediatrica
-	has_one :ficha_nutricional_adulto
-	has_one :ficha_clinico
-	has_one :ficha_neurologica
-	has_one :ficha_pediatrica
+	has_one :ficha_fisioterapia_nino, dependent: :restrict_with_error
+	has_one :ficha_fonoaudiologica, dependent: :restrict_with_error
+	has_one :ficha_psicopedagogica, dependent: :restrict_with_error
+	has_one :ficha_fisioterapeutica_adulto, dependent: :restrict_with_error
+	has_one :ficha_odontologica, dependent: :restrict_with_error
+	has_one :ficha_nutricional_pediatrica, dependent: :restrict_with_error
+	has_one :ficha_nutricional_adulto, dependent: :restrict_with_error
+	has_one :ficha_clinico, dependent: :restrict_with_error
+	has_one :ficha_neurologica, dependent: :restrict_with_error
+	has_one :ficha_pediatrica, dependent: :restrict_with_error
 
-	has_many :consultas
-	has_many :consultas_nutricionales_pediatricas
-	has_many :controles
+	has_many :consultas, dependent: :restrict_with_error
+  has_many :consultas_odontologicas, dependent: :restrict_with_error
+  has_many :consultas_nutricionales_adultos, dependent: :restrict_with_error
+	has_many :consultas_nutricionales_pediatricas, dependent: :restrict_with_error
+	has_many :controles, dependent: :restrict_with_error
+
+  has_many :turnos, dependent: :restrict_with_error
 
 	# Permiten guardar persona y encargado en el formulario de paciente
 	accepts_nested_attributes_for :persona
 	accepts_nested_attributes_for :encargado
-
 
 	# Se elimina el registro de persona al eliminar el paciente
 	def destroy_persona

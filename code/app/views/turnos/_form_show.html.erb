@@ -1,7 +1,7 @@
 <div class="page-title page-title-sin-submenu">
     Turno N° <%= turno.turno%>
 
-    <div class="tool">
+    <div class="tool tool-sin-buscador">
       <%= link_to '<i class="fa fa-list"></i> '.html_safe, turnos_path %>
       <%= link_to '<i class="fa fa-plus-square"></i> '.html_safe, new_turno_path, remote: true%>
 
@@ -20,7 +20,7 @@
       <div class="row">
         <%= FormBuilder::text_field_v(turn, :paciente_id,
 
-                                          col_class: 'col-md-7',
+                                          col_class: 'col-xs-7',
                                           disabled: true,
                                           label_text: '* Paciente',
                                           input_value: turno.paciente_persona_full_name) %>
@@ -30,7 +30,7 @@
                                       max_length: Domain::FECHA,
                                       label_text: '* Fecha Actual',
                                       disabled: true,
-                                      col_class: 'col-md-5',
+                                      col_class: 'col-xs-5',
                                       input_value: Formatter.format_date(turno.fecha_expedicion))%>
 
        </div>
@@ -39,13 +39,13 @@
           <div class="row">
             <%= FormBuilder::text_field_v(turn, :paciente_id,
 
-                                          col_class: 'col-md-4',
+                                          col_class: 'col-xs-4',
                                           disabled: true,
                                           label_text: 'Nombres',
                                           input_value: turno.paciente_persona_nombre) %>
 
             <%= FormBuilder::text_field_v(turn, :paciente_id,
-                                          col_class: 'col-md-5',
+                                          col_class: 'col-xs-5',
                                           disabled: true,
                                           label_text: 'Apellidos',
                                           input_value: turno.paciente_persona_apellido) %>
@@ -53,7 +53,7 @@
             <%= FormBuilder::text_field_v(turn, :paciente_id,
 
                                           max_length: Domain::CI,
-                                          col_class: 'col-md-3',
+                                          col_class: 'col-xs-3',
                                           disabled: true,
                                           label_text: 'CI',
                                           input_value: turno.paciente_persona_ci) %>
@@ -62,14 +62,14 @@
               <%= FormBuilder::text_field_v(turn, :paciente_id,
 
                                         max_length: Domain::DIRECCION,
-                                        col_class: 'col-md-8',
+                                        col_class: 'col-xs-8',
                                         disabled: true,
                                         label_text: 'Direccion',
                                         input_value: turno.paciente_persona_direccion) %>
                <%= FormBuilder::text_field_v(turn, :paciente_id,
 
                                         max_length: Domain::TELEFONO,
-                                        col_class: 'col-md-4',
+                                        col_class: 'col-xs-4',
                                         disabled: true,
                                         label_text: 'Telefono',
                                         input_value: turno.paciente_persona_telefono) %>
@@ -84,14 +84,14 @@
     <div class="row">
       <%= FormBuilder::text_field_v(turn, :area_id,
 
-                                          col_class: 'col-md-4',
+                                          col_class: 'col-xs-4',
                                           disabled: true,
                                           label_text: 'Área',
                                           input_value: turno.area_nombre) %>
 
       <%= FormBuilder::text_field_v(turn, :doctor_id,
 
-                                          col_class: 'col-md-4',
+                                          col_class: 'col-xs-4',
                                           disabled: true,
                                           label_text: 'Profesional de la Salud',
                                           input_value: empleado.persona_full_name) %>
@@ -101,21 +101,21 @@
                                       max_length: Domain::FECHA,
                                       label_text: '* Fecha de Consulta',
                                       disabled: true,
-                                      col_class: 'col-md-4',
+                                      col_class: 'col-xs-4',
                                       input_value: Formatter.format_date(turno.fecha_consulta))%>
     </div>
   </br>
       <div class="row">
 
-           <div class="col-md-5">
+           <div class="col-xs-5">
 
             <%= turn.label :paga, '* Abonará el monto estipulado?' %>
 
             <div class="row">
-              <%= label :paga, "Si", class: "col-md-1"%>
-              <%= turn.radio_button :paga, true , :value => true, disabled: true, class: "col-md-3 paga si_paga"%>
-              <%= label :paga, "No", class: "col-md-2"%>
-              <%= turn.radio_button :paga, false , disabled: true, :value => false, class: "col-md-1 paga no_paga" %>
+              <%= label :paga, "Si", class: "col-xs-1"%>
+              <%= turn.radio_button :paga, true , :value => true, disabled: true, class: "col-xs-3 paga si_paga"%>
+              <%= label :paga, "No", class: "col-xs-2"%>
+              <%= turn.radio_button :paga, false , disabled: true, :value => false, class: "col-xs-1 paga no_paga" %>
 
             </div>
         </div>
@@ -127,13 +127,13 @@
                                       max_length: Domain::COSTO,
                                       label_text: '* Costo del servicio',
                                       disabled: true,
-                                      col_class: 'col-md-6')%>
+                                      col_class: 'col-xs-6')%>
           <%= FormBuilder::text_field_v(turn, :nro_factura,
                                         input_class: '',
                                         max_length: Domain::NRO_FACTURA,
                                         label_text: '* N° de Factura',
                                         disabled: true,
-                                        col_class: 'col-md-6')%>
+                                        col_class: 'col-xs-6')%>
 
        </div>
       <%end%>

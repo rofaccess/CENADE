@@ -1,9 +1,8 @@
 <div class="page-title page-title-sin-submenu page-title-con-sidebar">
 		Reporte Estadístico por Año
 
-		<div class="tool">
-
-					<%= link_to '<i class="fa fa-print"></i> '.html_safe, reportes_estadisticos_print_reporte_anuales_path(:format => :pdf), target: '_blank'%>
+		<div class="tool tool-sin-buscador">
+					<%=link_to '<i class="fa fa-print" data-toggle="tooltip" title="Imprimir Reporte Anual"></i>'.html_safe, '#', id: 'imprimir-link', target: '_blank', data: {url: reportes_estadisticos_print_reporte_anuales_path(format: 'pdf')}	%>
 
 		</div>
 	</div>
@@ -14,13 +13,13 @@
 			<div class="row">
 
 
-				<%= FormBuilder::select_v(f, :area_nombre_cont, Area.all.collect { |a| [a.nombre, a.nombre] }, {col_class: 'col-md-2', label_text: 'Área'}) %>
+				<%= FormBuilder::select_v(f, :area_nombre_cont, Area.all.collect { |a| [a.nombre, a.nombre] }, {col_class: 'col-xs-2', label_text: 'Área'}) %>
 
-				<%= FormBuilder::text_field_v(f, :doctor_persona_nombre_or_doctor_persona_apellido_cont, {col_class: 'col-md-3', label_text: 'Prof. de la Salud', input_class: '', placeholder: "Nombre o Apellido"})%>
+				<%= FormBuilder::text_field_v(f, :doctor_persona_nombre_or_doctor_persona_apellido_cont, {col_class: 'col-xs-3', label_text: 'Prof. de la Salud', input_class: '', placeholder: "Nombre o Apellido"})%>
 
-				<%= FormBuilder::text_field_v(f, :anho_gteq, {col_class: 'col-md-2', label_text: 'Desde', input_class: 'datepickerYear',placeholder: "Año",max_length: Domain::FECHA})%>
+				<%= FormBuilder::text_field_v(f, :anho_gteq, {col_class: 'col-xs-2', label_text: 'Desde', input_class: 'datepickerYear',placeholder: "Año",max_length: Domain::FECHA})%>
 
-            	<%= FormBuilder::text_field_v(f, :anho_lteq, {col_class: 'col-md-2', label_text: 'Hasta', input_class: 'datepickerYear', placeholder: "Año", max_length: Domain::FECHA})%>
+            	<%= FormBuilder::text_field_v(f, :anho_lteq, {col_class: 'col-xs-2', label_text: 'Hasta', input_class: 'datepickerYear', placeholder: "Año", max_length: Domain::FECHA})%>
 
 				<div class= "advanced-search-buttons">
 					<%= f.submit 'Filtrar', class: 'btn btn-custom '%>

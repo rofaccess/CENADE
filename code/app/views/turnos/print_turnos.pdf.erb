@@ -1,8 +1,10 @@
-<h5>LISTA DE TURNOS</h5>
-
 <table class= "table table-condensed">
   <thead>
+    <tr>
+      <th colspan="8" scope="col"> <h4 class="title">LISTA DE TURNOS</h4></th>
+    </tr>
     <tr class="active">
+      <th>#</th>
       <th>Fecha</th>
       <th>Turno</th>
       <th>Paciente</th>
@@ -20,17 +22,18 @@
     </tfoot>
    <% end %>
   <tbody>
+    <%i=0%>
     <% @turnos.each do |turno| %>
+    <%i=i+1%>
     <tr data-url=<%= turno_path(turno)%>>
-      <td class="show-turno"><%=turno.fecha_expedicion.strftime("%m/%d/%Y")%></td>
+      <td><%=i%></td>
+      <td class="show-turno"><%=date(turno.fecha_expedicion)%></td>
       <td class="show-turno"><%=turno.turno%></td>
       <td class="show-turno crop"><%=turno.paciente_persona_full_name%></td>
       <td class="show-turno"><%=turno.paciente_persona_ci %></td>
       <td class="show-turno"><%=turno.doctor.persona_full_name %></td>
       <td class="show-turno"><%=turno.estado %></td>
       <td class="show-turno"><%=turno.area_nombre%></td>
-
-
     </tr>
     <% end %>
   </tbody>

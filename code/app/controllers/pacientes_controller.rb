@@ -2,6 +2,7 @@ class PacientesController < ApplicationController
 
 	before_action :set_paciente, only: [:show, :edit, :update, :destroy]
 	load_and_authorize_resource
+  skip_load_resource :only => [:buscar, :new_modal, :get_pacientes, :recarga_paciente]
 	respond_to :html, :js
 
 	def index
@@ -25,6 +26,7 @@ class PacientesController < ApplicationController
 				format.html { render "new"}
 			end
 		end
+    authorize! :create, @paciente
 	end
 
   def recarga_paciente
@@ -35,6 +37,7 @@ class PacientesController < ApplicationController
       flash.now[:alert] = "No se ha podido guardar el paciente #{@paciente.persona_full_name}."
     end
     render 'recarga_paciente', format: :js
+    authorize! :recarga_paciente, @paciente
   end
 
   def new_modal
@@ -85,12 +88,10 @@ class PacientesController < ApplicationController
     end
 
     def destroy
-    	respond_to do |format|
-    		if @paciente.destroy
-    			format.html { redirect_to pacientes_path, flash: {notice: "Se ha eliminado el paciente #{@paciente.persona_full_name}."}}
-    		else
-    			format.html { redirect_to pacientes_path, flash: {alert: "No se ha podido eliminar el paciente #{@paciente.persona_full_name}."}}
-    		end
+      if @paciente.destroy
+      	redirect_to pacientes_path, notice: t('messages.delete_success', resource: 'el paciente')
+      else
+        redirect_to pacientes_path, alert: t('messages.delete_error', resource: 'el paciente', errors: @paciente.errors.full_messages.to_sentence)
     	end
     end
 
@@ -114,7 +115,7 @@ class PacientesController < ApplicationController
     end
 
     def print_pacientes
-    	@pacientes = Paciente.all
+    	get_pacientes
 
     	respond_to do |format|
     		format.pdf do
@@ -139,7 +140,7 @@ class PacientesController < ApplicationController
     # Buscador de pacientes
     def buscar
       @search = Paciente.ransack(params[:q])
-      @pacientes= @search.result
+      @pacientes= @search.result.includes(:persona).order('personas.nombre')
       render json: {items: @pacientes.as_json(:only => [:id, :profesion,:lugar_trabajo,:lugar_nacimiento,:fecha_ingreso],
                                               :methods => [:persona_full_name, :persona_ci],
                                             )}
@@ -147,7 +148,10 @@ class PacientesController < ApplicationController
 
     def get_pacientes
     	@search = Paciente.ransack(params[:q])
-    	@pacientes= @search.result.page(params[:page])
+    	@pacientes= @search.result
+                         .includes(:persona)
+                         .order('personas.nombre')
+                         .page(params[:page])
     end
 
     def get_paciente

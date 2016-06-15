@@ -4,8 +4,8 @@ class FichaNeurologica < ActiveRecord::Base
 	# Autoincrementa el numero de ficha
 	protokoll :nro_ficha, pattern: '#'
 
-	belongs_to :paciente
-	belongs_to :doctor, :foreign_key => :doctor_id
+	belongs_to :paciente, -> { with_deleted }
+	belongs_to :doctor, -> { with_deleted }, :foreign_key => :doctor_id
 
 	before_create :cargar_area_id
 

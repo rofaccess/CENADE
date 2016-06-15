@@ -1,7 +1,7 @@
  <div class="page-title page-title-con-sidebar">
       Ficha de <%= fisio_nino.paciente.persona.nombre%> <%= fisio_nino.paciente.persona.apellido%>
 
-    <div class="tool">
+    <div class="tool tool-sin-buscador">
       <%= link_to '<i class="fa fa-list"></i> '.html_safe, ficha_fisioterapia_ninos_path %>
       <%= link_to '<i class="fa fa-plus-square"></i> '.html_safe, new_ficha_fisioterapia_nino_path, remote: true%>
 
@@ -16,12 +16,12 @@
     <%= form_for fisio_nino, html: {class: 'form-ficha', :multipart => true }, remote: true do |ficha|%>
       <h4 class="titulo-ficha">FICHA FISIOTERAPIA PEDIÁTRICA</h4>
       <div class="row">
-        <div class="col-md-9">
+        <div class="col-xs-9">
 
 
           <h4><%= ficha.label :doctor_id, 'Profesional de la Salud: ' %> <%= fisio_nino.doctor.persona.nombre%> <%= fisio_nino.doctor.persona.apellido%> </h4>
         </div>
-        <div class="col-md-3">
+        <div class="col-xs-3">
 
          <h4><%= ficha.label :fecha, 'Fecha: ' %> <%=Formatter.format_date(fisio_nino.fecha)%> </h4>
         </div>
@@ -37,17 +37,17 @@
     <div class="row">
               <%= FormBuilder::text_field_v(ficha, :control_embarazo,
                                           input_class: '',
-                                          col_class: 'col-md-5',
+                                          col_class: 'col-xs-5',
                                           disabled: true,
                                           label_text: 'Control Prenatal') %>
               <%= FormBuilder::text_field_v(ficha, :edad_gestacional,
                                           input_class: '',
-                                          col_class: 'col-md-3',
+                                          col_class: 'col-xs-3',
                                           disabled: true,
                                           label_text: 'Edad Gestacional') %>
               <%= FormBuilder::text_field_v(ficha, :tipo_parto,
                                           input_class: '',
-                                          col_class: 'col-md-4',
+                                          col_class: 'col-xs-4',
                                           disabled: true,
                                           label_text: 'Tipo de Parto') %>
 
@@ -57,33 +57,33 @@
     <div class="row">
               <%= FormBuilder::text_field_v(ficha, :peso_nacer,
                                           input_class: '',
-                                          col_class: 'col-md-2',
+                                          col_class: 'col-xs-2',
                                           disabled: true,
                                           label_text: 'Peso al Nacer') %>
               <%= FormBuilder::text_field_v(ficha, :apgar,
                                           input_class: '',
-                                          col_class: 'col-md-3',
+                                          col_class: 'col-xs-3',
                                           disabled: true,
                                           label_text: 'Apgar') %>
               <%= FormBuilder::text_field_v(ficha, :antecedentes_familiares,
                                           input_class: '',
-                                          col_class: 'col-md-7',
+                                          col_class: 'col-xs-7',
                                           disabled: true,
                                           label_text: 'Antecedentes Familiares') %>
 
     </div>
     <div class="row">
-      <div class="col-md-12">
+      <div class="col-xs-12">
         <%= ficha.label :condicion_general, 'Condiciones Generales del Recién Nacido' %>
         <%= ficha.text_area :condicion_general, rows: "4", class: "form-control", disabled: true %>
       </div>
     </div>
     </br>
     <div class="row">
-      <div class="col-md-8">
+      <div class="col-xs-8">
          <h4>Consultas</h4>
       </div>
-      <div class="col-md-4">
+      <div class="col-xs-4">
          <%= link_to "Agregar Consulta", consultas_consulta_from_ficha_path(area_id: fisio_nino.area_id, paciente: fisio_nino.paciente_id, profesional: fisio_nino.doctor_id), class: "btn btn-custom", remote: true %>
           <%= link_to 'Ver Historial Clínico', historial_fisioterapeutico_path(fisio_nino.paciente_id), class: "btn btn-custom  pull-right",target: '_blank'%>
 
