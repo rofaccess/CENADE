@@ -7,5 +7,13 @@ class Role < ActiveRecord::Base
 
   scopify
 
+  before_destroy :can_destroy?
 
+  def can_destroy?
+    # No deja borrar si el rol esta relacionado a algun usuario
+    if users.present?
+      errors.add(:base, I18n.t('activerecord.errors.messages.restrict_dependent_destroy.many', record: 'usuarios'))
+      false
+    end
+  end
 end

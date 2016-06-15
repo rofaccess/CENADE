@@ -53,13 +53,19 @@ class RolesController < ApplicationController
 
     end
   end
-   def destroy
-    @role.destroy
+
+  def destroy
     respond_to do |format|
-      format.html { redirect_to roles_url }
-      format.json { head :no_content }
+      if @role.destroy
+        format.html { redirect_to roles_url, notice: t('messages.delete_success', resource: 'el rol') }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to roles_url, alert: t('messages.delete_error', resource: 'el rol', errors: @role.errors.full_messages.to_sentence) }
+        format.json { head :no_content }
+      end
     end
   end
+
   def check_name
       role = Role.find_by_name(params[:name])
 

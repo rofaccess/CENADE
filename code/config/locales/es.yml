@@ -39,6 +39,7 @@ es:
         restrict_dependent_destroy:
           one: No se puede eliminar el registro porque existe un %{record} dependiente
           many: No se puede eliminar el registro porque existen %{record} dependientes
+
   messages:
     delete_success: "Se ha eliminado %{resource}"
     delete_error: "Ha ocurrido un problema al tratar de eliminar %{resource}. %{errors}"
