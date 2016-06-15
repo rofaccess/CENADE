@@ -1,5 +1,5 @@
 class DoctoresController < EmpleadosController
-
+  skip_load_resource :only => [:buscar]
  	def update
    respond_to do |format|
       if @empleado.update(empleado_params)

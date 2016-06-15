@@ -2,7 +2,8 @@ class TurnosController < ApplicationController
 
   before_action :set_turno, only: [:show, :edit, :update, :destroy]
   respond_to :html, :js
-  load_and_authorize_resource
+  load_and_authorize_resource :turno
+
 
   def index
   	 get_turnos
@@ -94,6 +95,8 @@ class TurnosController < ApplicationController
   #obtiene el paciente
    def get_paciente
     @paciente= Paciente.find(params[:idd])
+
+    authorize! :get_paciente, @paciente
 
   end
 
