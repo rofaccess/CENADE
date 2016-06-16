@@ -104,7 +104,7 @@ var turnosUI = (function(){
 
 			$(".nuevo-turno").validate();
 
-			$('.costo').inputmask('Regex', { regex: "[0-9\.]+" });
+			$('.costo').inputmask('Regex', { regex: "[0-9]+" });
 
 
 		      $('.datepicker2').datepicker({

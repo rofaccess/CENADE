@@ -838,7 +838,7 @@ ActiveRecord::Schema.define(version: 20160527060755) do
     t.integer  "area_id",          null: false
     t.integer  "doctor_id",        null: false
     t.string   "estado",           null: false
-    t.integer  "monto"
+    t.string   "monto"
     t.boolean  "paga",             null: false
     t.string   "nro_factura"
     t.string   "grupo"

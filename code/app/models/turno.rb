@@ -14,6 +14,9 @@ class Turno < ActiveRecord::Base
   validates :doctor_id,  presence: true
   validates :paga, inclusion: { in: [true, false] }
   validates :estado,  presence: true
+  validates :monto, length: {maximum: Domain::COSTO}, format: { with: /\A[0-9]+\z/,
+    message: "solo permite números" }
+  validates :nro_factura, length: {maximum: Domain::NRO_FACTURA}
 
 	validate :coincidencia_area
   validate :verificar_fecha_consulta

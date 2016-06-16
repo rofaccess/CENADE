@@ -37,6 +37,8 @@ es:
       turno:
         fecha_expedicion: "Fecha actual"
         paga: "Abonará el monto estipulado?"
+        monto: "Costo del Servicio"
+        nro_factura: "Nº de Factura"
     errors:
       messages:
         record_invalid: "La validación falló: %{errors}"
@@ -44,8 +46,12 @@ es:
           one: No se puede eliminar el registro porque existe un %{record} dependiente
           many: No se puede eliminar el registro porque existen %{record} dependientes
   messages:
+    save_success: "Se ha guardado %{resource}"
+    save_error: "No se pudo guardar %{resource}. %{errors}"
+    update_success: "Se ha actualizado %{resource}"
+    update_error: "No se pudo actualizar %{resource}. %{errors}"
     delete_success: "Se ha eliminado %{resource}"
-    delete_error: "Ha ocurrido un problema al tratar de eliminar %{resource}. %{errors}"
+    delete_error: "No se pudo eliminar %{resource}. %{errors}"
   January: "Enero"
   February: "Febrero"
   March: "Marzo"

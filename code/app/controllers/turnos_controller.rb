@@ -17,9 +17,9 @@ class TurnosController < ApplicationController
 
   	 respond_to do |format|
       if @turno.save
-        format.html { redirect_to turno_path(@turno.id), notice: 'Turno registrado exitosamente'}
+        format.html { redirect_to turno_path(@turno.id), notice: t('messages.save_success', resource: 'el turno')}
       else
-        flash.now[:alert] = @turno.errors.full_messages.to_sentence
+        flash.now[:alert] = t('messages.save_error', resource: 'el turno', errors: @turno.errors.full_messages.to_sentence)
         @turno_nuevo= true
         format.html { render "new"}
         format.js { render "edit"} # //- Creo que debería ser render 'new'
@@ -34,11 +34,9 @@ class TurnosController < ApplicationController
   def update
   	respond_to do |format|
       if @turno.update_attributes(turno_params)
-
-        format.html { redirect_to turno_path, notice: 'Turno actualizado exitosamente'}
+        format.html { redirect_to turno_path, notice: t('messages.update_success', resource: 'el turno')}
       else
-
-        flash.now[:alert] = @turno.errors.full_messages.to_sentence
+        flash.now[:alert] = t('messages.update_error', resource: 'el turno', errors: @turno.errors.full_messages.to_sentence)
         format.html { render "edit"}
         format.js { render "edit"}
       end
@@ -58,10 +56,14 @@ class TurnosController < ApplicationController
   end
 
   def destroy
-    @turno.destroy
     respond_to do |format|
-      format.html { redirect_to turnos_url }
-      format.json { head :no_content }
+      if @turno.destroy
+        format.html { redirect_to turnos_url, notice: t('messages.delete_success', resource: 'el turno')  }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to turnos_url, alert: t('messages.delete_error', resource: 'el turno', errors: @turno.errors.full_messages.to_sentence)  }
+        format.json { head :no_content }
+      end
     end
   end
 

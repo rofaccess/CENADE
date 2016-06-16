@@ -2,9 +2,7 @@ class Paciente < ActiveRecord::Base
 	paginates_per 20
 	acts_as_paranoid
 
-	# Despues de borrar el registro de paciente, se ejecutan estos métodos
-	after_destroy :destroy_persona, :destroy_encargado
-
+  # Asociaciones
 	belongs_to :persona, -> { with_deleted }
 	belongs_to :encargado, -> { with_deleted }
 
@@ -30,6 +28,13 @@ class Paciente < ActiveRecord::Base
 	# Permiten guardar persona y encargado en el formulario de paciente
 	accepts_nested_attributes_for :persona
 	accepts_nested_attributes_for :encargado
+
+  # Validaciones
+  #validates :persona_id,  presence: true
+  validates :fecha_ingreso,  presence: true
+
+  # Callbacks
+  after_destroy :destroy_persona, :destroy_encargado
 
 	# Se elimina el registro de persona al eliminar el paciente
 	def destroy_persona
