@@ -19,7 +19,7 @@ class TurnosController < ApplicationController
       if @turno.save
         format.html { redirect_to turno_path(@turno.id), notice: 'Turno registrado exitosamente'}
       else
-        flash.now[:alert] = @turno.errors.full_messages.first
+        flash.now[:alert] = @turno.errors.full_messages.to_sentence
         @turno_nuevo= true
         format.html { render "new"}
         format.js { render "edit"} # //- Creo que debería ser render 'new'
@@ -38,7 +38,7 @@ class TurnosController < ApplicationController
         format.html { redirect_to turno_path, notice: 'Turno actualizado exitosamente'}
       else
 
-        flash.now[:alert] = @turno.errors.full_messages.first
+        flash.now[:alert] = @turno.errors.full_messages.to_sentence
         format.html { render "edit"}
         format.js { render "edit"}
       end
