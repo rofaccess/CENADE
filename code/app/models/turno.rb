@@ -19,6 +19,7 @@ class Turno < ActiveRecord::Base
   after_update :actualizar_reporte
   before_create :actualizar_turno
   before_create :actualizar_grupo
+  before_update :actualizar_grupo
 
 
 	def actualizar_turno
