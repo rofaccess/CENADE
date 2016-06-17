@@ -35,16 +35,47 @@ es:
   activerecord:
     attributes:
       turno:
-        fecha_expedicion: "Fecha actual"
+        fecha_expedicion: "Fecha Actual"
         paga: "Abonará el monto estipulado?"
         monto: "Costo del Servicio"
         nro_factura: "Nº de Factura"
+      persona:
+        nombre: "Nombre"
+        apellido: "Apellido"
+        ci: "CI"
+        ruc: "RUC"
+        fecha_nacimiento: "Fecha de Nacimiento"
+        sexo: "Sexo"
+        edad: "Edad"
+        nacionalidad: "Nacionalidad"
+        telefono: "Teléfono"
+        email: "Email"
+      paciente:
+        lugar_nacimiento: "Lugar de Nacimiento"
+        fecha_ingreso: "Fecha de Ingreso"
+        profesion: "Profesion"
+        lugar_trabajo: "Lugar de Trabajo"
+      encargado:
+        padre_nombre: "Nombre y Apellido del Padre"
+        padre_edad: "Edad del Padre"
+        padre_prof_act_ant: "Profesión Actual y Anterior"
+        madre_nombre: "Nombre y Apellido de la Madre"
+        madre_edad: "Edad de la Madre"
+        madre_num_hijos: "Hijos de la Madre"
+        madre_prof_act_ant: "Profesión Actual y Anterior"
+        encargado_nombre: "Nombre y Apellido del Encargado"
+        encargado_edad: "Edad del Encargado"
+        encargado_prof_act_ant: "Profesión Actual y Anterior"
     errors:
       messages:
         record_invalid: "La validación falló: %{errors}"
         restrict_dependent_destroy:
-          one: No se puede eliminar el registro porque existe un %{record} dependiente
+          one: No se puede eliminar el registro porque existe un/a %{record} dependiente
           many: No se puede eliminar el registro porque existen %{record} dependientes
+        number_only: "solo permite números"
+        ruc_only: "solo permite números, letras y guiones"
+        tel_only: "solo permite números, paréntesis y los símbolos + y -"
+        date_less_system_date: "debe ser menor o igual a la fecha del sistema"
   messages:
     save_success: "Se ha guardado %{resource}"
     save_error: "No se pudo guardar %{resource}. %{errors}"

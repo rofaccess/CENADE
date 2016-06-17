@@ -15,7 +15,7 @@ class Turno < ActiveRecord::Base
   validates :paga, inclusion: { in: [true, false] }
   validates :estado,  presence: true
   validates :monto, length: {maximum: Domain::COSTO}, format: { with: /\A[0-9]+\z/,
-    message: "solo permite números" }
+    message: :number_only }
   validates :nro_factura, length: {maximum: Domain::NRO_FACTURA}
 
 	validate :coincidencia_area

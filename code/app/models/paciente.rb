@@ -30,8 +30,10 @@ class Paciente < ActiveRecord::Base
 	accepts_nested_attributes_for :encargado
 
   # Validaciones
-  #validates :persona_id,  presence: true
-  validates :fecha_ingreso,  presence: true
+  validates :lugar_nacimiento, length: { in: 3..Domain::LUGAR_NACIMIENTO }, allow_blank: true
+  validates :fecha_ingreso, presence: true, date_less_system_date: true
+  validates :profesion, length: {in: 3..Domain::PROFESION}, allow_blank: true
+  validates :lugar_trabajo, length: {in: 3..Domain::LUGAR_TRABAJO}, allow_blank: true
 
   # Callbacks
   after_destroy :destroy_persona, :destroy_encargado
@@ -43,12 +45,12 @@ class Paciente < ActiveRecord::Base
 
     # Se elimina el registro de encargado al eliminar el paciente
 	def destroy_encargado
-      if !encargado.blank?
-      	# Se setea el campo paciente_id de encargado, para que se sepa a que paciente perteneció
-      	encargado.update(paciente_id: id)
-      	encargado.destroy
-      end
+    if !encargado.blank?
+      # Se setea el campo paciente_id de encargado, para que se sepa a que paciente perteneció
+      encargado.update(paciente_id: id)
+    	encargado.destroy
     end
+  end
 
 	# Law of Demeter
 	delegate :full_name, :nombre, :apellido, :ruc, :edad, :sexo, :ci, :nacionalidad,
