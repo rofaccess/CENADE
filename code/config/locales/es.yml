@@ -68,6 +68,12 @@ es:
         encargado_prof_act_ant: "Profesión Actual y Anterior"
       empleado:
         abr_profesion: "Abreviatura de Prof."
+      role:
+        name: "Descripción"
+        permission_ids: "Permisos"
+      user:
+        username: "Nombre de Usuario"
+        role_ids: "Roles"
     errors:
       messages:
         record_invalid: "La validación falló: %{errors}"

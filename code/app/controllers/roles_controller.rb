@@ -26,10 +26,10 @@ class RolesController < ApplicationController
       if @role.save
       	@role.permission_ids = params[:role][:permission_ids]
 
-        format.html { redirect_to roles_path, flash: {notice: "El rol #{@role.name} fue creado"}}
+        format.html { redirect_to roles_path, notice: t('messages.save_success', resource: 'el rol')}
       else
-
-        flash.now[:alert] = "Ha ocurrido un problema al tratar de guardar el rol"
+        set_submenu
+        flash.now[:alert] = t('messages.save_error', resource: 'el rol', errors: @role.errors.full_messages.to_sentence)
         format.html { render "new"}
       end
     end
@@ -44,10 +44,10 @@ class RolesController < ApplicationController
       if @role.update_attributes(role_params)
       	@role.permission_ids = params[:role][:permission_ids]
 
-        format.html { redirect_to role_path, notice: 'Rol actualizado correctamente'}
+        format.html { redirect_to role_path, notice: t('messages.update_success', resource: 'el rol')}
       else
-
-        flash.now[:alert] = "Ha ocurrido un problema al tratar de guardar el rol"
+        set_submenu
+        flash.now[:alert] = t('messages.update_error', resource: 'el rol', errors: @role.errors.full_messages.to_sentence)
         format.html { render "edit"}
       end
 

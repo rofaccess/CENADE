@@ -1,12 +1,19 @@
 class Role < ActiveRecord::Base
   paginates_per 20
-  has_and_belongs_to_many :users, :join_table => :users_roles, dependent: :restrict_with_error
+
+  #Asociaciones
+  has_and_belongs_to_many :users, :join_table => :users_roles
   has_and_belongs_to_many :permissions
   belongs_to :resource,
              :polymorphic => true
 
   scopify
 
+  #Validaciones
+  validates :name, presence: true, length: { in: 3..Domain::ROL }, uniqueness: true
+  validates :permission_ids, presence: true
+
+  #Callbacks
   before_destroy :can_destroy?
 
   def can_destroy?

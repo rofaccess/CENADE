@@ -13,9 +13,9 @@ class PerfilUsuariosController < ApplicationController
 		end
 
 			if @usuario.update(@usuario_u) && @persona.update(@persona_u)
-		        redirect_to perfil_usuarios_edit_path, notice: "Se ha actualizado el usuario #{@usuario.username}."
+		        redirect_to perfil_usuarios_edit_path, notice: t('messages.update_success', resource: 'el usuario')
 	    	else
-	    		redirect_to perfil_usuarios_edit_path, alert: "No se ha podido actualizar el usuario #{@usuario.username}."
+	    		redirect_to perfil_usuarios_edit_path, alert: t('messages.update_error', resource: 'el usuario', errors: @usuario.errors.full_messages.to_sentence)
 	    	end
 
 	end
