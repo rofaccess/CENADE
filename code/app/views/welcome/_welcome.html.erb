@@ -3,7 +3,7 @@
 
 <div class="content content-sin-submenu content-50">
    <div class="welcome-content">
-      <%=image_tag(@configuracion_general.empresa_logo.blank? ? "logo-cenade": @configuracion_general.empresa_logo_url.to_s, :width => 200, :height => 200) %>
+      <%=image_tag(Configuracion.first.empresa_logo.blank? ? "logo-cenade": Configuracion.first.empresa_logo_url.to_s, :width => 200, :height => 200) %>
 
       <h1>Bienvenido <%=current_user.empleado_persona_full_name.split(" ").first%></h1>
    </div>

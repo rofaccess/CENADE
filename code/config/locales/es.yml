@@ -66,6 +66,8 @@ es:
         encargado_nombre: "Nombre y Apellido del Encargado"
         encargado_edad: "Edad del Encargado"
         encargado_prof_act_ant: "Profesión Actual y Anterior"
+      empleado:
+        abr_profesion: "Abreviatura de Prof."
     errors:
       messages:
         record_invalid: "La validación falló: %{errors}"
@@ -76,6 +78,7 @@ es:
         ruc_only: "solo permite números, letras y guiones"
         tel_only: "solo permite números, paréntesis y los símbolos + y -"
         date_less_system_date: "debe ser menor o igual a la fecha del sistema"
+        email_custom: "no es válido"
   messages:
     save_success: "Se ha guardado %{resource}"
     save_error: "No se pudo guardar %{resource}. %{errors}"

@@ -1,12 +1,21 @@
 class DoctoresController < EmpleadosController
   skip_load_resource :only => [:buscar]
- 	def update
+
+  def index
+    super
+  end
+
+  def create
+    super
+  end
+
+  def update
    respond_to do |format|
       if @empleado.update(empleado_params)
-        flash.now[:notice] = "Se ha actualizado el empleado #{@empleado.persona_full_name}."
+        flash.now[:notice] = t('messages.update_success', resource: 'el empleado')
         format.html {render 'show'}
       else
-        flash.now[:alert] = "No se ha podido actualizar los datos del empleado #{@empleado.persona_full_name}."
+        flash.now[:alert] = t('messages.update_error', resource: 'el empleado', errors: @empleado.errors.full_messages.to_sentence)
         format.html { render "new"}
       end
     end

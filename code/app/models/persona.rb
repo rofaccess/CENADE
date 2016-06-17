@@ -16,8 +16,8 @@ class Persona < ActiveRecord::Base
   validates :sexo, presence: true, length: { maximum: Domain::SEXO }
   validates :nacionalidad, length: { maximum: Domain::NACIONALIDAD }
   validates :direccion, length: { maximum: Domain::DIRECCION }
-  validates :telefono, length: { maximum: Domain::TELEFONO }, tel_only: true
-  validates :email, length: {in: 8..Domain::EMAIL}, allow_blank: true, email: true
+  validates :telefono, length: { maximum: Domain::TELEFONO }, tel_only: true, allow_blank: true
+  validates :email, length: {in: 8..Domain::EMAIL}, allow_blank: true, email_custom: true
 
   # Retorna el nombre y apellido
 	def full_name
