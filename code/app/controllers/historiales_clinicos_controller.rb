@@ -2,7 +2,8 @@ class HistorialesClinicosController < ApplicationController
   before_action :set_submenu, only: [:show, :index ]
   before_action :set_sidebar, only: [:show, :index]
   before_action :set_historial, only: [:show, :print]
-  #load_and_authorize_resource :class => FichaClinico
+  load_and_authorize_resource :class => Area
+  #skip_load_resource :only => [:i]
 
   def set_submenu
     @submenu_layout = 'layouts/submenu_fichas_consultas'
@@ -27,6 +28,7 @@ class HistorialesClinicosController < ApplicationController
                         .joins(:ficha_clinico)
                         .order('personas.nombre')
                         .page(params[:page]) # Usa paginates_per del modelo paciente
+    #authorize! :get_pacientes, @search
   end
 
   # Para el historial se requiere, los datos del paciente, su ficha y consultas

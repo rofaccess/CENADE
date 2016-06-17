@@ -15,9 +15,7 @@ class Ability
 
 
 	          if permission[:grupo_id] == 5
-	          		can :create, Paciente
-	          		can :buscar, Paciente
-	          		can :get_paciente, Paciente
+	          		can [:get_paciente, :buscar, :recarga_paciente, :new_modal, :check_ci], Paciente
 
 		          	if permission[:nombre] == ("Clínico")
 			    		can :manage, Consulta
@@ -52,23 +50,23 @@ class Ability
 
 		        end
 		        if permission[:grupo_id] == 3
-		        	can [:get_paciente, :buscar, :recarga_paciente, :new_modal, :paciente_params, :check_ci], Paciente
+		        	can [:get_paciente, :buscar, :recarga_paciente, :new_modal, :check_ci], Paciente
 		        end
 		        can :manage, permission.model.singularize.classify.constantize
 	      end
 
 		    if @rol[:nombre] == ("Historial Médico")
-		    	#can :manage, Paciente
-		    	#can :manage, Area
-		    	#can :manage, Consulta
-		    	#can :manage, ConsultaOdontologica
-		    	#can :manage, ConsultaNutricionalPediatrica
-		    	#can :manage, ConsultaNutricionalAdulto
-		    	#can :manage, FichaClinico
+		    	can :manage, Area
+		    	can [:set_historial, :get_pacientes], Paciente
+		    	can [:get_pacientes], Consulta
+		    	can [:get_pacientes], ConsultaOdontologica
+		    	can [:get_pacientes], ConsultaNutricionalPediatrica
+		    	can [:get_pacientes], ConsultaNutricionalAdulto
+		    	can [:get_pacientes], FichaClinico
 		    	#can :manage, FichaFisioterapeuticaAdulto
 		    	#can :manage, FichaFisioterapiaNino
-		    	#can :manage, FichaFonoaudiologica
-		    	#can :manage, FichaNeurologica
+		    	#can :manage, HistorialesClinicos
+		    	#can :index, :paciente
 		    	#can :manage, FichaNutricionalAdulto
 		    	#can :manage, FichaNutricionalPediatrica
 		    	#can :manage, FichaOdontologica
