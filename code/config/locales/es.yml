@@ -74,6 +74,13 @@ es:
       user:
         username: "Nombre de Usuario"
         role_ids: "Roles"
+      configuracion:
+        empresa_nombre: "Nombre"
+        empresa_web: "Sitio Web"
+        empresa_direccion: "Direccion"
+        empresa_email: "Email"
+        empresa_tel: "Telefono"
+        dias_atencion: "Días"
     errors:
       messages:
         record_invalid: "La validación falló: %{errors}"
@@ -85,6 +92,7 @@ es:
         tel_only: "solo permite números, paréntesis y los símbolos + y -"
         date_less_system_date: "debe ser menor o igual a la fecha del sistema"
         email_custom: "no es válido"
+        time: "debe tener el formato hh:mm"
   messages:
     save_success: "Se ha guardado %{resource}"
     save_error: "No se pudo guardar %{resource}. %{errors}"
