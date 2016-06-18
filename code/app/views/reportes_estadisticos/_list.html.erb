@@ -1,9 +1,10 @@
 
-<table id="table-reporte" class= "table table-condensed">
+<table id="table_reporte" class= "table table-condensed">
   <thead>
     <tr class="active">
       <th>Mes</th>
       <th>Profesional de la Salud</th>
+      <th>Cupo Límite</th>
       <th>Cantidad Atentidos</th>
       <th>Año</th>
       <th>Area</th>
@@ -19,9 +20,10 @@
   <tbody>
     <% reportes.each do |reporte| %>
     <tr>
-      <td><%=reporte.mes%></td>
-      <td ><%=reporte.doctor.persona_full_name %> </td>
-      <td ><%=reporte.cantidad%></td>
+      <td><%= t(reporte.mes.to_s)%></td>
+      <td ><%=reporte.doctor_persona_full_name %> </td>
+      <td ><%= reporte.cant_pend %></td>
+      <td ><%= reporte.cantidad.nil? ? '0' : reporte.cantidad%></td>
       <td><%=reporte.anho%></td>
       <td><%=reporte.area_nombre%></td>
 
@@ -32,7 +34,7 @@
 </table>
 
 <script type="text/javascript">
-
+      APP.initImprimir("<%= params[:q].nil? ? '' : '?'+params[:q].to_query('q')%>");
       reportesUI.initScript();
       <% if !flash.notice.blank? %>
         var n = noty({text: '<%=notice%>', type: 'success'});

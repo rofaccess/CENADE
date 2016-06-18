@@ -1,0 +1,24 @@
+<!-- Renderiza los datos de las consultas pediatrica y adulto dentro de tabs -->
+<ul class="nav nav-tabs">
+  <% unless ficha_ped_id.nil? %>
+    <li><a href="#consulta-pediatrica">Pediátrica</a></li>
+  <% end %>
+
+  <% unless ficha_ad_id.nil? %>
+    <li><a href="#consulta-adulto">Adulto</a></li>
+  <% end %>
+</ul>
+
+<div class="tabs-content">
+  <% unless ficha_ped_id.nil? %>
+    <div id="consulta-pediatrica">
+    <%=render 'atenciones_profesionales/nutricion/tabs_consultas_ped',consultas_ped: consultas_ped,turno: turno,ficha_ped_id: ficha_ped_id%>
+    </div>
+  <% end %>
+
+  <% unless ficha_ad_id.nil? %>
+    <div id="consulta-adulto">
+      <%=render 'atenciones_profesionales/nutricion/tabs_consultas_ad', consultas_ad: consultas_ad,turno: turno,ficha_ad_id: ficha_ad_id%>
+    </div>
+  <% end %>
+</div>

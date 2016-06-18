@@ -1,7 +1,7 @@
 <div class="page-title page-title-con-sidebar">
   <%=ficha.id.nil? ? 'Nueva Ficha' : 'Editar Ficha'%>
 
-  <div class="tool">
+  <div class="tool tool-sin-buscador">
     <%= link_to '<i class="fa fa-list" data-toggle="tooltip" title="Lista de Fichas"></i> '.html_safe, fichas_psicopedagogicas_path %>
   </div>
 
@@ -15,15 +15,15 @@
 	<h4 class="titulo-ficha">FICHA PSICOPEDAGOGÍA</h4>
 	<div class="row">
 
-		<%= f.input :paciente_id, collection: Paciente.all.collect { |a| [a.persona_full_name, a.id] }, label: '* Paciente', wrapper_html: { class: paciente.id.nil? ? 'col-md-4' : 'col-md-5' }, input_html: { class: 'required select-paciente select2 uniquePacienteFicha paciente-id', disabled: paciente.id.nil? ? false : true} %>
+		<%= f.input :paciente_id, collection: paciente.id.nil? ? [] : [[paciente.persona_full_name,paciente.id]], label: '* Paciente', wrapper_html: { class: paciente.id.nil? ? 'col-xs-4' : 'col-xs-5'},input_html:  { class: 'required select-paciente select2 uniquePacienteFicha paciente-id',disabled: paciente.id.nil? ? false : true} %>
 
 		<% if paciente.id.nil? %>
-			<%= link_to '<i class="fa fa-plus"></i> '.html_safe, pacientes_new_modal_path(root: 'fichas_psicopedagogicas', encargado: true), class: 'btn btn-custom btn-add col-md-1', remote: true %>
+			<%= link_to '<i class="fa fa-plus"></i> '.html_safe, pacientes_new_modal_path(root: 'fichas_psicopedagogicas', encargado: true), class: 'btn btn-custom btn-add col-xs-1', remote: true %>
 		<% end %>
 
-		<%= f.input :doctor_id, collection: doctores.collect { |a| [a.abr_profesion+" "+a.persona_full_name, a.id] }, label: '* Profesional de la Salud', wrapper_html: { class: 'col-md-4' }, input_html:	 { class: 'required select-doctor select2'} %>
+		<%= f.input :doctor_id, collection: doctores.collect { |a| [a.abr_profesion+" "+a.persona_full_name, a.id] }, label: '* Profesional de la Salud', wrapper_html: { class: 'col-xs-4' }, input_html:	 { class: 'required select-doctor select2'} %>
 
-		<%= f.input :fecha, as: :string, label: '* Fecha', wrapper_html: { class: 'col-md-3'}, input_html: { class: 'datepicker required dateLessSystemDate', maxLength: Domain::FECHA, value:Formatter.format_date(ficha.fecha)} %>
+		<%= f.input :fecha, as: :string, label: '* Fecha', wrapper_html: { class: 'col-xs-3'}, input_html: { class: 'date datepicker required dateLessSystemDate', maxLength: Domain::FECHA, value:Formatter.format_date(ficha.fecha)} %>
 	</div>
 	<div id="paciente-data">
 		<%= render 'form_paciente', paciente: paciente %>
@@ -33,8 +33,8 @@
 	<hr>
 
 	<div class="row">
-		<%= f.input :escolaridad, label: 'Grado que cursa', wrapper_html: { class: 'col-md-6'}, input_html: { maxLength: Domain::ESCOLARIDAD} %>
-		<%= f.input :escuela, label: 'Escuela', wrapper_html: { class: 'col-md-6'}, input_html: { maxLength: Domain::ESCUELA} %>
+		<%= f.input :escolaridad, label: 'Grado que cursa', wrapper_html: { class: 'col-xs-6'}, input_html: { maxLength: Domain::ESCOLARIDAD} %>
+		<%= f.input :escuela, label: 'Escuela', wrapper_html: { class: 'col-xs-6'}, input_html: { maxLength: Domain::ESCUELA} %>
 	</div>
 
     <div class="form-button">
@@ -45,8 +45,11 @@
 </div>
 </div>
 <script type="text/javascript">
-	fichasPsicopedagogicasUI.initScript();
+	fichasUI.initScript();
+
 	pacientesUI.checkPacienteHasFicha("<%=fichas_psicopedagogicas_check_paciente_has_ficha_path%>");
+
+  pacientesUI.getPaciente({element: '.select-paciente', root: 'fichas_psicopedagogicas'});
 
 	<% if !flash.notice.blank? %>
 	var n = noty({text: '<%=notice%>', type: 'success'});

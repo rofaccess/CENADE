@@ -6,9 +6,9 @@ class FichaOdontologica < ActiveRecord::Base
   protokoll :nro_ficha, pattern: '#'
 
   #asociaciones
-  belongs_to :paciente
+  belongs_to :paciente, -> { with_deleted }
   belongs_to :area
-  belongs_to :doctor, :foreign_key => :doctor_id
+  belongs_to :doctor, -> { with_deleted }, :foreign_key => :doctor_id
   has_many :consultas_odontologicas
 
   before_create :cargar_area_id

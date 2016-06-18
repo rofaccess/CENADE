@@ -3,6 +3,8 @@ class FichasPsicopedagogicasController < ApplicationController
 	before_action :set_sidebar, only: [:edit, :new, :show, :index]
 	before_action :set_ficha, only: [:show, :edit, :update, :destroy]
 	before_action :set_consulta, only: [:show, :edit]
+	load_and_authorize_resource
+	skip_load_resource :only => [:create]
 
 	def set_submenu
   		@submenu_layout = 'layouts/submenu_fichas_consultas'
@@ -84,8 +86,8 @@ class FichasPsicopedagogicasController < ApplicationController
 
   	def check_paciente_has_ficha
   		ficha = FichaPsicopedagogica.find_by_paciente_id(params[:paciente_id])
-  		render json: (ficha.nil? || ficha.id == params[:id].to_i) ? true : "El Paciente ya posee una Ficha".to_json
-  	end
+  	  render json: (ficha.nil? || ficha.id == params[:idd].to_i) ? true : "El Paciente ya posee una Ficha".to_json
+    end
 
  	def get_doctores_psicopedagogia
 		area = Area.find_by_nombre('Psicopedagogía')

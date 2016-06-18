@@ -1,9 +1,10 @@
 <% if !flash.notice.blank? %>
-   $('#pacientes-content').html("<%= j render 'list_pacientes', at_prof: @at_prof %>");
+   $('#pacientes-content').html("<%= j render 'list_pacientes', turnos: @turnos %>");
    var n = noty({text: '<%=notice%>', type: 'success'});
 <% elsif !flash.alert.blank?%>
    var n = noty({text: '<%=alert%>', type: 'error'});
 <% else%>
-   $('#pacientes-content').html("<%= j render 'list_pacientes', at_prof: @at_prof %>");
+   $('#pacientes-content').html("<%= j render 'list_pacientes', turnos: @turnos %>");
 <% end %>
 initSetEstadoTurnoToAtendido();
+$("#pacientes-content").LoadingOverlay("hide", true);

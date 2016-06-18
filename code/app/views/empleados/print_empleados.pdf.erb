@@ -5,10 +5,11 @@
       <th colspan="8" scope="col"> <h4 class="title">LISTA DE EMPLEADOS</h4></th>
     </tr>
     <tr>
+      <th>#</th>
       <th>Empleado</th>
       <th>C.I</th>
       <th>Direccion</th>
-      <th class="col-md-1">Telefono</th>
+      <th class="col-xs-1">Telefono</th>
       <th>Cargo</th>
       <th>Area</th>
     </tr>
@@ -21,8 +22,11 @@
     </tfoot>
    <% end %>
   <tbody>
+  <%i=0%>
     <% @empleados.each do |empleado| %>
+    <%i=i+1%>
     <tr>
+      <td><%=i%></td>
       <td><%=empleado.abr_profesion %>  <%=empleado.persona_nombre %> <%=empleado.persona_apellido %></td>
       <td><%=empleado.persona_ci %></td>
       <td class="crop"><%=empleado.persona_direccion %></td>

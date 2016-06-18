@@ -3,67 +3,67 @@
 <h4>Datos Personales</h4>
 <hr>
 <div class="row">
-	<div class="form-group col-md-6">
+	<div class="form-group col-xs-6">
 		<label class="control-label">Nombre y Apellido</label>
 		<div class="data"> <%=@ficha.paciente_persona_full_name%> </div>
 	</div>
 
-	<div class="form-group col-md-2">
+	<div class="form-group col-xs-2">
 		<label class="control-label">CI</label>
 		<div class="data"> <%=@ficha.paciente_persona_ci%> </div>
 	</div>
 
-	<div class="form-group col-md-1">
+	<div class="form-group col-xs-1">
 		<label class="control-label">Edad</label>
 		<div class="data"> <%=@ficha.paciente_persona_edad%> </div>
 	</div>
 
-	<div class="form-group col-md-3">
+	<div class="form-group col-xs-3">
 		<label class="control-label">Fecha de Nac.</label>
 		<div class="data"> <%=Formatter::format_date(@ficha.paciente_persona_fecha_nacimiento)%> </div>
 	</div>
 </div>
 <div class="row">
 
-	<div class="form-group col-md-2">
+	<div class="form-group col-xs-2">
 		<label class="control-label">Sexo</label>
 		<div class="data"> <%=@ficha.paciente_persona_sexo%> </div>
 	</div>
 
-	<div class="form-group col-md-4">
+	<div class="form-group col-xs-4">
 		<label class="control-label">Lugar de Nacimiento</label>
 		<div class="data"> <%=@ficha.paciente.lugar_nacimiento%> </div>
 	</div>
 
-	<div class="form-group col-md-3">
+	<div class="form-group col-xs-3">
 		<label class="control-label">Nacionalidad</label>
 		<div class="data"> <%=@ficha.paciente_persona_nacionalidad%> </div>
 	</div>
 
-	<div class="form-group col-md-3">
+	<div class="form-group col-xs-3">
 		<label class="control-label">Estado Civil</label>
 		<div class="data"> <%=@ficha.paciente_persona_estado_civil_descripcion%> </div>
 	</div>
 </div>
 <div class="row">
 
-	<div class="form-group col-md-9">
+	<div class="form-group col-xs-9">
 		<label class="control-label">Dirección</label>
 		<div class="data"> <%=@ficha.paciente_persona_direccion%> </div>
 	</div>
 
-	<div class="form-group col-md-3">
+	<div class="form-group col-xs-3">
 		<label class="control-label">Teléfono</label>
 		<div class="data"> <%=@ficha.paciente_persona_telefono%> </div>
 	</div>
 </div>
 <div class="row">
-	<div class="form-group col-md-6">
+	<div class="form-group col-xs-6">
 		<label class="control-label">Lugar de Trabajo</label>
 		<div class="data"> <%=@ficha.paciente.lugar_trabajo%> </div>
 	</div>
 
-	<div class="form-group col-md-6">
+	<div class="form-group col-xs-6">
 		<label class="control-label">Profesión</label>
 		<div class="data"> <%=@ficha.paciente.profesion%> </div>
 	</div>
@@ -74,12 +74,12 @@
 <hr>
 
 <div class="row">
-	<div class="form-group col-md-6">
+	<div class="form-group col-xs-6">
 		<label class="control-label">Nombre del Tutor</label>
 		<div class="data"> <%=@ficha.nombre_tutor%> </div>
 	</div>
 
-	<div class="form-group col-md-4">
+	<div class="form-group col-xs-4">
 		<label class="control-label">Teléfono</label>
 		<div class="data"> <%=@ficha.tel_tutor%> </div>
 	</div>

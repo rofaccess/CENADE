@@ -3,6 +3,8 @@ class FichaFisioterapiaNinosController < ApplicationController
 	before_action :set_sidebar, only: [:edit, :new, :show, :index]
   before_action :set_fisionino, only: [:show, :edit, :update]
   before_action :set_consulta, only: [:show, :edit]
+  load_and_authorize_resource
+  skip_load_resource :only => [:create]
 
   def set_submenu
    @submenu_layout = 'layouts/submenu_fichas_consultas'
@@ -18,6 +20,7 @@ class FichaFisioterapiaNinosController < ApplicationController
 
   def new
   	@fisio_nino= FichaFisioterapiaNino.new
+    @paciente = Paciente.new
   end
 
    def create
@@ -75,12 +78,12 @@ class FichaFisioterapiaNinosController < ApplicationController
   def check_paciente_id
     fisio_nino = FichaFisioterapiaNino.find_by_paciente_id(params[:paciente_id])
 
-    render json: (fisio_nino.nil? || fisio_nino.id == params[:id].to_i) ? true : "El Paciente ya posee una Ficha".to_json
+    render json: (fisio_nino.nil? || fisio_nino.id == params[:idd].to_i) ? true : "El Paciente ya posee una Ficha".to_json
   end
 
   #busca el paciente seleccionado en la base de datos
   def get_paciente
-    @paciente= Paciente.find(params[:id])
+    @paciente= Paciente.find(params[:idd])
 
   end
 
@@ -108,6 +111,7 @@ class FichaFisioterapiaNinosController < ApplicationController
     end
   def set_fisionino
   	@fisio_nino= FichaFisioterapiaNino.find(params[:id])
+    @paciente = Paciente.find(@fisio_nino.paciente_id)
   end
   def set_consulta
     @consultas= Consulta.where(area_id: @fisio_nino.area_id, paciente_id: @fisio_nino.paciente_id).limit(9).order(id: :desc)

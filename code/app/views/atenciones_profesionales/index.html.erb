@@ -1,7 +1,7 @@
 <div class="content content-sin-page-title">
    <div class="fichas-consultas-content">
       <h1>Bienvenido a la sección Atención Profesional</h1>
-      <% if @es_doctor %>
+      <% if current_user.es_doctor? %>
           <h3>El panel lateral lista los pacientes que sacaron turno con usted en la fecha especificada </h3>
       <% else %>
          <h3>Seleccione un área y un profesional de la salud </h3>
@@ -9,3 +9,12 @@
       <% end %>
    </div>
 </div>
+<script type="text/javascript">
+  <% if !flash.notice.blank? %>
+    var n = noty({text: '<%=notice%>', type: 'success'});
+  <% end %>
+  <% if !flash.alert.blank?%>
+    var n = noty({text: '<%=alert%>', type: 'error'});
+  <% end %>
+
+</script>

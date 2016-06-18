@@ -1,7 +1,7 @@
 <div class="page-title page-title-con-sidebar">
 	Ficha de <%= ficha.paciente_persona_full_name%>
 
-	<div class="tool">
+	<div class="tool tool-sin-buscador">
 		<%= link_to '<i class="fa fa-list data-toggle="tooltip" title="Lista de Fichas"></i> '.html_safe, fichas_fisioterapeuticas_adultos_path %>
 
 		<%= link_to '<i class="fa fa-plus-square" data-toggle="tooltip" title="Nueva Ficha"></i> '.html_safe, new_ficha_fisioterapeutica_adulto_path, remote: true %>
@@ -23,9 +23,9 @@
 
 	<div class="row">
 
-		<h4 class="col-md-9"><strong>Profesional de la Salud: </strong> <%= ficha.doctor.abr_profesion+' '+ficha.doctor.persona_full_name%> </h4>
+		<h4 class="col-xs-9"><strong>Profesional de la Salud: </strong> <%= ficha.doctor.abr_profesion+' '+ficha.doctor.persona_full_name%> </h4>
 
-  		<h4 class="col-md-3"><strong> Fecha: </strong> <%= Formatter.format_date(ficha.fecha)%> </h4>
+  		<h4 class="col-xs-3"><strong> Fecha: </strong> <%= Formatter.format_date(ficha.fecha)%> </h4>
   	</div>
 
 	<%= render 'form_paciente', paciente: paciente %>
@@ -34,32 +34,32 @@
 	<hr>
 
 	<div class="row">
-		<%= fich.input :encargado, label: 'Encargado', wrapper_html: { class: 'col-md-6'}, input_html: { disabled: true} %>
+		<%= fich.input :encargado, label: 'Encargado', wrapper_html: { class: 'col-xs-6'}, input_html: { disabled: true} %>
 	</div>
 
 	<div class="row">
-		<%= fich.input :medicamentos, as: :text, label: 'Medicamentos', wrapper_html: { class: 'col-md-12'}, input_html: { disabled: true} %>
+		<%= fich.input :medicamentos, as: :text, label: 'Medicamentos', wrapper_html: { class: 'col-xs-12'}, input_html: { disabled: true} %>
 	</div>
 
 	<div class="row">
-		<%= fich.input :antecedente_actual, as: :text, label: 'Antecedentes de la Enfermendad Actual', wrapper_html: { class: 'col-md-12'}, input_html: { disabled: true} %>
+		<%= fich.input :antecedente_actual, as: :text, label: 'Antecedentes de la Enfermendad Actual', wrapper_html: { class: 'col-xs-12'}, input_html: { disabled: true} %>
 	</div>
 
 	<div class="row">
-		<%= fich.input :antecedente_hereditario, as: :text, label: 'Antecedentes Hereditarios', wrapper_html: { class: 'col-md-12'}, input_html: { disabled: true} %>
+		<%= fich.input :antecedente_hereditario, as: :text, label: 'Antecedentes Hereditarios', wrapper_html: { class: 'col-xs-12'}, input_html: { disabled: true} %>
 	</div>
 
 	<div class="row">
-		<%= fich.input :condicion_paciente, as: :text, label: 'Condición General del Paciente', wrapper_html: { class: 'col-md-12'}, input_html: { disabled: true} %>
+		<%= fich.input :condicion_paciente, as: :text, label: 'Condición General del Paciente', wrapper_html: { class: 'col-xs-12'}, input_html: { disabled: true} %>
 	</div>
 
 	<div class="row">
-      <div class="col-md-8">
+      <div class="col-xs-8">
          <h4>Consultas</h4>
       </div>
-      <div class="col-md-4">
+      <div class="col-xs-4">
          <%= link_to "Agregar Consulta", consultas_consulta_from_ficha_path(area_id: ficha.area_id, paciente: ficha.paciente_id, profesional: ficha.doctor_id), class: "btn btn-custom", remote: true %>
-         <%= link_to 'Ver Historial Clínico', historial_fisioterapeutico_path(ficha.paciente_id), class: "btn btn-custom  pull-right", remote: true%>
+         <%= link_to 'Ver Historial Clínico', historial_fisioterapeutico_path(ficha.paciente_id), class: "btn btn-custom  pull-right", target: '_blank'%>
       </div>
     </div>
     <hr>

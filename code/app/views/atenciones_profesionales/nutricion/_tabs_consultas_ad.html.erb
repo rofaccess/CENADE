@@ -1,0 +1,26 @@
+<!--Renderiza un tab para nueva consulta, si el turno esta pendiente
+    Renderiza los datos de cada consulta adulto dentro de tabs
+ -->
+<ul class="nav nav-tabs">
+	<% if turno.pendiente? %>
+		<li class="con-ad-new"><a href="#con-ad-new"><span class="fa fa-plus"></span> Nueva Consulta</a></li>
+	<% end %>
+
+	<% consultas_ad.each do |c| %>
+	<li><a href="#con-adu-<%=c.id%>"><%=date(c.fecha)%></a></li>
+	<% end %>
+</ul>
+
+<div class="tabs-content">
+	<% if turno.pendiente? %>
+      <div id="con-ad-new">
+   	   <%=render 'atenciones_profesionales/nutricion/new_consulta_ad',turno: turno,ficha_ad_id: ficha_ad_id%>
+      </div>
+   <% end %>
+
+	<% consultas_ad.each do |consulta_ad| %>
+		<div id="con-adu-<%=consulta_ad.id%>">
+         <%=render 'atenciones_profesionales/nutricion/data_consulta_ad',consulta_ad: consulta_ad%>
+		</div>
+	<% end %>
+</div>

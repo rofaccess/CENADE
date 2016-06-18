@@ -1,7 +1,7 @@
 class ReporteEstadistico < ActiveRecord::Base
 	paginates_per 20
 
-	belongs_to :doctor, :foreign_key => :doctor_id
+	belongs_to :doctor, -> { with_deleted }, :foreign_key => :doctor_id
  	belongs_to :area
 
  	 delegate :nombre, to: :area, prefix: true, allow_nil: true

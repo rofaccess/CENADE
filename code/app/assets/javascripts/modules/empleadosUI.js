@@ -78,7 +78,7 @@ var empleadosUI = (function(){
                             ci: function() {
                                 return $( ".ci" ).val();
                             },
-                            id: function() {
+                            idd: function() {
                                 return $('.persona-id').val();
                             }
                         }

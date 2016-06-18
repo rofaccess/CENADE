@@ -5,6 +5,8 @@ class FichasNutricionalesPediatricasController < ApplicationController
   before_action :set_ficha_nutri_pediatrica, only: [:show, :edit, :update]
   before_action :set_Titulo, only: [:show, :create, :update, :edit, :new, :print_ficha]
   before_action :set_consulta, only: [:show, :edit]
+  load_and_authorize_resource
+  skip_load_resource :only => [:create]
 
   def set_submenu
   	@submenu_layout = 'layouts/submenu_fichas_consultas'
@@ -122,8 +124,7 @@ class FichasNutricionalesPediatricasController < ApplicationController
 
   def check_paciente_has_ficha
     ficha = FichaNutricionalPediatrica.find_by_paciente_id(params[:paciente_id])
-
-    render json: (ficha.nil? || ficha.id == params[:id].to_i) ? true : "El Paciente ya posee una Ficha".to_json
+    render json: (ficha.nil? || ficha.id == params[:idd].to_i) ? true : "El Paciente ya posee una Ficha".to_json
   end
 
   def set_ficha_nutri_pediatrica
@@ -136,7 +137,7 @@ class FichasNutricionalesPediatricasController < ApplicationController
   end
 
   def nutri_pediatrica_params
-  	params.require(:ficha_nutricional_pediatrica).permit(:area_id,:paciente_id, :profesional_salud_id, :fecha, :nro_ficha,
+  	params.require(:ficha_nutricional_pediatrica).permit(:area_id,:paciente_id, :doctor_id, :fecha, :nro_ficha,
   		 :problema_embarazo,:control_prenatal,:alimentacion_embarazo,:otros_datos,:parto_vaginal_cesarea, :termino_pretermino,
   		 :lugar_parto,:como_fue_parto, :peso_nacimiento, :asfixia_lloro, :tomo_pecho, :alimentacion_complementaria)
   end

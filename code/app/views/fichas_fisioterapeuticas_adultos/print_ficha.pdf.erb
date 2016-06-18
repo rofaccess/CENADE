@@ -4,39 +4,39 @@
 <hr>
 
 <div class="row">
-	<div class="form-group col-md-9">
+	<div class="form-group col-xs-9">
 		<label class="control-label">Nombre y Apellido</label>
 		<div class="data"> <%=@ficha.paciente_persona_full_name%> </div>
 	</div>
 
-	<div class="form-group col-md-1">
+	<div class="form-group col-xs-1">
 		<label class="control-label">Edad</label>
 		<div class="data"> <%=@ficha.paciente_persona_edad%> </div>
 	</div>
 
-	<div class="form-group col-md-2">
+	<div class="form-group col-xs-2">
 		<label class="control-label">Sexo</label>
 		<div class="data"> <%=@ficha.paciente_persona_sexo%> </div>
 	</div>
 </div>
 <div class="row">
 
-	<div class="form-group col-md-2">
+	<div class="form-group col-xs-2">
 		<label class="control-label">CI</label>
 		<div class="data"> <%=@ficha.paciente_persona_ci%> </div>
 	</div>
 
-	<div class="form-group col-md-4">
+	<div class="form-group col-xs-4">
 		<label class="control-label">Nacionalidad</label>
 		<div class="data"> <%=@ficha.paciente_persona_nacionalidad%> </div>
 	</div>
 
-	<div class="form-group col-md-3">
+	<div class="form-group col-xs-3">
 		<label class="control-label">Fecha de Nac.</label>
 		<div class="data"> <%=Formatter.format_date(@ficha.paciente_persona_fecha_nacimiento)%> </div>
 	</div>
 
-	<div class="form-group col-md-3">
+	<div class="form-group col-xs-3">
 		<label class="control-label">Telefono</label>
 		<div class="data"> <%=@ficha.paciente_persona_telefono%> </div>
 	</div>
@@ -45,7 +45,7 @@
 
 
 <div class="row">
-	<div class="form-group col-md-12">
+	<div class="form-group col-xs-12">
 		<label class="control-label">Dirección</label>
 		<div class="data"> <%=@ficha.paciente_persona_direccion%> </div>
 	</div>
@@ -55,28 +55,28 @@
 <hr>
 
 <div class="row">
-	<div class="form-group col-md-9">
+	<div class="form-group col-xs-9">
 		<label class="control-label">Encargado</label>
 		<div class="data"> <%=@ficha.encargado%> </div>
 	</div>
 </div>
 
 <div class="row">
-	<div class="form-group col-md-12">
+	<div class="form-group col-xs-12">
 		<label class="control-label">Antecedentes de la Enfermedad Actual</label>
 		<div class="data-bordered"> <%=@ficha.antecedente_actual%> </div>
 	</div>
 </div>
 
 <div class="row">
-	<div class="form-group col-md-12">
+	<div class="form-group col-xs-12">
 		<label class="control-label">Antecedentes Hereditarios</label>
 		<div class="data-bordered"> <%=@ficha.antecedente_hereditario%> </div>
 	</div>
 </div>
 
 <div class="row">
-	<div class="form-group col-md-12">
+	<div class="form-group col-xs-12">
 		<label class="control-label">Condición General del Paciente</label>
 		<div class="data-bordered"> <%=@ficha.condicion_paciente%> </div>
 	</div>

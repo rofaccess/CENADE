@@ -1,109 +1,109 @@
 <ul class="nav nav-tabs">
-    <% consultas_ped.each do |c| %>
-        <li><a href="#consulta-pediatrica-<%= c.id%>"><%= date(c.fecha)%></a></li>
-    <%end%>
+	<% consultas_ped.each do |c| %>
+		<li><a href="#con-ped-<%=c.id%>"><%=date(c.fecha)%></a></li>
+	<% end %>
 </ul>
 
-<div class="tabscontent">
-    <% consultas_ped.each do |consulta| %>
-        <div id="consulta-pediatrica-<%= consulta.id%>">
-           <div class="row">
-               <%= data('Profesional de la Salud', consulta.doctor_full_name,'col-md-9') %>
-               <%= data('Fecha', date(consulta.fecha),'col-md-3') %>
-            </div>
+<div class="tabs-content">
+	<% consultas_ped.each do |con| %>
+		<div id="con-ped-<%=con.id%>">
+			<div class="row">
+				<%= data('Profesional de la Salud', con.doctor_full_name,'col-xs-9') %>
+				<%= data('Fecha', date(con.fecha),'col-xs-3') %>
+			</div>
 
-            <div class="row">
-                <%= data('I - Encargado', consulta.encargado,'col-md-12') %>
-            </div>
+			<div class="row">
+				<%= data('I - Encargado', con.encargado,'col-xs-12') %>
+			</div>
 
-            <ul class="nav nav-tabs">
-                <li><a href="#valoracion_desarrollo">II - Valoración del Desarrollo</a></li>
-                <li><a href="#alimentacion_actual">III - Alimentación Actual</a></li>
-                <li><a href="#signos_sintomas">IV - Signos y/o Síntomas</a></li>
-                <li><a href="#datos_antropometricos">V - Datos Antropométricos</a></li>
-            </ul>
-            <div class="tabscontent">
-                <div id="valoracion_desarrollo">
-                    <div class="row">
-                        <%= data('Sostén Cefálico', consulta.sosten_cefalico,'col-md-12') %>
-                     </div>
-                     <div class="row">
-                        <%= data('Se sentó a los', consulta.sento,'col-md-4') %>
-                        <%= data('Se paró a los', consulta.paro,'col-md-4') %>
-                        <%= data('Caminó a los', consulta.camino,'col-md-4') %>
-                     </div>
-                     <div class="row">
-                        <%= data('¿Busca Sonido?', consulta.busca_sonido,'col-md-4') %>
-                        <%= data('¿Emite Sonido?', consulta.emite_sonido,'col-md-4') %>
-                        <%= data('¿Rie - Llora?', consulta.rie_llora,'col-md-4') %>
-                     </div>
-                     <div class="row">
-                        <%= data('¿Sigue la luz u objetos coloridos?', consulta.sigue_luz,'col-md-5') %>
-                        <%= data('¿Mastica - Deglute?', consulta.mastica_deglute,'col-md-7') %>
-                     </div>
-                     <div class="row">
-                        <%= data('Habilidades presentes y/o ausentes para la edad', consulta.habilidades,'col-md-12') %>
-                     </div>
-                     <div class="row">
-                        <%= data_text('Otros', consulta.otros,'col-md-12') %>
-                     </div>
-                </div>
+			<ul class="nav nav-tabs">
+				<li><a href="#con-ped-<%=con.id%>-val-des">II - Valoración del Desarrollo</a></li>
+				<li><a href="#con-ped-<%=con.id%>-ali-act">III - Alimentación Actual</a></li>
+				<li><a href="#con-ped-<%=con.id%>-sig-sin">IV - Signos y/o Síntomas</a></li>
+				<li><a href="#con-ped-<%=con.id%>-dat-ant">V - Datos Antropométricos</a></li>
+			</ul>
+			<div class="tabs-content">
+				<div id="con-ped-<%=con.id%>-val-des">
+					<div class="row">
+						<%= data('Sostén Cefálico', con.sosten_cefalico,'col-xs-12') %>
+					</div>
+					<div class="row">
+						<%= data('Se sentó a los', con.sento,'col-xs-4') %>
+						<%= data('Se paró a los', con.paro,'col-xs-4') %>
+						<%= data('Caminó a los', con.camino,'col-xs-4') %>
+					</div>
+					<div class="row">
+						<%= data('¿Busca Sonido?', con.busca_sonido,'col-xs-4') %>
+						<%= data('¿Emite Sonido?', con.emite_sonido,'col-xs-4') %>
+						<%= data('¿Rie - Llora?', con.rie_llora,'col-xs-4') %>
+					</div>
+					<div class="row">
+						<%= data('¿Sigue la luz u objetos coloridos?', con.sigue_luz,'col-xs-5') %>
+						<%= data('¿Mastica - Deglute?', con.mastica_deglute,'col-xs-7') %>
+					</div>
+					<div class="row">
+						<%= data('Habilidades presentes y/o ausentes para la edad', con.habilidades,'col-xs-12') %>
+					</div>
+					<div class="row">
+						<%= data_text('Otros', con.otros,'col-xs-12') %>
+					</div>
+				</div>
 
-                <div id="alimentacion_actual">
-                    <div class="row">
-                        <%= data('Desayuno', consulta.desayuno,'col-md-12') %>
-                     </div>
-                     <div class="row">
-                        <%= data('Media Mañana', consulta.media_manana,'col-md-12') %>
-                     </div>
-                     <div class="row">
-                        <%= data('Almuerzo', consulta.almuerzo,'col-md-12') %>
-                     </div>
-                     <div class="row">
-                        <%= data('Merienda', consulta.merienda,'col-md-12') %>
-                     </div>
-                     <div class="row">
-                        <%= data('Cena', consulta.cena,'col-md-12') %>
-                     </div>
-                </div>
+				<div id="con-ped-<%=con.id%>-ali-act">
+					<div class="row">
+						<%= data('Desayuno', con.desayuno,'col-xs-12') %>
+					</div>
+					<div class="row">
+						<%= data('Media Mañana', con.media_manana,'col-xs-12') %>
+					</div>
+					<div class="row">
+						<%= data('Almuerzo', con.almuerzo,'col-xs-12') %>
+					</div>
+					<div class="row">
+						<%= data('Merienda', con.merienda,'col-xs-12') %>
+					</div>
+					<div class="row">
+						<%= data('Cena', con.cena,'col-xs-12') %>
+					</div>
+				</div>
 
-                <div id="signos_sintomas">
-                    <div class="row">
-                        <%= data('Diarrea', consulta.diarrea,'col-md-4') %>
-                        <%= data('Vómitos', consulta.vomitos,'col-md-4') %>
-                        <%= data('Fiebre', consulta.fiebre,'col-md-4') %>
-                     </div>
-                     <div class="row">
-                        <%= data('Problemas Respiratorios', consulta.problemas_respiratorios,'col-md-6') %>
-                        <%= data('Distención abdominal', consulta.distension_abdominal,'col-md-6') %>
-                     </div>
-                     <div class="row">
-                        <%= data('Constipación', consulta.constipacion,'col-md-4') %>
-                        <%= data('Orina', consulta.orina,'col-md-4') %>
-                        <%= data('Sudor', consulta.sudor,'col-md-4') %>
-                     </div>
-                     <div class="row">
-                        <%= data('Otros', consulta.otros2,'col-md-12') %>
-                     </div>
-                </div>
+				<div id="con-ped-<%=con.id%>-sig-sin">
+					<div class="row">
+						<%= data('Diarrea', con.diarrea,'col-xs-4') %>
+						<%= data('Vómitos', con.vomitos,'col-xs-4') %>
+						<%= data('Fiebre', con.fiebre,'col-xs-4') %>
+					</div>
+					<div class="row">
+						<%= data('Problemas Respiratorios', con.problemas_respiratorios,'col-xs-6') %>
+						<%= data('Distención abdominal', con.distension_abdominal,'col-xs-6') %>
+					</div>
+					<div class="row">
+						<%= data('Constipación', con.constipacion,'col-xs-4') %>
+						<%= data('Orina', con.orina,'col-xs-4') %>
+						<%= data('Sudor', con.sudor,'col-xs-4') %>
+					</div>
+					<div class="row">
+						<%= data('Otros', con.otros2,'col-xs-12') %>
+					</div>
+				</div>
 
-                <div id="datos_antropometricos">
-                    <div class="row">
-                        <%= data('Talla', consulta.talla,'col-md-6') %>
-                        <%= data('Peso', consulta.peso,'col-md-6') %>
-                     </div>
-                     <div class="row">
-                        <%= data('PC', consulta.pc,'col-md-4') %>
-                        <%= data('IMC', consulta.imc,'col-md-4') %>
-                        <%= data('CM', consulta.cm,'col-md-4') %>
-                     </div>
-                </div>
-            </div>
-
-            <br>
-            <div class="row">
-                <%= data_text('VI - Diagnóstico', consulta.diagnostico,'col-md-12') %>
-            </div>
-        </div>
-    <%end%>
+				<div id="con-ped-<%=con.id%>-dat-ant">
+					<div class="row">
+						<%= data('Talla', con.talla,'col-xs-6') %>
+						<%= data('Peso', con.peso,'col-xs-6') %>
+					</div>
+					<div class="row">
+						<%= data('PC', con.pc,'col-xs-4') %>
+						<%= data('IMC', con.imc,'col-xs-4') %>
+						<%= data('CM', con.cm,'col-xs-4') %>
+					</div>
+				</div>
+			</div>
+			<br>
+			<div class="row">
+				<%= data_text('VI - Diagnóstico', con.diagnostico,'col-xs-12') %>
+			</div>
+		</div>
+	<% end %>
 </div>
+

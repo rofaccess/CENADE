@@ -4,8 +4,8 @@ class FichaFisioterapeuticaAdulto < ActiveRecord::Base
 	# Autoincrementa el numero de ficha
 	protokoll :nro_ficha, pattern: '#'
 
-	belongs_to :paciente
-	belongs_to :doctor, :foreign_key => :doctor_id
+	belongs_to :paciente, -> { with_deleted }
+	belongs_to :doctor, -> { with_deleted }, :foreign_key => :doctor_id
 
 	before_create :cargar_area_id
 
@@ -14,13 +14,12 @@ class FichaFisioterapeuticaAdulto < ActiveRecord::Base
 		self.area_id= area
 	end
 
-    # //- No se usa todavía
-	#def validate_paciente
-	#	paciente= FichaFisioterapeuticaAdulto.where("paciente_id = ?", self.paciente_id)
-	#	if !paciente.empty?
-	#		errors.add(:base, "El paciente ya posee una Ficha de Fisioterapia Adulto")
-	#	end
-	#end
+	def validate_paciente
+		paciente= FichaFisioterapeuticaAdulto.where("paciente_id = ?", self.paciente_id)
+		if !paciente.empty?
+			errors.add(:base, "El paciente ya posee una Ficha de Fisioterapia Adulto")
+		end
+	end
 
 	# Law of Demeter
 	delegate :persona_nombre, :persona_apellido, :persona_full_name,

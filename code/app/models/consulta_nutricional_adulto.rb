@@ -2,9 +2,8 @@ class ConsultaNutricionalAdulto < ActiveRecord::Base
    paginates_per 20
 
 	#asociaciones
- 	belongs_to :doctor, :foreign_key => :doctor_id
-
- 	belongs_to :user
+ 	belongs_to :doctor, -> { with_deleted }, :foreign_key => :doctor_id
+  belongs_to :paciente, -> { with_deleted }
 
  	belongs_to :ficha_nutricional_adulto , :foreign_key => :ficha_nutricional_adulto_id
 

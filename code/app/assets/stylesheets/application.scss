@@ -22,13 +22,15 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+@import "layouts/non-responsive-bootstrap";
+
 @import "font-awesome-sprockets";
 @import "font-awesome";
 
 // vendors
 @import "vendors/select2.min";
-@import "vendors/bootstrap-datepicker3";
 @import "vendors/select2-bootstrap";
+@import "vendors/bootstrap-datepicker3";
 @import "vendors/simple-sidebar.css";
 @import "vendors/perfect-scrollbar.min.css";
 
@@ -59,7 +61,6 @@ $has-error-color: #dd4b39;
 @import "layouts/submenu";
 @import "layouts/sidebar";
 @import "layouts/forms";
-
 @import "layouts/pages";
 
 //modules

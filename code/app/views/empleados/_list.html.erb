@@ -2,10 +2,11 @@
 <table class= "table table-condensed">
   <thead>
     <tr>
+      <th>#</th>
       <th>Empleado</th>
       <th>C.I</th>
       <th>Direccion</th>
-      <th class="col-md-1">Telefono</th>
+      <th class="col-xs-1">Telefono</th>
       <th>Cargo</th>
       <th>Area</th>
       <th></th>
@@ -19,8 +20,11 @@
     </tfoot>
    <% end %>
   <tbody>
+    <%i=0%>
     <% empleados.each do |empleado| %>
+      <%i=i+1%>
     <tr data-url=<%= empleado_path(empleado)%>>
+      <td><%=i%> </td>
       <td><%=empleado.abr_profesion %>  <%=empleado.persona_full_name %> </td>
       <td><%=empleado.persona_ci %></td>
       <td><%=empleado.persona_direccion %></td>
@@ -48,6 +52,5 @@
 </table>
 
 <script type="text/javascript">
-//- Todavía no se usa, permitiría imprimir una lista filtrada, según el buscador básico
-  configImprimir("<%= params[:q].nil? ? '' : '?'+params[:q].to_query('q')%>");
+  APP.initImprimir("<%= params[:q].nil? ? '' : '?'+params[:q].to_query('q')%>");
 </script>

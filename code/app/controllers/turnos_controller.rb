@@ -2,6 +2,8 @@ class TurnosController < ApplicationController
 
   before_action :set_turno, only: [:show, :edit, :update, :destroy]
   respond_to :html, :js
+  load_and_authorize_resource :turno
+
 
   def index
   	 get_turnos
@@ -9,7 +11,6 @@ class TurnosController < ApplicationController
 
   def new
   	@turno= Turno.new
-
   end
   def create
   	@turno = Turno.new(turno_params)
@@ -21,7 +22,7 @@ class TurnosController < ApplicationController
         flash.now[:alert] = @turno.errors.full_messages.first
         @turno_nuevo= true
         format.html { render "new"}
-        format.js { render "edit"}
+        format.js { render "edit"} # //- Creo que debería ser render 'new'
       end
     end
   end
@@ -69,14 +70,18 @@ class TurnosController < ApplicationController
   end
 
   def print_turnos
-
-      @turnos = Turno.all
+      get_turnos()
 
       respond_to do |format|
         format.pdf do
           render :pdf => "Lista de Turnos",
                  :template => "turnos/print_turnos.pdf.erb",
-                 :layout => "pdf.html"
+                 orientation:  'Landscape',
+                 :layout => "pdf.html",
+                 footer: {
+                    center: '[page] de [topage]',
+                    right: "#{Formatter.format_datetime(Time.now)}"
+                  }
           end
         end
     end
@@ -84,12 +89,20 @@ class TurnosController < ApplicationController
    def check_paciente
      turno= Turno.find_by(paciente_id: self.paciente_id, fecha_consulta: self.fecha_consulta, area_id: self.area_id)
 
-      render json: (turno.nil? || turno.id == params[:id].to_i) ? true : "El paciente ya tiene un turno para el área y fecha".to_json
+      render json: (turno.nil? || turno.id == params[:idd].to_i) ? true : "El paciente ya tiene un turno para el área y fecha".to_json
     end
 
   #obtiene el paciente
    def get_paciente
-    @paciente= Paciente.find(params[:id])
+    @paciente= Paciente.find(params[:idd])
+
+    authorize! :get_paciente, @paciente
+
+  end
+
+  #recarga la lista de profesionales segun el area
+   def recarga_doctores
+    @area= Area.find(params[:id_area])
 
   end
 
@@ -105,7 +118,7 @@ class TurnosController < ApplicationController
     if (@turno.estado== 'pendiente')
 
       @turno.update_attribute(:estado, params[:nuevo_estado])
-      flash.now[:notice] = "Turno N° #{@turno.turno} params[:nuevo_estado]"
+      flash.now[:notice] = "Turno N° #{@turno.turno} "+ params[:nuevo_estado]
 
     else
       flash.now[:alert] = "Turno N° #{@turno.turno} no puede cambiar de estado"
@@ -116,7 +129,7 @@ class TurnosController < ApplicationController
     end
     def get_turnos
       @search = Turno.ransack(params[:q])
-      @search.sorts = ['turno asc', 'area_id desc'] if @search.sorts.empty?
+      @search.sorts = ['fecha_consulta desc','turno asc'] if @search.sorts.empty?
       @turnos= @search.result.page(params[:page])
     end
 

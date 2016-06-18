@@ -3,7 +3,9 @@ class FichasNutricionalesAdultosController < ApplicationController
   before_action :set_submenu, only: [:edit, :new, :show, :index, :create, :update]
   before_action :set_sidebar, only: [:edit, :new, :show, :index, :create, :update]
   #before_action :set_consulta, only: [:show, :edit]
-  before_action :set_ficha_nutri_adulto, only: [:show, :edit]
+  before_action :set_ficha_nutri_adulto, only: [:show, :edit , :update]
+  load_and_authorize_resource
+  skip_load_resource :only => [:create]
 
   def set_submenu
   	@submenu_layout = 'layouts/submenu_fichas_consultas'
@@ -33,10 +35,10 @@ class FichasNutricionalesAdultosController < ApplicationController
 		    format.html { redirect_to ficha_nutricional_adulto_path(@nutri_adulto), notice: 'Ficha registrada exitosamente'}
       else
         if @nutri_adulto.errors.full_messages.any?
-          format.html { redirect_to ficha_nutricional_pediatrica_path(@nutri_adulto), notice: @nutri_adulto.errors.full_messages.first}
+          format.html { redirect_to ficha_nutricional_adulto_path(@nutri_adulto), notice: @nutri_adulto.errors.full_messages.first}
         else
 
-          format.html { redirect_to ficha_nutricional_pediatrica_path(@nutri_adulto), notice: "No se ha podido guardar la Ficha"}
+          format.html { redirect_to ficha_nutricional_adulto_path(@nutri_adulto), notice: "No se ha podido guardar la Ficha"}
         end
 
       end
@@ -60,10 +62,10 @@ class FichasNutricionalesAdultosController < ApplicationController
       else
 
         if @nutri_adulto.errors.full_messages.any?
-          format.html { redirect_to ficha_nutricional_pediatrica_path(@nutri_adulto), notice: @nutri_adulto.errors.full_messages.first}
+          format.html { redirect_to ficha_nutricional_adulto_path(@nutri_adulto), notice: @nutri_adulto.errors.full_messages.first}
         else
 
-          format.html { redirect_to ficha_nutricional_pediatrica_path(@nutri_adulto), notice: "No se ha podido guardar la Ficha"}
+          format.html { redirect_to ficha_nutricional_adulto_path(@nutri_adulto), notice: "No se ha podido guardar la Ficha"}
         end
       end
     end
@@ -92,8 +94,8 @@ class FichasNutricionalesAdultosController < ApplicationController
   end
 
   def get_doctores_nutricion
-	@area = Area.find_by_nombre('Nutrición')
-	@doctores = Doctor.where(area_id: @area.id)
+  	@area = Area.find_by_nombre('Nutrición')
+  	@doctores = Doctor.where(area_id: @area.id)
   end
 
   #busca el paciente seleccionado en la base de datos
@@ -113,8 +115,7 @@ class FichasNutricionalesAdultosController < ApplicationController
 
   def check_paciente_has_ficha
     ficha = FichaNutricionalAdulto.find_by_paciente_id(params[:paciente_id])
-
-    render json: (ficha.nil? || ficha.id == params[:id].to_i) ? true : "El Paciente ya posee una Ficha".to_json
+    render json: (ficha.nil? || ficha.id == params[:idd].to_i) ? true : "El Paciente ya posee una Ficha".to_json
   end
 
   def set_ficha_nutri_adulto
@@ -125,6 +126,6 @@ class FichasNutricionalesAdultosController < ApplicationController
 
   def nutri_adulto_params
   	params.require(:ficha_nutricional_adulto).permit(:area_id, :paciente_id, :doctor_id, :fecha, :nro_ficha,
-  		:obesidad, :dbt, :hta, :cardiopatias, :actuales)
+      :nro_hijos, :obesidad, :dbt, :hta, :cardiopatias, :actuales)
   end
 end

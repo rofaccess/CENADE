@@ -1,14 +1,23 @@
 Rails.application.routes.draw do
+
   get 'reportes_estadisticos/por_mes' => 'reportes_estadisticos#por_mes'
   get 'reportes_estadisticos/por_anho' => 'reportes_estadisticos#por_anho'
-  get 'reportes_estadisticos/print' => 'reportes_estadisticos#print'
+  get 'reportes_estadisticos/print_reporte_anuales' => 'reportes_estadisticos#print_reporte_anuales'
+  get 'reportes_estadisticos/print_reporte_mensuales' => 'reportes_estadisticos#print_reporte_mensuales'
+
   resources :reportes_estadisticos, only: [:index] do
     collection do
       match 'buscar' => 'reportes_estadisticos#buscar', via: [:get, :post], as: :search
+      match 'buscar_anho' => 'reportes_estadisticos#buscar_anho', via: [:get, :post], as: :search_year
     end
   end
 
-  post 'atenciones_profesionales/setEstadoTurnoToAtendido' => 'atenciones_profesionales#setEstadoTurnoToAtendido'
+  post 'atencion_profesional/create_consulta' => 'atenciones_profesionales#create_consulta', as: :atencion_create_consulta
+  post 'atencion_profesional/create_consulta_odontologica' => 'atenciones_profesionales#create_consulta_odontologica', as: :atencion_create_consulta_odontologica
+  post 'atencion_profesional/create_consulta_ped' => 'atenciones_profesionales#create_consulta_ped', as: :atencion_create_consulta_ped
+  post 'atencion_profesional/create_consulta_ad' => 'atenciones_profesionales#create_consulta_ad', as: :atencion_create_consulta_ad
+  post 'atencion_profesional/create_control' => 'atenciones_profesionales#create_control', as: :atencion_create_control
+  post 'atencion_profesional/set_estado_turno_to_atendido' => 'atenciones_profesionales#set_estado_turno_to_atendido'
   get 'atenciones_profesionales/get_turnos' => 'atenciones_profesionales#get_turnos'
   resources :atenciones_profesionales, only: [:index, :show]
 
@@ -161,8 +170,9 @@ Rails.application.routes.draw do
       get'get_paciente' => 'ficha_fisioterapia_ninos#get_paciente'
     end
   end
-  get 'consultas/consulta_from_ficha' => 'consultas#consulta_from_ficha'
 
+  get 'consultas/consulta_from_ficha' => 'consultas#consulta_from_ficha'
+  get 'consultas/check_paciente_has_not_ficha' => 'consultas#check_paciente_has_not_ficha'
   get 'consultas/print_consulta' => 'consultas#print_consulta'
   resources :consultas, :except => [:destroy] do
     collection do
@@ -194,6 +204,7 @@ Rails.application.routes.draw do
   get 'turnos/check_paciente' => 'empleados#check_paciente'
   get'turnos/get_paciente' => 'turnos#get_paciente'
   get'turnos/update_profesional' => 'turnos#update_profesional'
+  get 'turnos/recarga_doctores' => 'turnos#recarga_doctores'
   get 'turnos/print_turnos' => 'turnos#print_turnos'
   get '/turnos:id', to: 'turnos#cambiar_estado', as: 'estado'
   resources :turnos do

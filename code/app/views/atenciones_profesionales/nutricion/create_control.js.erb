@@ -1,0 +1,17 @@
+<% if !flash.notice.blank? %>
+   //Reemplaza el formulario de nuevo control con el control recien creado
+   $('#control-new').html("<%= j render 'atenciones_profesionales/nutricion/data_control', control: @control %>");
+
+   //Borra los tabs y forms de nueva consulta
+   $('#con-ped-new, .con-ped-new').remove();
+   $('#con-ad-new, .con-ad-new').remove();
+
+   var n = noty({text: '<%=notice%>', type: 'success'});
+
+  //Actualiza la lista de pacientes
+  $('#datepicker-inline').trigger("changeDate");
+<% elsif !flash.alert.blank?%>
+   var n = noty({text: '<%=alert%>', type: 'error'});
+<% else%>
+
+<% end %>

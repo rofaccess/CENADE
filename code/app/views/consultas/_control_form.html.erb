@@ -1,7 +1,7 @@
   <div class="page-title page-title-con-sidebar">
       <%=consulta.id.nil? ? 'Nuevo Control' : 'Editar Control'%>
 
-      <div class="tool">
+      <div class="tool tool-sin-buscador">
         <%= link_to '<i class="fa fa-list" data-toggle="tooltip" data-placement="bottom" title="Lista de Controles"></i> '.html_safe, consultas_path(area_id: area.id) %>
       </div>
 
@@ -18,9 +18,9 @@
           <%= consult.hidden_field :paciente_id%>
         <% end %>
 
-        <%= consult.input :doctor_id, collection: doctores.collect { |a| [a.abr_profesion+" "+a.persona_full_name+"-"+ a.area.nombre, a.id] }, label: '* Prof. de la Salud', wrapper_html: { class: 'col-md-9' }, input_html:  { class: 'required select-doctor select2'} %>
+        <%= consult.input :doctor_id, collection: doctores.collect { |a| [a.abr_profesion+" "+a.persona_full_name+"-"+ a.area.nombre, a.id] }, label: '* Prof. de la Salud', wrapper_html: { class: 'col-xs-9' }, input_html:  { class: 'required select-doctor select2'} %>
 
-        <%= consult.input :fecha, as: :string, label: '* Fecha', wrapper_html: { class: 'col-md-3'}, input_html: { class: 'datepicker dateLessSystemDate required', maxLength: Domain::FECHA, value:Formatter.format_date(consulta.fecha)} %>
+        <%= consult.input :fecha, as: :string, label: '* Fecha', wrapper_html: { class: 'col-xs-3'}, input_html: { class: 'date datepicker dateLessSystemDate required', maxLength: Domain::FECHA, value:Formatter.format_date(consulta.fecha)} %>
 
       </div>
 
@@ -32,15 +32,15 @@
       <hr>
       <div class="row">
 
-        <%= consult.input :motivo_consulta, as: :text, label: 'Motivo', wrapper_html: { class: 'col-md-12'}, input_html: { maxLength: Domain::DESC300, class: 'biglength', rows: "2"} %>
+        <%= consult.input :motivo_consulta, as: :text, label: 'Motivo', wrapper_html: { class: 'col-xs-12'}, input_html: { maxLength: Domain::DESC300, class: 'biglength', rows: "2"} %>
       </div>
 
 
-        <%= consult.input :tratamiento, as: :text, label: 'Tratamiento', wrapper_html: { class: 'col-md-6'}, input_html: { maxLength: Domain::DESC600, class: 'maxlengthBig2', rows: "5"} %>
+        <%= consult.input :tratamiento, as: :text, label: 'Tratamiento', wrapper_html: { class: 'col-xs-6'}, input_html: { maxLength: Domain::DESC600, class: 'maxlengthBig2', rows: "5"} %>
       </div>
 
       <div class="row">
-         <%= consult.input :observaciones, as: :text, label: 'Observaciones', wrapper_html: { class: 'col-md-12'}, input_html: { maxLength: Domain::DESC250, class: 'longString', rows: "2"} %>
+         <%= consult.input :observaciones, as: :text, label: 'Observaciones', wrapper_html: { class: 'col-xs-12'}, input_html: { maxLength: Domain::DESC250, class: 'longString', rows: "2"} %>
       </div>
 
       <div class="form-button">

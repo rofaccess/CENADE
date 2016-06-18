@@ -1,63 +1,34 @@
+<% ficha_ped = turno.paciente.ficha_nutricional_pediatrica %>
+<% ficha_ad = turno.paciente.ficha_nutricional_adulto %>
+<% consultas_ped = ficha_ped.blank? ? [] : ficha_ped.consultas_nutricionales_pediatricas.order(fecha: :desc).limit(7) %>
+<% consultas_ad = ficha_ad.blank? ? [] : ficha_ad.consultas_nutricionales_adultos.order(fecha: :desc).limit(7) %>
+<% controles = Control.where(area_id: turno.area_id,paciente_id: turno.paciente.id).order(fecha: :desc).limit(7) %>
+
 <div class="content content-sin-page-title">
    <div class="atencion-content">
       <h1 class="atencion-title">NUTRICIÓN</h1>
 
-      <%= render 'atenciones_profesionales/data_paciente', paciente: data[:paciente] %>
+      <%=render 'atenciones_profesionales/data_paciente',paciente: turno.paciente%>
 
-      <% if data[:ficha_ad].blank? && data[:ficha_ped].blank? %>
-         <%= panel_head('Fichas (No tiene)') %>
+      <!-- Renderiza los tabs para ficha pediátrica y adulto dentro de un panel -->
+      <% if ficha_ped.blank? && ficha_ad.blank? %>
+        <%= panel_head('Fichas (No tiene)') %>
       <% else %>
-         <%= panel_begin('Fichas') %>
-            <ul class="nav nav-tabs">
-                <% unless data[:ficha_ped].blank? %>
-                  <li><a href="#pediatrica">Pediátrica</a></li>
-                <% else %>
-                  <li><a class="tab-head-empty">Pediátrica (No tiene)</a></li>
-                <% end %>
-                <% unless data[:ficha_ad].blank? %>
-                  <li><a href="#adulto">Adulto</a></li>
-                <% else %>
-                  <li class="tab-head-empty"><a href>Adulto (No tiene)</a></li>
-                <% end %>
-            </ul>
+        <%= panel_begin('Fichas') %>
+          <%=render 'atenciones_profesionales/nutricion/tabs_fichas',ficha_ped: ficha_ped,ficha_ad: ficha_ad%>
+        <%= panel_end %>
 
-            <div class="tabscontent">
-              <% unless data[:ficha_ped].blank? %>
-                <div id="pediatrica">
-                    <%= render 'atenciones_profesionales/nutricion/data_ficha_ped', ficha_ped: data[:ficha_ped] %>
-
-                    <% if data[:consultas_ped].blank?%>
-                       <%= panel_head('Consulta Pediátrica (No tiene)') %>
-                    <% else %>
-                       <%= panel_begin('Consulta Pediátrica') %>
-                          <%= render 'atenciones_profesionales/nutricion/data_consultas_ped', consultas_ped: data[:consultas_ped] %>
-                       <%= panel_end %>
-                    <% end %>
-                </div>
-              <% end %>
-              <% unless data[:ficha_ad].blank? %>
-                <div id="adulto">
-                    <%= render 'atenciones_profesionales/nutricion/data_ficha_ad', ficha_ad: data[:ficha_ad] %>
-
-                    <% if data[:consultas_ad].blank?%>
-                       <%= panel_head('Consulta Adulto (No tiene)') %>
-                    <% else %>
-                       <%= panel_begin('Consulta Adulto') %>
-                          <%= render 'atenciones_profesionales/nutricion/data_consultas_ad', consultas_ad: data[:consultas_ad] %>
-                       <%= panel_end %>
-                    <% end %>
-                </div>
-              <% end %>
-            </div>
-         <%= panel_end %>
+        <!-- Renderiza los tabs para consulta pediátrica y adulto dentro de un panel -->
+        <%=panel_begin('Consultas')%>
+          <%=render 'atenciones_profesionales/nutricion/tabs_consultas',consultas_ped: consultas_ped,consultas_ad: consultas_ad,turno: turno, ficha_ped_id: ficha_ped.blank? ? nil : ficha_ped.id,ficha_ad_id: ficha_ad.blank? ? nil : ficha_ad.id%>
+        <%=panel_end%>
       <% end %>
 
-      <% if data[:controles].blank? %>
-         <%= panel_head('Controles (No tiene)') %>
-      <% else %>
-         <%= panel_begin('Controles') %>
-            <%= render 'atenciones_profesionales/nutricion/data_controles', controles: data[:controles] %>
-         <%= panel_end %>
+      <!-- Renderiza los tabs para controles dentro de un panel -->
+      <% unless consultas_ped.blank? && consultas_ad.blank? %>
+        <%=panel_begin('Controles')%>
+            <%=render 'atenciones_profesionales/nutricion/tabs_controles',controles: controles, turno: turno%>
+        <%=panel_end%>
       <% end %>
    </div>
 </div>

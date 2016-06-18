@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :timeoutable, :lockable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  belongs_to :empleado
+  belongs_to :empleado, -> { with_deleted }
   has_many :consultas
 
   validates :username, length: {maximum: Domain::USERNAME, minimum: 3}
@@ -25,6 +25,11 @@ class User < ActiveRecord::Base
     else
       ""
     end
+  end
+
+  # Retorna true si el usuario es un empleado de tipo Doctor, caso contrario false
+  def es_doctor?
+    self.empleado_type=='Doctor'
   end
 
   # Law of Demeter

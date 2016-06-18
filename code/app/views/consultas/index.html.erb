@@ -4,7 +4,7 @@
     <div class="tool">
       <%= search_form_for @search,url: consultas_path(area_id: params[:area_id]), class: 'buscador', remote: true do |f| %>
       <div class="input-group">
-       <%= f.search_field :paciente_persona_nombre_or_paciente_persona_apellido_or_paciente_persona_ci_cont, placeholder: "Nombre, Apellido o CI", class: "form-control", autofocus: true%>
+       <%= f.search_field :paciente_persona_nombre_or_paciente_persona_apellido_or_paciente_persona_ci_cont, placeholder: "Buscar por Nombre, Apellido o CI de Paciente", class: "form-control", autofocus: true%>
         <span class="fa fa-search"></span>
         <div class="input-group-btn">
           <a href="#"><i class="fa fa-search-plus" aria-hidden="true" id= "show-advanced-search" data-toggle="tooltip" data-placement="bottom" title="Búsqueda Avanzada"></i></a>
@@ -20,16 +20,16 @@
     <div id="advanced-search">
        <%= search_form_for @search, url: search_consultas_path(area_id: params[:area_id]), method: :post, remote: true, class: 'form-filtros' do |f| %>
           <div class="row">
-            <div class="col-md-5">
+            <div class="col-xs-5">
 
-              <%= FormBuilder::text_field_v(f, :paciente_persona_nombre_or_paciente_persona_apellido_or_paciente_persona_ci_cont, {col_class: 'col-md-6', label_text: 'Paciente', input_class: '',  placeholder: "Nombre Apellido o CI"})%>
+              <%= FormBuilder::text_field_v(f, :paciente_persona_nombre_or_paciente_persona_apellido_or_paciente_persona_ci_cont, {col_class: 'col-xs-6', label_text: 'Paciente', input_class: '',  placeholder: "Nombre Apellido o CI"})%>
 
-              <%= FormBuilder::text_field_v(f, :doctor_persona_nombre_or_doctor_persona_apellido_cont, {col_class: 'col-md-6', label_text: 'Prof. de la Salud', input_class: '', placeholder: "Nombre o Apellido"})%>
+              <%= FormBuilder::text_field_v(f, :doctor_persona_nombre_or_doctor_persona_apellido_cont, {col_class: 'col-xs-6', label_text: 'Prof. de la Salud', input_class: '', placeholder: "Nombre o Apellido"})%>
 
             </div>
-            <%= FormBuilder::text_field_v(f, :fecha_gteq, {col_class: 'col-md-2', label_text: 'Desde', input_class: 'datepicker',max_length: Domain::FECHA})%>
+            <%= FormBuilder::text_field_v(f, :fecha_gteq, {col_class: 'col-xs-2', label_text: 'Desde', input_class: 'datepicker',max_length: Domain::FECHA})%>
 
-            <%= FormBuilder::text_field_v(f, :fecha_lteq, {col_class: 'col-md-2', label_text: 'Hasta', input_class: 'datepicker',max_length: Domain::FECHA})%>
+            <%= FormBuilder::text_field_v(f, :fecha_lteq, {col_class: 'col-xs-2', label_text: 'Hasta', input_class: 'datepicker',max_length: Domain::FECHA})%>
 
             <div class= "advanced-search-buttons">
              <%= f.submit 'Filtrar', class: 'btn btn-custom '%>

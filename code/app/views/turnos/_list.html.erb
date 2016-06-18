@@ -9,8 +9,7 @@
       <th>Profesional</th>
       <th>Fecha expedición</th>
       <th>Estado</th>
-      <th>FECHA</th>
-      <th class ="col-md-2"></th>
+      <th class ="col-xs-2"></th>
     </tr>
   </thead>
   <% if turnos.blank? %>
@@ -24,7 +23,7 @@
     <% turnos.each do |turno| %>
     <tr>
 
-      <td ><%=turno.area_nombre%></td>
+      <td ><%=turno.grupo%></td>
       <td ><%=turno.turno %></td>
       <td ><%=turno.paciente_persona_full_name %></td>
       <td ><%=turno.paciente_persona_ci %></td>
@@ -32,10 +31,12 @@
       <td ><%=turno.fecha_expedicion.strftime("%d/%m/%Y")%></td>
       <%if turno.estado== "pendiente"%>
         <td ><span class="label label-success"><%=turno.estado %></span></td>
-      <%else%>
+      <% elsif turno.estado== "atendido" %>
+        <td ><span class="label label-info"><%=turno.estado %></span></td>
+      <% else%>
         <td ><span class="label label-danger"><%=turno.estado %></span></td>
       <%end%>
-      <td><%=turno.fecha_consulta.strftime("%d/%m/%Y")%></td>
+
 
 
       <td class = "action " align= "right">
@@ -57,6 +58,7 @@
 </table>
 
 <script type="text/javascript">
+      APP.initImprimir("<%= params[:q].nil? ? '' : '?'+params[:q].to_query('q')%>");
 
       turnosUI.initScript();
       <% if !flash.notice.blank? %>

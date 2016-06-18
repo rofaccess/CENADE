@@ -3,6 +3,7 @@
   <thead>
     <tr class="active">
       <th>Profesional de la Salud</th>
+      <th>Cupo Límite</th>
       <th>Cantidad Atentidos</th>
       <th>Año</th>
       <th>Area</th>
@@ -12,8 +13,9 @@
   <tbody>
     <% reportes.each do |reporte| %>
     <tr>
-      <td ><%=reporte.doctor.persona_full_name %> </td>
-      <td ><%=reporte.cantidad_por_anho%></td>
+      <td ><%=reporte.doctor_persona_full_name %> </td>
+      <td ><%=reporte.cantidad_por_aten%></td>
+      <td ><%=reporte.cantidad_por_anho.nil? ? '0' : reporte.cantidad_por_anho%></td>
       <td><%=reporte.anho%></td>
       <td><%=reporte.area_nombre%></td>
 
@@ -24,7 +26,7 @@
 </table>
 
 <script type="text/javascript">
-
+      APP.initImprimir("<%= params[:q].nil? ? '' : '?'+params[:q].to_query('q')%>");
       reportesUI.initScript();
       <% if !flash.notice.blank? %>
         var n = noty({text: '<%=notice%>', type: 'success'});

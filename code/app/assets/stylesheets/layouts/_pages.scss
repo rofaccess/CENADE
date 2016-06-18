@@ -5,6 +5,7 @@ $data-border-color: #AAAAAA;
 body{
 	background: #EAF0F3;
 	padding-top: 30px;//- Hace que el contenido del body inicie cuando termina el menú principal
+	color: #555;
 }
 
 /* Define como se ven los contenedores */
@@ -159,4 +160,21 @@ div.content-sin-page-title{
 .top-border{
    border-top: 1px solid $data-border-color;
    padding-top: 5px;
+}
+
+/* Por algún motivo el dataTable no ocupa el 100% de su contenedor
+  Se forza a que ocupe el 100%
+*/
+.dataTable{
+	width: 100% !important;
+}
+
+/* Por algún motivo el .col-xs-4 tiene fondo, borde, y padding top y bottom
+   Se quita lo mencionado
+*/
+.col-xs-4 {
+  padding-top: 0;
+  padding-bottom: 0;
+  background-color: inherit;
+  border: none;
 }

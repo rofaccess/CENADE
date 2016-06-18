@@ -63,18 +63,20 @@ for i in 31..50
 	Paciente.create(persona_id: i, fecha_ingreso: '07/05/1995', lugar_nacimiento: Faker::Address.city, profesion: Faker::Company.profession)
 end
 
-# Turnos
+# Turnos //- No Funciona
+=begin
 for i in 1..25
   Turno.create(paciente_id: Faker::Number.positive(1, 20),
 			  fecha_expedicion: Date.today,
 			  fecha_consulta: Date.today,
 			  area_id: Faker::Number.positive(1, 9),
-			  doctor_id: Faker::Number.positive(16, 30),
-			  estado: 'Pendiente',
+			  doctor_id: Faker::Number.positive(1, 14),
+			  estado: 'pendiente',
 			  monto: Faker::Number.number(6),
 			  paga: true,
-			  turno: i)
+           nro_factura: '1000')
 end
+=end
 
 # Usuario Admin
 admin = User.create(username: 'admin',
@@ -108,14 +110,28 @@ admin.add_role :Administrador
 
 user.add_role :Administrador
 
-Grupo.create([{nombre: 'Configuraciones'}, {nombre: 'Pacientes'}, {nombre: 'Turnos'}, {nombre: 'Personal'}])
+Grupo.create([{nombre: 'Configuraciones'}, {nombre: 'Pacientes'}, {nombre: 'Turnos'}, {nombre: 'Personal'},
+			{nombre: 'Fichas y Consultas'},{nombre: 'Atencion Profesional (De las áreas seleccionadas en Ficha)'},{nombre: 'Reportes'}, {nombre: 'Historial Médico (Incluye todas las áreas)'}])
+
 Permission.create([{nombre: 'Usuarios', model: 'User', grupo_id: 1},
                      {nombre: 'Datos de la empresa', model: 'Configuracion', grupo_id:1},
                      {nombre: 'Empleados', model: 'Empleado', grupo_id:4},
                      {nombre: 'Roles', model: 'Role', grupo_id:1},
                      {nombre: 'Paciente', model: 'Paciente', grupo_id:2},
-                     {nombre: 'Turno', model: 'Turno', grupo_id:3}])
-
+                     {nombre: 'Turno', model: 'Turno', grupo_id:3},
+                     {nombre: 'Clínico', model: 'FichaClinico', grupo_id:5},
+                     {nombre: 'Fisioterapia Adulto', model: 'FichaFisioterapeuticaAdulto', grupo_id:5},
+                     {nombre: 'Fisioterapia Pediátrica', model: 'FichaFisioterapiaNino', grupo_id:5},
+                     {nombre: 'Fonoaudiología', model: 'FichaFonoaudiologica', grupo_id:5},
+                     {nombre: 'Neurología', model: 'FichaNeurologica', grupo_id:5},
+                     {nombre: 'Nutrición Adulto', model: 'FichaNutricionalAdulto', grupo_id:5},
+                     {nombre: 'Nutrición Pediátrica', model: 'FichaNutricionalPediatrica', grupo_id:5},
+                     {nombre: 'Odontología', model: 'FichaOdontologica', grupo_id:5},
+                     {nombre: 'Pediatría', model: 'FichaPediatrica', grupo_id:5},
+                     {nombre: 'Psicopedagogía', model: 'FichaPsicopedagogica', grupo_id:5},
+                     {nombre: 'Reporte Estadístico', model: 'ReporteEstadistico', grupo_id:7},
+                     {nombre: 'Historial Médico', model: 'EstadoCivil', grupo_id:8}])
+					#pongo estado civil para evitar errores
 Permission.all.each do |p|
         PermissionsRole.create(role_id: 1, permission_id: p.id)
 end

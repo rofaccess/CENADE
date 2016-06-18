@@ -35,6 +35,13 @@
       margin-left: 220px;
    }
 
+   // Para que el page-title ocupe el 100% de la pantalla cuando desaparece el sidebar
+   @media(max-width:768px) {
+      div.page-title-con-sidebar {
+         margin-left: 0 !important;
+      }
+   }
+
    // Cuando no se tiene submenu hay que agregar la siguiente clase, junto a page-title
    div.page-title-sin-submenu{
       top: 40px;
@@ -44,7 +51,7 @@
 /* Establece parte del aspecto y posición de los botones presentes junto al page-title  */
 .tool {
    float: right;
-   width: 40%;
+   width: 55%;
    font-size: 14px;
    text-align: right;
 
@@ -69,4 +76,7 @@
 
       }
    }
+}
+.tool-sin-buscador{
+   width: auto;
 }

@@ -81,6 +81,36 @@ module ApplicationHelper
       html.html_safe
    end
 
+
+  # # Define la cabecera del tab
+  #  # id    : identificador para la cabecera del tab
+  #  # active: true si esta activo, caso contrario false
+  #  def tab_head(id,title,active)
+  #     html = ""
+  #     html << "<li class=#{active ? 'active' : ''}>"
+  #        html << "<a href='##{id}' data-toggle='tab' aria-expanded='true'>#{title}</a>"
+  #     html << "</li>"
+  #     html.html_safe
+  #  end
+
+  #  # Define el cuerpo del tab
+  #  # id    : identificador para la cabecera del tab
+  #  # active: true si esta activo, caso contrario false
+  #  def tab_body(id,active)
+  #     html = ""
+  #     html << "<div id='#{id}' class='tab-pane fade #{active ? 'in active': ''}'>"
+  #     html.html_safe
+  #  end
+
+  #  # Cierra el div abierto en tab_body
+  #  def tab_end
+  #     html = ""
+  #     html << "</div>"
+  #     html.html_safe
+  #  end
+
+
+
    # Para los datos que tal vez tengan un borde inferior, todos o ningun borde
    # Muestra la información de un campo, arriba el label y debajo el dato
    # label : El identificador del dato mostrado

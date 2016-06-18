@@ -3,12 +3,12 @@
 <% else %>
    <%= panel_begin('III - FICHA') %>
       <div class="row">
-         <%= h_data('Profesional de la Salud', ficha.doctor_full_name,'col-md-9') %>
-         <%= h_data('Fecha', date(ficha.fecha),'col-md-3') %>
+         <%= h_data('Profesional de la Salud', ficha.doctor_full_name,'col-xs-9') %>
+         <%= h_data('Fecha', date(ficha.fecha),'col-xs-3') %>
       </div>
       <div class="row">
-         <%= h_data('Grado que Cursa', ficha.escolaridad,'col-md-4') %>
-         <%= h_data('Escuela', ficha.escuela,'col-md-8') %>
+         <%= h_data('Grado que Cursa', ficha.escolaridad,'col-xs-4') %>
+         <%= h_data('Escuela', ficha.escuela,'col-xs-8') %>
       </div>
    <%= panel_end %>
 <% end %>

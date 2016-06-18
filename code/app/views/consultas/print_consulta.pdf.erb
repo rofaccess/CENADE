@@ -1,30 +1,60 @@
-<h4 align= "center">Consulta de <%= @consulta.paciente_persona_full_name %> en la Fecha <%= @consulta.fecha.strftime('%d/%m/%Y') %></h4>
+<h4 class="ficha-title">Consulta en <%=@consulta.area_nombre%> </h4>
 
-<div class = "form-content">
-	<div class = "form-font"></br>
+<h4>I- Datos Personales</h4>
+<hr>
+<div class="row">
+	<div class="form-group col-xs-8">
+		<label class="control-label">Nombre y Apellido:</label>
+		<div class="data"> <%=@consulta.paciente_persona_full_name%> </div>
+	</div>
 
-		<label class="control-label">Área</label>
-		<input class="form-control" value="<%=@consulta.area.nombre %>">
+	<div class="form-group col-xs-3">
+		<label class="control-label">Fecha de nac.:</label>
+		<div class="data"> <%=Formatter.format_date(@consulta.paciente_persona_fecha_nacimiento)%> </div>
+	</div>
 
-		</br></br>
+	<div class="form-group col-xs-1">
+		<label class="control-label">Edad:</label>
+		<div class="data"> <%=@consulta.paciente_persona_edad%> </div>
+	</div>
+</div>
+<div class="row">
 
+	<div class="form-group col-xs-3">
+		<label class="control-label">Tel.:</label>
+		<div class="data"> <%=@consulta.paciente_persona_telefono%> </div>
+	</div>
+
+	<div class="form-group col-xs-9">
+		<label class="control-label">Dirección:</label>
+		<div class="data"> <%=@consulta.paciente_persona_direccion%> </div>
+	</div>
+</div>
+</br>
+
+<h4>II- Datos de la Consulta</h4>
+<hr>
+<div class="row">
+	<div class="form-group col-xs-12">
 		<label class="control-label">Motivo de Consulta</label>
-		<textarea rows="4" class= "form-control"> <%=@consulta.motivo_consulta %></textarea>
-
-		</br></br>
-
+		<div class="data-bordered"> <%=@consulta.motivo_consulta%> </div>
+	</div>
+</div>
+<div class="row">
+	<div class="form-group col-xs-12">
 		<label class="control-label">Evaluación</label>
-		<textarea rows="3" class= "form-control"> <%=@consulta.evaluacion %></textarea>
-
-		</br></br>
-
+		<div class="data-bordered"> <%=@consulta.evaluacion%> </div>
+	</div>
+</div>
+<div class="row">
+	<div class="form-group col-xs-12">
 		<label class="control-label">Tratamiento</label>
-		<textarea rows="8" class= "form-control"> <%=@consulta.tratamiento %></textarea>
-
-		</br></br>
-
-		<label class="control-label"> Observaciones</label>
-		<textarea rows="4" class= "form-control"> <%=@consulta.observaciones %></textarea>
-
+		<div class="data-bordered"> <%=@consulta.tratamiento%> </div>
+	</div>
+</div>
+<div class="row">
+	<div class="form-group col-xs-12">
+		<label class="control-label">Observaciones</label>
+		<div class="data-bordered"> <%=@consulta.observaciones%> </div>
 	</div>
 </div>

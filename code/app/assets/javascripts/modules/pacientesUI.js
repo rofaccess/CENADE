@@ -32,7 +32,7 @@ var pacientesUI = (function(){
 	                cache: true
 	            },
 	            placeholder: "Buscar por Nombre, Apellido o CI",
-	  			allowClear: true,    		    //Muestra un icono x para limpiar la opción seleccionada
+	  			    //allowClear: true,    		    //Muestra un icono x para limpiar la opción seleccionada
 	            minimumInputLength: 2,			//Obliga a escribir un mímimo de dos caracteres antes de realizar la búsqueda
 	  			templateResult: formatPaciente, //formatPaciente es una función definida más abajo
 	  			escapeMarkup: function (markup) { return markup; }
@@ -113,7 +113,7 @@ var pacientesUI = (function(){
                             paciente_id: function() {
                                 return $( '.paciente-id' ).val();
                             },
-                            id: function() {
+                            idd: function() {
                                 return $('.ficha-id').val();
                             }
                         }

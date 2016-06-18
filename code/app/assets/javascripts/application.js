@@ -50,12 +50,18 @@ APP = {
     				fontawesome : "fa fa-refresh fa-spin"
 				});
 
-				setTimeout(function(){},5000); //Quitar esto en producción
-
 				$('.buscador').submit();
 			}, 500);
 			$("#list").LoadingOverlay("hide", true);
 		});
+    },
+
+    /* Inicializa el la función LoadingOverlay sobre el elemento cuyo clase o id es pasado como parámetro */
+    initLoadingOverlay: function(element){
+        $(element).LoadingOverlay("show", {
+            image       : "",
+            fontawesome : "fa fa-refresh fa-spin"
+        });
     },
 
     /* Inicializa el evento para mostrar y esconder la búsqueda avanzada presente en algunos index
@@ -98,6 +104,7 @@ APP = {
             orientation: "bottom",
             todayHighlight: true,
             todayBtn: true,
+            startDate: new Date(1900,01,01),
             }).on('change', function() {
                 /* Sin lo siguiente, no desaparecen los mensajes de error la primera vez que se selecciona una fecha */
                 $(this).valid();
@@ -237,7 +244,7 @@ APP = {
     */
     initSelect2: function(options) {
         $(options.element).select2({
-            placeholder: options.placeholder
+            placeholder: options.placeholder,
         });
 
         /* Valida cuando se elige otro item del select2 */
@@ -247,8 +254,13 @@ APP = {
         });
     },
 
+    /* Inicializa el la función tabbedContent sobre el elemento cuyo clase o id es pasado como parámetro */
+    initTabs: function(element){
+        $(element).tabbedContent();
+    },
+
     /* Incializa el evento para mostrar y esconder el cuerpo de un panel al hacer
-     * click sobre cualquier parte del panel
+     * click sobre la cabecera del panel
      * .panel-folding: es la clase que deberá tener el div que actua como panel
      */
     initPanelFolding: function(){
@@ -266,9 +278,10 @@ APP = {
         });
     },
 
-    /* Inicia la funcionalidad de los tabs*/
-    initTabs: function(){
-        $('.tabscontent').tabbedContent();
+
+    /* Envía el q de ransack para que se pueda imprimir solo la lista que se esta filtrando */
+    initImprimir: function(params) {
+      $('#imprimir-link').attr('href', $('#imprimir-link').data('url') + params.replace('amp;',''));
     },
 
     /* Ejecuta las funciones especificadas*/
@@ -296,12 +309,6 @@ var delay = (function(){
     };
 })();
 
-/* Envía el q de ransack para que se pueda imprimir solo la lista que se esta filtrando */
-//- Actualmente no esta en uso
-function configImprimir (params) {
-  $('#imprimir-link').attr('href', $('#imprimir-link').data('url') + params.replace('amp;',''));
-};
-
 /* CONFIGURACIONES POR DEFECTO PARA VENDORS */
 
 /* Configura el plugin noty de forma global */
@@ -318,7 +325,7 @@ $.noty.defaults = {
         easing: 'swing',
         speed: 500 // opening & closing animation speed
     },
-    timeout: 8000, // delay for closing event. Set false for sticky notifications
+    timeout: 10000, // delay for closing event. Set false for sticky notifications
     force: false, // adds notification to the beginning of queue when set to true
     modal: false,
     maxVisible: 5, // you can set max visible notification for dismissQueue true option
