@@ -81,6 +81,8 @@ es:
         empresa_email: "Email"
         empresa_tel: "Telefono"
         dias_atencion: "Días"
+      consulta:
+        doctor: "Profesional de la Salud"
     errors:
       messages:
         record_invalid: "La validación falló: %{errors}"

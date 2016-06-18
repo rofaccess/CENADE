@@ -27,23 +27,13 @@ class ConsultasController < ApplicationController
 
   def create
   	respond_to do |format|
-
-		@consulta = Consulta.new(consulta_params)
-		if @consulta.save
-			flash.now[:notice] = "Se ha guardado la consulta de #{@consulta.paciente_persona_full_name}."
-			format.html {render 'show'}
-      format.js { render "show"}
-		else
-      if @consulta.errors.full_messages.any?
-          flash.now[:alert] = @consulta.errors.full_messages.first
-      else
-          flash.now[:alert] = "No se ha podido guardar la Consulta."
+  		@consulta = Consulta.new(consulta_params)
+  		if @consulta.save
+        format.html{redirect_to consulta_path(@consulta), notice: t('messages.save_success', resource: 'la consulta')}
+  		else
+        format.html{redirect_to new_consulta_path(area_id: consulta_params[:area_id]), alert: t('messages.save_error', resource: 'la consulta', errors: @consulta.errors.full_messages.to_sentence)}
       end
-      @paciente= @consulta.paciente
-			format.html { render "new"}
-      format.js { render "new"}
-		end
-	end
+	  end
   end
 
   def edit
@@ -54,17 +44,9 @@ class ConsultasController < ApplicationController
   def update
   	respond_to do |format|
    		if @consulta.update(consulta_params)
-   			flash.now[:notice] = "Se ha actualizado la consulta de #{@consulta.paciente_persona_full_name}."
-   			format.html {render 'show'}
-        format.js { render "show"}
+   			format.html{redirect_to consulta_path(@consulta), notice: t('messages.update_success', resource: 'la consulta')}
    		else
-        if @consulta.errors.full_messages.any?
-          flash.now[:alert] = @consulta.errors.full_messages.first
-        else
-          flash.now[:alert] = "No se ha podido actualizar la Consulta."
-        end
-   			format.html { render "edit"}
-        format.js { render "edit"}
+        format.html{redirect_to edit_consulta_path(@consulta), alert: t('messages.update_error', resource: 'la consulta', errors: @consulta.errors.full_messages.to_sentence)}
    		end
    	end
 

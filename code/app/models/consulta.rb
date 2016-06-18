@@ -7,6 +7,10 @@ class Consulta < ActiveRecord::Base
  	belongs_to :area
 
  	#validaciones
+  validates :paciente, presence: true
+  validates :doctor, presence: true
+  validates :fecha, presence: true, date_less_system_date: true
+
  	validates :tratamiento , length: { maximum: Domain::DESC600, message: ' soporta un máximo de 600 caracteres' }
  	validates :evaluacion , length: { maximum: Domain::DESC300, message: ' soporta un máximo de 300 caracteres' }
  	validates :motivo_consulta, length: { maximum: Domain::DESC300, message: ' soporta un máximo de 300 caracteres' }

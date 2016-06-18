@@ -54,17 +54,9 @@ class ConsultasOdontologicasController < ApplicationController
     @consulta = ConsultaOdontologica.new(consulta_params)
      respond_to do |format|
       if @consulta.save
-        format.html { redirect_to consulta_odontologica_path(@consulta), notice: 'Consulta registrada exitosamente'}
+        format.html { redirect_to consulta_odontologica_path(@consulta), notice: t('messages.save_success', resource: 'la consulta')}
       else
-        if @consulta.errors.full_messages.any?
-          flash.now[:alert] = @consulta.errors.full_messages.first
-        else
-          flash.now[:alert] = "No se ha podido guardar la Consulta"
-        end
-
-        format.html { render "edit"}
-        format.js { render "edit"}
-
+        format.html{redirect_to new_consulta_odontologica_path, alert: t('messages.save_error', resource: 'la consulta', errors: @consulta.errors.full_messages.to_sentence)}
       end
     end
   end
@@ -77,16 +69,9 @@ class ConsultasOdontologicasController < ApplicationController
 
     respond_to do |format|
       if @consulta.update_attributes(consulta_params)
-          format.html { redirect_to consulta_odontologica_path(@consulta), notice: 'Consulta actualizada exitosamente'}
+        format.html { redirect_to consulta_odontologica_path(@consulta), notice: t('messages.update_success', resource: 'la consulta')}
       else
-
-        if @consulta.errors.full_messages.any?
-          flash.now[:alert] = @consulta.errors.full_messages.first
-        else
-          flash.now[:alert] = "No se ha podido guardar la Consulta"
-        end
-        format.html { render "edit"}
-        format.js { render "edit"}
+        format.html{redirect_to edit_consulta_odontologica_path(@consulta), alert: t('messages.update_error', resource: 'la consulta', errors: @consulta.errors.full_messages.to_sentence)}
       end
     end
   end

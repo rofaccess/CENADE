@@ -1,17 +1,20 @@
 class ConsultaNutricionalAdulto < ActiveRecord::Base
-   paginates_per 20
+  paginates_per 20
 
-	#asociaciones
+	#Asociaciones
  	belongs_to :doctor, -> { with_deleted }, :foreign_key => :doctor_id
   belongs_to :paciente, -> { with_deleted }
-
  	belongs_to :ficha_nutricional_adulto , :foreign_key => :ficha_nutricional_adulto_id
 
  	has_many :controles
-
  	has_many :recuentos, dependent: :destroy
 
  	accepts_nested_attributes_for :recuentos, reject_if: :all_blank, allow_destroy: true
+
+  #Validaciones
+  validates :paciente, presence: true
+  validates :doctor, presence: true
+  validates :fecha, presence: true, date_less_system_date: true
 
  	#carga id area antes de guardar la consulta
  	#before_create :cargar_area_id

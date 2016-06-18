@@ -9,6 +9,12 @@ class ConsultaNutricionalPediatrica < ActiveRecord::Base
  	belongs_to :ficha_nutricional_pediatrica, :foreign_key => :ficha_nutri_ped_id
  	has_many :controles
 
+ 	#Validaciones
+  validates :paciente, presence: true
+  validates :doctor, presence: true
+  validates :fecha, presence: true, date_less_system_date: true
+
+ 	#Callbacks
  	#carga id area antes de guardar la consulta
  	before_create :cargar_area_id
 
