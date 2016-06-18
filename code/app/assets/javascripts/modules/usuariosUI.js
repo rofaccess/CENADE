@@ -1,5 +1,5 @@
 var usuariosUI = (function(){
-	return {	
+	return {
 		cargarEmpleado: function(url, id, replace){
 			$.ajax({
 				url: url,
@@ -11,16 +11,16 @@ var usuariosUI = (function(){
 				}
 			});
 		},
- 
+
 		resetPassword: function(){
 			/*
 			if ($(".checkbox-password").is(":checked")){
 				$("#user_password_reset").attr("value","true");
 			}else{
 				$("#user_password_reset").attr("value","false");
-			} 
-		    */	
-		    
+			}
+		    */
+
 		    $(".checkbox-password").change(function() {
 			    if(this.checked) {
 			    	$("#user_pass_reset").attr("value","true");
@@ -40,14 +40,14 @@ var usuariosUI = (function(){
                             username: function() {
                                 return $( ".username" ).val();
                             },
-                            id: function() {
+                            idd: function() {
                                 return $('#usuario_id').val();
                             }
                         }
                     }
                 }
             });
-		},	
+		},
 
 		init: function(){
 
@@ -57,9 +57,9 @@ var usuariosUI = (function(){
 
 			// $('body').on('change', '#empleado_id', function(e){
 			// 	usuariosUI.cargarEmpleado('usuarios/get_empleado', $(this).val(), '#modal-sm .empleado');
-			// });		
+			// });
 
-		},		
+		},
 
 		// Inicia el script en el formulario
 		initScript: function(checkUsuarioUsernameUrl){
