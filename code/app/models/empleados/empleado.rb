@@ -1,12 +1,22 @@
 class Empleado < ActiveRecord::Base
  	paginates_per 20
  	acts_as_paranoid
- 	after_destroy :destroy_persona, :destroy_user
 
+  #Asociaciones
  	has_one :user
  	belongs_to :persona, -> { with_deleted }
   belongs_to :area
- 	accepts_nested_attributes_for :persona
+
+  accepts_nested_attributes_for :persona
+
+  # Validaciones
+  validates :type, length: { maximum: Domain::TIPO_EMPLEADO }
+  validates :cargo, length: { maximum: Domain::CARGO_EMPLEADO }
+  validates :abr_profesion, length: { maximum: Domain::ABREVIATURA_PROFESION }
+
+
+  #Callbacks
+  after_destroy :destroy_persona, :destroy_user
 
  	# Se elimina el registro de persona al eliminar el empleado
  	def destroy_persona

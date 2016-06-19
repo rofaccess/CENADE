@@ -45,6 +45,7 @@ class ConsultasOdontologicasController < ApplicationController
 
   def new
   	@consulta= ConsultaOdontologica.new
+    @area = Area.find_by_nombre('Odontología')
     # Para renderizar un formulario vacio de datos del paciente
     @paciente = Paciente.new
   	get_doctores_odontologia
@@ -54,22 +55,17 @@ class ConsultasOdontologicasController < ApplicationController
     @consulta = ConsultaOdontologica.new(consulta_params)
      respond_to do |format|
       if @consulta.save
-        format.html { redirect_to consulta_odontologica_path(@consulta), notice: 'Consulta registrada exitosamente'}
+        format.html { redirect_to consulta_odontologica_path(@consulta), notice: t('messages.save_success', resource: 'la consulta')}
       else
-        if @consulta.errors.full_messages.any?
-          flash.now[:alert] = @consulta.errors.full_messages.first
-        else
-          flash.now[:alert] = "No se ha podido guardar la Consulta"
-        end
-
-        format.html { render "edit"}
-        format.js { render "edit"}
-
+        flash.now[:alert] = t('messages.save_error', resource: 'la consulta', errors: @consulta.errors.full_messages.to_sentence)
+        format.js {render 'compartido/show_message'}
+        format.html{redirect_to new_consulta_odontologica_path, alert: flash.now[:alert]}
       end
     end
   end
 
   def edit
+    @area = @consulta.area
     get_doctores_odontologia
   end
 
@@ -77,16 +73,11 @@ class ConsultasOdontologicasController < ApplicationController
 
     respond_to do |format|
       if @consulta.update_attributes(consulta_params)
-          format.html { redirect_to consulta_odontologica_path(@consulta), notice: 'Consulta actualizada exitosamente'}
+        format.html { redirect_to consulta_odontologica_path(@consulta), notice: t('messages.update_success', resource: 'la consulta')}
       else
-
-        if @consulta.errors.full_messages.any?
-          flash.now[:alert] = @consulta.errors.full_messages.first
-        else
-          flash.now[:alert] = "No se ha podido guardar la Consulta"
-        end
-        format.html { render "edit"}
-        format.js { render "edit"}
+        flash.now[:alert] = t('messages.update_error', resource: 'la consulta', errors: @consulta.errors.full_messages.to_sentence)
+        format.js {render 'compartido/show_message'}
+        format.html{redirect_to edit_consulta_odontologica_path(@consulta), alert: flash.now[:alert]}
       end
     end
   end

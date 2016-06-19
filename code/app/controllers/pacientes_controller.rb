@@ -19,10 +19,10 @@ class PacientesController < ApplicationController
 		respond_to do |format|
       @paciente = Paciente.new(paciente_params)
       if @paciente.save
-				flash.now[:notice] = "Se ha guardado el paciente #{@paciente.persona_full_name}."
+				flash.now[:notice] = t('messages.save_success', resource: 'el paciente')
 				format.html {render 'show'}
 			else
-				flash.now[:alert] = "No se ha podido guardar el paciente #{@paciente.persona_full_name}."
+				flash.now[:alert] = t('messages.save_error', resource: 'el paciente', errors: @paciente.errors.full_messages.to_sentence)
 				format.html { render "new"}
 			end
 		end
@@ -32,9 +32,9 @@ class PacientesController < ApplicationController
   def recarga_paciente
     @paciente = Paciente.new(paciente_params)
     if @paciente.save
-      flash.now[:notice] = "Se ha guardado el paciente #{@paciente.persona_full_name}."
+      flash.now[:notice] = t('messages.save_success', resource: 'el paciente')
     else
-      flash.now[:alert] = "No se ha podido guardar el paciente #{@paciente.persona_full_name}."
+      flash.now[:alert] = t('messages.save_error', resource: 'el paciente', errors: @paciente.errors.full_messages.to_sentence)
     end
     render 'recarga_paciente', format: :js
     authorize! :recarga_paciente, @paciente
@@ -61,10 +61,10 @@ class PacientesController < ApplicationController
 
    			destroy_encargado(params[:paciente][:borrar_encargado], @paciente)
 
-   			flash.now[:notice] = "Se ha actualizado el paciente #{@paciente.persona_full_name}."
+   			flash.now[:notice] = t('messages.update_success', resource: 'el paciente')
    			format.html {render 'show'}
    		else
-   			flash.now[:alert] = "No se ha podido actualizar los datos del paciente #{@paciente.persona_full_name}."
+   			flash.now[:alert] = t('messages.update_error', resource: 'el paciente', errors: @paciente.errors.full_messages.to_sentence)
    			format.html { render "new"}
    		end
    	end

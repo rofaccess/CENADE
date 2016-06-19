@@ -7,9 +7,9 @@ class CreateEmpleados < ActiveRecord::Migration
     t.integer  :area_id
 
 	t.string   :type ,default: '' ,limit: Domain::TIPO_EMPLEADO, null: false
-    t.string   :cargo ,default: '' ,limit: Domain::CARGO_EMPLEADO, null: false
+    t.string   :cargo ,default: '' ,limit: Domain::CARGO_EMPLEADO
 
-    t.string   :abr_profesion ,default: '' ,limit: Domain::ABREVIATURA_PROFESION, null: true
+    t.string   :abr_profesion ,default: '' ,limit: Domain::ABREVIATURA_PROFESION
 
 
     #t.string   :costo ,default: '' ,limit: Domain::COSTO, null: true

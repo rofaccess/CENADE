@@ -33,16 +33,77 @@ es:
 
   # Active Record models configuration
   activerecord:
+    attributes:
+      turno:
+        fecha_expedicion: "Fecha Actual"
+        paga: "Abonará el monto estipulado?"
+        monto: "Costo del Servicio"
+        nro_factura: "Nº de Factura"
+      persona:
+        nombre: "Nombre"
+        apellido: "Apellido"
+        ci: "CI"
+        ruc: "RUC"
+        fecha_nacimiento: "Fecha de Nacimiento"
+        sexo: "Sexo"
+        edad: "Edad"
+        nacionalidad: "Nacionalidad"
+        telefono: "Teléfono"
+        email: "Email"
+      paciente:
+        lugar_nacimiento: "Lugar de Nacimiento"
+        fecha_ingreso: "Fecha de Ingreso"
+        profesion: "Profesion"
+        lugar_trabajo: "Lugar de Trabajo"
+      encargado:
+        padre_nombre: "Nombre y Apellido del Padre"
+        padre_edad: "Edad del Padre"
+        padre_prof_act_ant: "Profesión Actual y Anterior"
+        madre_nombre: "Nombre y Apellido de la Madre"
+        madre_edad: "Edad de la Madre"
+        madre_num_hijos: "Hijos de la Madre"
+        madre_prof_act_ant: "Profesión Actual y Anterior"
+        encargado_nombre: "Nombre y Apellido del Encargado"
+        encargado_edad: "Edad del Encargado"
+        encargado_prof_act_ant: "Profesión Actual y Anterior"
+      empleado:
+        abr_profesion: "Abreviatura de Prof."
+      role:
+        name: "Descripción"
+        permission_ids: "Permisos"
+      user:
+        username: "Nombre de Usuario"
+        role_ids: "Roles"
+      configuracion:
+        empresa_nombre: "Nombre"
+        empresa_web: "Sitio Web"
+        empresa_direccion: "Direccion"
+        empresa_email: "Email"
+        empresa_tel: "Telefono"
+        dias_atencion: "Días"
+      consulta:
+        doctor: "Profesional de la Salud"
     errors:
       messages:
         record_invalid: "La validación falló: %{errors}"
         restrict_dependent_destroy:
-          one: No se puede eliminar el registro porque existe un %{record} dependiente
+          one: No se puede eliminar el registro porque existe un/a %{record} dependiente
           many: No se puede eliminar el registro porque existen %{record} dependientes
-
+        number_only: "solo permite números"
+        ruc_only: "solo permite números, letras y guiones"
+        tel_only: "solo permite números, paréntesis y los símbolos + y -"
+        date_less_system_date: "debe ser menor o igual a la fecha del sistema"
+        email_custom: "no es válido"
+        time: "debe tener el formato hh:mm"
+        paciente_has_ficha: "El paciente ya posee una ficha"
+        paciente_has_not_ficha: "El paciente no tiene ficha"
   messages:
+    save_success: "Se ha guardado %{resource}"
+    save_error: "No se pudo guardar %{resource}. %{errors}"
+    update_success: "Se ha actualizado %{resource}"
+    update_error: "No se pudo actualizar %{resource}. %{errors}"
     delete_success: "Se ha eliminado %{resource}"
-    delete_error: "Ha ocurrido un problema al tratar de eliminar %{resource}. %{errors}"
+    delete_error: "No se pudo eliminar %{resource}. %{errors}"
   January: "Enero"
   February: "Febrero"
   March: "Marzo"

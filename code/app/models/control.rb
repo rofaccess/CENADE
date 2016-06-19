@@ -7,6 +7,12 @@ class Control < ActiveRecord::Base
  	belongs_to :area
  	belongs_to :consulta_nutricional_pediatrica
 
+  #Validaciones
+  validates :paciente, presence: true
+  validates :doctor, presence: true
+  validates :fecha, presence: true, date_less_system_date: true
+  validates :tratamiento, length: {maximum: Domain::DESC300}
+  validates :observaciones, length: {maximum: Domain::DESC300}
 
  	delegate :persona_nombre, :persona_apellido, :persona_estado_civil_descripcion, :persona_full_name,
 			 :persona_edad,:persona_sexo, :persona_ci, :persona_nacionalidad,

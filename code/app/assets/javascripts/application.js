@@ -342,3 +342,4 @@ $.noty.defaults = {
 /* Configura el plugin select2 de forma global */
 $.fn.select2.defaults.set("theme", "bootstrap"); // Todos usarán el tema bootstrap
 $.fn.select2.defaults.set("language", "es");     // Todos usarán lenguaje español
+

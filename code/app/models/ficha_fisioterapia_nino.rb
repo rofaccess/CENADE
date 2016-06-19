@@ -9,23 +9,25 @@ class FichaFisioterapiaNino < ActiveRecord::Base
 	belongs_to :area
 	belongs_to :doctor, -> { with_deleted }, :foreign_key => :doctor_id
 
-	#validaciones
+	#Validaciones
+  validates :paciente, presence: true
+  validates :doctor, presence: true
+  validates :fecha, presence: true, date_less_system_date: true
+  validate  :paciente_has_ficha
 	validates :condicion_general , length: { maximum: 500, message: ' soporta un máximo 500 caracteres' }
 
 	#cargas automáticas
 	before_create :cargar_area_id
 
+	def paciente_has_ficha
+		if paciente.ficha_fisioterapia_nino.present? && id.nil?
+			errors.add(:base, I18n.t('activerecord.errors.messages.paciente_has_ficha'))
+		end
+	end
 
 	def cargar_area_id
 		area= Area.where(nombre: 'Fisioterapia').first.id
 		self.area_id= area
-	end
-
-	def validate_paciente
-		paciente= FichaFisioterapiaNino.where("paciente_id = ?", self.paciente_id)
-		if !paciente.empty?
-			errors.add(:base, "El paciente ya posee una Ficha en el Fisioterapia Niño")
-		end
 	end
 
 	delegate :persona_nombre, :persona_apellido, :persona_full_name,

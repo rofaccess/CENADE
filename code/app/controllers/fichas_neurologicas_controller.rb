@@ -36,13 +36,11 @@ class FichasNeurologicasController < ApplicationController
 
 		respond_to do |format|
 			if @ficha.save
-				format.html { redirect_to ficha_neurologica_path(@ficha), notice: 'Ficha registrada exitosamente'}
+				format.html { redirect_to ficha_neurologica_path(@ficha), notice: t('messages.save_success', resource: 'la ficha')}
 			else
-				if @ficha.errors.full_messages.any?
-					format.html { redirect_to new_ficha_neurologica_path(), notice: @ficha.errors.full_messages.first}
-				else
-					format.html { redirect_to new_ficha_neurologica_path(), notice: 'No se ha podido guardar la Ficha'}
-				end
+				flash.now[:alert] = t('messages.save_error', resource: 'la ficha', errors: @ficha.errors.full_messages.to_sentence)
+        format.js {render 'compartido/show_message'}
+        format.html{redirect_to new_ficha_neurologica_path, alert: flash.now[:alert]}
 			end
 		end
 	end
@@ -54,16 +52,12 @@ class FichasNeurologicasController < ApplicationController
 	def update
 		respond_to do |format|
 			if @ficha.update_attributes(ficha_params)
-				format.html { redirect_to ficha_neurologica_path(@ficha), notice: 'Ficha actualizada exitosamente'}
+				format.html { redirect_to ficha_neurologica_path(@ficha), notice: t('messages.update_success', resource: 'la ficha')}
 			else
-
-				if @ficha.errors.full_messages.any?
-					format.html { redirect_to edit_ficha_neurologica_path(@ficha), notice: @ficha.errors.full_messages.first}
-				else
-					format.html { redirect_to edit_ficha_neurologica_path(@ficha), notice: 'No se ha podido actualizar la Ficha'}
-				end
+        flash.now[:alert] = t('messages.update_error', resource: 'la ficha', errors: @ficha.errors.full_messages.to_sentence)
+        format.js {render 'compartido/show_message'}
+        format.html{redirect_to edit_ficha_neurologica_path(@ficha), alert: flash.now[:alert]}
 			end
-
 		end
 	end
 
@@ -74,10 +68,10 @@ class FichasNeurologicasController < ApplicationController
 	def destroy
 		respond_to do |format|
 			if @ficha.destroy
-				format.html { redirect_to fichas_neurologicas_path, flash: {notice: "Se ha eliminado la ficha de #{@ficha.paciente.persona_full_name}."}}
-			else
-			   	format.html { redirect_to fichas_neurologicas_path, flash: {alert: "No se ha podido eliminar la ficha de #{@ficha.paciente.persona_full_name}."}}
-			end
+        format.html { redirect_to fichas_neurologicas_path, notice: t('messages.delete_success', resource: 'la ficha')}
+      else
+          format.html { redirect_to fichas_neurologicas_path, alert: t('messages.delete_error', resource: 'la ficha', errors: @ficha.errors.full_messages.to_sentence)}
+      end
 		end
 	end
 

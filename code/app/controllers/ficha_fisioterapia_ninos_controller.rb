@@ -28,20 +28,11 @@ class FichaFisioterapiaNinosController < ApplicationController
     @paciente= @fisio_nino.paciente
   	 respond_to do |format|
       if @fisio_nino.save
-        set_consulta
-        flash.now[:notice] = 'Ficha registrada exitosamente'
-		    format.html {render 'show'}
-        format.js { render "show"}
+        format.html { redirect_to ficha_fisioterapia_nino_path(@fisio_nino), notice: t('messages.save_success', resource: 'la ficha')}
       else
-        if @fisio_nino.errors.full_messages.any?
-          flash.now[:alert] = @fisio_nino.errors.full_messages.first
-        else
-          flash.now[:alert] = "No se ha podido guardar la Ficha"
-        end
-
-        format.html { render "edit"}
-        format.js { render "edit"}
-
+        flash.now[:alert] = t('messages.save_error', resource: 'la ficha', errors: @fisio_nino.errors.full_messages.to_sentence)
+        format.js {render 'compartido/show_message'}
+        format.html{redirect_to new_ficha_fisioterapia_nino_path, alert: flash.now[:alert]}
       end
     end
   end
@@ -54,19 +45,12 @@ class FichaFisioterapiaNinosController < ApplicationController
     @paciente= @fisio_nino.paciente
   	respond_to do |format|
       if @fisio_nino.update_attributes(fisio_nino_params)
-
-        format.html { redirect_to ficha_fisioterapia_nino_path, notice: 'Ficha actualizado exitosamente'}
+        format.html { redirect_to ficha_fisioterapia_nino_path, notice: t('messages.update_success', resource: 'la ficha')}
       else
-
-        if @fisio_nino.errors.full_messages.any?
-          flash.now[:alert] = @fisio_nino.errors.full_messages.first
-        else
-          flash.now[:alert] = "No se ha podido guardar la Ficha"
-        end
-        format.html { render "edit"}
-        format.js { render "edit"}
+        flash.now[:alert] = t('messages.update_error', resource: 'la ficha', errors: @fisio_nino.errors.full_messages.to_sentence)
+        format.js {render 'compartido/show_message'}
+        format.html{redirect_to edit_ficha_fisioterapia_nino_path(@ficha), alert: flash.now[:alert]}
       end
-
     end
   end
 

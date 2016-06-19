@@ -17,6 +17,7 @@ class CreateFichasNutricionalesAdultos < ActiveRecord::Migration
     end
     add_foreign_key(:fichas_nutricionales_adultos, :pacientes, column: 'paciente_id', on_delete: :restrict)
     add_foreign_key(:fichas_nutricionales_adultos, :areas, column: 'area_id', on_delete: :restrict)
+     add_foreign_key(:fichas_nutricionales_adultos, :empleados, column: 'doctor_id', on_delete: :restrict)
 
     add_index :fichas_nutricionales_adultos, :paciente_id
     add_index :fichas_nutricionales_adultos, :doctor_id

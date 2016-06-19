@@ -4,8 +4,15 @@ class FichaFisioterapeuticaAdulto < ActiveRecord::Base
 	# Autoincrementa el numero de ficha
 	protokoll :nro_ficha, pattern: '#'
 
+	#Asociaciones
 	belongs_to :paciente, -> { with_deleted }
 	belongs_to :doctor, -> { with_deleted }, :foreign_key => :doctor_id
+
+	#Validaciones
+  validates :paciente, presence: true
+  validates :doctor, presence: true
+  validates :fecha, presence: true, date_less_system_date: true
+  validate  :paciente_has_ficha
 
 	before_create :cargar_area_id
 
@@ -14,10 +21,9 @@ class FichaFisioterapeuticaAdulto < ActiveRecord::Base
 		self.area_id= area
 	end
 
-	def validate_paciente
-		paciente= FichaFisioterapeuticaAdulto.where("paciente_id = ?", self.paciente_id)
-		if !paciente.empty?
-			errors.add(:base, "El paciente ya posee una Ficha de Fisioterapia Adulto")
+	def paciente_has_ficha
+		if paciente.ficha_fisioterapeutica_adulto.present? && id.nil?
+			errors.add(:base, I18n.t('activerecord.errors.messages.paciente_has_ficha'))
 		end
 	end
 

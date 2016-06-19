@@ -20,6 +20,7 @@ class CreateFichasFisioterapeuticasAdultos < ActiveRecord::Migration
 
      	add_foreign_key(:fichas_fisioterapeuticas_adultos, :pacientes, column: 'paciente_id', on_delete: :restrict)
     	add_foreign_key(:fichas_fisioterapeuticas_adultos, :areas, column: 'area_id', on_delete: :restrict)
+      add_foreign_key(:fichas_fisioterapeuticas_adultos, :empleados, column: 'doctor_id', on_delete: :restrict)
 
       add_index :fichas_fisioterapeuticas_adultos, :paciente_id
       add_index :fichas_fisioterapeuticas_adultos, :doctor_id
