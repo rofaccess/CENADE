@@ -2,8 +2,7 @@ class AtencionesProfesionalesController < ApplicationController
   before_action :set_submenu, only: [:show, :index ]
   before_action :set_sidebar, only: [:show, :index]
   before_action :get_turnos, only: [:show, :index]
-  load_and_authorize_resource :consulta, :turno, :atencion_profesional, :consulta_nutricional_pediatrica,
-    :consulta_odontologica, :consulta_nutricional_adulto
+  load_and_authorize_resource :class => Turno
 
   def set_submenu
     @submenu_layout = 'layouts/submenu_fichas_consultas'

@@ -16,6 +16,7 @@ class Doctor < Empleado
  	has_many :controles, dependent: :restrict_with_error
  	has_many :consultas, dependent: :restrict_with_error
  	has_many :consultas_nutricionales_pediatricas, dependent: :restrict_with_error
+  has_many :consultas_nutricionales_adultos, dependent: :restrict_with_error
 
   has_many :turnos, dependent: :restrict_with_error
 

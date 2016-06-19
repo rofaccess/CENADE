@@ -2,7 +2,8 @@ class HistorialesNeurologicosController < ApplicationController
   before_action :set_submenu, only: [:show, :index ]
   before_action :set_sidebar, only: [:show, :index]
   before_action :set_historial, only: [:show, :print]
-  #load_and_authorize_resource :class => FichaNeurologica
+  load_and_authorize_resource :class => Paciente
+  #alias_action :index, :to => :read
 
   def set_submenu
     @submenu_layout = 'layouts/submenu_fichas_consultas'
@@ -27,6 +28,7 @@ class HistorialesNeurologicosController < ApplicationController
                         .joins(:ficha_neurologica)
                         .order('personas.nombre')
                         .page(params[:page]) # Usa paginates_per del modelo paciente
+    #authorize! (:get_pacientes, @search || Paciente)
   end
 
   # Para el historial se requiere, los datos del paciente, su ficha y consultas

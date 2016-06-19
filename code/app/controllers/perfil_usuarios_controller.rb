@@ -1,4 +1,5 @@
 class PerfilUsuariosController < ApplicationController
+	load_and_authorize_resource :class => User
 	def edit
 		@persona = Persona.find(Empleado.find(current_user.empleado_id).persona_id)
 	end

@@ -51,7 +51,7 @@
 
         <%= turn.label :doctor_id, '* Profesional de la Salud' %>
 
-        <%= turn.select(:doctor_id, Hash[Empleado.where(type: 'Doctor').map{|a| [a.area.nombre + "-"+ a.persona.nombre + " "+ a.persona.apellido, a.id]}],{},{class: "profesional_select form-control select2", required: true,  id: 'doctor_id'})%>
+        <%= turn.select(:doctor_id, Empleado.where(type: 'Doctor').collect{|a| [a.abr_profesion+" "+a.persona_full_name, a.id]},{},{class: " form-control select2 select_doctor", required: true,  id: 'doctor_id'})%>
           </div>
 
        <%= FormBuilder::text_field_v(turn, :fecha_consulta,

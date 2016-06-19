@@ -7,7 +7,8 @@ class UsuariosController < ApplicationController
 
 	#layout false, only: [:new]
 
-	#load_and_authorize_resource
+	load_and_authorize_resource :class => User
+	skip_load_resource :only => [:create]
 
 	def set_submenu
 		@submenu_layout = 'layouts/submenu_configuracion'
@@ -109,7 +110,7 @@ class UsuariosController < ApplicationController
     def check_username
       user = User.find_by_username(params[:username])
 
-      render json: (user.nil? || user.id == params[:id].to_i) ? true : "Ya existe el Nombre de Usuario especificado".to_json
+      render json: (user.nil? || user.id == params[:idd].to_i) ? true : "Ya existe el Nombre de Usuario especificado".to_json
   	end
 
 	def usuario_params

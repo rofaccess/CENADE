@@ -111,7 +111,7 @@ admin.add_role :Administrador
 user.add_role :Administrador
 
 Grupo.create([{nombre: 'Configuraciones'}, {nombre: 'Pacientes'}, {nombre: 'Turnos'}, {nombre: 'Personal'},
-			{nombre: 'Fichas y Consultas'},{nombre: 'Atencion Profesional (De las áreas seleccionadas en Ficha)'},{nombre: 'Reportes'}, {nombre: 'Historial Médico (Incluye todas las áreas)'}])
+			{nombre: 'Fichas y Consultas'},{nombre: 'Atencion Profesional (De Todas la Areas)'},{nombre: 'Reportes'}, {nombre: 'Historial Médico (Todas las Áreas)'}])
 
 Permission.create([{nombre: 'Usuarios', model: 'User', grupo_id: 1},
                      {nombre: 'Datos de la empresa', model: 'Configuracion', grupo_id:1},
@@ -130,7 +130,8 @@ Permission.create([{nombre: 'Usuarios', model: 'User', grupo_id: 1},
                      {nombre: 'Pediatría', model: 'FichaPediatrica', grupo_id:5},
                      {nombre: 'Psicopedagogía', model: 'FichaPsicopedagogica', grupo_id:5},
                      {nombre: 'Reporte Estadístico', model: 'ReporteEstadistico', grupo_id:7},
-                     {nombre: 'Historial Médico', model: 'EstadoCivil', grupo_id:8}])
+                     {nombre: 'Historial Médico', model: 'Area', grupo_id:8},
+                     {nombre: 'Atención Profesional', model: 'Area', grupo_id:6}])
 					#pongo estado civil para evitar errores
 Permission.all.each do |p|
         PermissionsRole.create(role_id: 1, permission_id: p.id)
