@@ -4,6 +4,7 @@ class ConsultaNutricionalAdulto < ActiveRecord::Base
 	#Asociaciones
  	belongs_to :doctor, -> { with_deleted }, :foreign_key => :doctor_id
   belongs_to :paciente, -> { with_deleted }
+  belongs_to :area
  	belongs_to :ficha_nutricional_adulto , :foreign_key => :ficha_nutricional_adulto_id
 
  	has_many :controles
@@ -15,7 +16,13 @@ class ConsultaNutricionalAdulto < ActiveRecord::Base
   validates :paciente, presence: true
   validates :doctor, presence: true
   validates :fecha, presence: true, date_less_system_date: true
+  validate  :paciente_has_not_ficha
 
+  def paciente_has_not_ficha
+    if Consulta.get_ficha(area.nombre + ' Adulto', paciente.id).nil?
+      errors.add(:base, I18n.t('activerecord.errors.messages.paciente_has_not_ficha'))
+    end
+  end
  	#carga id area antes de guardar la consulta
  	#before_create :cargar_area_id
 

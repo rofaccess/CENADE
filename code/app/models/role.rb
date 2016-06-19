@@ -11,7 +11,7 @@ class Role < ActiveRecord::Base
 
   #Validaciones
   validates :name, presence: true, length: { in: 3..Domain::ROL }, uniqueness: true
-  validates :permission_ids, presence: true
+  #validates :permission_ids, presence: true # //- No permite correr el seed
 
   #Callbacks
   before_destroy :can_destroy?

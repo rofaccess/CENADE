@@ -12,10 +12,17 @@ class ConsultaOdontologica < ActiveRecord::Base
   validates :paciente, presence: true
   validates :doctor, presence: true
   validates :fecha, presence: true, date_less_system_date: true
+  validate  :paciente_has_not_ficha
 
   # Callbacks
   #carga id area antes de guardar la consulta
   before_create :cargar_area_id
+
+  def paciente_has_not_ficha
+    if Consulta.get_ficha(area.nombre, paciente.id).nil?
+      errors.add(:base, I18n.t('activerecord.errors.messages.paciente_has_not_ficha'))
+    end
+  end
 
   #carga el area automaticamente
   def cargar_area_id

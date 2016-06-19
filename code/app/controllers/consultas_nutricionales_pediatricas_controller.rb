@@ -25,6 +25,7 @@ class ConsultasNutricionalesPediatricasController < ApplicationController
   def new
   	@consulta= ConsultaNutricionalPediatrica.new
     # Para renderizar un formulario vacio de datos del paciente
+    @area = Area.find_by_nombre('Nutrición')
     @paciente = Paciente.new
   	get_doctores_nutricion
   end
@@ -36,12 +37,15 @@ class ConsultasNutricionalesPediatricasController < ApplicationController
       if @consulta.save
 		    format.html { redirect_to consulta_nutricional_pediatrica_path(@consulta), notice: t('messages.save_success', resource: 'la consulta')}
       else
-        format.html{redirect_to new_consulta_nutricional_pediatrica_path, alert: t('messages.save_error', resource: 'la consulta', errors: @consulta.errors.full_messages.to_sentence)}
+        flash.now[:alert] = t('messages.save_error', resource: 'la consulta', errors: @consulta.errors.full_messages.to_sentence)
+        format.js {render 'compartido/show_message'}
+        format.html{redirect_to new_consulta_nutricional_pediatrica_path, alert: t('messages.save_error', resource: 'la consulta', errors: @consulta.errors.full_messages.to_sentence)} #Si en el formulario se usa remote = false
       end
     end
   end
 
   def edit
+    @area = @consulta.area
     get_doctores_nutricion
   end
   #paciente para la llamada remota desde la ficha
@@ -129,7 +133,7 @@ class ConsultasNutricionalesPediatricasController < ApplicationController
   end
 
   def consulta_params
-  	params.require(:consulta_nutricional_pediatrica).permit(:area_id,:ficha_nutri_ped_id, :paciente_id, :doctor_id, :fecha, :encargado, :sosten_cefalico,
+  	params.require(:consulta_nutricional_pediatrica).permit(:area_id,:ficha_nutri_ped_id, :paciente_id, :doctor_id,:area_id, :fecha, :encargado, :sosten_cefalico,
   		 :sento, :paro,:camino, :sigue_luz, :rie_llora, :busca_sonido, :emite_sonido, :habilidades, :mastica_deglute, :otros, :desayuno, :media_manana, :almuerzo,
   		 :merienda, :cena, :cargo_quien, :diarrea, :vomitos, :fiebre, :constipacion, :orina, :sudor, :problemas_respiratorios,
   		 :distension_abdominal, :otros2, :diagnostico, :peso, :talla, :pc, :imc, :cm)

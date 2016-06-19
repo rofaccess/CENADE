@@ -45,6 +45,7 @@ class ConsultasOdontologicasController < ApplicationController
 
   def new
   	@consulta= ConsultaOdontologica.new
+    @area = Area.find_by_nombre('Odontología')
     # Para renderizar un formulario vacio de datos del paciente
     @paciente = Paciente.new
   	get_doctores_odontologia
@@ -64,6 +65,7 @@ class ConsultasOdontologicasController < ApplicationController
   end
 
   def edit
+    @area = @consulta.area
     get_doctores_odontologia
   end
 

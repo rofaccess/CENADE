@@ -100,6 +100,7 @@ class CreateFichasClinicos < ActiveRecord::Migration
 
 		add_foreign_key(:fichas_clinicos, :pacientes, column: 'paciente_id', on_delete: :restrict)
 		add_foreign_key(:fichas_clinicos, :areas, column: 'area_id', on_delete: :restrict)
+		add_foreign_key(:fichas_clinicos, :empleados, column: 'doctor_id', on_delete: :restrict)
 
 		add_index :fichas_clinicos, :paciente_id
 		add_index :fichas_clinicos, :doctor_id

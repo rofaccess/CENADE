@@ -10,7 +10,7 @@
   <div class="form-content">
     <%= simple_form_for consulta, html: {class: 'form-consulta'}, remote: true do |consult|%>
       <%= hidden_field_tag :consulta_id, consulta.id, class: 'consulta-id'%>
-
+      <%= consult.hidden_field(:area_id, :value => area.id) %>
       <h4 class="titulo-ficha">Consulta en Odontología</h4>
 
       <div class="row">

@@ -13,12 +13,19 @@ class ConsultaNutricionalPediatrica < ActiveRecord::Base
   validates :paciente, presence: true
   validates :doctor, presence: true
   validates :fecha, presence: true, date_less_system_date: true
+  validate  :paciente_has_not_ficha
 
  	#Callbacks
  	#carga id area antes de guardar la consulta
- 	before_create :cargar_area_id
+ 	#before_create :cargar_area_id
 
- 	#carga el area automaticamente
+  def paciente_has_not_ficha
+    if Consulta.get_ficha(area.nombre + ' Pediatría', paciente.id).nil?
+      errors.add(:base, I18n.t('activerecord.errors.messages.paciente_has_not_ficha'))
+    end
+  end
+
+  #carga el area automaticamente
  	def cargar_area_id
 		area= Area.where(nombre: 'Nutrición').first.id
 		self.area_id= area

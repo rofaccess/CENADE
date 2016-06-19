@@ -87,6 +87,7 @@ ActiveRecord::Schema.define(version: 20160527060755) do
     t.integer  "ficha_nutricional_adulto_id",             null: false
     t.integer  "doctor_id",                               null: false
     t.integer  "paciente_id",                             null: false
+    t.integer  "area_id",                                 null: false
     t.date     "fecha",                                   null: false
     t.string   "motivo_consulta",             limit: 250
     t.string   "actuales",                    limit: 200
@@ -152,6 +153,7 @@ ActiveRecord::Schema.define(version: 20160527060755) do
     t.datetime "updated_at",                              null: false
   end
 
+  add_index "consultas_nutricionales_adultos", ["area_id"], name: "index_consultas_nutricionales_adultos_on_area_id", using: :btree
   add_index "consultas_nutricionales_adultos", ["doctor_id"], name: "index_consultas_nutricionales_adultos_on_doctor_id", using: :btree
   add_index "consultas_nutricionales_adultos", ["ficha_nutricional_adulto_id"], name: "ficha_id", using: :btree
   add_index "consultas_nutricionales_adultos", ["paciente_id"], name: "index_consultas_nutricionales_adultos_on_paciente_id", using: :btree
@@ -199,6 +201,7 @@ ActiveRecord::Schema.define(version: 20160527060755) do
   end
 
   add_index "consultas_nutricionales_pediatricas", ["area_id"], name: "index_consultas_nutricionales_pediatricas_on_area_id", using: :btree
+  add_index "consultas_nutricionales_pediatricas", ["doctor_id"], name: "index_consultas_nutricionales_pediatricas_on_doctor_id", using: :btree
   add_index "consultas_nutricionales_pediatricas", ["ficha_nutri_ped_id"], name: "index_consultas_nutricionales_pediatricas_on_ficha_nutri_ped_id", using: :btree
   add_index "consultas_nutricionales_pediatricas", ["paciente_id"], name: "index_consultas_nutricionales_pediatricas_on_paciente_id", using: :btree
 
@@ -245,6 +248,7 @@ ActiveRecord::Schema.define(version: 20160527060755) do
   end
 
   add_index "consultas_odontologicas", ["area_id"], name: "index_consultas_odontologicas_on_area_id", using: :btree
+  add_index "consultas_odontologicas", ["doctor_id"], name: "index_consultas_odontologicas_on_doctor_id", using: :btree
   add_index "consultas_odontologicas", ["ficha_odontologica_id"], name: "index_consultas_odontologicas_on_ficha_odontologica_id", using: :btree
   add_index "consultas_odontologicas", ["paciente_id"], name: "index_consultas_odontologicas_on_paciente_id", using: :btree
 
@@ -261,6 +265,7 @@ ActiveRecord::Schema.define(version: 20160527060755) do
   end
 
   add_index "controles", ["area_id"], name: "index_controles_on_area_id", using: :btree
+  add_index "controles", ["doctor_id"], name: "index_controles_on_doctor_id", using: :btree
   add_index "controles", ["paciente_id"], name: "index_controles_on_paciente_id", using: :btree
 
   create_table "custom_auto_increments", force: :cascade do |t|
@@ -276,7 +281,7 @@ ActiveRecord::Schema.define(version: 20160527060755) do
     t.integer  "persona_id",                             null: false
     t.integer  "area_id"
     t.string   "type",          limit: 15,  default: "", null: false
-    t.string   "cargo",         limit: 100, default: "", null: false
+    t.string   "cargo",         limit: 100, default: ""
     t.string   "abr_profesion", limit: 5,   default: ""
     t.datetime "deleted_at"
     t.datetime "created_at"
@@ -888,37 +893,52 @@ ActiveRecord::Schema.define(version: 20160527060755) do
   add_foreign_key "consultas", "areas", on_delete: :restrict
   add_foreign_key "consultas", "empleados", column: "doctor_id", on_delete: :restrict
   add_foreign_key "consultas", "pacientes", on_delete: :restrict
+  add_foreign_key "consultas_nutricionales_adultos", "areas", on_delete: :restrict
+  add_foreign_key "consultas_nutricionales_adultos", "empleados", column: "doctor_id", on_delete: :restrict
+  add_foreign_key "consultas_nutricionales_adultos", "fichas_nutricionales_adultos", on_delete: :restrict
   add_foreign_key "consultas_nutricionales_adultos", "pacientes", on_delete: :restrict
   add_foreign_key "consultas_nutricionales_pediatricas", "areas", on_delete: :restrict
+  add_foreign_key "consultas_nutricionales_pediatricas", "empleados", column: "doctor_id", on_delete: :restrict
   add_foreign_key "consultas_nutricionales_pediatricas", "fichas_nutricionales_pediatricas", column: "ficha_nutri_ped_id", on_delete: :restrict
   add_foreign_key "consultas_nutricionales_pediatricas", "pacientes", on_delete: :restrict
   add_foreign_key "consultas_odontologicas", "areas", on_delete: :restrict
+  add_foreign_key "consultas_odontologicas", "empleados", column: "doctor_id", on_delete: :restrict
   add_foreign_key "consultas_odontologicas", "fichas_odontologicas", on_delete: :restrict
   add_foreign_key "consultas_odontologicas", "pacientes", on_delete: :restrict
   add_foreign_key "controles", "areas", on_delete: :restrict
   add_foreign_key "controles", "consultas_nutricionales_pediatricas", on_delete: :restrict
+  add_foreign_key "controles", "empleados", column: "doctor_id", on_delete: :restrict
   add_foreign_key "controles", "pacientes", on_delete: :restrict
   add_foreign_key "empleados", "areas", on_delete: :restrict
   add_foreign_key "empleados", "personas", on_delete: :restrict
   add_foreign_key "ficha_fisioterapia_ninos", "areas", on_delete: :restrict
+  add_foreign_key "ficha_fisioterapia_ninos", "empleados", column: "doctor_id", on_delete: :restrict
   add_foreign_key "ficha_fisioterapia_ninos", "pacientes", on_delete: :restrict
   add_foreign_key "fichas_clinicos", "areas", on_delete: :restrict
+  add_foreign_key "fichas_clinicos", "empleados", column: "doctor_id", on_delete: :restrict
   add_foreign_key "fichas_clinicos", "pacientes", on_delete: :restrict
   add_foreign_key "fichas_fisioterapeuticas_adultos", "areas", on_delete: :restrict
+  add_foreign_key "fichas_fisioterapeuticas_adultos", "empleados", column: "doctor_id", on_delete: :restrict
   add_foreign_key "fichas_fisioterapeuticas_adultos", "pacientes", on_delete: :restrict
   add_foreign_key "fichas_fonoaudiologicas", "areas", on_delete: :restrict
   add_foreign_key "fichas_fonoaudiologicas", "pacientes", on_delete: :restrict
   add_foreign_key "fichas_neurologicas", "areas", on_delete: :restrict
+  add_foreign_key "fichas_neurologicas", "empleados", column: "doctor_id", on_delete: :restrict
   add_foreign_key "fichas_neurologicas", "pacientes", on_delete: :restrict
   add_foreign_key "fichas_nutricionales_adultos", "areas", on_delete: :restrict
+  add_foreign_key "fichas_nutricionales_adultos", "empleados", column: "doctor_id", on_delete: :restrict
   add_foreign_key "fichas_nutricionales_adultos", "pacientes", on_delete: :restrict
   add_foreign_key "fichas_nutricionales_pediatricas", "areas", on_delete: :restrict
+  add_foreign_key "fichas_nutricionales_pediatricas", "empleados", column: "doctor_id", on_delete: :restrict
   add_foreign_key "fichas_nutricionales_pediatricas", "pacientes", on_delete: :restrict
   add_foreign_key "fichas_odontologicas", "areas", on_delete: :restrict
+  add_foreign_key "fichas_odontologicas", "empleados", column: "doctor_id", on_delete: :restrict
   add_foreign_key "fichas_odontologicas", "pacientes", on_delete: :restrict
   add_foreign_key "fichas_pediatricas", "areas", on_delete: :restrict
+  add_foreign_key "fichas_pediatricas", "empleados", column: "doctor_id", on_delete: :restrict
   add_foreign_key "fichas_pediatricas", "pacientes", on_delete: :restrict
   add_foreign_key "fichas_psicopedagogicas", "areas", on_delete: :restrict
+  add_foreign_key "fichas_psicopedagogicas", "empleados", column: "doctor_id", on_delete: :restrict
   add_foreign_key "fichas_psicopedagogicas", "pacientes", on_delete: :restrict
   add_foreign_key "pacientes", "encargados", on_delete: :restrict
   add_foreign_key "pacientes", "personas", on_delete: :restrict
