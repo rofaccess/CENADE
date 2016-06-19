@@ -9,7 +9,7 @@
 
   <div class="content">
   <div class="form-content">
-    <%= simple_form_for consulta, html: {class: 'form-consulta', :multipart => true } do |consult|%>
+    <%= simple_form_for consulta, html: {class: 'form-consulta', :multipart => true, remote: true } do |consult|%>
 
       <h4 class="titulo-ficha">Consulta en <%= area.nombre%></h4></br>
       <%= consult.hidden_field(:area_id, :value => area.id) %>

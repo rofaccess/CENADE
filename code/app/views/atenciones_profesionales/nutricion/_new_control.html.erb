@@ -10,7 +10,7 @@
       <%= hidden_field_tag(:doctor_id, current_user.empleado.id) %>
     <%end%>
 
-    <%= control.input :fecha, as: :string, label: '* Fecha', wrapper_html: { class: 'col-xs-4'}, input_html: { class: 'datepicker dateLessSystemDate required', maxLength: Domain::FECHA, value: date(Date.today)} %>
+    <%= control.input :fecha, as: :string, label: '* Fecha', wrapper_html: { class: 'col-xs-4'}, input_html: { class: 'datepicker dateLessSystemDate required', maxLength: Domain::FECHA, value: date(Date.today)}, required: false %>
   </div>
 
   <div class="row">

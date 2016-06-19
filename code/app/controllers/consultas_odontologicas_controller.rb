@@ -56,7 +56,9 @@ class ConsultasOdontologicasController < ApplicationController
       if @consulta.save
         format.html { redirect_to consulta_odontologica_path(@consulta), notice: t('messages.save_success', resource: 'la consulta')}
       else
-        format.html{redirect_to new_consulta_odontologica_path, alert: t('messages.save_error', resource: 'la consulta', errors: @consulta.errors.full_messages.to_sentence)}
+        flash.now[:alert] = t('messages.save_error', resource: 'la consulta', errors: @consulta.errors.full_messages.to_sentence)
+        format.js {render 'compartido/show_message'}
+        format.html{redirect_to new_consulta_odontologica_path, alert: flash.now[:alert]}
       end
     end
   end
@@ -71,7 +73,9 @@ class ConsultasOdontologicasController < ApplicationController
       if @consulta.update_attributes(consulta_params)
         format.html { redirect_to consulta_odontologica_path(@consulta), notice: t('messages.update_success', resource: 'la consulta')}
       else
-        format.html{redirect_to edit_consulta_odontologica_path(@consulta), alert: t('messages.update_error', resource: 'la consulta', errors: @consulta.errors.full_messages.to_sentence)}
+        flash.now[:alert] = t('messages.update_error', resource: 'la consulta', errors: @consulta.errors.full_messages.to_sentence)
+        format.js {render 'compartido/show_message'}
+        format.html{redirect_to edit_consulta_odontologica_path(@consulta), alert: flash.now[:alert]}
       end
     end
   end

@@ -31,7 +31,9 @@ class ConsultasController < ApplicationController
   		if @consulta.save
         format.html{redirect_to consulta_path(@consulta), notice: t('messages.save_success', resource: 'la consulta')}
   		else
-        format.html{redirect_to new_consulta_path(area_id: consulta_params[:area_id]), alert: t('messages.save_error', resource: 'la consulta', errors: @consulta.errors.full_messages.to_sentence)}
+        flash.now[:alert] = t('messages.save_error', resource: 'la consulta', errors: @consulta.errors.full_messages.to_sentence)
+        format.js {render 'compartido/show_message'}
+        format.html{redirect_to new_consulta_path(area_id: consulta_params[:area_id]), alert: flash.now[:alert]}
       end
 	  end
   end
@@ -46,7 +48,9 @@ class ConsultasController < ApplicationController
    		if @consulta.update(consulta_params)
    			format.html{redirect_to consulta_path(@consulta), notice: t('messages.update_success', resource: 'la consulta')}
    		else
-        format.html{redirect_to edit_consulta_path(@consulta), alert: t('messages.update_error', resource: 'la consulta', errors: @consulta.errors.full_messages.to_sentence)}
+        flash.now[:alert] = t('messages.update_error', resource: 'la consulta', errors: @consulta.errors.full_messages.to_sentence)
+        format.js {render 'compartido/show_message'}
+        format.html{redirect_to edit_consulta_path(@consulta), alert: flash.now[:alert]}
    		end
    	end
 

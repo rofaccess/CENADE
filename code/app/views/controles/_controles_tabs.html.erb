@@ -23,11 +23,11 @@
 
 			      <div class="row">
 
-			        <%= cont.input :tratamiento, as: :string, label: 'Tratamiento', wrapper_html: { class: 'col-xs-12'}, input_html: { value: control.tratamiento, disabled: true, rows: "3"} %>
+			        <%= cont.input :tratamiento, as: :string, label: 'Tratamiento', wrapper_html: { class: 'col-xs-12'}, input_html: { value: control.tratamiento, disabled: true, rows: "3"}, required: false %>
 			      </div>
 
 			      <div class="row">
-			         <%= cont.input :observaciones, as: :string, label: 'Observaciones', wrapper_html: { class: 'col-xs-12'}, input_html: { value: control.observaciones, disabled: true, rows: "2"} %>
+			         <%= cont.input :observaciones, as: :string, label: 'Observaciones', wrapper_html: { class: 'col-xs-12'}, input_html: { value: control.observaciones, disabled: true, rows: "2"}, required: false %>
 			      </div>
 
 			 <% end %>

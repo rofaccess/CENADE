@@ -62,7 +62,9 @@ class ConsultasNutricionalesPediatricasController < ApplicationController
       if @consulta.update_attributes(consulta_params)
     		  format.html { redirect_to consulta_nutricional_pediatrica_path(@consulta), notice: t('messages.update_success', resource: 'la consulta')}
       else
-        format.html{redirect_to edit_consulta_nutricional_pediatrica_path(@consulta), alert: t('messages.update_error', resource: 'la consulta', errors: @consulta.errors.full_messages.to_sentence)}
+        flash.now[:alert] = t('messages.update_error', resource: 'la consulta', errors: @consulta.errors.full_messages.to_sentence)
+        format.js {render 'compartido/show_message'}
+        format.html{redirect_to edit_consulta_nutricional_pediatrica_path(@consulta), alert: flash.now[:alert]}
       end
     end
   end

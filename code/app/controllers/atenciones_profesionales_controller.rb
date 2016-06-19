@@ -27,7 +27,7 @@ class AtencionesProfesionalesController < ApplicationController
     if @consulta.save
       flash.now[:notice] = 'Consulta registrada exitosamente y paciente atendido'
     else
-      flash.now[:alert] = "No se ha podido guardar la consulta."
+      flash.now[:alert] = t('messages.save_error', resource: 'la consulta', errors: @consulta.errors.full_messages.to_sentence)
     end
     Turno.find(params[:turno_id]).atender
     render 'atenciones_profesionales/compartido/create_consulta', format: :js
@@ -44,7 +44,7 @@ class AtencionesProfesionalesController < ApplicationController
     if @consulta_ped.save
       flash.now[:notice] = 'Consulta registrada exitosamente y paciente atendido'
     else
-      flash.now[:alert] = "No se ha podido guardar la consulta."
+      flash.now[:alert] = t('messages.save_error', resource: 'la consulta', errors: @consulta_ped.errors.full_messages.to_sentence)
     end
     Turno.find(params[:turno_id]).atender
     render 'atenciones_profesionales/nutricion/create_consulta_ped', format: :js
@@ -63,7 +63,7 @@ class AtencionesProfesionalesController < ApplicationController
     if @consulta_ad.save
       flash.now[:notice] = 'Consulta registrada exitosamente y paciente atendido'
     else
-      flash.now[:alert] = "No se ha podido guardar la consulta."
+      flash.now[:alert] = t('messages.save_error', resource: 'la consulta', errors: @consulta_ad.errors.full_messages.to_sentence)
     end
     Turno.find(params[:turno_id]).atender
     render 'atenciones_profesionales/nutricion/create_consulta_ad', format: :js
@@ -87,7 +87,7 @@ class AtencionesProfesionalesController < ApplicationController
     if @consulta.save
       flash.now[:notice] = 'Consulta registrada exitosamente y paciente atendido'
     else
-      flash.now[:alert] = "No se ha podido guardar la consulta."
+      flash.now[:alert] = t('messages.save_error', resource: 'la consulta', errors: @consulta.errors.full_messages.to_sentence)
     end
     Turno.find(params[:turno_id]).atender
     render 'atenciones_profesionales/odontologia/create_consulta', format: :js
@@ -107,7 +107,7 @@ class AtencionesProfesionalesController < ApplicationController
     if @control.save
       flash.now[:notice] = 'Control registrado exitosamente y paciente atendido'
     else
-      flash.now[:alert] = "No se ha podido guardar el control."
+      flash.now[:alert] = t('messages.save_error', resource: 'el control', errors: @control.errors.full_messages.to_sentence)
     end
     Turno.find(params[:turno_id]).atender
     render 'atenciones_profesionales/nutricion/create_control', format: :js
