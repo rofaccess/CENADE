@@ -9,7 +9,7 @@
 <div class="content">
 <div class="form-content">
 
-	<%= simple_form_for ficha, html: {class: 'form-ficha'} do |fich|%>
+	<%= simple_form_for ficha, html: {class: 'form-ficha'}, remote: true do |fich|%>
 	<%= hidden_field_tag :ficha_id, ficha.id, class: 'ficha-id'%>
 
 	<h4 class="titulo-ficha">FICHA DE PEDIATRÍA</h4>
@@ -25,7 +25,7 @@
 
 		<%= fich.input :doctor_id, collection: doctores.collect { |a| [a.abr_profesion+" "+a.persona_full_name, a.id] }, label: '* Profesional de la Salud', wrapper_html: { class: 'col-xs-4' }, input_html:	 { class: 'required select-doctor select2'} %>
 
-		<%= fich.input :fecha, as: :string, label: '* Fecha', wrapper_html: { class: 'col-xs-3'}, input_html: { class: 'date datepicker dateLessSystemDate required', maxLength: Domain::FECHA, value:Formatter.format_date(ficha.fecha)} %>
+		<%= fich.input :fecha, as: :string, label: '* Fecha', wrapper_html: { class: 'col-xs-3'}, input_html: { class: 'date datepicker dateLessSystemDate required', maxLength: Domain::FECHA, value:Formatter.format_date(ficha.fecha)}, required: false %>
 	</div>
 
 	<div id="paciente-data">

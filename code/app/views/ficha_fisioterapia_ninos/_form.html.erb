@@ -23,7 +23,7 @@
 
         <%= ficha.input :doctor_id, collection: Doctor.get_all_area('Fisioterapia').collect { |a| [a.abr_profesion+" "+a.persona_full_name, a.id] }, label: '* Profesional de la Salud', wrapper_html: { class: 'col-xs-4' }, input_html:  { class: 'required select-doctor select2'} %>
 
-        <%= ficha.input :fecha, as: :string, label: '* Fecha', wrapper_html: { class: 'col-xs-3'}, input_html: { class: 'datepicker dateLessSystemDate required', maxLength: Domain::FECHA, value:date(fisio_nino.fecha)} %>
+        <%= ficha.input :fecha, as: :string, label: '* Fecha', wrapper_html: { class: 'col-xs-3'}, input_html: { class: 'datepicker required dateLessSystemDate ', maxLength: Domain::FECHA, value:date(fisio_nino.fecha)}, required: false %>
       </div>
 
       <div id="paciente-data">
@@ -73,7 +73,7 @@
     <div class="row">
       <div class="col-xs-12">
         <%= ficha.label :condicion_general, 'Condiciones Generales del Recién Nacido' %>
-        <%= ficha.text_area :condicion_general, rows: "5", class: "form-control maxlengthBig"%>
+        <%= ficha.text_area :condicion_general, rows: "5", class: "form-control maxlengthBig", maxlength: 500%>
       </div>
     </div>
       </br>

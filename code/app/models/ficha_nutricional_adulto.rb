@@ -1,7 +1,6 @@
 class FichaNutricionalAdulto < ActiveRecord::Base
 	paginates_per 20
-
-    #incremento automatico de nro de ficha
+  #incremento automatico de nro de ficha
 	protokoll :nro_ficha, pattern: '#'
 
  	#asociaciones
@@ -10,19 +9,24 @@ class FichaNutricionalAdulto < ActiveRecord::Base
  	belongs_to :area
  	has_many :consultas_nutricionales_adultos
 
+ 	#Validaciones
+  validates :paciente, presence: true
+  validates :doctor, presence: true
+  validates :fecha, presence: true, date_less_system_date: true
+  validate  :paciente_has_ficha
+
+ 	#Callbacks
  	before_create :cargar_area_id
 
+	def paciente_has_ficha
+		if paciente.ficha_nutricional_adulto.present? && id.nil?
+			errors.add(:base, I18n.t('activerecord.errors.messages.paciente_has_ficha'))
+		end
+	end
 
  	def cargar_area_id
 		area= Area.where(nombre: 'Nutrición').first.id
 		self.area_id= area
-	end
-
-	def validate_paciente
-		paciente= FichaNutricionalAdulto.where("paciente_id = ?", self.paciente_id)
-		if !paciente.empty?
-			errors.add(:base, "El paciente ya posee una Ficha de Nutrición Adulto")
-		end
 	end
 
 	# Law of Demeter

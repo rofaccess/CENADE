@@ -38,19 +38,11 @@ class FichasNutricionalesPediatricasController < ApplicationController
     set_consulta
   	 respond_to do |format|
       if @nutri_pediatrica.save
-        flash.now[:notice] = 'Ficha registrada exitosamente'
-		    format.html {render 'show'}
-        format.js { render "show"}
+        format.html { redirect_to ficha_nutricional_pediatrica_path(@nutri_pediatrica), notice: t('messages.save_success', resource: 'la ficha')}
       else
-        if @nutri_pediatrica.errors.full_messages.any?
-          flash.now[:alert] = @nutri_pediatrica.errors.full_messages.first
-        else
-          flash.now[:alert] = "No se ha podido guardar la Ficha"
-        end
-
-        format.html { render "edit"}
-        format.js { render "edit"}
-
+        flash.now[:alert] = t('messages.save_error', resource: 'la ficha', errors: @nutri_pediatrica.errors.full_messages.to_sentence)
+        format.js {render 'compartido/show_message'}
+        format.html{redirect_to new_ficha_nutricional_pediatrica_path, alert: flash.now[:alert]}
       end
     end
   end
@@ -68,18 +60,11 @@ class FichasNutricionalesPediatricasController < ApplicationController
 
   	respond_to do |format|
       if @nutri_pediatrica.update_attributes(nutri_pediatrica_params)
-	        flash.now[:notice] = 'Ficha actualizada exitosamente'
-    		  format.html {render 'show'}
-    	    format.js { render "show"}
+	        format.html { redirect_to ficha_nutricional_pediatrica_path(@nutri_pediatrica), notice: t('messages.update_success', resource: 'la ficha')}
       else
-
-        if @nutri_pediatrica.errors.full_messages.any?
-          flash.now[:alert] = @nutri_pediatrica.errors.full_messages.first
-        else
-          flash.now[:alert] = "No se ha podido guardar la Ficha"
-        end
-        format.html { render "edit"}
-        format.js { render "edit"}
+        flash.now[:alert] = t('messages.update_error', resource: 'la ficha', errors: @nutri_pediatrica.errors.full_messages.to_sentence)
+        format.js {render 'compartido/show_message'}
+        format.html{redirect_to edit_ficha_nutricional_pediatrica_path(@nutri_pediatrica), alert: flash.now[:alert]}
       end
     end
   end

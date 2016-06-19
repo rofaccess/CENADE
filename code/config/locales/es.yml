@@ -95,6 +95,7 @@ es:
         date_less_system_date: "debe ser menor o igual a la fecha del sistema"
         email_custom: "no es válido"
         time: "debe tener el formato hh:mm"
+        paciente_has_ficha: "El paciente ya posee una ficha"
   messages:
     save_success: "Se ha guardado %{resource}"
     save_error: "No se pudo guardar %{resource}. %{errors}"

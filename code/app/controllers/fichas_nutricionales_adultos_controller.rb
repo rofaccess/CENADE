@@ -32,15 +32,11 @@ class FichasNutricionalesAdultosController < ApplicationController
     #@paciente= @nutri_adulto.paciente
   	 respond_to do |format|
       if @nutri_adulto.save
-		    format.html { redirect_to ficha_nutricional_adulto_path(@nutri_adulto), notice: 'Ficha registrada exitosamente'}
+		    format.html { redirect_to ficha_nutricional_adulto_path(@nutri_adulto), notice: t('messages.save_success', resource: 'la ficha')}
       else
-        if @nutri_adulto.errors.full_messages.any?
-          format.html { redirect_to ficha_nutricional_adulto_path(@nutri_adulto), notice: @nutri_adulto.errors.full_messages.first}
-        else
-
-          format.html { redirect_to ficha_nutricional_adulto_path(@nutri_adulto), notice: "No se ha podido guardar la Ficha"}
-        end
-
+        flash.now[:alert] = t('messages.save_error', resource: 'la ficha', errors: @nutri_adulto.errors.full_messages.to_sentence)
+        format.js {render 'compartido/show_message'}
+        format.html{redirect_to new_ficha_nutricional_adulto_path, alert: flash.now[:alert]}
       end
     end
   end
@@ -58,15 +54,11 @@ class FichasNutricionalesAdultosController < ApplicationController
 
   	respond_to do |format|
       if @nutri_adulto.update_attributes(nutri_adulto_params)
-    		  format.html { redirect_to ficha_nutricional_adulto_path(@nutri_adulto), notice: 'Ficha actualizada exitosamente'}
+    		  format.html { redirect_to ficha_nutricional_adulto_path(@nutri_adulto), notice: t('messages.update_success', resource: 'la ficha')}
       else
-
-        if @nutri_adulto.errors.full_messages.any?
-          format.html { redirect_to ficha_nutricional_adulto_path(@nutri_adulto), notice: @nutri_adulto.errors.full_messages.first}
-        else
-
-          format.html { redirect_to ficha_nutricional_adulto_path(@nutri_adulto), notice: "No se ha podido guardar la Ficha"}
-        end
+        flash.now[:alert] = t('messages.update_error', resource: 'la ficha', errors: @nutri_adulto.errors.full_messages.to_sentence)
+        format.js {render 'compartido/show_message'}
+        format.html{redirect_to edit_ficha_nutricional_adulto_path(@nutri_adulto), alert: flash.now[:alert]}
       end
     end
   end

@@ -54,6 +54,7 @@
   //- Con interfaces que trabajan con mucho ajax, si la sesión expira, los request ajax
   //- no envían ningún mensaje, lo siguiente hace que se redireccione a la página de
   //- login cuando la sesión expira
+  /* Basado en: http://stackoverflow.com/questions/5460150/devise-with-rails-3-and-remote-true*/
   $(document).ajaxError(function(e, XHR, options){
       if (XHR.status == 401){
         //Si se quiere redireccionar al formulario de inicio de sesión
