@@ -1,0 +1,6 @@
+<h4 class="historial-title">HISTORIAL CLÍNICO DE FONOAUDIOLOGÍA</h4>
+
+<%= render 'compartido/historial/data_paciente.html', paciente:   @paciente %>
+<%= render 'compartido/historial/data_encargados.html', encargados: @paciente.encargado %>
+<%= render 'data_ficha.html', ficha:  @ficha %>
+<%= render 'compartido/historial/data_consultas.html', consultas:  @consultas, num: 'IV'%>

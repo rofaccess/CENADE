@@ -1,0 +1,33 @@
+<% if consultas.size == 0 %>
+    <strong>No se encontraron consultas</strong>
+<% end %>
+
+<ul class="nav nav-tabs">
+    <% consultas.each do |c| %>
+        <li><a href="#tab-<%= c.id%>"><%= c.fecha.strftime("%d/%m/%Y")%></a></li>
+    <%end%>
+</ul>
+
+<div class="tabscontent">
+    <% consultas.each do |consulta| %>
+        <div id="tab-<%= consulta.id%>">
+            <%= simple_fields_for :consulta do |c| %>
+                <div class="row">
+                    <%= c.input :doctor_id, as: :string, label: 'Profesional de la salud', wrapper_html: { class: 'col-xs-9'}, input_html: {value: consulta.doctor_abr_profesion + consulta.doctor_persona_full_name, disabled: true}, required: false %>
+                    <%= c.input :fecha, as: :string, label: 'Fecha Consulta', wrapper_html: { class: 'col-xs-3'}, input_html: {value: Formatter.format_date(consulta.fecha), disabled: true}, required: false %>
+                </div>
+                <div class="row">
+                    <%= c.input :motivo_consulta, as: :text, label: 'Motivo de Consulta', wrapper_html: { class: 'col-xs-12'}, input_html: {value: consulta.motivo_consulta, disabled: true}, required: false %>
+                </div>
+                <div class="row">
+                    <%= c.input :evaluacion, as: :text, label: 'Evaluación', wrapper_html: { class: 'col-xs-6'}, input_html: {value: consulta.evaluacion, disabled: true, :rows => 4}, required: false %>
+                    <%= c.input :tratamiento, as: :text, label: 'Tratamiento', wrapper_html: { class: 'col-xs-6'}, input_html: {value: consulta.tratamiento, disabled: true, :rows => 4}, required: false %>
+                </div>
+
+                <div class="row">
+                    <%= c.input :observaciones, as: :string, label: 'Observaciones', wrapper_html: { class: 'col-xs-12'}, input_html: {value: consulta.observaciones, disabled: true}, required: false %>
+                </div>
+            <%end%>
+        </div>
+    <%end%>
+</div>

@@ -1,0 +1,104 @@
+<div class="page-title page-con-sidebar">
+  <%=fisio_nino.id.nil? ? 'Nueva Ficha' : 'Editar Ficha'%>
+
+  <div class="tool tool-sin-buscador">
+    <%= link_to '<i class="fa fa-list"></i> '.html_safe, ficha_fisioterapia_ninos_path %>
+  </div>
+
+</div>
+
+<div class="content">
+  <div class="form-content">
+
+    <%= simple_form_for fisio_nino, html: {class: 'form-ficha', :multipart => true }, remote: true do |ficha|%>
+      <%= hidden_field_tag :ficha_fisioterapia_nino_id, fisio_nino.id, class:'ficha-id' %>
+      <h4 class="titulo-ficha">FICHA FISIOTERAPIA PEDIÁTRICA</h4>
+
+      <div class="row">
+        <%= ficha.input :paciente_id, collection: paciente.id.nil? ? [] : [[paciente.persona_full_name,paciente.id]], label: '* Paciente', wrapper_html: { class: paciente.id.nil? ? 'col-xs-4' : 'col-xs-5'},input_html:  { class: 'required select-paciente select2 uniquePacienteFicha paciente-id',disabled: paciente.id.nil? ? false : true} %>
+
+        <% if paciente.id.nil? %>
+          <%= link_to '<i class="fa fa-plus"></i> '.html_safe, pacientes_new_modal_path(root: 'compartido/fic_cli_neu_ped', encargado: false), class: 'btn btn-custom btn-add col-xs-1', remote: true %>
+        <% end %>
+
+        <%= ficha.input :doctor_id, collection: Doctor.get_all_area('Fisioterapia').collect { |a| [a.abr_profesion+" "+a.persona_full_name, a.id] }, label: '* Profesional de la Salud', wrapper_html: { class: 'col-xs-4' }, input_html:  { class: 'required select-doctor select2'} %>
+
+        <%= ficha.input :fecha, as: :string, label: '* Fecha', wrapper_html: { class: 'col-xs-3'}, input_html: { class: 'datepicker required dateLessSystemDate ', maxLength: Domain::FECHA, value:date(fisio_nino.fecha)}, required: false %>
+      </div>
+
+      <div id="paciente-data">
+        <%= render 'form_paciente', paciente: paciente %>
+      </div>
+
+     <h4>Embarazo</h4>
+    <hr>
+    <div class="row">
+              <%= FormBuilder::text_field_v(ficha, :control_embarazo,
+                                          input_class: '',
+                                          max_length: Domain::CONTROL_EMBARAZO,
+                                          col_class: 'col-xs-5',
+                                          label_text: 'Control Prenatal') %>
+              <%= FormBuilder::text_field_v(ficha, :edad_gestacional,
+                                          input_class: '',
+                                          max_length: Domain::EDAD_GEST,
+                                          col_class: 'col-xs-3',
+                                          label_text: 'Edad Gestacional') %>
+              <%= FormBuilder::text_field_v(ficha, :tipo_parto,
+                                          input_class: '',
+                                          max_length: Domain::TIPO_PARTO,
+                                          col_class: 'col-xs-4',
+                                          label_text: 'Tipo de Parto') %>
+
+    </div>
+    <h4>Datos de la Ficha</h4>
+    <hr>
+    <div class="row">
+              <%= FormBuilder::text_field_v(ficha, :peso_nacer,
+                                          input_class: '',
+                                          max_length: Domain::PESO_NACER,
+                                          col_class: 'col-xs-2',
+                                          label_text: 'Peso al Nacer') %>
+              <%= FormBuilder::text_field_v(ficha, :apgar,
+                                          input_class: '',
+                                          max_length: Domain::APGAR,
+                                          col_class: 'col-xs-3',
+                                          label_text: 'Apgar') %>
+              <%= FormBuilder::text_field_v(ficha, :antecedentes_familiares,
+                                          input_class: '',
+                                          max_length: Domain::ANT_FLIAR,
+                                          col_class: 'col-xs-7',
+                                          label_text: 'Antecedentes Familiares') %>
+
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <%= ficha.label :condicion_general, 'Condiciones Generales del Recién Nacido' %>
+        <%= ficha.text_area :condicion_general, rows: "5", class: "form-control maxlengthBig", maxlength: 500%>
+      </div>
+    </div>
+      </br>
+      <div class="form-button">
+        <%= ficha.submit 'Guardar', class: 'btn btn-custom',data: {disable_with: "Guardando..."}%>
+      </div>
+
+    <% end %>
+
+
+  </div>
+</div>
+<script type="text/javascript">
+
+  fichasUI.initScript();
+
+  pacientesUI.checkPacienteHasFicha("<%=ficha_fisioterapia_ninos_check_paciente_id_path%>");
+
+  pacientesUI.getPaciente({element: '.select-paciente', root: 'ficha_fisioterapia_ninos'});
+
+  <% if !flash.notice.blank? %>
+    var n = noty({text: '<%=notice%>', type: 'success'});
+  <% end %>
+
+  <% if !flash.alert.blank?%>
+    var n = noty({text: '<%=alert%>', type: 'error'});
+  <% end %>
+</script>

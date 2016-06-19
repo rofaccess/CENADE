@@ -1,0 +1,122 @@
+<%= simple_form_for ConsultaNutricionalPediatrica.new, url: atencion_create_consulta_ped_path(turno_id: turno.id) , remote: true do |consulta|%>
+  <%= consulta.hidden_field(:ficha_nutri_ped_id, value: ficha_ped_id) %>
+  <%= consulta.hidden_field(:area_id, value: turno.area.id) %>
+  <%= consulta.hidden_field(:paciente_id, value: turno.paciente.id) %>
+  <div class="row">
+    <%unless current_user.es_doctor?%>
+      <%doctores = Doctor.get_all_area(turno.area_nombre).collect {|a| [a.full_name, a.id]}%>
+      <%= consulta.input :doctor_id, collection: doctores, label: '* Prof. de la Salud', wrapper_html: { class: 'col-xs-8' }, input_html:  { class: 'required select2'} %>
+    <%else%>
+      <%= data('Profesional de la Salud',current_user.empleado.persona_full_name,'col-xs-8') %>
+      <%= consulta.hidden_field(:doctor_id, :value => current_user.empleado.id) %>
+    <%end%>
+
+    <%= consulta.input :fecha, as: :string, label: '* Fecha', wrapper_html: { class: 'col-xs-4'}, input_html: { class: 'datepicker dateLessSystemDate required', maxLength: Domain::FECHA, value: date(Date.today)}, required: false %>
+  </div>
+
+  <div class="row">
+    <%= consulta.input :encargado, label: 'I - Encargado', wrapper_html: { class: 'col-xs-12'},input_html: { maxLength: Domain::DESC100} %>
+  </div>
+
+  <ul class="nav nav-tabs">
+     <li><a href="#con-ped-new-val-des">II - Valoración del Desarrollo</a></li>
+     <li><a href="#con-ped-new-ali-act">III - Alimentación Actual</a></li>
+     <li><a href="#con-ped-new-sig-sin">IV - Signos y/o Síntomas</a></li>
+     <li><a href="#con-ped-new-dat-ant">V - Datos Antropométricos</a></li>
+  </ul>
+  <div class="tabs-content">
+     <div id="con-ped-new-val-des">
+        <div class="row">
+          <%= consulta.input :sosten_cefalico, label: 'Sostén Cefálico', wrapper_html: { class: 'col-xs-12'},input_html: { maxLength: Domain::DESC100} %>
+        </div>
+        <div class="row">
+            <%= consulta.input :sento, label: 'Se sentó a los', wrapper_html: { class: 'col-xs-4'},input_html: { maxLength: Domain::TIEMPO} %>
+            <%= consulta.input :paro, label: 'Se paró a los', wrapper_html: { class: 'col-xs-4'},input_html: { maxLength: Domain::TIEMPO} %>
+            <%= consulta.input :camino, label: 'Caminó a los', wrapper_html: { class: 'col-xs-4'},input_html: { maxLength: Domain::TIEMPO} %>
+        </div>
+        <div class="row">
+            <%= consulta.input :busca_sonido, label: '¿Busca Sonido?', wrapper_html: { class: 'col-xs-4'},input_html: { maxLength: Domain::DESC50} %>
+            <%= consulta.input :emite_sonido, label: '¿Emite Sonido?:', wrapper_html: { class: 'col-xs-4'},input_html: { maxLength: Domain::DESC50} %>
+            <%= consulta.input :rie_llora, label: '¿Rie - Llora?:', wrapper_html: { class: 'col-xs-4'},input_html: { maxLength: Domain::DESC50} %>
+        </div>
+        <div class="row">
+            <%= consulta.input :sigue_luz, label: '¿Sigue la luz u objetos coloridos?', wrapper_html: { class: 'col-xs-5'},input_html: { maxLength: Domain::DESC50} %>
+            <%= consulta.input :mastica_deglute, label: '¿Mastica - Deglute?', wrapper_html: { class: 'col-xs-7'},input_html: { maxLength: Domain::DESC100} %>
+        </div>
+        <div class="row">
+           <%= consulta.input :habilidades, label: 'Habilidades presentes y/o ausentes para la edad', wrapper_html: { class: 'col-xs-12'},input_html: { maxLength: Domain::DESC200} %>
+        </div>
+        <div class="row">
+           <%= consulta.input :otros, as: :text, label: 'Otros', wrapper_html: { class: 'col-xs-12'},input_html: { maxLength: Domain::DESC250} %>
+        </div>
+     </div>
+
+     <div id="con-ped-new-ali-act">
+        <div class="row">
+          <%= consulta.input :desayuno, label: 'Desayuno:', wrapper_html: { class: 'col-xs-12'},input_html: { maxLength: Domain::DESC250} %>
+        </div>
+        <div class="row">
+          <%= consulta.input :media_manana, label: 'Media mañana', wrapper_html: { class: 'col-xs-12'},input_html: { maxLength: Domain::DESC250} %>
+        </div>
+        <div class="row">
+          <%= consulta.input :almuerzo, label: 'Almuerzo', wrapper_html: { class: 'col-xs-12'},input_html: { maxLength: Domain::DESC250} %>
+        </div>
+        <div class="row">
+          <%= consulta.input :merienda, label: 'Merienda', wrapper_html: { class: 'col-xs-12'},input_html: { maxLength: Domain::DESC250} %>
+        </div>
+        <div class="row">
+          <%= consulta.input :cena, label: 'Cena', wrapper_html: { class: 'col-xs-12'},input_html: { maxLength: Domain::DESC250} %>
+        </div>
+     </div>
+
+     <div id="con-ped-new-sig-sin">
+        <div class="row">
+          <%= consulta.input :diarrea, label: 'Diarrea', wrapper_html: { class: 'col-xs-4'},input_html: { maxLength: Domain::DESC50} %>
+          <%= consulta.input :vomitos, label: 'Vómitos', wrapper_html: { class: 'col-xs-4'},input_html: { maxLength: Domain::DESC50} %>
+          <%= consulta.input :fiebre, label: 'Fiebre', wrapper_html: { class: 'col-xs-4'},input_html: { maxLength: Domain::DESC50} %>
+        </div>
+        <div class="row">
+          <%= consulta.input :problemas_respiratorios, label: 'Problemas Respiratorios', wrapper_html: { class: 'col-xs-6'},input_html: { maxLength: Domain::DESC100} %>
+          <%= consulta.input :distension_abdominal, label: 'Distención abdominal', wrapper_html: { class: 'col-xs-6'},input_html: { maxLength: Domain::DESC100} %>
+        </div>
+        <div class="row">
+          <%= consulta.input :constipacion, label: 'Constipación', wrapper_html: { class: 'col-xs-4'},input_html: { maxLength: Domain::DESC100} %>
+          <%= consulta.input :orina, label: 'Orina', wrapper_html: { class: 'col-xs-4'},input_html: { maxLength: Domain::DESC100} %>
+          <%= consulta.input :sudor, label: 'Sudor', wrapper_html: { class: 'col-xs-4'},input_html: { maxLength: Domain::DESC100} %>
+        </div>
+        <div class="row">
+          <%= consulta.input :otros2, label: 'Otros', wrapper_html: { class: 'col-xs-12'},input_html: { maxLength: Domain::DESC200} %>
+        </div>
+     </div>
+
+     <div id="con-ped-new-dat-ant">
+      <div class="row">
+        <%= consulta.input :talla, label: 'Talla:', wrapper_html: { class: 'col-xs-6'},input_html: { maxLength: Domain::NRO_CHICO} %>
+        <%= consulta.input :peso, label: 'Peso:', wrapper_html: { class: 'col-xs-6'},input_html: { maxLength: Domain::NRO_CHICO} %>
+
+      </div>
+      <div class="row">
+        <%= consulta.input :pc, label: 'PC:', wrapper_html: { class: 'col-xs-4'},input_html: { maxLength: Domain::NRO_CHICO} %>
+        <%= consulta.input :imc, label: 'IMC:', wrapper_html: { class: 'col-xs-4'},input_html: { maxLength: Domain::NRO_CHICO} %>
+        <%= consulta.input :cm, label: 'CM:', wrapper_html: { class: 'col-xs-4'},input_html: { maxLength: Domain::NRO_CHICO} %>
+      </div>
+     </div>
+  </div>
+  <br>
+  <div class="row">
+     <%= consulta.input :diagnostico, as: :text, label: 'VI - Diagnóstico', wrapper_html: { class: 'col-xs-12'},input_html: { maxLength: Domain::DESC250, :rows => 3} %>
+  </div>
+
+  <div class="form-button">
+    <%= consulta.submit 'Guardar', class: 'btn btn-custom',data: {disable_with: "Guardando..."}%>
+  </div>
+<% end %>
+
+<script type="text/javascript">
+  <%unless current_user.es_doctor?%>
+    $('#consulta_nutricional_pediatrica_doctor_id').val($('#doctor_id').val());
+    APP.initSelect2({element: '#consulta_nutricional_pediatrica_doctor_id', placeholder: 'Seleccione un Profesional'});
+  <% end %>
+  APP.initDatepicker();
+  $('#new_consulta').validate();
+</script>

@@ -1,0 +1,37 @@
+
+<table id="table_reporte" class= "table table-condensed">
+  <thead>
+    <tr>
+      <th colspan="8" scope="col"> <h4 class="title">REPORTE MENSUAL</h4></th>
+    </tr>
+    <tr class="active">
+      <th>Mes</th>
+      <th>Profesional de la Salud</th>
+      <th>Cupo Límite</th>
+      <th>Cantidad Atentidos</th>
+      <th>Año</th>
+      <th>Area</th>
+    </tr>
+  </thead>
+  <% if @reportes.blank? %>
+    <tfoot>
+      <tr>
+        <th colspan="8" scope="col">No se encontraron coincidencias </th>
+      </tr>
+    </tfoot>
+   <% end %>
+  <tbody>
+    <% @reportes.each do |reporte| %>
+    <tr>
+      <td><%= t(reporte.mes.to_s)%></td>
+      <td ><%=reporte.doctor_persona_full_name %> </td>
+      <td ><%= reporte.cant_pend %></td>
+      <td ><%= reporte.cantidad.nil? ? '0' : reporte.cantidad%></td>
+      <td><%=reporte.anho%></td>
+      <td><%=reporte.area_nombre%></td>
+
+
+    </tr>
+    <% end %>
+  </tbody>
+</table>

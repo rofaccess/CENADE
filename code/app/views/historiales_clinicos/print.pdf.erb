@@ -1,0 +1,6 @@
+<h4 class="historial-title">HISTORIAL CLÍNICO DE CLÍNICO</h4>
+
+<%= render 'compartido/historial/data_paciente.html', paciente:   @paciente %>
+<%= render 'compartido/historial/data_encargados.html', encargados: @paciente.encargado %>
+<%= render 'compartido/historial/data_ficha_cli_neu_ped.html', ficha:  @ficha %>
+<%= render 'compartido/historial/data_consultas.html', consultas:  @consultas, num: 'IV'%>

@@ -1,0 +1,218 @@
+<h4 class="ficha-title">CONSULTA NUTRICIONAL PEDIÁTRICA</h4>
+
+<h4>I- Datos Personales</h4>
+<hr>
+<div class="row">
+	<div class="form-group col-xs-8">
+		<label class="control-label">Nombre y Apellido:</label>
+		<div class="data"> <%=@consulta.ficha_nutricional_pediatrica.paciente_persona_full_name%> </div>
+	</div>
+
+	<div class="form-group col-xs-3">
+		<label class="control-label">Fecha de nac.:</label>
+		<div class="data"> <%=Formatter.format_date(@consulta.ficha_nutricional_pediatrica.paciente_persona_fecha_nacimiento)%> </div>
+	</div>
+
+	<div class="form-group col-xs-1">
+		<label class="control-label">Edad:</label>
+		<div class="data"> <%=@consulta.ficha_nutricional_pediatrica.paciente_persona_edad%> </div>
+	</div>
+</div>
+<div class="row">
+
+	<div class="form-group col-xs-3">
+		<label class="control-label">Tel.:</label>
+		<div class="data"> <%=@consulta.ficha_nutricional_pediatrica.paciente_persona_telefono%> </div>
+	</div>
+
+	<div class="form-group col-xs-9">
+		<label class="control-label">Dirección:</label>
+		<div class="data"> <%=@consulta.ficha_nutricional_pediatrica.paciente_persona_direccion%> </div>
+	</div>
+</div>
+</br>
+
+
+<h4>II- Encargado </h4>
+<hr>
+
+<div class="form-group col-xs-12">
+	<label class="control-label">Nombres y Apellidos</label>
+	<div class="data"> <%=@consulta.encargado%> </div>
+</div></br>
+
+<h4>III- Valoración del desarrollo</h4>
+<hr>
+<div class="form-group col-xs-12">
+	<label class="control-label">Sostén Cefálico</label>
+	<div class="data"> <%=@consulta.sosten_cefalico%> </div>
+</div>
+<div class="row">
+	<div class="form-group col-xs-4">
+		<label class="control-label">Se sentó a los:</label>
+		<div class="data"> <%=@consulta.sento%> </div>
+	</div>
+	<div class="form-group col-xs-4">
+		<label class="control-label">Se paró a los:</label>
+		<div class="data"> <%=@consulta.paro%> </div>
+	</div>
+	<div class="form-group col-xs-4">
+		<label class="control-label">Caminó a los:</label>
+		<div class="data"> <%=@consulta.camino%> </div>
+	</div>
+</div>
+<div class="row">
+	<div class="form-group col-xs-4">
+		<label class="control-label">Busca Sonido?</label>
+		<div class="data"> <%=@consulta.busca_sonido%> </div>
+	</div>
+	<div class="form-group col-xs-4">
+		<label class="control-label">Emite Sonido?</label>
+		<div class="data"> <%=@consulta.emite_sonido%> </div>
+	</div>
+	<div class="form-group col-xs-4">
+		<label class="control-label">Rie - Llora?</label>
+		<div class="data"> <%=@consulta.rie_llora%> </div>
+	</div>
+</div>
+<div class="row">
+	<div class="form-group col-xs-6">
+		<label class="control-label">Sigue la luz u objetos coloridos?</label>
+		<div class="data"> <%=@consulta.sigue_luz%> </div>
+	</div>
+	<div class="form-group col-xs-6">
+		<label class="control-label">Mastica - Deglute?:</label>
+		<div class="data"> <%=@consulta.mastica_deglute%> </div>
+	</div>
+</div>
+<div class="row">
+	<div class="form-group col-xs-12">
+		<label class="control-label">Habilidades presentes y/o ausentes para la edad</label>
+		<div class="data"> <%=@consulta.habilidades%> </div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="form-group col-xs-12">
+		<label class="control-label">Otros</label>
+		<div class="data-bordered"> <%=@consulta.otros%> </div>
+	</div>
+</div></br>
+
+
+<h4>IV- Alimentación Actual</h4>
+<hr>
+<div class="row">
+	<div class="form-group col-xs-12">
+		<label class="control-label">Desayuno:</label>
+		<div class="data"> <%=@consulta.desayuno%> </div>
+	</div>
+</div>
+<div class="row">
+	<div class="form-group col-xs-12">
+		<label class="control-label">Media mañana:</label>
+		<div class="data"> <%=@consulta.media_manana%> </div>
+	</div>
+</div>
+<div class="row">
+	<div class="form-group col-xs-12">
+		<label class="control-label">Almuerzo:</label>
+		<div class="data"> <%=@consulta.almuerzo%> </div>
+	</div>
+</div>
+<div class="row">
+	<div class="form-group col-xs-12">
+		<label class="control-label">Merienda:</label>
+		<div class="data"> <%=@consulta.merienda%> </div>
+	</div>
+</div>
+<div class="row">
+	<div class="form-group col-xs-12">
+		<label class="control-label">Cena:</label>
+		<div class="data"> <%=@consulta.cena%> </div>
+	</div>
+</div></br>
+
+<h4>V- Signos y/o Síntomas</h4>
+<hr>
+<div class="row">
+	<div class="form-group col-xs-4">
+		<label class="control-label">Diarrea</label>
+		<div class="data"> <%=@consulta.diarrea%> </div>
+	</div>
+	<div class="form-group col-xs-4">
+		<label class="control-label">Vómitos</label>
+		<div class="data"> <%=@consulta.vomitos%> </div>
+	</div>
+	<div class="form-group col-xs-4">
+		<label class="control-label">Fiebre</label>
+		<div class="data"> <%=@consulta.fiebre%> </div>
+	</div>
+</div>
+<div class="row">
+	<div class="form-group col-xs-6">
+		<label class="control-label">Problemas Respiratorios</label>
+		<div class="data"> <%=@consulta.problemas_respiratorios%> </div>
+	</div>
+	<div class="form-group col-xs-6">
+		<label class="control-label">Distención abdominal</label>
+		<div class="data"> <%=@consulta.distension_abdominal%> </div>
+	</div>
+</div>
+<div class="row">
+	<div class="form-group col-xs-4">
+		<label class="control-label">Constipación</label>
+		<div class="data"> <%=@consulta.constipacion%> </div>
+	</div>
+	<div class="form-group col-xs-4">
+		<label class="control-label">Orina</label>
+		<div class="data"> <%=@consulta.orina%> </div>
+	</div>
+	<div class="form-group col-xs-4">
+		<label class="control-label">Sudor</label>
+		<div class="data"> <%=@consulta.sudor%> </div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="form-group col-xs-12">
+		<label class="control-label">Otros</label>
+		<div class="data-bordered"> <%=@consulta.otros2%> </div>
+	</div>
+</div></br>
+
+<h4>VI- Datos Antropométricos</h4>
+<hr>
+<div class="row">
+	<div class="form-group col-xs-6">
+		<label class="control-label">Talla:</label>
+		<div class="data"> <%=@consulta.talla%> </div>
+	</div>
+	<div class="form-group col-xs-6">
+		<label class="control-label">Peso:</label>
+		<div class="data"> <%=@consulta.peso%> </div>
+	</div>
+</div>
+<div class="row">
+	<div class="form-group col-xs-4">
+		<label class="control-label">PC:</label>
+		<div class="data"> <%=@consulta.pc%> </div>
+	</div>
+	<div class="form-group col-xs-4">
+		<label class="control-label">IMC:</label>
+		<div class="data"> <%=@consulta.imc%> </div>
+	</div>
+	<div class="form-group col-xs-4">
+		<label class="control-label">CM:</label>
+		<div class="data"> <%=@consulta.cm%> </div>
+	</div>
+</div></br>
+
+<h4>VII- Diagnóstico Médico</h4>
+<hr>
+<div class="row">
+	<div class="form-group col-xs-12">
+		<label class="control-label">Diagnóstico</label>
+		<div class="data-bordered"> <%=@consulta.diagnostico%> </div>
+	</div>
+</div>

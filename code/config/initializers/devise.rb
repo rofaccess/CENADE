@@ -6,7 +6,7 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` on Rails 4+ applications as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = '5d81439b6679b4ebe2f34a43378369c19ddfc335026da268c4cb8d5196bcca72f00334d4321613b164070bbbf1234000388a1a8ddc6c2368cc8fe0a0d314e605'
+  config.secret_key = '5d81439b6679b4ebe2f34a43378369c19ddfc335026da268c4cb8d5196bcca72f00334d4321613b164070bbbf1234000388a1a8ddc6c2368cc8fe0a0d314e605'
 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
@@ -145,7 +145,7 @@ Devise.setup do |config|
 
   # ==> Configuration for :validatable
   # Range for password length.
-  config.password_length = 8..20
+  config.password_length = 3..30
 
   # Email regex used to validate email formats. It simply asserts that
   # one (and only one) @ exists in the given string. This is mainly
@@ -155,7 +155,8 @@ Devise.setup do |config|
   # ==> Configuration for :timeoutable
   # The time you want to timeout the user session without activity. After this
   # time the user will be asked for credentials again. Default is 30 minutes.
-  config.timeout_in = 30.minutes
+  # //- Se debería setear el timeout a un tiempo mas corto para el despliegue
+  config.timeout_in = 1.hours
 
   # ==> Configuration for :lockable
   # Defines which strategy will be used to lock an account.
@@ -269,8 +270,8 @@ Devise.setup do |config|
   # Should the password expire (e.g 3.months)
   # config.expire_password_after = false
 
-  # Need 1 char of A-Z, a-z and 0-9        
-  config.password_regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])/
+  # Need 1 char of A-Z, a-z and 0-9
+  #config.password_regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])/
 
   # How many passwords to keep in archive
   # config.password_archiving_count = 5

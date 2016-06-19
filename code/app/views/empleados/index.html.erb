@@ -1,0 +1,36 @@
+<div class="page-title page-title-sin-submenu">
+		Empleados
+
+		<div class="tool">
+			<%= search_form_for @search, class: 'buscador', remote: true do |f| %>
+			<div class="input-group">
+				<%= f.search_field :persona_nombre_or_persona_apellido_or_persona_ci_cont, placeholder: " Buscar por Nombre, Apellido o CI", class: "form-control", autofocus: true%>
+				<span class="fa fa-search"></span>
+				<div class="input-group-btn">
+					<%= link_to '<i class="fa fa-plus-square" data-toggle="tooltip" title="Nuevo Empleado"></i> '.html_safe, new_empleado_path, remote: true %>
+					<%=link_to '<i class="fa fa-print" data-toggle="tooltip" title="Imprimir Lista de Empleados"></i>'.html_safe, '#', id: 'imprimir-link', target: '_blank', data: {url: empleados_print_empleados_path(format: 'pdf')}	%>
+				</div>
+			</div>
+			<% end %>
+		</div>
+	</div>
+<div class="content content-sin-submenu">
+<div class="list-content">
+	<div id="list">
+		<%= render 'list', empleados: @empleados %>
+	</div>
+
+	<div id="list-paginate">
+		<%= paginate @empleados, remote: true %>
+	</div>
+</div>
+</div>
+<script type="text/javascript">
+	<% if !flash.notice.blank? %>
+		var n = noty({text: '<%=notice%>', type: 'success'});
+	<% end %>
+	<% if !flash.alert.blank?%>
+		var n = noty({text: '<%=alert%>', type: 'error'});
+	<% end %>
+
+</script>

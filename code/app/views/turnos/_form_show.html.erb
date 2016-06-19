@@ -1,0 +1,158 @@
+<div class="page-title page-title-sin-submenu">
+    Turno N° <%= turno.turno%>
+
+    <div class="tool tool-sin-buscador">
+      <%= link_to '<i class="fa fa-list"></i> '.html_safe, turnos_path %>
+      <%= link_to '<i class="fa fa-plus-square"></i> '.html_safe, new_turno_path, remote: true%>
+
+      <%= link_to '<i class="fa fa-edit"></i> '.html_safe, edit_turno_path(turno.id), remote:true%>
+
+      <%= link_to '<i class="fa fa-trash-o"></i>'.html_safe, turno_path(turno), method: 'delete', data: {confirm: "¿Desea eliminar el turno n° #{turno.turno}?"}%>
+    </div>
+</div>
+<div class= "content content-sin-submenu content-60">
+<div class="form-content">
+
+    <%= form_for turno, html: {class: 'nuevo-turno'}, remote: true do |turn|%>
+
+      <h4>Datos Personales</h4>
+      <hr>
+      <div class="row">
+        <%= FormBuilder::text_field_v(turn, :paciente_id,
+
+                                          col_class: 'col-xs-7',
+                                          disabled: true,
+                                          label_text: '* Paciente',
+                                          input_value: turno.paciente_persona_full_name) %>
+
+        <%= FormBuilder::text_field_v(turn, :fecha_expedicion,
+                                      input_class: 'date datepicker',
+                                      max_length: Domain::FECHA,
+                                      label_text: '* Fecha Actual',
+                                      disabled: true,
+                                      col_class: 'col-xs-5',
+                                      input_value: Formatter.format_date(turno.fecha_expedicion))%>
+
+       </div>
+
+          <div class ="paciente_data">
+          <div class="row">
+            <%= FormBuilder::text_field_v(turn, :paciente_id,
+
+                                          col_class: 'col-xs-4',
+                                          disabled: true,
+                                          label_text: 'Nombres',
+                                          input_value: turno.paciente_persona_nombre) %>
+
+            <%= FormBuilder::text_field_v(turn, :paciente_id,
+                                          col_class: 'col-xs-5',
+                                          disabled: true,
+                                          label_text: 'Apellidos',
+                                          input_value: turno.paciente_persona_apellido) %>
+
+            <%= FormBuilder::text_field_v(turn, :paciente_id,
+
+                                          max_length: Domain::CI,
+                                          col_class: 'col-xs-3',
+                                          disabled: true,
+                                          label_text: 'CI',
+                                          input_value: turno.paciente_persona_ci) %>
+            </div>
+            <div class="row">
+              <%= FormBuilder::text_field_v(turn, :paciente_id,
+
+                                        max_length: Domain::DIRECCION,
+                                        col_class: 'col-xs-8',
+                                        disabled: true,
+                                        label_text: 'Direccion',
+                                        input_value: turno.paciente_persona_direccion) %>
+               <%= FormBuilder::text_field_v(turn, :paciente_id,
+
+                                        max_length: Domain::TELEFONO,
+                                        col_class: 'col-xs-4',
+                                        disabled: true,
+                                        label_text: 'Telefono',
+                                        input_value: turno.paciente_persona_telefono) %>
+          </div>
+
+
+      </div>
+    </br>
+     <h4>Datos Turno</h4>
+    <hr>
+
+    <div class="row">
+      <%= FormBuilder::text_field_v(turn, :area_id,
+
+                                          col_class: 'col-xs-4',
+                                          disabled: true,
+                                          label_text: 'Área',
+                                          input_value: turno.area_nombre) %>
+
+      <%= FormBuilder::text_field_v(turn, :doctor_id,
+
+                                          col_class: 'col-xs-4',
+                                          disabled: true,
+                                          label_text: 'Profesional de la Salud',
+                                          input_value: empleado.persona_full_name) %>
+
+       <%= FormBuilder::text_field_v(turn, :fecha_consulta,
+                                      input_class: 'date datepicker2',
+                                      max_length: Domain::FECHA,
+                                      label_text: '* Fecha de Consulta',
+                                      disabled: true,
+                                      col_class: 'col-xs-4',
+                                      input_value: Formatter.format_date(turno.fecha_consulta))%>
+    </div>
+  </br>
+      <div class="row">
+
+           <div class="col-xs-5">
+
+            <%= turn.label :paga, '* Abonará el monto estipulado?' %>
+
+            <div class="row">
+              <%= label :paga, "Si", class: "col-xs-1"%>
+              <%= turn.radio_button :paga, true , :value => true, disabled: true, class: "col-xs-3 paga si_paga"%>
+              <%= label :paga, "No", class: "col-xs-2"%>
+              <%= turn.radio_button :paga, false , disabled: true, :value => false, class: "col-xs-1 paga no_paga" %>
+
+            </div>
+        </div>
+      </div>
+      <% if turno.paga %>
+        <div class="row" id="factura">
+          <%= FormBuilder::text_field_v(turn, :monto,
+                                      input_class: 'required costo',
+                                      max_length: Domain::COSTO,
+                                      label_text: '* Costo del servicio',
+                                      disabled: true,
+                                      col_class: 'col-xs-6')%>
+          <%= FormBuilder::text_field_v(turn, :nro_factura,
+                                        input_class: '',
+                                        max_length: Domain::NRO_FACTURA,
+                                        label_text: '* N° de Factura',
+                                        disabled: true,
+                                        col_class: 'col-xs-6')%>
+
+       </div>
+      <%end%>
+
+    <% end %>
+
+
+   </div>
+  </div>
+
+<script type="text/javascript">
+
+  <% if !flash.notice.blank? %>
+    var n = noty({text: '<%=notice%>', type: 'success'});
+  <% end %>
+  <% if !flash.alert.blank?%>
+    var n = noty({text: '<%=alert%>', type: 'error'});
+  <% end %>
+</script>
+
+
+

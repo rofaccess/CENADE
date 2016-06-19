@@ -1,0 +1,180 @@
+/* Este archivo define el aspecto del contenedor, listado, paginacion, linea azul que reemplaza al submenu */
+
+$data-border-color: #AAAAAA;
+
+body{
+	background: #EAF0F3;
+	padding-top: 30px;//- Hace que el contenido del body inicie cuando termina el menú principal
+	color: #555;
+}
+
+/* Define como se ven los contenedores */
+/* El contenedor de #advanced-search y de .list-content */
+.content{
+	//El ancho que ocupa .content dentro de #principal-content
+	width: 95%;
+	//Las siguientes dos líneas permiten centrar el .content dentro de #principal-content
+	margin-left: auto;
+	margin-right: auto;
+	//Define el espacio visible entre la barra de .page-title y el contenido de .content
+	padding-top: 90px;
+}
+
+/* Las definiciones content-xx estblece el ancho del contenido de las páginas
+ *	1. Establece el ancho que tendrá el formulario de búsqueda avanzada y el listado de los index
+ *	2. Establece el ancho de los formularios
+ *	Nota: Para darle un trato especial a un grupo de formularios que tendrán el mismo ancho.
+ *	ej: para las fichas se puede establecer un content-ficha para facilitar cambiar el ancho
+ *	una vez en el css y cambiaran para todas las fichas que tendrán la clase content-ficha
+ *	junto a la clase content.
+ */
+
+//Cuando se quiere que un content tenga un ancho de 70% se debe agregar esta clase junto a .content
+div.content-70{
+	width: 70%;
+}
+
+//Define el ancho de los show de historial
+div.content-historial{
+	width: 80%;
+}
+
+div.content-60{
+	width: 60%;
+}
+
+div.content-50{
+	width: 50%;
+}
+/* Específico para los form y show de consulta, si no se quiere que su ancho sea del 100%
+ * Debe agregarse junto a la clase .content
+ */
+div.content-consulta{
+	width: 80%;
+}
+div.content-control{
+	width: 80%;
+	padding-top: 50px;
+}
+
+// Cuando no se tiene submenu hay que agregar la siguiente clase, junto a .content
+div.content-sin-submenu{
+	padding-top: 75px;
+}
+
+// Cuando no se tiene page-title hay que agregar la siguiente clase, junto a .content
+div.content-sin-page-title{
+   padding-top: 40px;
+}
+
+/* Define el aspecto del contenedor del listado (#list) y de la paginación (#list-paginate) */
+.list-content{
+	padding: 30px 30px 5px 30px; //Top Right Bottom Left
+	background-color: white;
+	//Muestra la paginación a la derecha
+	#list-paginate{
+		text-align: right;
+	}
+}
+.list-content-control{
+	padding: 0px 30px 5px 30px; //Top Right Bottom Left
+	background-color: white;
+	//Muestra la paginación a la derecha
+	#list-paginate{
+		text-align: right;
+	}
+}
+
+/*  Establece los colores para la paginación */
+.pagination{
+	.active{
+		a {
+			background-color: $common-color;
+			border-color: $common-color;
+			&,
+			&:hover,
+			&:focus {
+				z-index: 2;
+				color: white;
+				background-color: $common-color;
+				border-color: $common-color;
+				cursor: default;
+			}
+		}
+	}
+
+	li {
+		a {
+			color: #999999;
+			&:hover,
+			&:focus {
+				background-color: $pagination-hover-bg;
+				color: $common-color;
+			}
+		}
+	}
+}
+
+/* La linea celeste que se ve debajo del menú cuando no se tiene submenu */
+.line{
+	top: 30px;
+	height: 10px;
+	position: fixed;
+	right: 0;
+	left: 0;
+	background: #24C1C1;
+	border-bottom:solid;
+	border-bottom-color: #CCCCCC;
+	z-index: 1030;
+}
+
+/* Si el texto es muy largo, esta clase lo corta
+ * Usado para cortar direcciones muy largas en los listados por ejemplo
+ */
+ //- Actualmente da un error de css, si se habilita el sistema no funciona
+ /*
+.crop {
+	word-break: break-all;
+}​
+*/
+
+/* Define el aspecto de los datos mostrados en algunos show */
+// Muestra el borde inferior, una linea debajo del dato mostrado
+.bottom-border{
+   border-bottom: 1px solid $data-border-color;
+   min-height: 22px;
+   word-break: break-all;
+}
+
+// Muestra todos los bordes, encuadra el dato mostrado
+.all-border{
+   border: 1px solid $data-border-color;
+   border-radius: 3px;
+   padding-left: 5px;
+   padding-right: 5px;
+   word-break: break-all;
+   min-height: 22px;
+}
+
+/* Muestra el borde superior */
+.top-border{
+   border-top: 1px solid $data-border-color;
+   padding-top: 5px;
+}
+
+/* Por algún motivo el dataTable no ocupa el 100% de su contenedor
+  Se forza a que ocupe el 100%
+*/
+.dataTable{
+	width: 100% !important;
+}
+
+/* Por algún motivo el .col-xs-4 tiene fondo, borde, y padding top y bottom
+   Se quita lo mencionado
+*/
+.col-xs-4 {
+  padding-top: 0;
+  padding-bottom: 0;
+  background-color: inherit;
+  border: none;
+}

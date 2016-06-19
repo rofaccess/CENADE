@@ -1,0 +1,18 @@
+<div id="sidebar-wrapper"style="background-color: white">
+    <ul class="sidebar-nav" >
+    	<div class="profile-photo ">
+		   <%=image_tag(current_user.profile_foto.blank? ? "sinUsuario" : current_user.profile_foto_url.to_s, :width => 150, :height => 150) %>
+		   <br>
+     	</div>
+
+      <div class="profile-photo">
+			<label><%=current_user.username%></label>
+		</div>
+      <br>
+      <div class="label-profile">
+      	<%= current_user.empleado_persona_direccion %><br>
+	      <%= current_user.empleado_persona_email %><br><br>
+	      <%= current_user.empleado_persona_telefono %>
+      </div>
+    </ul>
+</div>

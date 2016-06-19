@@ -1,0 +1,134 @@
+/* Este archivo define el aspecto de los pdf */
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "bootstrap/variables";
+@import "bootstrap/mixins";
+@import "modules/historiales";
+
+@include make-grid(sm);
+@include make-grid(md);
+@include make-grid(lg);
+
+$page-title-color: black;
+$page-subtitle-color: black;
+$hr-color: #999999;
+$title-color: #999999;
+$border-line-color: #EEEEEE;
+$panel-border-color: #999999;
+
+#header {
+	h1 {
+		text-align: center;
+		margin-bottom: 0px;
+		padding-bottom: 0px;
+		color: $page-title-color;
+	}
+
+	h6{
+		text-align: center;
+		color: $page-subtitle-color;
+	}
+}
+
+.border-input{
+	border:1px;
+	//border-style: solid;
+	border-color: #DCDCDC;
+}
+
+.form-control{
+	margin-bottom: 10px;
+}
+
+.form-font{
+	font-size: 19px;
+}
+
+h4{
+	color: $title-color;
+
+	&.ficha-title{
+		text-align: center;
+		margin-bottom: 20px;
+		color: $page-title-color;
+	}
+
+	&.title{
+		text-align: center;
+		margin-bottom: 20px;
+		color: $page-title-color;
+	}
+}
+
+hr {
+	color: $hr-color;
+	margin-top: 5px;
+	margin-bottom: 10px;
+}
+
+.row {
+	.data{
+		border-bottom: solid;
+		border-width: 1px;
+		min-height: 25px;
+		border-color: $border-line-color;
+		word-break: break-all;
+	}
+
+	.data-bordered{
+		border: solid;
+		border-width: 1px;
+		min-height: 50px;
+		border-color: $border-line-color;
+		word-break: break-all;
+		padding: 5px;
+	}
+
+	.logo{
+		padding-top: 30px;
+		text-align: center;
+	}
+}
+
+//A partir del elemento que contenga esta clase se mostrará en la siguiente página
+.page-break{
+	page-break-before: always;
+}
+
+//Si el texto es muy largo, esta clase lo corta
+.crop {
+	word-break: break-all;
+}​
+
+/* Para que wkhtmltopdf 0.12.3 el head de las tablas en cada página se vea bien
+   Supuestamente asegura que los registros no se vean mitad y mitad entre páginas
+   En la versión 0.9.9 ni se ve el thead a partir de la segunda página
+ */
+table, tr, td, th, tbody, thead, tfoot {
+    page-break-inside: avoid;
+}
+
+/* Estilo de impresión para el historial */
+
+// Evita que los panel-heading y form-group (el label y el dato) se vean mitad y mitad entre páginas
+div.panel-heading, div.form-group{
+    page-break-inside: avoid;
+}
+
+// Aspecto del titulo principal
+.historial-title{
+  font-size: 16px;
+}
+
+// Se modifica un poco el aspecto del panel al imprimir en pdf
+.panel-custom{
+   border: 1px solid $panel-border-color;
+   .panel-heading{
+      font-size: 14px;
+      background-color: inherit;// Permite renderizar un poco más rápido el pdf
+      color: black;
+   }
+   .panel-body{
+   	display: inherit;
+   }
+}

@@ -1,0 +1,119 @@
+<div class="page-title page-title-sin-submenu">
+      <%=turno_nuevo.nil? ? ('Editar Turno N°' + turno.turno.to_s) : 'Nuevo Turno'%>
+
+      <div class="tool tool-sin-buscador">
+        <%= link_to '<i class="fa fa-list"></i> '.html_safe, turnos_path %>
+      </div>
+    </div>
+<div class= "content content-sin-submenu content-60">
+ <div class="form-content">
+
+
+    <%= form_for turno, html: {class: 'nuevo-turno'}, remote: true do |turn|%>
+
+      <h4>Datos Personales</h4>
+      <hr>
+      <div class="row">
+
+          <div class="col-xs-7">
+            <%= turn.label :paciente_id, '* Paciente' %>
+
+            <%= turn.select(:paciente_id, Hash[Paciente.all.map{|a| [a.persona.nombre + " "+ a.persona.apellido, a.id]}],{},{class: "select-paciente form-control", required: true,  id: 'paciente_id'})%>
+        </div>
+
+        <%= FormBuilder::text_field_v(turn, :fecha_expedicion,
+                                      input_class: 'date datepicker required dateLessSystemDate',
+                                      max_length: Domain::FECHA,
+                                      label_text: '* Fecha Actual',
+                                      col_class: 'col-xs-5',
+                                      input_value: "#{turno.fecha_expedicion.strftime("%d/%m/%Y") unless turno.new_record?}")%>
+
+       </div>
+
+      <div id="paciente-data">
+        <%= render 'form_paciente', paciente: turno.paciente %>
+      </div>
+
+    </br>
+     <h4>Datos Turno</h4>
+    <hr>
+
+    <div class="row">
+      <div class="col-xs-4">
+
+        <%= turn.label :area_id, '* Área a consultar' %>
+
+        <%= turn.select(:area_id, Area.all.collect { |a| [a.nombre, a.id] },{},{class: "area_select form-control select2", required: true, id: 'area_id'})%>
+
+      </div>
+
+      <div class="col-xs-4">
+
+        <%= turn.label :doctor_id, '* Profesional de la Salud' %>
+
+        <%= turn.select(:doctor_id, Empleado.where(type: 'Doctor').collect{|a| [a.abr_profesion+" "+a.persona_full_name, a.id]},{},{class: " form-control select2 select_doctor", required: true,  id: 'doctor_id'})%>
+          </div>
+
+       <%= FormBuilder::text_field_v(turn, :fecha_consulta,
+                                      input_class: 'date datepicker2 required',
+                                      max_length: Domain::FECHA,
+                                      label_text: '* Fecha de Consulta',
+                                      col_class: 'col-xs-4',
+                                      input_value: "#{turno.fecha_consulta.strftime("%d/%m/%Y") unless turno.new_record?}")%>
+    </div>
+  </br>
+      <div class="row">
+
+           <div class="col-xs-5">
+
+            <%= turn.label :paga, '* Abonará el monto estipulado?' %>
+
+            <div class="row">
+              <%= label :paga, "Si", class: "col-xs-1"%>
+              <%= turn.radio_button :paga, true , :value => true, class: "col-xs-3 paga si_paga"%>
+              <%= label :paga, "No", class: "col-xs-2"%>
+              <%= turn.radio_button :paga, false , :value => false, class: "col-xs-1 paga no_paga" %>
+
+            </div>
+        </div>
+      </div>
+      <% if turno.paga %>
+        <div class="row" id="factura" >
+      <% else %>
+        <div class="row" id="factura" style="display:none">
+      <%end%>
+          <%= FormBuilder::text_field_v(turn, :monto,
+                                      input_class: 'costo required',
+                                      max_length: Domain::COSTO,
+                                      label_text: '* Costo del servicio',
+                                      col_class: 'col-xs-6')%>
+          <%= FormBuilder::text_field_v(turn, :nro_factura,
+                                        input_class: '',
+                                        max_length: Domain::NRO_FACTURA,
+                                        label_text: 'N° de Factura',
+                                        col_class: 'col-xs-6')%>
+
+       </div>
+
+       <div class="form-button">
+        <%= turn.submit 'Guardar', class: 'btn btn-custom',data: {disable_with: "Guardando..."}%>
+      </div>
+
+    <% end %>
+
+
+  </div>
+
+</div>
+<script type="text/javascript">
+
+  turnosUI.initScript();
+  <% if !flash.notice.blank? %>
+    var n = noty({text: '<%=notice%>', type: 'success'});
+  <% end %>
+  <% if !flash.alert.blank?%>
+    var n = noty({text: '<%=alert%>', type: 'error'});
+  <% end %>
+</script>
+
+

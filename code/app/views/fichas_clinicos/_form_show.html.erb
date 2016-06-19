@@ -1,0 +1,61 @@
+<div class="page-title page-title-con-sidebar">
+	Ficha de <%= ficha.paciente_persona_full_name%>
+
+	<div class="tool tool-sin-buscador">
+		<%= link_to '<i class="fa fa-list data-toggle="tooltip" title="Lista de Fichas"></i> '.html_safe, fichas_clinicos_path %>
+
+		<%= link_to '<i class="fa fa-plus-square" data-toggle="tooltip" title="Nueva Ficha"></i> '.html_safe, new_ficha_clinico_path, remote: true %>
+
+		<%= link_to '<i class="fa fa-edit" data-toggle="tooltip" title="Editar Ficha"></i> '.html_safe, edit_ficha_clinico_path(ficha), remote:true%>
+
+		<%= link_to '<i class="fa fa-print" data-toggle="tooltip" title="Imprimir Ficha"></i> '.html_safe, fichas_clinicos_print_ficha_path(ficha_id: ficha.id, :format => :pdf), target: '_blank'%>
+
+	</div>
+
+</div>
+<div class="content">
+<div class="form-content">
+
+	<%= simple_form_for ficha, html: {class: 'form-ficha'}, remote: true do |fich|%>
+
+
+	<h4 class="titulo-ficha">FICHA CLÍNICO</h4>
+
+	<div class="row">
+
+		<h4 class="col-xs-9"><strong>Profesional de la Salud: </strong> <%= ficha.doctor.abr_profesion+' '+ficha.doctor.persona_full_name%> </h4>
+
+  		<h4 class="col-xs-3"><strong> Fecha: </strong> <%= Formatter.format_date(ficha.fecha)%> </h4>
+  	</div>
+
+	<%= render 'compartido/fic_cli_neu_ped/form_paciente', paciente: paciente %>
+
+	<%= render 'compartido/fic_cli_neu_ped/form_show_fields', fich: fich %>
+
+	<div class="row">
+      <div class="col-xs-8">
+         <h4>Consultas</h4>
+      </div>
+      <div class="col-xs-4">
+         <%= link_to "Agregar Consulta", consultas_consulta_from_ficha_path(area_id: ficha.area_id, paciente: ficha.paciente_id, profesional: ficha.doctor_id), class: "btn btn-custom", remote: true %>
+         <%= link_to 'Ver Historial Clínico', historial_clinico_path(ficha.paciente_id), class: "btn btn-custom  pull-right", target: '_blank'%>
+      </div>
+    </div>
+    <hr>
+    <%=render 'consultas/consultas_tabs', consultas: consultas%>
+	<% end %>
+
+</div>
+</div>
+<script type="text/javascript">
+	consultasUI.initConsultasTab();
+
+	<% if !flash.notice.blank? %>
+		var n = noty({text: '<%=notice%>', type: 'success'});
+	<% end %>
+
+	<% if !flash.alert.blank?%>
+		var n = noty({text: '<%=alert%>', type: 'error'});
+	<% end %>
+
+</script>

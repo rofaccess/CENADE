@@ -1,0 +1,43 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  paciente_id: 
+  area_id: MyString
+  integer,: MyString
+  profesional_salud_id: 
+  nro_ficha: 
+  fecha: 
+  problema_embarazo: 
+  control_prenatal: 
+  alimentacion_embarazo: 
+  otros_datos: 
+  parto_vaginal_cesarea: MyString
+  string,: MyString
+  termino_pretermino: 
+  lugar_parto: 
+  como_fue_parto: 
+  peso_nacimiento: 
+  asfixia_lloro: 
+  tomo_pecho: 
+  alimentacion_complementaria: MyString
+
+two:
+  paciente_id: 
+  area_id: MyString
+  integer,: MyString
+  profesional_salud_id: 
+  nro_ficha: 
+  fecha: 
+  problema_embarazo: 
+  control_prenatal: 
+  alimentacion_embarazo: 
+  otros_datos: 
+  parto_vaginal_cesarea: MyString
+  string,: MyString
+  termino_pretermino: 
+  lugar_parto: 
+  como_fue_parto: 
+  peso_nacimiento: 
+  asfixia_lloro: 
+  tomo_pecho: 
+  alimentacion_complementaria: MyString

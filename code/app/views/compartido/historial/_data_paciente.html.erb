@@ -1,0 +1,27 @@
+<%= panel_begin('I - DATOS DEL/LA PACIENTE')%>
+   <div class="row">
+      <%= h_data('Nombre(s) y Apellido(s)', paciente.persona_full_name,'col-xs-9') %>
+      <%= h_data('CI', paciente.persona_ci,'col-xs-3') %>
+   </div>
+   <div class="row">
+      <%= h_data('Fecha de Nacimiento', date(paciente.persona_fecha_nacimiento),'col-xs-3') %>
+      <%= h_data('Edad', paciente.persona_edad,'col-xs-2') %>
+      <%= h_data('Sexo', paciente.persona_sexo,'col-xs-4') %>
+      <%= h_data('Estado Civil', paciente.persona_estado_civil_descripcion,'col-xs-3') %>
+   </div>
+   <div class="row">
+      <%= h_data('Nacionalidad', paciente.persona_nacionalidad,'col-xs-3') %>
+      <%= h_data('Lugar de Nacimiento', paciente.lugar_nacimiento,'col-xs-6') %>
+      <%= h_data('Fecha de Ingreso', date(paciente.fecha_ingreso),'col-xs-3') %>
+   </div>
+   <div class="row top-border">
+      <%= h_data('Dirección', paciente.persona_direccion,'col-xs-12') %>
+      <%= h_data('Teléfono', paciente.persona_telefono,'col-xs-4') %>
+      <%= h_data('Email', paciente.persona_email,'col-xs-8') %>
+   </div>
+
+   <div class="row top-border">
+      <%= h_data('Profesión', paciente.profesion,'col-xs-5') %>
+      <%= h_data('Lugar de Trabajo', paciente.lugar_trabajo,'col-xs-7') %>
+   </div>
+<%= panel_end %>

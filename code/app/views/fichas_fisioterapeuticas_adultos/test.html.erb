@@ -1,0 +1,60 @@
+<div class="page-title page-title-con-sidebar">
+	Testeo de Select 2
+
+	<div class="tool tool-sin-buscador">
+		<%= link_to '<i class="fa fa-list"></i> '.html_safe, fichas_fisioterapeuticas_adultos_path %>
+	</div>
+
+</div>
+
+<div class="form-content">
+
+	<%= simple_form_for @ficha, html: {class: 'form-ficha'}, remote: true do |ficha|%>
+
+
+	<h4 class="titulo-ficha">TEST SELECT 2</h4>
+
+	<div class="row">
+		<%= ficha.input :paciente_id,
+                collection: [],
+                label: '* Paciente',
+                wrapper_html: { class: 'col-xs-4'},
+                input_html:  { class: 'required select-paciente select2'} %>
+
+		<div class="form-group col-xs-4">
+			<label class="control-label">* Paciente</label>
+			<select class="required select-paciente select2 form-control" >	</select>
+		</div>
+
+		<!-- <%= FormBuilder::select_v(ficha, :paciente_id, [],
+									col_class: 'col-xs-4',
+									label_text: '* Pacientes',
+									input_class: 'required select-paciente select2') %> -->
+
+	</div>
+
+	<div class="row">
+		<%= ficha.input :paciente_id, collection: @paciente.id.nil? ? [] : [[@paciente.persona_nombre+" "+@paciente.persona_apellido, @paciente.id]], label: '* Paciente', wrapper_html: { class: 'col-xs-4'}, input_html:  { class: 'required select-paciente2 select2 uniquePacienteFicha paciente-id'} %>
+
+		<%= ficha.input :paciente_id, collection: Paciente.all.collect { |a| [a.persona_nombre+" "+a.persona_apellido, a.id] }, label: '* Paciente', wrapper_html: { class: 'col-xs-4' }, input_html:	 { class: 'required select-paciente3 select2'} %>
+	</div>
+	<div class="form-button">
+		<%= ficha.submit 'Guardar', class: 'btn btn-custom'%>
+	</div>
+
+	<% end %>
+</div>
+
+<script type="text/javascript">
+	/*  */
+	APP.initSelect2({element: '.select-paciente3', placeholder: 'Seleccione un Paciente'});
+
+	pacientesUI.initBuscarPaciente('.select-paciente2');//- No anda, arreglar
+
+	empleadosUI.initBuscarDoctor('.select-doctor');
+
+	pacientesUI.initBuscarPaciente('.select-paciente');
+
+	$('.form-ficha').validate();
+
+</script>

@@ -1,0 +1,109 @@
+<ul class="nav nav-tabs">
+	<% consultas_ped.each do |c| %>
+		<li><a href="#con-ped-<%=c.id%>"><%=date(c.fecha)%></a></li>
+	<% end %>
+</ul>
+
+<div class="tabs-content">
+	<% consultas_ped.each do |con| %>
+		<div id="con-ped-<%=con.id%>">
+			<div class="row">
+				<%= data('Profesional de la Salud', con.doctor_full_name,'col-xs-9') %>
+				<%= data('Fecha', date(con.fecha),'col-xs-3') %>
+			</div>
+
+			<div class="row">
+				<%= data('I - Encargado', con.encargado,'col-xs-12') %>
+			</div>
+
+			<ul class="nav nav-tabs">
+				<li><a href="#con-ped-<%=con.id%>-val-des">II - Valoración del Desarrollo</a></li>
+				<li><a href="#con-ped-<%=con.id%>-ali-act">III - Alimentación Actual</a></li>
+				<li><a href="#con-ped-<%=con.id%>-sig-sin">IV - Signos y/o Síntomas</a></li>
+				<li><a href="#con-ped-<%=con.id%>-dat-ant">V - Datos Antropométricos</a></li>
+			</ul>
+			<div class="tabs-content">
+				<div id="con-ped-<%=con.id%>-val-des">
+					<div class="row">
+						<%= data('Sostén Cefálico', con.sosten_cefalico,'col-xs-12') %>
+					</div>
+					<div class="row">
+						<%= data('Se sentó a los', con.sento,'col-xs-4') %>
+						<%= data('Se paró a los', con.paro,'col-xs-4') %>
+						<%= data('Caminó a los', con.camino,'col-xs-4') %>
+					</div>
+					<div class="row">
+						<%= data('¿Busca Sonido?', con.busca_sonido,'col-xs-4') %>
+						<%= data('¿Emite Sonido?', con.emite_sonido,'col-xs-4') %>
+						<%= data('¿Rie - Llora?', con.rie_llora,'col-xs-4') %>
+					</div>
+					<div class="row">
+						<%= data('¿Sigue la luz u objetos coloridos?', con.sigue_luz,'col-xs-5') %>
+						<%= data('¿Mastica - Deglute?', con.mastica_deglute,'col-xs-7') %>
+					</div>
+					<div class="row">
+						<%= data('Habilidades presentes y/o ausentes para la edad', con.habilidades,'col-xs-12') %>
+					</div>
+					<div class="row">
+						<%= data_text('Otros', con.otros,'col-xs-12') %>
+					</div>
+				</div>
+
+				<div id="con-ped-<%=con.id%>-ali-act">
+					<div class="row">
+						<%= data('Desayuno', con.desayuno,'col-xs-12') %>
+					</div>
+					<div class="row">
+						<%= data('Media Mañana', con.media_manana,'col-xs-12') %>
+					</div>
+					<div class="row">
+						<%= data('Almuerzo', con.almuerzo,'col-xs-12') %>
+					</div>
+					<div class="row">
+						<%= data('Merienda', con.merienda,'col-xs-12') %>
+					</div>
+					<div class="row">
+						<%= data('Cena', con.cena,'col-xs-12') %>
+					</div>
+				</div>
+
+				<div id="con-ped-<%=con.id%>-sig-sin">
+					<div class="row">
+						<%= data('Diarrea', con.diarrea,'col-xs-4') %>
+						<%= data('Vómitos', con.vomitos,'col-xs-4') %>
+						<%= data('Fiebre', con.fiebre,'col-xs-4') %>
+					</div>
+					<div class="row">
+						<%= data('Problemas Respiratorios', con.problemas_respiratorios,'col-xs-6') %>
+						<%= data('Distención abdominal', con.distension_abdominal,'col-xs-6') %>
+					</div>
+					<div class="row">
+						<%= data('Constipación', con.constipacion,'col-xs-4') %>
+						<%= data('Orina', con.orina,'col-xs-4') %>
+						<%= data('Sudor', con.sudor,'col-xs-4') %>
+					</div>
+					<div class="row">
+						<%= data('Otros', con.otros2,'col-xs-12') %>
+					</div>
+				</div>
+
+				<div id="con-ped-<%=con.id%>-dat-ant">
+					<div class="row">
+						<%= data('Talla', con.talla,'col-xs-6') %>
+						<%= data('Peso', con.peso,'col-xs-6') %>
+					</div>
+					<div class="row">
+						<%= data('PC', con.pc,'col-xs-4') %>
+						<%= data('IMC', con.imc,'col-xs-4') %>
+						<%= data('CM', con.cm,'col-xs-4') %>
+					</div>
+				</div>
+			</div>
+			<br>
+			<div class="row">
+				<%= data_text('VI - Diagnóstico', con.diagnostico,'col-xs-12') %>
+			</div>
+		</div>
+	<% end %>
+</div>
+

@@ -1,0 +1,23 @@
+<% if consultas.blank? %>
+   <%= panel_head("#{num} - CONSULTAS (No tiene)") %>
+<% else %>
+   <%= panel_head("#{num} - CONSULTAS") %>
+   <% i = consultas.size %>
+
+   <% consultas.each do |consulta| %>
+      <%= panel_begin("#{consulta.doctor_full_name} <label class='pull-right'>Consulta Nº #{i} - #{date(consulta.fecha)}</label>")%>
+         <div class="row">
+            <%= h_data_text('Motivo de Consulta', consulta.motivo_consulta,'col-xs-12') %>
+
+            <%= h_data_text('Evaluación', consulta.evaluacion,'col-xs-6') %>
+            <%= h_data_text('Tratamiento', consulta.tratamiento,'col-xs-6') %>
+
+            <%= h_data_text('Observaciones', consulta.observaciones,'col-xs-12') %>
+         </div>
+      <%= panel_end %>
+      <% i = i - 1 %>
+   <% end %>
+<% end %>
+
+
+

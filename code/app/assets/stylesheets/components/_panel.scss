@@ -1,0 +1,48 @@
+/* Este archivo define un panel
+   Esta es una versión propia, no se usa el panel de bootstrap porque relantiza la impresión del pdf
+*/
+$panel-border-color: #AAAAAA;
+$panel-background-color: #E7E7E7;//#DDD
+
+.panel-custom{
+   border: 1px solid $panel-border-color;
+   border-radius: 4px;
+   margin-bottom: 20px;
+    .panel-heading{
+      border-bottom: 1px solid $panel-border-color;
+      background-color: $panel-background-color;
+      color: #666666;
+      padding: 5px 10px;
+      font-size: 16px;
+      cursor: pointer;
+      &:hover{
+        color: $common-color;
+      }
+    }
+
+    .panel-empty{
+      background-color: #CCC;
+      cursor: auto;
+      color: #666666;
+      &:hover{
+        color: #666666;
+      }
+    }
+
+    .panel-body{
+      display: none;
+      h5{
+        font-weight: bold;
+        color: #555555;
+      }
+      h4{
+        color: gray;
+        font-size: 16px;
+      }
+      hr {
+        margin-top: 5px;
+        margin-bottom: 10px;
+        //border-top: 1px solid $panel-border-color;
+      }
+    }
+}

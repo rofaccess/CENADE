@@ -1,0 +1,96 @@
+<h4 class="title">REGISTRO DE EMPLEADO</h4>
+
+<h4>Datos Personales</h4>
+<hr>
+
+<div class="row">
+	<div class="form-group col-xs-8">
+		<label class="control-label">Nombre y Apellido</label>
+		<div class="data"> <%=@empleado.persona_full_name%> </div>
+	</div>
+
+	<div class="form-group col-xs-2">
+		<label class="control-label">CI</label>
+		<div class="data"> <%=@empleado.persona_ci%> </div>
+	</div>
+
+	<div class="form-group col-xs-2">
+		<label class="control-label">RUC</label>
+		<div class="data"> <%=@empleado.persona_ruc%> </div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="form-group col-xs-3">
+		<label class="control-label">Fecha de Nac.</label>
+		<div class="data"> <%=Formatter.format_date(@empleado.persona_fecha_nacimiento)%> </div>
+	</div>
+
+	<div class="form-group col-xs-1">
+		<label class="control-label">Edad</label>
+		<div class="data"> <%=@empleado.persona_edad%> </div>
+	</div>
+
+	<div class="form-group col-xs-2">
+		<label class="control-label">Sexo</label>
+		<div class="data"> <%=@empleado.persona_sexo%> </div>
+	</div>
+
+	<div class="form-group col-xs-3">
+		<label class="control-label">Estado Civil</label>
+		<div class="data"> <%=@empleado.persona_estado_civil_descripcion%> </div>
+	</div>
+
+	<div class="form-group col-xs-3">
+		<label class="control-label">Nacionalidad</label>
+		<div class="data"> <%=@empleado.persona_nacionalidad%> </div>
+	</div>
+</div>
+
+<h4>Datos de Contacto</h4>
+<hr>
+
+<div class="row">
+	<div class="form-group col-xs-12">
+		<label class="control-label">Dirección</label>
+		<div class="data"> <%=@empleado.persona_direccion%> </div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="form-group col-xs-4">
+		<label class="control-label">Teléfono</label>
+		<div class="data"> <%=@empleado.persona_telefono%> </div>
+	</div>
+
+	<div class="form-group col-xs-8">
+		<label class="control-label">Email</label>
+		<div class="data"> <%=@empleado.persona_email%> </div>
+	</div>
+</div>
+
+<h4>Datos Laborales</h4>
+<hr>
+
+<div class="row">
+	<div class="form-group col-xs-5">
+		<label class="control-label">Cargo</label>
+		<div class="data"> <%=@empleado.cargo%> </div>
+	</div>
+
+	<div class="form-group col-xs-2">
+		<label class="control-label">Abr. Prof.</label>
+		<div class="data"> <%=@empleado.abr_profesion%> </div>
+	</div>
+
+	<% unless @empleado.type == 'Funcionario' %>
+		<div class="form-group col-xs-3">
+			<label class="control-label">Area</label>
+			<div class="data"> <%=@empleado.area_nombre%> </div>
+		</div>
+	<% end %>
+
+
+</div>
+
+

@@ -1,0 +1,16 @@
+<div class="row">
+  <%= data('Profesional de la Salud', ficha_ped.doctor_full_name,'col-xs-9') %>
+  <%= data('Fecha', date(ficha_ped.fecha),'col-xs-3') %>
+</div>
+<div class="row">
+  <%= data('Control Prenatal', ficha_ped.control_embarazo,'col-xs-9') %>
+  <%= data('Edad Gestacional', ficha_ped.edad_gestacional,'col-xs-3') %>
+
+  <%= data('Tipo de Parto', ficha_ped.tipo_parto,'col-xs-6') %>
+  <%= data('Peso al Nacer', ficha_ped.peso_nacer,'col-xs-3') %>
+  <%= data('APGAR', ficha_ped.apgar,'col-xs-3') %>
+
+  <%= data('Antecedentes Familiares', ficha_ped.antecedentes_familiares,'col-xs-12') %>
+
+  <%= data_text('Condiciones Generales del Recién Nacido', ficha_ped.condicion_general,'col-xs-12') %>
+</div>

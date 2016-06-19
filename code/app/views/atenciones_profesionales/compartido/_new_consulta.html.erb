@@ -1,0 +1,40 @@
+<%= simple_form_for Consulta.new, url: atencion_create_consulta_path(turno_id: turno.id) , remote: true do |consulta|%>
+  <%= consulta.hidden_field(:paciente_id, value: turno.paciente.id) %>
+  <%= consulta.hidden_field(:area_id, value: turno.area.id) %>
+  <div class="row">
+    <%unless current_user.es_doctor?%>
+      <%doctores = Doctor.get_all_area(turno.area_nombre).collect {|a| [a.full_name, a.id]}%>
+      <%= consulta.input :doctor_id, collection: doctores, label: '* Prof. de la Salud', wrapper_html: { class: 'col-xs-8' }, input_html:  { class: 'required select2'} %>
+    <%else%>
+      <%= data('Profesional de la Salud',current_user.empleado.persona_full_name,'col-xs-8') %>
+      <%= consulta.hidden_field(:doctor_id, :value => current_user.empleado.id) %>
+    <%end%>
+
+    <%= consulta.input :fecha, as: :string, label: '* Fecha', wrapper_html: { class: 'col-xs-4'}, input_html: { class: 'datepicker dateLessSystemDate required', maxLength: Domain::FECHA, value: date(Date.today)}, required: false %>
+  </div>
+  <div class="row">
+    <%= consulta.input :motivo_consulta, as: :text, label: 'Motivo de Consulta', wrapper_html: { class: 'col-xs-12'}, input_html: { maxLength: Domain::DESC300, class: 'biglength', rows: "2"} %>
+  </div>
+
+  <div class="row">
+    <%= consulta.input :evaluacion, as: :text, label: 'Evaluación', wrapper_html: { class: 'col-xs-6'}, input_html: { maxLength: Domain::DESC300, class: 'biglength', rows: "5"} %>
+
+    <%= consulta.input :tratamiento, as: :text, label: 'Tratamiento', wrapper_html: { class: 'col-xs-6'}, input_html: { maxLength: Domain::DESC600, class: 'maxlengthBig2', rows: "5"} %>
+  </div>
+
+  <div class="row">
+   <%= consulta.input :observaciones, as: :text, label: 'Observaciones', wrapper_html: { class: 'col-xs-12'}, input_html: { maxLength: Domain::DESC250, class: 'longString', rows: "2"} %>
+ </div>
+  <div class="form-button">
+    <%= consulta.submit 'Guardar', class: 'btn btn-custom',data: {disable_with: "Guardando..."}%>
+  </div>
+<% end %>
+
+<script type="text/javascript">
+  <%unless current_user.es_doctor?%>
+    $('#consulta_doctor_id').val($('#doctor_id').val());
+    APP.initSelect2({element: '#consulta_doctor_id', placeholder: 'Seleccione un Profesional'});
+  <% end %>
+  APP.initDatepicker();
+  $('#new_consulta').validate();
+</script>

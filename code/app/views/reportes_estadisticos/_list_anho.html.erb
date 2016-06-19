@@ -1,0 +1,38 @@
+
+<table id="table-reporte-anho" class= "table table-condensed">
+  <thead>
+    <tr class="active">
+      <th>Profesional de la Salud</th>
+      <th>Cupo Límite</th>
+      <th>Cantidad Atentidos</th>
+      <th>Año</th>
+      <th>Area</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% reportes.each do |reporte| %>
+    <tr>
+      <td ><%=reporte.doctor_persona_full_name %> </td>
+      <td ><%=reporte.cantidad_por_aten%></td>
+      <td ><%=reporte.cantidad_por_anho.nil? ? '0' : reporte.cantidad_por_anho%></td>
+      <td><%=reporte.anho%></td>
+      <td><%=reporte.area_nombre%></td>
+
+
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<script type="text/javascript">
+      APP.initImprimir("<%= params[:q].nil? ? '' : '?'+params[:q].to_query('q')%>");
+      reportesUI.initScript();
+      <% if !flash.notice.blank? %>
+        var n = noty({text: '<%=notice%>', type: 'success'});
+      <% end %>
+      <% if !flash.alert.blank?%>
+        var n = noty({text: '<%=alert%>', type: 'error'});
+      <% end %>
+
+</script>

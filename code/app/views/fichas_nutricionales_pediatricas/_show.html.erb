@@ -1,0 +1,96 @@
+<div class="page-title page-title-con-sidebar">
+  Ficha de <%= nutri_pediatrica.paciente_persona_full_name%>
+
+  <div class="tool tool-sin-buscador">
+    <%= link_to '<i class="fa fa-list data-toggle="tooltip" title="Lista de Fichas"></i> '.html_safe, fichas_nutricionales_pediatricas_path %>
+
+    <%= link_to '<i class="fa fa-plus-square" data-toggle="tooltip" title="Nueva Ficha"></i> '.html_safe, new_ficha_nutricional_pediatrica_path, remote: true %>
+
+    <%= link_to '<i class="fa fa-edit" data-toggle="tooltip" title="Editar Ficha"></i> '.html_safe, edit_ficha_nutricional_pediatrica_path(nutri_pediatrica), remote:true%>
+
+    <%= link_to '<i class="fa fa-print" data-toggle="tooltip" title="Imprimir Ficha"></i> '.html_safe, fichas_nutricionales_pediatricas_print_ficha_path(ficha_id: nutri_pediatrica.id, :format => :pdf), target: '_blank'%>
+
+  </div>
+
+</div>
+<div class="content">
+  <div class="form-content">
+    <%= simple_form_for nutri_pediatrica, html: {class: 'form-ficha'} do |ficha|%>
+
+
+    <h4 class="titulo-ficha">FICHA NUTRICIONAL PEDIÁTRICA</h4>
+
+    <div class="row">
+      <h4 class="col-xs-9"><strong>Profesional de la Salud: </strong> <%= nutri_pediatrica.doctor.abr_profesion+' '+nutri_pediatrica.doctor.persona_full_name%> </h4>
+
+      <h4 class="col-xs-3"><strong> Fecha: </strong> <%= Formatter.format_date(nutri_pediatrica.fecha)%> </h4>
+    </div>
+
+      <%= render 'form_paciente', paciente: paciente %>
+
+    <h4>I- Antecedentes Prenatal</h4>
+      <hr>
+      <div class="row">
+      <%= ficha.input :problema_embarazo, as: :text, label:  titulos_largos.first.titulo, wrapper_html: { class: 'col-xs-12'}, input_html: {disabled: true} %>
+    </div>
+    <div class="row">
+      <%= ficha.input :control_prenatal, label:  titulos_largos.find(2).titulo, wrapper_html: { class: 'col-xs-12'}, input_html: { disabled: true} %>
+    </div>
+    <div class="row">
+      <%= ficha.input :alimentacion_embarazo, as: :text, label:  titulos_largos.find(3).titulo, wrapper_html: { class: 'col-xs-12'}, input_html: { disabled: true} %>
+    </div>
+    <div class="row">
+      <%= ficha.input :otros_datos, label:  'Otros datos', wrapper_html: { class: 'col-xs-12'}, input_html: { disabled: true} %>
+    </div>
+    <h4>II- Antecedentes del Parto</h4>
+      <hr>
+      <div class="row">
+      <%= ficha.input :parto_vaginal_cesarea, label: '¿Tuvo parto vaginal o cesárea?' , wrapper_html: { class: 'col-xs-6'}, input_html: { disabled: true} %>
+      <%= ficha.input :termino_pretermino, label: '¿Fue de término o pretermino?' , wrapper_html: { class: 'col-xs-6'}, input_html: {disabled: true} %>
+    </div>
+    <div class="row">
+      <%= ficha.input :lugar_parto, label: 'Lugar del Parto' , wrapper_html: { class: 'col-xs-7'}, input_html: { disabled: true} %>
+      <%= ficha.input :como_fue_parto, label: '¿Cómo fue el parto?' , wrapper_html: { class: 'col-xs-5'}, input_html: { disabled: true} %>
+    </div>
+    <h4>III- Antecedentes Postnatal</h4>
+      <hr>
+
+      <div class="row">
+      <%= ficha.input :asfixia_lloro, as: :text, label: titulos_largos.find(4).titulo  , wrapper_html: { class: 'col-xs-12'}, input_html: { disabled: true} %>
+    </div>
+    <div class="row">
+      <%= ficha.input :tomo_pecho, as: :text, label: titulos_largos.find(5).titulo , wrapper_html: { class: 'col-xs-12'}, input_html: { disabled: true} %>
+
+    </div>
+    <div class="row">
+      <%= ficha.input :peso_nacimiento, label: 'Peso de nacimiento', wrapper_html: { class: 'col-xs-4'}, input_html: {disabled: true} %>
+      <%= ficha.input :alimentacion_complementaria, label: titulos_largos.find(6).titulo, wrapper_html: { class: 'col-xs-8'}, input_html: {disabled: true} %>
+
+    </div>
+    <div class="row">
+      <div class="col-xs-8">
+         <h4>Consultas</h4>
+      </div>
+      <div class="col-xs-4">
+         <%= link_to "Agregar Consulta", consultas_nutricionales_pediatricas_from_ficha_path(ficha: nutri_pediatrica.id), class: "btn btn-custom", remote: true %>
+         <%= link_to 'Ver Historial Clínico', historial_nutricional_path(nutri_pediatrica.paciente_id), class: "btn btn-custom  pull-right", target: '_blank'%>
+      </div>
+    </div>
+    <hr>
+    <%=render 'consultas_nutricionales_pediatricas/consultas_tabs', consultas: consultas%>
+
+  <% end %>
+</div>
+</div>
+
+<script type="text/javascript">
+
+  consultasUI.initConsultasTab();
+  <% if !flash.notice.blank? %>
+    var n = noty({text: '<%=notice%>', type: 'success'});
+  <% end %>
+
+  <% if !flash.alert.blank?%>
+    var n = noty({text: '<%=alert%>', type: 'error'});
+  <% end %>
+</script>

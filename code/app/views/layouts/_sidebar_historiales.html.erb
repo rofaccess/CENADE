@@ -1,0 +1,39 @@
+<div id="sidebar-wrapper">
+    <ul class="sidebar-nav">
+        <li class="sidebar-brand">
+            AREAS
+        </li>
+
+        <li class="<%= current_sidebar([historiales_clinicos_path])%>">
+            <%=link_to 'Clínico', historiales_clinicos_path %>
+        </li>
+
+        <li class="<%= current_sidebar([historiales_fisioterapeuticos_path])%>">
+            <%=link_to 'Fisioterapia', historiales_fisioterapeuticos_path %>
+        </li>
+
+        <li class="<%= current_sidebar([historiales_fonoaudiologicos_path])%>">
+            <%=link_to 'Fonoaudiología', historiales_fonoaudiologicos_path %>
+        </li>
+
+        <li class="<%= current_sidebar([historiales_neurologicos_path])%>">
+            <%=link_to 'Neurología', historiales_neurologicos_path %>
+        </li>
+
+        <li class="<%= current_sidebar([historiales_nutricionales_path])%>">
+            <%=link_to 'Nutrición', historiales_nutricionales_path %>
+        </li>
+
+        <li class="<%= current_sidebar([historiales_odontologicos_path])%>">
+            <%=link_to 'Odontología', historiales_odontologicos_path %>
+        </li>
+
+        <li class="<%= current_sidebar([historiales_pediatricos_path])%>">
+            <%=link_to 'Pediatría', historiales_pediatricos_path %>
+        </li>
+
+        <li class="<%= current_sidebar([historiales_psicopedagogicos_path])%>">
+            <%=link_to 'Psicopedagogía', historiales_psicopedagogicos_path %>
+        </li>
+    </ul>
+</div>

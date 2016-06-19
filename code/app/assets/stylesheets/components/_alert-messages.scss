@@ -1,0 +1,65 @@
+/*flash*/
+.message {
+    color: white;
+    display: table;
+    padding: 5px;
+
+    .icon-left{
+        display: table-cell;
+        vertical-align: middle;
+        font-size: 18pt;
+    }
+    .message-content{
+        padding: 5px;
+        font-size:14px;
+        text-align: center;
+    }
+
+    .close-message{
+        display: table-cell;
+        vertical-align: middle;
+        cursor: pointer;
+    }
+}
+
+.message-info {
+    //color: #888;
+    background-color: #9DE1FE;
+    border-color: #9DE1FE;
+}
+
+.message-warning {
+    background-color: #FF7043;
+    border-color: #FF7043;
+    //color:white;
+}
+
+.alert-error {
+    background-color: #f2dede;
+    border-color: #eed3d7;
+    color: #b94a48;
+    text-align: left;
+ }
+
+.alert-alert {
+    background-color: #df3a38;
+    border-color: #eed3d7;
+    color: white;
+    text-align: left;
+ }
+
+.alert-success {
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+    color: #468847;
+    text-align: left;
+ }
+
+.alert-notice {
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+    color: #3c763d;
+    text-align: left;
+ }
+
+

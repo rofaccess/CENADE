@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+
+  <head>
+    <meta charset='utf-8'/>
+    <%=wicked_pdf_stylesheet_link_tag 'layouts/pdf' %>
+
+    <title> CENADE </title>
+  </head>
+  <body>
+    <%= render 'layouts/pdf_header.html.erb', configuracion_general: @configuracion_general%>
+    </div>
+    <div id="content">
+      <%= yield %>
+    </div>
+
+
+  </body>
+</html>

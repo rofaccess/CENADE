@@ -1,0 +1,22 @@
+<h4>Datos del Paciente</h4>
+<hr>
+
+<%= simple_fields_for :paciente do |pac| %>
+    <div class="row">
+    	<%= pac.input :nombre, as: :string, label: 'Nombres', wrapper_html: { class: 'col-xs-4'}, input_html: {value: paciente.persona_nombre, disabled: true}, required: false %>
+
+    	<%= pac.input :apellido, as: :string, label: 'Apellidos', wrapper_html: { class: 'col-xs-4'}, input_html: {value: paciente.persona_apellido, disabled: true}, required: false %>
+
+
+    	<%= pac.input :fecha_nacimiento, as: :string, label: 'Fecha de Nac.', wrapper_html: { class: 'col-xs-2'}, input_html: {value: Formatter.format_date(paciente.persona_fecha_nacimiento), disabled: true}, required: false %>
+
+      <%= pac.input :edad, as: :string, wrapper_html: { class: 'col-xs-2'}, input_html: {value: paciente.persona_edad, disabled: true}, required: false %>
+  	</div>
+
+  	<div class="row">
+		<%= pac.input :telefono, as: :string, wrapper_html: { class: 'col-xs-3'}, input_html: {value: paciente.persona_telefono, disabled: true}, required: false %>
+
+  		<%= pac.input :apellido, as: :string, label: 'Dirección', wrapper_html: { class: 'col-xs-9'}, input_html: {value: paciente.persona_direccion, disabled: true}, required: false %>
+  	</div>
+<% end %>
+

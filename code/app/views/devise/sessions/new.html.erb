@@ -1,33 +1,32 @@
   <div class="container">
 
   <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {class: 'form-signin'}) do |f| %>
-    <h2 class= "form-signin-heading"><span class="fa fa-wheelchair"></span></h2>
+    <div class="form-signin-heading">
+    <% img= Configuracion.first.empresa_logo %>
+    <%= image_tag(img.url.nil? ? 'logo-cenade.png' : img, size: "100x100", class:'img-polaroid img-' ,style:"border-radius:50%;") %>
+  </div>
     <h2 class= "form-signin-heading"><%= t('.sign_in', :default => "Sign in") %></h2>
 
-    <%= devise_error_messages! %>
+    <!-- <%= devise_error_messages! %> -->
     <%= render 'layouts/messages' %>
-    
+
     <div class="input-group">
         <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
-        	<%= f.text_field :username, placeholder: 'Nombre de usuario', class: 'form-control input-lg required clear', autofocus: true, maxLength: Domain::NOMBRE %>      
-      </div>	
+        	<%= f.text_field :username, placeholder: 'Nombre de usuario', class: 'form-control input-lg', autofocus: true, maxLength: Domain::NOMBRE %>
+      </div>
       <div id="username-error"></div>
-      
+
       <div class="input-group">
           <span class="input-group-addon"><i class="fa fa-key fa-fw"></i></span>
-        	<%= f.password_field :password, placeholder: 'Contraseña', class: 'form-control input-lg required clear passwordLength passwordCheck', maxLength: Domain::CONTRASEÑA %>      
+        	<%= f.password_field :password, placeholder: 'Contraseña', class: 'form-control input-lg passwordLength passwordCheck', maxLength: Domain::CONTRASEÑA %>
       </div>
       <div id="password-error"></div>
-   
-    <% if devise_mapping.rememberable? -%>
-      <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
-    <% end -%>
 
-    <div><%= f.submit t('.sign_in', :default => "Sign in"), :class => 'btn btn-lg btn-block' %></div>
+    <!-- <% if devise_mapping.rememberable? -%>
+      <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
+    <% end -%> -->
+
+    <div><%= f.submit t('.sign_in', :default => "Sign in"), :class => 'btn btn-custom btn-lg btn-block' %></div>
   <% end %>
 
   </div>
-
-  <script type='text/javascript'>
-  			$('#new_user').last().validate();
-  		</script>

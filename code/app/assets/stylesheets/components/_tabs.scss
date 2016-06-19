@@ -1,0 +1,36 @@
+/*Style para tabs de consultas*/
+.tabscontent > div, .tab-content > div, .tabs-content > div {
+  padding: 20px;
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+.tabscontent + a {
+  display: inline-block;
+  margin-top: 20px;
+}
+.nav-tabs li.active a {
+  pointer-events: none;
+}
+
+.nav-tabs {
+  border-bottom: 1px solid $nav-tabs-border-color;
+   li {
+      a {
+         border: 1px solid $nav-tabs-border-color;
+         border-radius: $border-radius-base $border-radius-base 0 0;
+         color: $common-color;
+      }
+   }
+
+   .tab-head-empty{
+      a{
+         color: #666;
+         background-color: #CCC;
+         &:hover, &:focus{
+            background-color: #CCC;
+            cursor: default;
+         }
+      }
+   }
+}

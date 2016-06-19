@@ -1,0 +1,29 @@
+<% if encargados.nil? %>
+   <%= panel_head('II - DATOS DE LOS PADRES Y/O ENCARGADO (No tiene)') %>
+<% else %>
+   <%= panel_begin('II - DATOS DE LOS PADRES Y/O ENCARGADO')%>
+
+      <div class="row">
+         <%= h_data('Nombre(s) y Apellido(s) del Padre', encargados.padre_nombre,'col-xs-10') %>
+         <%= h_data('Edad', encargados.padre_edad,'col-xs-2') %>
+      </div>
+      <div class="row">
+         <%= h_data('Profesión Actual y/o Anterior',encargados.padre_prof_act_ant,'col-xs-12') %>
+      </div>
+      <div class="row top-border">
+         <%= h_data('Nombre(s) y Apellido(s) de la Madre', encargados.madre_nombre,'col-xs-8') %>
+         <%= h_data('Edad', encargados.madre_edad,'col-xs-2') %>
+         <%= h_data('Hijos', encargados.madre_num_hijos,'col-xs-2') %>
+      </div>
+      <div class="row">
+         <%= h_data('Profesión Actual y/o Anterior',encargados.madre_prof_act_ant,'col-xs-12') %>
+      </div>
+      <div class="row top-border">
+         <%= h_data('Nombre(s) y Apellido(s) del Tutor o Encargado', encargados.encargado_nombre,'col-xs-10') %>
+         <%= h_data('Edad', encargados.encargado_edad,'col-xs-2') %>
+      </div>
+      <div class="row">
+         <%= h_data('Profesión Actual y/o Anterior',encargados.encargado_prof_act_ant,'col-xs-12') %>
+      </div>
+   <%= panel_end %>
+<% end %>

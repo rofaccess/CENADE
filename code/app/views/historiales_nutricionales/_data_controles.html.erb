@@ -1,0 +1,20 @@
+<% if controles.blank? %>
+   <%= panel_head("VII - CONTROLES (No tiene)") %>
+<% else %>
+   <%= panel_begin("VII - CONTROLES") %>
+   <% i = controles.size %>
+
+   <% controles.each do |control| %>
+      <%= panel_begin("#{control.doctor_full_name} <div class='pull-right'>Control Nº #{i} - #{date(control.fecha)}</div>")%>
+
+         <h4>Datos de Control</h4>
+         <hr>
+         <div class="row">
+            <%= h_data_text('Tratamiento', control.tratamiento,'col-xs-12') %>
+            <%= h_data_text('Observaciones', control.observaciones,'col-xs-12') %>
+         </div>
+      <%= panel_end %>
+      <% i = i - 1 %>
+   <% end %>
+   <%= panel_end %>
+<% end %>

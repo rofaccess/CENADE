@@ -1,0 +1,66 @@
+#doctor_id{
+   width: 220px;
+}
+
+.select-doctor-sidebar{
+   margin-top: 5px;
+}
+
+.icon-atendido{
+   color: #23C069;
+   float: right;
+   font-size: 20px;
+}
+
+.icon-pendiente{
+   color: #CCC;
+   float: right;
+   font-size: 20px;
+   &:hover{
+      color: #23C069;
+   }
+}
+
+.atencion-content{
+   background: white;
+   padding: 10px 20px 30px 20px; //Top Right Bottom Left
+
+   .all-border{
+      background-color: #EFEFEF;
+      border: 1px solid #CCC;
+      color: #555;
+      min-height: 34px;
+      padding: 6px 12px;
+   }
+
+   .control-label{
+      font-weight: normal;
+    }
+
+   .panel-custom{
+      border: none;
+      .panel-heading{
+        border: none;
+      }
+      .panel-body{
+        padding: 10px 0px 0px 0px; //Top Right Bottom Left
+        //display: inherit;
+
+        .control-label{
+          font-weight: normal;
+        }
+      }
+   }
+   .form-button{
+      //text-align: right;
+   }
+}
+
+.atencion-title{
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333333;
+  font-size: 20px;
+  font-weight: bold;
+}
+

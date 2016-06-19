@@ -1,0 +1,5 @@
+<%= render 'form', consulta: @consulta, paciente: @paciente,doctores: @doctores, area: @area, from_ficha: false,titulos_largos: @titulos_largos %>
+
+<script type="text/javascript">
+  $('.ficha-id').val(<%=@paciente.ficha_odontologica.blank? ? '' : @paciente.ficha_odontologica.id%>);
+</script>

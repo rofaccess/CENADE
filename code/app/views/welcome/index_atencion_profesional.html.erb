@@ -1,0 +1,17 @@
+<% @submenu_layout = 'layouts/submenu_fichas_consultas' %>
+<% @sidebar_layout = 'layouts/sidebar_atencion_profesional' %>
+
+<div class="page-title">
+</div>
+
+<div class="content">
+   <div class="fichas-consultas-content">
+      <h1>Bienvenido a la sección Atención Profesional</h1>
+      <% if current_user.empleado_type == 'Doctor' %>
+         <h3>El panel lateral lista los pacientes que sacaron turno con usted en la fecha especificada </h3>
+      <% else %>
+         <h3>Seleccione un área y un profesional de la salud </h3>
+         <h3> El panel lateral lista los pacientes que sacaron turno en la fecha especificada</h3>
+      <% end %>
+   </div>
+</div>

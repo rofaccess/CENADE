@@ -1,0 +1,5 @@
+<%= render 'form', consulta: @consulta, paciente: @paciente, doctores: @doctores, area: @area, from_ficha: false %>
+
+<script type="text/javascript">
+  $('.ficha-id').val(<%=@paciente.ficha_nutricional_pediatrica.blank? ? '' : @paciente.ficha_nutricional_pediatrica.id%>);
+</script>

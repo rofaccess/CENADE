@@ -1,0 +1,49 @@
+
+<table class= "table table-condensed">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Nombre</th>
+      <th>Apellido</th>
+      <th>C.I</th>
+      <th>Direccion</th>
+      <th class="col-xs-2">Telefono</th>
+      <th class="col-xs-2">Fec. de Ingreso</th>
+      <th></th>
+    </tr>
+  </thead>
+  <% if pacientes.blank? %>
+    <tfoot>
+      <tr>
+        <th colspan="8" scope="col">No se encontraron coincidencias </th>
+      </tr>
+    </tfoot>
+   <% end %>
+  <tbody>
+    <%i=0%>
+    <% pacientes.each do |paciente| %>
+    <%i=i+1%>
+    <tr>
+      <td><%=i%></td>
+      <td><%=paciente.persona_nombre %></td>
+      <td><%=paciente.persona_apellido %></td>
+      <td><%=paciente.persona_ci %></td>
+      <td class="crop"><%=paciente.persona_direccion %></td>
+      <td><%=paciente.persona_telefono %></td>
+      <td><%=Formatter.format_date(paciente.fecha_ingreso) %></td>
+
+      <td class = "action">
+
+        <%= link_to '<i class="fa fa-eye fa-lg" data-toggle="tooltip" title="Ver Paciente"></i> '.html_safe, paciente_path(paciente), remote: true%>
+        <%= link_to '<i class="fa fa-edit fa-lg" data-toggle="tooltip" title="Editar Paciente"></i> '.html_safe, edit_paciente_path(paciente), remote: true%>
+        <%= link_to '<i class="fa fa-trash-o fa-lg" data-toggle="tooltip" title="Eliminar Paciente"></i>'.html_safe, paciente_path(paciente), method: 'delete', data: {confirm: "¿Desea eliminar al paciente #{paciente.persona_full_name}?"}%>
+
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<script type="text/javascript">
+  APP.initImprimir("<%= params[:q].nil? ? '' : '?'+params[:q].to_query('q')%>");
+</script>

@@ -1,0 +1,250 @@
+/* FUNCIONES GLOBALES */
+
+var pacientesUI = (function(){
+	return {
+
+		/* Inicia el buscador del select2 en el element dado, para buscar pacientes */
+		initBuscarPaciente: function(element) {
+			$(element).select2({
+				ajax: {
+					url: '/pacientes/buscar',
+					dataType: 'json',
+	                delay:300, //Tiempo de espera, antes de comenzar la búsqueda
+	                data: function(params){
+	                	return {
+	                		q: { persona_nombre_or_persona_apellido_or_persona_ci_cont: params.term },
+	                	};
+	                },
+
+	                processResults: function (data, params) {
+	                	return {
+	                		results: $.map( data.items, function(paciente, i) {
+	                			return {
+	                				id       : paciente.id,
+	                				text     : paciente.persona_full_name,
+	                				full_name: paciente.persona_full_name,
+	                				ci 		 :paciente.persona_ci
+	                			}
+	                		})
+	                	};
+	                },
+
+	                cache: true
+	            },
+	            placeholder: "Buscar por Nombre, Apellido o CI",
+	  			    //allowClear: true,    		    //Muestra un icono x para limpiar la opción seleccionada
+	            minimumInputLength: 2,			//Obliga a escribir un mímimo de dos caracteres antes de realizar la búsqueda
+	  			templateResult: formatPaciente, //formatPaciente es una función definida más abajo
+	  			escapeMarkup: function (markup) { return markup; }
+
+	  		});
+
+			/* Valida cuando se elige otro paciente en el element (select) dado */
+	  		$(element).on("change", function(){
+				$(this).valid();
+			});
+		},
+
+		/* Cuando se selecciona otro valor en el element (select) dado se ejecuta la acción
+		   get_paciente del controlador Pacientes, para que actualize los datos del paciente
+
+	        Recibe un objeto con:
+	        {
+	            element: el id o clase del objeto jquery Ej.: #select_paciente, .select-paciente
+	            root   : Indica desde donde se llamó a la acción get_paciente del controlador Pacientes
+	            con esto se sabrá donde está el js a ejecutar para recargar los datos del paciente.
+	        }
+    	*/
+		getPaciente: function(options){
+			$(options.element).on("change", function(){
+				$.ajax({
+
+                  url: "/pacientes/get_paciente",
+                  type: 'get',
+                  data: {
+                   	id : $(this).val(),
+                   	root: options.root
+                  },
+                  success: function(resp){
+
+                  }
+
+                });
+			});
+		},
+
+		/*
+	      Verifica que un ci especificado para un paciente no exista ya en la base de datos
+	      .ci        : es la clase del elemento (input) que contiene el ci
+	      .persona-id: es la clase del elemento (inputo) que contiene el id de la persona relacionada al paciente
+	    */
+	    checkPacienteCi: function(){
+	     	$.validator.addClassRules({
+	     		uniquePacienteCi: {
+	     			remote: {
+	     				url: "/pacientes/check_ci",
+	     				type: "get",
+	     				data: {
+	     					ci: function() {
+                                return $('.ci').val();
+                            },
+                            persona_id: function() {
+                                return $('.persona-id').val();
+                            }
+	     				}
+	     			}
+	     		}
+	     	});
+	    },
+	    /*
+	      Verifica si un paciente ya posee una ficha
+	      .paciente-id        : es la clase del elemento (input) que contiene el id del paciente
+	      .ficha-id			  : es la clase del elemento (inputo) que contiene el id de la persona relacionada al paciente
+	       checkPacienteHasUrl: la url del controlador y acción de ficha correspondiente, Ej.: Si se trata de crear una ficha fonoaudiologica
+	       la url corresponda a la acción checkPacienteHasFicha del controlador de ficha fonoaudilógica
+	    */
+	    checkPacienteHasFicha: function(checkPacienteHasFichaUrl){
+            $.validator.addClassRules({
+                uniquePacienteFicha: {
+                    remote: {
+                        url: checkPacienteHasFichaUrl,
+                        type: "get",
+                        data: {
+                            paciente_id: function() {
+                                return $( '.paciente-id' ).val();
+                            },
+                            idd: function() {
+                                return $('.ficha-id').val();
+                            }
+                        }
+                    }
+                }
+            });
+        },
+
+		/* Muestra los inputs para encargados dependiendo del checkbox
+		   .checkbox-encargado: es la clase del elemento que se usa como checkbox para mostrar y esconder los campos de encargado
+		*/
+		mostrarEncargados: function(){
+
+		   	if ($(".checkbox-encargado").is(":checked")){
+		   		tieneEncargados();
+		   	}else{
+		   		sinEncargados();
+		   	}
+
+		   	$(".checkbox-encargado").change(function() {
+		   		if(this.checked) {
+		   			tieneEncargados();
+		   		}else{
+		   			sinEncargados();
+		   		}
+		   	});
+	   	},
+
+	    // Para iniciar el script para el formulario de paciente
+	    initScript: function(){
+	     	esMenor();
+
+	     	pacientesUI.checkPacienteCi();
+	     	pacientesUI.mostrarEncargados();
+
+	     	// Script globales
+	     	APP.initDatepicker();
+	     	APP.initNumberOnly();
+	     	APP.initTelephoneOnly();
+	     	APP.initRucOnly();
+	     	APP.initCalculateAge({fecha_nacimiento: '.fecha-nacimiento', edad: '.edad'});
+
+	     	// Valida el formulario antes de enviarlo
+	     	$('.form-paciente').last().validate();
+	    }
+	};
+ }());
+
+/* FUNCIONES LOCALES */
+
+/*
+	Da un formato customizado a los datos recibidos	en initBuscarPaciente
+	El argumento recibido puede nombrarse de otra forma Ej. En vez de paciente usar patient
+*/
+function formatPaciente (paciente) {
+	if (!paciente.id) { return paciente.text; }
+
+	var $paciente = $('<span>' + paciente.full_name + '<br><span class="fa fa-credit-card"> </span>  ' + paciente.ci + '</span>');
+
+	return $paciente;
+};
+
+/*
+	.encargados    : es la clase del elemento (div) que contiene los campos de encargaodos
+ 	.dato-encargado: es la clase de los campos (input) correspondientes a los datos de encargados
+ */
+function tieneEncargados(){
+	$('.datos-encargados').show();
+	$('.dato-encargado').attr("disabled",false);
+
+	//Setea el campo borrar_encargado definido en el formulario
+	$('.borrar-encargado').attr("value","false");
+};
+
+/*
+	.encargados    : es la clase del elemento (div) que contiene los campos de encargaodos
+ 	.dato-encargado: es la clase de los campos (input) correspondientes a los datos de encargados
+ */
+function sinEncargados(){
+	$('.datos-encargados').hide();
+	$('.dato-encargado').attr("disabled",true);
+
+	//Setea el campo borrar_encargado definido en el formulario
+	$('.borrar-encargado').attr("value","true");
+};
+
+
+/* Si es menor, muestra los campos de encargado y obliga a que por lo menos uno de ellos se rellene */
+function esMenor(){
+
+	// Al mostrar el formulario de editar, si el paciente es menor se muestra el encargado
+	var estado_civil = $('.estado-civil option:selected').text();
+	if(estado_civil == 'Menor'){
+		$('.checkbox-encargado').prop('checked', true);
+	   	$('.checkbox-encargado').prop('disabled', true);
+	   	$('.alert').addClass('show');
+	   	pacientesUI.mostrarEncargados();
+	}
+
+	//Muestra el encargado cuando se setea el select de estado civil a menor
+	$('.estado-civil').on("change", function(){
+		estado_civil = $('.estado-civil option:selected').text();
+
+		if(estado_civil == 'Menor'){
+			$('.checkbox-encargado').prop('checked', true);
+			$('.checkbox-encargado').prop('disabled', true);
+			$('.alert').addClass('show');
+			pacientesUI.mostrarEncargados();
+		}else{
+			$('.checkbox-encargado').prop('disabled', false);
+			$('.alert').removeClass('show');
+		}
+	});
+
+	// Chequea que se  haya establecido un encargado antes de enviar el formulario
+	$('#new-paciente-submit').click(function(e){
+		// Controlar que se haya establecido por lo menos un nombre de encargado
+		if(!$('.form-paciente').valid()){return false;}
+		var estado_civil = $('.estado-civil option:selected').text();
+		var padre = $('#paciente_encargado_attributes_padre_nombre').val().length;
+		var madre = $('#paciente_encargado_attributes_madre_nombre').val().length;
+		var encargado = $('#paciente_encargado_attributes_encargado_nombre').val().length;
+
+		if(estado_civil == 'Menor'){
+			if( padre == 0 && madre == 0 && encargado == 0){
+				$('.alert').addClass('show');
+				return false;
+			}
+		}
+		// Enviar el formulario
+		$('.form-paciente').submit();
+		e.preventDefault();
+	});
+};

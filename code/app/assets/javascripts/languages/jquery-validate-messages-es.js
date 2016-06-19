@@ -4,13 +4,14 @@
  */
 (function ($) {
 	$.extend($.validator.messages, {
-		required: "Este campo es obligatorio.",
+		required: "Campo Obligatorio.",
+		uniqueRoleName: "El Rol ya existe ",
 		remote: "El Numero ingresado ya existe para este Proveedor.",
 		email: "Por favor, escribe una dirección de correo válida",
 		url: "Por favor, escribe una URL válida.",
 		date: "Por favor, escribe una fecha válida.",
 		dateISO: "Por favor, escribe una fecha (ISO) válida.",
-		dateITA: "Por favor, escribe una fecha (dd/mm/aaaa) válida.",
+		dateITA: "Fomato de Fecha (dd/mm/aaaa) válida.",
 		number: "Por favor, escribe un número entero válido.",
 		digits: "Por favor, escribe sólo dígitos.",
 		creditcard: "Por favor, escribe un número de tarjeta válido.",

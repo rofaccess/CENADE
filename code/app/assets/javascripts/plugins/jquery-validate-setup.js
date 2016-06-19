@@ -1,27 +1,41 @@
-// Configuraciones generales para las validaciones
+/* Configuraciones generales para las validaciones de Jquery Validate*/
 jQuery.validator.setDefaults({
 	errorElement:	'span',
-	errorClass:		'text-warning',
+	errorClass:		'has-error',
 	onfocusout: function(element) { $(element).valid(); },
 	highlight: function(element){
-		$(element).closest('.form-control').addClass('input-warning');
+		$(element).closest('.form-group').addClass('has-error');
+
+		/* Para los que no siguen el formato form-group > label, .form-control */
+		$(element).closest('.error-especial').addClass('has-error');
 	},
 	success: function(element){
-		$(element).closest('.form-group').removeClass('input-warning');
+		$(element).closest('.form-group').removeClass('has-error');
+
+		/* Para los que no siguen el formato form-group > label, .form-control */
+		$(element).closest('.error-especial').removeClass('has-error');
 	},
-	errorPlacement: function(error, element) {
-        if (element.attr("id") == "user_username" )  
-            error.appendTo('#username-error');
-        if (element.attr("id") == "user_password" )  
-            error.appendTo('#password-error');
-    }
+
+
+	errorPlacement: function (error, element) {
+
+	   	if (element.parent('.input-group').length) {
+	        error.insertAfter(element.parent());      // radio/checkbox?
+	    } else if (element.hasClass('select2')) {
+	        error.insertAfter(element.next('span'));  // select2
+	    } else {
+	        error.insertAfter(element);               // default
+	    }
+
+	}
 });
 
-
-// Reglas para las validaciones
+/* Reglas para las validaciones
+   Todas los identificadores de las reglas de validación tendrán el formato camello
+*/
 $.validator.addClassRules({
 	required: {
-		required: true
+		required: true,
 	},
 	date: {
 		dateITA: true
@@ -35,14 +49,68 @@ $.validator.addClassRules({
 	longString: {
 		maxlength: 250
 	},
-	
+
 	passwordLength: {
 		maxlength: 20,
 		minlength: 8
 	},
 
+	nameMinLength: {
+		minlength: 3
+	},
+
+	minLength2: {
+		minlength: 2
+	},
+
+	minLength3: {
+		minlength: 3
+	},
+
+	minLength4: {
+		minlength: 4
+	},
+
+	minLength8: {
+		minlength: 8
+	},
+
 	passwordCheck: {
 		passwordCheck: true
+	},
+
+	emailCheck: {
+		emailCheck: true
+	},
+	telCheck: {
+		telCheck: true
+	},
+	dateLessSystemDate: {
+		dateLessSystemDate: true
+	},
+	passwordEqual:{
+		equalTo: "#user_password"
+	},
+	horaCheck:{
+		hora:true
+	},
+	positiveNumber:{
+		positiveNumber:true
+	},
+
+	biglength: {
+		maxlength: 300
+	},
+
+	longString200: {
+		maxlength: 200
+	},
+
+	maxlengthBig: {
+		maxlength: 500
+	},
+	maxlengthBig2: {
+		maxlength: 600
 	}
 });
 
@@ -50,3 +118,28 @@ $.validator.addClassRules({
 $.validator.addMethod("passwordCheck",function(value,element){
                 return this.optional(element) || /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])/.test(value);
             },"La contraseña debe contener una combinación de números y letras (minúsculas y mayúsculas).");
+
+$.validator.addMethod("emailCheck",function(value,element){
+                return this.optional(element) || /^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i.test(value);
+            },"El correo debe tener un formato correo@servidor.com");
+
+$.validator.addMethod("telCheck",function(value,element){
+                return this.optional(element) || /^[\d\s()+-]+$/.test(value);
+            },"Debe tener el formato ej:(0982)256 974");
+
+$.validator.addMethod("hora", function(value, element){
+  return value.length == 0 || /^[0-9]{2}:[0-9]{2}$/i.test(value);},
+  "Formato hh:mm");
+
+$.validator.addMethod("positiveNumber", function (value, element){
+	 return Number(value) >= 0;}, 'Escriba un Nro. mayor o igual a cero');
+
+$.validator.addMethod("dateLessSystemDate", function(value, element) {
+  return this.optional(element) || checkDateLessSystemDate(value);
+}, jQuery.validator.format("La fecha debe ser menor o igual a la fecha del sistema"));
+
+
+/* Si la fecha especificada es menor o igual a la fecha del sistema devuelve true, caso contrario false */
+function checkDateLessSystemDate(date){
+    return APP.compareDate(APP.systemDate(),date);
+};

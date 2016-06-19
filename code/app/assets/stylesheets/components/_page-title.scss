@@ -1,0 +1,82 @@
+/* Define lo referente al aspecto del título de página Ej.: Turnos, y los iconos listar, editar, eliminar, etc.
+   que se encuentran a la derecha de ese título
+*/
+#principal-content {
+   .page-title {
+      position: fixed;
+      right: 0;
+      left: 0;
+      top: 55px; //cuando se tiene submenu
+      z-index: 1030;
+
+      background-color: #FEFEFE;
+      border-bottom: solid;
+      border-color: #CCCCCC;
+      font-size: 24px;
+      height: 50px;
+      font-weight: bold;
+      padding: 7px 20px 0px 50px; //Top Right Bottom Left
+      a {
+         margin-left: 13px;
+         color: #999999;
+         font-size: 26px;
+         text-decoration: none;
+         i.fa-plus-square, i.fa-search-plus, i.fa-print, i.fa-list,i.fa-list-ul, i.fa-trash-o, i.fa-edit, i.fa-check {
+            &:hover,
+            &:focus {
+               color: #24C1C1;
+            }
+         }
+      }
+   }
+
+   // Cuando se tiene el sidebar hay que agregar la clase page-title-con-sidebar al div de titulo de página
+   div.page-title-con-sidebar{
+      margin-left: 220px;
+   }
+
+   // Para que el page-title ocupe el 100% de la pantalla cuando desaparece el sidebar
+   @media(max-width:768px) {
+      div.page-title-con-sidebar {
+         margin-left: 0 !important;
+      }
+   }
+
+   // Cuando no se tiene submenu hay que agregar la siguiente clase, junto a page-title
+   div.page-title-sin-submenu{
+      top: 40px;
+   }
+}
+
+/* Establece parte del aspecto y posición de los botones presentes junto al page-title  */
+.tool {
+   float: right;
+   width: 55%;
+   font-size: 14px;
+   text-align: right;
+
+   /* Establece como se ve el input de búsqueda presente en los index junto al page-title */
+   form {
+      .input-group {
+         .form-control{
+            border-radius: 5px;
+            color: #999999;
+         }
+
+         .fa-search {
+            float: right;
+            margin-right: 6px;
+            margin-top: -27px;
+            position: relative;
+            z-index: 1000;
+            color: #D9D9D9;
+            font-size: 15pt;
+         }
+
+
+      }
+   }
+}
+.tool-sin-buscador{
+   width: auto;
+}

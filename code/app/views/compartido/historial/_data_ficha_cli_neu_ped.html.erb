@@ -1,0 +1,139 @@
+<% if ficha.nil? %>
+   <%= panel_head('III - FICHA (No tiene)') %>
+<% else %>
+   <%= panel_begin('III - FICHA') %>
+      <div class="row">
+         <%= h_data('Profesional de la Salud', ficha.doctor_full_name,'col-xs-9') %>
+         <%= h_data('Fecha', date(ficha.fecha),'col-xs-3') %>
+      </div>
+      <div class="row">
+         <%= h_data('P', ficha.p,'col-xs-2') %>
+         <%= h_data('A', ficha.a,'col-xs-2') %>
+         <%= h_data('PC', ficha.pc1,'col-xs-2') %>
+         <%= h_data('PT', ficha.pt1,'col-xs-2') %>
+         <%= h_data('PA', ficha.pa,'col-xs-2') %>
+      </div>
+      <div class="row">
+         <%= h_data('Control Cefálico - Control de Tronco - Equilibrio - Marcha', ficha.control,'col-xs-12') %>
+      </div>
+      <h4>Antecedentes Gestacionales y Obstétricos</h4>
+      <hr>
+      <div class="row">
+         <%= h_data('Gestación', ficha.gestacion,'col-xs-3') %>
+         <%= h_data('Paridad', ficha.paridad,'col-xs-3') %>
+         <%= h_data('Abortos', ficha.abortos,'col-xs-3') %>
+         <%= h_data('Nacidos Muertos', ficha.nacidos_muertos,'col-xs-3') %>
+      </div>
+      <div class="row">
+         <%= h_data('Gestaciones y Partos Anteriores', ficha.partos_anteriores,'col-xs-12') %>
+      </div>
+      <div class="row">
+         <%= h_data('G. Sanguíneo', ficha.gru_san_paciente,'col-xs-3') %>
+         <%= h_data('Rh', ficha.rh_paciente,'col-xs-2') %>
+         <%= h_data('Cooms', ficha.coombs,'col-xs-2') %>
+         <%= h_data('Padre G. Sanguíneo', ficha.gru_san_padre,'col-xs-3') %>
+         <%= h_data('Rh', ficha.rh_padre,'col-xs-2') %>
+      </div>
+      <h4>Gestación Actual</h4>
+      <hr>
+      <div class="row">
+         <%= h_data('F.U.M.', ficha.fum,'col-xs-3') %>
+         <%= h_data('FP', ficha.fp,'col-xs-3') %>
+         <%= h_data('Duración', ficha.duracion,'col-xs-3') %>
+         <%= h_data('Riesgos', ficha.riesgos,'col-xs-3') %>
+      </div>
+      <h4>Observaciones</h4>
+      <hr>
+      <div class="row">
+         <%= h_data('Tipo de Parto', ficha.tipo_parto,'col-xs-12') %>
+      </div>
+      <div class="row">
+         <%= h_data('Anestesia', ficha.anestesia,'col-xs-6') %>
+         <%= h_data('Analgesia', ficha.analgesia,'col-xs-6') %>
+      </div>
+      <div class="row">
+         <%= h_data('Neonatal:Cianosis', ficha.neonatal_cianosis,'col-xs-4') %>
+         <%= h_data('Ictericia Antes 72 Hs', ficha.ictericia_antes,'col-xs-4') %>
+         <%= h_data('Después 72 Hs', ficha.ictericia_despues,'col-xs-4') %>
+      </div>
+      <div class="row">
+         <%= h_data('APGAR', ficha.apgar,'col-xs-3') %>
+         <%= h_data('Peso', ficha.peso1,'col-xs-2') %>
+         <%= h_data('Talla', ficha.talla1,'col-xs-2') %>
+         <%= h_data('PC', ficha.pc2,'col-xs-1') %>
+         <%= h_data('TP', ficha.tp,'col-xs-1') %>
+         <%= h_data('Fontanela', ficha.fontanela,'col-xs-3') %>
+      </div>
+      <div class="row">
+         <%= h_data('Dubowitz', ficha.dubowitz,'col-xs-4') %>
+         <%= h_data('Parkin', ficha.parkin,'col-xs-4') %>
+         <%= h_data('Grupo Sang.', ficha.gru_san2,'col-xs-2') %>
+         <%= h_data('Rh', ficha.rh2,'col-xs-2') %>
+      </div>
+      <h4>Observaciones</h4>
+      <hr>
+      <div class="row">
+         <%= h_data('Medicación', ficha.medicacion,'col-xs-6') %>
+         <%= h_data('CCU', ficha.ccu,'col-xs-6') %>
+      </div>
+      <div class="row">
+         <%= h_data('Tiempo Internación', ficha.tiempo_internacion,'col-xs-3') %>
+         <%= h_data('Alta', ficha.alta,'col-xs-3') %>
+         <%= h_data('Peso', ficha.peso2,'col-xs-2') %>
+         <%= h_data('Talla', ficha.talla2,'col-xs-2') %>
+         <%= h_data('PB', ficha.pb,'col-xs-1') %>
+         <%= h_data('PT', ficha.pt1,'col-xs-1') %>
+      </div>
+      <h5><strong>Alimentación:</strong></h5>
+      <div class="row">
+         <%= h_data('Natural', ficha.alimentacion_natural,'col-xs-9') %>
+         <%= h_data('Duración', ficha.duracion,'col-xs-3') %>
+      </div>
+      <div class="row">
+         <%= h_data('Artificial', ficha.alimentacion_artificial,'col-xs-12') %>
+      </div>
+      <div class="row">
+         <%= h_data('BCG', ficha.bcg,'col-xs-3') %>
+         <%= h_data('Antisarampionosa', ficha.antisarampionosa,'col-xs-3') %>
+         <%= h_data('Antigripal', ficha.antigripal,'col-xs-3') %>
+         <%= h_data('MMR', ficha.mmr,'col-xs-3') %>
+
+         <%= h_data('DPT', ficha.dpt,'col-xs-3') %>
+         <%= h_data('1º', ficha.dpt1,'col-xs-3') %>
+         <%= h_data('2º', ficha.dpt2,'col-xs-3') %>
+         <%= h_data('3º', ficha.dpt3,'col-xs-3') %>
+         <%= h_data('Ref 1º', ficha.dpt_ref1,'col-xs-3') %>
+         <%= h_data('Ref 2º', ficha.dpt_ref2,'col-xs-3') %>
+         <%= h_data('Ref 3º', ficha.dpt_ref3,'col-xs-3') %>
+         <%= h_data('Ref 4º', ficha.dpt_ref4,'col-xs-3') %>
+         <%= h_data('SABIN', ficha.sabin,'col-xs-3') %>
+         <%= h_data('1º', ficha.sabin1,'col-xs-3') %>
+         <%= h_data('2º', ficha.sabin2,'col-xs-3') %>
+         <%= h_data('3º', ficha.sabin3,'col-xs-3') %>
+         <%= h_data('Ref 1º', ficha.sabin_ref1,'col-xs-3') %>
+         <%= h_data('Ref 2º', ficha.sabin_ref2,'col-xs-3') %>
+         <%= h_data('Ref 3º', ficha.sabin_ref3,'col-xs-3') %>
+         <%= h_data('Ref 4º', ficha.sabin_ref4,'col-xs-3') %>
+      </div>
+      <div class="row">
+         <%= h_data('Otras', ficha.otras,'col-xs-12') %>
+      </div>
+      <div class="row">
+         <%= h_data('A.P.P.', ficha.app,'col-xs-4') %>
+         <%= h_data('A.P.F.', ficha.apf,'col-xs-4') %>
+         <%= h_data('Edad Mental', ficha.edad_mental,'col-xs-4') %>
+      </div>
+      <div class="row">
+         <%= h_data('E.P.L.', ficha.epl,'col-xs-4') %>
+         <%= h_data('D.P.M.', ficha.dpm,'col-xs-4') %>
+         <%= h_data('TTO. ANT.', ficha.tto_ant,'col-xs-4') %>
+      </div>
+      <div class="row">
+         <%= h_data('Sosten Cefálico', ficha.sosten_cefalico,'col-xs-4') %>
+         <%= h_data('Sedentación', ficha.sedentacion,'col-xs-4') %>
+         <%= h_data('Mancha', ficha.mancha,'col-xs-4') %>
+      </div>
+   <%= panel_end %>
+<% end %>
+
+

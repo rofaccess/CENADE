@@ -1,0 +1,106 @@
+/**
+ * Este archivo establece el estilo para los formularios y sus labels, inputs, select, etc.
+ */
+
+/* Por algún motivo el select2 no ocupa el 100% de su contenedor
+   Se forza a que ocupe el 100%
+ */
+.select2-container {
+  width: 100% !important;
+}
+
+/* Define el aspecto de los formularios */
+
+.form-content{
+  background: white;
+  padding: 30px 50px 30px 50px; //Top Right Bottom Left
+
+  form{
+    h4 {
+      font-weight: bold;
+      color: #999999;
+    }
+    h5{
+      font-weight: bold;
+    }
+
+    h4.titulo-ficha{
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    hr {
+      margin-top: 5px;
+      color: #999999;
+    }
+
+    //tamaño y forma de los label encima de los input
+    .row{
+      .form-group{
+         label{
+          font-size: 14px;
+          font-weight: bold;
+        }
+      }
+    }
+    //ubica a la derecha el boton guardar de los formularios
+    .form-button{
+      text-align: right;
+    }
+  }
+}
+
+/**
+ * Establece el color de los textos de las validaciones y los bordes de los input y select validados
+ */
+ .has-error{
+   color: $has-error-color;
+ }
+
+ .form-group.has-error {
+	//- lo ideal es usar .control-label en vez de label ya que es especifico para los form-group de bootstrap
+	label {
+    color: $has-error-color;
+  }
+
+  .form-control {
+   border-color: $has-error-color;
+   box-shadow: none;
+ }
+}
+
+.has-error .select2-container--focus .select2-selection,
+.has-error .select2-container--open .select2-selection {
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #ce8483;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #ce8483;
+  border-color: $has-error-color !important;
+}
+
+.has-error.select2-drop-active {
+  border-color: $has-error-color !important;
+}
+
+.has-error.select2-drop-active.select2-drop.select2-drop-above {
+  border-top-color: $has-error-color !important;
+}
+
+.has-error .select2-dropdown,
+.has-error .select2-selection {
+  border-color: $has-error-color !important;
+}
+
+.label-inline {
+	color: black;
+	font-size: 14px;
+}
+
+/* Establece el color del input donde se tiene el foco */
+.form-control:focus{
+  border-color: $common-color;
+  //box-shadow: 0 1px 1px $common-color; //Da un efecto de recuadro
+}
+
+/* Evita que se puedan redimensionar horizontalmente los text area */
+textarea {
+  max-width: 100%;
+}

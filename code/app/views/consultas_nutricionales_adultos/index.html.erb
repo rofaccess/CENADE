@@ -1,0 +1,53 @@
+<div class="page-title page-title-con-sidebar">
+
+   Consultas
+
+   <div class="tool">
+      <%= search_form_for @search, class: 'buscador', remote: true do |f| %>
+         <div class="input-group">
+            <%= f.search_field :ficha_nutricional_adulto_paciente_persona_nombre_or_ficha_nutricional_adulto_paciente_persona_apellido_or_ficha_nutricional_adulto_paciente_persona_ci_cont, placeholder: "Buscar por Nombre, Apellido o CI de Paciente", class: "form-control", autofocus: true%>
+            <span class="fa fa-search"></span>
+            <div class="input-group-btn">
+            <a href="#"><i class="fa fa-search-plus" id= "show-advanced-search" data-toggle="tooltip" title="Búsqueda Avanzada"></i></a>
+            <%= link_to '<i class="fa fa-plus-square" id= "show" data-toggle="tooltip" title="Nueva Consulta"></i> '.html_safe, new_consulta_nutricional_adulto_path, remote: true %>
+          </div>
+        </div>
+      <% end %>
+  </div>
+ </div>
+<div class= "content">
+ <div id="advanced-search">
+      <%= search_form_for @search, url: search_consultas_nutricionales_adultos_path, method: :post, remote: true, class: 'form-filtros' do |f| %>
+         <div class="row">
+          <div class="col-xs-5">
+
+              <%= FormBuilder::text_field_v(f, :ficha_nutricional_adulto_paciente_persona_nombre_or_ficha_nutricional_adulto_paciente_persona_apellido_or_ficha_nutricional_adulto_paciente_persona_ci_cont, {col_class: 'col-xs-6', label_text: 'Paciente', input_class: '',  placeholder: "Nombre Apellido o CI"})%>
+
+              <%= FormBuilder::text_field_v(f, :doctor_persona_nombre_or_doctor_persona_apellido_cont, {col_class: 'col-xs-6', label_text: 'Prof. de la Salud', input_class: '', placeholder: "Nombre o Apellido"})%>
+
+            </div>
+
+          <%= FormBuilder::text_field_v(f, :fecha_gteq, {col_class: 'col-xs-2', label_text: 'Desde', input_class: 'datepicker',max_length: Domain::FECHA})%>
+
+          <%= FormBuilder::text_field_v(f, :fecha_lteq, {col_class: 'col-xs-2', label_text: 'Hasta', input_class: 'datepicker',max_length: Domain::FECHA})%>
+
+         <div class= "advanced-search-buttons">
+            <%= f.submit 'Filtrar', class: 'btn btn-custom '%>
+            <%= f.submit 'Limpiar Campos', type: 'reset', class: 'btn btn-link'%>
+         </div>
+        </div>
+      <% end %>
+</div>
+<div class="list-content">
+  <div id="list">
+
+    <%= render 'list', consultas: @consultas %>
+  </div>
+
+  <div id="list-paginate">
+    <%= paginate @consultas, remote: true %>
+  </div>
+</div>
+</div>
+
+

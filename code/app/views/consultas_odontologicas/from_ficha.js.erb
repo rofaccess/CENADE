@@ -1,0 +1,11 @@
+
+$("#principal-content").html('<%= j render 'form',from_ficha: true, ficha: params[:ficha], consulta: @consulta, paciente: @paciente, doctores: @doctores, area: @area,titulos_largos: @titulos_largos, formats: 'html' %>');
+
+// Carga el paciente recién guardado en el select y lo setea como seleccionado
+$('.select-paciente').html("<%= j (options_for_select([[@paciente.persona_full_name, @paciente.id]], selected: @paciente.id)) %>");
+
+//Reinicia el select2 y setea paciente recién guardado para que se vea en el select2
+$('.select-paciente').select2({
+  data: [{ id: "<%=@paciente.id.to_s %>", text: "<%=@paciente.persona_full_name %>" }]
+});
+

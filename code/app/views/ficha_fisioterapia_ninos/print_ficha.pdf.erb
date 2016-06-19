@@ -1,0 +1,133 @@
+<h4 class="ficha-title">FICHA FISIOTERAPIA PEDIATRICA</h4>
+
+<h4>Datos Personales</h4>
+<hr>
+
+<div class="row">
+	<div class="form-group col-xs-9">
+		<label class="control-label">Nombre y Apellido</label>
+		<div class="data"> <%=@ficha.paciente_persona_full_name%> </div>
+	</div>
+
+	<div class="form-group col-xs-1">
+		<label class="control-label">Edad</label>
+		<div class="data"> <%=@ficha.paciente_persona_edad%> </div>
+	</div>
+
+	<div class="form-group col-xs-2">
+		<label class="control-label">Sexo</label>
+		<div class="data"> <%=@ficha.paciente_persona_sexo%> </div>
+	</div>
+</div>
+<div class="row">
+
+	<div class="form-group col-xs-2">
+		<label class="control-label">CI</label>
+		<div class="data"> <%=@ficha.paciente_persona_ci%> </div>
+	</div>
+
+	<div class="form-group col-xs-4">
+		<label class="control-label">Nacionalidad</label>
+		<div class="data"> <%=@ficha.paciente_persona_nacionalidad%> </div>
+	</div>
+
+	<div class="form-group col-xs-3">
+		<label class="control-label">Fecha de Nac.</label>
+		<div class="data"> <%=Formatter.format_date(@ficha.paciente_persona_fecha_nacimiento)%> </div>
+	</div>
+
+	<div class="form-group col-xs-3">
+		<label class="control-label">Telefono</label>
+		<div class="data"> <%=@ficha.paciente_persona_telefono%> </div>
+	</div>
+
+</div>
+
+
+<div class="row">
+	<div class="form-group col-xs-12">
+		<label class="control-label">Dirección</label>
+		<div class="data"> <%=@ficha.paciente_persona_direccion%> </div>
+	</div>
+</div>
+
+<h4>Datos de Encargados</h4>
+<hr>
+
+<div class="row">
+	<div class="form-group col-xs-5">
+		<label class="control-label">Madre</label>
+		<div class="data"> <%=@ficha.paciente_encargado_madre_nombre%> </div>
+	</div>
+	<div class="form-group col-xs-2">
+		<label class="control-label">Edad</label>
+		<div class="data"> <%=@ficha.paciente_encargado_madre_edad%> </div>
+	</div>
+	<div class="form-group col-xs-3">
+		<label class="control-label">Profesión</label>
+		<div class="data"> <%=@ficha.paciente_encargado_madre_prof_act_ant%> </div>
+	</div>
+	<div class="form-group col-xs-2">
+		<label class="control-label">Nro de Hijos</label>
+		<div class="data"> <%=@ficha.paciente_encargado_madre_num_hijos%> </div>
+	</div>
+</div>
+<div class="row">
+	<div class="form-group col-xs-6">
+		<label class="control-label">Padre</label>
+		<div class="data"> <%=@ficha.paciente_encargado_padre_nombre%> </div>
+	</div>
+	<div class="form-group col-xs-2">
+		<label class="control-label">Edad</label>
+		<div class="data"> <%=@ficha.paciente_encargado_padre_edad%> </div>
+	</div>
+	<div class="form-group col-xs-4">
+		<label class="control-label">Profesión</label>
+		<div class="data"> <%=@ficha.paciente_encargado_padre_prof_act_ant%> </div>
+	</div>
+
+</div>
+
+<h4>Embarazo</h4>
+<hr>
+<div class="row">
+	<div class="form-group col-xs-4">
+		<label class="control-label">Control Prenatal:</label>
+		<div class="data"> <%=@ficha.control_embarazo%> </div>
+	</div>
+	<div class="form-group col-xs-4">
+		<label class="control-label">Edad Gestacional</label>
+		<div class="data"> <%=@ficha.edad_gestacional%> </div>
+	</div>
+	<div class="form-group col-xs-4">
+		<label class="control-label">Tipo de parto</label>
+		<div class="data"> <%=@ficha.tipo_parto%> </div>
+	</div>
+</div>
+<h4>Datos de la Ficha</h4>
+<hr>
+<div class="row">
+	<div class="form-group col-xs-3">
+		<label class="control-label">Peso al Nacer</label>
+		<div class="data"> <%=@ficha.peso_nacer%> </div>
+	</div>
+	<div class="form-group col-xs-3">
+		<label class="control-label">Apgar</label>
+		<div class="data"> <%=@ficha.apgar%> </div>
+	</div>
+	<div class="form-group col-xs-6">
+		<label class="control-label">Antecedentes Familiares:</label>
+		<div class="data"> <%=@ficha.antecedentes_familiares%> </div>
+	</div>
+
+</div>
+
+<div class="row">
+	<div class="form-group col-xs-12">
+		<label class="control-label">Condiciones Generales del Recién Nacido</label>
+		<div class="data-bordered"> <%=@ficha.condicion_general%> </div>
+	</div>
+</div>
+
+
+

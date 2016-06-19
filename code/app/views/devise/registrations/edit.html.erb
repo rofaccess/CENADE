@@ -1,31 +1,66 @@
-<h2><%= t('.title', :resource => resource_class.model_name.human , :default => "Edit #{resource_name.to_s.humanize}") %></h2>
+<% @submenu_layout = 'layouts/submenu_configuracion' %>
+<% @sidebar_layout = 'layouts/sidebar_perfil_usuario' %>
+<div class= "form-content">
+  <div class="page-title">
+    Perfil de Usuario
+  </div>
 
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
-  <%= devise_error_messages! %>
+  <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:multipart => true, :method => :put,class: 'medium-form' }) do |f| %>
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email %></div>
+    <h4>Datos de Usuario</h4><hr>
+    <div class="row">
+      <%= FormBuilder::text_field_v(f, :username,
+                                        input_class: 'required',
+                                        max_length: Domain::USERNAME,
+                                        autofocus: true,
+                                        col_class: 'col-xs-6',
+                                        label_text: '* Usuario') %>
 
-  <%- if devise_mapping.confirmable? && resource.pending_reconfirmation? -%>
-    <p>
-      <%= t('.currently_waiting_confirmation_for_email', :email => resource.unconfirmed_email, :default => "Currently waiting confirmation for: %{email}") %>
-    </p>
-  <%- end -%>
+      <div class= 'col-xs-6'>
+          <%= image_tag(current_user.profile_foto_url.to_s, :width => 100, :height => 100) %>
+          <%= f.file_field :profile_foto %>
+      </div></br>
+    </div>
 
-  <div><%= f.label :password %> <i>(<%= t('.leave_blank_if_you_don_t_want_to_change_it', :default => "leave blank if you don't want to change it") %>)</i><br />
-  <%= f.password_field :password, :autocomplete => "off" %></div>
+    <div class="row">
+      <%= FormBuilder::text_field_v(f, :password,
+                                        input_class: 'required clear',
+                                        max_length: Domain::CONTRASEÑA,
+                                        col_class: 'col-xs-6',
+                                        label_text: '* Contraseña') %>
 
-  <div><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></div>
+      <%= FormBuilder::text_field_v(f, :password_confirmation,
+                                        input_class: 'required clear',
+                                        max_length: Domain::CONTRASEÑA,
+                                        col_class: 'col-xs-6',
+                                        label_text: '* Confirmar Contraseña') %>
+    </div>
+    <h4>Datos de Contacto</h4><hr>
+    <div class="row">
+      <div class="form-group col-xs-12">
+          <label class="control-label" for="user_username">* Direccion</label>
+          <input class="form-control required clear usuario-apellido" placeholder=""  maxlength="30" type="text" >
+      </div>
+    </div>
+    <div class="row">
 
-  <div><%= f.label :current_password %> <i>(<%= t('.we_need_your_current_password_to_confirm_your_changes', :default => 'we need your current password to confirm your changes') %>)</i><br />
-  <%= f.password_field :current_password %></div>
+      <div class="form-group col-xs-5">
+          <label class="control-label" for="user_username">* Telefono</label>
+          <input class="form-control required clear usuario-cargo" placeholder=""  maxlength="100" type="text"  >
+      </div>
 
-  <div><%= f.submit t('.update', :default => "Update") %></div>
-<% end %>
+      <div class="form-group col-xs-7">
+          <label class="control-label" for="user_username">* Email</label>
+          <input class="form-control required clear usuario-email" placeholder=""  maxlength="50" type="text"  >
+      </div>
+    </div>
 
-<h3><%= t('.cancel_my_account', :default => 'Cancel my account') %></h3>
+    <div class="form-button">
+      <%= f.submit 'Guardar cambios', class: 'btn btn-custom'%>
+    </div>
+  <% end %>
+</div>
 
-<p><%= t('.unhappy', :default => 'Unhappy') %>? <%= link_to t('.cancel_my_account', :default => "Cancel my account"), registration_path(resource_name), :data => { :confirm => t('.are_you_sure', :default => "Are you sure?") }, :method => :delete %>.</p>
 
-<%= link_to t('devise.shared.links.back', :default => "Back"), :back %>
+
+

@@ -1,31 +1,99 @@
 module Domain
+
+	# Datos Personales
 	NOMBRE    	= 30
+	CI           = 15
+	RUC          = 20
+	FECHA     = 10
+	EDAD      = 3
+	SEXO      = 9
+	ESTADO_CIVIL = 15
+	NACIONALIDAD = 20
+	LUGAR_NACIMIENTO = 100
+	ANHO = 3
+	# Datos de Contacto
+	DIRECCION    = 125
+	TELEFONO     = 50
 	EMAIL     	= 50
-	CONTRASEÑA	= 20
-	DESCRIPCION5 = 500
-	DESCRIPCION2 = 200
-	DESCRIPCION4 = 400
+
+
+	# Datos Laborales
+	PROFESION	= 50
+	LUGAR_TRABAJO = 100
+	TIPO_EMPLEADO   = 15
+	ESPECIALIDAD   = 50
+	AREA		   = 50
+	ABREVIATURA_PROFESION = 5
+	CARGO_EMPLEADO = 100
+
+	# Datos de Encargado
+	NOM_APE		 = 60
+	NUM_HIJOS = 2
+	PROF_ACT_ANT  = 100
+
+	# Datos de Usuario
+	USERNAME   	= 30
+	CONTRASEÑA	= 30
+	ROL = 15
+
+	# Datos Médicos
 	SINTOMAS     = 500
 	PESO         = 10
 	TRATAMIENTO  = 300
 	MEDIDAS      = 10
-	RUC          = 20
-	DIRECCION    = 256
-	TELEFONO     = 50
-	ESTADO_CIVIL = 10
-	CI           = 15
-
 	EXPLORACION_FACIAL = 100
 	OBSERVACIONES      = 300
 	DIAGNOSTICO        = 150
 
-	MONEDA 	  = 3	
-	FECHA     = 10
-	CODIGO    = 15	
-	EDAD      = 3
-	SEXO      = 9	
+	# Varios
+	MONEDA 	  = 3
+	CODIGO    = 15
 	MONTO     = 13
-	CANTIDAD  = 5	
-	
-	TIPO_PERSONA   = 9
+	CANTIDAD  = 5
+
+	DESCRIPCION5 = 500
+	DESCRIPCION2 = 200
+	DESCRIPCION4 = 400
+
+	# Datos de la Empresa
+	EMPRESA_NOMBRE = 50
+	EMPRESA_WEB	   = 40
+	EMPRESA_HORARIO= 5
+	DIAS_DE_ATENCION=20
+
+	# Turnos
+	COSTO = 7
+	NRO_FACTURA = 15
+
+	#Fichas Fonoaudiologicas
+	ESCOLARIDAD = 50
+	ESCUELA = 100
+
+	#FICHAS FISIOTERAPIA NINOS
+
+	CONTROL_EMBARAZO = 100
+	EDAD_GEST = 100
+	TIPO_PARTO = 100
+	PESO_NACER = 50
+	APGAR = 50
+	ANT_FLIAR = 250
+
+	COND_GRAL = 250
+
+	TIEMPO = 7
+
+	NRO_CHICO = 10
+
+	CANT_COMIDA = 3
+	DESC10 = 10
+	DESC20 = 20
+	DESC50 = 50
+	DESC100 = 100
+	DESC150 = 150
+	DESC250 = 250
+	DESC200 = 200
+	DESC600 = 600
+	DESC500 = 500
+	DESC300 = 300
+
 end

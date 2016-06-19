@@ -1,0 +1,14 @@
+<% if ficha.nil? %>
+   <%= panel_head('III - FICHA (No tiene)') %>
+<% else %>
+   <%= panel_begin('III - FICHA') %>
+      <div class="row">
+         <%= h_data('Profesional de la Salud', ficha.doctor_full_name,'col-xs-9') %>
+         <%= h_data('Fecha', date(ficha.fecha),'col-xs-3') %>
+      </div>
+      <div class="row">
+         <%= h_data('Nombre del Tutor', ficha.nombre_tutor,'col-xs-8') %>
+         <%= h_data('Telefono del Tutor', ficha.tel_tutor,'col-xs-4') %>
+      </div>
+   <%= panel_end %>
+<% end %>

@@ -1,0 +1,65 @@
+  <div class="page-title page-title-con-sidebar">
+      <%=consulta.id.nil? ? 'Nuevo Control' : 'Editar Control'%>
+
+      <div class="tool tool-sin-buscador">
+        <%= link_to '<i class="fa fa-list" data-toggle="tooltip" data-placement="bottom" title="Lista de Controles"></i> '.html_safe, consultas_path(area_id: area.id) %>
+      </div>
+
+    </div>
+  <div class="form-content2">
+    <%= simple_form_for consulta, html: {class: 'form-consulta', :multipart => true }, remote: true do |consult|%>
+
+      <h4 class="titulo-ficha">Consulta en <%= area.nombre%></h4></br>
+      <%= consult.hidden_field(:area_id, :value => area.id) %>
+      <div class="row">
+
+        <!-- Si el form se renderiza desde la ficha, para agregar una consulta, paciente y area aparecen desactivados, con estos hidden_field se asegura que se envién sus respectivos id -->
+        <% if from_ficha %>
+          <%= consult.hidden_field :paciente_id%>
+        <% end %>
+
+        <%= consult.input :doctor_id, collection: doctores.collect { |a| [a.abr_profesion+" "+a.persona_full_name+"-"+ a.area.nombre, a.id] }, label: '* Prof. de la Salud', wrapper_html: { class: 'col-xs-9' }, input_html:  { class: 'required select-doctor select2'} %>
+
+        <%= consult.input :fecha, as: :string, label: '* Fecha', wrapper_html: { class: 'col-xs-3'}, input_html: { class: 'date datepicker dateLessSystemDate required', maxLength: Domain::FECHA, value:Formatter.format_date(consulta.fecha)} %>
+
+      </div>
+
+      <div id="paciente-data">
+        <%= render 'form_paciente', paciente: paciente %>
+      </div>
+
+      <h4>Datos de Consulta</h4>
+      <hr>
+      <div class="row">
+
+        <%= consult.input :motivo_consulta, as: :text, label: 'Motivo', wrapper_html: { class: 'col-xs-12'}, input_html: { maxLength: Domain::DESC300, class: 'biglength', rows: "2"} %>
+      </div>
+
+
+        <%= consult.input :tratamiento, as: :text, label: 'Tratamiento', wrapper_html: { class: 'col-xs-6'}, input_html: { maxLength: Domain::DESC600, class: 'maxlengthBig2', rows: "5"} %>
+      </div>
+
+      <div class="row">
+         <%= consult.input :observaciones, as: :text, label: 'Observaciones', wrapper_html: { class: 'col-xs-12'}, input_html: { maxLength: Domain::DESC250, class: 'longString', rows: "2"} %>
+      </div>
+
+      <div class="form-button">
+        <%= consult.submit 'Guardar', class: 'btn btn-custom'%>
+      </div>
+
+    <% end %>
+  </div>
+
+
+<script type="text/javascript">
+
+  consultasUI.initScript();
+
+  <% if !flash.notice.blank? %>
+    var n = noty({text: '<%=notice%>', type: 'success'});
+  <% end %>
+
+  <% if !flash.alert.blank?%>
+    var n = noty({text: '<%=alert%>', type: 'error'});
+  <% end %>
+</script>

@@ -1,0 +1,52 @@
+/* Define el aspecto del formulario de búsqueda avanzada */
+#advanced-search{
+   display: none;
+   background: #EFEFEF;
+   height: 100px;
+   padding: 20px 30px 0px 30px; //Top Right Bottom Left
+   border: solid;
+   border-color: #CCCCCC;
+   border-width: 1px;
+   margin-bottom: 20px;
+   //Posición de los botones de filtrado y limpiar campos
+   .advanced-search-buttons{
+      margin-top: 25px;
+      text-align: right;
+   }
+}
+#advanced-search2{
+
+   background: #EFEFEF;
+   height: 100px;
+   padding: 20px 30px 0px 30px; //Top Right Bottom Left
+   border: solid;
+   border-color: #CCCCCC;
+   border-width: 1px;
+   margin-bottom: 20px;
+   //Posición de los botones de filtrado y limpiar campos
+   .advanced-search-buttons{
+      margin-top: 25px;
+      text-align: right;
+   }
+}
+#advanced-special{
+   background: #EFEFEF;
+   height: 100px;
+   padding: 20px 20px 0px 20px; //Top Right Bottom Left
+   border: solid;
+   border-color: #CCCCCC;
+   border-width: 1px;
+
+   .fa {
+         padding-top: 25px;
+         font-size: 26px;
+   }
+   h4{
+         padding-top: 15px;
+   }
+   //Posición de los botones de filtrado y limpiar campos
+   .advanced-search-buttons{
+      margin-top: 25px;
+      text-align: right;
+   }
+}

@@ -1,0 +1,3 @@
+$("#list").html('<%= j render 'list', turnos: @turnos, format: 'html'%>');
+
+$("#list-paginate").html('<%= j paginate(@turnos, remote: true)%>');

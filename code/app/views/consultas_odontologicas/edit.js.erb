@@ -1,0 +1,4 @@
+$("#principal-content").html('<%= j render 'form', from_ficha: false, consulta: @consulta, paciente: @paciente, doctores: @doctores, area: @area,titulos_largos: @titulos_largos, formats: 'html' %>');
+
+$('.ficha-id').val(<%=@paciente.ficha_odontologica.blank? ? '' : @paciente.ficha_odontologica.id%>);
+

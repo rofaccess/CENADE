@@ -1,0 +1,20 @@
+<!-- //- Esto no se usa
+Este layout era una prueba, para poder agregar un header y footer a cada página impresa. Logré que funcionara la cabecera, pero el footer no logré que se viera bien
+ -->
+<!doctype html>
+<html>
+
+  <head>
+    <meta charset='utf-8'/>
+    <%=wicked_pdf_stylesheet_link_tag 'layouts/pdf' %>
+
+    <title> CENADE </title>
+  </head>
+  <body>
+
+    <div id="content">
+      <%= yield %>
+    </div>
+
+  </body>
+</html>

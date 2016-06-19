@@ -1,0 +1,21 @@
+<div class="page-title page-title-con-sidebar">
+   Historial Clínico
+   <div class="tool tool-sin-buscador">
+      <%= link_to '<i class="fa fa-list" data-toggle="tooltip" title="Lista de Historiales"></i>'.html_safe, historiales_psicopedagogicos_path %>
+      <%= link_to '<i class="fa fa-print"></i> '.html_safe, historiales_psicopedagogicos_print_path(id: paciente.id, :format => :pdf), target: '_blank'%>
+   </div>
+</div>
+<div class="content content-historial">
+   <div class="historial-content">
+      <h4 class="historial-title">PSICOPEDAGOGÍA</h4>
+
+      <%= render 'compartido/historial/data_paciente', paciente:   paciente %>
+      <%= render 'compartido/historial/data_encargados', encargados: paciente.encargado,paciente:   paciente %>
+      <%= render 'data_ficha', ficha:  ficha %>
+      <%= render 'compartido/historial/data_consultas', consultas:  consultas, num: 'IV' %>
+   </div>
+<div>
+
+<script type="text/javascript">
+   APP.initPanelFolding();
+</script>

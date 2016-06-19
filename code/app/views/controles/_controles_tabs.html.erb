@@ -1,0 +1,36 @@
+<% if controles.blank? %>
+    <strong>No posee controles aún</strong>
+<% end %>
+
+<ul class="nav nav-tabs">
+    <% controles.each do |c| %>
+        <li><a href="#tab-<%= c.id%>"><%= c.fecha.strftime("%d/%m/%Y")%></a></li>
+    <%end%>
+</ul>
+
+<div class="tabscontent">
+    <% controles.each do |control| %>
+        <div id="tab-<%= control.id%>">
+            <%= simple_fields_for :control do |cont| %>
+			      <div class="row">
+			          <h4 class="col-xs-9"><strong>Profesional de la Salud: </strong> <%= control.doctor_abr_profesion+' '+control.doctor_persona_full_name%> </h4>
+
+			          <h4 class="col-xs-3"><strong> Fecha: </strong> <%= Formatter.format_date(control.fecha)%> </h4>
+			        </div>
+
+			      <h4>Datos de Control</h4>
+			      <hr>
+
+			      <div class="row">
+
+			        <%= cont.input :tratamiento, as: :string, label: 'Tratamiento', wrapper_html: { class: 'col-xs-12'}, input_html: { value: control.tratamiento, disabled: true, rows: "3"}, required: false %>
+			      </div>
+
+			      <div class="row">
+			         <%= cont.input :observaciones, as: :string, label: 'Observaciones', wrapper_html: { class: 'col-xs-12'}, input_html: { value: control.observaciones, disabled: true, rows: "2"}, required: false %>
+			      </div>
+
+			 <% end %>
+			</div>
+    <%end%>
+</div

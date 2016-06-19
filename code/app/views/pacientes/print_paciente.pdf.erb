@@ -1,0 +1,161 @@
+<h4 class="title">REGISTRO DE PACIENTE</h4>
+
+<h4>Datos Personales</h4>
+<hr>
+
+<div class="row">
+	<div class="form-group col-xs-8">
+		<label class="control-label">Nombre y Apellido</label>
+		<div class="data"> <%=@paciente.persona_full_name%> </div>
+	</div>
+
+	<div class="form-group col-xs-2">
+		<label class="control-label">CI</label>
+		<div class="data"> <%=@paciente.persona_ci%> </div>
+	</div>
+
+	<div class="form-group col-xs-2">
+		<label class="control-label">RUC</label>
+		<div class="data"> <%=@paciente.persona_ruc%> </div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="form-group col-xs-3">
+		<label class="control-label">Fecha de Nac.</label>
+		<div class="data"> <%=Formatter.format_date(@paciente.persona_fecha_nacimiento)%> </div>
+	</div>
+
+	<div class="form-group col-xs-1">
+		<label class="control-label">Edad</label>
+		<div class="data"> <%=@paciente.persona_edad%> </div>
+	</div>
+
+	<div class="form-group col-xs-2">
+		<label class="control-label">Sexo</label>
+		<div class="data"> <%=@paciente.persona_sexo%> </div>
+	</div>
+
+	<div class="form-group col-xs-3">
+		<label class="control-label">Estado Civil</label>
+		<div class="data"> <%=@paciente.persona_estado_civil_descripcion%> </div>
+	</div>
+
+	<div class="form-group col-xs-3">
+		<label class="control-label">Nacionalidad</label>
+		<div class="data"> <%=@paciente.persona_nacionalidad%> </div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="form-group col-xs-9">
+		<label class="control-label">Lugar de Nacimiento</label>
+		<div class="data"> <%=@paciente.lugar_nacimiento%> </div>
+	</div>
+
+	<div class="form-group col-xs-3">
+		<label class="control-label">Fecha de Ingreso</label>
+		<div class="data"> <%=Formatter.format_date(@paciente.fecha_ingreso)%> </div>
+	</div>
+</div>
+
+<h4>Datos de Contacto</h4>
+<hr>
+
+<div class="row">
+	<div class="form-group col-xs-12">
+		<label class="control-label">Dirección</label>
+		<div class="data"> <%=@paciente.persona_direccion%> </div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="form-group col-xs-4">
+		<label class="control-label">Teléfono</label>
+		<div class="data"> <%=@paciente.persona_telefono%> </div>
+	</div>
+
+	<div class="form-group col-xs-8">
+		<label class="control-label">Email</label>
+		<div class="data"> <%=@paciente.persona_email%> </div>
+	</div>
+</div>
+
+<h4>Datos Laborales</h4>
+<hr>
+
+<div class="row">
+	<div class="form-group col-xs-5">
+		<label class="control-label">Profesión</label>
+		<div class="data"> <%=@paciente.profesion%> </div>
+	</div>
+
+	<div class="form-group col-xs-7">
+		<label class="control-label">Lugar de Trabajo</label>
+		<div class="data"> <%=@paciente.lugar_trabajo%> </div>
+	</div>
+</div>
+
+
+<% unless @paciente.encargado_id.blank? %>
+
+	<h4>Datos de los Padres o Encargados</h4>
+	<hr>
+
+	<div class="row">
+		<div class="form-group col-xs-5">
+			<label class="control-label">Nombre y Apellido del Padre</label>
+			<div class="data"> <%=@paciente.encargado_padre_nombre%> </div>
+		</div>
+
+		<div class="form-group col-xs-1">
+			<label class="control-label">Edad</label>
+			<div class="data"> <%=@paciente.encargado_padre_edad%> </div>
+		</div>
+
+		<div class="form-group col-xs-6">
+			<label class="control-label">Profesión Actual y Anterior</label>
+			<div class="data"> <%=@paciente.encargado_padre_prof_act_ant%> </div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="form-group col-xs-5">
+			<label class="control-label">Nombre y Apellido de la Madre</label>
+			<div class="data"> <%=@paciente.encargado_madre_nombre%> </div>
+		</div>
+
+		<div class="form-group col-xs-1">
+			<label class="control-label">Edad</label>
+			<div class="data"> <%=@paciente.encargado_madre_edad%> </div>
+		</div>
+
+		<div class="form-group col-xs-1">
+			<label class="control-label">Hijos</label>
+			<div class="data"> <%=@paciente.encargado_madre_num_hijos%> </div>
+		</div>
+
+		<div class="form-group col-xs-5">
+			<label class="control-label">Profesión Actual y Anterior</label>
+			<div class="data"> <%=@paciente.encargado_madre_prof_act_ant%> </div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="form-group col-xs-5">
+			<label class="control-label">Nombre y Apellido del Encargado</label>
+			<div class="data"> <%=@paciente.encargado_encargado_nombre%> </div>
+		</div>
+
+		<div class="form-group col-xs-1">
+			<label class="control-label">Edad</label>
+			<div class="data"> <%=@paciente.encargado_encargado_edad%> </div>
+		</div>
+
+		<div class="form-group col-xs-6">
+			<label class="control-label">Profesión Actual y Anterior</label>
+			<div class="data"> <%=@paciente.encargado_encargado_prof_act_ant%> </div>
+		</div>
+	</div>
+
+<% end %>

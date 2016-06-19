@@ -1,0 +1,3 @@
+$('#paciente-data').html("<%= j render params[:root].to_s()+'/form_paciente', paciente: @paciente%>");
+
+$('.ficha-id').val(<%=@paciente.ficha_odontologica.blank? ? '' : @paciente.ficha_odontologica.id%>);

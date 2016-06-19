@@ -1,0 +1,149 @@
+<div class="page-title page-title-sin-submenu">
+		<%=empleado.id.nil? ? 'Nuevo Empleado' : 'Editar Empleado'%>
+
+		<div class="tool tool-sin-buscador">
+			<%= link_to '<i class="fa fa-list" data-toggle="tooltip" title="Lista de Empleados"></i> '.html_safe, empleados_path %>
+		</div>
+	</div>
+<div class="content content-sin-submenu content-70">
+<div class="form-content">
+
+	<%= form_for empleado, html: {class: 'form-empleado'} do |emplead|%>
+
+		<h4>Datos Personales</h4>
+		<hr>
+
+		<%= emplead.fields_for(:persona) do |persona| %>
+		<%= persona.hidden_field :id, class: 'persona-id'%>
+		<div class="row">
+			<%= FormBuilder::text_field_v(persona, :nombre,
+													input_class: 'required minLength3',
+													max_length: Domain::NOMBRE,
+													autofocus: true,
+													col_class: 'col-xs-4',
+													label_text: '* Nombre',
+													label_class: 'error') %>
+			<%= FormBuilder::text_field_v(persona, :apellido,
+													input_class: 'required minLength3',
+													max_length: Domain::NOMBRE,
+													col_class: 'col-xs-4',
+													label_text: '* Apellido') %>
+			<%= FormBuilder::text_field_v(persona, :ci,
+													input_class: 'required number-only minLength4 uniqueEmpleadoCI ci',
+													max_length: Domain::CI,
+													col_class: 'col-xs-2',
+													label_text: '* Cédula Nº') %>
+			<%= FormBuilder::text_field_v(persona, :ruc,
+													input_class: 'ruc-only',
+													max_length: Domain::RUC,
+													col_class: 'col-xs-2') %>
+		</div>
+		<div class="row">
+			<%= FormBuilder::text_field_v(persona, :fecha_nacimiento,
+													input_class: 'required datepicker fecha-nacimiento dateLessSystemDate',
+													max_length: Domain::FECHA,
+													label_text: '* Fecha de Nac.',
+													col_class: 'col-xs-2',
+													input_value: Formatter.format_date(empleado.persona_fecha_nacimiento))%>
+			<%= persona.hidden_field :edad, class: 'edad'%>
+			<%= FormBuilder::text_field_v(persona, :edad,
+													input_class: 'edad number-only',
+													max_length: Domain::EDAD,
+													col_class: 'col-xs-1',
+													disabled: true) %>
+			<%= FormBuilder::select_v(persona, :sexo,
+												[['Masculino', 'Masculino'], ['Femenino', 'Femenino']],
+												prompt:'Seleccione Sexo',
+												select_class: 'required',
+												col_class: 'col-xs-3',
+												label_text: '* Sexo')%>
+
+			<%= FormBuilder::collection_select_v(persona, :estado_civil_id,
+															EstadoCivil.all, :id, :descripcion,
+															prompt:'Seleccione Est. Civil',
+															label_text: 'Estado Civil',
+															col_class: 'col-xs-3')%>
+
+			<%= FormBuilder::text_field_v(persona, :nacionalidad,
+													max_length: Domain::NACIONALIDAD,
+													col_class: 'col-xs-3') %>
+
+		</div>
+
+		<h4>Datos de Contacto</h4>
+		<hr>
+
+		<div class="row">
+
+			<%= FormBuilder::text_field_v(persona, :direccion,
+													max_length: Domain::DIRECCION,
+													col_class: 'col-xs-12',
+													label_text: 'Dirección')%>
+		</div>
+		<div class="row">
+
+			<%= FormBuilder::text_field_v(persona, :telefono,
+													input_class: 'tel-only',
+													max_length: Domain::TELEFONO,
+													col_class: 'col-xs-4') %>
+			<%= FormBuilder::text_field_v(persona, :email,
+													label_text: '* Email',
+													input_class: 'emailCheck required minLength8',
+													max_length: Domain::EMAIL,
+													col_class: 'col-xs-8') %>
+		</div>
+		<% end %>
+
+		<h4>Datos Laborales</h4>
+		<hr>
+
+		<div class="row">
+			<%= FormBuilder::text_field_v(emplead, :cargo,
+													max_length: Domain::CARGO_EMPLEADO,
+													col_class: 'col-xs-4') %>
+
+			<%= FormBuilder::text_field_v(emplead, :abr_profesion,
+													label_text: 'Abr. Pofesión',
+													max_length: Domain::ABREVIATURA_PROFESION,
+													col_class: 'col-xs-2') %>
+
+			<div class="row">
+				<div class="checkbox col-xs-6">
+					<label>
+						<%= check_box_tag 'es_doctor', true, empleado.type == 'Doctor' ? true : false, class: 'checkbox-doctor', disabled: empleado.type == 'Doctor' ? true : false  %>
+
+							¿Es Profesional de Salud?
+							<%= emplead.hidden_field :type, class: 'tipo-empleado'%>
+							<%= emplead.hidden_field :area_id,value: nil, class: 'area-id'%>
+					</label>
+				</div>
+			</div>
+
+		</div>
+
+		<div class="row datos-doctor">
+			<%= FormBuilder::collection_select_v(emplead, :area_id,
+															Area.all, :id, :nombre,
+															prompt:'Seleccione Area',
+															label_text: '* Area',
+															col_class: 'col-xs-4',
+															select_class: 'select-area')%>
+		</div>
+
+		<div class="form-button">
+			<%= emplead.submit 'Guardar', class: 'btn btn-custom',data: {disable_with: "Guardando..."}%>
+		</div>
+
+	<% end %>
+</div>
+</div>
+<script type="text/javascript">
+	empleadosUI.initScript();
+	<% if !flash.notice.blank? %>
+		var n = noty({text: '<%=notice%>', type: 'success'});
+	<% end %>
+	<% if !flash.alert.blank?%>
+		var n = noty({text: '<%=alert%>', type: 'error'});
+	<% end %>
+
+</script>

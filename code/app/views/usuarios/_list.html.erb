@@ -1,0 +1,51 @@
+    <table class= "table table-condensed">
+      <thead>
+        <tr>
+          <th>Usuario</th>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>Cargo</th>
+          <th>Email</th>
+          <th>Rol</th>
+          <th></th>
+        </tr>
+      </thead>
+      <% if usuarios.blank? %>
+        <tfoot>
+          <tr>
+            <th colspan="8" scope="col">No se encontraron coincidencias </th>
+          </tr>
+        </tfoot>
+     <% end %>
+      <tbody>
+        <% usuarios.each do |usuario| %>
+          <tr>
+            <td class="show-usuario"><%=usuario.username%></td>
+            <td class="show-usuario"><%=usuario.empleado.persona.nombre%></td>
+            <td class="show-usuario"><%=usuario.empleado.persona.apellido%></td>
+            <td class="show-usuario"><%=usuario.empleado.cargo %></td>
+            <td class="show-usuario"><%=usuario.empleado.persona.email%></td>
+            <td class="show-usuario"><%=usuario.get_role %></td>
+
+
+            <td class="action">
+
+              <%= link_to '<i class="fa fa-eye fa-lg" data-toggle="tooltip" title="Ver Usuario"></i> '.html_safe, usuario_path(usuario)%>
+                <%= link_to '<i class="fa fa-edit fa-lg" data-toggle="tooltip" title="Editar Usuario"></i> '.html_safe, edit_usuario_path(usuario)%>
+              <% unless current_user.id == usuario.id || usuario.id == Configuracion.first.usuario_admin %>
+                <%= link_to '<i class="fa fa-trash-o fa-lg" data-toggle="tooltip" title="Eliminar Usuario"></i>'.html_safe, usuario_path(usuario), method: 'delete', data: {confirm: "¿Desea eliminar al usuario #{usuario.username}?"}%>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <script type="text/javascript">
+
+      <% if !flash.notice.blank? %>
+        var n = noty({text: '<%=notice%>', type: 'success'});
+      <% end %>
+      <% if !flash.alert.blank?%>
+        var n = noty({text: '<%=alert%>', type: 'error'});
+      <% end %>
+    </script>
