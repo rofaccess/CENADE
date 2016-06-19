@@ -62,7 +62,9 @@
         //Si solo se quiere mostrar un mensaje de alerta
         var n = noty({text: 'Tu sesión ha expirado. Por favor, recarga la página para iniciar sesión de nuevo', type: 'error'});
       }else {
-          var n = noty({text: 'Ha ocurrido un error. Por favor, intente recargar la página', type: 'error'});
+          //Si se habilita lo siguiente, mostrará mensajes de error ante cualquier
+          //falla de un request ajax, por lo que no conviene
+          //var n = noty({text: 'Ha ocurrido un error. Por favor, intente recargar la página', type: 'error'});
       }
   });
 </script>
