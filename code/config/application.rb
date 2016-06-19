@@ -28,6 +28,9 @@ module Code
     # Ubicacion del modelo STI
     config.autoload_paths += %W(#{config.root}/app/models/empleados)
 
+    # Ubicacion de los validadores
+    config.autoload_paths += %W(#{config.root}/app/models/validators)
+
     # //- Protect mass assignment requerido por rbp y no me funcionó
     #config.active_record.whitelist_attributes = true
     config.assets.enabled = true

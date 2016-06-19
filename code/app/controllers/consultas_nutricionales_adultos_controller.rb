@@ -25,6 +25,7 @@ class ConsultasNutricionalesAdultosController < ApplicationController
   def new
   	@consulta= ConsultaNutricionalAdulto.new
     # Para renderizar un formulario vacio de datos del paciente
+    @area = Area.find_by_nombre('Nutrición')
     @paciente = Paciente.new
   	get_doctores_nutricion
   end
@@ -34,21 +35,19 @@ class ConsultasNutricionalesAdultosController < ApplicationController
 
   	 respond_to do |format|
       if @consulta.save
-		    format.html { redirect_to consulta_nutricional_adulto_path(@consulta), notice: 'Consulta registrada exitosamente'}
+		    format.html { redirect_to consulta_nutricional_adulto_path(@consulta), notice: t('messages.save_success', resource: 'la consulta')}
       else
-        if @consulta.errors.full_messages.any?
-          format.html { redirect_to consulta_nutricional_pediatrica_path(@consulta), notice: @consulta.errors.full_messages.first}
-        else
-
-          format.html { redirect_to consulta_nutricional_pediatrica_path(@consulta), notice: "No se ha podido guardar la Consulta"}
-        end
-
+        flash.now[:alert] = t('messages.save_error', resource: 'la consulta', errors: @consulta.errors.full_messages.to_sentence)
+        format.js {render 'compartido/show_message'}
+        format.html{redirect_to new_consulta_nutricional_adulto_path, alert: t('messages.save_error', resource: 'la consulta', errors: @consulta.errors.full_messages.to_sentence)} #Si en el formulario se usa remote = false
       end
     end
   end
 
   def edit
+    @area = @consulta.area
     get_doctores_nutricion
+
   end
   #paciente para la llamada remota desde la ficha
   def set_paciente
@@ -64,18 +63,13 @@ class ConsultasNutricionalesAdultosController < ApplicationController
   end
 
   def update
-
   	respond_to do |format|
       if @consulta.update_attributes(consulta_params)
-	        #flash.now[:notice] = 'Consulta actualizada exitosamente'
-    		  format.html { redirect_to consulta_nutricional_adulto_path(@consulta), notice: 'Consulta actualizada exitosamente'}
+    		format.html { redirect_to consulta_nutricional_adulto_path(@consulta), notice: t('messages.update_success', resource: 'la consulta')}
       else
-        if @consulta.errors.full_messages.any?
-          format.html { redirect_to consulta_nutricional_pediatrica_path(@consulta), notice: @consulta.errors.full_messages.first}
-        else
-
-          format.html { redirect_to consulta_nutricional_pediatrica_path(@consulta), notice: "No se ha podido guardar la Consulta"}
-        end
+        flash.now[:alert] = t('messages.update_error', resource: 'la consulta', errors: @consulta.errors.full_messages.to_sentence)
+        format.js {render 'compartido/show_message'}
+        #format.html{redirect_to edit_consulta_nutricional_adulto_path(@consulta), alert: t('messages.update_error', resource: 'la consulta', errors: @consulta.errors.full_messages.to_sentence)}
       end
     end
   end
@@ -140,7 +134,7 @@ class ConsultasNutricionalesAdultosController < ApplicationController
   end
 
   def consulta_params
-  	params.require(:consulta_nutricional_adulto).permit(:ficha_nutricional_adulto_id, :doctor_id,:paciente_id, :fecha,
+  	params.require(:consulta_nutricional_adulto).permit(:ficha_nutricional_adulto_id, :doctor_id,:paciente_id, :fecha,:area_id,
   		:motivo_consulta, :actuales, :dx, :peso_actual, :peso_ideal, :peso_deseable, :talla, :biotipo,
   		:cir_muneca, :circ_brazo, :circ_cintura, :imc, :evaluacion, :medicamentos, :suplementos, :apetito,
   		:factores_apetito, :alergia_intolerancia, :cae_cabello, :estado_bucal, :orina_bien, :ir_cuerpo,

@@ -8,6 +8,7 @@ class Ability
   		can [:edit, :update, :check_username], User
 
   		alias_action :index, :show, :to => :read
+
   		if user.roles.first.name == "Administrador" || user.id == Configuracion.first.usuario_admin
   			can :manage, :all
   		else
@@ -60,8 +61,9 @@ class Ability
 
 		    	end
 		    	 if permission[:grupo_id] == 6
-		    	 	can [:get_paciente, :buscar, :recarga_paciente, :new_modal, :check_ci], Paciente
-		    	 	can :manage, Role
+		    	 	#No se necesita estos, creo
+		    	 	#can [:get_paciente, :buscar, :recarga_paciente, :new_modal, :check_ci], Paciente
+		    	 	#can :manage, Role #Atencion profesional no necesita manejar roles
 			    	can [:read, :create_consulta, :create_consulta_ped,
 			    		:create_consulta_ad, :create_consulta_odontologica, :create_control,
 			    		:set_estado_turno_to_atendido, :get_turnos], Turno
@@ -70,7 +72,8 @@ class Ability
 			    	can :create_consulta_odontologica, ConsultaOdontologica
 			    	can :create_consulta_ped, ConsultaNutricionalPediatrica
 			    	can :create_consulta_ad, ConsultaNutricionalAdulto
-
+			    	can :buscar, Doctor #Necesario para poder buscar un doctor
+			    											#si solo se tiene permiso para atencion profesional
 		    end
 		        can :manage, permission.model.singularize.classify.constantize
 	      end

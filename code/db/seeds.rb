@@ -19,9 +19,9 @@ Fabricator(:persona) do
   nombre 			{ Faker::Name.first_name }
   apellido 			{ Faker::Name.last_name }
   direccion 		{ Faker::Address.street_address }
-  telefono 			{ Faker::PhoneNumber.cell_phone }
+  telefono 			{ Faker::Number.number(10) }
   ruc 				{ Faker::Company.ein }
-  fecha_nacimiento	{ Faker::Time.between(10.days.ago, Date.today, :all)}
+  fecha_nacimiento	{ Date.today }
   sexo				{ %w(Masculino Femenino).sample }
   edad				{ Faker::Number.positive(1, 95) }
   estado_civil_id   { Faker::Number.positive(1, 5) }
@@ -60,52 +60,38 @@ end
 
 # Pacientes
 for i in 31..50
-	Paciente.create(persona_id: i, fecha_ingreso: '07/05/1995', lugar_nacimiento: Faker::Address.city, profesion: Faker::Company.profession)
+  Paciente.create(persona_id: i, fecha_ingreso: '07/05/1995', lugar_nacimiento: Faker::Address.city, profesion: Faker::Company.profession)
 end
-
-# Turnos //- No Funciona
-=begin
-for i in 1..25
-  Turno.create(paciente_id: Faker::Number.positive(1, 20),
-			  fecha_expedicion: Date.today,
-			  fecha_consulta: Date.today,
-			  area_id: Faker::Number.positive(1, 9),
-			  doctor_id: Faker::Number.positive(1, 14),
-			  estado: 'pendiente',
-			  monto: Faker::Number.number(6),
-			  paga: true,
-           nro_factura: '1000')
-end
-=end
 
 # Usuario Admin
 admin = User.create(username: 'admin',
-					password: 'admin',
-					password_confirmation: 'admin',
-					empleado_id: 1)
+          password: 'admin',
+          password_confirmation: 'admin',
+          empleado_id: 1)
 
 # Usuario User
 user = User.create(username: 'user',
-					password: 'user',
-					password_confirmation: 'user',
-					empleado_id: 16)
+          password: 'user',
+          password_confirmation: 'user',
+          empleado_id: 16)
 
 # Configuración
 configuracion1 = Configuracion.create(empresa_nombre: 'CENADE',
-	                      empresa_direccion: 'Samu´u c/ Ruta 1 km 3,5 - Barrio: Ka´aguy Rory Encarnación',
-	                      empresa_tel: '(71) 207881',
-	                      empresa_email: 'cenade@gmail.com',
-	                      empresa_web: 'http://www.cenade.org/',
+                        empresa_direccion: 'Samu´u c/ Ruta 1 km 3,5 - Barrio: Ka´aguy Rory Encarnación',
+                        empresa_tel: '(71) 207881',
+                        empresa_email: 'cenade@gmail.com',
+                        empresa_web: 'http://www.cenade.org/',
 
-	                      hora_inicio_mañana: '07:00',
-	                      hora_fin_mañana: '11:00',
-	                      hora_inicio_tarde:'13:00',
-	                      hora_fin_tarde: '17:00',
-	                      dias_atencion:'De Lunes a Viernes',
-	                      usuario_admin: admin.id)
+                        hora_inicio_mañana: '07:00',
+                        hora_fin_mañana: '11:00',
+                        hora_inicio_tarde:'13:00',
+                        hora_fin_tarde: '17:00',
+                        dias_atencion:'De Lunes a Viernes',
+                        usuario_admin: admin.id)
 
 # Roles y permisos
 administrador = Role.create!(name: 'Administrador')
+
 admin.add_role :Administrador
 
 user.add_role :Administrador
@@ -138,16 +124,32 @@ Permission.all.each do |p|
 end
 
 TituloLargo.create([{titulo: '¿Tuvo algún problema en el embarazo?'},
-					{titulo: '¿Realizó controles prenatales?¿Cuántos?'},
-					{titulo: '¿Cómo fué su alimentación durante el embarazo?¿Tomó vitaminas/minerales?'},
-					{titulo: '¿Tuvo asfixia postnatal?¿Lloró enseguida el bebé?¿Estuvo internado después del nacimiento?'},
-					{titulo: '¿Tomó pecho materno?¿Cuánto tiempo tomo solo pecho materno?¿Qué clase de leche tomó?'},
-					{titulo: '¿Cuando inició la alimentación complementaria?'},
-					{titulo: '¿Tuvo hemorragias anormales?'},
-					{titulo: '¿Presentó algún problema serio asociado con el tratamiento odontológico?'},
-					{titulo: '¿Sufre de alguna enfermedad cardiovascular?'},
-					{titulo: 'Ha sido hospitalizado alguna vez?'}
-					])
+          {titulo: '¿Realizó controles prenatales?¿Cuántos?'},
+          {titulo: '¿Cómo fué su alimentación durante el embarazo?¿Tomó vitaminas/minerales?'},
+          {titulo: '¿Tuvo asfixia postnatal?¿Lloró enseguida el bebé?¿Estuvo internado después del nacimiento?'},
+          {titulo: '¿Tomó pecho materno?¿Cuánto tiempo tomo solo pecho materno?¿Qué clase de leche tomó?'},
+          {titulo: '¿Cuando inició la alimentación complementaria?'},
+          {titulo: '¿Tuvo hemorragias anormales?'},
+          {titulo: '¿Presentó algún problema serio asociado con el tratamiento odontológico?'},
+          {titulo: '¿Sufre de alguna enfermedad cardiovascular?'},
+          {titulo: 'Ha sido hospitalizado alguna vez?'}
+          ])
+
+
+# Turnos //- No Funciona
+=begin
+for i in 1..25
+  Turno.create(paciente_id: Faker::Number.positive(1, 20),
+			  fecha_expedicion: Date.today,
+			  fecha_consulta: Date.today,
+			  area_id: Faker::Number.positive(1, 9),
+			  doctor_id: Faker::Number.positive(1, 14),
+			  estado: 'pendiente',
+			  monto: Faker::Number.number(6),
+			  paga: true,
+           nro_factura: '1000')
+end
+=end
 
 
 

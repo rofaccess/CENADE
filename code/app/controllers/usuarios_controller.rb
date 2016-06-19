@@ -46,11 +46,11 @@ class UsuariosController < ApplicationController
 
 			if @usuario.update(usuario_params.except(:role_id, :pass_reset))
 				UsersRole.where("user_id =?", @usuario.id).update_all({role_id: usuario_params[:role_id]})
-		        flash.now[:notice]= "Se ha actualizado el usuario #{@usuario.empleado.persona.nombre} #{@usuario.empleado.persona.apellido}."
+		        flash.now[:notice]= t('messages.update_success', resource: 'el usuario')
 	    		set_submenu
           format.html { render "show"}
 	    	else
-		        flash.now[:alert]  = "No se ha podido actualizar el usuario #{@usuario.empleado.persona.nombre} #{@usuario.empleado.persona.apellido}."
+		        flash.now[:alert]  = t('messages.update_error', resource: 'el usuario', errors: @usuario.errors.full_messages.to_sentence)
 		        format.html { render "edit"}
 	    	end
 
@@ -67,11 +67,11 @@ class UsuariosController < ApplicationController
 			if @usuario.save
 				set_submenu
 				UsersRole.create(user_id: @usuario.id, role_id: usuario_params[:role_id])
-				flash.now[:notice] ="Se ha guardado el usuario #{@usuario.username}"
+				flash.now[:notice] = t('messages.save_success', resource: 'el usuario')
 				format.html { render "show"}
 			else
 				set_submenu
-			    flash.now[:alert] = "No se ha podido guardar el usuario #{@usuario.username}"
+			    flash.now[:alert] = t('messages.save_error', resource: 'el usuario', errors: @usuario.errors.full_messages.to_sentence)
 			    format.html { render "new"}
 			end
 		end
@@ -84,9 +84,9 @@ class UsuariosController < ApplicationController
 
   	def destroy
 	    if @usuario.destroy
-		  flash.notice = "Se ha eliminado el usuario #{@usuario.username}."
+		  flash.notice = t('messages.delete_success', resource: 'el usuario')
 	    else
-	      flash.alert = "No se ha podido eliminar el usuario #{@usuario.username}."
+	      flash.alert = t('messages.delete_error', resource: 'el usuario', errors: @usuario.errors.full_messages.to_sentence)
 	    end
        set_submenu
 	    if request.xhr?

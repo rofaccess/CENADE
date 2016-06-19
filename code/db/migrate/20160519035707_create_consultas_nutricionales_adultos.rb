@@ -4,7 +4,7 @@ class CreateConsultasNutricionalesAdultos < ActiveRecord::Migration
       t.belongs_to :ficha_nutricional_adulto    ,null: false
       t.integer :doctor_id                      ,null: false
       t.integer :paciente_id                    ,null: false
-      #t.integer :area_id
+      t.integer :area_id                        ,null:false
       t.date   :fecha                           , null: false
       t.string :motivo_consulta                 ,limit: Domain::DESC250,   null: true
       t.string :actuales                        ,limit: Domain::DESC200,   null: true
@@ -72,10 +72,14 @@ class CreateConsultasNutricionalesAdultos < ActiveRecord::Migration
     end
     # ON DELETE RESTRICT: No se permite borrar un paciente relacionado a alguna consulta
     add_foreign_key(:consultas_nutricionales_adultos, :pacientes, column: 'paciente_id', on_delete: :restrict)
+    add_foreign_key(:consultas_nutricionales_adultos, :areas, column: 'area_id', on_delete: :restrict)
+    add_foreign_key(:consultas_nutricionales_adultos, :empleados, column: 'doctor_id', on_delete: :restrict)
+    add_foreign_key(:consultas_nutricionales_adultos, :fichas_nutricionales_adultos, column: 'ficha_nutricional_adulto_id', on_delete: :restrict)
 
     add_index :consultas_nutricionales_adultos, :ficha_nutricional_adulto_id, name: "ficha_id"
     add_index :consultas_nutricionales_adultos, :doctor_id
     add_index :consultas_nutricionales_adultos, :paciente_id
+    add_index :consultas_nutricionales_adultos, :area_id
 
   end
 end

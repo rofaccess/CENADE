@@ -10,7 +10,7 @@
       <%= consulta.hidden_field(:doctor_id, :value => current_user.empleado.id) %>
     <%end%>
 
-    <%= consulta.input :fecha, as: :string, label: '* Fecha', wrapper_html: { class: 'col-xs-4'}, input_html: { class: 'datepicker dateLessSystemDate required', maxLength: Domain::FECHA, value: date(Date.today)} %>
+    <%= consulta.input :fecha, as: :string, label: '* Fecha', wrapper_html: { class: 'col-xs-4'}, input_html: { class: 'datepicker dateLessSystemDate required', maxLength: Domain::FECHA, value: date(Date.today)}, required: false %>
   </div>
   <div class="row">
     <%= consulta.input :motivo_consulta, as: :text, label: 'Motivo de Consulta', wrapper_html: { class: 'col-xs-12'}, input_html: { maxLength: Domain::DESC300, class: 'biglength', rows: "2"} %>

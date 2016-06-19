@@ -7,11 +7,24 @@ class FichaClinico < ActiveRecord::Base
 	belongs_to :paciente, -> { with_deleted }
 	belongs_to :doctor, -> { with_deleted }, :foreign_key => :doctor_id
 
+	#Validaciones
+  validates :paciente, presence: true
+  validates :doctor, presence: true
+  validates :fecha, presence: true, date_less_system_date: true
+  validate  :paciente_has_ficha
+
+  #Callbacks
 	before_create :cargar_area_id
 
 	def cargar_area_id
 		area= Area.where(nombre: 'Clínico').first.id
 		self.area_id= area
+	end
+
+	def paciente_has_ficha
+		if paciente.ficha_clinico.present? && id.nil?
+			errors.add(:base, I18n.t('activerecord.errors.messages.paciente_has_ficha'))
+		end
 	end
 
 	# Law of Demeter

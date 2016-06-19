@@ -99,10 +99,11 @@ class CreateFichasNeurologicas < ActiveRecord::Migration
 		end
 
 		add_foreign_key(:fichas_neurologicas, :pacientes, column: 'paciente_id', on_delete: :restrict)
-	    add_foreign_key(:fichas_neurologicas, :areas, column: 'area_id', on_delete: :restrict)
+	  add_foreign_key(:fichas_neurologicas, :areas, column: 'area_id', on_delete: :restrict)
+	  add_foreign_key(:fichas_neurologicas, :empleados, column: 'doctor_id', on_delete: :restrict)
 
-	    add_index :fichas_neurologicas, :paciente_id
-	    add_index :fichas_neurologicas, :doctor_id
-	    add_index :fichas_neurologicas, :area_id
+	  add_index :fichas_neurologicas, :paciente_id
+	  add_index :fichas_neurologicas, :doctor_id
+	  add_index :fichas_neurologicas, :area_id
 	end
 end

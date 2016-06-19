@@ -48,28 +48,23 @@ class FichasFonoaudiologicasController < ApplicationController
 
 		respond_to do |format|
 			if @ficha.save
-				format.html { redirect_to ficha_fonoaudiologica_path(@ficha), notice: 'Ficha registrada exitosamente'}
+				format.html { redirect_to ficha_fonoaudiologica_path(@ficha), notice: t('messages.save_success', resource: 'la ficha')}
 			else
-				if @ficha.errors.full_messages.any?
-					format.html { redirect_to new_ficha_fonoaudiologica_path(), notice: @ficha.errors.full_messages.first}
-				else
-					format.html { redirect_to new_ficha_fonoaudiologica_path(), notice: 'No se ha podido guardar la Ficha'}
-				end
+				flash.now[:alert] = t('messages.save_error', resource: 'la ficha', errors: @ficha.errors.full_messages.to_sentence)
+        format.js {render 'compartido/show_message'}
+        format.html{redirect_to new_ficha_fonoaudiologica_path, alert: flash.now[:alert]}
 			end
 		end
 	end
  	def update
 		respond_to do |format|
 			if @ficha.update_attributes(fonoaudiologica_params)
-				format.html { redirect_to ficha_fonoaudiologica_path(@ficha), notice: 'Ficha actualizada exitosamente'}
+				format.html { redirect_to ficha_fonoaudiologica_path(@ficha), notice: t('messages.update_success', resource: 'la ficha')}
 			else
-
-				if @ficha.errors.full_messages.any?
-					format.html { redirect_to edit_ficha_fonoaudiologica_path(@ficha), notice: @ficha.errors.full_messages.first}
-				else
-					format.html { redirect_to edit_ficha_fonoaudiologica_path(@ficha), notice: 'No se ha podido actualizar la Ficha'}
-				end
-			end
+        flash.now[:alert] = t('messages.update_error', resource: 'la ficha', errors: @ficha.errors.full_messages.to_sentence)
+        format.js {render 'compartido/show_message'}
+        format.html{redirect_to edit_ficha_fonoaudiologica_path(@ficha), alert: flash.now[:alert]}
+      end
 
 		end
 	end
@@ -77,9 +72,9 @@ class FichasFonoaudiologicasController < ApplicationController
 	def destroy
 		respond_to do |format|
 			if @ficha.destroy
-				format.html { redirect_to fichas_fonoaudiologicas_path, flash: {notice: "Se ha eliminado la ficha de #{@ficha.paciente.persona_full_name}."}}
-			else
-			   	format.html { redirect_to fichas_fonoaudiologicas_path, flash: {alert: "No se ha podido eliminar la ficha de #{@ficha.paciente.persona_full_name}."}}
+			  format.html { redirect_to fichas_fonoaudiologicas_path, notice: t('messages.delete_success', resource: 'la ficha')}
+      else
+          format.html { redirect_to fichas_fonoaudiologicas_path, alert: t('messages.delete_error', resource: 'la ficha', errors: @ficha.errors.full_messages.to_sentence)}
 			end
 		end
 	end

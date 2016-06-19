@@ -1,6 +1,7 @@
 class EmpleadosController < ApplicationController
 	before_action :set_empleado, only: [:show, :edit, :update, :destroy]
-	load_and_authorize_resource
+	# except: :create evita una falla cuando hay error al crear
+  load_and_authorize_resource except: :create
 	respond_to :html, :js
 
 	def index
@@ -8,40 +9,31 @@ class EmpleadosController < ApplicationController
 	end
 
 	def new
-    	@empleado = Empleado.new
-    	@empleado.build_persona
-  	end
+    @empleado = Empleado.new
+    @empleado.build_persona
+  end
 
-  	#Setea un empleado  Funcionario o Doctor dependiendo de si tiene o no area
-  	def set_empleado_per_type(empleado_params)
-  		if empleado_params[:area_id].blank?
-  			Funcionario.new(empleado_params)
-  		else
-  			Doctor.new(empleado_params)
-  		end
-    end
-
-  	def create
-	  	@empleado = set_empleado_per_type(empleado_params)
+  def create
+    @empleado = Empleado.new(empleado_params)
 		respond_to do |format|
 			if @empleado.save
-			    flash.now[:notice] = "Se ha guardado el empleado #{@empleado.persona_full_name}."
-			    format.html {render 'show'}
+			  flash.now[:notice] = t('messages.save_success', resource: 'el empleado')
+			  format.html {render 'show'}
 			else
-				flash.now[:alert] = "No se ha podido guardar el empleado #{@empleado.persona_full_name}."
-       			format.html { render "new"}
+				flash.now[:alert] = t('messages.save_error', resource: 'el empleado', errors: @empleado.errors.full_messages.to_sentence)
+       	format.html { render "new"}
 			end
 		end
-  	end
+  end
 
-  	def edit
+  def edit
  	end
 
  	def update
-  	end
+  end
 
-  	def show
-  	end
+  def show
+  end
 
   def destroy
 		if checkCurrentUserEmployee(@empleado)

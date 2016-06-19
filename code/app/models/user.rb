@@ -9,15 +9,20 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :timeoutable, :lockable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  #Asociaciones
   belongs_to :empleado, -> { with_deleted }
   has_many :consultas
+  has_and_belongs_to_many :roles, :join_table => :users_roles
 
-  validates :username, length: {maximum: Domain::USERNAME, minimum: 3}
+  #Validaciones
+  validates :username, presence: true, length: { in: 3..Domain::USERNAME }, uniqueness: true
+  validates :empleado, presence: true
+  #validates :role_ids, presence: true #Para validar multiples roles
 
 	def email_required?
-	  	false
-
+   	false
 	end
+
   def get_role
     role = Role.joins("LEFT JOIN users_roles ON roles.id = users_roles.role_id").where(users_roles: {user_id: self.id}).first
     if !role.nil?

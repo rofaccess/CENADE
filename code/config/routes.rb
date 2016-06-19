@@ -198,8 +198,8 @@ Rails.application.routes.draw do
   resources :roles
 
   get 'doctores/buscar' => 'doctores#buscar'
-  resources :doctores , only: [:update]
-  resources :funcionarios , only: [:update]
+  resources :doctores, only: [:update, :create, :index]
+  resources :funcionarios, only: [:update, :create, :index]
 
   get 'turnos/check_paciente' => 'empleados#check_paciente'
   get'turnos/get_paciente' => 'turnos#get_paciente'

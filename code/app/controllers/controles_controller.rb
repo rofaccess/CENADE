@@ -25,21 +25,13 @@ class ControlesController < ApplicationController
   def create
   	@control = Control.new(control_params)
   	respond_to do |format|
-		if @control.save
-
-			#flash.now[:notice] = "Se ha guardado el control de #{@control.paciente_persona_full_name}."
-			format.html { redirect_to control_path(@control), notice: 'Control registrado exitosamente'}
-
-		else
-	      if @control.errors.full_messages.any?
-	          flash.now[:alert] = @control.errors.full_messages.first
-	      else
-	          flash.now[:alert] = "No se ha podido guardar la Control."
-	      end
-			format.html { render "new"}
-      		format.js { render "new"}
-		end
-	end
+  		if @control.save
+  			format.html { redirect_to control_path(@control), notice: t('messages.save_success', resource: 'el control')}
+  		else
+  	    flash.now[:alert] = t('messages.save_error', resource: 'el control', errors: @control.errors.full_messages.to_sentence)
+  		  format.js {render 'compartido/show_message'}
+      end
+	  end
   end
 
   def edit
@@ -50,20 +42,12 @@ class ControlesController < ApplicationController
   def update
   	respond_to do |format|
    		if @control.update(control_params)
-   			#flash.now[:notice] = "Se ha actualizado el control de #{@control.paciente_persona_full_name}."
-   			format.html { redirect_to control_path(@control), notice: 'Control actualizado exitosamente'}
-   		else
-        if @control.errors.full_messages.any?
-          flash.now[:alert] = @control.errors.full_messages.first
-        else
-          flash.now[:alert] = "No se ha podido actualizar la Control."
-        end
-
-   			format.html { render "edit"}
-        	format.js { render "edit"}
+   			format.html { redirect_to control_path(@control), notice:  t('messages.update_success', resource: 'el control')}
+      else
+        flash.now[:alert] = t('messages.update_error', resource: 'el control', errors: @control.errors.full_messages.to_sentence)
+        format.js {render 'compartido/show_message'}
    		end
    	end
-
   end
 
   def show

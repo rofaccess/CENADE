@@ -1,6 +1,3 @@
 $("#principal-content").html('<%= j render 'form', paciente: @paciente,fisio_nino: @fisio_nino, formats: 'html' %>');
 
-$('.paciente_data').html("<%= j render 'paciente_form',paciente: @paciente%>");
-<% if !@paciente.encargado.nil? %>
-	$('.encargado_data').html("<%= j render 'encargado_form', paciente: @paciente%>");
-<%end%>
+
