@@ -18,7 +18,7 @@
           <div class="col-xs-7">
             <%= turn.label :paciente_id, '* Paciente' %>
 
-            <%= turn.select(:paciente_id, Hash[Paciente.all.map{|a| [a.persona.nombre + " "+ a.persona.apellido, a.id]}],{},{class: "select-paciente form-control", required: true,  id: 'paciente_id'})%>
+            <%= turn.select(:paciente_id, Hash[Paciente.all.map{|a| [a.persona.nombre + " "+ a.persona.apellido, a.id]}],{},{class: "select-paciente form-control", required: true,  id: 'paciente_id', disabled: true})%>
         </div>
 
         <%= FormBuilder::text_field_v(turn, :fecha_expedicion,
