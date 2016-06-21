@@ -48,3 +48,23 @@
 
 </body>
 </html>
+
+<script type="text/javascript">
+  //- Esto no esta probado seriamente
+  //- Con interfaces que trabajan con mucho ajax, si la sesión expira, los request ajax
+  //- no envían ningún mensaje, lo siguiente hace que se redireccione a la página de
+  //- login cuando la sesión expira
+  /* Basado en: http://stackoverflow.com/questions/5460150/devise-with-rails-3-and-remote-true*/
+  $(document).ajaxError(function(e, XHR, options){
+      if (XHR.status == 401){
+        //Si se quiere redireccionar al formulario de inicio de sesión
+        //window.location.replace("<%= new_user_session_path %>");
+        //Si solo se quiere mostrar un mensaje de alerta
+        var n = noty({text: 'Tu sesión ha expirado. Por favor, recarga la página para iniciar sesión de nuevo', type: 'error'});
+      }else {
+          //Si se habilita lo siguiente, mostrará mensajes de error ante cualquier
+          //falla de un request ajax, por lo que no conviene
+          //var n = noty({text: 'Ha ocurrido un error. Por favor, intente recargar la página', type: 'error'});
+      }
+  });
+</script>

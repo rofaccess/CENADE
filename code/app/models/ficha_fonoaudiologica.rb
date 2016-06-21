@@ -1,14 +1,27 @@
 class FichaFonoaudiologica < ActiveRecord::Base
   paginates_per 20
+  # Autoincrementa el numero de ficha
+  protokoll :nro_ficha, pattern: '#'
+
   #asociaciones
   belongs_to :paciente, -> { with_deleted }
   belongs_to :area
   belongs_to :doctor, -> { with_deleted }, :foreign_key => :doctor_id
 
-  # Autoincremente el numero de ficha
-  protokoll :nro_ficha, pattern: '#'
+  #Validaciones
+  validates :paciente, presence: true
+  validates :doctor, presence: true
+  validates :fecha, presence: true, date_less_system_date: true
+  validate  :paciente_has_ficha
 
+  #Callbacks
   before_create :cargar_area_id
+
+  def paciente_has_ficha
+    if paciente.ficha_fonoaudiologica.present? && id.nil?
+      errors.add(:base, I18n.t('activerecord.errors.messages.paciente_has_ficha'))
+    end
+  end
 
 	def cargar_area_id
 		area= Area.where(nombre: 'Fonoaudiología').first.id

@@ -7,10 +7,21 @@ class Consulta < ActiveRecord::Base
  	belongs_to :area
 
  	#validaciones
+  validates :paciente, presence: true
+  validates :doctor, presence: true
+  validates :fecha, presence: true, date_less_system_date: true
+
  	validates :tratamiento , length: { maximum: Domain::DESC600, message: ' soporta un máximo de 600 caracteres' }
  	validates :evaluacion , length: { maximum: Domain::DESC300, message: ' soporta un máximo de 300 caracteres' }
  	validates :motivo_consulta, length: { maximum: Domain::DESC300, message: ' soporta un máximo de 300 caracteres' }
  	validates :observaciones, length: { maximum: Domain::DESC250, message: ' soporta un máximo de 250 caracteres' }
+  validate  :paciente_has_not_ficha
+
+  def paciente_has_not_ficha
+    if Consulta.get_ficha(area.nombre, paciente.id).nil?
+      errors.add(:base, I18n.t('activerecord.errors.messages.paciente_has_not_ficha'))
+    end
+  end
 
   # Obtiene la ficha del area correspondiente
   def self.get_ficha(area_nombre, paciente_id)

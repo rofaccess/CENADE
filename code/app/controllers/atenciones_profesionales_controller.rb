@@ -26,7 +26,7 @@ class AtencionesProfesionalesController < ApplicationController
     if @consulta.save
       flash.now[:notice] = 'Consulta registrada exitosamente y paciente atendido'
     else
-      flash.now[:alert] = "No se ha podido guardar la consulta."
+      flash.now[:alert] = t('messages.save_error', resource: 'la consulta', errors: @consulta.errors.full_messages.to_sentence)
     end
     Turno.find(params[:turno_id]).atender
     render 'atenciones_profesionales/compartido/create_consulta', format: :js
@@ -43,7 +43,7 @@ class AtencionesProfesionalesController < ApplicationController
     if @consulta_ped.save
       flash.now[:notice] = 'Consulta registrada exitosamente y paciente atendido'
     else
-      flash.now[:alert] = "No se ha podido guardar la consulta."
+      flash.now[:alert] = t('messages.save_error', resource: 'la consulta', errors: @consulta_ped.errors.full_messages.to_sentence)
     end
     Turno.find(params[:turno_id]).atender
     render 'atenciones_profesionales/nutricion/create_consulta_ped', format: :js
@@ -62,14 +62,14 @@ class AtencionesProfesionalesController < ApplicationController
     if @consulta_ad.save
       flash.now[:notice] = 'Consulta registrada exitosamente y paciente atendido'
     else
-      flash.now[:alert] = "No se ha podido guardar la consulta."
+      flash.now[:alert] = t('messages.save_error', resource: 'la consulta', errors: @consulta_ad.errors.full_messages.to_sentence)
     end
     Turno.find(params[:turno_id]).atender
     render 'atenciones_profesionales/nutricion/create_consulta_ad', format: :js
   end
 
   def consulta_ad_params
-    params.require(:consulta_nutricional_adulto).permit(:ficha_nutricional_adulto_id, :doctor_id,:paciente_id, :fecha,
+    params.require(:consulta_nutricional_adulto).permit(:area_id,:ficha_nutricional_adulto_id, :doctor_id,:paciente_id, :fecha,
       :motivo_consulta, :actuales, :dx, :peso_actual, :peso_ideal, :peso_deseable, :talla, :biotipo,
       :cir_muneca, :circ_brazo, :circ_cintura, :imc, :evaluacion, :medicamentos, :suplementos, :apetito,
       :factores_apetito, :alergia_intolerancia, :cae_cabello, :estado_bucal, :orina_bien, :ir_cuerpo,
@@ -86,7 +86,7 @@ class AtencionesProfesionalesController < ApplicationController
     if @consulta.save
       flash.now[:notice] = 'Consulta registrada exitosamente y paciente atendido'
     else
-      flash.now[:alert] = "No se ha podido guardar la consulta."
+      flash.now[:alert] = t('messages.save_error', resource: 'la consulta', errors: @consulta.errors.full_messages.to_sentence)
     end
     Turno.find(params[:turno_id]).atender
     render 'atenciones_profesionales/odontologia/create_consulta', format: :js
@@ -106,7 +106,7 @@ class AtencionesProfesionalesController < ApplicationController
     if @control.save
       flash.now[:notice] = 'Control registrado exitosamente y paciente atendido'
     else
-      flash.now[:alert] = "No se ha podido guardar el control."
+      flash.now[:alert] = t('messages.save_error', resource: 'el control', errors: @control.errors.full_messages.to_sentence)
     end
     Turno.find(params[:turno_id]).atender
     render 'atenciones_profesionales/nutricion/create_control', format: :js

@@ -18,6 +18,7 @@ class CreateFichaFisioterapiaNinos < ActiveRecord::Migration
 
     add_foreign_key(:ficha_fisioterapia_ninos, :pacientes, column: 'paciente_id', on_delete: :restrict)
     add_foreign_key(:ficha_fisioterapia_ninos, :areas, column: 'area_id', on_delete: :restrict)
+    add_foreign_key(:ficha_fisioterapia_ninos, :empleados, column: 'doctor_id', on_delete: :restrict)
 
     add_index :ficha_fisioterapia_ninos, :paciente_id
     add_index :ficha_fisioterapia_ninos, :doctor_id

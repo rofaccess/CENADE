@@ -9,11 +9,10 @@
 
 <div class="content">
 	<div class="form-content">
-		<%= simple_form_for consulta, html: {class: 'form-consulta'} do |consult|%>
+		<%= simple_form_for consulta, html: {class: 'form-consulta'}, remote: true do |consult|%>
 			<%= hidden_field_tag :consulta_id, consulta.id, class: 'consulta-id'%>
-
+			<%= consult.hidden_field(:area_id, :value => area.id) %>
 			<h4 class="titulo-ficha">Consulta en Nutrición Adulto</h4>
-
 			<div class="row">
 				<!-- Si el form se renderiza desde la ficha, para agregar una consulta, paciente aparece desactivado, con el hidden_field se asegura que se envíe su id -->
         <% if from_ficha %>
@@ -26,7 +25,7 @@
 
 				<%= consult.input :doctor_id, collection: doctores.collect { |a| [a.full_name, a.id] }, label: '* Profesional de la Salud', wrapper_html: { class: 'col-xs-5' }, input_html:   { class: 'required select-doctor select2'} %>
 
-				<%= consult.input :fecha, as: :string, label: '* Fecha', wrapper_html: { class: 'col-xs-3'}, input_html: { class: 'date datepicker required dateLessSystemDate', maxLength: Domain::FECHA, value:Formatter.format_date(consulta.fecha)} %>
+				<%= consult.input :fecha, as: :string, label: '* Fecha', wrapper_html: { class: 'col-xs-3'}, input_html: { class: 'date datepicker dateLessSystemDate required', maxLength: Domain::FECHA, value:Formatter.format_date(consulta.fecha)}, required: false %>
 			</div>
 
 			<div id="paciente-data">

@@ -24,7 +24,7 @@
             <%= link_to '<span class="fa fa-list-alt" aria-hidden="true"></span>  Fichas y Consultas'.html_safe, welcome_index_fichas_path %>
           </li>
 
-          <li class="<%= current_menu([empleados_path])%>">
+          <li class="<%= current_menu([empleados_path,new_empleado_path, funcionarios_path, doctores_path])%>">
             <%= link_to '<span class="fa fa-users" aria-hidden="true"></span>  Empleados'.html_safe, empleados_path  %>
           </li>
 

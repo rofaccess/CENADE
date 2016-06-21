@@ -100,6 +100,7 @@ class CreateFichasPediatricas < ActiveRecord::Migration
 
 	    add_foreign_key(:fichas_pediatricas, :pacientes, column: 'paciente_id', on_delete: :restrict)
 	    add_foreign_key(:fichas_pediatricas, :areas, column: 'area_id', on_delete: :restrict)
+	    add_foreign_key(:fichas_pediatricas, :empleados, column: 'doctor_id', on_delete: :restrict)
 
 	    add_index :fichas_pediatricas, :paciente_id
 	    add_index :fichas_pediatricas, :doctor_id

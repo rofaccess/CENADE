@@ -110,7 +110,7 @@
 			<div class="row">
 				<div class="checkbox col-xs-6">
 					<label>
-						<%= check_box_tag 'es_doctor', true, empleado.type == 'Doctor' ? true : false, class: 'checkbox-doctor'  %>
+						<%= check_box_tag 'es_doctor', true, empleado.type == 'Doctor' ? true : false, class: 'checkbox-doctor', disabled: empleado.type == 'Doctor' ? true : false  %>
 
 							¿Es Profesional de Salud?
 							<%= emplead.hidden_field :type, class: 'tipo-empleado'%>

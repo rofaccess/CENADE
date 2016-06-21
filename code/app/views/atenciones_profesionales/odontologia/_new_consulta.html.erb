@@ -11,7 +11,7 @@
       <%= consulta.hidden_field(:doctor_id, :value => current_user.empleado.id) %>
     <%end%>
 
-    <%= consulta.input :fecha, as: :string, label: '* Fecha', wrapper_html: { class: 'col-xs-4'}, input_html: { class: 'datepicker dateLessSystemDate required', maxLength: Domain::FECHA, value: date(Date.today)} %>
+    <%= consulta.input :fecha, as: :string, label: '* Fecha', wrapper_html: { class: 'col-xs-4'}, input_html: { class: 'datepicker dateLessSystemDate required', maxLength: Domain::FECHA, value: date(Date.today)}, required: false%>
   </div>
 
   <ul class="nav nav-tabs">

@@ -1,13 +1,26 @@
 class FichaNeurologica < ActiveRecord::Base
 	paginates_per 20
-
 	# Autoincrementa el numero de ficha
 	protokoll :nro_ficha, pattern: '#'
 
+	#Asociaciones
 	belongs_to :paciente, -> { with_deleted }
 	belongs_to :doctor, -> { with_deleted }, :foreign_key => :doctor_id
 
+	#Validaciones
+  validates :paciente, presence: true
+  validates :doctor, presence: true
+  validates :fecha, presence: true, date_less_system_date: true
+  validate  :paciente_has_ficha
+
+	#Callbacks
 	before_create :cargar_area_id
+
+	def paciente_has_ficha
+		if paciente.ficha_neurologica.present? && id.nil?
+			errors.add(:base, I18n.t('activerecord.errors.messages.paciente_has_ficha'))
+		end
+	end
 
 	def cargar_area_id
 		area= Area.where(nombre: 'Neurología').first.id

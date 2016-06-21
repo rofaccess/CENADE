@@ -15,11 +15,9 @@ class ConfiguracionesController < ApplicationController
     @configuracion = Configuracion.find(params[:id])
     @usuarios = User.all
       if @configuracion.update_attributes(configuracion_params)
-        redirect_to edit_configuracion_path(@configuracion), notice: "Configuraciones actualizadas correctamente"
+        redirect_to edit_configuracion_path(@configuracion), notice: t('messages.save_success', resource: 'la configuración')
       else
-        #@error = true
-        #@message = "Ha ocurrido un problema al tratar de guardar la configuracion"
-         redirect_to edit_configuracion_path(@configuracion), alert: "Ha ocurrido un problema al tratar de guardar la configuracion"
+         redirect_to edit_configuracion_path(@configuracion), alert: t('messages.save_error', resource: 'la configuración', errors: @configuracion.errors.full_messages.to_sentence)
       end
 
   end
