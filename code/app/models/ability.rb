@@ -9,7 +9,7 @@ class Ability
 
   		alias_action :index, :show, :to => :read
 
-  		if user.roles.first.name == "Administrador" || user.id == Configuracion.first.usuario_admin
+  		if  user.id == Configuracion.first.usuario_admin
   			can :manage, :all
   		else
 	      @rol = user.roles.first
