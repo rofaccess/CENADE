@@ -71,7 +71,10 @@ class EmpleadosController < ApplicationController
     end
 
     def print_empleados
-  		get_empleados
+  	    @search = Empleado.ransack(params[:q])
+		@empleados= @search.result
+                         .includes(:persona)
+                         .order('personas.nombre')
 
 	    respond_to do |format|
 	      format.pdf do

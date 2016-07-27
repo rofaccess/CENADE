@@ -72,7 +72,9 @@ class TurnosController < ApplicationController
   end
 
   def print_turnos
-      get_turnos()
+      @search = Turno.ransack(params[:q])
+      @search.sorts = ['fecha_consulta desc','turno asc'] if @search.sorts.empty?
+      @turnos= @search.result
 
       respond_to do |format|
         format.pdf do
