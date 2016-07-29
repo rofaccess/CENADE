@@ -20,9 +20,10 @@ class TurnosController < ApplicationController
         format.html { redirect_to turno_path(@turno.id), notice: t('messages.save_success', resource: 'el turno')}
       else
         flash.now[:alert] = t('messages.save_error', resource: 'el turno', errors: @turno.errors.full_messages.to_sentence)
-        @turno_nuevo= true
-        format.html { render "new"}
-        format.js { render "edit"} # //- Creo que debería ser render 'new'
+        format.js {render 'compartido/show_message'}
+        #@turno_nuevo= true
+        #format.html { render "new"}
+        #format.js { render "new"}
       end
     end
   end

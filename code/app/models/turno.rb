@@ -25,7 +25,7 @@ class Turno < ActiveRecord::Base
   before_validation :actualizar_estado, on: :create
 
   before_create :actualizar_turno
-  before_update :actualizar_turno
+  #before_update :actualizar_turno #No se debe actualizar el numero de turno
   before_create :actualizar_grupo
 
   before_update :actualizar_grupo
