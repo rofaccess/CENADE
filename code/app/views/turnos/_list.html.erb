@@ -4,10 +4,10 @@
     <tr class="active">
       <th>ÁREA</th>
       <th>Turno</th>
+      <th>Fecha expedición</th>
       <th>Paciente</th>
       <th>C.I.</th>
       <th>Profesional</th>
-      <th>Fecha expedición</th>
       <th>Estado</th>
       <th class ="col-xs-2"></th>
     </tr>
@@ -25,10 +25,10 @@
 
       <td ><%=turno.grupo%></td>
       <td ><%=turno.turno %></td>
+      <td ><%=turno.fecha_expedicion.strftime("%d/%m/%Y")%></td>
       <td ><%=turno.paciente_persona_full_name %></td>
       <td ><%=turno.paciente_persona_ci %></td>
       <td ><%=turno.doctor.persona_full_name %> </td>
-      <td ><%=turno.fecha_expedicion.strftime("%d/%m/%Y")%></td>
       <%if turno.estado== "pendiente"%>
         <td ><span class="label label-success"><%=turno.estado %></span></td>
       <% elsif turno.estado== "atendido" %>

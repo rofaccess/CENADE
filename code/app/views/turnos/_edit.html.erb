@@ -20,13 +20,14 @@
 
             <%= turn.select(:paciente_id, Hash[Paciente.all.map{|a| [a.persona.nombre + " "+ a.persona.apellido, a.id]}],{},{class: "select-paciente form-control", required: true,  id: 'paciente_id', disabled: true})%>
         </div>
-
+        <%=turn.hidden_field :fecha_expedicion, value: date(Date.today)%>
         <%= FormBuilder::text_field_v(turn, :fecha_expedicion,
                                       input_class: 'date datepicker required dateLessSystemDate',
                                       max_length: Domain::FECHA,
                                       label_text: '* Fecha Actual',
                                       col_class: 'col-xs-5',
-                                      input_value: "#{turno.fecha_expedicion.strftime("%d/%m/%Y") unless turno.new_record?}")%>
+                                      input_value: "#{turno.fecha_expedicion.strftime("%d/%m/%Y") unless turno.new_record?}",
+                                      disabled: true)%>
 
        </div>
 
