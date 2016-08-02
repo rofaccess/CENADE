@@ -7,7 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 # Estados civiles
-soltero = EstadoCivil.create(descripcion: 'Soltero')
+EstadoCivil.create(descripcion: 'Soltero')
 EstadoCivil.create(descripcion: 'Casado')
 EstadoCivil.create(descripcion: 'Divorciado')
 EstadoCivil.create(descripcion: 'Viudo')
@@ -28,7 +28,7 @@ Fabricator(:persona) do
   email             { Faker::Internet.email }
 end
 
-50.times {
+1.times {
   begin
     Fabricate(:persona)
   rescue
@@ -44,36 +44,17 @@ Area.create(nombre: 'Neurología')
 Area.create(nombre: 'Nutrición')
 Area.create(nombre: 'Odontología')
 Area.create(nombre: 'Pediatría')
-Area.create(nombre: 'Psicología')
 Area.create(nombre: 'Psicopedagogía')
 
 
-# Funcionarios
-for i in 1..15
-	Funcionario.create(persona_id: i, cargo: Faker::Name.title, abr_profesion: 'Lic. ' )
-end
-
-# Doctores
-for i in 16..30
-	Doctor.create(persona_id: i, cargo: Faker::Name.title, area_id: Faker::Number.positive(1, 9), abr_profesion: 'Lic. ')
-end
-
-# Pacientes
-for i in 31..50
-  Paciente.create(persona_id: i, fecha_ingreso: '07/05/1995', lugar_nacimiento: Faker::Address.city, profesion: Faker::Company.profession)
-end
+# Funcionario
+Funcionario.create(persona_id: 1, cargo: Faker::Name.title, abr_profesion: 'Lic. ' )
 
 # Usuario Admin
 admin = User.create(username: 'admin',
           password: 'admin',
           password_confirmation: 'admin',
           empleado_id: 1)
-
-# Usuario User
-user = User.create(username: 'user',
-          password: 'user',
-          password_confirmation: 'user',
-          empleado_id: 16)
 
 # Configuración
 configuracion1 = Configuracion.create(empresa_nombre: 'CENADE',
@@ -93,8 +74,6 @@ configuracion1 = Configuracion.create(empresa_nombre: 'CENADE',
 administrador = Role.create!(name: 'Administrador')
 
 admin.add_role :Administrador
-
-user.add_role :Administrador
 
 Grupo.create([{nombre: 'Configuraciones'}, {nombre: 'Pacientes'}, {nombre: 'Turnos'}, {nombre: 'Personal'},
 			{nombre: 'Fichas y Consultas'},{nombre: 'Atencion Profesional (De Todas la Areas)'},{nombre: 'Reportes'}, {nombre: 'Historial Médico (Todas las Áreas)'}])
@@ -135,21 +114,6 @@ TituloLargo.create([{titulo: '¿Tuvo algún problema en el embarazo?'},
           {titulo: 'Ha sido hospitalizado alguna vez?'}
           ])
 
-
-# Turnos //- No Funciona
-=begin
-for i in 1..25
-  Turno.create(paciente_id: Faker::Number.positive(1, 20),
-			  fecha_expedicion: Date.today,
-			  fecha_consulta: Date.today,
-			  area_id: Faker::Number.positive(1, 9),
-			  doctor_id: Faker::Number.positive(1, 14),
-			  estado: 'pendiente',
-			  monto: Faker::Number.number(6),
-			  paga: true,
-           nro_factura: '1000')
-end
-=end
 
 
 
