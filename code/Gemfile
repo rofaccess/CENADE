@@ -41,11 +41,6 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
-# Template language
-gem 'slim'
-# Slim templates generator for Rails 3 and 4
-gem 'slim-rails'
-
 # Flexible authentication solution for Rails with Warden. Read more: http://blog.plataformatec.com.br/tag/devise/
 gem 'devise'
 # An enterprise security extension for devise, trying to meet industrial standard security demands for web applications.
@@ -79,7 +74,6 @@ gem 'faker'
 
 # PDF generator (from HTML) plugin for Ruby on Rails http://mileszs.com/blog/2009/06/17/wicked-pdf-plugin.html
 gem 'wicked_pdf'
-gem 'wkhtmltopdf-binary'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
