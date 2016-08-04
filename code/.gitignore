@@ -20,4 +20,5 @@
 rails_best_practices_output.html
 
 /vendor
+/public/assets
 
