@@ -1,4 +1,4 @@
-![Alt](https://github.com/rofaccess/CENADE/blob/master/code/app/assets/images/logo-cenade.png “CENADE”)
+https://github.com/rofaccess/CENADE/blob/master/code/app/assets/images/logo-cenade.png
 
 # SISTEMA DE GESTIÓN DE FICHAS Y PACIENTES
 
