@@ -1,4 +1,5 @@
-![Alt Text](https://github.com/rofaccess/CENADE/blob/master/code/app/assets/images/logo-cenade.png)
+![Alt](https://github.com/rofaccess/CENADE/blob/master/code/app/assets/images/logo-cenade.png “CENADE”)
+
 # SISTEMA DE GESTIÓN DE FICHAS Y PACIENTES
 
 ## Ingeniería del Software II - 2016
