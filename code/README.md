@@ -1,5 +1,5 @@
-# SG
-Aplicación RoR desarrollada en la asignatura Sistemas de Gestión
+# CENADE
+Aplicación RoR desarrollada en la asignatura Ingeniería de Software II
 
 ## Ejecución
 
