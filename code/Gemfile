@@ -13,7 +13,7 @@ gem 'bootstrap-sass', '~> 3.3.6'
 gem 'font-awesome-sass'
 
 # Classier solution for file uploads for Rails, Sinatra and other Ruby web frameworks https://github.com/carrierwaveuploader/carrierwave
-gem 'carrierwave'
+gem 'carrierwave', ' 1.3.4'
 
 # Object-based searching. The successor to MetaSearch.
 gem 'ransack'
@@ -28,7 +28,7 @@ gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
+gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -119,3 +119,5 @@ group :production do
   # Cloudinary GEM for Ruby on Rails integration http://cloudinary.com
   gem 'cloudinary'
 end
+
+gem 'minitest', '5.8.4'

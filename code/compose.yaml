@@ -1,0 +1,25 @@
+include:
+  - infra.yaml
+
+services:
+  dev:
+    build: .
+    volumes:
+      - .:/code
+      - gem_cache:/usr/local/bundle/gems
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    # Sincroniza los cambios del host al contenedor
+    # Para usar esta configuración se utiliza
+    # > docker compose watch # o
+    # > docker compose up --watch
+    develop:
+      watch:
+        - action: sync
+          path: .
+          target: /code
+
+volumes:
+  gem_cache:

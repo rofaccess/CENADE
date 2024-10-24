@@ -50,12 +50,11 @@ GEM
     builder (3.2.2)
     byebug (8.2.5)
     cancancan (1.13.1)
-    carrierwave (0.11.2)
-      activemodel (>= 3.2.0)
-      activesupport (>= 3.2.0)
-      json (>= 1.7)
+    carrierwave (1.3.4)
+      activemodel (>= 4.0.0)
+      activesupport (>= 4.0.0)
       mime-types (>= 1.16)
-      mimemagic (>= 0.3.0)
+      ssrf_filter (~> 1.0, < 1.1.0)
     cloudinary (1.1.6)
       aws_cf_signer
       rest-client
@@ -115,12 +114,12 @@ GEM
     kaminari (0.16.3)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
+    libv8 (3.16.14.19.1)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     mail (2.6.4)
       mime-types (>= 1.16, < 4)
     mime-types (2.99.1)
-    mimemagic (0.3.1)
     mini_portile2 (2.0.0)
     minitest (5.8.4)
     multi_json (1.12.0)
@@ -190,6 +189,7 @@ GEM
       polyamorous (~> 1.2)
     rdoc (4.2.2)
       json (~> 1.4)
+    ref (2.0.0)
     require_all (1.3.3)
     responders (2.2.0)
       railties (>= 4.2.0, < 5.1)
@@ -235,7 +235,11 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    ssrf_filter (1.0.8)
     temple (0.7.6)
+    therubyracer (0.12.3)
+      libv8 (~> 3.16.14.15)
+      ref
     thor (0.19.1)
     thread_safe (0.3.5)
     tilt (2.0.2)
@@ -267,7 +271,7 @@ DEPENDENCIES
   bootstrap-sass (~> 3.3.6)
   byebug
   cancancan
-  carrierwave
+  carrierwave (= 1.3.4)
   cloudinary
   coffee-rails (~> 4.1.0)
   devise
@@ -281,6 +285,7 @@ DEPENDENCIES
   jquery-rails
   jquery-ui-sass-rails
   kaminari
+  minitest (= 5.8.4)
   paranoia (~> 2.0)
   pg
   protokoll
@@ -297,6 +302,7 @@ DEPENDENCIES
   slim
   slim-rails
   spring
+  therubyracer
   tzinfo-data
   uglifier (>= 1.3.0)
   web-console (~> 2.0)

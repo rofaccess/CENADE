@@ -1,0 +1,10 @@
+services:
+  db:
+    image: postgres:9.6
+    volumes:
+      - db_pg_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: postgres # Contraseña de superuser de Postgres. Necesario para que el servicio funcione
+
+volumes:
+  db_pg_data:
